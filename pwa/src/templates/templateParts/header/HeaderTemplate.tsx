@@ -1,12 +1,10 @@
-import { faHotTub } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Heading2 } from "@gemeente-denhaag/components-react";
 import * as React from "react";
+import * as styles from "./HeaderTemplate.module.css";
+import { Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "../../../components/container/Container";
 import { ITopNavItem, PrimaryTopNav, SecondaryTopNav } from "../../../components/topNav/TopNav";
-import * as styles from "./HeaderTemplate.module.css";
 import { useTranslation } from "react-i18next";
-import GitHubLogo from "./../../../assets/svgs/Github.svg";
+import { GitHubLogo } from "../../../assets/svgs/GitHub";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -24,7 +22,11 @@ export const HeaderTemplate: React.FC = () => {
     { label: "Commonground", href: "/commonground" },
     { label: "Haven", href: "/haven" },
     { label: "NL Design", href: "/nldesign" },
-    { label: "Github", href: "https://github.com/OpenCatalogi", icon: <FontAwesomeIcon icon={faHotTub} /> },
+    {
+      label: "Github",
+      href: "https://github.com/OpenCatalogi",
+      icon: <GitHubLogo />,
+    },
   ];
 
   return (
@@ -36,8 +38,8 @@ export const HeaderTemplate: React.FC = () => {
       </div>
       <div className={styles.middle}>
         <Container>
-          <Heading2>{t("Open Catalogs")}</Heading2>
-          <span>{t("Reusable components within the government")}</span>
+          <Heading2 className={styles.title}>{t("Open Catalogs")}</Heading2>
+          <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
         </Container>
       </div>
       <div className={styles.bottom}>

@@ -2,8 +2,9 @@
   background-color: #0b71a1;
 }
 
-.header * {
-  color: var(--conduction-topnav-color);
+.title,
+.subTitle {
+  color: var(--denhaag-color-white) !important;
 }
 
 .top {

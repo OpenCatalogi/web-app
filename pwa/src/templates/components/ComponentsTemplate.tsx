@@ -26,7 +26,7 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <Heading2>Components</Heading2>
-        <span className={styles.subHeader}>Donec id elit non mi porta gravida at eget metus.</span>
+        <span>Donec id elit non mi porta gravida at eget metus.</span>
       </div>
 
       <form className={styles.form}>

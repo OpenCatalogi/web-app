@@ -10,6 +10,7 @@
 
 .li > * {
   text-decoration: none;
+  color: var(--denhaag-color-white) !important;
 }
 
 .primary {
