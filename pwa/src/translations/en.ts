@@ -1,5 +1,4 @@
 export const en = {
-  Translation: "Nederlands",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   Processes: "Prosesses",

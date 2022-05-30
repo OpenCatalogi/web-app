@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Heading2 } from "@gemeente-denhaag/components-react";
+import { Heading1 } from "@gemeente-denhaag/components-react";
 import { Container } from "../../../components/container/Container";
 import { ITopNavItem, PrimaryTopNav, SecondaryTopNav } from "../../../components/topNav/TopNav";
 import { useTranslation } from "react-i18next";
@@ -32,21 +32,19 @@ export const HeaderTemplate: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <Container layoutClassName={styles.SecondaryNavContainer}>
-          <SecondaryTopNav layoutClassName={styles.SecondaryNavWidth} items={SecondaryTopNavItems} />
+        <Container layoutClassName={styles.secondaryNavContainer}>
+          <SecondaryTopNav items={SecondaryTopNavItems} />
         </Container>
       </div>
-      <div className={styles.middle}>
-        <Container>
-          <Heading2 className={styles.title}>{t("Open Catalogs")}</Heading2>
-          <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-        </Container>
-      </div>
-      <div className={styles.bottom}>
-        <Container layoutClassName={styles.PrimaryNavContainer}>
-          <PrimaryTopNav layoutClassName={styles.PrimaryNavWidth} items={PrimaryTopNavItems} />
-        </Container>
-      </div>
+
+      <Container layoutClassName={styles.headingContainer}>
+        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
+      </Container>
+
+      <Container>
+        <PrimaryTopNav items={PrimaryTopNavItems} />
+      </Container>
     </header>
   );
 };
