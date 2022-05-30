@@ -50,7 +50,7 @@ App\Entity\CollectionEntity:
   contactmomentenCollection:
     name: contactmomenten collection
     sourceType: GitHub
-    locationOAS: https://raw.githubusercontent.com/VNG-Realisatie/contactmomenten-api/master/src/openapi.yaml
+    locationOAS: https://raw.githubusercontent.com/ConductionNL/contactmomenten_publiccode/main/OAS.yaml
     testDataLocation: https://raw.githubusercontent.com/ConductionNL/contactmomenten_publiccode/main/data/contactmomenten.json
     loadTestData: true
     autoLoad: true
@@ -60,5 +60,13 @@ App\Entity\CollectionEntity:
     sourceType: GitHub
     locationOAS: https://raw.githubusercontent.com/ConductionNL/PDC_publiccode/main/PDC_OAS.json
     testDataLocation: https://raw.githubusercontent.com/ConductionNL/PDC_publiccode/main/data/PDC.json
+    loadTestData: true
+    autoLoad: true
+        
+  openCatalogiCollection:
+    name: OpenCatalogi Collection
+    sourceType: GitHub
+    locationOAS: https://raw.githubusercontent.com/OpenCatalogi/api/master/OAS.yaml
+    testDataLocation: https://raw.githubusercontent.com/OpenCatalogi/api/master/data/opencatalogi.json
     loadTestData: true
     autoLoad: true
