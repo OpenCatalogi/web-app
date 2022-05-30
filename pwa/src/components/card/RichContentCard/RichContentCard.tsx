@@ -91,7 +91,7 @@ interface ContentLinkProps {
 
 const ContentLink: React.FC<ContentLinkProps> = ({ title, subTitle, href }) => {
   return (
-    <Link className={styles.contentLink}>
+    <Link className={styles.contentLink} {...{ href }} target="_blank">
       <div className={styles.contentLink_content}>
         <span className={styles.contentLink_title}>{title}</span>
         <span className={styles.contentLink_subTitle}>{subTitle}</span>
