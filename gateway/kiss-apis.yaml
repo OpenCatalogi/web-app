@@ -62,3 +62,11 @@ App\Entity\CollectionEntity:
     testDataLocation: https://raw.githubusercontent.com/ConductionNL/PDC_publiccode/main/data/PDC.json
     loadTestData: true
     autoLoad: true
+        
+  openCatalogiCollection:
+    name: OpenCatalogi Collection
+    sourceType: GitHub
+    locationOAS: https://raw.githubusercontent.com/OpenCatalogi/api/master/OAS.json
+    # testDataLocation: https://raw.githubusercontent.com/ConductionNL/PDC_publiccode/main/data/PDC.json
+    # loadTestData: true
+    autoLoad: true
