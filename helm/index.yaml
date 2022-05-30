@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-05-30T16:51:19.743410956+02:00"
+    created: "2022-05-30T16:56:07.185534918+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -14,21 +14,27 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 15.3.2
     description: A Helm chart for Kubernetes
-    digest: f562da7744a44b335afdb6e027c3ac9795fa2eb8d8338e4836c11ac5e435a68d
+    digest: 0f72c855cd9276b06a6eb82f4f5e1367c9eff7629de3c2671c52de6db1300d74
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-0.1.6.tgz
-    version: 0.1.6
+    - charts/commonground-gateway-0.1.7.tgz
+    version: 0.1.7
   opencatalogi:
-  - apiVersion: v1
+  - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-05-30T16:51:19.729740545+02:00"
+    created: "2022-05-30T16:56:07.172265167+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 0.1.7
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: 9b47cba7e481de716aed519acfcc837712dba81220dfddb4814c9ed890d68698
+    digest: 701b78bb6529934483bc59d96b7d0ac2051605593fb44a83d7a986a90139f243
     name: opencatalogi
     type: application
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-30T16:51:19.713996741+02:00"
+generated: "2022-05-30T16:56:07.15928935+02:00"
