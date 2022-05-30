@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-04-15T12:33:50.484417+02:00"
+    created: "2022-05-30T16:51:19.743410956+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -20,15 +20,15 @@ entries:
     urls:
     - charts/commonground-gateway-0.1.6.tgz
     version: 0.1.6
-  skeleton-pip:
+  opencatalogi:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2022-04-15T12:33:50.47766+02:00"
+    created: "2022-05-30T16:51:19.729740545+02:00"
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: 192143ecbe15dca8bac6b5601f0514bea030d651ba6e2eed8c8c1c204fde099d
-    name: skeleton-pip
+    digest: 9b47cba7e481de716aed519acfcc837712dba81220dfddb4814c9ed890d68698
+    name: opencatalogi
     type: application
     urls:
-    - skeleton-pip-0.1.0.tgz
+    - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-15T12:33:50.466024+02:00"
+generated: "2022-05-30T16:51:19.713996741+02:00"
