@@ -1,0 +1,16 @@
+.text{
+    padding-block-start: var(--nlportal-space-inline-4xl);
+    padding-block-end: var(--nlportal-space-inline-xl);
+}
+
+.title {
+    padding-block-start: var(--nlportal-space-inline-lg);
+    padding-block-end: var(--nlportal-space-inline-md);
+    font-weight: normal;
+}
+
+.cards {
+    display: grid;
+    grid-gap: var(--nlportal-space-inline-xl);
+    grid-template-columns: 1fr 1fr;
+}
