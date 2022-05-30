@@ -67,6 +67,6 @@ App\Entity\CollectionEntity:
     name: OpenCatalogi Collection
     sourceType: GitHub
     locationOAS: https://raw.githubusercontent.com/OpenCatalogi/api/master/OAS.yaml
-    # testDataLocation: https://raw.githubusercontent.com/ConductionNL/PDC_publiccode/main/data/PDC.json
-    # loadTestData: true
+    testDataLocation: https://raw.githubusercontent.com/OpenCatalogi/api/master/data/opencatalogi.json
+    loadTestData: true
     autoLoad: true
