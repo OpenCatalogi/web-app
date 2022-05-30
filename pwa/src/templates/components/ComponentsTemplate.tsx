@@ -10,6 +10,7 @@ import { ISelectValue } from "../../components/formFields/select/select";
 import { components as _components } from "../../testData/components";
 import { RichContentCard } from "../../components/card";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
+import { useComponent } from "../../hooks/components";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
@@ -18,6 +19,13 @@ interface ComponentsTemplateProps {
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
   const [components] = React.useState<any[]>(_components);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>(_components);
+
+  const _useComponent = useComponent();
+  const getAllComponents = _useComponent.getAll();
+
+  React.useEffect(() => {
+    console.log(getAllComponents.data);
+  }, [getAllComponents.isSuccess]);
 
   const {
     register,
@@ -37,7 +45,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     const subscription = watch(({ name, types }) => filterComponents(name, types));
 
     return () => subscription.unsubscribe();
-  });
+  }, []);
 
   const filterComponents = (name: string, types: any): void => {
     let _types: string[] = [];
