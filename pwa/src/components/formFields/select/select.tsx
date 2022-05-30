@@ -13,6 +13,7 @@ interface ISelectProps {
   control: Control<FieldValues, any>;
   options: ISelectValue[];
   name: string;
+  defaultValue?: any;
 }
 
 export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFormProps> = ({
@@ -21,13 +22,16 @@ export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFo
   errors,
   control,
   validation,
+  defaultValue,
 }) => {
   return (
     <Controller
       {...{ control, name }}
       rules={validation}
       render={({ field: { onChange, value } }) => {
-        return <ReactSelect className={styles.select} isMulti {...{ options, value, onChange, errors }} />;
+        return (
+          <ReactSelect className={styles.select} isMulti {...{ options, value, onChange, errors, defaultValue }} />
+        );
       }}
     />
   );

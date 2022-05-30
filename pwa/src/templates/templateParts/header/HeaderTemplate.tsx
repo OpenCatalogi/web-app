@@ -9,19 +9,19 @@ import { GitHubLogo } from "../../../assets/svgs/GitHub";
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
 
-  const PrimaryTopNavItems: ITopNavItem[] = [
+  const primaryTopNavItems: ITopNavItem[] = [
     { label: "Home", href: "/" },
-    { label: "Software", href: "/software" },
-    { label: "Data", href: "/data" },
-    { label: `${t("Processes")}`, href: "/processes" },
-    { label: "API's", href: "/apis" },
-    { label: `${t("Information Models")}`, href: "/information-models" },
+    { label: t("Interaction"), href: "/components", linkState: { type: "interactie" } },
+    { label: t("Process"), href: "/components", linkState: { type: "proces" } },
+    { label: t("Integration"), href: "/components", linkState: { type: "integratie" } },
+    { label: t("Services"), href: "/components", linkState: { type: "services" } },
+    { label: t("Data"), href: "/components", linkState: { type: "data" } },
   ];
 
-  const SecondaryTopNavItems: ITopNavItem[] = [
-    { label: "Commonground", href: "/commonground" },
-    { label: "Haven", href: "/haven" },
-    { label: "NL Design", href: "/nldesign" },
+  const secondaryTopNavItems: ITopNavItem[] = [
+    { label: "Common ground", href: "https://commonground.nl" },
+    { label: "Haven", href: "https://haven.commonground.nl/" },
+    { label: "NL Design", href: "https://designsystem.gebruikercentraal.nl/" },
     {
       label: "Github",
       href: "https://github.com/OpenCatalogi",
@@ -33,7 +33,7 @@ export const HeaderTemplate: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.top}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav items={SecondaryTopNavItems} />
+          <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
 
@@ -43,7 +43,7 @@ export const HeaderTemplate: React.FC = () => {
       </Container>
 
       <Container>
-        <PrimaryTopNav items={PrimaryTopNavItems} />
+        <PrimaryTopNav items={primaryTopNavItems} />
       </Container>
     </header>
   );
