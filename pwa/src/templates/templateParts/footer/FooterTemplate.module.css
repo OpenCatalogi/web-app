@@ -1,0 +1,29 @@
+.footer {
+  position: relative;
+  background-color: var(--denhaag-color-grey-4);
+  padding-block-start: var(--nlportal-space-block-2xl);
+  padding-block-end: var(--nlportal-space-block-2xl);
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--conduction-content-link-font-size);
+  color: var(--conduction-footer-font-color);
+}
+
+.link {
+  color: var(--conduction-footer-font-color);
+  text-decoration: underline;
+  text-decoration-color: var(--conduction-footer-font-color);
+  -webkit-text-decoration-color: var(--conduction-footer-font-color);
+  cursor: pointer;
+}
+
+.imagesContainer {
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  height: var(--conduction-footer-logo-height-size);
+  padding-top: var(--nlportal-space-block-2xl);
+}
