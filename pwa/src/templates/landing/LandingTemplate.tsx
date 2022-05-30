@@ -22,6 +22,7 @@ export const LandingTemplate: React.FC = () => {
       <div className={styles.cards}>
 
           <ImageAndDetailsCard
+            iconAlign
             title={"API’s binnen de Nederlandse overheid"}
             image={<img src={SpotAPI} />}
             introduction={"Een wegwijzer naar de API’s die (semi-)overheidsorganisaties in Nederland aanbieden."}
@@ -33,6 +34,7 @@ export const LandingTemplate: React.FC = () => {
           />
 
           <ImageAndDetailsCard
+            iconAlign
             title={"Forum voor developers"}
             image={<img src={SpotForum} />}
             introduction={"EDe centrale plek om in gesprek te gaan over digitale overheidsdiensten."}

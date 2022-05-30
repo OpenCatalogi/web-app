@@ -15,6 +15,7 @@ interface ImageAndDetailsCardProps {
   };
   subHeader?: string;
   layoutClassName?: string;
+  iconAlign?: boolean;
 }
 
 export const ImageAndDetailsCard: React.FC<ImageAndDetailsCardProps> = ({
@@ -24,6 +25,7 @@ export const ImageAndDetailsCard: React.FC<ImageAndDetailsCardProps> = ({
   introduction,
   link,
   layoutClassName,
+  iconAlign,
 }) => {
   return (
     <div className={clsx(styles.container, [layoutClassName && layoutClassName])} onClick={() => navigate(link.href)}>
@@ -39,7 +41,7 @@ export const ImageAndDetailsCard: React.FC<ImageAndDetailsCardProps> = ({
         <div className={styles.introduction}>{introduction}</div>
 
         <div className={styles.link}>
-          <Link icon={<ArrowRightIcon />} iconAlign="start">
+          <Link icon={<ArrowRightIcon />} iconAlign={iconAlign ? "start" : "end"}>
             {link.label}
           </Link>
         </div>
