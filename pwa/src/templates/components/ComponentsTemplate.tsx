@@ -94,6 +94,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
       <div className={styles.componentsGrid}>
         {filteredComponents.map((component) => (
           <RichContentCard
+            key={component.id}
             link={{ label: component.name, href: `/components/${component.id}` }}
             labelsWithIcon={[
               { label: _.upperFirst(component.layerType), icon: <HamburgerIcon /> },
