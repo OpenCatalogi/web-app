@@ -3,7 +3,6 @@ import * as styles from "./select.module.css";
 import { Control, Controller, FieldValues } from "react-hook-form";
 import ReactSelect from "react-select";
 import { IReactHookFormProps } from "./../types";
-import clsx from "clsx";
 
 export interface ISelectValue {
   label: string;
@@ -28,13 +27,7 @@ export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFo
       {...{ control, name }}
       rules={validation}
       render={({ field: { onChange, value } }) => {
-        return (
-          <ReactSelect
-            className={clsx(styles.select, styles.multi)}
-            isMulti
-            {...{ options, value, onChange, errors }}
-          />
-        );
+        return <ReactSelect className={styles.select} isMulti {...{ options, value, onChange, errors }} />;
       }}
     />
   );
@@ -52,13 +45,7 @@ export const SelectSingle: React.FC<ISelectProps & ISelectProps & IReactHookForm
       {...{ control, name }}
       rules={validation}
       render={({ field: { onChange, value } }) => {
-        return (
-          <ReactSelect
-            className={clsx(styles.select, styles.single)}
-            {...{ options, onChange, value, errors }}
-            isClearable
-          />
-        );
+        return <ReactSelect className={styles.select} {...{ options, onChange, value, errors }} isClearable />;
       }}
     />
   );

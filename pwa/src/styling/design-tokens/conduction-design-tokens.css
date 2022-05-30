@@ -1,4 +1,9 @@
 :root {
+  --conduction-color-secondary: #0b71a1;
+  --conduction-color-secondary-hover: rgba(255, 255, 255, 0.2);
+  --conduction-color-primary: #084f70;
+  --conduction-color-primary-hover: rgba(0, 0, 0, 0.2);
+
   --conduction-unauthenticated-header-logo-width: 200px;
   --conduction-footer-secondary-background-color: #edbf07;
   --conduction-footer-height: 115px;
@@ -18,4 +23,6 @@
   --conduction-tag-font-size: 12px;
 
   --conduction-content-link-font-size: 14px;
+
+  --conduction-top-nav-secondary-font-size: 16px;
 }
