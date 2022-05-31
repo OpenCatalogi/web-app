@@ -9,4 +9,5 @@ export const en = {
   Integration: "Integration",
   Services: "Services",
   Data: "Data",
+  "No components found with active filters": "No components found with active filters",
 };
