@@ -10,14 +10,20 @@ import { ISelectValue } from "../../components/formFields/select/select";
 import { components as _components } from "../../testData/components";
 import { RichContentCard } from "../../components/card";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
+import { useComponent } from "../../hooks/components";
+import Skeleton from "react-loading-skeleton";
+import { t } from "i18next";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
 }
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
-  const [components] = React.useState<any[]>(_components);
-  const [filteredComponents, setFilteredComponents] = React.useState<any[]>(_components);
+  const [components, setComponents] = React.useState<any[]>([]);
+  const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
+
+  const _useComponent = useComponent();
+  const getComponents = _useComponent.getAll();
 
   const {
     register,
@@ -28,10 +34,17 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   } = useForm();
 
   React.useEffect(() => {
+    if (!getComponents.isSuccess) return;
+
+    setComponents(getComponents.data);
+    setFilteredComponents(getComponents.data);
+  }, [getComponents.isSuccess]);
+
+  React.useEffect(() => {
     reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
 
     filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
-  }, [defaultTypeFilter]);
+  }, [defaultTypeFilter, getComponents.isSuccess]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, types }) => filterComponents(name, types));
@@ -92,20 +105,29 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
       </form>
 
       <div className={styles.componentsGrid}>
-        {filteredComponents.map((component) => (
-          <RichContentCard
-            key={component.id}
-            link={{ label: component.name, href: `/components/${component.id}` }}
-            labelsWithIcon={[
-              { label: _.upperFirst(component.layerType), icon: <HamburgerIcon /> },
-              { label: _.upperFirst(component.organisationName), icon: <HouseIcon /> },
-            ]}
-            tags={[component.status, component.reuseType]}
-            contentLinks={[
-              { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.repositoryUrl },
-            ]}
-          />
-        ))}
+        {!getComponents.isLoading ? (
+          filteredComponents.map((component) => (
+            <RichContentCard
+              key={component.id}
+              link={{ label: component.name, href: `/components/${component.id}` }}
+              labelsWithIcon={[
+                { label: "Interactie", icon: <HamburgerIcon /> },
+                { label: "Conduction", icon: <HouseIcon /> },
+              ]}
+              tags={[component.developmentStatus, component.softwareType]}
+              contentLinks={[
+                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
+              ]}
+            />
+          ))
+        ) : (
+          <>
+            <Skeleton height="250px" />
+            <Skeleton height="250px" />
+          </>
+        )}
+
+        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
       </div>
     </Container>
   );
