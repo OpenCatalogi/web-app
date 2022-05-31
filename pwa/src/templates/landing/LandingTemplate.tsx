@@ -1,50 +1,35 @@
 import * as React from "react";
 import { Container } from "../../components/container/Container";
 import * as styles from "./LandingTemplate.module.css";
-import { Heading3, Heading2, Paragraph } from "@gemeente-denhaag/components-react";
-import { ImageAndDetailsCard, RichContentCard } from "../../components/card";
+import { Heading3, Heading2 } from "@gemeente-denhaag/components-react";
+import { ImageAndDetailsCard } from "../../components/card";
 import SpotAPI from "./../../assets/svgs/SpotAPI.svg";
-import SpotForum from "./../../assets/svgs/SpotForum.svg";
+import { useTranslation } from "react-i18next";
 
 export const LandingTemplate: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
-      <div className={styles.text}>
-        <Heading2>Eén centrale plek voor de developer die voor of met de overheid ontwikkelt</Heading2>
-        <Paragraph>
-          Ben je een developer die iets voor of met de overheid ontwikkelt? Dan vind je hier handige bronnen en de
-          community voor de ontwikkeling van jouw digitale services.
-        </Paragraph>
+      <div className={styles.heading}>
+        <Heading2>{t("A central place for reuse of information technology within the government")}</Heading2>
+        <span className={styles.subHeading}>Sed posuere consectetur est at lobortis.</span>
       </div>
 
-      <Heading3 className={styles.title}>(direct naar) veelbezochte pagina's</Heading3>
+      <Heading3 className={styles.subHeading}>
+        {t("Here you will find components for all Common Ground layers")}
+      </Heading3>
 
-      <div className={styles.cards}>
-
-          <ImageAndDetailsCard
-            iconAlign
-            title={"API’s binnen de Nederlandse overheid"}
-            image={<img src={SpotAPI} />}
-            introduction={"Een wegwijzer naar de API’s die (semi-)overheidsorganisaties in Nederland aanbieden."}
-            link={{
-              label: "Bekijk API’s",
-              href: "#",
-            }}
-            layoutClassName={styles.API}
-          />
-
-          <ImageAndDetailsCard
-            iconAlign
-            title={"Forum voor developers"}
-            image={<img src={SpotForum} />}
-            introduction={"EDe centrale plek om in gesprek te gaan over digitale overheidsdiensten."}
-            link={{
-              label: "Ga naar form",
-              href: "#",
-            }}
-            layoutClassName={styles.forum}
-          />
-
+      <div className={styles.cardsContainer}>
+        <ImageAndDetailsCard
+          title={t("All Open Catalog components")}
+          image={<img src={SpotAPI} />}
+          introduction="Etiam porta sem malesuada magna mollis euismod. Curabitur blandit tempus porttitor."
+          link={{
+            label: t("View all components"),
+            href: "/components",
+          }}
+        />
       </div>
     </Container>
   );

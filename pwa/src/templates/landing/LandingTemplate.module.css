@@ -1,16 +1,17 @@
-.text{
-    padding-block-start: var(--nlportal-space-inline-4xl);
-    padding-block-end: var(--nlportal-space-inline-xl);
+.heading {
+  padding-block-end: var(--nlportal-space-inline-4xl);
+  padding-block-start: var(--nlportal-space-inline-4xl);
 }
 
-.title {
-    padding-block-start: var(--nlportal-space-inline-lg);
-    padding-block-end: var(--nlportal-space-inline-md);
-    font-weight: normal;
+.subHeading {
+  font-weight: 100 !important;
+  padding-block-start: var(--nlportal-space-block-4xl);
 }
 
-.cards {
-    display: grid;
-    grid-gap: var(--nlportal-space-inline-xl);
-    grid-template-columns: 1fr 1fr;
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--nlportal-space-inline-xl);
+  padding-block-end: var(--nlportal-space-inline-2xl);
+  padding-block-start: var(--nlportal-space-inline-2xl);
 }
