@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { InputText, SelectMultiple } from "../../components/formFields";
 import { SearchIcon } from "@gemeente-denhaag/icons";
 import { ISelectValue } from "../../components/formFields/select/select";
+import { navigate } from "gatsby";
 
 export const ComponentsTemplate: React.FC = () => {
   const {
@@ -44,6 +45,7 @@ export const ComponentsTemplate: React.FC = () => {
           </FormFieldInput>
         </FormField>
       </form>
+      <div onClick={() => navigate("/components/1293798fd8is7yfn37ywrfio978w93ny")}>Component Detail</div>
     </Container>
   );
 };

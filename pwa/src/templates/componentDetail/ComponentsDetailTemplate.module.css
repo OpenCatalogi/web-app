@@ -1,0 +1,30 @@
+.body {
+  margin-block-end: var(--nlportal-space-block-4xl);
+}
+.componentsDetailContainer > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-4xl);
+}
+.heading {
+  margin-block-start: var(--nlportal-space-block-5xl);
+}
+
+.heading > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-xl);
+}
+
+.link {
+  font-size: var(--conduction-top-nav-secondary-font-size);
+}
+
+.title {
+  font-size: 32px;
+}
+
+.subtitle {
+  font-size: 24px;
+}
+
+.description {
+  font-size: var(--conduction-top-nav-secondary-font-size);
+  width: 70%;
+}
