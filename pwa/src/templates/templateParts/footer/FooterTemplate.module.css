@@ -1,5 +1,5 @@
 .footer {
-  position: relative;
+  margin-block-start: var(--nlportal-space-block-4xl);
   background-color: var(--denhaag-color-grey-1);
   padding-block-start: var(--nlportal-space-block-2xl);
   padding-block-end: var(--nlportal-space-block-2xl);
@@ -8,14 +8,12 @@
 .headings {
   display: flex;
   justify-content: space-between;
-  font-size: var(--conduction-content-link-font-size);
   color: var(--denhaag-color-grey-4);
+  font-size: var(--conduction-content-link-font-size);
 }
 
 .imagesContainer {
   display: flex;
-  justify-content: space-between;
-  width: fit-content;
   height: var(--conduction-footer-logo-height-size);
   padding-top: var(--nlportal-space-block-2xl);
 }

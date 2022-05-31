@@ -11,21 +11,17 @@ export const FooterTemplate: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <Container>
-        <div className={styles.content}>
-          <div className={styles.headings}>
-            <div className={styles.text}>
-              <span>{t("An initiative of")}</span>
-            </div>
+        <div className={styles.headings}>
+          <span>{t("An initiative of")}</span>
 
-            <div onClick={() => navigate("#")}>
-              <Link className={styles.link}>{t("Privacy declaration")}</Link>
-            </div>
+          <div onClick={() => navigate("#")}>
+            <Link>{t("Privacy declaration")}</Link>
           </div>
+        </div>
 
-          <div className={styles.imagesContainer}>
-            <img src={ConductionLogo} className={styles.image} />
-            <img src={DenHaagImage} className={styles.image} />
-          </div>
+        <div className={styles.imagesContainer}>
+          <img src={ConductionLogo} />
+          <img src={DenHaagImage} />
         </div>
       </Container>
     </footer>
