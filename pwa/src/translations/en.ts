@@ -5,4 +5,6 @@ export const en = {
   "Information Models": "Information Models",
   "A central place for re-use of information technology within government":
     "A central place for re-use of information technology within government",
+  "An initiative of": "An initiative of",
+  "Privacy declaration": "Privacy declaration",
 };

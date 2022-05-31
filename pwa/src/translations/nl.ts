@@ -5,4 +5,6 @@ export const nl = {
   "Information Models": "Informatie Modelen",
   "A central place for re-use of information technology within government":
     "Een centrale plek voor hergerbuik van informatie teschnologie binnen de overheid",
+  "An initiative of": "Een initiatief van",
+  "Privacy declaration": "Privacyverklaring",
 };

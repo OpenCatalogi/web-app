@@ -1,23 +1,15 @@
 .footer {
   position: relative;
-  background-color: var(--denhaag-color-grey-4);
+  background-color: var(--denhaag-color-grey-1);
   padding-block-start: var(--nlportal-space-block-2xl);
   padding-block-end: var(--nlportal-space-block-2xl);
 }
 
-.items {
+.headings {
   display: flex;
   justify-content: space-between;
   font-size: var(--conduction-content-link-font-size);
-  color: var(--conduction-footer-font-color);
-}
-
-.link {
-  color: var(--conduction-footer-font-color);
-  text-decoration: underline;
-  text-decoration-color: var(--conduction-footer-font-color);
-  -webkit-text-decoration-color: var(--conduction-footer-font-color);
-  cursor: pointer;
+  color: var(--denhaag-color-grey-4);
 }
 
 .imagesContainer {
