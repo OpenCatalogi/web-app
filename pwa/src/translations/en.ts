@@ -11,5 +11,11 @@ export const en = {
   Integration: "Integration",
   Services: "Services",
   Data: "Data",
+  "All Open Catalog components": "All Open Catalog components",
+  "View all components": "View all components",
+  "Here you will find components for all Common Ground layers":
+    "Here you will find components for all Common Ground layers",
+  "A central place for reuse of information technology within the government":
+    "A central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",
 };
