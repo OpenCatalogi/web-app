@@ -1,0 +1,24 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-4xl);
+}
+
+.backButton {
+  margin-block-start: var(--nlportal-space-block-3xl);
+}
+
+.heading > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-md);
+}
+
+.subtitle {
+  font-weight: 100;
+  font-size: var(--conduction-component-detail-sub-title-font-size);
+}
+
+.externalLink {
+  text-decoration: none;
+}
+
+.description {
+  width: 70%;
+}

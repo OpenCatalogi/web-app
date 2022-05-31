@@ -18,4 +18,6 @@ export const nl = {
   "A central place for reuse of information technology within the government":
     "Een centrale plek voor hergebruik van informatie technologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
+  "Back to components": "Terug naar componenten",
+  "View component on GitHub": "Bekijk dit component op GitHub",
 };
