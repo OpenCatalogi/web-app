@@ -17,3 +17,9 @@
 .form > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-block-xl);
 }
+
+.componentsGrid {
+  display: grid;
+  grid-gap: var(--nlportal-space-block-md);
+  grid-template-columns: 1fr 1fr;
+}
