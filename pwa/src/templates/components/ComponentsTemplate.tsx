@@ -43,7 +43,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   React.useEffect(() => {
     reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
 
-    filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
+    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
   }, [defaultTypeFilter, getComponents.isSuccess]);
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     let _types: string[] = [];
 
     if (Array.isArray(types)) {
-      _types = types.map((type: any) => type.value);
+      _types = types.map((type: any) => type?.value);
     } else {
       _types.push(types.value);
     }
