@@ -70,7 +70,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     }
 
     if (_types?.length) {
-      filteredComponents = filteredComponents.filter((component) => _types.includes(component.layerType));
+      filteredComponents = filteredComponents.filter((component) => _types.includes(component.intendedAudience));
     }
 
     setFilteredComponents(filteredComponents);
@@ -111,7 +111,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
               key={component.id}
               link={{ label: component.name, href: `/components/${component.id}` }}
               labelsWithIcon={[
-                { label: "Interactie", icon: <HamburgerIcon /> },
+                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
                 { label: "Conduction", icon: <HouseIcon /> },
               ]}
               tags={[component.developmentStatus, component.softwareType]}
