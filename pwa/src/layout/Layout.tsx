@@ -9,6 +9,8 @@ import { StylesProvider } from "@gemeente-denhaag/components-react";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 
+const { setEnv } = require("./../../static/env.js");
+
 interface LayoutProps {
   children: React.ReactNode;
   pageContext: any; // Gatsby pageContext
@@ -16,16 +18,23 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
-  const [API] = React.useState<APIService>(React.useContext(APIContext));
+  const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
   const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
+
+  React.useEffect(() => {
+    setEnv();
+    setAPI(new APIService());
+  }, []);
 
   React.useEffect(() => {
     setGatsbyContext({ ...{ pageContext, location } });
 
     const JWT = sessionStorage.getItem("JWT");
 
-    !API.authenticated && JWT && API.setAuthentication(JWT);
+    API && !API.authenticated && JWT && API.setAuthentication(JWT);
   }, [pageContext, location]);
+
+  if (!API) return <></>;
 
   return (
     <div>
