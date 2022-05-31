@@ -8,8 +8,10 @@ export interface TagProps {
 export const Tags: React.FC<TagProps> = ({ tags }) => {
   return (
     <div className={styles.tags}>
-      {tags.map((tag) => (
-        <span className={styles.tag}>{tag}</span>
+      {tags.map((tag, idx) => (
+        <span key={idx} className={styles.tag}>
+          {tag}
+        </span>
       ))}
     </div>
   );
