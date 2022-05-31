@@ -9,4 +9,5 @@ export const nl = {
   Integration: "Integratie",
   Services: "Services",
   Data: "Data",
+  "No components found with active filters": "Geen componenten gevonden met actieve filters",
 };
