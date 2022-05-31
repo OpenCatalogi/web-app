@@ -8,6 +8,7 @@ export interface ITopNavItem {
   label: string;
   href: string;
   icon?: JSX.Element;
+  linkState?: any;
 }
 
 interface TopNavProps {
@@ -20,8 +21,8 @@ export const PrimaryTopNav: React.FC<TopNavProps> = ({ items, layoutClassName })
     <div className={clsx([styles.primary, layoutClassName && layoutClassName])}>
       <nav className={styles.primary}>
         <ul className={styles.ul}>
-          {items.map(({ label, href, icon }, idx) => (
-            <li className={styles.li} key={idx} onClick={() => navigate(href)}>
+          {items.map(({ label, href, icon, linkState }, idx) => (
+            <li className={styles.li} key={idx} onClick={() => navigate(href, { state: linkState })}>
               <Link className={styles.link} icon={icon} iconAlign="start">
                 {label}
               </Link>

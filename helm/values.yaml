@@ -3,17 +3,17 @@
 # Declare variables to be passed into your templates.
 pwa:
   image:
-    image: "ghcr.io/conductionnl/skeleton-pip"
+    image: "ghcr.io/opencatalogi/web-app"
     pullPolicy: Always
     tag: "dev"
     # Overrides the image tag whose default is the chart appVersion.
-    apiUrl: "https://backend-bisc-dev.commonground.nu/api"
-    meUrl: "https://backend-bisc-dev.commonground.nu/api/users/me"
-    baseUrl: "https://backend-bisc-dev.commonground.nu"
-    frontendUrl: "https://admin-bisc-dev.commonground.nu"
-    organization: ""
-    redirectUrl: "vault"
-    adminUrl: "https://backend-bisc-dev.commonground.nu/admin"
+  apiUrl: "https://backend-bisc-dev.commonground.nu/api"
+  meUrl: "https://backend-bisc-dev.commonground.nu/api/users/me"
+  baseUrl: "https://backend-bisc-dev.commonground.nu"
+  frontendUrl: "https://admin-bisc-dev.commonground.nu"
+  organization: ""
+  redirectUrl: "vault"
+  adminUrl: "https://backend-bisc-dev.commonground.nu/admin"
 
 replicacount: 1
 
