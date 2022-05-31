@@ -18,4 +18,6 @@ export const en = {
   "A central place for reuse of information technology within the government":
     "A central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",
+  "Back to components": "Back to components",
+  "View component on GitHub": "View component on GitHub",
 };

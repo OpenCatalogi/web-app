@@ -21,11 +21,13 @@
   padding-block-end: var(--nlportal-space-inline-lg);
 }
 
-.li > .link {
+.li > a,
+.li > a > .link {
   color: var(--denhaag-color-white);
 }
 
-.li > .link:not(:hover) {
+.li > a > .link:not(:hover),
+.li > a:not(:hover) {
   text-decoration: none;
 }
 

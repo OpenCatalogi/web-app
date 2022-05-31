@@ -40,10 +40,12 @@ export const SecondaryTopNav: React.FC<TopNavProps> = ({ items, layoutClassName 
       <nav>
         <ul className={styles.ul}>
           {items.map(({ label, href, icon }, idx) => (
-            <li className={styles.li} key={idx} onClick={() => navigate(href)}>
-              <Link className={styles.link} icon={icon} iconAlign="start">
-                {label}
-              </Link>
+            <li className={styles.li} key={idx}>
+              <a href={href} target="_blank">
+                <Link className={styles.link} icon={icon} iconAlign="start">
+                  {label}
+                </Link>
+              </a>
             </li>
           ))}
         </ul>

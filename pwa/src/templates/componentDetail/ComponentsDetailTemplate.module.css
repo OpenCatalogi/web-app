@@ -1,19 +1,26 @@
 .body {
   margin-block-end: var(--nlportal-space-block-4xl);
 }
+
 .componentsDetailContainer > *:not(:last-child) {
   margin-block-end: var(--nlportal-space-block-4xl);
 }
+
+.back {
+  margin-block-start: var(--nlportal-space-block-3xl);
+}
+
 .heading {
   margin-block-start: var(--nlportal-space-block-5xl);
 }
 
 .heading > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-xl);
+  margin-block-end: var(--nlportal-space-block-lg);
 }
 
 .link {
   font-size: var(--conduction-top-nav-secondary-font-size);
+  text-decoration: none;
 }
 
 .title {
