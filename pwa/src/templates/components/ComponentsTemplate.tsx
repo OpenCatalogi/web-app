@@ -43,7 +43,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   React.useEffect(() => {
     reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
 
-    filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
+    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
   }, [defaultTypeFilter, getComponents.isSuccess]);
 
   React.useEffect(() => {
@@ -56,7 +56,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     let _types: string[] = [];
 
     if (Array.isArray(types)) {
-      _types = types.map((type: any) => type.value);
+      _types = types.map((type: any) => type?.value);
     } else {
       _types.push(types.value);
     }
@@ -70,7 +70,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     }
 
     if (_types?.length) {
-      filteredComponents = filteredComponents.filter((component) => _types.includes(component.layerType));
+      filteredComponents = filteredComponents.filter((component) => _types.includes(component.intendedAudience));
     }
 
     setFilteredComponents(filteredComponents);
@@ -111,7 +111,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
               key={component.id}
               link={{ label: component.name, href: `/components/${component.id}` }}
               labelsWithIcon={[
-                { label: "Interactie", icon: <HamburgerIcon /> },
+                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
                 { label: "Conduction", icon: <HouseIcon /> },
               ]}
               tags={[component.developmentStatus, component.softwareType]}
