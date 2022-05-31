@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading1, Link } from "@gemeente-denhaag/components-react";
+import { Heading1, Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { Container } from "../../components/container/Container";
 import { Tags } from "../../components/tags/Tags";
 import { navigate } from "gatsby";
@@ -28,32 +28,35 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   }, [getComponents.isSuccess]);
 
   return (
-    <Container layoutClassName={styles.componentsDetailContainer}>
-      <div className={styles.back} onClick={() => navigate("/components")}>
-        <Link className={styles.link} icon={<ArrowLeftIcon />} iconAlign="start">
+    <Container layoutClassName={styles.container}>
+      <div className={styles.backButton} onClick={() => navigate("/components")}>
+        <Link icon={<ArrowLeftIcon />} iconAlign="start">
           {t("Back to components")}
         </Link>
       </div>
-      {!getComponents.isLoading && component ? (
+
+      {!getComponents.isLoading && component && (
         <>
           <div className={styles.heading}>
             <div>
-              <Heading1 className={styles.title}>{component.name}</Heading1>
+              <Heading1>{component.name}</Heading1>
               <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
             </div>
+
             <Tags tags={[component.intendedAudience, component.developmentStatus]} />
           </div>
-          <p className={styles.description}>{component.description}</p>
 
-          <a className={styles.link} href={component.isBasedOn} target="_blank">
-            <Link className={styles.link} icon={<ArrowRightIcon />} iconAlign="start">
+          <Paragraph className={styles.description}>{component.description}</Paragraph>
+
+          <a className={styles.externalLink} href={component.isBasedOn} target="_blank">
+            <Link icon={<ArrowRightIcon />} iconAlign="start">
               {t("View component on GitHub")}
             </Link>
           </a>
         </>
-      ) : (
-        <Skeleton height="250px" />
       )}
+
+      {getComponents.isLoading && <Skeleton height="250px" />}
     </Container>
   );
 };

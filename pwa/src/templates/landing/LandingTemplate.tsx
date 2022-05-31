@@ -5,9 +5,13 @@ import { Heading3, Heading2 } from "@gemeente-denhaag/components-react";
 import { ImageAndDetailsCard } from "../../components/card";
 import SpotAPI from "./../../assets/svgs/SpotAPI.svg";
 import { useTranslation } from "react-i18next";
+import { useComponent } from "../../hooks/components";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
+
+  const _useComponent = useComponent();
+  const getComponents = _useComponent.getAll(); // preload the components
 
   return (
     <Container>

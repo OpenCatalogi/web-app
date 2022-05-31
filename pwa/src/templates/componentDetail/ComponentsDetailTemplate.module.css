@@ -1,37 +1,24 @@
-.body {
+.container > *:not(:last-child) {
   margin-block-end: var(--nlportal-space-block-4xl);
 }
 
-.componentsDetailContainer > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-4xl);
-}
-
-.back {
+.backButton {
   margin-block-start: var(--nlportal-space-block-3xl);
 }
 
-.heading {
-  margin-block-start: var(--nlportal-space-block-5xl);
-}
-
 .heading > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-lg);
-}
-
-.link {
-  font-size: var(--conduction-top-nav-secondary-font-size);
-  text-decoration: none;
-}
-
-.title {
-  font-size: 32px;
+  margin-block-end: var(--nlportal-space-block-md);
 }
 
 .subtitle {
-  font-size: 24px;
+  font-weight: 100;
+  font-size: var(--conduction-component-detail-sub-title-font-size);
+}
+
+.externalLink {
+  text-decoration: none;
 }
 
 .description {
-  font-size: var(--conduction-top-nav-secondary-font-size);
   width: 70%;
 }

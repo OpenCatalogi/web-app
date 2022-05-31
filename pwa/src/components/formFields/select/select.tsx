@@ -14,6 +14,7 @@ interface ISelectProps {
   options: ISelectValue[];
   name: string;
   defaultValue?: any;
+  disabled?: boolean;
 }
 
 export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFormProps> = ({
@@ -23,6 +24,7 @@ export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFo
   control,
   validation,
   defaultValue,
+  disabled,
 }) => {
   return (
     <Controller
@@ -30,7 +32,12 @@ export const SelectMultiple: React.FC<ISelectProps & ISelectProps & IReactHookFo
       rules={validation}
       render={({ field: { onChange, value } }) => {
         return (
-          <ReactSelect className={styles.select} isMulti {...{ options, value, onChange, errors, defaultValue }} />
+          <ReactSelect
+            className={styles.select}
+            isMulti
+            isDisabled={disabled}
+            {...{ options, value, onChange, errors, defaultValue }}
+          />
         );
       }}
     />

@@ -3,6 +3,7 @@ import { navigate } from "gatsby";
 import * as React from "react";
 import * as styles from "./RichContentCard.module.css";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { Tags } from "../../tags/Tags";
 
 export interface RichContentCardProps {
   link: {
@@ -43,11 +44,7 @@ export const RichContentCard: React.FC<RichContentCardProps> = ({
         ))}
       </div>
 
-      <div className={styles.tags}>
-        {tags.map((tag, idx) => (
-          <Tag key={idx} {...{ tag }} />
-        ))}
-      </div>
+      <Tags {...{ tags }} />
 
       {contentLinks && (
         <div className={styles.contentLinks}>
@@ -73,14 +70,6 @@ const LabelWithIcon: React.FC<LabelWithIconProps> = ({ label, icon }) => {
       <span className={styles.labelWithIcon_label}>{label}</span>
     </div>
   );
-};
-
-interface TagProps {
-  tag: string;
-}
-
-const Tag: React.FC<TagProps> = ({ tag }) => {
-  return <span className={styles.tag}>{tag}</span>;
 };
 
 interface ContentLinkProps {

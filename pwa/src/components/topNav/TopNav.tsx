@@ -41,7 +41,7 @@ export const SecondaryTopNav: React.FC<TopNavProps> = ({ items, layoutClassName 
         <ul className={styles.ul}>
           {items.map(({ label, href, icon }, idx) => (
             <li className={styles.li} key={idx}>
-              <a href={href} target="_blank">
+              <a className={styles.anchor} href={href} target="_blank">
                 <Link className={styles.link} icon={icon} iconAlign="start">
                   {label}
                 </Link>
