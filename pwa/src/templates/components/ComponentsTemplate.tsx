@@ -42,9 +42,11 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
 
   React.useEffect(() => {
     reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
-
-    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
   }, [defaultTypeFilter, getComponents.isSuccess]);
+
+  React.useEffect(() => {
+    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
+  }, [defaultTypeFilter, components]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, types }) => filterComponents(name, types));
@@ -56,7 +58,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     let _types: string[] = [];
 
     if (Array.isArray(types)) {
-      _types = types.map((type: any) => type?.value);
+      _types = types.map((type: any) => type.value);
     } else {
       _types.push(types.value);
     }
