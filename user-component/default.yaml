@@ -13,6 +13,7 @@ App\Entity\Group:
         organization: http://api/admin/organizations/a1c8e0b6-2f78-480d-a9fb-9792142f4761
         scopes: 
             - '@products_read'
+            - '@components_read'
 
     admin:
         description: the admin group
@@ -49,6 +50,10 @@ App\Entity\Scope:
     contactmomenten_read:
         code: 'GET.contactmoment'
         name: 'Read contactmomenten'
+
+    components_read:
+        code: 'GET.component'
+        name: 'Read componenten'
     
 App\Entity\User:
     someUser:

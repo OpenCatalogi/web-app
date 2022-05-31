@@ -38,22 +38,22 @@ export const RichContentCard: React.FC<RichContentCardProps> = ({
       </div>
 
       <div className={styles.labelsWithIcon}>
-        {labelsWithIcon.map(({ label, icon }) => (
-          <LabelWithIcon {...{ label, icon }} />
+        {labelsWithIcon.map(({ label, icon }, idx) => (
+          <LabelWithIcon key={idx} {...{ label, icon }} />
         ))}
       </div>
 
       <div className={styles.tags}>
-        {tags.map((tag) => (
-          <Tag {...{ tag }} />
+        {tags.map((tag, idx) => (
+          <Tag key={idx} {...{ tag }} />
         ))}
       </div>
 
       {contentLinks && (
         <div className={styles.contentLinks}>
           <Divider />
-          {contentLinks.map(({ title, subTitle, href }) => (
-            <ContentLink {...{ title, subTitle, href }} />
+          {contentLinks.map(({ title, subTitle, href }, idx) => (
+            <ContentLink key={idx} {...{ title, subTitle, href }} />
           ))}
         </div>
       )}
@@ -91,7 +91,7 @@ interface ContentLinkProps {
 
 const ContentLink: React.FC<ContentLinkProps> = ({ title, subTitle, href }) => {
   return (
-    <Link className={styles.contentLink}>
+    <Link className={styles.contentLink} {...{ href }} target="_blank">
       <div className={styles.contentLink_content}>
         <span className={styles.contentLink_title}>{title}</span>
         <span className={styles.contentLink_subTitle}>{subTitle}</span>
