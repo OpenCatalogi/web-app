@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Container } from "../../components/container/Container";
 import * as styles from "./LandingTemplate.module.css";
 import { Heading3, Heading2 } from "@gemeente-denhaag/components-react";
-import { ImageAndDetailsCard } from "../../components/card";
 import SpotAPI from "./../../assets/svgs/SpotAPI.svg";
 import { useTranslation } from "react-i18next";
 import { useComponent } from "../../hooks/components";
+import { ImageAndDetailsCard, Container } from "@conduction/components";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();

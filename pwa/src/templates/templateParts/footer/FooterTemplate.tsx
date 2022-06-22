@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
-import { Container } from "../../../components/container/Container";
+import { Container } from "@conduction/components";
 import LogoRotterdam from "./../../../assets/svgs/LogoRotterdam.svg";
 import { navigate } from "gatsby";
 import { t } from "i18next";

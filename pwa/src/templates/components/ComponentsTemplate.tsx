@@ -1,18 +1,14 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Container } from "../../components/container/Container";
+import { Container, InputText, RichContentCard } from "@conduction/components";
 import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { useForm } from "react-hook-form";
-import { InputText, SelectMultiple } from "../../components/formFields";
-import { SearchIcon } from "@gemeente-denhaag/icons";
-import { ISelectValue } from "../../components/formFields/select/select";
-import { components as _components } from "../../testData/components";
-import { RichContentCard } from "../../components/card";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
+import { ISelectValue, SelectMultiple } from "@conduction/components/lib/components/formFields/select/select";
+import { useForm } from "react-hook-form";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
@@ -79,64 +75,65 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   };
 
   return (
-    <Container layoutClassName={styles.container}>
-      <div className={styles.header}>
-        <Heading2>Components</Heading2>
-        <span>Donec id elit non mi porta gravida at eget metus.</span>
-      </div>
+    <Container>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <Heading2>Components</Heading2>
+          <span>Donec id elit non mi porta gravida at eget metus.</span>
+        </div>
 
-      <form className={styles.form}>
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op naam</FormFieldLabel>
-            <InputText
-              {...{ register, errors }}
-              disabled={getComponents.isLoading}
-              name="name"
-              icon={<SearchIcon />}
-              validation={{ required: true }}
-            />
-          </FormFieldInput>
-        </FormField>
+        <form className={styles.form}>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>Filter op naam</FormFieldLabel>
+              <InputText
+                {...{ register, errors }}
+                disabled={getComponents.isLoading}
+                name="name"
+                validation={{ required: true }}
+              />
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op type</FormFieldLabel>
-            <SelectMultiple
-              defaultValue={getTypeFromValue(defaultTypeFilter)}
-              name="types"
-              options={types}
-              disabled={getComponents.isLoading}
-              {...{ errors, control, register }}
-            />
-          </FormFieldInput>
-        </FormField>
-      </form>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>Filter op type</FormFieldLabel>
+              <SelectMultiple
+                defaultValue={getTypeFromValue(defaultTypeFilter)}
+                name="types"
+                options={types}
+                disabled={getComponents.isLoading}
+                {...{ errors, control, register }}
+              />
+            </FormFieldInput>
+          </FormField>
+        </form>
 
-      <div className={styles.componentsGrid}>
-        {!getComponents.isLoading ? (
-          filteredComponents.map((component) => (
-            <RichContentCard
-              key={component.id}
-              link={{ label: component.name, href: `/components/${component.id}` }}
-              labelsWithIcon={[
-                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-                { label: "Conduction", icon: <HouseIcon /> },
-              ]}
-              tags={[component.developmentStatus, component.softwareType]}
-              contentLinks={[
-                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
-              ]}
-            />
-          ))
-        ) : (
-          <>
-            <Skeleton height="250px" />
-            <Skeleton height="250px" />
-          </>
-        )}
+        <div className={styles.componentsGrid}>
+          {!getComponents.isLoading ? (
+            filteredComponents.map((component) => (
+              <RichContentCard
+                key={component.id}
+                link={{ label: component.name, href: `/components/${component.id}` }}
+                labelsWithIcon={[
+                  { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
+                  { label: "Conduction", icon: <HouseIcon /> },
+                ]}
+                tags={[component.developmentStatus, component.softwareType]}
+                contentLinks={[
+                  { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
+                ]}
+              />
+            ))
+          ) : (
+            <>
+              <Skeleton height="250px" />
+              <Skeleton height="250px" />
+            </>
+          )}
 
-        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
+          {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
+        </div>
       </div>
     </Container>
   );
