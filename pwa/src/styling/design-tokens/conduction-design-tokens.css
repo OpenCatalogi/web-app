@@ -52,4 +52,6 @@
   --conduction-space-block-xs: 0.5rem; /* Extra Small */
   --conduction-space-block-2xs: 0.25rem; /* Extra Small 2 */
   --conduction-space-block-3xs: 0.125rem; /* Extra Small 3 */
+
+  --conduction-max-page-width: 1024px;
 }
