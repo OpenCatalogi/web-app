@@ -4,27 +4,28 @@ import { Heading1 } from "@gemeente-denhaag/components-react";
 import { Container } from "../../../components/container/Container";
 import { ITopNavItem, PrimaryTopNav, SecondaryTopNav } from "../../../components/topNav/TopNav";
 import { useTranslation } from "react-i18next";
+import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
 
   const primaryTopNavItems: ITopNavItem[] = [
-    { label: "Home", href: "/" },
-    { label: t("Interaction"), href: "/components", linkState: { type: "interactie" } },
-    { label: t("Process"), href: "/components", linkState: { type: "proces" } },
-    { label: t("Integration"), href: "/components", linkState: { type: "integratie" } },
-    { label: t("Services"), href: "/components", linkState: { type: "services" } },
-    { label: t("Data"), href: "/components", linkState: { type: "data" } },
+    { label: "Home", handleClick: () => navigate("/") },
+    { label: t("Interaction"), handleClick: () => navigate("/components") },
+    { label: t("Process"), handleClick: () => navigate("/components") },
+    { label: t("Integration"), handleClick: () => navigate("/components") },
+    { label: t("Services"), handleClick: () => navigate("/components") },
+    { label: t("Data"), handleClick: () => navigate("/components") },
   ];
 
   const secondaryTopNavItems: ITopNavItem[] = [
-    { label: "Common ground", href: "https://commonground.nl" },
-    { label: "Haven", href: "https://haven.commonground.nl/" },
-    { label: "NL Design", href: "https://designsystem.gebruikercentraal.nl/" },
+    { label: "Common ground", handleClick: () => navigate("https://commonground.nl") },
+    { label: "Haven", handleClick: () => navigate("https://commonground.nl") },
+    { label: "NL Design", handleClick: () => navigate("https://commonground.nl") },
     {
       label: "Github",
-      href: "https://github.com/OpenCatalogi",
+      handleClick: () => navigate("https://github.com/OpenCatalogi"),
       icon: <GitHubLogo />,
     },
   ];
@@ -33,7 +34,7 @@ export const HeaderTemplate: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.top}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav items={secondaryTopNavItems} />
+          {/*<SecondaryTopNav items={secondaryTopNavItems} />*/}
         </Container>
       </div>
 
