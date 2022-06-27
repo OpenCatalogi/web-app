@@ -35,25 +35,25 @@ export const HeaderTemplate: React.FC = () => {
     {
       label: "Common ground",
       handleClick: () => {
-        navigate("https://commonground.nl");
+        window.open("https://commonground.nl");
       },
     },
     {
       label: "Haven",
       handleClick: () => {
-        navigate("https://commonground.nl");
+        window.open("https://commonground.nl");
       },
     },
     {
       label: "NL Design",
       handleClick: () => {
-        navigate("https://commonground.nl");
+        window.open("https://commonground.nl");
       },
     },
     {
       label: "Github",
       handleClick: () => {
-        navigate("https://github.com/OpenCatalogi");
+        window.open("https://github.com/OpenCatalogi");
       },
       icon: <GitHubLogo />,
     },
