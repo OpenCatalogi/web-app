@@ -2,29 +2,76 @@ import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
 import { Heading1 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
+import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
-import { ITopNavItem } from "@conduction/components/lib/components/topNav/TopNav";
+import { Container, PrimaryTopNav, SecondaryTopNav } from "../../../../../../conduction-components.git";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
 
-  const primaryTopNavItems: ITopNavItem[] = [
-    { label: "Home", href: "/" },
-    { label: t("Interaction"), href: "/components", linkState: { type: "interactie" } },
-    { label: t("Process"), href: "/components", linkState: { type: "proces" } },
-    { label: t("Integration"), href: "/components", linkState: { type: "integratie" } },
-    { label: t("Services"), href: "/components", linkState: { type: "services" } },
-    { label: t("Data"), href: "/components", linkState: { type: "data" } },
+  const primaryTopNavItems = [
+    {
+      label: "Home",
+      handleClick: () => {
+        navigate("/");
+      },
+    },
+    {
+      label: t("Interaction"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "interactie" } });
+      },
+    },
+    {
+      label: t("Process"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "proces" } });
+      },
+    },
+    {
+      label: t("Integration"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "integratie" } });
+      },
+    },
+    {
+      label: t("Services"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "services" } });
+      },
+    },
+    {
+      label: t("Data"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "data" } });
+      },
+    },
   ];
 
-  const secondaryTopNavItems: ITopNavItem[] = [
-    { label: "Common ground", href: "https://commonground.nl" },
-    { label: "Haven", href: "https://haven.commonground.nl/" },
-    { label: "NL Design", href: "https://designsystem.gebruikercentraal.nl/" },
+  const secondaryTopNavItems = [
+    {
+      label: "Common ground",
+      handleClick: () => {
+        window.open("https://commonground.nl");
+      },
+    },
+    {
+      label: "Haven",
+      handleClick: () => {
+        window.open("https://haven.commonground.nl/");
+      },
+    },
+    {
+      label: "NL Design",
+      handleClick: () => {
+        window.open("https://designsystem.gebruikercentraal.nl/");
+      },
+    },
     {
       label: "Github",
-      href: "https://github.com/OpenCatalogi",
+      handleClick: () => {
+        window.open("https://github.com/OpenCatalogi");
+      },
       icon: <GitHubLogo />,
     },
   ];
@@ -32,18 +79,14 @@ export const HeaderTemplate: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <Container>
-          <div className={styles.secondaryNavContainer}>
-            <SecondaryTopNav items={secondaryTopNavItems} />
-          </div>
+        <Container layoutClassName={styles.secondaryNavContainer}>
+          <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
 
-      <Container>
-        <div className={styles.headingContainer}>
-          <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
-          <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-        </div>
+      <Container layoutClassName={styles.headingContainer}>
+        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
       </Container>
 
       <Container>
