@@ -11,24 +11,42 @@ export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
 
   const primaryTopNavItems = [
-    { label: "Home", handleClick: () => {
+    {
+      label: "Home",
+      handleClick: () => {
         navigate("/");
-      } },
-    { label: t("Interaction"), handleClick: () => {
-        navigate("/components");
-      } },
-    { label: t("Process"), handleClick: () => {
-        navigate("/components");
-      } },
-    { label: t("Integration"), handleClick: () => {
-        navigate("/components");
-      } },
-    { label: t("Services"), handleClick: () => {
-        navigate("/components");
-      } },
-    { label: t("Data"), handleClick: () => {
-        navigate("/components");
-      } },
+      },
+    },
+    {
+      label: t("Interaction"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "interactie" } });
+      },
+    },
+    {
+      label: t("Process"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "proces" } });
+      },
+    },
+    {
+      label: t("Integration"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "integratie" } });
+      },
+    },
+    {
+      label: t("Services"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "services" } });
+      },
+    },
+    {
+      label: t("Data"),
+      handleClick: () => {
+        navigate("/components", { state: { type: "data" } });
+      },
+    },
   ];
 
   const secondaryTopNavItems = [
@@ -41,13 +59,13 @@ export const HeaderTemplate: React.FC = () => {
     {
       label: "Haven",
       handleClick: () => {
-        window.open("https://commonground.nl");
+        window.open("https://haven.commonground.nl/");
       },
     },
     {
       label: "NL Design",
       handleClick: () => {
-        window.open("https://commonground.nl");
+        window.open("https://designsystem.gebruikercentraal.nl/");
       },
     },
     {

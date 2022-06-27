@@ -29,29 +29,4 @@
   --conduction-footer-logo-height-size: 82px;
 
   --conduction-component-detail-sub-title-font-size: 24px;
-
-  --conduction-space-inline-5xl: 4rem; /* Extra Large 5 */
-  --conduction-space-inline-4xl: 3rem; /* Extra Large 4 */
-  --conduction-space-inline-3xl: 2.5rem; /* Extra Large 3 */
-  --conduction-space-inline-2xl: 2rem; /* Extra Large 2 */
-  --conduction-space-inline-xl: 1.5rem; /* Extra Large */
-  --conduction-space-inline-lg: 1.25rem; /* Large */
-  --conduction-space-inline-md: 1rem; /* Medium */
-  --conduction-space-inline-sm: 0.8rem; /* Small */
-  --conduction-space-inline-xs: 0.5rem; /* Extra Small */
-  --conduction-space-inline-2xs: 0.25rem; /* Extra Small 2 */
-  --conduction-space-inline-3xs: 0.125rem; /* Extra Small 3 */
-  --conduction-space-block-5xl: 4rem; /* Extra Large 5 */
-  --conduction-space-block-4xl: 3rem; /* Extra Large 4 */
-  --conduction-space-block-3xl: 2.5rem; /* Extra Large 3 */
-  --conduction-space-block-2xl: 2rem; /* Extra Large 2 */
-  --conduction-space-block-xl: 1.5rem; /* Extra Large */
-  --conduction-space-block-lg: 1.25rem; /* Large */
-  --conduction-space-block-md: 1rem; /* Medium */
-  --conduction-space-block-sm: 0.8rem; /* Small */
-  --conduction-space-block-xs: 0.5rem; /* Extra Small */
-  --conduction-space-block-2xs: 0.25rem; /* Extra Small 2 */
-  --conduction-space-block-3xs: 0.125rem; /* Extra Small 3 */
-
-  --conduction-max-page-width: 1024px;
 }

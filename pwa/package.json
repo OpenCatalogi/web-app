@@ -4,9 +4,7 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -16,6 +14,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@conduction/components": "1.0.10",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
