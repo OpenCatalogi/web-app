@@ -4,15 +4,13 @@ import * as _ from "lodash";
 import { Container } from "../../components/container/Container";
 import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
 import { useForm } from "react-hook-form";
-import { InputText, SelectMultiple } from "../../components/formFields";
-import { SearchIcon } from "@gemeente-denhaag/icons";
-import { ISelectValue } from "../../components/formFields/select/select";
 import { components as _components } from "../../testData/components";
 import { RichContentCard } from "../../components/card";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
+import { InputText, SelectMultiple } from "@conduction/components";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
@@ -90,11 +88,10 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
           <FormFieldInput>
             <FormFieldLabel>Filter op naam</FormFieldLabel>
             <InputText
-              {...{ register, errors }}
               disabled={getComponents.isLoading}
               name="name"
-              icon={<SearchIcon />}
               validation={{ required: true }}
+              {...{ errors, register }}
             />
           </FormFieldInput>
         </FormField>
@@ -142,7 +139,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   );
 };
 
-const types: ISelectValue[] = [
+const types = [
   { label: "Interactie", value: "interactie" },
   { label: "Proces", value: "proces" },
   { label: "Integratie", value: "integratie" },
@@ -150,6 +147,6 @@ const types: ISelectValue[] = [
   { label: "Data", value: "data" },
 ];
 
-const getTypeFromValue = (typeValue: string | undefined): ISelectValue | undefined => {
+const getTypeFromValue = (typeValue: string | undefined): any | undefined => {
   return types.find((t) => t.value === typeValue);
 };
