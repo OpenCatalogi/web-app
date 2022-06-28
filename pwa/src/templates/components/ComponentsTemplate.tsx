@@ -74,65 +74,63 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   };
 
   return (
-    <Container>
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <Heading2>Components</Heading2>
-          <span>Donec id elit non mi porta gravida at eget metus.</span>
-        </div>
+    <Container layoutClassName={styles.container}>
+      <div className={styles.header}>
+        <Heading2>Components</Heading2>
+        <span>Donec id elit non mi porta gravida at eget metus.</span>
+      </div>
 
-        <form className={styles.form}>
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>Filter op naam</FormFieldLabel>
-              <InputText
-                {...{ register, errors }}
-                disabled={getComponents.isLoading}
-                name="name"
-                validation={{ required: true }}
-              />
-            </FormFieldInput>
-          </FormField>
+      <form className={styles.form}>
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>Filter op naam</FormFieldLabel>
+            <InputText
+              disabled={getComponents.isLoading}
+              name="name"
+              validation={{ required: true }}
+              {...{ errors, register }}
+            />
+          </FormFieldInput>
+        </FormField>
 
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>Filter op type</FormFieldLabel>
-              <SelectMultiple
-                defaultValue={getTypeFromValue(defaultTypeFilter)}
-                name="types"
-                options={types}
-                disabled={getComponents.isLoading}
-                {...{ errors, control, register }}
-              />
-            </FormFieldInput>
-          </FormField>
-        </form>
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>Filter op type</FormFieldLabel>
+            <SelectMultiple
+              defaultValue={getTypeFromValue(defaultTypeFilter)}
+              name="types"
+              options={types}
+              disabled={getComponents.isLoading}
+              {...{ errors, control, register }}
+            />
+          </FormFieldInput>
+        </FormField>
+      </form>
 
-        <div className={styles.componentsGrid}>
-          {!getComponents.isLoading ? (
-            filteredComponents.map((component) => (
-              <RichContentCard
-                key={component.id}
-                link={{ label: component.name, href: `/components/${component.id}` }}
-                labelsWithIcon={[
-                  { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-                  { label: "Conduction", icon: <HouseIcon /> },
-                ]}
-                tags={[component.developmentStatus, component.softwareType]}
-                contentLinks={[
-                  { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
-                ]}
-              />
-            ))
-          ) : (
-            <>
-              <Skeleton height="250px" />
-              <Skeleton height="250px" />
-            </>
-          )}
+      <div className={styles.componentsGrid}>
+        {!getComponents.isLoading ? (
+          filteredComponents.map((component) => (
+            <RichContentCard
+              key={component.id}
+              link={{ label: component.name, href: `/components/${component.id}` }}
+              labelsWithIcon={[
+                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
+                { label: "Conduction", icon: <HouseIcon /> },
+              ]}
+              tags={[component.developmentStatus, component.softwareType]}
+              contentLinks={[
+                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
+              ]}
+            />
+          ))
+        ) : (
+          <>
+            <Skeleton height="250px" />
+            <Skeleton height="250px" />
+          </>
+        )}
 
-          {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
-        </div>
+        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
       </div>
     </Container>
   );
