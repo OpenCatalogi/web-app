@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Heading1, Link, Paragraph } from "@gemeente-denhaag/components-react";
-import { Container } from "../../components/container/Container";
-import { Tags } from "../../components/tags/Tags";
+import { Container, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
@@ -42,8 +41,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <Heading1>{component.name}</Heading1>
               <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
             </div>
-
-            <Tags tags={[component.intendedAudience, component.developmentStatus]} />
+            <div className={styles.tags}>
+              <Tag tag={component.intendedAudience} />
+              <Tag tag={component.developmentStatus} />
+            </div>
           </div>
 
           <Paragraph className={styles.description}>{component.description}</Paragraph>

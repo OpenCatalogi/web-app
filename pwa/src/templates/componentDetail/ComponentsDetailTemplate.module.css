@@ -22,3 +22,7 @@
 .description {
   width: 70%;
 }
+
+.tags > *:not(:last-child) {
+  margin-inline-end: var(--nlportal-space-inline-md);
+}

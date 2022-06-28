@@ -1,16 +1,13 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Container } from "../../components/container/Container";
 import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { useForm } from "react-hook-form";
-import { components as _components } from "../../testData/components";
-import { RichContentCard } from "../../components/card";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
-import { InputText, SelectMultiple } from "@conduction/components";
+import { useForm } from "react-hook-form";
+import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
