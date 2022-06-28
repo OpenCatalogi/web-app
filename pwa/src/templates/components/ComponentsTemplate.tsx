@@ -7,7 +7,7 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
-import { InputText, RichContentCard, Container, SelectMultiple } from "../../../../../conduction-components.git";
+import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;

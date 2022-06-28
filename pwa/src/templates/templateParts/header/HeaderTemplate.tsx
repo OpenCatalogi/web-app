@@ -4,7 +4,7 @@ import { Heading1 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { Container, PrimaryTopNav, SecondaryTopNav } from "../../../../../../conduction-components.git";
+import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
