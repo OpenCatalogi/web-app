@@ -13,39 +13,34 @@ interface ComponentsTemplateProps {
 }
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
-  const [components, setComponents] = React.useState<any[]>(c);
+  const [components] = React.useState<any[]>(c);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
 
   const {
     register,
     watch,
     reset,
+    getValues,
     control,
     formState: { errors },
   } = useForm();
 
   React.useEffect(() => {
-    reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
+    reset({ name: getValues("name"), types: getTypeFromValue(defaultTypeFilter) });
+
+    defaultTypeFilter && filterComponents(getValues("name"), [getTypeFromValue(defaultTypeFilter)]);
   }, [defaultTypeFilter]);
 
   React.useEffect(() => {
-    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
-  }, [defaultTypeFilter, components]);
-
-  React.useEffect(() => {
+    !defaultTypeFilter && filterComponents("", []);
     const subscription = watch(({ name, types }) => filterComponents(name, types));
 
     return () => subscription.unsubscribe();
   });
 
-  const filterComponents = (name: string, types: any): void => {
-    let _types: string[] = [];
-
-    if (Array.isArray(types)) {
-      _types = types.map((type: any) => type.value);
-    } else {
-      _types.push(types.value);
-    }
+  const filterComponents = (name: string, types: any[]): void => {
+    console.log("filtering", { types });
+    let _types = types.map((type: any) => type.value);
 
     let filteredComponents = components;
 
@@ -56,7 +51,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     }
 
     if (_types?.length) {
-      filteredComponents = filteredComponents.filter((component) => _types.includes(component.intendedAudience));
+      filteredComponents = filteredComponents.filter((component) => _types.includes(component.layer));
     }
 
     setFilteredComponents(filteredComponents);
@@ -96,12 +91,12 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
             key={component.id}
             link={{ label: component.name, href: `/components/${component.id}` }}
             labelsWithIcon={[
-              { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-              { label: "Conduction", icon: <HouseIcon /> },
+              { label: _.upperFirst(component.layer), icon: <HamburgerIcon /> },
+              { label: component.organisation, icon: <HouseIcon /> },
             ]}
-            tags={[component.developmentStatus, component.softwareType]}
+            tags={[component.status, component.softwareType]}
             contentLinks={[
-              { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
+              { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: "https://google.nl" },
             ]}
           />
         ))}
