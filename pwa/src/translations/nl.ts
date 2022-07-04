@@ -20,4 +20,12 @@ export const nl = {
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
   "Back to components": "Terug naar componenten",
   "View component on GitHub": "Bekijk dit component op GitHub",
+  Dependencies: "Afhankelijkheden",
+  Standards: "Standaarden",
+  Components: "Componenten",
+  Suppliers: "Leveranciers",
+  Reuse: "Hergebruik",
+  "Schema's": "Schema's",
+  Processes: "Processen",
+  Products: "Producten",
 };

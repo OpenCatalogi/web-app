@@ -1,12 +1,14 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading1, Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs, } from "@gemeente-denhaag/components-react";
 import { Container, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { useTranslation } from "react-i18next";
+import grey from "../../assets/images/grey.png";
+import { Table, TableBody, TableCell, TableCol, TableHeader, TableRow } from "@gemeente-denhaag/table";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -37,23 +39,65 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       {!getComponents.isLoading && component && (
         <>
           <div className={styles.heading}>
-            <div>
+            <div className={styles.context}>
               <Heading1>{component.name}</Heading1>
-              <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
+              <span className={styles.subtitle}>Component organisatie</span>
+              <Paragraph className={styles.description}>{component.description}</Paragraph>
+              <div className={styles.tags}>
+                <Tag tag={component.intendedAudience} />
+                <Tag tag={component.intendedAudience} />
+              </div>
             </div>
-            <div className={styles.tags}>
-              <Tag tag={component.intendedAudience} />
-              <Tag tag={component.developmentStatus} />
+
+            <div className={styles.object}>
+              <img src={grey} className={styles.img} />
+              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
 
-          <Paragraph className={styles.description}>{component.description}</Paragraph>
+            <Table>
+            <TableHeader>
+                  <TableCell>Gemma</TableCell>
+                  <TableCell>UPL</TableCell>
+                  <TableCell >Standaarden</TableCell>
+                  <TableCell >Wet en regelgeving</TableCell>
+            </TableHeader>
 
-          <a className={styles.externalLink} href={component.isBasedOn} target="_blank">
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
-              {t("View component on GitHub")}
-            </Link>
-          </a>
+          </Table>
+
+
+
+          <div>
+            <TabContext value={component.toString()}>
+              <Tabs
+                scrollButtons={"on"}
+                value={component}
+                onChange={(_, newValue: number) => {
+                  setComponent(newValue);
+                }}
+              >
+                <div className={styles.tabs}>
+                  <Tab label={t("Components")} value={0} />
+                  <Tab label={t("Dependencies")} value={1} />
+                  <Tab label={t("Standards")} value={3} />
+                  <Tab label={t("Suppliers")} value={4} />
+                  <Tab label={t("Reuse")} value={5} />
+                  <Tab label={t("Schema's")} value={6} />
+                  <Tab label={t("Processes")} value={7} />
+                  <Tab label={t("Products")} value={8} />
+                </div>
+              </Tabs>
+
+              <TabPanel value="0"></TabPanel>
+              <TabPanel value="1"></TabPanel>
+              <TabPanel value="3"></TabPanel>
+              <TabPanel value="4"></TabPanel>
+              <TabPanel value="5"></TabPanel>
+              <TabPanel value="6"></TabPanel>
+              <TabPanel value="7"></TabPanel>
+              <TabPanel value="8"></TabPanel>
+            </TabContext>
+          </div>
         </>
       )}
 

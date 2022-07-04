@@ -5,9 +5,23 @@
 .backButton {
   margin-block-start: var(--nlportal-space-block-3xl);
 }
+.heading {
+  display: flex;
+  flex: 1;
+}
 
-.heading > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+.object {
+  display: grid;
+  grid-gap: 10px;
+}
+
+.context :last-child {
+  margin-block-start: var(--nlportal-space-block-lg);
+  margin-block-end: var(--nlportal-space-block-lg);
+}
+
+.img {
+  max-width: 300px;
 }
 
 .subtitle {
@@ -20,9 +34,14 @@
 }
 
 .description {
-  width: 70%;
+  width: 90%;
+  margin-block-start: var(--nlportal-space-block-lg);
 }
 
 .tags > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-inline-md);
+}
+
+.tabs{
+  overflow-x: scroll;
 }
