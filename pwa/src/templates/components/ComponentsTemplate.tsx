@@ -12,50 +12,43 @@ interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
 }
 
+interface IFilters {
+  name?: string;
+  types?: Array<string | undefined>;
+}
+
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
   const [components] = React.useState<any[]>(c);
+  const [filters, setFilters] = React.useState<IFilters>({ name: "" });
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
 
   const {
     register,
     watch,
     reset,
-    getValues,
     control,
     formState: { errors },
   } = useForm();
 
   React.useEffect(() => {
-    reset({ name: getValues("name"), types: getTypeFromValue(defaultTypeFilter) });
+    if (!defaultTypeFilter) return;
 
-    defaultTypeFilter && filterComponents(getValues("name"), [getTypeFromValue(defaultTypeFilter)]);
+    setFilters({ ...filters, types: [defaultTypeFilter] });
   }, [defaultTypeFilter]);
 
   React.useEffect(() => {
-    !defaultTypeFilter && filterComponents("", []);
-    const subscription = watch(({ name, types }) => filterComponents(name, types));
+    reset({ name: filters.name, types: filters.types?.map((t) => getTypeFromValue(t)) });
+
+    setFilteredComponents(filterComponents(components, filters));
+  }, [filters]);
+
+  React.useEffect(() => {
+    const subscription = watch(({ name, types }) => {
+      setFilters({ name: name, types: types?.map((t: any) => t.value) });
+    });
 
     return () => subscription.unsubscribe();
   });
-
-  const filterComponents = (name: string, types: any[]): void => {
-    console.log("filtering", { types });
-    let _types = types.map((type: any) => type.value);
-
-    let filteredComponents = components;
-
-    if (name) {
-      filteredComponents = filteredComponents.filter((component) =>
-        _.toLower(component.name).includes(_.toLower(name)),
-      );
-    }
-
-    if (_types?.length) {
-      filteredComponents = filteredComponents.filter((component) => _types.includes(component.layer));
-    }
-
-    setFilteredComponents(filteredComponents);
-  };
 
   return (
     <Container layoutClassName={styles.container}>
@@ -117,4 +110,18 @@ const types = [
 
 const getTypeFromValue = (typeValue: string | undefined): any | undefined => {
   return types.find((t) => t.value === typeValue);
+};
+
+const filterComponents = (c: any[], f: IFilters): any[] => {
+  let filteredComponents = c;
+
+  if (f.name) {
+    filteredComponents = filteredComponents.filter((c) => _.toLower(c.name).includes(_.toLower(f.name)));
+  }
+
+  if (f.types?.length) {
+    filteredComponents = filteredComponents.filter((c) => f.types?.includes(c.layer));
+  }
+
+  return filteredComponents;
 };
