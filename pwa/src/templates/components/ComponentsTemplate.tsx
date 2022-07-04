@@ -3,22 +3,18 @@ import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
 import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
-import { useComponent } from "../../hooks/components";
-import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
+import { components as c } from "./../../testData/components";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
 }
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
-  const [components, setComponents] = React.useState<any[]>([]);
+  const [components, setComponents] = React.useState<any[]>(c);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
-
-  const _useComponent = useComponent();
-  const getComponents = _useComponent.getAll();
 
   const {
     register,
@@ -29,15 +25,8 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   } = useForm();
 
   React.useEffect(() => {
-    if (!getComponents.isSuccess) return;
-
-    setComponents(getComponents.data);
-    setFilteredComponents(getComponents.data);
-  }, [getComponents.isSuccess]);
-
-  React.useEffect(() => {
     reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
-  }, [defaultTypeFilter, getComponents.isSuccess]);
+  }, [defaultTypeFilter]);
 
   React.useEffect(() => {
     defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
@@ -84,12 +73,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>Filter op naam</FormFieldLabel>
-            <InputText
-              disabled={getComponents.isLoading}
-              name="name"
-              validation={{ required: true }}
-              {...{ errors, register }}
-            />
+            <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -100,7 +84,6 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
               defaultValue={getTypeFromValue(defaultTypeFilter)}
               name="types"
               options={types}
-              disabled={getComponents.isLoading}
               {...{ errors, control, register }}
             />
           </FormFieldInput>
@@ -108,29 +91,22 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
       </form>
 
       <div className={styles.componentsGrid}>
-        {!getComponents.isLoading ? (
-          filteredComponents.map((component) => (
-            <RichContentCard
-              key={component.id}
-              link={{ label: component.name, href: `/components/${component.id}` }}
-              labelsWithIcon={[
-                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-                { label: "Conduction", icon: <HouseIcon /> },
-              ]}
-              tags={[component.developmentStatus, component.softwareType]}
-              contentLinks={[
-                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
-              ]}
-            />
-          ))
-        ) : (
-          <>
-            <Skeleton height="250px" />
-            <Skeleton height="250px" />
-          </>
-        )}
+        {filteredComponents.map((component) => (
+          <RichContentCard
+            key={component.id}
+            link={{ label: component.name, href: `/components/${component.id}` }}
+            labelsWithIcon={[
+              { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
+              { label: "Conduction", icon: <HouseIcon /> },
+            ]}
+            tags={[component.developmentStatus, component.softwareType]}
+            contentLinks={[
+              { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
+            ]}
+          />
+        ))}
 
-        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
+        {!filteredComponents.length && t("No components found with active filters")}
       </div>
     </Container>
   );
