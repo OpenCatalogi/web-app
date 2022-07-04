@@ -3,14 +3,10 @@ import * as styles from "./LandingTemplate.module.css";
 import { Heading3, Heading2 } from "@gemeente-denhaag/components-react";
 import SpotAPI from "./../../assets/svgs/SpotAPI.svg";
 import { useTranslation } from "react-i18next";
-import { useComponent } from "../../hooks/components";
 import { ImageAndDetailsCard, Container } from "@conduction/components";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
-
-  const _useComponent = useComponent();
-  const getComponents = _useComponent.getAll(); // preload the components
 
   return (
     <Container>
