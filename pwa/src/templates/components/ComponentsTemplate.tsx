@@ -14,7 +14,7 @@ interface ComponentsTemplateProps {
 
 interface IFilters {
   name?: string;
-  types?: Array<string | undefined>;
+  layers?: Array<string | undefined>;
 }
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
@@ -33,18 +33,18 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   React.useEffect(() => {
     if (!defaultTypeFilter) return;
 
-    setFilters({ ...filters, types: [defaultTypeFilter] });
+    setFilters({ ...filters, layers: [defaultTypeFilter] });
   }, [defaultTypeFilter]);
 
   React.useEffect(() => {
-    reset({ name: filters.name, types: filters.types?.map((t) => getTypeFromValue(t)) });
+    reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
 
-    setFilteredComponents(filterComponents(components, filters));
+    setFilteredComponents(getFilteredComponents(components, filters));
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ name, types }) => {
-      setFilters({ name: name, types: types?.map((t: any) => t.value) });
+    const subscription = watch(({ name, layers }) => {
+      setFilters({ name: name, layers: layers?.map((t: any) => t.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -67,11 +67,11 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
 
         <FormField>
           <FormFieldInput>
-            <FormFieldLabel>Filter op type</FormFieldLabel>
+            <FormFieldLabel>Filter op laag</FormFieldLabel>
             <SelectMultiple
-              defaultValue={getTypeFromValue(defaultTypeFilter)}
-              name="types"
-              options={types}
+              defaultValue={getSelectObjectFromValue(defaultTypeFilter)}
+              name="layers"
+              options={layers}
               {...{ errors, control, register }}
             />
           </FormFieldInput>
@@ -100,28 +100,28 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   );
 };
 
-const types = [
-  { label: "Interactie", value: "interactie" },
-  { label: "Proces", value: "proces" },
-  { label: "Integratie", value: "integratie" },
-  { label: "Services", value: "services" },
-  { label: "Data", value: "data" },
-];
-
-const getTypeFromValue = (typeValue: string | undefined): any | undefined => {
-  return types.find((t) => t.value === typeValue);
-};
-
-const filterComponents = (c: any[], f: IFilters): any[] => {
+const getFilteredComponents = (c: any[], f: IFilters): any[] => {
   let filteredComponents = c;
 
   if (f.name) {
     filteredComponents = filteredComponents.filter((c) => _.toLower(c.name).includes(_.toLower(f.name)));
   }
 
-  if (f.types?.length) {
-    filteredComponents = filteredComponents.filter((c) => f.types?.includes(c.layer));
+  if (f.layers?.length) {
+    filteredComponents = filteredComponents.filter((c) => f.layers?.includes(c.layer));
   }
 
   return filteredComponents;
 };
+
+const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
+  return layers.find((t) => t.value === value);
+};
+
+const layers = [
+  { label: "Interactie", value: "interactie" },
+  { label: "Proces", value: "proces" },
+  { label: "Integratie", value: "integratie" },
+  { label: "Services", value: "services" },
+  { label: "Data", value: "data" },
+];
