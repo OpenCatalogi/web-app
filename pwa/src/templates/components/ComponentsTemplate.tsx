@@ -7,19 +7,16 @@ import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
 import { components as c } from "./../../testData/components";
-
-interface ComponentsTemplateProps {
-  defaultTypeFilter?: string;
-}
+import { FiltersContext } from "../../context/filters";
 
 interface IFilters {
   name?: string;
   layers?: Array<string | undefined>;
 }
 
-export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
+export const ComponentsTemplate: React.FC = () => {
   const [components] = React.useState<any[]>(c);
-  const [filters, setFilters] = React.useState<IFilters>({ name: "" });
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
 
   const {
@@ -29,12 +26,6 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
     control,
     formState: { errors },
   } = useForm();
-
-  React.useEffect(() => {
-    if (!defaultTypeFilter) return;
-
-    setFilters({ ...filters, layers: [defaultTypeFilter] });
-  }, [defaultTypeFilter]);
 
   React.useEffect(() => {
     reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
@@ -69,7 +60,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
           <FormFieldInput>
             <FormFieldLabel>Filter op laag</FormFieldLabel>
             <SelectMultiple
-              defaultValue={getSelectObjectFromValue(defaultTypeFilter)}
+              defaultValue={filters.layers?.map((f) => getSelectObjectFromValue(f))}
               name="layers"
               options={layers}
               {...{ errors, control, register }}
