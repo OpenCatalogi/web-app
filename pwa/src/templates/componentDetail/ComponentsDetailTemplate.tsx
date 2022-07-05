@@ -49,17 +49,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </div>
             </div>
 
-            <div className={styles.object}>
+            <div className={styles.addToCatalogusContainer}>
               <img src={grey} className={styles.img} />
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
 
           <div className={styles.cards}>
-            <InfoCard title={component.name} content="Info for install component" />
+            <InfoCard title={component.name} content="Information for install component" />
             <InfoCard title="Github" content="Repo en links" />
-            <InfoCard title="Domedata" content="Informasi for domedata " />
-            <InfoCard title="Domedata" content="Informasi for domedata " />
+            <InfoCard title="DummyData" content="Information for DummyData " />
+            <InfoCard title="DummyData" content="Information for DummyData " />
           </div>
 
           <Table>
@@ -74,11 +74,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TableRow>
               <TableRow>
                 <TableHeader>Standaarden</TableHeader>
-                <TableCell>Info Standaarden</TableCell>
+                <TableCell>Lorem ipsum</TableCell>
               </TableRow>
               <TableRow>
                 <TableHeader>Wet en regelgeving</TableHeader>
-                <TableCell>Info Wet en regelgeving</TableCell>
+                <TableCell>Lorem ipsum</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -95,23 +95,23 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <div className={styles.tabs}>
                   <Tab label={t("Components")} value={0} />
                   <Tab label={t("Dependencies")} value={1} />
-                  <Tab label={t("Standards")} value={3} />
-                  <Tab label={t("Suppliers")} value={4} />
-                  <Tab label={t("Reuse")} value={5} />
-                  <Tab label={t("Schema's")} value={6} />
-                  <Tab label={t("Processes")} value={7} />
-                  <Tab label={t("Products")} value={8} />
+                  <Tab label={t("Standards")} value={2} />
+                  <Tab label={t("Suppliers")} value={3} />
+                  <Tab label={t("Reuse")} value={4} />
+                  <Tab label={t("Schema's")} value={5} />
+                  <Tab label={t("Processes")} value={6} />
+                  <Tab label={t("Products")} value={7} />
                 </div>
               </Tabs>
 
-              <TabPanel value="0"></TabPanel>
-              <TabPanel value="1"></TabPanel>
-              <TabPanel value="3"></TabPanel>
-              <TabPanel value="4"></TabPanel>
-              <TabPanel value="5"></TabPanel>
-              <TabPanel value="6"></TabPanel>
-              <TabPanel value="7"></TabPanel>
-              <TabPanel value="8"></TabPanel>
+              <TabPanel value="0">Lorem ipsum</TabPanel>
+              <TabPanel value="1">Lorem ipsum</TabPanel>
+              <TabPanel value="2">Lorem ipsum</TabPanel>
+              <TabPanel value="3">Lorem ipsum</TabPanel>
+              <TabPanel value="4">Lorem ipsum</TabPanel>
+              <TabPanel value="5">Lorem ipsum</TabPanel>
+              <TabPanel value="6">Lorem ipsum</TabPanel>
+              <TabPanel value="7">Lorem ipsum</TabPanel>
             </TabContext>
           </div>
         </>

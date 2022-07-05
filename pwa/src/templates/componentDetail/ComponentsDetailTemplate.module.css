@@ -7,19 +7,19 @@
 }
 .heading {
   display: flex;
-  flex: 1;
+  justify-content: space-around;
 }
 
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
+  column-gap: var(--denhaag-space-block-md);
   justify-content: space-evenly;
 }
 
-.object {
-  display: grid;
-  grid-gap: 10px;
+.addToCatalogusContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .context :last-child {
@@ -28,7 +28,8 @@
 }
 
 .img {
-  max-width: 300px;
+  max-width: var(--conduction-info-card-width);
+  margin-block-end: var(--nlportal-space-block-lg);
 }
 
 .subtitle {
@@ -41,14 +42,9 @@
 }
 
 .description {
-  width: 90%;
   padding-top: var(--nlportal-space-block-lg);
 }
 
 .tags > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-inline-md);
-}
-
-.tabs {
-  overflow-x: scroll;
 }
