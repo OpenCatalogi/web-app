@@ -48,3 +48,7 @@
 .tags > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-inline-md);
 }
+
+.tabs{
+  overflow-x: scroll;
+}
