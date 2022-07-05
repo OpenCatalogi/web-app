@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs, } from "@gemeente-denhaag/components-react";
-import { Container, Tag } from "@conduction/components";
+import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Container, InfoCard, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableCol, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -55,17 +55,33 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
           </div>
 
-            <Table>
-            <TableHeader>
-                  <TableCell>Gemma</TableCell>
-                  <TableCell>UPL</TableCell>
-                  <TableCell >Standaarden</TableCell>
-                  <TableCell >Wet en regelgeving</TableCell>
-            </TableHeader>
+          <div className={styles.cards}>
+            <InfoCard title={component.name} content="Info for install component" />
+            <InfoCard title="Github" content="Repo en links" />
+            <InfoCard title="Domedata" content="Informasi for domedata " />
+            <InfoCard title="Domedata" content="Informasi for domedata " />
+          </div>
 
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableHeader>Gemma</TableHeader>
+                <TableCell>Info gemma</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableHeader>UPL</TableHeader>
+                <TableCell>Info UPL</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableHeader>Standaarden</TableHeader>
+                <TableCell>Info Standaarden</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableHeader>Wet en regelgeving</TableHeader>
+                <TableCell>Info Wet en regelgeving</TableCell>
+              </TableRow>
+            </TableBody>
           </Table>
-
-
 
           <div>
             <TabContext value={component.toString()}>

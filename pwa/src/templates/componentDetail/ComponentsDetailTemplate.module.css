@@ -10,6 +10,13 @@
   flex: 1;
 }
 
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  justify-content: space-evenly;
+}
+
 .object {
   display: grid;
   grid-gap: 10px;
@@ -35,13 +42,13 @@
 
 .description {
   width: 90%;
-  margin-block-start: var(--nlportal-space-block-lg);
+  padding-top: var(--nlportal-space-block-lg);
 }
 
 .tags > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-inline-md);
 }
 
-.tabs{
+.tabs {
   overflow-x: scroll;
 }
