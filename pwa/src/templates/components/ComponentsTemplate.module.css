@@ -20,11 +20,11 @@
   margin-inline-end: var(--nlportal-space-block-xl);
 }
 
-.buttongroup {
+.resultsDisplaySwitchButtons {
   display: flex;
   align-items: center;
 }
 
-.buttongroup > button:not(:last-child) {
+.resultsDisplaySwitchButtons *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-inline-xs);
 }

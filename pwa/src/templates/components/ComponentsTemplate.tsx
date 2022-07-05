@@ -7,7 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, Container, SelectMultiple } from "@conduction/components";
-import { ComponentResultTemplate } from "../componentResult/ComponentResultsTemplate";
+import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
@@ -15,7 +15,7 @@ interface ComponentsTemplateProps {
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
   const [components, setComponents] = React.useState<any[]>([]);
-  const [display, setDisplay] = React.useState<string>("table");
+  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
 
   const _useComponent = useComponent();
@@ -81,7 +81,7 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
           <Heading2>Components</Heading2>
           <span>Donec id elit non mi porta gravida at eget metus.</span>
         </div>
-        <div className={styles.buttongroup}>
+        <div className={styles.resultsDisplaySwitchButtons}>
           <Button
             variant={display === "table" ? "primary-action" : "secondary-action"}
             onClick={() => setDisplay("table")}
@@ -130,14 +130,10 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
         </FormField>
       </form>
 
-      {!getComponents.isLoading ? (
+      {!getComponents.isLoading && filteredComponents.length > 0 && (
         <ComponentResultTemplate results={filteredComponents} type={display} />
-      ) : (
-        <>
-          <Skeleton height="250px" />
-          <Skeleton height="250px" />
-        </>
       )}
+      {getComponents.isLoading && <Skeleton height="250px" />}
 
       {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
     </Container>

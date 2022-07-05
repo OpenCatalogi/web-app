@@ -1,9 +1,18 @@
-.contentRow > :last-child {
+/* Table */
+.tableContentRow > :last-child {
   display: flex;
   justify-content: flex-end;
 }
 
-.componentsGrid {
+/* Cards */
+.cardsComponentsGrid {
+  display: grid;
+  grid-gap: var(--nlportal-space-block-md);
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Layers */
+.layersComponentsGrid {
   display: grid;
   grid-gap: var(--nlportal-space-block-md);
   grid-template-columns: 1fr 1fr;
