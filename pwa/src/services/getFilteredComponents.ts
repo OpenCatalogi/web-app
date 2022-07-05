@@ -1,8 +1,8 @@
 import { IFilters } from "../context/filters";
 import * as _ from "lodash";
 
-export const getFilteredComponents = (c: any[], f: IFilters): any[] => {
-  let filteredComponents = c;
+export const getFilteredComponents = (components: any[], f: IFilters): any[] => {
+  let filteredComponents = components;
 
   if (f.name) {
     filteredComponents = filteredComponents.filter((c) => _.toLower(c.name).includes(_.toLower(f.name)));
