@@ -8,11 +8,7 @@ import { useForm } from "react-hook-form";
 import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
 import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
-
-interface IFilters {
-  name?: string;
-  layers?: Array<string | undefined>;
-}
+import { getFilteredComponents } from "../../services/getFilteredComponents";
 
 export const ComponentsTemplate: React.FC = () => {
   const [components] = React.useState<any[]>(c);
@@ -89,20 +85,6 @@ export const ComponentsTemplate: React.FC = () => {
       </div>
     </Container>
   );
-};
-
-const getFilteredComponents = (c: any[], f: IFilters): any[] => {
-  let filteredComponents = c;
-
-  if (f.name) {
-    filteredComponents = filteredComponents.filter((c) => _.toLower(c.name).includes(_.toLower(f.name)));
-  }
-
-  if (f.layers?.length) {
-    filteredComponents = filteredComponents.filter((c) => f.layers?.includes(c.layer));
-  }
-
-  return filteredComponents;
 };
 
 const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
