@@ -1,0 +1,10 @@
+.contentRow > :last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.componentsGrid {
+  display: grid;
+  grid-gap: var(--nlportal-space-block-md);
+  grid-template-columns: 1fr 1fr;
+}

@@ -3,6 +3,8 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   margin-block-start: var(--nlportal-space-block-5xl);
 }
 
@@ -18,8 +20,11 @@
   margin-inline-end: var(--nlportal-space-block-xl);
 }
 
-.componentsGrid {
-  display: grid;
-  grid-gap: var(--nlportal-space-block-md);
-  grid-template-columns: 1fr 1fr;
+.buttongroup {
+  display: flex;
+  align-items: center;
+}
+
+.buttongroup > button:not(:last-child) {
+  margin-inline-end: var(--nlportal-space-inline-xs);
 }

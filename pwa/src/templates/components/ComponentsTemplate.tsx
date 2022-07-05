@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
+import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
-import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
+import { InputText, Container, SelectMultiple } from "@conduction/components";
+import { ComponentResultTemplate } from "../componentResult/ComponentResultsTemplate";
 
 interface ComponentsTemplateProps {
   defaultTypeFilter?: string;
@@ -15,6 +15,7 @@ interface ComponentsTemplateProps {
 
 export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
   const [components, setComponents] = React.useState<any[]>([]);
+  const [display, setDisplay] = React.useState<string>("table");
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
 
   const _useComponent = useComponent();
@@ -76,8 +77,30 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2>Components</Heading2>
-        <span>Donec id elit non mi porta gravida at eget metus.</span>
+        <div>
+          <Heading2>Components</Heading2>
+          <span>Donec id elit non mi porta gravida at eget metus.</span>
+        </div>
+        <div className={styles.buttongroup}>
+          <Button
+            variant={display === "table" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("table")}
+          >
+            {t("Table")}
+          </Button>
+          <Button
+            variant={display === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("cards")}
+          >
+            {t("Cards")}
+          </Button>
+          <Button
+            variant={display === "layer" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("layer")}
+          >
+            {t("Layers")}
+          </Button>
+        </div>
       </div>
 
       <form className={styles.form}>
@@ -107,31 +130,16 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
         </FormField>
       </form>
 
-      <div className={styles.componentsGrid}>
-        {!getComponents.isLoading ? (
-          filteredComponents.map((component) => (
-            <RichContentCard
-              key={component.id}
-              link={{ label: component.name, href: `/components/${component.id}` }}
-              labelsWithIcon={[
-                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-                { label: "Conduction", icon: <HouseIcon /> },
-              ]}
-              tags={[component.developmentStatus, component.softwareType]}
-              contentLinks={[
-                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
-              ]}
-            />
-          ))
-        ) : (
-          <>
-            <Skeleton height="250px" />
-            <Skeleton height="250px" />
-          </>
-        )}
+      {!getComponents.isLoading ? (
+        <ComponentResultTemplate results={filteredComponents} type={display} />
+      ) : (
+        <>
+          <Skeleton height="250px" />
+          <Skeleton height="250px" />
+        </>
+      )}
 
-        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
-      </div>
+      {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
     </Container>
   );
 };
