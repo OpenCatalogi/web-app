@@ -13,10 +13,8 @@ import { getFilteredComponents } from "../../services/getFilteredComponents";
 export const ComponentsTemplate: React.FC = () => {
   const [components] = React.useState<any[]>(c);
   const [filters, setFilters] = React.useContext(FiltersContext);
-
-  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
-
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
+  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
 
   const {
     register,

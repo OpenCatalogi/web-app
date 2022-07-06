@@ -17,8 +17,6 @@ interface ComponentResultsTemplateProps {
 }
 
 export const ComponentResultTemplate: React.FC<ComponentResultsTemplateProps> = ({ results, type }) => {
-  const { t } = useTranslation();
-
   switch (type) {
     case "table":
       return <_Table {...{ results, type }} />;
