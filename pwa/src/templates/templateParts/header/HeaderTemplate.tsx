@@ -5,9 +5,11 @@ import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
+import { FiltersContext } from "../../../context/filters";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
+  const [filters, setFilters] = React.useContext(FiltersContext);
 
   const primaryTopNavItems = [
     {
@@ -19,31 +21,36 @@ export const HeaderTemplate: React.FC = () => {
     {
       label: t("Interaction"),
       handleClick: () => {
-        navigate("/components", { state: { type: "interactie" } });
+        setFilters({ ...filters, layers: ["interactie"] });
+        navigate("/components");
       },
     },
     {
       label: t("Process"),
       handleClick: () => {
-        navigate("/components", { state: { type: "proces" } });
+        setFilters({ ...filters, layers: ["proces"] });
+        navigate("/components");
       },
     },
     {
       label: t("Integration"),
       handleClick: () => {
-        navigate("/components", { state: { type: "integratie" } });
+        setFilters({ ...filters, layers: ["integratie"] });
+        navigate("/components");
       },
     },
     {
       label: t("Services"),
       handleClick: () => {
-        navigate("/components", { state: { type: "services" } });
+        setFilters({ ...filters, layers: ["services"] });
+        navigate("/components");
       },
     },
     {
       label: t("Data"),
       handleClick: () => {
-        navigate("/components", { state: { type: "data" } });
+        setFilters({ ...filters, layers: ["data"] });
+        navigate("/components");
       },
     },
   ];
