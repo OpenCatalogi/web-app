@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
+import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
-import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
+import { InputText, Container, SelectMultiple } from "@conduction/components";
+import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
 import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
@@ -14,6 +14,7 @@ export const ComponentsTemplate: React.FC = () => {
   const [components] = React.useState<any[]>(c);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
+  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
 
   const {
     register,
@@ -40,8 +41,30 @@ export const ComponentsTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2>Components</Heading2>
-        <span>Donec id elit non mi porta gravida at eget metus.</span>
+        <div>
+          <Heading2>Components</Heading2>
+          <span>Donec id elit non mi porta gravida at eget metus.</span>
+        </div>
+        <div className={styles.resultsDisplaySwitchButtons}>
+          <Button
+            variant={display === "table" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("table")}
+          >
+            {t("Table")}
+          </Button>
+          <Button
+            variant={display === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("cards")}
+          >
+            {t("Cards")}
+          </Button>
+          <Button
+            variant={display === "layer" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("layer")}
+          >
+            {t("Layers")}
+          </Button>
+        </div>
       </div>
 
       <form className={styles.form}>
@@ -65,24 +88,9 @@ export const ComponentsTemplate: React.FC = () => {
         </FormField>
       </form>
 
-      <div className={styles.componentsGrid}>
-        {filteredComponents.map((component) => (
-          <RichContentCard
-            key={component.id}
-            link={{ label: component.name, href: `/components/${component.id}` }}
-            labelsWithIcon={[
-              { label: _.upperFirst(component.layer), icon: <HamburgerIcon /> },
-              { label: component.organisation, icon: <HouseIcon /> },
-            ]}
-            tags={[component.status, component.softwareType]}
-            contentLinks={[
-              { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: "https://google.nl" },
-            ]}
-          />
-        ))}
+      {filteredComponents.length > 0 && <ComponentResultTemplate results={filteredComponents} type={display} />}
 
-        {!filteredComponents.length && t("No components found with active filters")}
-      </div>
+      {!filteredComponents.length && t("No components found with active filters")}
     </Container>
   );
 };
