@@ -11,7 +11,7 @@ export const components = [
     id: "4ff9f12c-54b4-47d5-8364-0261cd771ca3",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Vestibulum Ante Ipsum",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",
@@ -35,7 +35,7 @@ export const components = [
     id: "1ba0880c-8d30-40ce-8b9a-1a6e2e86ee4e",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Quisque Rutrum",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",
@@ -59,7 +59,7 @@ export const components = [
     id: "9b12ea00-d81e-4ed0-bfe1-8d83ee59a39b",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Morbi Mattis Ullamcorper Velit",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",
@@ -71,7 +71,7 @@ export const components = [
     id: "5f2ac9cc-1f5a-4949-b701-9c92d8a4a5bd",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Donec Quam Felis",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",
@@ -95,7 +95,7 @@ export const components = [
     id: "e482a24f-fc4d-4ad5-95cb-4ebb84a0588c",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Ultricies Nec",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",
@@ -107,7 +107,7 @@ export const components = [
     id: "1ec8b36e-acd8-48d7-b55e-21a8e3501b01",
   },
   {
-    name: "Venenatis Lorem Cras",
+    name: "Volutpat Molestie",
     description:
       "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     isBasedOn: "https://github.com/ConductionNL/adresservice",

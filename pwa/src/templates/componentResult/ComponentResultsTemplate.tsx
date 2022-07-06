@@ -54,14 +54,14 @@ const _Table: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
             <TableCell>{component.name}</TableCell>
 
             <TableCell>
-              <Tag tag={component.developmentStatus} />
+              <Tag tag={component.status} />
             </TableCell>
             <TableCell>
               <Tag tag={component.softwareType} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.intendedAudience)} />
+              <Tag tag={_.upperFirst(component.layer)} />
             </TableCell>
 
             <TableCell>
@@ -90,10 +90,10 @@ const _Cards: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
           key={component.id}
           link={{ label: component.name, href: `/components/${component.id}` }}
           labelsWithIcon={[
-            { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-            { label: "Conduction", icon: <HouseIcon /> },
+            { label: _.upperFirst(component.layer), icon: <HamburgerIcon /> },
+            { label: component.organisation, icon: <HouseIcon /> },
           ]}
-          tags={[component.developmentStatus, component.softwareType]}
+          tags={[component.status, component.softwareType]}
           contentLinks={[
             {
               title: t("Repository"),
@@ -114,7 +114,7 @@ const _Layers: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
         <Card
           key={component.id}
           title={component.name}
-          date={new Date(component.releaseDate)}
+          date={new Date(component.createdAt)}
           subTitle={component.intendedAudience}
           onClick={() => navigate(`/components/${component.id}`)}
           variant="case"
