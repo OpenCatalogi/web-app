@@ -1,24 +1,20 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
-import { useComponent } from "../../hooks/components";
-import Skeleton from "react-loading-skeleton";
+import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
 import { t } from "i18next";
 import { useForm } from "react-hook-form";
-import { InputText, RichContentCard, Container, SelectMultiple } from "@conduction/components";
+import { InputText, Container, SelectMultiple } from "@conduction/components";
+import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
+import { components as c } from "./../../testData/components";
+import { FiltersContext } from "../../context/filters";
+import { getFilteredComponents } from "../../services/getFilteredComponents";
 
-interface ComponentsTemplateProps {
-  defaultTypeFilter?: string;
-}
-
-export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultTypeFilter }) => {
-  const [components, setComponents] = React.useState<any[]>([]);
+export const ComponentsTemplate: React.FC = () => {
+  const [components] = React.useState<any[]>(c);
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
-
-  const _useComponent = useComponent();
-  const getComponents = _useComponent.getAll();
+  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
 
   const {
     register,
@@ -29,121 +25,84 @@ export const ComponentsTemplate: React.FC<ComponentsTemplateProps> = ({ defaultT
   } = useForm();
 
   React.useEffect(() => {
-    if (!getComponents.isSuccess) return;
+    reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
 
-    setComponents(getComponents.data);
-    setFilteredComponents(getComponents.data);
-  }, [getComponents.isSuccess]);
-
-  React.useEffect(() => {
-    reset({ name: "", types: getTypeFromValue(defaultTypeFilter) });
-  }, [defaultTypeFilter, getComponents.isSuccess]);
+    setFilteredComponents(getFilteredComponents(components, filters));
+  }, [filters]);
 
   React.useEffect(() => {
-    defaultTypeFilter && filterComponents("", [getTypeFromValue(defaultTypeFilter)]);
-  }, [defaultTypeFilter, components]);
-
-  React.useEffect(() => {
-    const subscription = watch(({ name, types }) => filterComponents(name, types));
+    const subscription = watch(({ name, layers }) => {
+      setFilters({ name: name, layers: layers?.map((t: any) => t.value) });
+    });
 
     return () => subscription.unsubscribe();
   });
 
-  const filterComponents = (name: string, types: any): void => {
-    let _types: string[] = [];
-
-    if (Array.isArray(types)) {
-      _types = types.map((type: any) => type.value);
-    } else {
-      _types.push(types.value);
-    }
-
-    let filteredComponents = components;
-
-    if (name) {
-      filteredComponents = filteredComponents.filter((component) =>
-        _.toLower(component.name).includes(_.toLower(name)),
-      );
-    }
-
-    if (_types?.length) {
-      filteredComponents = filteredComponents.filter((component) => _types.includes(component.intendedAudience));
-    }
-
-    setFilteredComponents(filteredComponents);
-  };
-
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2>Components</Heading2>
-        <span>Donec id elit non mi porta gravida at eget metus.</span>
+        <div>
+          <Heading2>Components</Heading2>
+          <span>Donec id elit non mi porta gravida at eget metus.</span>
+        </div>
+        <div className={styles.resultsDisplaySwitchButtons}>
+          <Button
+            variant={display === "table" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("table")}
+          >
+            {t("Table")}
+          </Button>
+          <Button
+            variant={display === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("cards")}
+          >
+            {t("Cards")}
+          </Button>
+          <Button
+            variant={display === "layer" ? "primary-action" : "secondary-action"}
+            onClick={() => setDisplay("layer")}
+          >
+            {t("Layers")}
+          </Button>
+        </div>
       </div>
 
       <form className={styles.form}>
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>Filter op naam</FormFieldLabel>
-            <InputText
-              disabled={getComponents.isLoading}
-              name="name"
-              validation={{ required: true }}
-              {...{ errors, register }}
-            />
+            <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
           </FormFieldInput>
         </FormField>
 
         <FormField>
           <FormFieldInput>
-            <FormFieldLabel>Filter op type</FormFieldLabel>
+            <FormFieldLabel>Filter op laag</FormFieldLabel>
             <SelectMultiple
-              defaultValue={getTypeFromValue(defaultTypeFilter)}
-              name="types"
-              options={types}
-              disabled={getComponents.isLoading}
+              defaultValue={filters.layers?.map((f) => getSelectObjectFromValue(f))}
+              name="layers"
+              options={layers}
               {...{ errors, control, register }}
             />
           </FormFieldInput>
         </FormField>
       </form>
 
-      <div className={styles.componentsGrid}>
-        {!getComponents.isLoading ? (
-          filteredComponents.map((component) => (
-            <RichContentCard
-              key={component.id}
-              link={{ label: component.name, href: `/components/${component.id}` }}
-              labelsWithIcon={[
-                { label: _.upperFirst(component.intendedAudience), icon: <HamburgerIcon /> },
-                { label: "Conduction", icon: <HouseIcon /> },
-              ]}
-              tags={[component.developmentStatus, component.softwareType]}
-              contentLinks={[
-                { title: "Repository", subTitle: "Bekijk de repository op GitHub", href: component.isBasedOn },
-              ]}
-            />
-          ))
-        ) : (
-          <>
-            <Skeleton height="250px" />
-            <Skeleton height="250px" />
-          </>
-        )}
+      {filteredComponents.length > 0 && <ComponentResultTemplate results={filteredComponents} type={display} />}
 
-        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
-      </div>
+      {!filteredComponents.length && t("No components found with active filters")}
     </Container>
   );
 };
 
-const types = [
+const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
+  return layers.find((t) => t.value === value);
+};
+
+const layers = [
   { label: "Interactie", value: "interactie" },
   { label: "Proces", value: "proces" },
   { label: "Integratie", value: "integratie" },
   { label: "Services", value: "services" },
   { label: "Data", value: "data" },
 ];
-
-const getTypeFromValue = (typeValue: string | undefined): any | undefined => {
-  return types.find((t) => t.value === typeValue);
-};

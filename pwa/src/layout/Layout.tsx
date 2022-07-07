@@ -8,6 +8,7 @@ import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
 import { StylesProvider } from "@gemeente-denhaag/components-react";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
+import { FiltersProvider, IFilters } from "../context/filters";
 
 const { setEnv } = require("./../../static/env.js");
 
@@ -18,6 +19,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
+  const [filters, setFilters] = React.useState<IFilters>({});
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
   const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
 
@@ -40,11 +42,13 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
     <div>
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
-          <StylesProvider>
-            <HeaderTemplate />
-            <div className={styles.pageContent}>{children}</div>
-            <FooterTemplate />
-          </StylesProvider>
+          <FiltersProvider value={[filters, setFilters]}>
+            <StylesProvider>
+              <HeaderTemplate />
+              <div className={styles.pageContent}>{children}</div>
+              <FooterTemplate />
+            </StylesProvider>
+          </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>
     </div>

@@ -28,4 +28,17 @@ export const en = {
   "Schema's":"Schema's",
   Processes:"Processes",
   Products:"Products",
+  "View component": "View component",
+  Name: "Name",
+  Repository: "Repository",
+  "Check out the repository on GitHub": "Check out the repository on GitHub",
+  Organisation: "Organisation",
+  Layer: "Layer",
+  Layers: "Layers",
+  Type: "Type",
+  Status: "Status",
+  Details: "Details",
+  Table: "Table",
+  Cards: "Cards",
+
 };
