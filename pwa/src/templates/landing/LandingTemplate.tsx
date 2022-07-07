@@ -14,6 +14,8 @@ import { ImageAndDetailsCard, Container, InputText } from "@conduction/component
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../context/filters";
 import { navigate } from "gatsby";
+import { SearchIcon } from "@gemeente-denhaag/icons";
+
 
 export const LandingTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -43,10 +45,10 @@ export const LandingTemplate: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <FormField>
           <FormFieldInput>
-            <FormFieldLabel>{t("Search the component")}</FormFieldLabel>
+            <FormFieldLabel>{t("Search through all Open Catalogi components")}</FormFieldLabel>
             <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
           </FormFieldInput>
-          <Button type="submit">{t("Search")}</Button>
+          <Button type="submit" icon={<SearchIcon/>}>{t("Search")}</Button>
         </FormField>
       </form>
 
