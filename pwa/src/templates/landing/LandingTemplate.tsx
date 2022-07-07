@@ -16,7 +16,6 @@ import { FiltersContext } from "../../context/filters";
 import { navigate } from "gatsby";
 import { SearchIcon } from "@gemeente-denhaag/icons";
 
-
 export const LandingTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
@@ -42,13 +41,17 @@ export const LandingTemplate: React.FC = () => {
         {t("Here you will find components for all Common Ground layers")}
       </Heading3>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <FormField>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormField className={styles.form}>
           <FormFieldInput>
             <FormFieldLabel>{t("Search through all Open Catalogi components")}</FormFieldLabel>
             <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
           </FormFieldInput>
-          <Button type="submit" icon={<SearchIcon/>}>{t("Search")}</Button>
+          <div className={styles.button}>
+            <Button type="submit" icon={<SearchIcon />}>
+              {t("Search")}
+            </Button>
+          </div>
         </FormField>
       </form>
 

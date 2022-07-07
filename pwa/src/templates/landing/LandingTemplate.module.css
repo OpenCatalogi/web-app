@@ -13,10 +13,14 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: var(--nlportal-space-inline-xl);
   padding-block-end: var(--nlportal-space-inline-2xl);
-  padding-block-start: var(--nlportal-space-inline-2xl);
 }
 
 .form {
   display: flex;
+  justify-content: space-evenly;
+}
 
+.button {
+  padding-block-start: var(--nlportal-space-inline-2xl);
+  padding-block-end: var(--nlportal-space-inline-2xl);
 }
