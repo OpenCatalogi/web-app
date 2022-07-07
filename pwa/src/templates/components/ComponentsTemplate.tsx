@@ -58,12 +58,6 @@ export const ComponentsTemplate: React.FC = () => {
           >
             {t("Cards")}
           </Button>
-          <Button
-            variant={display === "layer" ? "primary-action" : "secondary-action"}
-            onClick={() => setDisplay("layer")}
-          >
-            {t("Layers")}
-          </Button>
         </div>
       </div>
 
