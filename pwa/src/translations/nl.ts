@@ -32,4 +32,6 @@ export const nl = {
   Details: "Details",
   Table: "Tabel",
   Cards: "Kaarten",
+  Search:"Zoek",
+  "Search through all Open Catalogi components":"Zoeken door alle Open Catalogi componenten",
 };

@@ -1,12 +1,33 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Heading3, Heading2 } from "@gemeente-denhaag/components-react";
+import {
+  Heading3,
+  Heading2,
+  FormField,
+  FormFieldInput,
+  FormFieldLabel,
+  Button,
+} from "@gemeente-denhaag/components-react";
 import SpotAPI from "./../../assets/svgs/SpotAPI.svg";
 import { useTranslation } from "react-i18next";
-import { ImageAndDetailsCard, Container } from "@conduction/components";
+import { ImageAndDetailsCard, Container, InputText } from "@conduction/components";
+import { useForm } from "react-hook-form";
+import { FiltersContext } from "../../context/filters";
+import { navigate } from "gatsby";
 
 export const LandingTemplate: React.FC = () => {
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any): void => {
+    setFilters({ name: data.name });
+    navigate("/components");
+  };
 
   return (
     <Container>
@@ -18,6 +39,16 @@ export const LandingTemplate: React.FC = () => {
       <Heading3 className={styles.subHeading}>
         {t("Here you will find components for all Common Ground layers")}
       </Heading3>
+
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>{t("Search the component")}</FormFieldLabel>
+            <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
+          </FormFieldInput>
+          <Button type="submit">{t("Search")}</Button>
+        </FormField>
+      </form>
 
       <div className={styles.cardsContainer}>
         <ImageAndDetailsCard

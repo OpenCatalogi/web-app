@@ -32,4 +32,6 @@ export const en = {
   Details: "Details",
   Table: "Table",
   Cards: "Cards",
+  Search:"Search",
+  "Search through all Open Catalogi components":"Search through all Open Catalogi components",
 };
