@@ -3,13 +3,16 @@ import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import { Container, InfoCard, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { ArrowLeftIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { useTranslation } from "react-i18next";
 import { components as c } from "./../../testData/components";
+
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -27,36 +30,33 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         </Link>
       </div>
 
-      <div className={styles.heading}>
-        <div>
-          <Heading1>{component.name}</Heading1>
-          <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
-        </div>
-        <div className={styles.tags}>
+
+      {!getComponents.isLoading && component && (
+        <>
+          <div className={styles.heading}>
+            <div className={styles.context}>
+               <Heading1>{component.name}</Heading1>
+           <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
+            <Paragraph className={styles.description}>{component.description}</Paragraph>
+              <div className={styles.tags}>
           <Tag tag={component.layer} />
           <Tag tag={component.status} />
         </div>
+            </div>
 
-        <div className={styles.addToCatalogusContainer}>
-        <img src={grey} className={styles.img} />
-        <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
-      </div>
-    </div>
+            <div className={styles.addToCatalogusContainer}>
+              <img src={grey} className={styles.img} />
+              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+            </div>
+          </div>
 
-  <div className={styles.cards}>
-    <InfoCard title={component.name} content="Information for install component" />
-    <InfoCard title="Github" content="Repo en links" />
-    <InfoCard title="DummyData" content="Information for DummyData " />
-    <InfoCard title="DummyData" content="Information for DummyData " />
-  </div>
+          <div className={styles.cards}>
+            <InfoCard title={component.name} content="Information for install component" />
+            <InfoCard title="Github" content="Repo en links" />
+            <InfoCard title="DummyData" content="Information for DummyData " />
+            <InfoCard title="DummyData" content="Information for DummyData " />
+          </div>
 
-      <Paragraph className={styles.description}>{component.description}</Paragraph>
-
-      <a className={styles.externalLink} href={component.isBasedOn} target="_blank">
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
-          {t("View component on GitHub")}
-        </Link>
-      </a>
           <Table>
             <TableBody>
               <TableRow>
@@ -83,9 +83,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <Tabs
                 scrollButtons={"on"}
                 value={component}
-                // onChange={(_, newValue: number) => {
-                //   setComponent(newValue);
-                // }}
+                onChange={(_, newValue: number) => {
+                  setComponent(newValue);
+                }}
               >
                 <div className={styles.tabs}>
                   <Tab label={t("Components")} value={0} />
@@ -109,6 +109,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <TabPanel value="7">Lorem ipsum</TabPanel>
             </TabContext>
           </div>
+        </>
+      )}
+      <a className={styles.externalLink} href={component.isBasedOn} target="_blank">
+        <Link icon={<ArrowRightIcon />} iconAlign="start">
+          {t("View component on GitHub")}
+        </Link>
+      </a>
     </Container>
   );
 };

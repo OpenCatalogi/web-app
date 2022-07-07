@@ -40,4 +40,5 @@ export const en = {
   Details: "Details",
   Table: "Table",
   Cards: "Cards",
+
 };
