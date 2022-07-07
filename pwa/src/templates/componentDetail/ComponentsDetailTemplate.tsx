@@ -79,7 +79,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               value={tabSwitch}
               onChange={(_, newValue: number) => {
                 setTabSwitch(newValue);
-              }} className={styles.tabs}
+              }}
+              className={styles.tabs}
+              variant="scrollable"
             >
                 <Tab label={t("Components")} value={0} />
                 <Tab label={t("Dependencies")} value={1} />

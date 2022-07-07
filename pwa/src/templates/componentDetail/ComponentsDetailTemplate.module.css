@@ -49,6 +49,6 @@
   margin-inline-end: var(--nlportal-space-inline-md);
 }
 
-.tabs{
-  overflow-x: scroll;
+.tabs :first-child{
+  width: fit-content;
 }
