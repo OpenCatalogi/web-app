@@ -2,14 +2,14 @@ import * as React from "react";
 import * as styles from "./ComponentResultsTemplate.module.css";
 import * as _ from "lodash";
 import { RichContentCard, Tag } from "@conduction/components";
-import { Card, Link } from "@gemeente-denhaag/components-react";
+import { Link } from "@gemeente-denhaag/components-react";
 import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 
-export type TComponentResultsLayout = "table" | "cards" | "layer";
+export type TComponentResultsLayout = "table" | "cards";
 
 interface ComponentResultsTemplateProps {
   type: TComponentResultsLayout;
@@ -23,9 +23,6 @@ export const ComponentResultTemplate: React.FC<ComponentResultsTemplateProps> = 
 
     case "cards":
       return <_Cards {...{ results, type }} />;
-
-    case "layer":
-      return <_Layers {...{ results, type }} />;
   }
 };
 
@@ -63,7 +60,7 @@ const _Table: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
             </TableCell>
 
             <TableCell>
-              <Tag tag="Conduction" />
+              <Tag tag={component.organisation} />
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
@@ -99,23 +96,6 @@ const _Cards: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
               href: component.isBasedOn,
             },
           ]}
-        />
-      ))}
-    </div>
-  );
-};
-
-const _Layers: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
-  return (
-    <div className={styles.layersComponentsGrid}>
-      {results.map((component) => (
-        <Card
-          key={component.id}
-          title={component.name}
-          date={new Date(component.createdAt)}
-          subTitle={component.intendedAudience}
-          onClick={() => navigate(`/components/${component.id}`)}
-          variant="case"
         />
       ))}
     </div>
