@@ -17,8 +17,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const [component] = React.useState<any>(c.find((_c) => _c.id === componentId));
   const [tabSwitch, setTabSwitch] = React.useState<number>(0);
   const { t } = useTranslation();
-  const [currentMessagesTab, setCurrentMessagesTab] = React.useState<number>(0);
-
 
   return (
     <Container layoutClassName={styles.container}>
@@ -27,30 +25,36 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           {t("Back to components")}
         </Link>
       </div>
-      <>
-        <div className={styles.heading}>
-          <div className={styles.context}>
-            <Heading1>{component.name}</Heading1>
-            <span className={styles.subtitle}>Phasellus tempus. Aenean vulputate eleifend tellus. Sed a libero.</span>
-            <Paragraph className={styles.description}>{component.description}</Paragraph>
-            <div className={styles.tags}>
-              <Tag tag={component.layer} />
-              <Tag tag={component.status} />
-            </div>
-          </div>
 
-          <div className={styles.addToCatalogusContainer}>
-            <img src={grey} className={styles.img} />
-            <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+      <div className={styles.headingContainer}>
+        <div className={styles.headingContent}>
+          <Heading1>{component.name}</Heading1>
+
+          <span className={styles.subtitle}>{component.organisation}</span>
+
+          <Paragraph className={styles.description}>{component.description}</Paragraph>
+
+          <div className={styles.tags}>
+            <Tag tag={component.layer} />
+            <Tag tag={component.status} />
           </div>
         </div>
 
-        <div className={styles.cards}>
-          <InfoCard title={component.name} content="ipsum dolor sit amet consectetur adipiscing" />
-          <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
-          <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
-          <InfoCard title="Nulla posuere" content="Faucibus nisl tincidunt eget nullam non" />
+        <div className={styles.addToCatalogusContainer}>
+          <img src={grey} className={styles.componentImg} />
+          <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
         </div>
+      </div>
+
+      <div className={styles.cardsContainer}>
+        <InfoCard title={component.name} content="ipsum dolor sit amet consectetur adipiscing" />
+        <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
+        <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
+        <InfoCard title="Nulla posuere" content="Faucibus nisl tincidunt eget nullam non" />
+      </div>
+
+      <div>
+        <h2>Magna ullamcorper ultricies</h2>
 
         <Table>
           <TableBody>
@@ -72,61 +76,68 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </TableRow>
           </TableBody>
         </Table>
+      </div>
 
+      <div>
+        <h2>Magna ullamcorper ultricies</h2>
 
-          <TabContext value={tabSwitch.toString()}>
-            <Tabs
-              value={tabSwitch}
-              onChange={(_, newValue: number) => {
-                setTabSwitch(newValue);
-              }}
-              className={styles.tabs}
-              variant="scrollable"
-            >
-                <Tab label={t("Components")} value={0} />
-                <Tab label={t("Dependencies")} value={1} />
-                <Tab label={t("Standards")} value={2} />
-                <Tab label={t("Suppliers")} value={3} />
-                <Tab label={t("Reuse")} value={4} />
-                <Tab label={t("Schema's")} value={5} />
-                <Tab label={t("Processes")} value={6} />
-                <Tab label={t("Products")} value={7} />
-            </Tabs>
+        <TabContext value={tabSwitch.toString()}>
+          <Tabs
+            value={tabSwitch}
+            onChange={(_, newValue: number) => {
+              setTabSwitch(newValue);
+            }}
+            className={styles.tabs}
+            variant="scrollable"
+          >
+            <Tab label={t("Components")} value={0} />
+            <Tab label={t("Dependencies")} value={1} />
+            <Tab label={t("Standards")} value={2} />
+            <Tab label={t("Suppliers")} value={3} />
+            <Tab label={t("Reuse")} value={4} />
+            <Tab label={t("Schema's")} value={5} />
+            <Tab label={t("Processes")} value={6} />
+            <Tab label={t("Products")} value={7} />
+          </Tabs>
 
-            <TabPanel value="0">
-              Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor. rhoncus.
-            </TabPanel>
-            <TabPanel value="1">
-              Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero
-              volutpat sed cras ornare.
-            </TabPanel>
-            <TabPanel value="2">
-              sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis
-              ultricies
-            </TabPanel>
-            <TabPanel value="3">
-              ut sem nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies integer quis
-            </TabPanel>
-            <TabPanel value="4">
-              est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa
-              tincidunt nunc pulvinar sapien
-            </TabPanel>
-            <TabPanel value="5">
-              amet risus nullam eget felis eget nunc lobortis mattis aliquam faucibus purus in massa tempor nec feugiat
-              nisl pretium fusce
-            </TabPanel>
-            <TabPanel value="6">
-              morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra
-              pharetra massa massa ultricies
-            </TabPanel>
-            <TabPanel value="7">
-              pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida
-              neque convallis a cras
-            </TabPanel>
-          </TabContext>
+          <TabPanel className={styles.tabPanel} value="0">
+            Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor. rhoncus.
+          </TabPanel>
 
+          <TabPanel className={styles.tabPanel} value="1">
+            Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat
+            sed cras ornare.
+          </TabPanel>
 
-      </>
+          <TabPanel className={styles.tabPanel} value="2">
+            Sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis ultricies
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="3">
+            Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies integer quis
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="4">
+            Est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa
+            tincidunt nunc pulvinar sapien
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="5">
+            Amet risus nullam eget felis eget nunc lobortis mattis aliquam faucibus purus in massa tempor nec feugiat
+            nisl pretium fusce
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="6">
+            Morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra
+            massa massa ultricies
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="7">
+            Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida
+            neque convallis a cras
+          </TabPanel>
+        </TabContext>
+      </div>
     </Container>
   );
 };
