@@ -49,18 +49,18 @@ const _Table: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
             <TableCell>{component.name}</TableCell>
 
             <TableCell>
-              <Tag tag={component.status} />
+              <Tag tag={component.developmentStatus} />
             </TableCell>
             <TableCell>
               <Tag tag={component.softwareType} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.layer)} />
+              <Tag tag="laag" />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.organisation} />
+              <Tag tag="organisatie" />
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
@@ -85,10 +85,10 @@ const _Cards: React.FC<ComponentResultsTemplateProps> = ({ results }) => {
           key={component.id}
           link={{ label: component.name, href: `/components/${component.id}` }}
           labelsWithIcon={[
-            { label: _.upperFirst(component.layer), icon: <HamburgerIcon /> },
-            { label: component.organisation, icon: <HouseIcon /> },
+            { label: "laag", icon: <HamburgerIcon /> },
+            { label: "organisatie", icon: <HouseIcon /> },
           ]}
-          tags={[component.status, component.softwareType]}
+          tags={[component.developmentStatus, component.softwareType]}
           contentLinks={[
             {
               title: t("Repository"),
