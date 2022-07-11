@@ -6,15 +6,28 @@ import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, Container, SelectMultiple } from "@conduction/components";
 import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
-import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
+import { useComponent } from "../../hooks/components";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [components] = React.useState<any[]>(c);
+  const [components, setComponents] = React.useState<any[]>([]);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
+
+  const _useComponent = useComponent();
+  const getComponents = _useComponent.getAll();
+
+  React.useEffect(() => {
+    if (!getComponents.isSuccess) return;
+
+    setComponents(getComponents.data);
+
+    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
+  }, [getComponents.isSuccess]);
+
+  React.useEffect(() => {}, [components]);
 
   const {
     register,
