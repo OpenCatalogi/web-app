@@ -29,7 +29,6 @@ export const SearchInputComponent: React.FC = () => {
           <TextField name="name" {...{ errors, register }} placeholder={t("Search all components")} />
         </FormFieldInput>
       </FormField>
-
       <Button type="submit" icon={<SearchIcon />}>
         {t("Search")}
       </Button>

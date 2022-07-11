@@ -1,4 +1,13 @@
 .form {
-  padding-block-start: var(--nlportal-space-inline-2xl);
-  padding-block-end: var(--nlportal-space-inline-2xl);
+  display: flex;
+  padding-block-start: var(--nlportal-space-inline-xl);
+  padding-block-end: var(--nlportal-space-inline-xl);
+}
+.form > *:not(:last-child) {
+  flex-grow: 1;
+}
+
+.form > :last-child {
+  margin-left: var(--conduction-space-inline-left);
+  margin-bottom: var(--conduction-space-inline-bottom);
 }

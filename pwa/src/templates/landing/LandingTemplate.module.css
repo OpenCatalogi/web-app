@@ -1,5 +1,8 @@
-.container{
-  text-align: center;
+.container {
   padding-block-start: var(--nlportal-space-inline-4xl);
   padding-block-end: var(--nlportal-space-inline-4xl);
+}
+
+.heading {
+  text-align: center;
 }

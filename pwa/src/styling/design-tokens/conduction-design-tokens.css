@@ -31,4 +31,7 @@
   --conduction-footer-logo-height-size: 82px;
 
   --conduction-component-detail-sub-title-font-size: 24px;
+
+  --conduction-space-inline-left: 5px;
+  --conduction-space-inline-bottom: 8px;
 }

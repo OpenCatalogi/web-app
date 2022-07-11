@@ -11,10 +11,12 @@ export const LandingTemplate: React.FC = () => {
 
   return (
     <Container layoutClassName={styles.container}>
-      <Heading2>{t("A central place for reuse of information technology within the government")}</Heading2>
-      <span> {t("Here you will find components for all Common Ground layers")}</span>
-      <SearchInputComponent />
-      <Link icon={<ArrowRightIcon />} iconAlign="start" href="/components">
+      <div className={styles.heading}>
+        <Heading2>{t("A central place for reuse of information technology within the government")}</Heading2>
+        <span> {t("Here you will find components for all Common Ground layers")}</span>
+      </div>
+     <SearchInputComponent />
+      <Link icon={<ArrowRightIcon />} iconAlign="start" href="/components" >
         {t("View all components")}
       </Link>
     </Container>
