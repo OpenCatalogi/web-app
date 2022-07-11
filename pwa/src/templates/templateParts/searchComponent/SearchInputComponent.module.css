@@ -1,0 +1,4 @@
+.form {
+  padding-block-start: var(--nlportal-space-inline-2xl);
+  padding-block-end: var(--nlportal-space-inline-2xl);
+}
