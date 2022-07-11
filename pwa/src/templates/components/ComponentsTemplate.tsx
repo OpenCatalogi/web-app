@@ -27,8 +27,6 @@ export const ComponentsTemplate: React.FC = () => {
     setFilteredComponents(getFilteredComponents(getComponents.data, filters));
   }, [getComponents.isSuccess]);
 
-  React.useEffect(() => {}, [components]);
-
   const {
     register,
     watch,
