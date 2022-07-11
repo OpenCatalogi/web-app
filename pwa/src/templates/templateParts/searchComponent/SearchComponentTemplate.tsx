@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./SearchInputComponent.module.css";
+import * as styles from "./SearchComponentTemplate.module.css";
 import { FormField, FormFieldInput, Button, TextField } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
@@ -7,7 +7,7 @@ import { FiltersContext } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { SearchIcon } from "@gemeente-denhaag/icons";
 
-export const SearchInputComponent: React.FC = () => {
+export const SearchComponentTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
@@ -24,12 +24,12 @@ export const SearchInputComponent: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <FormField>
+      <FormField className={styles.searchInput}>
         <FormFieldInput>
           <TextField name="name" {...{ errors, register }} placeholder={t("Search all components")} />
         </FormFieldInput>
       </FormField>
-      <Button type="submit" icon={<SearchIcon />}>
+      <Button type="submit" icon={<SearchIcon />} className={styles.submit}>
         {t("Search")}
       </Button>
     </form>

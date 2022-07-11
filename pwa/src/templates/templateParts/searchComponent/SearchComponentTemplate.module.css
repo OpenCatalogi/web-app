@@ -1,0 +1,12 @@
+.form {
+  display: flex;
+}
+
+.searchInput {
+  flex-grow: 1;
+}
+
+.submit {
+  margin-left: var(--conduction-searchcomponent-space-inline-left);
+  margin-bottom: var(--conduction-searchcomponent-space-inline-bottom);
+}
