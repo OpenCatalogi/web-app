@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
-import { FormField, FormFieldInput, Button, TextField } from "@gemeente-denhaag/components-react";
+import { FormField, FormFieldInput, Button } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../context/filters";
 import { navigate } from "gatsby";
-import { SearchIcon } from "@gemeente-denhaag/icons";
+import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
+import { InputText } from "@conduction/components";
 
 export const SearchComponentTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -23,15 +24,26 @@ export const SearchComponentTemplate: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <FormField className={styles.searchInput}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormField className={styles.searchFormComponent}>
         <FormFieldInput>
-          <TextField name="name" {...{ errors, register }} placeholder={t("Search all components")} />
+          <InputText name="name" {...{ errors, register }} placeholder={t("Search all components")} />
         </FormFieldInput>
       </FormField>
-      <Button type="submit" icon={<SearchIcon />} className={styles.submit}>
-        {t("Search")}
-      </Button>
+      <div className={styles.buttons}>
+        <Button type="submit" icon={<SearchIcon />}>
+          {t("Search")}
+        </Button>
+        <Button
+          className={styles.submit}
+          icon={<ArrowRightIcon />}
+          iconAlign="start"
+          onClick={() => navigate("/components")}
+          variant="secondary-action"
+        >
+          {t("View all components")}
+        </Button>
+      </div>
     </form>
   );
 };

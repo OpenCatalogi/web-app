@@ -2,16 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block-start: var(--nlportal-space-inline-4xl);
-  padding-block-end: var(--nlportal-space-inline-4xl);
-}
-
-.container > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-inline-xl);
 }
 
 .heading {
- text-align: center;
+  text-align: center;
+  padding-block-start: var(--nlportal-space-inline-4xl);
+  padding-block-end: var(--nlportal-space-inline-4xl);
 }
 
 .searchFormContainer {

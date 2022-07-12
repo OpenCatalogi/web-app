@@ -1,12 +1,12 @@
-.form {
+.searchFormComponent {
+  padding-block-end: var(--nlportal-space-inline-xs);
+}
+
+.buttons {
   display: flex;
+  justify-content: center;
 }
 
-.searchInput {
-  flex-grow: 1;
-}
-
-.submit {
-  margin-left: var(--conduction-searchcomponent-space-inline-left);
-  margin-bottom: var(--conduction-searchcomponent-space-inline-bottom);
+.buttons > * {
+  margin: var(--denhaag-space-inline-xs);
 }
