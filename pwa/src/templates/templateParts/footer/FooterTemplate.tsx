@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
-import LogoRotterdam from "./../../../assets/svgs/LogoRotterdam.svg";
+import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Link } from "@gemeente-denhaag/components-react";
