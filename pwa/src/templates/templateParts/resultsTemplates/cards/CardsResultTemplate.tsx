@@ -19,10 +19,10 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           key={component.id}
           link={{ label: component.name, href: `/components/${component.id}` }}
           labelsWithIcon={[
-            { label: _.upperFirst(component.layer), icon: <HamburgerIcon /> },
-            { label: component.organisation, icon: <HouseIcon /> },
+            { label: "Laag", icon: <HamburgerIcon /> },
+            { label: "Organisatie", icon: <HouseIcon /> },
           ]}
-          tags={[component.status, component.softwareType]}
+          tags={[component.developmentStatus, component.softwareType]}
           contentLinks={[
             {
               title: t("Repository"),

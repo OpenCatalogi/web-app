@@ -25,23 +25,17 @@
 .beta {
   border-right-width: 8px;
   border-right-style: solid;
-  border-right-color: var(--conduction-color-yellow);
+  border-right-color: var(--conduction-color-beta);
 }
 
-.bruikbaar {
+.gepland {
   border-right-width: 8px;
   border-right-style: solid;
-  border-right-color: var(--conduction-color-green);
+  border-right-color: var(--conduction-color-gepland);
 }
 
-.inOntwikkeling {
+.gewenst {
   border-right-width: 8px;
   border-right-style: solid;
-  border-right-color: var(--conduction-color-blue);
-}
-
-.inOntwikkelingTest {
-  border-right-width: 8px;
-  border-right-style: solid;
-  border-right-color: var(--conduction-color-red);
+  border-right-color: var(--conduction-color-gewenst);
 }

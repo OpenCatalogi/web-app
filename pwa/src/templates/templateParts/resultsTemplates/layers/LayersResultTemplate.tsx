@@ -18,11 +18,11 @@ export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ comp
   const [dataComponents, setDataComponents] = React.useState<any[]>([]);
 
   React.useEffect(() => {
-    setInteractieComponents(components.filter((c) => c.layer === "interactie"));
-    setProcesComponents(components.filter((c) => c.layer === "proces"));
-    setIntegratieComponents(components.filter((c) => c.layer === "integratie"));
-    setServicesComponents(components.filter((c) => c.layer === "services"));
-    setDataComponents(components.filter((c) => c.layer === "data"));
+    setInteractieComponents(components);
+    setProcesComponents(components);
+    setIntegratieComponents(components);
+    setServicesComponents(components);
+    setDataComponents(components);
   }, [components]);
 
   return (
@@ -51,7 +51,7 @@ const Layer: React.FC<LayerProps> = ({ title, components }) => {
           <div
             key={component.id}
             onClick={() => navigate(`/components/${component.id}`)}
-            className={clsx(styles.Components, styles[stringToCssModuleSelector(component.status)])}
+            className={clsx(styles.Components, styles[stringToCssModuleSelector(component.developmentStatus)])}
           >
             <Link>{component.name}</Link>
           </div>

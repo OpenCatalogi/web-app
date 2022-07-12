@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
+import Skeleton from "react-loading-skeleton";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -102,11 +103,16 @@ export const ComponentsTemplate: React.FC = () => {
         </FormField>
       </form>
 
-      {filteredComponents.length > 0 && (
-        <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+      {getComponents.isSuccess && (
+        <>
+          {filteredComponents.length > 0 && (
+            <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+          )}
+          {!filteredComponents.length && t("No components found with active filters")}
+        </>
       )}
 
-      {!filteredComponents.length && t("No components found with active filters")}
+      {getComponents.isLoading && <Skeleton height="200px" />}
     </Container>
   );
 };

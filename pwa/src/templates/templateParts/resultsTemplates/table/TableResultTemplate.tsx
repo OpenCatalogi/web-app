@@ -31,18 +31,18 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableCell>{component.name}</TableCell>
 
             <TableCell>
-              <Tag tag={component.status} />
+              <Tag tag={component.developmentStatus} />
             </TableCell>
             <TableCell>
               <Tag tag={component.softwareType} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.layer)} />
+              <Tag tag="Laag" />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.organisation} />
+              <Tag tag="Organisatie" />
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
