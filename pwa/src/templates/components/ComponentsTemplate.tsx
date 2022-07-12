@@ -12,22 +12,9 @@ import { useComponent } from "../../hooks/components";
 import { QueryClient } from "react-query";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [components, setComponents] = React.useState<any[]>([]);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
-
-  const queryClient = new QueryClient();
-  const _useComponent = useComponent(queryClient);
-  const getComponents = _useComponent.getAll();
-
-  React.useEffect(() => {
-    if (!getComponents.isSuccess) return;
-
-    setComponents(getComponents.data);
-
-    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
-  }, [getComponents.isSuccess]);
 
   const {
     register,
@@ -37,11 +24,17 @@ export const ComponentsTemplate: React.FC = () => {
     formState: { errors },
   } = useForm();
 
+  const queryClient = new QueryClient();
+  const _useComponent = useComponent(queryClient);
+  const getComponents = _useComponent.getAll();
+
   React.useEffect(() => {
+    if (!getComponents.isSuccess) return;
+
     reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
 
-    setFilteredComponents(getFilteredComponents(components, filters));
-  }, [filters]);
+    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
+  }, [filters, getComponents.isSuccess]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, layers }) => {
