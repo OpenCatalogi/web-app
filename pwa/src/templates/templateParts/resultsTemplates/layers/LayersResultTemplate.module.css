@@ -1,0 +1,47 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Container > * {
+  margin-block-end: var(--nlportal-space-block-lg);
+}
+
+.Container > *:not(:last-child) {
+  margin-inline-end: var(--nlportal-space-block-xl);
+}
+
+.Components {
+  display: inline-block;
+  background-color: rgb(245, 245, 245);
+  box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
+  padding: 14px;
+}
+
+.Components > a {
+  text-decoration: none;
+}
+
+.beta {
+  border-right-width: 8px;
+  border-right-style: solid;
+  border-right-color: var(--conduction-color-yellow);
+}
+
+.bruikbaar {
+  border-right-width: 8px;
+  border-right-style: solid;
+  border-right-color: var(--conduction-color-green);
+}
+
+.inOntwikkeling {
+  border-right-width: 8px;
+  border-right-style: solid;
+  border-right-color: var(--conduction-color-blue);
+}
+
+.inOntwikkelingTest {
+  border-right-width: 8px;
+  border-right-style: solid;
+  border-right-color: var(--conduction-color-red);
+}

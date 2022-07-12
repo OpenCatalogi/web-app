@@ -2,19 +2,21 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
 import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, Container, SelectMultiple } from "@conduction/components";
-import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
+import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
+import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 export const ComponentsTemplate: React.FC = () => {
   const [components] = React.useState<any[]>(c);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
-  const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
+  const { t } = useTranslation();
 
   const {
     register,
@@ -32,7 +34,7 @@ export const ComponentsTemplate: React.FC = () => {
 
   React.useEffect(() => {
     const subscription = watch(({ name, layers }) => {
-      setFilters({ name: name, layers: layers?.map((t: any) => t.value) });
+      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -47,16 +49,28 @@ export const ComponentsTemplate: React.FC = () => {
         </div>
         <div className={styles.resultsDisplaySwitchButtons}>
           <Button
-            variant={display === "table" ? "primary-action" : "secondary-action"}
-            onClick={() => setDisplay("table")}
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "table" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "table" })}
           >
+            <FontAwesomeIcon icon={faTable} />
             {t("Table")}
           </Button>
           <Button
-            variant={display === "cards" ? "primary-action" : "secondary-action"}
-            onClick={() => setDisplay("cards")}
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "cards" })}
           >
+            <FontAwesomeIcon icon={faGripVertical} />
             {t("Cards")}
+          </Button>
+          <Button
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "layer" })}
+          >
+            <FontAwesomeIcon icon={faLayerGroup} />
+            {t("Layers")}
           </Button>
         </div>
       </div>
@@ -82,7 +96,9 @@ export const ComponentsTemplate: React.FC = () => {
         </FormField>
       </form>
 
-      {filteredComponents.length > 0 && <ComponentResultTemplate results={filteredComponents} type={display} />}
+      {filteredComponents.length > 0 && (
+        <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+      )}
 
       {!filteredComponents.length && t("No components found with active filters")}
     </Container>

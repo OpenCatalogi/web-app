@@ -29,4 +29,11 @@
   --conduction-footer-logo-height-size: 82px;
 
   --conduction-component-detail-sub-title-font-size: 24px;
+  --conduction-color-yellow: yellow;
+  --conduction-color-red: red;
+  --conduction-color-blue: blue;
+  --conduction-color-green: green;
+  --conduction-color-purple: purple;
+  --conduction-color-gepland: #005282;
+  --conduction-color-gewenst: #38aeda;
 }

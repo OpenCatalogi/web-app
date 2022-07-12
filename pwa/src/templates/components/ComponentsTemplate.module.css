@@ -25,6 +25,15 @@
   align-items: center;
 }
 
+.resultsDisplaySwitchButtons * {
+  display: flex;
+  align-items: center;
+}
+
 .resultsDisplaySwitchButtons *:not(:last-child) {
+  margin-inline-end: var(--nlportal-space-inline-xs);
+}
+
+.buttonIcon > span > svg {
   margin-inline-end: var(--nlportal-space-inline-xs);
 }
