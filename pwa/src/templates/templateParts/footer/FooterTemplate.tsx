@@ -4,10 +4,12 @@ import { Container } from "@conduction/components";
 import LogoRotterdam from "./../../../assets/svgs/LogoRotterdam.svg";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { t } from "i18next";
 import { Link } from "@gemeente-denhaag/components-react";
+import { useTranslation } from "react-i18next";
 
 export const FooterTemplate: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className={styles.footer}>
       <Container>
