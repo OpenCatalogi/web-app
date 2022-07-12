@@ -8,18 +8,6 @@
   margin-block-start: var(--nlportal-space-block-5xl);
 }
 
-.form {
-  display: flex;
-}
-
-.form > * {
-  flex: 1;
-}
-
-.form > *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-block-xl);
-}
-
 .resultsDisplaySwitchButtons {
   display: flex;
   align-items: center;
