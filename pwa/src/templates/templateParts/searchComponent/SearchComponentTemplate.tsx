@@ -19,7 +19,7 @@ export const SearchComponentTemplate: React.FC = () => {
   } = useForm();
 
   const onSubmit = (data: any): void => {
-    setFilters({ name: data.name });
+    setFilters({ ...filters, name: data.name });
     navigate("/components");
   };
 
@@ -27,7 +27,12 @@ export const SearchComponentTemplate: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormField className={styles.searchFormComponent}>
         <FormFieldInput>
-          <InputText name="name" {...{ errors, register }} placeholder={t("Search all components")} icon={<SearchIcon />} />
+          <InputText
+            name="name"
+            {...{ errors, register }}
+            placeholder={t("Search all components")}
+            icon={<SearchIcon />}
+          />
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
