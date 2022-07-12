@@ -28,7 +28,7 @@ export const FiltersTemplate: React.FC = () => {
 
   React.useEffect(() => {
     const subscription = watch(({ name, layers, upl }) => {
-      setFilters({ name: name, layers: layers?.map((t: any) => t.value), upl: upl?.value });
+      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value), upl: upl?.value });
     });
 
     return () => subscription.unsubscribe();

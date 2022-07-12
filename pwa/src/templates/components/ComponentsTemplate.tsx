@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { useForm } from "react-hook-form";
-import { InputText, Container, SelectMultiple } from "@conduction/components";
-import { ComponentResultTemplate, TComponentResultsLayout } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
+import { Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Container } from "@conduction/components";
+import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
 import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
@@ -16,7 +15,7 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [filters] = React.useContext(FiltersContext);
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const { t } = useTranslation();
 
