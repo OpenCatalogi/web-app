@@ -27,7 +27,7 @@ export const SearchComponentTemplate: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormField className={styles.searchFormComponent}>
         <FormFieldInput>
-          <InputText name="name" {...{ errors, register }} placeholder={t("Search all components")} />
+          <InputText name="name" {...{ errors, register }} placeholder={t("Search all components")} icon={<SearchIcon />} />
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
