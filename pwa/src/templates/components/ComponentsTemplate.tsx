@@ -5,15 +5,15 @@ import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@ge
 import { useForm } from "react-hook-form";
 import { InputText, Container, SelectMultiple } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
 import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import { QueryClient } from "react-query";
+import { useComponent } from "../../hooks/components";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [components] = React.useState<any[]>(c);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const { t } = useTranslation();
@@ -26,11 +26,17 @@ export const ComponentsTemplate: React.FC = () => {
     formState: { errors },
   } = useForm();
 
+  const queryClient = new QueryClient();
+  const _useComponent = useComponent(queryClient);
+  const getComponents = _useComponent.getAll();
+
   React.useEffect(() => {
+    if (!getComponents.isSuccess) return;
+
     reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
 
-    setFilteredComponents(getFilteredComponents(components, filters));
-  }, [filters]);
+    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
+  }, [filters, getComponents.isSuccess]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, layers }) => {
