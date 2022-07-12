@@ -6,12 +6,12 @@ import { t } from "i18next";
 import { useForm } from "react-hook-form";
 import { InputText, Container, SelectMultiple } from "@conduction/components";
 import { ComponentResultTemplate, TComponentResultsLayout } from "../componentResult/ComponentResultsTemplate";
-import { components as c } from "./../../testData/components";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
+import { useComponent } from "../../hooks/components";
+import { QueryClient } from "react-query";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [components] = React.useState<any[]>(c);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
@@ -24,11 +24,17 @@ export const ComponentsTemplate: React.FC = () => {
     formState: { errors },
   } = useForm();
 
+  const queryClient = new QueryClient();
+  const _useComponent = useComponent(queryClient);
+  const getComponents = _useComponent.getAll();
+
   React.useEffect(() => {
+    if (!getComponents.isSuccess) return;
+
     reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
 
-    setFilteredComponents(getFilteredComponents(components, filters));
-  }, [filters]);
+    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
+  }, [filters, getComponents.isSuccess]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, layers }) => {
