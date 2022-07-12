@@ -1,41 +1,57 @@
-.Container {
+:root {
+  --layer-component-padding: 14px;
+  --layer-border-width: 8px;
+  --layer-background-color: #f5f5f5;
+  --layer-box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
+  --layer-font-size: 28px;
+  --layer-title-margin-bottom: 20px;
+}
+
+.title {
+  display: block;
+  margin-bottom: var(--layer-title-margin-bottom);
+  font-size: var(--layer-font-size);
+  font-weight: bold;
+}
+
+.container {
   display: flex;
   flex-wrap: wrap;
 }
 
-.Container > * {
+.container > * {
   margin-block-end: var(--nlportal-space-block-lg);
 }
 
-.Container > *:not(:last-child) {
+.container > *:not(:last-child) {
   margin-inline-end: var(--nlportal-space-block-xl);
 }
 
-.Components {
-  display: inline-block;
-  background-color: rgb(245, 245, 245);
-  box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
-  padding: 14px;
+.component {
+  background-color: var(--layer-background-color);
+  box-shadow: var(--layer-box-shadow);
+  padding: var(--layer-component-padding);
 }
 
-.Components > a {
-  text-decoration: none;
+.component:hover {
+  cursor: pointer;
+}
+
+.beta,
+.gewenst,
+.gepland {
+  border-right-width: var(--layer-border-width);
+  border-right-style: solid;
 }
 
 .beta {
-  border-right-width: 8px;
-  border-right-style: solid;
   border-right-color: var(--conduction-color-beta);
 }
 
 .gepland {
-  border-right-width: 8px;
-  border-right-style: solid;
   border-right-color: var(--conduction-color-gepland);
 }
 
 .gewenst {
-  border-right-width: 8px;
-  border-right-style: solid;
   border-right-color: var(--conduction-color-gewenst);
 }

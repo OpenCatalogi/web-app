@@ -103,15 +103,11 @@ export const ComponentsTemplate: React.FC = () => {
         </FormField>
       </form>
 
-      {getComponents.isSuccess && (
-        <>
-          {filteredComponents.length > 0 && (
-            <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
-          )}
-          {!filteredComponents.length && t("No components found with active filters")}
-        </>
+      {filteredComponents.length > 0 && (
+        <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
       )}
 
+      {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
       {getComponents.isLoading && <Skeleton height="200px" />}
     </Container>
   );

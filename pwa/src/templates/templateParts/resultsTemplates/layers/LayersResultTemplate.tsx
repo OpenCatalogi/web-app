@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as styles from "./LayersResultTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
-import { Heading1, Link } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { navigate } from "gatsby";
-import { stringToCssModuleSelector } from "../../../../services/stringToCssModuleSelector";
+import _ from "lodash";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -27,11 +26,11 @@ export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ comp
 
   return (
     <>
-      {interactieComponents.length !== 0 && <Layer title="Interactie" components={interactieComponents} />}
-      {procesComponents.length !== 0 && <Layer title="Proces" components={procesComponents} />}
-      {integratieComponents.length !== 0 && <Layer title="Integratie" components={integratieComponents} />}
-      {servicesComponents.length !== 0 && <Layer title="Services" components={servicesComponents} />}
-      {dataComponents.length !== 0 && <Layer title="Data" components={dataComponents} />}
+      {interactieComponents.length > 0 && <Layer title="Interactie" components={interactieComponents} />}
+      {procesComponents.length > 0 && <Layer title="Proces" components={procesComponents} />}
+      {integratieComponents.length > 0 && <Layer title="Integratie" components={integratieComponents} />}
+      {servicesComponents.length > 0 && <Layer title="Services" components={servicesComponents} />}
+      {dataComponents.length > 0 && <Layer title="Data" components={dataComponents} />}
     </>
   );
 };
@@ -44,16 +43,16 @@ interface LayerProps {
 const Layer: React.FC<LayerProps> = ({ title, components }) => {
   return (
     <QuoteWrapper borderWidth="20px">
-      <Heading1>{title}</Heading1>
+      <span className={styles.title}>{title}</span>
 
-      <div className={styles.Container}>
+      <div className={styles.container}>
         {components.map((component) => (
           <div
             key={component.id}
             onClick={() => navigate(`/components/${component.id}`)}
-            className={clsx(styles.Components, styles[stringToCssModuleSelector(component.developmentStatus)])}
+            className={clsx(styles.component, styles[_.camelCase(component.developmentStatus)])}
           >
-            <Link>{component.name}</Link>
+            {component.name}
           </div>
         ))}
       </div>

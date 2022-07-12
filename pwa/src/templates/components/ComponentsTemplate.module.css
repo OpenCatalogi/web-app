@@ -25,7 +25,7 @@
   align-items: center;
 }
 
-.resultsDisplaySwitchButtons * {
+.resultsDisplaySwitchButtons > * {
   display: flex;
   align-items: center;
 }
