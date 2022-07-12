@@ -9,6 +9,7 @@ import { ComponentResultTemplate, TComponentResultsLayout } from "../componentRe
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
 import { useComponent } from "../../hooks/components";
+import { QueryClient } from "react-query";
 
 export const ComponentsTemplate: React.FC = () => {
   const [components, setComponents] = React.useState<any[]>([]);
@@ -16,7 +17,8 @@ export const ComponentsTemplate: React.FC = () => {
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const [display, setDisplay] = React.useState<TComponentResultsLayout>("table");
 
-  const _useComponent = useComponent();
+  const queryClient = new QueryClient();
+  const _useComponent = useComponent(queryClient);
   const getComponents = _useComponent.getAll();
 
   React.useEffect(() => {
