@@ -3,7 +3,9 @@ import * as styles from "./FiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { InputText, SelectMultiple } from "@conduction/components";
+import { InputText, SelectMultiple, SelectSingle } from "@conduction/components";
+import { upl } from "../../../data/upl";
+import _ from "lodash";
 
 export const FiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -17,12 +19,16 @@ export const FiltersTemplate: React.FC = () => {
   } = useForm();
 
   React.useEffect(() => {
-    reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
+    reset({
+      name: filters.name,
+      layers: filters.layers?.map((t) => getSelectObjectFromValue(t)),
+      upl: upl.find((upl) => upl.value === filters.upl),
+    });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ name, layers }) => {
-      setFilters({ name: name, layers: layers?.map((t: any) => t.value) });
+    const subscription = watch(({ name, layers, upl }) => {
+      setFilters({ name: name, layers: layers?.map((t: any) => t.value), upl: upl?.value });
     });
 
     return () => subscription.unsubscribe();
@@ -40,12 +46,14 @@ export const FiltersTemplate: React.FC = () => {
       <FormField>
         <FormFieldInput>
           <FormFieldLabel>Filter op laag</FormFieldLabel>
-          <SelectMultiple
-            defaultValue={filters.layers?.map((f) => getSelectObjectFromValue(f))}
-            name="layers"
-            options={layers}
-            {...{ errors, control, register }}
-          />
+          <SelectMultiple name="layers" options={layers} {...{ errors, control, register }} />
+        </FormFieldInput>
+      </FormField>
+
+      <FormField>
+        <FormFieldInput>
+          <FormFieldLabel>Filter op UPL</FormFieldLabel>
+          <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
         </FormFieldInput>
       </FormField>
     </form>

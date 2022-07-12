@@ -3,6 +3,7 @@ import * as React from "react";
 export interface IFilters {
   name?: string;
   layers?: Array<string | undefined>;
+  upl?: string;
 }
 
 export const filters = {} as IFilters;
