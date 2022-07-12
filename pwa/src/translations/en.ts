@@ -40,4 +40,6 @@ export const en = {
   Details: "Details",
   Table: "Table",
   Cards: "Cards",
+  Search:"Search",
+  "Search all components":"Search all components",
 };

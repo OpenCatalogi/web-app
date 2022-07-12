@@ -1,0 +1,12 @@
+.searchFormComponent {
+  padding-block-end: var(--nlportal-space-inline-xs);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons > * {
+  margin: var(--denhaag-space-inline-xs);
+}
