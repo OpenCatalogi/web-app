@@ -40,4 +40,6 @@ export const nl = {
   Details: "Details",
   Table: "Tabel",
   Cards: "Kaarten",
+  Search:"Zoeken",
+  "Search all components":"Doorzoek alle componenten",
 };

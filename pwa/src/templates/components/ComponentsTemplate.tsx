@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Button, FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { useForm } from "react-hook-form";
-import { InputText, Container, SelectMultiple } from "@conduction/components";
+import { Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { getFilteredComponents } from "../../services/getFilteredComponents";
@@ -11,6 +10,7 @@ import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
+import { FiltersTemplate } from "../templateParts/filters/FiltersTemplate";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 
@@ -19,14 +19,6 @@ export const ComponentsTemplate: React.FC = () => {
   const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const { t } = useTranslation();
 
-  const {
-    register,
-    watch,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm();
-
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const getComponents = _useComponent.getAll();
@@ -34,18 +26,8 @@ export const ComponentsTemplate: React.FC = () => {
   React.useEffect(() => {
     if (!getComponents.isSuccess) return;
 
-    reset({ name: filters.name, layers: filters.layers?.map((t) => getSelectObjectFromValue(t)) });
-
     setFilteredComponents(getFilteredComponents(getComponents.data, filters));
   }, [filters, getComponents.isSuccess]);
-
-  React.useEffect(() => {
-    const subscription = watch(({ name, layers }) => {
-      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value) });
-    });
-
-    return () => subscription.unsubscribe();
-  });
 
   return (
     <Container layoutClassName={styles.container}>
@@ -82,26 +64,7 @@ export const ComponentsTemplate: React.FC = () => {
         </div>
       </div>
 
-      <form className={styles.form}>
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op naam</FormFieldLabel>
-            <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
-          </FormFieldInput>
-        </FormField>
-
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op laag</FormFieldLabel>
-            <SelectMultiple
-              defaultValue={filters.layers?.map((f) => getSelectObjectFromValue(f))}
-              name="layers"
-              options={layers}
-              {...{ errors, control, register }}
-            />
-          </FormFieldInput>
-        </FormField>
-      </form>
+      <FiltersTemplate />
 
       {filteredComponents.length > 0 && (
         <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
@@ -112,15 +75,3 @@ export const ComponentsTemplate: React.FC = () => {
     </Container>
   );
 };
-
-const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
-  return layers.find((t) => t.value === value);
-};
-
-const layers = [
-  { label: "Interactie", value: "interactie" },
-  { label: "Proces", value: "proces" },
-  { label: "Integratie", value: "integratie" },
-  { label: "Services", value: "services" },
-  { label: "Data", value: "data" },
-];

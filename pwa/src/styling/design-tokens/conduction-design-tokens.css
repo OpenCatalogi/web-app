@@ -32,6 +32,9 @@
 
   --conduction-component-detail-sub-title-font-size: 24px;
 
+  --conduction-searchcomponent-space-inline-left: 5px;
+  --conduction-searchcomponent-space-inline-bottom: 8px;
+
   --conduction-color-beta: #ffbc2c;
   --conduction-color-gepland: #005282;
   --conduction-color-gewenst: #38aeda;
