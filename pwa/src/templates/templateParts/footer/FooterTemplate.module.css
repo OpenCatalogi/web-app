@@ -14,6 +14,7 @@
 
 .imagesContainer {
   display: flex;
+  justify-content: space-evenly;
   height: var(--conduction-footer-logo-height-size);
   padding-top: var(--nlportal-space-block-2xl);
 }

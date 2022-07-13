@@ -20,7 +20,6 @@ export const FooterTemplate: React.FC = () => {
             <Link>{t("Privacy declaration")}</Link>
           </div>
         </div>
-
         <div className={styles.imagesContainer}>
           <img onClick={() => navigate("https://www.rotterdam.nl/")} src={LogoRotterdam} />
           <img onClick={() => navigate("https://www.conduction.nl/")} src={LogoConduction} />
