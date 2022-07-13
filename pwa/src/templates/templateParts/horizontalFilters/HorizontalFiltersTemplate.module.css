@@ -1,0 +1,11 @@
+.formFilter > * {
+  margin-top: 5px;
+}
+
+.filterLabel {
+  font-weight: normal;
+  font-size: var(--conduction-select-lable-font-size);
+}
+.title {
+  font-weight: bold;
+}

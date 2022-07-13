@@ -25,3 +25,14 @@
 .buttonIcon > span > svg {
   margin-inline-end: var(--nlportal-space-inline-xs);
 }
+
+.formFilters{
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 15px;
+}
+
+.formFilters > :first-child{
+  grid-row: 1/7;
+}

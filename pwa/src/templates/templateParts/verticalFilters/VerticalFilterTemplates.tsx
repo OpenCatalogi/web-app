@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./FiltersTemplate.module.css";
+import * as styles from "./VerticalFilterTemplates.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
@@ -7,7 +7,7 @@ import { InputText, SelectMultiple, SelectSingle } from "@conduction/components"
 import { upl } from "../../../data/upl";
 import _ from "lodash";
 
-export const FiltersTemplate: React.FC = () => {
+export const VerticalFilterTemplates: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   const {
@@ -35,27 +35,21 @@ export const FiltersTemplate: React.FC = () => {
   });
 
   return (
-    <form className={styles.form}>
+    <form className={styles.formSearchFilter}>
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>Filter op naam</FormFieldLabel>
+          <FormFieldLabel>Search</FormFieldLabel>
           <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
         </FormFieldInput>
       </FormField>
 
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>Filter op laag</FormFieldLabel>
+          <FormFieldLabel>Type</FormFieldLabel>
           <SelectMultiple name="layers" options={layers} {...{ errors, control, register }} />
         </FormFieldInput>
       </FormField>
 
-      <FormField>
-        <FormFieldInput>
-          <FormFieldLabel>Filter op UPL</FormFieldLabel>
-          <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
-        </FormFieldInput>
-      </FormField>
     </form>
   );
 };

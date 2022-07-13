@@ -10,9 +10,10 @@ import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
-import { FiltersTemplate } from "../templateParts/filters/FiltersTemplate";
+import { HorizontalFiltersTemplate } from "../templateParts/horizontalFilters/HorizontalFiltersTemplate";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
+import { VerticalFilterTemplates } from "../templateParts/verticalFilters/VerticalFilterTemplates";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -64,14 +65,18 @@ export const ComponentsTemplate: React.FC = () => {
         </div>
       </div>
 
-      <FiltersTemplate />
+      <VerticalFilterTemplates />
 
-      {filteredComponents.length > 0 && (
-        <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
-      )}
+      <div className={styles.formFilters}>
+        <HorizontalFiltersTemplate />
 
-      {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
-      {getComponents.isLoading && <Skeleton height="200px" />}
+        {filteredComponents.length > 0 && (
+          <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+        )}
+
+        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
+        {getComponents.isLoading && <Skeleton height="200px" />}
+      </div>
     </Container>
   );
 };

@@ -42,20 +42,22 @@ interface LayerProps {
 
 const Layer: React.FC<LayerProps> = ({ title, components }) => {
   return (
-    <QuoteWrapper borderWidth="20px">
-      <span className={styles.title}>{title}</span>
+    <div className={styles.ComponentsGrid}>
+      <QuoteWrapper borderWidth="20px">
+        <span className={styles.title}>{title}</span>
 
-      <div className={styles.container}>
-        {components.map((component) => (
-          <div
-            key={component.id}
-            onClick={() => navigate(`/components/${component.id}`)}
-            className={clsx(styles.component, styles[_.camelCase(component.developmentStatus)])}
-          >
-            {component.name}
-          </div>
-        ))}
-      </div>
-    </QuoteWrapper>
+        <div className={styles.container}>
+          {components.map((component) => (
+            <div
+              key={component.id}
+              onClick={() => navigate(`/components/${component.id}`)}
+              className={clsx(styles.component, styles[_.camelCase(component.developmentStatus)])}
+            >
+              {component.name}
+            </div>
+          ))}
+        </div>
+      </QuoteWrapper>
+    </div>
   );
 };
