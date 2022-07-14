@@ -9,6 +9,7 @@ import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { platforms } from "../../../../data/filters/platform";
+import { maintenanceTypes } from "../../../../data/filters/maintenanceType";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -29,12 +30,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     reset({
       upl: upl.find((upl) => upl.value === filters.upl),
       platform: platforms.find((p) => p.value === filters.platform),
+      maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenanceType),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platform }) => {
-      setFilters({ ...filters, upl: upl?.value, platform: platform?.value });
+    const subscription = watch(({ upl, platform, maintenanceType }) => {
+      setFilters({ ...filters, upl: upl?.value, platform: platform?.value, maintenanceType: maintenanceType?.value });
     });
 
     return () => subscription.unsubscribe();
@@ -62,6 +64,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Platform</span>
             </FormFieldLabel>
             <SelectSingle name="platform" options={platforms} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Onderhoudstypes</span>
+            </FormFieldLabel>
+            <SelectSingle name="maintenanceType" options={maintenanceTypes} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
       </form>

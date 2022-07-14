@@ -8,6 +8,7 @@ export interface IFilters {
   layers?: Array<string | undefined>;
   upl?: string;
   platform?: string;
+  maintenanceType?: string;
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;
