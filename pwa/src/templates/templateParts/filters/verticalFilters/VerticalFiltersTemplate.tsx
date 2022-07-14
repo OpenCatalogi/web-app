@@ -4,14 +4,10 @@ import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
-import { upl } from "../../../../data/filters/upl";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { platforms } from "../../../../data/filters/platform";
-import { maintenanceTypes } from "../../../../data/filters/maintenanceType";
-import { softwareTypes } from "../../../../data/filters/softwareType";
-import { licenses } from "../../../../data/filters/licenses";
+import { upl, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
