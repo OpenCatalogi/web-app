@@ -44,6 +44,7 @@ const Layer: React.FC<LayerProps> = ({ title, components }) => {
   return (
     <div className={styles.ComponentsGrid}>
       <QuoteWrapper borderWidth="20px">
+        <div className={styles.layers}>
         <span className={styles.title}>{title}</span>
 
         <div className={styles.container}>
@@ -56,6 +57,7 @@ const Layer: React.FC<LayerProps> = ({ title, components }) => {
               {component.name}
             </div>
           ))}
+        </div>
         </div>
       </QuoteWrapper>
     </div>

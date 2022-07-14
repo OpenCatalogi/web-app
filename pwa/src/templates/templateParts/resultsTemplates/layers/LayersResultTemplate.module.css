@@ -31,6 +31,7 @@
   background-color: var(--layer-background-color);
   box-shadow: var(--layer-box-shadow);
   padding: var(--layer-component-padding);
+  margin-bottom: 10px;
 }
 
 .component:hover {
@@ -54,4 +55,8 @@
 
 .gewenst {
   border-right-color: var(--conduction-color-gewenst);
+}
+.layers {
+  margin-bottom: 10px;
+
 }
