@@ -9,6 +9,7 @@ export interface IFilters {
   upl?: string;
   platform?: string;
   maintenanceType?: string;
+  softwareType?: string;
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;

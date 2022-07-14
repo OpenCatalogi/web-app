@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { platforms } from "../../../../data/filters/platform";
 import { maintenanceTypes } from "../../../../data/filters/maintenanceType";
+import { softwareTypes } from "../../../../data/filters/softwareType";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -31,12 +32,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       upl: upl.find((upl) => upl.value === filters.upl),
       platform: platforms.find((p) => p.value === filters.platform),
       maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenanceType),
+      softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platform, maintenanceType }) => {
-      setFilters({ ...filters, upl: upl?.value, platform: platform?.value, maintenanceType: maintenanceType?.value });
+    const subscription = watch(({ upl, platform, maintenanceType, softwareType }) => {
+      setFilters({
+        ...filters,
+        upl: upl?.value,
+        platform: platform?.value,
+        maintenanceType: maintenanceType?.value,
+        softwareType: softwareType?.value,
+      });
     });
 
     return () => subscription.unsubscribe();
@@ -73,6 +81,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Onderhoudstypes</span>
             </FormFieldLabel>
             <SelectSingle name="maintenanceType" options={maintenanceTypes} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Softwaretypes</span>
+            </FormFieldLabel>
+            <SelectSingle name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
       </form>
