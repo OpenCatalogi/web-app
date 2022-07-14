@@ -10,6 +10,7 @@ export interface IFilters {
   platform?: string;
   maintenanceType?: string;
   softwareType?: string;
+  license?: string;
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;

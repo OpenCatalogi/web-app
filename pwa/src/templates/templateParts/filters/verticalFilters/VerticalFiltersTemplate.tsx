@@ -11,6 +11,7 @@ import { Divider } from "@gemeente-denhaag/components-react";
 import { platforms } from "../../../../data/filters/platform";
 import { maintenanceTypes } from "../../../../data/filters/maintenanceType";
 import { softwareTypes } from "../../../../data/filters/softwareType";
+import { licenses } from "../../../../data/filters/licenses";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -33,17 +34,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       platform: platforms.find((p) => p.value === filters.platform),
       maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenanceType),
       softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
+      license: licenses.find((l) => l.value === filters.license),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platform, maintenanceType, softwareType }) => {
+    const subscription = watch(({ upl, platform, maintenanceType, softwareType, license }) => {
       setFilters({
         ...filters,
         upl: upl?.value,
         platform: platform?.value,
         maintenanceType: maintenanceType?.value,
         softwareType: softwareType?.value,
+        license: license?.value,
       });
     });
 
@@ -90,6 +93,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Softwaretypes</span>
             </FormFieldLabel>
             <SelectSingle name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Licentie</span>
+            </FormFieldLabel>
+            <SelectSingle name="license" options={licenses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
       </form>
