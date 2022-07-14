@@ -42,9 +42,8 @@ interface LayerProps {
 
 const Layer: React.FC<LayerProps> = ({ title, components }) => {
   return (
-    <div className={styles.ComponentsGrid}>
-      <QuoteWrapper borderWidth="20px">
-        <div className={styles.layers}>
+    <QuoteWrapper borderWidth="20px">
+      <div className={styles.layer}>
         <span className={styles.title}>{title}</span>
 
         <div className={styles.container}>
@@ -58,8 +57,7 @@ const Layer: React.FC<LayerProps> = ({ title, components }) => {
             </div>
           ))}
         </div>
-        </div>
-      </QuoteWrapper>
-    </div>
+      </div>
+    </QuoteWrapper>
   );
 };
