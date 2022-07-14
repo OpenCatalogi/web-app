@@ -3,10 +3,14 @@ import * as React from "react";
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 
 export interface IFilters {
+  resultDisplayLayout: TComponentResultsLayout;
   name?: string;
   layers?: Array<string | undefined>;
   upl?: string;
-  resultDisplayLayout: TComponentResultsLayout;
+  platform?: string;
+  maintenanceType?: string;
+  softwareType?: string;
+  license?: string;
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;
