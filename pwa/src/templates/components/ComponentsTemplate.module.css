@@ -1,5 +1,5 @@
 .container > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-4xl);
+  margin-block-end: var(--nlportal-space-block-2xl);
 }
 
 .header {
@@ -24,4 +24,17 @@
 
 .buttonIcon > span > svg {
   margin-inline-end: var(--nlportal-space-inline-xs);
+}
+
+.filtersAndResultsContainer {
+  display: flex;
+  gap: var(--nlportal-space-inline-lg);
+}
+
+.verticalFilters {
+  flex: 1;
+}
+
+.results {
+  flex: 3;
 }

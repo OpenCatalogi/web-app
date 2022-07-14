@@ -38,4 +38,7 @@
   --conduction-color-beta: #ffbc2c;
   --conduction-color-gepland: #005282;
   --conduction-color-gewenst: #38aeda;
+
+  --conduction-vertical-filters-title-font-size: 20px;
+  --conduction-vertical-filters-label-font-size: 16px;
 }
