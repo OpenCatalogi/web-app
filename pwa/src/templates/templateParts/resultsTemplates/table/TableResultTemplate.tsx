@@ -23,6 +23,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
           <TableHeader>{t("Type")}</TableHeader>
           <TableHeader>{t("Layer")}</TableHeader>
           <TableHeader>{t("Organisation")}</TableHeader>
+          <TableHeader/>
         </TableRow>
       </TableHead>
 
