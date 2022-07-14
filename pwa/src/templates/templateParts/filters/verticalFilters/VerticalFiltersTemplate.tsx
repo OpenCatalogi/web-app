@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
-import { upl } from "../../../../data/upl";
+import { upl } from "../../../../data/filters/upl";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
+import { platforms } from "../../../../data/filters/platform";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -27,12 +28,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     reset({
       upl: upl.find((upl) => upl.value === filters.upl),
+      platform: platforms.find((p) => p.value === filters.platform),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl }) => {
-      setFilters({ ...filters, upl: upl?.value });
+    const subscription = watch(({ upl, platform }) => {
+      setFilters({ ...filters, upl: upl?.value, platform: platform?.value });
     });
 
     return () => subscription.unsubscribe();
@@ -51,6 +53,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
             <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Platform</span>
+            </FormFieldLabel>
+            <SelectSingle name="platform" options={platforms} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
       </form>
