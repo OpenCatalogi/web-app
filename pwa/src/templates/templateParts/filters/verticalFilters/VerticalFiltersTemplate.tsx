@@ -59,7 +59,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
       <Divider />
 
-      <form>
+      <form className={styles.form}>
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>

@@ -21,3 +21,7 @@
   font-weight: bold;
   font-size: var(--conduction-vertical-filters-title-font-size);
 }
+
+.form > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-md);
+}
