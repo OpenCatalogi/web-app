@@ -21,8 +21,8 @@ export const FooterTemplate: React.FC = () => {
           </div>
         </div>
         <div className={styles.imagesContainer}>
-          <img onClick={() => navigate("https://www.rotterdam.nl/")} src={LogoRotterdam} />
-          <img onClick={() => navigate("https://www.conduction.nl/")} src={LogoConduction} />
+          <img onClick={() => window.open("https://www.rotterdam.nl/")} src={LogoRotterdam} />
+          <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
         </div>
       </Container>
     </footer>
