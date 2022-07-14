@@ -13,6 +13,7 @@ interface LayersResultTemplateProps {
 }
 
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
+
   const { t } = useTranslation();
 
   return (
@@ -24,6 +25,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
           <TableHeader>{t("Type")}</TableHeader>
           <TableHeader>{t("Layer")}</TableHeader>
           <TableHeader>{t("Organisation")}</TableHeader>
+          <TableHeader>{t( "Installations")}</TableHeader>
           <TableHeader />
         </TableRow>
         {components.map((component) => (
@@ -43,6 +45,10 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
             <TableCell>
               <Tag tag="Organisatie" />
+            </TableCell>
+
+            <TableCell>
+              <Tag tag={component.usedBy.length}  />
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>

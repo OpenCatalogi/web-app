@@ -3,7 +3,7 @@ import * as styles from "./CardsResultTemplate.module.css";
 import _ from "lodash";
 import { RichContentCard } from "@conduction/components";
 import { useTranslation } from "react-i18next";
-import { HamburgerIcon, HouseIcon } from "@gemeente-denhaag/icons";
+import { HamburgerIcon, HouseIcon, SettingsIcon } from "@gemeente-denhaag/icons";
 
 interface CardsResultTemplateProps {
   components: any[];
@@ -21,8 +21,9 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           labelsWithIcon={[
             { label: "Laag", icon: <HamburgerIcon /> },
             { label: "Organisatie", icon: <HouseIcon /> },
+            { label: "Installations", icon: <SettingsIcon /> },
           ]}
-          tags={[component.developmentStatus, component.softwareType]}
+          tags={[component.developmentStatus, component.softwareType , component.usedBy.length]}
           contentLinks={[
             {
               title: t("Repository"),

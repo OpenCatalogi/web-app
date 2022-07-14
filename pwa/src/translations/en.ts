@@ -41,5 +41,6 @@ export const en = {
   Table: "Table",
   Cards: "Cards",
   Search:"Search",
+  Installations:"Installations",
   "Search all components":"Search all components",
 };

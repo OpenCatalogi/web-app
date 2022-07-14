@@ -41,5 +41,6 @@ export const nl = {
   Table: "Tabel",
   Cards: "Kaarten",
   Search:"Zoeken",
+  Installations:"Installaties",
   "Search all components":"Doorzoek alle componenten",
 };
