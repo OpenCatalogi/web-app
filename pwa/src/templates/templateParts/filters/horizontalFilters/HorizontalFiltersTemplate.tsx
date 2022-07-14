@@ -1,13 +1,12 @@
 import * as React from "react";
-import * as styles from "./FiltersTemplate.module.css";
+import * as styles from "./HorizontalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../context/filters";
+import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { InputText, SelectMultiple, SelectSingle } from "@conduction/components";
-import { upl } from "../../../data/upl";
+import { InputText, SelectMultiple } from "@conduction/components";
 import _ from "lodash";
 
-export const FiltersTemplate: React.FC = () => {
+export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   const {
@@ -22,13 +21,12 @@ export const FiltersTemplate: React.FC = () => {
     reset({
       name: filters.name,
       layers: filters.layers?.map((t) => getSelectObjectFromValue(t)),
-      upl: upl.find((upl) => upl.value === filters.upl),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ name, layers, upl }) => {
-      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value), upl: upl?.value });
+    const subscription = watch(({ name, layers }) => {
+      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -38,22 +36,15 @@ export const FiltersTemplate: React.FC = () => {
     <form className={styles.form}>
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>Filter op naam</FormFieldLabel>
+          <FormFieldLabel>Zoek op naam</FormFieldLabel>
           <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
         </FormFieldInput>
       </FormField>
 
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>Filter op laag</FormFieldLabel>
+          <FormFieldLabel>Zoek op laag</FormFieldLabel>
           <SelectMultiple name="layers" options={layers} {...{ errors, control, register }} />
-        </FormFieldInput>
-      </FormField>
-
-      <FormField>
-        <FormFieldInput>
-          <FormFieldLabel>Filter op UPL</FormFieldLabel>
-          <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
         </FormFieldInput>
       </FormField>
     </form>

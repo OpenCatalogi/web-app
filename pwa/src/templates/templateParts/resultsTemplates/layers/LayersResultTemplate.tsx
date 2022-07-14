@@ -25,13 +25,13 @@ export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ comp
   }, [components]);
 
   return (
-    <>
+    <div>
       {interactieComponents.length > 0 && <Layer title="Interactie" components={interactieComponents} />}
       {procesComponents.length > 0 && <Layer title="Proces" components={procesComponents} />}
       {integratieComponents.length > 0 && <Layer title="Integratie" components={integratieComponents} />}
       {servicesComponents.length > 0 && <Layer title="Services" components={servicesComponents} />}
       {dataComponents.length > 0 && <Layer title="Data" components={dataComponents} />}
-    </>
+    </div>
   );
 };
 
@@ -43,18 +43,20 @@ interface LayerProps {
 const Layer: React.FC<LayerProps> = ({ title, components }) => {
   return (
     <QuoteWrapper borderWidth="20px">
-      <span className={styles.title}>{title}</span>
+      <div className={styles.layer}>
+        <span className={styles.title}>{title}</span>
 
-      <div className={styles.container}>
-        {components.map((component) => (
-          <div
-            key={component.id}
-            onClick={() => navigate(`/components/${component.id}`)}
-            className={clsx(styles.component, styles[_.camelCase(component.developmentStatus)])}
-          >
-            {component.name}
-          </div>
-        ))}
+        <div className={styles.container}>
+          {components.map((component) => (
+            <div
+              key={component.id}
+              onClick={() => navigate(`/components/${component.id}`)}
+              className={clsx(styles.component, styles[_.camelCase(component.developmentStatus)])}
+            >
+              {component.name}
+            </div>
+          ))}
+        </div>
       </div>
     </QuoteWrapper>
   );

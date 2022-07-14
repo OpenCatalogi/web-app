@@ -55,3 +55,7 @@
 .gewenst {
   border-right-color: var(--conduction-color-gewenst);
 }
+
+.layer {
+  margin-bottom: var(--nlportal-space-block-xl);
+}

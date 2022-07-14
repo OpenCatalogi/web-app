@@ -1,0 +1,8 @@
+.form {
+  display: flex;
+  gap: var(--nlportal-space-inline-lg);
+}
+
+.form > * {
+  flex: 1;
+}
