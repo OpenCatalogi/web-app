@@ -25,13 +25,13 @@ export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ comp
   }, [components]);
 
   return (
-    <>
+    <div>
       {interactieComponents.length > 0 && <Layer title="Interactie" components={interactieComponents} />}
       {procesComponents.length > 0 && <Layer title="Proces" components={procesComponents} />}
       {integratieComponents.length > 0 && <Layer title="Integratie" components={integratieComponents} />}
       {servicesComponents.length > 0 && <Layer title="Services" components={servicesComponents} />}
       {dataComponents.length > 0 && <Layer title="Data" components={dataComponents} />}
-    </>
+    </div>
   );
 };
 

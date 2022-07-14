@@ -26,13 +26,15 @@
   margin-inline-end: var(--nlportal-space-inline-xs);
 }
 
-.formFilters{
-  display: grid;
-  grid-template-columns: 2fr 6fr;
-  grid-template-rows: 1fr 1fr;
-  column-gap: 15px;
+.filtersAndResultsContainer {
+  display: flex;
+  gap: var(--nlportal-space-inline-lg);
 }
 
-.formFilters > :first-child{
-  grid-row: 1/7;
+.verticalFilters {
+  flex: 1;
+}
+
+.results {
+  flex: 3;
 }

@@ -10,10 +10,10 @@ import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
-import { HorizontalFiltersTemplate } from "../templateParts/horizontalFilters/HorizontalFiltersTemplate";
+import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
-import { VerticalFilterTemplates } from "../templateParts/verticalFilters/VerticalFilterTemplates";
+import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -65,17 +65,19 @@ export const ComponentsTemplate: React.FC = () => {
         </div>
       </div>
 
-      <VerticalFilterTemplates />
+      <HorizontalFiltersTemplate />
 
-      <div className={styles.formFilters}>
-        <HorizontalFiltersTemplate />
+      <div className={styles.filtersAndResultsContainer}>
+        <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
 
-        {filteredComponents.length > 0 && (
-          <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
-        )}
+        <div className={styles.results}>
+          {filteredComponents.length > 0 && (
+            <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+          )}
 
-        {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
-        {getComponents.isLoading && <Skeleton height="200px" />}
+          {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
+          {getComponents.isLoading && <Skeleton height="200px" />}
+        </div>
       </div>
     </Container>
   );
