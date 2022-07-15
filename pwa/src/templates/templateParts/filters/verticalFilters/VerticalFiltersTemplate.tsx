@@ -8,6 +8,10 @@ import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { upls, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
+import {
+  getSelectedItemFromFilters,
+  getSelectedItemsFromFilters,
+} from "../../../../services/getSelectedItemsFromFilters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -26,11 +30,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
-      upl: filters.nl?.upl?.map((upl) => upls.find((u) => u.value === upl)),
-      platforms: filters.platforms?.map((platform) => platforms.find((p) => p.value === platform)),
-      softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
-      maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenance?.type),
-      license: licenses.find((l) => l.value === filters.legal?.license),
+      upl: getSelectedItemsFromFilters(upls, filters.nl?.upl),
+      platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
+      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters.maintenance?.type),
+      license: getSelectedItemFromFilters(licenses, filters.legal?.license),
     });
   }, [filters]);
 

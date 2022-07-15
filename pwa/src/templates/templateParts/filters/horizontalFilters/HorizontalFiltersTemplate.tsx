@@ -6,6 +6,7 @@ import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/for
 import { InputText, SelectMultiple } from "@conduction/components";
 import _ from "lodash";
 import { layers } from "../../../../data/filters";
+import { getSelectedItemsFromFilters } from "../../../../services/getSelectedItemsFromFilters";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -21,7 +22,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layers: filters.layerType?.map((layer) => layers.find((l) => l.value === layer)),
+      layers: getSelectedItemsFromFilters(layers, filters.layerType),
     });
   }, [filters]);
 
