@@ -1,6 +1,14 @@
 version: "3.4"
 
 services:
+  pwa: &pwa
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}:${APP_BUILD}
+    build: pwa
+    depends_on:
+      - php
+    ports:
+      - "81:80"
+
   php: &php
     image: ghcr.io/conductionnl/commonground-gateway-php:cleanup
     depends_on:
