@@ -12,7 +12,9 @@ export interface IFilters {
   maintenance?: {
     type?: string;
   };
-  license?: string;
+  legal?: {
+    license?: string;
+  };
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;

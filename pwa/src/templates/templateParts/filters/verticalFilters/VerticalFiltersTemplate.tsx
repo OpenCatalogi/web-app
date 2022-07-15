@@ -30,7 +30,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       platforms: filters.platforms?.map((platform) => platforms.find((p) => p.value === platform)),
       softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
       maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenance?.type),
-      license: licenses.find((l) => l.value === filters.license),
+      license: licenses.find((l) => l.value === filters.legal?.license),
     });
   }, [filters]);
 
@@ -44,7 +44,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         maintenance: {
           type: maintenanceType?.value,
         },
-        license: license?.value,
+        legal: {
+          license: license?.value,
+        },
       });
     });
 
