@@ -22,7 +22,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layers: getSelectedItemsFromFilters(layers, filters.layerType),
+      layerType: getSelectedItemsFromFilters(layers, filters.layerType),
     });
   }, [filters]);
 
