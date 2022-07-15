@@ -5,6 +5,7 @@ import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { InputText, SelectMultiple } from "@conduction/components";
 import _ from "lodash";
+import { layers } from "../../../../data/filters";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -20,13 +21,13 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layers: filters.layerType?.map((t) => getSelectObjectFromValue(t)),
+      layers: filters.layerType?.map((layer) => layers.find((l) => l.value === layer)),
     });
   }, [filters]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, layerType }) => {
-      setFilters({ ...filters, name: name, layerType: layerType?.map((t: any) => t.value) });
+      setFilters({ ...filters, name: name, layerType: layerType?.map((l: any) => l.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -50,15 +51,3 @@ export const HorizontalFiltersTemplate: React.FC = () => {
     </form>
   );
 };
-
-const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
-  return layers.find((t) => t.value === value);
-};
-
-const layers = [
-  { label: "Interactie", value: "interactie" },
-  { label: "Proces", value: "proces" },
-  { label: "Integratie", value: "integratie" },
-  { label: "Services", value: "services" },
-  { label: "Data", value: "data" },
-];

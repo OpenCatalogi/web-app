@@ -5,7 +5,7 @@ export type TComponentResultsLayout = "table" | "cards" | "layer";
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   name?: string;
-  layerType?: Array<string | undefined>;
+  layerType?: string[];
   platforms?: string[];
   softwareType?: string;
   maintenance?: {
