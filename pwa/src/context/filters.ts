@@ -8,8 +8,10 @@ export interface IFilters {
   layerType?: Array<string | undefined>;
   upl?: string;
   platforms?: string[];
-  maintenanceType?: string;
   softwareType?: string;
+  maintenance?: {
+    type?: string;
+  };
   license?: string;
 }
 
