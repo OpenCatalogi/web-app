@@ -7,7 +7,7 @@ import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { upl, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
+import { upls, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -26,7 +26,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
-      upl: upl.find((upl) => upl.value === filters.upl),
+      upl: filters.nl?.upl?.map((upl) => upls.find((u) => u.value === upl)),
       platforms: filters.platforms?.map((platform) => platforms.find((p) => p.value === platform)),
       softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
       maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenance?.type),
@@ -38,7 +38,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     const subscription = watch(({ upl, platforms, maintenanceType, softwareType, license }) => {
       setFilters({
         ...filters,
-        upl: upl?.value,
         platforms: platforms?.map((p: any) => p.value),
         softwareType: softwareType?.value,
         maintenance: {
@@ -46,6 +45,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         },
         legal: {
           license: license?.value,
+        },
+        nl: {
+          upl: upl?.map((u: any) => u.value),
         },
       });
     });
@@ -65,7 +67,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
-            <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
+            <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

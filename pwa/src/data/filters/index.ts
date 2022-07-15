@@ -2,6 +2,6 @@ import { licenses } from "./licenses";
 import { maintenanceTypes } from "./maintenanceType";
 import { platforms } from "./platform";
 import { softwareTypes } from "./softwareType";
-import { upl } from "./upl";
+import { upls } from "./upls";
 
-export { licenses, maintenanceTypes, platforms, softwareTypes, upl };
+export { licenses, maintenanceTypes, platforms, softwareTypes, upls };

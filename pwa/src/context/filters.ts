@@ -6,7 +6,6 @@ export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   name?: string;
   layerType?: Array<string | undefined>;
-  upl?: string;
   platforms?: string[];
   softwareType?: string;
   maintenance?: {
@@ -14,6 +13,9 @@ export interface IFilters {
   };
   legal?: {
     license?: string;
+  };
+  nl?: {
+    upl?: string[];
   };
 }
 

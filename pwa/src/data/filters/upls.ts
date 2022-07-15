@@ -1,4 +1,4 @@
-export const upl = [
+export const upls = [
   {
     value: "UPL-naam nog niet beschikbaar",
     label: "UPL-naam nog niet beschikbaar",
