@@ -8,8 +8,8 @@ export const getFilteredComponents = (components: any[], f: IFilters): any[] => 
     filteredComponents = filteredComponents.filter((c) => _.toLower(c.name).includes(_.toLower(f.name)));
   }
 
-  if (f.layers?.length) {
-    filteredComponents = filteredComponents.filter((c) => f.layers?.includes(c.layer));
+  if (f.layerType?.length) {
+    filteredComponents = filteredComponents.filter((c) => f.layerType?.includes(c.layerType));
   }
 
   return filteredComponents;

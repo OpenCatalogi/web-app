@@ -20,13 +20,13 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layers: filters.layers?.map((t) => getSelectObjectFromValue(t)),
+      layers: filters.layerType?.map((t) => getSelectObjectFromValue(t)),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ name, layers }) => {
-      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value) });
+    const subscription = watch(({ name, layerType }) => {
+      setFilters({ ...filters, name: name, layerType: layerType?.map((t: any) => t.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -44,7 +44,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       <FormField>
         <FormFieldInput>
           <FormFieldLabel>Zoek op laag</FormFieldLabel>
-          <SelectMultiple name="layers" options={layers} {...{ errors, control, register }} />
+          <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
         </FormFieldInput>
       </FormField>
     </form>
