@@ -3,7 +3,7 @@ import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { SelectSingle } from "@conduction/components";
+import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
@@ -27,7 +27,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     reset({
       upl: upl.find((upl) => upl.value === filters.upl),
-      platform: platforms.find((p) => p.value === filters.platform),
+      platforms: filters.platforms?.map((platform) => platforms.find((p) => p.value === platform)),
       maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenanceType),
       softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
       license: licenses.find((l) => l.value === filters.license),
@@ -35,11 +35,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platform, maintenanceType, softwareType, license }) => {
+    const subscription = watch(({ upl, platforms, maintenanceType, softwareType, license }) => {
       setFilters({
         ...filters,
         upl: upl?.value,
-        platform: platform?.value,
+        platforms: platforms.map((p: any) => p.value),
         maintenanceType: maintenanceType?.value,
         softwareType: softwareType?.value,
         license: license?.value,
@@ -68,9 +68,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>
-              <span className={styles.label}>Platform</span>
+              <span className={styles.label}>Platforms</span>
             </FormFieldLabel>
-            <SelectSingle name="platform" options={platforms} {...{ errors, control, register }} />
+            <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

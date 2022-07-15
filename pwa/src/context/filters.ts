@@ -7,7 +7,7 @@ export interface IFilters {
   name?: string;
   layerType?: Array<string | undefined>;
   upl?: string;
-  platform?: string;
+  platforms?: string[];
   maintenanceType?: string;
   softwareType?: string;
   license?: string;
