@@ -5,12 +5,18 @@ export type TComponentResultsLayout = "table" | "cards" | "layer";
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   name?: string;
-  layers?: Array<string | undefined>;
-  upl?: string;
-  platform?: string;
-  maintenanceType?: string;
+  layerType?: string[];
+  platforms?: string[];
   softwareType?: string;
-  license?: string;
+  maintenance?: {
+    type?: string;
+  };
+  legal?: {
+    license?: string;
+  };
+  nl?: {
+    upl?: string[];
+  };
 }
 
 export const filters = { resultDisplayLayout: "table" } as IFilters;

@@ -5,6 +5,8 @@ import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { InputText, SelectMultiple } from "@conduction/components";
 import _ from "lodash";
+import { layers } from "../../../../data/filters";
+import { getSelectedItemsFromFilters } from "../../../../services/getSelectedItemsFromFilters";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -20,13 +22,13 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layers: filters.layers?.map((t) => getSelectObjectFromValue(t)),
+      layers: getSelectedItemsFromFilters(layers, filters.layerType),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ name, layers }) => {
-      setFilters({ ...filters, name: name, layers: layers?.map((t: any) => t.value) });
+    const subscription = watch(({ name, layerType }) => {
+      setFilters({ ...filters, name: name, layerType: layerType?.map((l: any) => l.value) });
     });
 
     return () => subscription.unsubscribe();
@@ -44,21 +46,9 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       <FormField>
         <FormFieldInput>
           <FormFieldLabel>Zoek op laag</FormFieldLabel>
-          <SelectMultiple name="layers" options={layers} {...{ errors, control, register }} />
+          <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
         </FormFieldInput>
       </FormField>
     </form>
   );
 };
-
-const getSelectObjectFromValue = (value: string | undefined): any | undefined => {
-  return layers.find((t) => t.value === value);
-};
-
-const layers = [
-  { label: "Interactie", value: "interactie" },
-  { label: "Proces", value: "proces" },
-  { label: "Integratie", value: "integratie" },
-  { label: "Services", value: "services" },
-  { label: "Data", value: "data" },
-];

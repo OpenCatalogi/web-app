@@ -3,11 +3,15 @@ import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { SelectSingle } from "@conduction/components";
+import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { upl, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
+import { upls, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
+import {
+  getSelectedItemFromFilters,
+  getSelectedItemsFromFilters,
+} from "../../../../services/getSelectedItemsFromFilters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -26,23 +30,29 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
-      upl: upl.find((upl) => upl.value === filters.upl),
-      platform: platforms.find((p) => p.value === filters.platform),
-      maintenanceType: maintenanceTypes.find((mT) => mT.value === filters.maintenanceType),
-      softwareType: softwareTypes.find((sT) => sT.value === filters.softwareType),
-      license: licenses.find((l) => l.value === filters.license),
+      upl: getSelectedItemsFromFilters(upls, filters.nl?.upl),
+      platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
+      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters.maintenance?.type),
+      license: getSelectedItemFromFilters(licenses, filters.legal?.license),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platform, maintenanceType, softwareType, license }) => {
+    const subscription = watch(({ upl, platforms, maintenanceType, softwareType, license }) => {
       setFilters({
         ...filters,
-        upl: upl?.value,
-        platform: platform?.value,
-        maintenanceType: maintenanceType?.value,
+        platforms: platforms?.map((p: any) => p.value),
         softwareType: softwareType?.value,
-        license: license?.value,
+        maintenance: {
+          type: maintenanceType?.value,
+        },
+        legal: {
+          license: license?.value,
+        },
+        nl: {
+          upl: upl?.map((u: any) => u.value),
+        },
       });
     });
 
@@ -61,16 +71,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
-            <SelectSingle name="upl" options={upl} {...{ errors, control, register }} />
+            <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>
-              <span className={styles.label}>Platform</span>
+              <span className={styles.label}>Platforms</span>
             </FormFieldLabel>
-            <SelectSingle name="platform" options={platforms} {...{ errors, control, register }} />
+            <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
