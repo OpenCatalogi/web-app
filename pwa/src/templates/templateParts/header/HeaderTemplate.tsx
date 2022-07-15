@@ -21,35 +21,35 @@ export const HeaderTemplate: React.FC = () => {
     {
       label: t("Interaction"),
       handleClick: () => {
-        setFilters({ ...filters, layers: ["interactie"] });
+        setFilters({ ...filters, layerType: ["interactie"] });
         navigate("/components");
       },
     },
     {
       label: t("Process"),
       handleClick: () => {
-        setFilters({ ...filters, layers: ["proces"] });
+        setFilters({ ...filters, layerType: ["proces"] });
         navigate("/components");
       },
     },
     {
       label: t("Integration"),
       handleClick: () => {
-        setFilters({ ...filters, layers: ["integratie"] });
+        setFilters({ ...filters, layerType: ["integratie"] });
         navigate("/components");
       },
     },
     {
       label: t("Services"),
       handleClick: () => {
-        setFilters({ ...filters, layers: ["services"] });
+        setFilters({ ...filters, layerType: ["services"] });
         navigate("/components");
       },
     },
     {
       label: t("Data"),
       handleClick: () => {
-        setFilters({ ...filters, layers: ["data"] });
+        setFilters({ ...filters, layerType: ["data"] });
         navigate("/components");
       },
     },
