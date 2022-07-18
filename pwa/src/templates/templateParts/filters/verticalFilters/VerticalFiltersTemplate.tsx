@@ -7,7 +7,7 @@ import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { upls, platforms, maintenanceTypes, softwareTypes, licenses } from "./../../../../data/filters";
+import { upls, platforms, maintenanceTypes, softwareTypes, licenses, statuses } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
@@ -33,17 +33,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       upl: getSelectedItemsFromFilters(upls, filters.nl?.upl),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
       softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
+      status: getSelectedItemFromFilters(statuses, filters.status),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters.maintenance?.type),
       license: getSelectedItemFromFilters(licenses, filters.legal?.license),
     });
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platforms, maintenanceType, softwareType, license }) => {
+    const subscription = watch(({ upl, platforms, maintenanceType, status, softwareType, license }) => {
       setFilters({
         ...filters,
         platforms: platforms?.map((p: any) => p.value),
         softwareType: softwareType?.value,
+        status: status?.value,
         maintenance: {
           type: maintenanceType?.value,
         },
@@ -81,6 +83,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Platforms</span>
             </FormFieldLabel>
             <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Status</span>
+            </FormFieldLabel>
+            <SelectSingle name="status" options={statuses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
