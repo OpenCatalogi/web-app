@@ -40,15 +40,15 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag="Laag" />
+              <Tag tag={t("Layer")} />
             </TableCell>
 
             <TableCell>
-              <Tag tag="Organisatie" />
+              <Tag tag={t("Organisation")} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.usedBy.length}  />
+              <Tag tag={component.usedBy ? component.usedBy.length : 0}  />
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
