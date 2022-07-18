@@ -8,6 +8,7 @@ export interface IFilters {
   layerType?: string[];
   platforms?: string[];
   softwareType?: string;
+  status?: string;
   maintenance?: {
     type?: string;
   };
