@@ -7,7 +7,18 @@ import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { upls, platforms, maintenanceTypes, softwareTypes, licenses, statuses } from "./../../../../data/filters";
+import {
+  upls,
+  platforms,
+  maintenanceTypes,
+  softwareTypes,
+  licenses,
+  statuses,
+  bedrijfsfuncties,
+  bedrijfsservices,
+  applicatiefuncties,
+  referentieComponenten,
+} from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
@@ -32,6 +43,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     reset({
       upl: getSelectedItemsFromFilters(upls, filters.nl?.upl),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters.bedrijfsfuncties),
+      bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters.bedrijfsservices),
+      referentieComponenten: getSelectedItemsFromFilters(referentieComponenten, filters.referentieComponenten),
+      applicatiefunctie: getSelectedItemFromFilters(applicatiefuncties, filters.applicatiefunctie),
       softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
       status: getSelectedItemFromFilters(statuses, filters.status),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters.maintenance?.type),
@@ -40,23 +55,40 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters]);
 
   React.useEffect(() => {
-    const subscription = watch(({ upl, platforms, maintenanceType, status, softwareType, license }) => {
-      setFilters({
-        ...filters,
-        platforms: platforms?.map((p: any) => p.value),
-        softwareType: softwareType?.value,
-        status: status?.value,
-        maintenance: {
-          type: maintenanceType?.value,
-        },
-        legal: {
-          license: license?.value,
-        },
-        nl: {
-          upl: upl?.map((u: any) => u.value),
-        },
-      });
-    });
+    const subscription = watch(
+      ({
+        upl,
+        platforms,
+        maintenanceType,
+        status,
+        softwareType,
+        license,
+        bedrijfsservices,
+        bedrijfsfuncties,
+        referentieComponenten,
+        applicatiefunctie,
+      }) => {
+        setFilters({
+          ...filters,
+          platforms: platforms?.map((p: any) => p.value),
+          bedrijfsfuncties: bedrijfsfuncties?.map((b: any) => b.value),
+          bedrijfsservices: bedrijfsservices?.map((b: any) => b.value),
+          referentieComponenten: referentieComponenten?.map((rC: any) => rC.value),
+          applicatiefunctie: applicatiefunctie?.value,
+          softwareType: softwareType?.value,
+          status: status?.value,
+          maintenance: {
+            type: maintenanceType?.value,
+          },
+          legal: {
+            license: license?.value,
+          },
+          nl: {
+            upl: upl?.map((u: any) => u.value),
+          },
+        });
+      },
+    );
 
     return () => subscription.unsubscribe();
   });
@@ -119,6 +151,46 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Licentie</span>
             </FormFieldLabel>
             <SelectSingle name="license" options={licenses} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Bedrijfsfuncties</span>
+            </FormFieldLabel>
+            <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Bedrijfsservices</span>
+            </FormFieldLabel>
+            <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Referentie componenten</span>
+            </FormFieldLabel>
+            <SelectMultiple
+              name="referentieComponenten"
+              options={referentieComponenten}
+              {...{ errors, control, register }}
+            />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Applicatiefunctie</span>
+            </FormFieldLabel>
+            <SelectSingle name="applicatiefunctie" options={applicatiefuncties} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
       </form>

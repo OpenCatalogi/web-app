@@ -7,6 +7,10 @@ export interface IFilters {
   name?: string;
   layerType?: string[];
   platforms?: string[];
+  bedrijfsfuncties?: string[];
+  bedrijfsservices?: string[];
+  referentieComponenten?: string[];
+  applicatiefunctie: string;
   softwareType?: string;
   status?: string;
   maintenance?: {
