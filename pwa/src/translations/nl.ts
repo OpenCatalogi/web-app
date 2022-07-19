@@ -40,7 +40,10 @@ export const nl = {
   Details: "Details",
   Table: "Tabel",
   Cards: "Kaarten",
-  Search:"Zoeken",
-  Installations:"Installaties",
-  "Search all components":"Doorzoek alle componenten",
+  Search: "Zoeken",
+  Installations: "Installaties",
+  "Search all components": "Doorzoek alle componenten",
+  Software: "Software",
+  "Data models": "Datamodellen",
+  "API's": "API's",
 };
