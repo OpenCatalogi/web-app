@@ -28,7 +28,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
 
   React.useEffect(() => {
     const subscription = watch(({ name, layerType }) => {
-      setFilters({ ...filters, name: name, layerType: layerType?.map((l: any) => l.value) });
+      setFilters({ ...filters, currentPage: 1, name: name, layerType: layerType?.map((l: any) => l.value) });
     });
 
     return () => subscription.unsubscribe();

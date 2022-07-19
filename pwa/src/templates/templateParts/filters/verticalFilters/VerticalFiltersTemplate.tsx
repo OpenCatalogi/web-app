@@ -70,6 +70,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       }) => {
         setFilters({
           ...filters,
+          currentPage: 1,
           platforms: platforms?.map((p: any) => p.value),
           bedrijfsfuncties: bedrijfsfuncties?.map((b: any) => b.value),
           bedrijfsservices: bedrijfsservices?.map((b: any) => b.value),
