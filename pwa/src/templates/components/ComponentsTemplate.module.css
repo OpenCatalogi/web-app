@@ -1,3 +1,7 @@
+.container {
+  max-width: 1440px;
+}
+
 .container > *:not(:last-child) {
   margin-block-end: var(--nlportal-space-block-2xl);
 }
@@ -38,4 +42,8 @@
 
 .results {
   flex: 3;
+}
+
+.results > *:not(:last-child) {
+  margin-block-end: var(--nlportal-space-block-2xl);
 }

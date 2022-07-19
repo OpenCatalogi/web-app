@@ -2,10 +2,9 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
 import { Button, Heading2 } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import { getFilteredComponents } from "../../services/getFilteredComponents";
 import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
@@ -17,18 +16,11 @@ import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFi
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const [filteredComponents, setFilteredComponents] = React.useState<any[]>([]);
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
-  const getComponents = _useComponent.getAll();
-
-  React.useEffect(() => {
-    if (!getComponents.isSuccess) return;
-
-    setFilteredComponents(getFilteredComponents(getComponents.data, filters));
-  }, [filters, getComponents.isSuccess]);
+  const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
 
   return (
     <Container layoutClassName={styles.container}>
@@ -71,11 +63,22 @@ export const ComponentsTemplate: React.FC = () => {
         <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
-          {filteredComponents.length > 0 && (
-            <ComponentResultTemplate components={filteredComponents} type={filters.resultDisplayLayout} />
+          {getComponents.isSuccess && (
+            <>
+              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+
+              {getComponents.data.results.length && (
+                <Pagination
+                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
+                  pages={getComponents.data.pages}
+                  currentPage={getComponents.data.page}
+                />
+              )}
+
+              {!getComponents.data.results.length && t("No components found with active filters")}
+            </>
           )}
 
-          {!filteredComponents.length && !getComponents.isLoading && t("No components found with active filters")}
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
       </div>
