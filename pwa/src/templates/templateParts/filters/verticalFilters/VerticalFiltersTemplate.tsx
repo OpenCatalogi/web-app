@@ -41,16 +41,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
-      upl: getSelectedItemsFromFilters(upls, filters.nl?.upl),
+      upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
-      bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters.bedrijfsfuncties),
-      bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters.bedrijfsservices),
-      referentieComponenten: getSelectedItemsFromFilters(referentieComponenten, filters.referentieComponenten),
-      applicatiefunctie: getSelectedItemFromFilters(applicatiefuncties, filters.applicatiefunctie),
+      bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
+      bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
+      referentieComponenten: getSelectedItemsFromFilters(
+        referentieComponenten,
+        filters["nl.gemma.referentieComponenten"],
+      ),
+      applicatiefunctie: getSelectedItemFromFilters(applicatiefuncties, filters["nl.gemma.applicatiefunctie"]),
       softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
-      status: getSelectedItemFromFilters(statuses, filters.status),
-      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters.maintenance?.type),
-      license: getSelectedItemFromFilters(licenses, filters.legal?.license),
+      status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
+      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
+      license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
     });
   }, [filters]);
 
@@ -72,21 +75,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           ...filters,
           currentPage: 1,
           platforms: platforms?.map((p: any) => p.value),
-          bedrijfsfuncties: bedrijfsfuncties?.map((b: any) => b.value),
-          bedrijfsservices: bedrijfsservices?.map((b: any) => b.value),
-          referentieComponenten: referentieComponenten?.map((rC: any) => rC.value),
-          applicatiefunctie: applicatiefunctie?.value,
+          "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
+          "nl.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
+          "nl.gemma.referentieComponenten": referentieComponenten?.map((rC: any) => rC.value),
+          "nl.gemma.applicatiefunctie": applicatiefunctie?.value,
           softwareType: softwareType?.value,
-          status: status?.value,
-          maintenance: {
-            type: maintenanceType?.value,
-          },
-          legal: {
-            license: license?.value,
-          },
-          nl: {
-            upl: upl?.map((u: any) => u.value),
-          },
+          developmentStatus: status?.value,
+          "maintenance.type": maintenanceType?.value,
+          "legal.license": license?.value,
+          "nl.upl": upl?.map((u: any) => u.value),
         });
       },
     );
