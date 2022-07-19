@@ -5,5 +5,21 @@ import { softwareTypes } from "./softwareType";
 import { upls } from "./upls";
 import { layers } from "./layers";
 import { statuses } from "./statuses";
+import { bedrijfsfuncties } from "./bedrijfsfuncties";
+import { bedrijfsservices } from "./bedrijfsservices";
+import { applicatiefuncties } from "./applicatiefuncties";
+import { referentieComponenten } from "./referentieComponenten";
 
-export { licenses, maintenanceTypes, platforms, softwareTypes, upls, layers, statuses };
+export {
+  licenses,
+  maintenanceTypes,
+  platforms,
+  softwareTypes,
+  upls,
+  layers,
+  statuses,
+  bedrijfsfuncties,
+  bedrijfsservices,
+  applicatiefuncties,
+  referentieComponenten,
+};
