@@ -5,24 +5,19 @@ export type TComponentResultsLayout = "table" | "cards" | "layer";
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   currentPage: number;
+
   name?: string;
-  layerType?: string[];
-  platforms?: string[];
-  bedrijfsfuncties?: string[];
-  bedrijfsservices?: string[];
-  referentieComponenten?: string[];
-  applicatiefunctie: string;
   softwareType?: string;
-  status?: string;
-  maintenance?: {
-    type?: string;
-  };
-  legal?: {
-    license?: string;
-  };
-  nl?: {
-    upl?: string[];
-  };
+  developmentStatus?: string;
+  platforms?: string[];
+  "nl.commonground.layerType"?: string[];
+  "nl.gemma.bedrijfsfuncties"?: string[];
+  "nl.gemma.bedrijfsservices"?: string[];
+  "nl.gemma.referentieComponenten"?: string[];
+  "nl.gemma.applicatiefunctie": string;
+  "nl.upl"?: string[];
+  "maintenance.type"?: string;
+  "legal.license"?: string;
 }
 
 export const filters = { resultDisplayLayout: "table", currentPage: 1 } as IFilters;

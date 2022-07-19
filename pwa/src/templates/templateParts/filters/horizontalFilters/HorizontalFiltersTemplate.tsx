@@ -22,13 +22,18 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   React.useEffect(() => {
     reset({
       name: filters.name,
-      layerType: getSelectedItemsFromFilters(layers, filters.layerType),
+      layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
     });
   }, [filters]);
 
   React.useEffect(() => {
     const subscription = watch(({ name, layerType }) => {
-      setFilters({ ...filters, currentPage: 1, name: name, layerType: layerType?.map((l: any) => l.value) });
+      setFilters({
+        ...filters,
+        currentPage: 1,
+        name: name,
+        "nl.commonground.layerType": layerType?.map((l: any) => l.value),
+      });
     });
 
     return () => subscription.unsubscribe();

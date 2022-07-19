@@ -63,7 +63,7 @@ export const ComponentsTemplate: React.FC = () => {
         <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
-          {getComponents.isSuccess && (
+          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 
@@ -74,10 +74,12 @@ export const ComponentsTemplate: React.FC = () => {
                   currentPage={getComponents.data.page}
                 />
               )}
-
-              {!getComponents.data.results.length && t("No components found with active filters")}
             </>
           )}
+
+          {getComponents.data?.results.length === 0 &&
+            !getComponents.isLoading &&
+            t("No components found with active filters")}
 
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
