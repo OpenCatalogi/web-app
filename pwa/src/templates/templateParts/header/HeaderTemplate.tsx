@@ -19,37 +19,23 @@ export const HeaderTemplate: React.FC = () => {
       },
     },
     {
-      label: t("Interaction"),
+      label: t("Software"),
       handleClick: () => {
-        setFilters({ ...filters, layerType: ["interactie"] });
+        setFilters({ ...filters, softwareType: "standalone/desktop" });
         navigate("/components");
       },
     },
     {
-      label: t("Process"),
+      label: t("Data models"),
       handleClick: () => {
-        setFilters({ ...filters, layerType: ["proces"] });
+        setFilters({ ...filters, softwareType: "schema" });
         navigate("/components");
       },
     },
     {
-      label: t("Integration"),
+      label: t("API's"),
       handleClick: () => {
-        setFilters({ ...filters, layerType: ["integratie"] });
-        navigate("/components");
-      },
-    },
-    {
-      label: t("Services"),
-      handleClick: () => {
-        setFilters({ ...filters, layerType: ["services"] });
-        navigate("/components");
-      },
-    },
-    {
-      label: t("Data"),
-      handleClick: () => {
-        setFilters({ ...filters, layerType: ["data"] });
+        setFilters({ ...filters, softwareType: "api" });
         navigate("/components");
       },
     },
