@@ -33,6 +33,7 @@
 
 .verticalFilters {
   flex: 1;
+  min-width: 280px;
 }
 
 .results {
