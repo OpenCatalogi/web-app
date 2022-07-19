@@ -1,5 +1,6 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
+import { IFilters } from "../../context/filters";
 
 export default class Component {
   private _instance: AxiosInstance;
@@ -14,11 +15,9 @@ export default class Component {
     return data;
   };
 
-  public getAll = async (): Promise<any> => {
-    const {
-      data: { results },
-    } = await Send(this._instance, "GET", "/components");
+  public getAll = async (filters: IFilters): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/components?page=${filters.currentPage}`);
 
-    return results;
+    return data;
   };
 }

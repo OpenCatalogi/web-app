@@ -4,6 +4,7 @@ export type TComponentResultsLayout = "table" | "cards" | "layer";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
+  currentPage: number;
   name?: string;
   layerType?: string[];
   platforms?: string[];
@@ -24,7 +25,7 @@ export interface IFilters {
   };
 }
 
-export const filters = { resultDisplayLayout: "table" } as IFilters;
+export const filters = { resultDisplayLayout: "table", currentPage: 1 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
 
