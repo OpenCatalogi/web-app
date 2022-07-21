@@ -14,7 +14,6 @@ import {
   softwareTypes,
   licenses,
   statuses,
-  bedrijfsservices,
   referentieComponenten,
 } from "./../../../../data/filters";
 import {
@@ -32,10 +31,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const [applicatiefuncties, setApplicatiefuncties] = React.useState<any[]>([]);
   const [bedrijfsfuncties, setBedrijfsfuncties] = React.useState<any[]>([]);
+  const [bedrijfsservices, setBedrijfsservices] = React.useState<any[]>([]);
 
   const _useGemma = useGemma();
   const getApplicatiefuncties = _useGemma.getApplicatiefuncties();
   const getBedrijfsfuncties = _useGemma.getBedrijfsfuncties();
+  const getBedrijfsservices = _useGemma.getBedrijfsservices();
 
   React.useEffect(() => {
     if (!getApplicatiefuncties.isSuccess) return;
@@ -48,6 +49,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
     setBedrijfsfuncties(getBedrijfsfuncties.data.map((item: any) => ({ value: item.id, label: item.name })));
   }, [getBedrijfsfuncties.isSuccess]);
+
+  React.useEffect(() => {
+    if (!getBedrijfsservices.isSuccess) return;
+
+    setBedrijfsservices(getBedrijfsservices.data.map((item: any) => ({ value: item.id, label: item.name })));
+  }, [getBedrijfsservices.isSuccess]);
 
   const {
     register,
