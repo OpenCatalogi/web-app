@@ -18,6 +18,7 @@ export interface IFilters {
   "nl.upl"?: string[];
   "maintenance.type"?: string;
   "legal.license"?: string;
+  "legal.mainCopyrightOwner"?: string;
 }
 
 export const filters = { resultDisplayLayout: "table", currentPage: 1 } as IFilters;

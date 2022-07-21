@@ -18,6 +18,7 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
+  organisations,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
@@ -54,6 +55,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
+      organisation: getSelectedItemFromFilters(organisations, filters["legal.mainCopyrightOwner"]),
     });
   }, [filters]);
 
@@ -70,6 +72,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         bedrijfsfuncties,
         referentieComponenten,
         applicatiefunctie,
+        organisation,
       }) => {
         setFilters({
           ...filters,
@@ -83,6 +86,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
+          "legal.mainCopyrightOwner": organisation?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
@@ -104,6 +108,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
             <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Organisatie</span>
+            </FormFieldLabel>
+            <SelectSingle name="organisation" options={organisations} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
