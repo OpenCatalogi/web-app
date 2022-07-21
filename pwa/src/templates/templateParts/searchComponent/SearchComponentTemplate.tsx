@@ -19,7 +19,7 @@ export const SearchComponentTemplate: React.FC = () => {
   } = useForm();
 
   const onSubmit = (data: any): void => {
-    setFilters({ ...filters, name: data.name });
+    setFilters({ ...filters, search: data.name });
     navigate("/components");
   };
 
