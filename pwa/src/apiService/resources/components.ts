@@ -19,7 +19,7 @@ export default class Component {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}${filtersToQueryParams(filters)}`,
+      `/components?page=${filters.currentPage}&limit=10${filtersToQueryParams(filters)}`,
     );
 
     return data;
