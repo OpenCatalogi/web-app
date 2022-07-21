@@ -15,7 +15,7 @@ App\Entity\Group:
       - "@products_read"
       - "@components_read"
       - "@upl_read"
-      - "@referentie_component_read"
+      - "@referentiecomponent_read"
       - "@bedrijfsservice_read"
       - "@bedrijfsfunctie_read"
       - "@applicatiefunctie_read"
@@ -65,9 +65,9 @@ App\Entity\Scope:
     code: "GET.upl"
     name: "Read upl"
 
-  referentie_component_read:
-    code: "GET.referentie_component"
-    name: "Read referentie_component"
+  referentiecomponent_read:
+    code: "GET.referentiecomponent"
+    name: "Read referentiecomponent"
 
   bedrijfsservice_read:
     code: "GET.bedrijfsservice"
