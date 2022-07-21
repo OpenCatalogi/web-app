@@ -13,5 +13,12 @@ export const useGemma = () => {
       },
     });
 
-  return { getApplicatiefuncties };
+  const getBedrijfsfuncties = () =>
+    useQuery<any, Error>("bedrijfsfuncties", () => API?.Gemma.getBedrijfsfuncties(), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+    });
+
+  return { getApplicatiefuncties, getBedrijfsfuncties };
 };

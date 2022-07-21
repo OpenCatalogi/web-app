@@ -15,4 +15,12 @@ export default class Gemma {
 
     return results;
   };
+
+  public getBedrijfsfuncties = async (): Promise<any> => {
+    const {
+      data: { results },
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/bedrijfsfuncties?limit=1000");
+
+    return results;
+  };
 }
