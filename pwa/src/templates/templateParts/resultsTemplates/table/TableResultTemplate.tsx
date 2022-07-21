@@ -31,7 +31,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
       <TableBody>
         {components.map((component) => (
           <TableRow key={component.id}>
-            <TableCell>{component.name}</TableCell>
+            <TableCell>
+              <span className={styles.name}>{component.name}</span>
+            </TableCell>
 
             <TableCell>
               <Tag tag={component.developmentStatus} />
@@ -46,7 +48,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={t("Organisation")} />
+              <Tag tag={component.embedded?.legal?.mainCopyrightOwner ?? "Onbekend"} />
             </TableCell>
 
             <TableCell>

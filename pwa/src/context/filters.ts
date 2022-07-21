@@ -6,7 +6,7 @@ export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   currentPage: number;
 
-  name?: string;
+  search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];
@@ -18,6 +18,7 @@ export interface IFilters {
   "nl.upl"?: string[];
   "maintenance.type"?: string;
   "legal.license"?: string;
+  "legal.mainCopyrightOwner"?: string;
 }
 
 export const filters = { resultDisplayLayout: "table", currentPage: 1 } as IFilters;

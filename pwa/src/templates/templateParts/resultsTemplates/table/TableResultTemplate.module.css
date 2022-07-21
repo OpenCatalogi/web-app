@@ -2,3 +2,11 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.name {
+  display: block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

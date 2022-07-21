@@ -1,7 +1,7 @@
 export const setEnv = () => {
   if (process.env.NODE_ENV === "development") {
     window.GATSBY_ME_URL = "http://localhost/me";
-    window.GATSBY_API_URL = "http://localhost/api";
+    window.GATSBY_API_URL = "http://opencatalogi.nl/api";
     window.GATSBY_ADMIN_URL = "http://localhost/admin";
     window.GATSBY_BASE_URL = "http://localhost";
     window.GATSBY_FRONTEND_URL = "http://localhost:8000";
