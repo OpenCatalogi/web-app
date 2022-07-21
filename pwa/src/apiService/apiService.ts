@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import Case from "./resources/case";
+import Gemma from "./resources/gemma";
 import Component from "./resources/components";
 import Message from "./resources/message";
 
@@ -72,6 +73,10 @@ export default class APIService {
 
   public get Component(): Component {
     return new Component(this.apiClient);
+  }
+
+  public get Gemma(): Gemma {
+    return new Gemma(this.apiClient);
   }
 
   // Services
