@@ -7,15 +7,7 @@ import { SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import {
-  upls,
-  platforms,
-  maintenanceTypes,
-  softwareTypes,
-  licenses,
-  statuses,
-  referentieComponenten,
-} from "./../../../../data/filters";
+import { upls, platforms, maintenanceTypes, softwareTypes, licenses, statuses } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
@@ -32,11 +24,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [applicatiefuncties, setApplicatiefuncties] = React.useState<any[]>([]);
   const [bedrijfsfuncties, setBedrijfsfuncties] = React.useState<any[]>([]);
   const [bedrijfsservices, setBedrijfsservices] = React.useState<any[]>([]);
+  const [referentieComponents, setReferentieComponents] = React.useState<any[]>([]);
 
   const _useGemma = useGemma();
   const getApplicatiefuncties = _useGemma.getApplicatiefuncties();
   const getBedrijfsfuncties = _useGemma.getBedrijfsfuncties();
   const getBedrijfsservices = _useGemma.getBedrijfsservices();
+  const getReferentieComponents = _useGemma.getReferentieComponents();
 
   React.useEffect(() => {
     if (!getApplicatiefuncties.isSuccess) return;
@@ -56,6 +50,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setBedrijfsservices(getBedrijfsservices.data.map((item: any) => ({ value: item.id, label: item.name })));
   }, [getBedrijfsservices.isSuccess]);
 
+  React.useEffect(() => {
+    if (!getReferentieComponents.isSuccess) return;
+
+    setReferentieComponents(getReferentieComponents.data.map((item: any) => ({ value: item.id, label: item.name })));
+  }, [getReferentieComponents.isSuccess]);
+
   const {
     register,
     watch,
@@ -71,7 +71,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
       bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
       referentieComponenten: getSelectedItemsFromFilters(
-        referentieComponenten,
+        referentieComponents,
         filters["nl.gemma.referentieComponenten"],
       ),
       applicatiefunctie: getSelectedItemFromFilters(applicatiefuncties, filters["nl.gemma.applicatiefunctie"]),
@@ -202,7 +202,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             </FormFieldLabel>
             <SelectMultiple
               name="referentieComponenten"
-              options={referentieComponenten}
+              options={referentieComponents}
               {...{ errors, control, register }}
             />
           </FormFieldInput>

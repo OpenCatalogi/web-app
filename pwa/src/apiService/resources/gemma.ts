@@ -11,7 +11,7 @@ export default class Gemma {
   public getApplicatiefuncties = async (): Promise<any> => {
     const {
       data: { results },
-    } = await Send(this._instance, "GET", "/v1/referentielijsten/applicatiefuncties?limit=1000");
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/applicatiefuncties");
 
     return results;
   };
@@ -19,7 +19,7 @@ export default class Gemma {
   public getBedrijfsfuncties = async (): Promise<any> => {
     const {
       data: { results },
-    } = await Send(this._instance, "GET", "/v1/referentielijsten/bedrijfsfuncties?limit=1000");
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/bedrijfsfuncties");
 
     return results;
   };
@@ -27,7 +27,15 @@ export default class Gemma {
   public getBedrijfsservices = async (): Promise<any> => {
     const {
       data: { results },
-    } = await Send(this._instance, "GET", "/v1/referentielijsten/bedrijfsservices?limit=1000");
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/bedrijfsservices");
+
+    return results;
+  };
+
+  public getReferentieComponents = async (): Promise<any> => {
+    const {
+      data: { results },
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/referentie_components");
 
     return results;
   };

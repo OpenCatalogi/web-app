@@ -10,6 +10,7 @@ export default class Component {
   }
 
   public getOne = async (id: string): Promise<any> => {
+    ``;
     const { data } = await Send(this._instance, "GET", `/components/${id}`);
 
     return data;
@@ -19,7 +20,7 @@ export default class Component {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}${filtersToQueryParams(filters)}`,
+      `/components?page=${filters.currentPage}&extend[]=all${filtersToQueryParams(filters)}`,
     );
 
     return data;

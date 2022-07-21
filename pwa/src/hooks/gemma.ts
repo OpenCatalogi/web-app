@@ -26,5 +26,13 @@ export const useGemma = () => {
         throw new Error(error.message);
       },
     });
-  return { getApplicatiefuncties, getBedrijfsfuncties, getBedrijfsservices };
+
+  const getReferentieComponents = () =>
+    useQuery<any, Error>("referentie_components", () => API?.Gemma.getReferentieComponents(), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+    });
+
+  return { getApplicatiefuncties, getBedrijfsfuncties, getBedrijfsservices, getReferentieComponents };
 };
