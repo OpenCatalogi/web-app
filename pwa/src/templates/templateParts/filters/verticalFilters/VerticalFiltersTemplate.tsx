@@ -16,13 +16,13 @@ import {
   statuses,
   bedrijfsfuncties,
   bedrijfsservices,
-  applicatiefuncties,
   referentieComponenten,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
+import { useGemma } from "../../../../hooks/gemma";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -30,6 +30,17 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const [applicatiefuncties, setApplicatiefuncties] = React.useState<any[]>([]);
+
+  const _useGemma = useGemma();
+  const getApplicatiefuncties = _useGemma.getApplicatiefuncties();
+
+  React.useEffect(() => {
+    if (!getApplicatiefuncties.isSuccess) return;
+
+    setApplicatiefuncties(getApplicatiefuncties.data.map((item: any) => ({ value: item.id, label: item.name })));
+  }, [getApplicatiefuncties.isSuccess]);
 
   const {
     register,
