@@ -6,7 +6,7 @@ export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   currentPage: number;
 
-  name?: string;
+  search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];

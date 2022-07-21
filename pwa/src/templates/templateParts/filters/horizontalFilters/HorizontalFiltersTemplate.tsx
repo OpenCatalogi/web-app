@@ -21,7 +21,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
 
   React.useEffect(() => {
     reset({
-      name: filters.name,
+      name: filters.search,
       layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
     });
   }, [filters]);
@@ -31,7 +31,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       setFilters({
         ...filters,
         currentPage: 1,
-        name: name,
+        search: name,
         "nl.commonground.layerType": layerType?.map((l: any) => l.value),
       });
     });
