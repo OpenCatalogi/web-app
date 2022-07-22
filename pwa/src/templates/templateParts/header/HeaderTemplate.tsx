@@ -39,6 +39,12 @@ export const HeaderTemplate: React.FC = () => {
         navigate("/components");
       },
     },
+    {
+      label: t("About"),
+      handleClick: () => {
+        navigate("/about");
+      },
+    },
   ];
 
   const secondaryTopNavItems = [
