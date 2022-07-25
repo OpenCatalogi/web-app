@@ -1,0 +1,44 @@
+:root {
+  --about-section-margin: 82px;
+  --about-section-children-margin: 32px;
+  --about-section-margins-md: 24px;
+  --about-section-margins-sm: 16px;
+  --about-author-font-size: 18px;
+}
+
+.container > * {
+  margin-block-start: var(--about-section-margin);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--about-section-children-margin);
+}
+
+.buttonsContainer {
+  display: flex;
+}
+
+.buttonsContainer > *:not(:last-child) {
+  margin-inline-end: var(--about-section-margins-sm);
+}
+
+.quoteWrapperContainer {
+  margin-block-start: var(--about-section-margins-md);
+  margin-block-end: var(--about-section-margins-md);
+}
+
+.quoteWrapperContainer > * {
+  padding-block-start: var(--about-section-margins-md);
+  padding-block-end: var(--about-section-margins-md);
+}
+
+.author {
+  font-size: var(--about-author-font-size);
+  display: block;
+  margin-block-start: var(--about-section-margins-sm);
+  color: var(--denhaag-color-grey-3);
+}
+
+.layersVisual {
+  width: 100%;
+}
