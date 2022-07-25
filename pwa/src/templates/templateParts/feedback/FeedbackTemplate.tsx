@@ -13,7 +13,7 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <span className={styles.heading}>Wensen of feedback?</span>
 
-      <span className={styles.content}>
+      <span>
         Deze website is 'permanente beta' en zal worden aangepast naar de behoeften van gebruikers. Wensen en
         opmerkingen kunnen via een melding op GitHub doorgegeven worden.
       </span>
