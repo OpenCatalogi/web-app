@@ -46,4 +46,5 @@ export const en = {
   Software: "Software",
   "Data models": "Data models",
   "API's": "API's",
+  About: "About",
 };

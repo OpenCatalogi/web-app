@@ -1,9 +1,9 @@
 import { PageProps } from "gatsby";
 import * as React from "react";
-import { ComponentsTemplate } from "../templates/components/ComponentsTemplate";
+import { AboutTemplate } from "../templates/about/AboutTemplate";
 
 const IndexPage: React.FC<PageProps> = () => {
-  return <ComponentsTemplate />;
+  return <AboutTemplate />;
 };
 
 export default IndexPage;
