@@ -26,13 +26,13 @@ export const LandingTemplate: React.FC = () => {
 
       <Divider />
 
-      <section className={clsx(styles.miniDashboardContainer, styles.section)}>
+      <section className={styles.section}>
         <Heading3>Open Catalogi in getallen</Heading3>
 
         <MiniDashboardTemplate />
       </section>
 
-      <section className={clsx(styles.cardNavigationContainer, styles.section)}>
+      <section className={styles.section}>
         <Heading3>(Direct naar) veelbezochte pagina's</Heading3>
 
         <div className={styles.cards}>
