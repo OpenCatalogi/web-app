@@ -19,6 +19,10 @@
   max-width: 650px;
 }
 
+.miniDashboardContainer > *:not(:last-child) {
+  margin-bottom: 32px;
+}
+
 .feedback {
   width: 100%;
   max-width: 800px;

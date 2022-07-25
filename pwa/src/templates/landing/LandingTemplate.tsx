@@ -5,20 +5,29 @@ import { Divider, Heading2 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { Container } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
+import { MiniDashboardTemplate } from "../templateParts/miniDashboard/MiniDashboardTemplate";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.headingAndSearchForm}>
+      <section className={styles.headingAndSearchForm}>
         <div className={styles.heading}>
           <Heading2>{t("A central place for reuse of information technology within the government")}</Heading2>
           <span> {t("Here you will find components for all Common Ground layers")}</span>
         </div>
 
         <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
-      </div>
+      </section>
+
+      <Divider />
+
+      <section className={styles.miniDashboardContainer}>
+        <Heading2>Open Catalogi in getallen</Heading2>
+
+        <MiniDashboardTemplate />
+      </section>
 
       <Divider />
 
