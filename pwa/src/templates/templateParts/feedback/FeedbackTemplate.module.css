@@ -1,0 +1,21 @@
+:root {
+  --feedback-block-margin: 16px;
+  --feedback-title-font-size: 22px;
+}
+
+.container > * {
+  display: block;
+}
+
+.container > *:not(:last-child) {
+  margin-bottom: var(--feedback-block-margin);
+}
+
+.heading {
+  font-weight: bold;
+  font-size: var(--feedback-title-font-size);
+}
+
+.button {
+  width: fit-content;
+}

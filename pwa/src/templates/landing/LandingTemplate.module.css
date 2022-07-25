@@ -1,4 +1,8 @@
-.container {
+.container > *:not(:last-child) {
+  margin-bottom: 82px;
+}
+
+.headingAndSearchForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,4 +17,9 @@
 .searchFormContainer {
   width: 100%;
   max-width: 650px;
+}
+
+.feedback {
+  width: 100%;
+  max-width: 800px;
 }
