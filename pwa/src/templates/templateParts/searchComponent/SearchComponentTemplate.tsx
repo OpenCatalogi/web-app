@@ -8,7 +8,11 @@ import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
 
-export const SearchComponentTemplate: React.FC = () => {
+interface SearchComponentTemplateProps {
+  layoutClassName?: string;
+}
+
+export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
@@ -24,7 +28,7 @@ export const SearchComponentTemplate: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={layoutClassName}>
       <FormField className={styles.searchFormComponent}>
         <FormFieldInput>
           <InputText
