@@ -2,6 +2,10 @@
   margin-bottom: 82px;
 }
 
+.section > *:not(:last-child) {
+  margin-bottom: 32px;
+}
+
 .headingAndSearchForm {
   display: flex;
   flex-direction: column;
@@ -19,8 +23,13 @@
   max-width: 650px;
 }
 
-.miniDashboardContainer > *:not(:last-child) {
-  margin-bottom: 32px;
+.cards {
+  display: flex;
+  gap: 24px;
+}
+
+.cards > * {
+  flex: 1;
 }
 
 .feedback {
