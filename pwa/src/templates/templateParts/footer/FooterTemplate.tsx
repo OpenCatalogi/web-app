@@ -10,6 +10,9 @@ import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { FiltersContext } from "../../../context/filters";
+import { HavenLogo } from "../../../assets/svgs/Haven";
+import { CommongroundLogo } from "../../../assets/svgs/Commonground";
+import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -122,7 +125,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://commonground.nl/");
               }}
             >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link icon={<CommongroundLogo />} iconAlign="start">
                 Common ground
               </Link>
             </li>
@@ -132,7 +135,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://haven.commonground.nl/");
               }}
             >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link icon={<HavenLogo />} iconAlign="start">
                 Haven
               </Link>
             </li>
@@ -152,7 +155,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://forumstandaardisatie.nl/");
               }}
             >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
                 Forum standaardisatie
               </Link>
             </li>
