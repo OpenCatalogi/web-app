@@ -47,4 +47,7 @@ export const en = {
   "Data models": "Data models",
   "API's": "API's",
   "About Open Catalogi": "About Open Catalogi",
+  Installation: "Installation",
+  Usage: "Usage",
+  API: "API",
 };
