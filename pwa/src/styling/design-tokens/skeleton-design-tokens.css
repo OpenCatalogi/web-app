@@ -35,4 +35,12 @@
   --skeleton-border-radius-sm: 2px;
   --skeleton-border-radius-md: 4px;
   --skeleton-border-radius-lg: 8px;
+
+  --skeleton-color-white: #ffffff;
+  --skeleton-color-black: #000000;
+  --skeleton-color-grey-5: hsla(0, 0%, 18%, 1);
+  --skeleton-color-grey-4: hsl(0 0% 29%);
+  --skeleton-color-grey-3: hsl(0 0% 48%);
+  --skeleton-color-grey-2: hsl(0 0% 82%);
+  --skeleton-color-grey-1: hsl(0 0% 95%);
 }

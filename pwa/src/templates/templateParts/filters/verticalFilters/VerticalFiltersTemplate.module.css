@@ -1,6 +1,6 @@
 .container {
   border-radius: var(--skeleton-border-radius-md);
-  background-color: var(--denhaag-color-grey-1);
+  background-color: var(--skeleton-color-grey-1);
   padding-inline-start: var(--skeleton-size-lg);
   padding-inline-end: var(--skeleton-size-lg);
   padding-block-start: var(--skeleton-size-lg);

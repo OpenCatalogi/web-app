@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--denhaag-color-grey-1);
+  background-color: var(--skeleton-color-grey-1);
   padding-block-start: var(--skeleton-size-xl);
   padding-block-end: var(--skeleton-size-xl);
 }
@@ -18,7 +18,7 @@
 
 .heading {
   font-weight: bold;
-  color: var(--denhaag-color-grey-3);
+  color: var(--skeleton-color-grey-4);
   margin-block-end: var(--skeleton-size-lg);
   font-size: var(--skeleton-font-size-lg);
 }

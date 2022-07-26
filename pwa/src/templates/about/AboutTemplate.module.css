@@ -28,7 +28,7 @@
   font-size: var(--skeleton-font-size-md);
   display: block;
   margin-block-start: var(--skeleton-size-sm);
-  color: var(--denhaag-color-grey-3);
+  color: var(--skeleton-color-grey-3);
 }
 
 .layersVisual {

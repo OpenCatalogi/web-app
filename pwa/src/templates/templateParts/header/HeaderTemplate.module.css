@@ -13,12 +13,12 @@
 
 .title {
   padding-block-end: var(--skeleton-size-lg);
-  color: var(--denhaag-color-white) !important;
+  color: var(--skeleton-color-white) !important;
 }
 
 .subTitle {
   font-weight: var(--skeleton-font-weight-light);
-  color: var(--denhaag-color-white);
+  color: var(--skeleton-color-white);
 }
 
 .secondaryNavContainer {
