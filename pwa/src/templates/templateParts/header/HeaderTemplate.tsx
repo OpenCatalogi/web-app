@@ -6,11 +6,16 @@ import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { HavenLogo } from "../../../assets/svgs/Haven";
 import { CommongroundLogo } from "../../../assets/svgs/Commonground";
-import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
+import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import clsx from "clsx";
 
-export const HeaderTemplate: React.FC = () => {
+interface HeaderTemplateProps {
+  layoutClassName?: string;
+}
+
+export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
@@ -43,10 +48,31 @@ export const HeaderTemplate: React.FC = () => {
       },
     },
     {
-      label: t("About Open Catalogi"),
-      handleClick: () => {
-        navigate("/about");
-      },
+      label: "Documentatie",
+      subItems: [
+        {
+          label: t("About Open Catalogi"),
+          handleClick: () => navigate("/about"),
+        },
+        {
+          label: t("Installation"),
+          handleClick: () => {
+            navigate("#");
+          },
+        },
+        {
+          label: t("Usage"),
+          handleClick: () => {
+            navigate("#");
+          },
+        },
+        {
+          label: t("API"),
+          handleClick: () => {
+            navigate("#");
+          },
+        },
+      ],
     },
   ];
 
@@ -82,7 +108,7 @@ export const HeaderTemplate: React.FC = () => {
   ];
 
   return (
-    <header className={styles.header}>
+    <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
       <div className={styles.top}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <SecondaryTopNav items={secondaryTopNavItems} />

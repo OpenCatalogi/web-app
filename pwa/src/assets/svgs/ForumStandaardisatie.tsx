@@ -10,7 +10,7 @@ export const ForumStandaardisatieLogo: React.FC = () => (
     width="44px"
     height="77px"
     viewBox="0 0 44 77"
-    enable-background="new 0 0 44 77"
+    enableBackground="new 0 0 44 77"
   >
     <rect fill="currentColor" width="44" height="77" />
     <path

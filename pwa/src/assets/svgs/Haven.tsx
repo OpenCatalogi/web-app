@@ -7,8 +7,8 @@ export const HavenLogo: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     className="indexstyles__StyledHavenLogo-sc-xwmptj-3 kDUFTP"
   >
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g transform="translate(2.000000, 2.000000)" stroke="currentColor" stroke-width="3.22580645">
+    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+      <g transform="translate(2.000000, 2.000000)" stroke="currentColor" strokeWidth="2">
         <g transform="translate(0.000000, 0.500000)">
           <path d="M7.09677419,16.4516129 C7.09677419,18.4113548 5.50812903,20 3.5483871,20 C1.58864516,20 0,18.4113548 0,16.4516129 C0,14.491871 1.58864516,12.9032258 3.5483871,12.9032258 C5.50812903,12.9032258 7.09677419,14.491871 7.09677419,16.4516129 Z"></path>
           <path d="M20,16.4516129 C20,18.4113548 18.4113548,20 16.4516129,20 C14.491871,20 12.9032258,18.4113548 12.9032258,16.4516129 C12.9032258,14.491871 14.491871,12.9032258 16.4516129,12.9032258 C18.4113548,12.9032258 20,14.491871 20,16.4516129 Z"></path>
