@@ -7,17 +7,17 @@
 }
 
 .headingContainer {
-  padding-block-start: var(--nlportal-space-inline-4xl);
-  padding-block-end: var(--nlportal-space-inline-4xl);
+  padding-block-start: var(--skeleton-size-3xl);
+  padding-block-end: var(--skeleton-size-3xl);
 }
 
 .title {
-  padding-block-end: var(--nlportal-space-block-md);
+  padding-block-end: var(--skeleton-size-lg);
   color: var(--denhaag-color-white) !important;
 }
 
 .subTitle {
-  font-weight: 100;
+  font-weight: var(--skeleton-font-weight-light);
   color: var(--denhaag-color-white);
 }
 

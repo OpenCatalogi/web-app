@@ -1,6 +1,6 @@
 .form {
   display: flex;
-  gap: var(--nlportal-space-inline-lg);
+  gap: var(--skeleton-size-md);
 }
 
 .form > * {

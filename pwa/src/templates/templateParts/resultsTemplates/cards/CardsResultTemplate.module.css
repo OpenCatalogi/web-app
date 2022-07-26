@@ -1,5 +1,5 @@
 .ComponentsGrid {
   display: grid;
-  grid-gap: var(--nlportal-space-block-md);
+  grid-gap: var(--skeleton-size-lg);
   grid-template-columns: 1fr 1fr;
 }

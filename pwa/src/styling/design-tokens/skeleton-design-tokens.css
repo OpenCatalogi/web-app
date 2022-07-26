@@ -1,0 +1,38 @@
+:root {
+  --skeleton-size-4xs: 1px;
+  --skeleton-size-3xs: 2px;
+  --skeleton-size-2xs: 4px;
+  --skeleton-size-xs: 8px;
+  --skeleton-size-sm: 12px;
+  --skeleton-size-md: 16px;
+  --skeleton-size-lg: 24px;
+  --skeleton-size-xl: 32px;
+  --skeleton-size-2xl: 48px;
+  --skeleton-size-3xl: 72px;
+  --skeleton-size-4xl: 96px;
+
+  --skeleton-font-size-4xs: 5px;
+  --skeleton-font-size-3xs: 8px;
+  --skeleton-font-size-2xs: 10px;
+  --skeleton-font-size-xs: 12px;
+  --skeleton-font-size-sm: 14px;
+  --skeleton-font-size-md: 16px;
+  --skeleton-font-size-lg: 18px;
+  --skeleton-font-size-xl: 24px;
+  --skeleton-font-size-2xl: 32px;
+  --skeleton-font-size-3xl: 46px;
+  --skeleton-font-size-4xl: 58px;
+
+  --skeleton-line-height-xs: 1;
+  --skeleton-line-height-sm: 1.25;
+  --skeleton-line-height-md: 1.5;
+  --skeleton-line-height-lg: 2;
+
+  --skeleton-font-weight-light: 100;
+  --skeleton-font-weight-normal: 400;
+  --skeleton-font-weight-bold: 700;
+
+  --skeleton-border-radius-sm: 2px;
+  --skeleton-border-radius-md: 4px;
+  --skeleton-border-radius-lg: 8px;
+}

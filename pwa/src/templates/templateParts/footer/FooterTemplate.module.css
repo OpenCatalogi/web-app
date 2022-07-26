@@ -1,11 +1,11 @@
 .footer {
   background-color: var(--denhaag-color-grey-1);
-  padding-block-start: var(--nlportal-space-block-2xl);
-  padding-block-end: var(--nlportal-space-block-2xl);
+  padding-block-start: var(--skeleton-size-xl);
+  padding-block-end: var(--skeleton-size-xl);
 }
 
 .footerContainer > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-4xl);
+  margin-block-end: var(--skeleton-size-xl);
 }
 
 .navigation {
@@ -19,7 +19,8 @@
 .heading {
   font-weight: bold;
   color: var(--denhaag-color-grey-3);
-  margin-block-end: var(--nlportal-space-block-xl);
+  margin-block-end: var(--skeleton-size-lg);
+  font-size: var(--skeleton-font-size-lg);
 }
 
 .list {
@@ -32,19 +33,12 @@
 }
 
 .list > li:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .list > li > * {
   width: 90%;
   display: block;
-}
-
-.headings {
-  display: flex;
-  justify-content: space-between;
-  color: var(--denhaag-color-grey-4);
-  font-size: var(--conduction-content-link-font-size);
 }
 
 .logos {
@@ -60,5 +54,5 @@
 }
 
 .logos > *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-inline-lg);
+  margin-inline-end: var(--skeleton-size-lg);
 }

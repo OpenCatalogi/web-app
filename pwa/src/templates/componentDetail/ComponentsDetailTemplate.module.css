@@ -1,26 +1,26 @@
 .container > *:not(:last-child) {
-  margin-block-end: calc(var(--nlportal-space-block-4xl) * 2);
+  margin-block-end: var(--skeleton-size-4xl);
 }
 
 .backButton {
-  margin-block-start: var(--nlportal-space-block-3xl);
+  margin-block-start: var(--skeleton-size-2xl);
 }
 
 .container > .headingContainer {
   display: flex;
-  margin-block-end: var(--nlportal-space-block-4xl);
+  margin-block-end: var(--skeleton-size-2xl);
 }
 
 .headingContainer > *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-block-2xl);
+  margin-inline-end: var(--skeleton-size-xl);
 }
 
 .headingContent > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-inline-xs);
+  margin-inline-end: var(--skeleton-size-sm);
 }
 
 .addToCatalogusContainer {
@@ -33,18 +33,18 @@
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .cardsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: var(--denhaag-space-block-md);
+  column-gap: var(--skeleton-size-md);
 }
 
 .subtitle {
   font-weight: 100;
-  font-size: var(--conduction-component-detail-sub-title-font-size);
+  font-size: var(--skeleton-font-size-lg);
 }
 
 .externalLink {
@@ -52,7 +52,7 @@
 }
 
 .description {
-  padding-top: var(--nlportal-space-block-lg);
+  padding-top: var(--skeleton-size-md);
 }
 
 .tabs :first-child {
@@ -60,8 +60,8 @@
 }
 
 .tabPanel {
-  padding-inline-start: var(--nlportal-space-inline-lg) !important;
-  padding-inline-end: var(--nlportal-space-inline-lg) !important;
-  padding-block-start: var(--nlportal-space-inline-lg) !important;
-  padding-block-end: var(--nlportal-space-inline-lg) !important;
+  padding-inline-start: var(--skeleton-size-lg) !important;
+  padding-inline-end: var(--skeleton-size-lg) !important;
+  padding-block-start: var(--skeleton-size-lg) !important;
+  padding-block-end: var(--skeleton-size-lg) !important;
 }

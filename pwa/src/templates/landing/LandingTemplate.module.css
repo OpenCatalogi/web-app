@@ -14,8 +14,8 @@
 
 .heading {
   text-align: center;
-  padding-block-start: var(--nlportal-space-inline-4xl);
-  padding-block-end: var(--nlportal-space-inline-4xl);
+  padding-block-start: var(--skeleton-size-3xl);
+  padding-block-end: var(--skeleton-size-3xl);
 }
 
 .searchFormContainer {
