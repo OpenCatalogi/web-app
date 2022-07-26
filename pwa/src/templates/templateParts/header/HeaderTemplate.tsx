@@ -40,7 +40,7 @@ export const HeaderTemplate: React.FC = () => {
       },
     },
     {
-      label: t("About"),
+      label: t("About Open Catalogi"),
       handleClick: () => {
         navigate("/about");
       },

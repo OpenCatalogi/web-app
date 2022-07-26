@@ -1,3 +1,7 @@
 .pageContent {
   min-height: 100vh;
 }
+
+.footer {
+  margin-block-start: var(--nlportal-space-block-5xl);
+}

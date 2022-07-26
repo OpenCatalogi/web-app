@@ -45,8 +45,10 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
           <FiltersProvider value={[filters, setFilters]}>
             <StylesProvider>
               <HeaderTemplate />
+
               <div className={styles.pageContent}>{children}</div>
-              <FooterTemplate />
+
+              <FooterTemplate layoutClassName={styles.footer} />
             </StylesProvider>
           </FiltersProvider>
         </APIProvider>
