@@ -1,19 +1,14 @@
-:root {
-  --feedback-block-margin: 16px;
-  --feedback-title-font-size: 22px;
-}
-
 .container > * {
   display: block;
 }
 
 .container > *:not(:last-child) {
-  margin-bottom: var(--feedback-block-margin);
+  margin-bottom: var(--skeleton-size-md);
 }
 
 .heading {
   font-weight: bold;
-  font-size: var(--feedback-title-font-size);
+  font-size: var(--skeleton-font-size-xl);
 }
 
 .button {

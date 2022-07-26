@@ -1,9 +1,9 @@
 .container > *:not(:last-child) {
-  margin-bottom: 82px;
+  margin-bottom: var(--skeleton-size-3xl);
 }
 
 .section > *:not(:last-child) {
-  margin-bottom: 32px;
+  margin-bottom: var(--skeleton-size-xl);
 }
 
 .headingAndSearchForm {
@@ -25,7 +25,7 @@
 
 .cards {
   display: flex;
-  gap: 24px;
+  gap: var(--skeleton-size-lg);
 }
 
 .cards > * {
