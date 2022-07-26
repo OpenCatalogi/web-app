@@ -6,23 +6,176 @@ import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Link } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
+import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import clsx from "clsx";
+import { GitHubLogo } from "../../../assets/svgs/GitHub";
+import { FiltersContext } from "../../../context/filters";
 
-export const FooterTemplate: React.FC = () => {
+interface FooterTemplateProps {
+  layoutClassName?: string;
+}
+
+export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const [filters, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <footer className={styles.footer}>
-      <Container>
-        <div className={styles.headings}>
-          <span>{t("An initiative of")}:</span>
+    <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+      <Container layoutClassName={styles.footerContainer}>
+        <div className={styles.navigation}>
+          <ul className={styles.list}>
+            <div className={styles.heading}>Componenten</div>
 
-          <div onClick={() => navigate("#")}>
-            <Link>{t("Privacy declaration")}</Link>
-          </div>
+            <li
+              onClick={() => {
+                setFilters({ ...filters, softwareType: "standalone/desktop" });
+                navigate("/components");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("Software")}
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                setFilters({ ...filters, softwareType: "schema" });
+                navigate("/components");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("Data models")}
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                setFilters({ ...filters, softwareType: "api" });
+                navigate("/components");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("API's")}
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>Documentatie</div>
+
+            <li
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("About Open Catalogi")}
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("#");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                Installatie
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("#");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                Gebruik
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("#");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                API
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://github.com/OpenCatalogi");
+              }}
+            >
+              <Link icon={<GitHubLogo />} iconAlign="start">
+                GitHub
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>Links</div>
+
+            <li
+              onClick={() => {
+                open("https://commonground.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                Common ground
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://haven.commonground.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                Haven
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://designsystem.gebruikercentraal.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                NL design
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://forumstandaardisatie.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                Forum standaardisatie
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("#");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                {t("Privacy declaration")}
+              </Link>
+            </li>
+          </ul>
         </div>
-        <div className={styles.imagesContainer}>
-          <img onClick={() => window.open("https://www.rotterdam.nl/")} src={LogoRotterdam} />
-          <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+
+        <div>
+          <div className={styles.heading}>{t("An initiative of")}</div>
+
+          <div className={styles.logos}>
+            <img onClick={() => window.open("https://www.rotterdam.nl/")} src={LogoRotterdam} />
+            <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+          </div>
         </div>
       </Container>
     </footer>
