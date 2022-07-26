@@ -9,3 +9,6 @@
 
 /* Package includes */
 @import "react-loading-skeleton/dist/skeleton.css";
+
+/* Overrides */
+@import "./overrides.css";

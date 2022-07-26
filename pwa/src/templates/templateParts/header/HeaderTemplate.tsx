@@ -4,8 +4,11 @@ import { Heading1 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
+import { HavenLogo } from "../../../assets/svgs/Haven";
+import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
+import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 
 export const HeaderTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -53,18 +56,21 @@ export const HeaderTemplate: React.FC = () => {
       handleClick: () => {
         window.open("https://commonground.nl");
       },
+      icon: <CommongroundLogo />,
     },
     {
       label: "Haven",
       handleClick: () => {
         window.open("https://haven.commonground.nl/");
       },
+      icon: <HavenLogo />,
     },
     {
       label: "NL Design",
       handleClick: () => {
         window.open("https://designsystem.gebruikercentraal.nl/");
       },
+      icon: <ExternalLinkIcon />,
     },
     {
       label: "Github",
