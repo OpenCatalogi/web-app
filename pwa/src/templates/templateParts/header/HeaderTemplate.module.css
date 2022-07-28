@@ -1,9 +1,9 @@
 .header {
-  background-color: var(--conduction-color-secondary);
+  background-color: var(--skeleton-color-secondary-3);
 }
 
 .top {
-  background-color: var(--conduction-color-primary);
+  background-color: var(--skeleton-color-secondary-5);
 }
 
 .headingContainer {

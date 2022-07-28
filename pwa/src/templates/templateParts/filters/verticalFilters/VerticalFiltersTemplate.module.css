@@ -13,13 +13,13 @@
 
 .label {
   font-weight: var(--skeleton-font-weight-normal);
-  font-size: var(--conduction-vertical-filters-label-font-size);
+  font-size: var(--skeleton-size-md);
 }
 
 .title {
   display: block;
   font-weight: var(--skeleton-font-weight-bold);
-  font-size: var(--conduction-vertical-filters-title-font-size);
+  font-size: var(--skeleton-size-md);
 }
 
 .form > *:not(:last-child) {

@@ -1,8 +1,3 @@
-:root {
-  --layer-background-color: #f5f5f5;
-  --layer-box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
-}
-
 .title {
   display: block;
   margin-bottom: var(--skeleton-size-lg);
@@ -24,8 +19,8 @@
 }
 
 .component {
-  background-color: var(--layer-background-color);
-  box-shadow: var(--layer-box-shadow);
+  background-color: var(--skeleton-color-grey-1);
+  box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
   padding: var(--skeleton-size-md);
 }
 
@@ -41,15 +36,15 @@
 }
 
 .beta {
-  border-right-color: var(--conduction-color-beta);
+  border-right-color: #ffbc2c;
 }
 
 .gepland {
-  border-right-color: var(--conduction-color-gepland);
+  border-right-color: #005282;
 }
 
 .gewenst {
-  border-right-color: var(--conduction-color-gewenst);
+  border-right-color: #38aeda;
 }
 
 .layer {

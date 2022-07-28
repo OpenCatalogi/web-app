@@ -29,7 +29,7 @@
 }
 
 .addToCatalogusContainer > .componentImg {
-  max-width: var(--conduction-info-card-width);
+  max-width: 300px;
 }
 
 .addToCatalogusContainer > *:not(:last-child) {

@@ -46,7 +46,7 @@
 }
 
 .logos > * {
-  height: var(--conduction-footer-logo-height-size);
+  height: var(--skeleton-size-2xl);
 }
 
 .logos > *:hover {
