@@ -1,9 +1,9 @@
 .container > *:not(:last-child) {
-  margin-bottom: 82px;
+  margin-bottom: var(--skeleton-size-3xl);
 }
 
 .section > *:not(:last-child) {
-  margin-bottom: 32px;
+  margin-bottom: var(--skeleton-size-xl);
 }
 
 .headingAndSearchForm {
@@ -14,8 +14,8 @@
 
 .heading {
   text-align: center;
-  padding-block-start: var(--nlportal-space-inline-4xl);
-  padding-block-end: var(--nlportal-space-inline-4xl);
+  padding-block-start: var(--skeleton-size-3xl);
+  padding-block-end: var(--skeleton-size-3xl);
 }
 
 .searchFormContainer {
@@ -25,7 +25,7 @@
 
 .cards {
   display: flex;
-  gap: 24px;
+  gap: var(--skeleton-size-lg);
 }
 
 .cards > * {

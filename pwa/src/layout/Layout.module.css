@@ -3,5 +3,5 @@
 }
 
 .footer {
-  margin-block-start: var(--nlportal-space-block-5xl);
+  margin-block-start: var(--skeleton-size-4xl);
 }

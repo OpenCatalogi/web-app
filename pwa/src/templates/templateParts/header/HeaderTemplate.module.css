@@ -1,24 +1,24 @@
 .header {
-  background-color: var(--conduction-color-secondary);
+  background-color: var(--skeleton-color-secondary-3);
 }
 
 .top {
-  background-color: var(--conduction-color-primary);
+  background-color: var(--skeleton-color-secondary-5);
 }
 
 .headingContainer {
-  padding-block-start: var(--nlportal-space-inline-4xl);
-  padding-block-end: var(--nlportal-space-inline-4xl);
+  padding-block-start: var(--skeleton-size-3xl);
+  padding-block-end: var(--skeleton-size-3xl);
 }
 
 .title {
-  padding-block-end: var(--nlportal-space-block-md);
-  color: var(--denhaag-color-white) !important;
+  padding-block-end: var(--skeleton-size-lg);
+  color: var(--skeleton-color-white) !important;
 }
 
 .subTitle {
-  font-weight: 100;
-  color: var(--denhaag-color-white);
+  font-weight: var(--skeleton-font-weight-light);
+  color: var(--skeleton-color-white);
 }
 
 .secondaryNavContainer {

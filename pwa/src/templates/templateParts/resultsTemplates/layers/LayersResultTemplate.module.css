@@ -1,16 +1,7 @@
-:root {
-  --layer-component-padding: 14px;
-  --layer-border-width: 8px;
-  --layer-background-color: #f5f5f5;
-  --layer-box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
-  --layer-font-size: 28px;
-  --layer-title-margin-bottom: 20px;
-}
-
 .title {
   display: block;
-  margin-bottom: var(--layer-title-margin-bottom);
-  font-size: var(--layer-font-size);
+  margin-bottom: var(--skeleton-size-lg);
+  font-size: var(--skeleton-font-size-2xl);
   font-weight: bold;
 }
 
@@ -20,17 +11,17 @@
 }
 
 .container > * {
-  margin-block-end: var(--nlportal-space-block-lg);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .container > *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-block-xl);
+  margin-inline-end: var(--skeleton-size-md);
 }
 
 .component {
-  background-color: var(--layer-background-color);
-  box-shadow: var(--layer-box-shadow);
-  padding: var(--layer-component-padding);
+  background-color: var(--skeleton-color-grey-1);
+  box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
+  padding: var(--skeleton-size-md);
 }
 
 .component:hover {
@@ -40,22 +31,22 @@
 .beta,
 .gewenst,
 .gepland {
-  border-right-width: var(--layer-border-width);
+  border-right-width: var(--skeleton-size-xs);
   border-right-style: solid;
 }
 
 .beta {
-  border-right-color: var(--conduction-color-beta);
+  border-right-color: #ffbc2c;
 }
 
 .gepland {
-  border-right-color: var(--conduction-color-gepland);
+  border-right-color: #005282;
 }
 
 .gewenst {
-  border-right-color: var(--conduction-color-gewenst);
+  border-right-color: #38aeda;
 }
 
 .layer {
-  margin-bottom: var(--nlportal-space-block-xl);
+  margin-bottom: var(--skeleton-size-lg);
 }

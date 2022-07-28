@@ -1,17 +1,9 @@
-:root {
-  --about-section-margin: 82px;
-  --about-section-children-margin: 32px;
-  --about-section-margins-md: 24px;
-  --about-section-margins-sm: 16px;
-  --about-author-font-size: 18px;
-}
-
 .container > * {
-  margin-block-start: var(--about-section-margin);
+  margin-block-start: var(--skeleton-size-3xl);
 }
 
 .section > *:not(:last-child) {
-  margin-block-end: var(--about-section-children-margin);
+  margin-block-end: var(--skeleton-size-xl);
 }
 
 .buttonsContainer {
@@ -19,24 +11,24 @@
 }
 
 .buttonsContainer > *:not(:last-child) {
-  margin-inline-end: var(--about-section-margins-sm);
+  margin-inline-end: var(--skeleton-size-sm);
 }
 
 .quoteWrapperContainer {
-  margin-block-start: var(--about-section-margins-md);
-  margin-block-end: var(--about-section-margins-md);
+  margin-block-start: var(--skeleton-size-md);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .quoteWrapperContainer > * {
-  padding-block-start: var(--about-section-margins-md);
-  padding-block-end: var(--about-section-margins-md);
+  padding-block-start: var(--skeleton-size-md);
+  padding-block-end: var(--skeleton-size-md);
 }
 
 .author {
-  font-size: var(--about-author-font-size);
+  font-size: var(--skeleton-font-size-md);
   display: block;
-  margin-block-start: var(--about-section-margins-sm);
-  color: var(--denhaag-color-grey-3);
+  margin-block-start: var(--skeleton-size-sm);
+  color: var(--skeleton-color-grey-3);
 }
 
 .layersVisual {

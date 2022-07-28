@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  gap: 24px;
+  gap: var(--skeleton-size-lg);
 }
 
 .container > * {
@@ -10,8 +10,8 @@
 /* Card */
 .cardContainer {
   background: #f5f5f5;
-  padding: 24px;
-  border-radius: 3px;
+  padding: var(--skeleton-size-lg);
+  border-radius: var(--skeleton-border-radius-md);
 }
 
 .cardContainer:hover {
@@ -19,7 +19,7 @@
 }
 
 .cardCount {
-  font-size: 72px;
+  font-size: var(--skeleton-font-size-4xl);
   font-weight: bold;
   display: flex;
   justify-content: center;

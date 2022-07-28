@@ -3,13 +3,13 @@
 }
 
 .container > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-2xl);
+  margin-block-end: var(--skeleton-size-xl);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  margin-block-start: var(--nlportal-space-block-5xl);
+  margin-block-start: var(--skeleton-size-3xl);
 }
 
 .resultsDisplaySwitchButtons {
@@ -23,16 +23,16 @@
 }
 
 .resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--nlportal-space-inline-xs);
+  margin-inline-end: var(--skeleton-size-xs);
 }
 
 .buttonIcon > span > svg {
-  margin-inline-end: var(--nlportal-space-inline-xs);
+  margin-inline-end: var(--skeleton-size-xs);
 }
 
 .filtersAndResultsContainer {
   display: flex;
-  gap: var(--nlportal-space-inline-lg);
+  gap: var(--skeleton-size-lg);
 }
 
 .verticalFilters {
@@ -45,5 +45,5 @@
 }
 
 .results > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-2xl);
+  margin-block-end: var(--skeleton-size-xl);
 }

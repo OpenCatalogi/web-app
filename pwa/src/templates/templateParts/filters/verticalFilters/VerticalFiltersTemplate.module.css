@@ -1,27 +1,27 @@
 .container {
-  border-radius: var(--nlportal-border-radius);
-  background-color: var(--denhaag-color-grey-1);
-  padding-inline-start: var(--nlportal-space-inline-lg);
-  padding-inline-end: var(--nlportal-space-inline-lg);
-  padding-block-start: var(--nlportal-space-block-lg);
-  padding-block-end: var(--nlportal-space-block-lg);
+  border-radius: var(--skeleton-border-radius-md);
+  background-color: var(--skeleton-color-grey-1);
+  padding-inline-start: var(--skeleton-size-lg);
+  padding-inline-end: var(--skeleton-size-lg);
+  padding-block-start: var(--skeleton-size-lg);
+  padding-block-end: var(--skeleton-size-lg);
 }
 
 .container > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+  margin-block-end: var(--skeleton-size-md);
 }
 
 .label {
-  font-weight: normal;
-  font-size: var(--conduction-vertical-filters-label-font-size);
+  font-weight: var(--skeleton-font-weight-normal);
+  font-size: var(--skeleton-size-md);
 }
 
 .title {
   display: block;
-  font-weight: bold;
-  font-size: var(--conduction-vertical-filters-title-font-size);
+  font-weight: var(--skeleton-font-weight-bold);
+  font-size: var(--skeleton-size-md);
 }
 
 .form > *:not(:last-child) {
-  margin-block-end: var(--nlportal-space-block-md);
+  margin-block-end: var(--skeleton-size-md);
 }
