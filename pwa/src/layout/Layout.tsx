@@ -17,7 +17,7 @@ interface LayoutProps {
   children: React.ReactNode;
   pageContext: any; // Gatsby pageContext
   location: any; // Gatsby location
-}
+} //test
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
