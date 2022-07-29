@@ -5,7 +5,6 @@ import "./../translations/i18n";
 import APIContext, { APIProvider } from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
 import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
-import { StylesProvider } from "@gemeente-denhaag/components-react";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
@@ -44,15 +43,13 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
-            <StylesProvider>
-              <ThemeProvider>
-                <HeaderTemplate />
+            <ThemeProvider>
+              <HeaderTemplate />
 
-                <div className={styles.pageContent}>{children}</div>
+              <div className={styles.pageContent}>{children}</div>
 
-                <FooterTemplate layoutClassName={styles.footer} />
-              </ThemeProvider>
-            </StylesProvider>
+              <FooterTemplate layoutClassName={styles.footer} />
+            </ThemeProvider>
           </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>

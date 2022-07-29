@@ -12,6 +12,10 @@
   --skeleton-size-3xl: 72px;
   --skeleton-size-4xl: 96px;
 
+  /* Font families */
+  --skeleton-primary-font-family: "TheMix", sans-serif;
+  --skeleton-content-font-family: "TheSans", sans-serif;
+
   /* Font sizes */
   --skeleton-font-size-4xs: 5px;
   --skeleton-font-size-3xs: 8px;
@@ -19,10 +23,10 @@
   --skeleton-font-size-xs: 12px;
   --skeleton-font-size-sm: 14px;
   --skeleton-font-size-md: 16px;
-  --skeleton-font-size-lg: 18px;
+  --skeleton-font-size-lg: 20px;
   --skeleton-font-size-xl: 24px;
   --skeleton-font-size-2xl: 32px;
-  --skeleton-font-size-3xl: 46px;
+  --skeleton-font-size-3xl: 48px;
   --skeleton-font-size-4xl: 58px;
 
   /* Line heights */
@@ -41,9 +45,17 @@
   --skeleton-border-radius-md: 4px;
   --skeleton-border-radius-lg: 8px;
 
+  /* Focus border */
+  --skeleton-focus-border-style: dashed;
+  --skeleton-focus-border-width: 2px;
+  --skeleton-focus-border: var(--skeleton-focus-border-width) var(--skeleton-focus-border-style) var(--skeleton-focus-border-color);
+  --skeleton-focus-border-color: var(--skeleton-color-ocher-5);
+
   /* Colors */
-  --skeleton-color-white: #ffffff;
-  --skeleton-color-black: #000000;
+  --skeleton-color-white: hsl(0 0% 100%);
+  --skeleton-color-black: hsl(0 0% 0%);
+
+  --skeleton-color-warmgrey-1: hsl(40 18% 97%);
 
   --skeleton-color-grey-5: hsla(0, 0%, 18%, 1);
   --skeleton-color-grey-4: hsl(0 0% 29%);
@@ -51,9 +63,33 @@
   --skeleton-color-grey-2: hsl(0 0% 82%);
   --skeleton-color-grey-1: hsl(0 0% 95%);
 
-  --skeleton-color-secondary-5: hsl(211, 60%, 20%);
-  --skeleton-color-secondary-4: hsl(211, 60%, 35%);
-  --skeleton-color-secondary-3: hsl(211, 60%, 40%);
-  --skeleton-color-secondary-2: hsl(211, 60%, 80%);
-  --skeleton-color-secondary-1: hsl(211 60% 90%);
+  --skeleton-color-orange-5: hsl(23 100% 27%);
+  --skeleton-color-orange-4: hsl(23 99% 44%);
+  --skeleton-color-orange-3: hsl(34 100% 47%);
+  --skeleton-color-orange-2: hsl(34 100% 68%);
+  --skeleton-color-orange-1: hsl(34 100% 84%);
+
+  --skeleton-color-red-5: hsl(1 100% 16%);
+  --skeleton-color-red-4: hsl(2 100% 32%);
+  --skeleton-color-red-3: hsl(6 93% 42%);
+  --skeleton-color-red-2: hsl(5 75% 72%);
+  --skeleton-color-red-1: hsl(4 100% 92%);
+
+  --skeleton-color-ocher-5: hsl(47 100% 25%);
+  --skeleton-color-ocher-4: hsl(47 100% 40%);
+  --skeleton-color-ocher-3: hsl(50 94% 57%);
+  --skeleton-color-ocher-2: hsl(50 100% 76%);
+  --skeleton-color-ocher-1: hsl(50 100% 91%);
+
+  --skeleton-color-blue-5: hsl(207 93% 16%);
+  --skeleton-color-blue-4: hsl(207 87% 27%);
+  --skeleton-color-blue-3: hsl(207 80% 35%);
+  --skeleton-color-blue-2: hsl(210 64% 80%);
+  --skeleton-color-blue-1: hsl(208 76% 92%);
+
+  --skeleton-color-green-5: hsl(139 100% 9%);
+  --skeleton-color-green-4: hsl(138 57% 27%);
+  --skeleton-color-green-3: hsl(138 58% 33%);
+  --skeleton-color-green-2: hsl(118 28% 60%);
+  --skeleton-color-green-1: hsl(117 28% 87%);
 }

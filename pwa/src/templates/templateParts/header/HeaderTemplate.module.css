@@ -1,9 +1,9 @@
 .header {
-  background-color: var(--skeleton-color-secondary-3);
+  background-color: var(--skeleton-color-blue-3);
 }
 
 .top {
-  background-color: var(--skeleton-color-secondary-5);
+  background-color: var(--skeleton-color-blue-5);
 }
 
 .headingContainer {
