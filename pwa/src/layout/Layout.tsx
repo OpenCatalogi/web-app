@@ -9,6 +9,7 @@ import { StylesProvider } from "@gemeente-denhaag/components-react";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
+import { ThemeProvider } from "../styling/ThemeProvider";
 
 const { setEnv } = require("./../../static/env.js");
 
@@ -44,11 +45,13 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
             <StylesProvider>
-              <HeaderTemplate />
+              <ThemeProvider>
+                <HeaderTemplate />
 
-              <div className={styles.pageContent}>{children}</div>
+                <div className={styles.pageContent}>{children}</div>
 
-              <FooterTemplate layoutClassName={styles.footer} />
+                <FooterTemplate layoutClassName={styles.footer} />
+              </ThemeProvider>
             </StylesProvider>
           </FiltersProvider>
         </APIProvider>
