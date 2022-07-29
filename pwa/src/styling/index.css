@@ -3,7 +3,6 @@
 
 /* Design Tokens */
 @import "@gemeente-denhaag/design-tokens-components/dist/index.css";
-@import "./design-tokens/den-haag-design-tokens.css";
 
 /* Skeleton Design Tokens */
 @import "./design-tokens/skeleton-design-tokens.css";
