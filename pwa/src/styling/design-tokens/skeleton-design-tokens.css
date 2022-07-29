@@ -12,6 +12,9 @@
   --skeleton-size-3xl: 72px;
   --skeleton-size-4xl: 96px;
 
+  /* Font families */
+  --skeleton-primary-font-family: "TheMix", sans-serif;
+
   /* Font sizes */
   --skeleton-font-size-4xs: 5px;
   --skeleton-font-size-3xs: 8px;
