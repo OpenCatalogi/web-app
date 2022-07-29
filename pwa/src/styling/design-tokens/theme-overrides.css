@@ -1,3 +1,11 @@
+/* Conduction tokens */
+:root {
+  --conduction-primary-top-nav-background-color: var(--skeleton-color-blue-3);
+  --conduction-primary-top-nav-background-color-hover: var(--skeleton-color-blue-5);
+  --conduction-secondary-top-nav-font-size: var(--skeleton-font-size-sm);
+}
+
+/* Den Haag & Utrecht tokens */
 :root {
   --denhaag-focus-border: var(--skeleton-focus-border);
   --denhaag-heading-line-height: var(--skeleton-line-height-md);
