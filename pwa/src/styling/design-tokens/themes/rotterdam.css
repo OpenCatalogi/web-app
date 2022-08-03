@@ -78,10 +78,7 @@
   --web-app-border-radius-lg: 0;
 
   /* Focus border */
-  --web-app-focus-border-style: unset;
-  --web-app-focus-border-width: unset;
   --web-app-focus-border: unset;
-  --web-app-focus-border-color: unset;
 
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
@@ -142,7 +139,4 @@
   --web-app-primary-top-nav-background-color: var(--rotterdam-color-green);
   --web-app-primary-top-nav-background-color-hover: var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
-
-  /* @conduction: Unauthenticated Logo */
-  --conduction-unauthenticated-logo-background: url("./../../../assets//svgs/LogoRotterdam.svg");
 }

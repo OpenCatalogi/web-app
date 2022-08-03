@@ -1,3 +1,6 @@
+/*
+ * Generics global
+*/
 :root {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
@@ -13,7 +16,7 @@
   --web-app-size-4xl: var(--skeleton-size-4xl);
 
   /* Font families */
-  --web-app-primary-font-family: var(--skeleton-primary-font-family);
+  --web-app-primary-font-family: "Bolder";
   --web-app-content-font-family: var(--skeleton-content-font-family);
 
   /* Font sizes */
@@ -41,36 +44,33 @@
   --web-app-font-weight-bold: var(--skeleton-font-weight-bold);
 
   /* Border radiuses */
-  --web-app-border-radius-sm: var(--skeleton-border-radius-sm);
-  --web-app-border-radius-md: var(--skeleton-border-radius-md);
-  --web-app-border-radius-lg: var(--skeleton-border-radius-lg);
+  --web-app-border-radius-sm: 0;
+  --web-app-border-radius-md: 0;
+  --web-app-border-radius-lg: 0;
 
   /* Focus border */
-  --web-app-focus-border-style: var(--skeleton-focus-border-style);
-  --web-app-focus-border-width: var(--skeleton-focus-border-width);
-  --web-app-focus-border: var(--web-app-focus-border-width) var(--web-app-focus-border-style) var(--web-app-focus-border-color);
-  --web-app-focus-border-color: var(--skeleton-color-ocher-5);
+  --web-app-focus-border: unset;
 
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
 
-  --web-app-color-link: hsl(207 80% 35%);
-  --web-app-color-link-active: hsl(207 87% 27%);
+  --web-app-color-link: var(--web-app-color-black);
+  --web-app-color-link-active: var(--web-app-color-black);
 
-  --web-app-color-heading: hsla(0, 0%, 18%, 1);
+  --web-app-color-heading: var(--web-app-color-black);
 
-  --web-app-color-primary-text: hsl(0 0% 29%);
+  --web-app-color-primary-text: var(--web-app-color-black);
 
-  --web-app-color-disabled: hsl(0 0% 82%);
+  --web-app-color-disabled: #eff4f6;
 
-  --web-app-color-primary-action: hsl(138 58% 33%);
-  --web-app-color-primary-action-hover: hsl(138 57% 27%);
+  --web-app-color-primary-action: var(--rotterdam-color-green);
+  --web-app-color-primary-action-hover: var(--rotterdam-color-green);
 
-  --web-app-color-secondary-action: hsl(138 58% 33%);
-  --web-app-color-secondary-action-hover: hsl(138 57% 27%);
+  --web-app-color-secondary-action: var(--rotterdam-color-green);
+  --web-app-color-secondary-action-hover: var(--rotterdam-color-green);
 
-  --web-app-color-table-row-background-hover: hsl(40 18% 97%);
+  --web-app-color-table-row-background-hover: #eff4f6;
 
   --web-app-color-invalid: hsl(6 93% 42%);
 
@@ -81,8 +81,9 @@
   --web-app-color-page-header: var(--web-app-color-white);
 
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
-  
+
   --web-app-color-background-footer: #eff4f6;
+  --web-app-color-footer-headings: auto;
   --web-app-color-footer-links: var(--web-app-color-black);
 
   --web-app-footer-logo-container-background-color: unset;
