@@ -4,11 +4,5 @@
 /* Skeleton Design Tokens */
 @import "./design-tokens/skeleton-design-tokens.css";
 
-/* Theme Design Tokens */
-@import "./design-tokens/themes/rotterdam.css";
-
-/* Component package token overrides */
-@import "./design-tokens/component-overrides.css";
-
 /* Global css */
 @import "./global.css";
