@@ -1,7 +1,7 @@
 .title {
   display: block;
-  margin-bottom: var(--skeleton-size-lg);
-  font-size: var(--skeleton-font-size-2xl);
+  margin-bottom: var(--web-app-size-lg);
+  font-size: var(--web-app-font-size-2xl);
   font-weight: bold;
 }
 
@@ -11,17 +11,17 @@
 }
 
 .container > * {
-  margin-block-end: var(--skeleton-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .container > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-md);
+  margin-inline-end: var(--web-app-size-md);
 }
 
 .component {
-  background-color: var(--skeleton-color-grey-1);
+  background-color: var(--web-app-color-background-light);
   box-shadow: rgb(33 33 33 / 25%) 0px -3px 0px inset;
-  padding: var(--skeleton-size-md);
+  padding: var(--web-app-size-md);
 }
 
 .component:hover {
@@ -31,7 +31,7 @@
 .beta,
 .gewenst,
 .gepland {
-  border-right-width: var(--skeleton-size-xs);
+  border-right-width: var(--web-app-size-xs);
   border-right-style: solid;
 }
 
@@ -48,5 +48,5 @@
 }
 
 .layer {
-  margin-bottom: var(--skeleton-size-lg);
+  margin-bottom: var(--web-app-size-lg);
 }

@@ -1,9 +1,9 @@
 .buttons {
   display: flex;
   justify-content: center;
-  margin-block-start: var(--skeleton-size-md);
+  margin-block-start: var(--web-app-size-md);
 }
 
 .buttons > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-sm);
+  margin-inline-end: var(--web-app-size-sm);
 }

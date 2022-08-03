@@ -3,13 +3,13 @@
 }
 
 .container > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-xl);
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  margin-block-start: var(--skeleton-size-3xl);
+  margin-block-start: var(--web-app-size-3xl);
 }
 
 .resultsDisplaySwitchButtons {
@@ -23,16 +23,16 @@
 }
 
 .resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-xs);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .buttonIcon > span > svg {
-  margin-inline-end: var(--skeleton-size-xs);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .filtersAndResultsContainer {
   display: flex;
-  gap: var(--skeleton-size-lg);
+  gap: var(--web-app-size-lg);
 }
 
 .verticalFilters {
@@ -45,5 +45,5 @@
 }
 
 .results > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-xl);
+  margin-block-end: var(--web-app-size-xl);
 }
