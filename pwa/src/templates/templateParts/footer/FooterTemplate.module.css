@@ -42,18 +42,33 @@
   color: var(--web-app-color-footer-links);
 }
 
-.logos {
+.logosContainer {
   display: flex;
+  width: fit-content;
+  height: var(--web-app-footer-loog-container-height);
+  border-radius: var(--web-app-footer-logo-container-border-radius);
+  padding: var(--web-app-footer-logo-container-padding);
+  background-color: var(--web-app-footer-logo-container-background-color);
 }
 
-.logos > * {
-  height: var(--web-app-size-2xl);
+.logosContainer > * {
+  height: 100%;
 }
 
-.logos > *:hover {
+.logosContainer > *:hover {
   cursor: pointer;
 }
 
-.logos > *:not(:last-child) {
+.logosContainer > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-lg);
+}
+
+.organisationLogo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: var(--web-app-footer-organisation-logo-padding);
+  width: var(--web-app-footer-organisation-logo-width);
+  background-image: var(--web-app-footer-organisation-logo-src);
+  background-color: var(--web-app-footer-organisation-logo-background-color);
+  background-origin: content-box;
 }

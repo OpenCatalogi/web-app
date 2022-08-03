@@ -85,6 +85,13 @@
   --web-app-color-background-footer: #eff4f6;
   --web-app-color-footer-links: var(--web-app-color-black);
 
+  --web-app-footer-logo-container-background-color: unset;
+  --web-app-footer-logo-container-padding: unset;
+  --web-app-footer-logo-container-border-radius: 0;
+  --web-app-footer-loog-container-height: 50px;
+  --web-app-footer-organisation-logo-width: 230px;
+  --web-app-footer-organisation-logo-src: url("./../../../assets/svgs/LogoRotterdam.svg");
+
   /*
    * Components
   */
