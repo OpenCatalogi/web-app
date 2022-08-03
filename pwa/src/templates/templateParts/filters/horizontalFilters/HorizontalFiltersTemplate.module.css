@@ -1,6 +1,6 @@
 .form {
   display: flex;
-  gap: var(--skeleton-size-md);
+  gap: var(--web-app-size-md);
 }
 
 .form > * {

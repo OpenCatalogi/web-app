@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
-import { Container } from "@conduction/components";
-import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
+import { Container, UnauthenticatedLogo } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Link } from "@gemeente-denhaag/components-react";
@@ -175,8 +174,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
         <div>
           <div className={styles.heading}>{t("An initiative of")}</div>
 
-          <div className={styles.logos}>
-            <img onClick={() => window.open("https://www.rotterdam.nl/")} src={LogoRotterdam} />
+          <div className={styles.logosContainer}>
+            <div className={styles.organisationLogo}></div>
             <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
           </div>
         </div>

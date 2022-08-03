@@ -1,9 +1,9 @@
 .container > * {
-  margin-block-start: var(--skeleton-size-3xl);
+  margin-block-start: var(--web-app-size-3xl);
 }
 
 .section > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-xl);
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .buttonsContainer {
@@ -11,24 +11,23 @@
 }
 
 .buttonsContainer > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-sm);
+  margin-inline-end: var(--web-app-size-sm);
 }
 
 .quoteWrapperContainer {
-  margin-block-start: var(--skeleton-size-md);
-  margin-block-end: var(--skeleton-size-md);
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .quoteWrapperContainer > * {
-  padding-block-start: var(--skeleton-size-md);
-  padding-block-end: var(--skeleton-size-md);
+  padding-block-start: var(--web-app-size-md);
+  padding-block-end: var(--web-app-size-md);
 }
 
 .author {
-  font-size: var(--skeleton-font-size-md);
+  font-size: var(--web-app-font-size-md);
   display: block;
-  margin-block-start: var(--skeleton-size-sm);
-  color: var(--skeleton-color-grey-3);
+  margin-block-start: var(--web-app-size-sm);
 }
 
 .layersVisual {
