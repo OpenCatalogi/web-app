@@ -39,4 +39,12 @@ export default class Gemma {
 
     return results;
   };
+
+  public getUpl = async (): Promise<any> => {
+    const {
+      data: { results },
+    } = await Send(this._instance, "GET", "/v1/referentielijsten/upl");
+
+    return results;
+  };
 }

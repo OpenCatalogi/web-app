@@ -34,5 +34,12 @@ export const useGemma = () => {
       },
     });
 
-  return { getApplicatiefuncties, getBedrijfsfuncties, getBedrijfsservices, getReferentieComponents };
+  const getUpl = () =>
+    useQuery<any, Error>("upl", () => API?.Gemma.getUpl(), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+    });
+
+  return { getApplicatiefuncties, getBedrijfsfuncties, getBedrijfsservices, getReferentieComponents, getUpl };
 };

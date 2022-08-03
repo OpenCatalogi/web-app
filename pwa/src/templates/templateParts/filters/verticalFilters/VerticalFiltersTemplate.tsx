@@ -25,12 +25,24 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [bedrijfsfuncties, setBedrijfsfuncties] = React.useState<any[]>([]);
   const [bedrijfsservices, setBedrijfsservices] = React.useState<any[]>([]);
   const [referentieComponents, setReferentieComponents] = React.useState<any[]>([]);
+  const [upl, setUpl] = React.useState<any[]>([]);
 
   const _useGemma = useGemma();
   const getApplicatiefuncties = _useGemma.getApplicatiefuncties();
   const getBedrijfsfuncties = _useGemma.getBedrijfsfuncties();
   const getBedrijfsservices = _useGemma.getBedrijfsservices();
-  const getReferentieComponents = _useGemma.getReferentieComponents();
+  const getUpl = _useGemma.getUpl();
+  // const getReferentieComponents = _useGemma.getReferentieComponents();
+
+  React.useEffect(() => {
+    console.log({ applicatiefuncties, bedrijfsfuncties, bedrijfsservices, upl });
+  }, [applicatiefuncties, bedrijfsfuncties, bedrijfsservices, upl]);
+
+  React.useEffect(() => {
+    if (!getUpl.isSuccess) return;
+
+    setUpl(getUpl.data.map((item: any) => ({ value: item.id, label: item.name })));
+  }, [getUpl.isSuccess]);
 
   React.useEffect(() => {
     if (!getApplicatiefuncties.isSuccess) return;
@@ -50,11 +62,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setBedrijfsservices(getBedrijfsservices.data.map((item: any) => ({ value: item.id, label: item.name })));
   }, [getBedrijfsservices.isSuccess]);
 
-  React.useEffect(() => {
-    if (!getReferentieComponents.isSuccess) return;
+  // React.useEffect(() => {
+  //   if (!getReferentieComponents.isSuccess) return;
 
-    setReferentieComponents(getReferentieComponents.data.map((item: any) => ({ value: item.id, label: item.name })));
-  }, [getReferentieComponents.isSuccess]);
+  //   setReferentieComponents(getReferentieComponents.data.map((item: any) => ({ value: item.id, label: item.name })));
+  // }, [getReferentieComponents.isSuccess]);
 
   const {
     register,
