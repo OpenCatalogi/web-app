@@ -37,8 +37,9 @@
 }
 
 .list > li > * {
-  width: 90%;
+  width: fit-content;
   display: flex;
+  justify-content: flex-start;
   color: var(--web-app-color-footer-links);
 }
 
