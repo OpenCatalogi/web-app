@@ -9,24 +9,27 @@ import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 
 interface LayersResultTemplateProps {
   components: any[];
+  hideTableHead?: boolean;
 }
 
-export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
+export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
 
   return (
     <Table>
-      <TableHead>
-        <TableRow>
-          <TableHeader>{t("Name")}</TableHeader>
-          <TableHeader>{t("Status")}</TableHeader>
-          <TableHeader>{t("Type")}</TableHeader>
-          <TableHeader>{t("Layer")}</TableHeader>
-          <TableHeader>{t("Organisation")}</TableHeader>
-          <TableHeader>{t("Installations")}</TableHeader>
-          <TableHeader />
-        </TableRow>
-      </TableHead>
+      {!hideTableHead && (
+        <TableHead>
+          <TableRow>
+            <TableHeader>{t("Name")}</TableHeader>
+            <TableHeader>{t("Status")}</TableHeader>
+            <TableHeader>{t("Type")}</TableHeader>
+            <TableHeader>{t("Layer")}</TableHeader>
+            <TableHeader>{t("Organisation")}</TableHeader>
+            <TableHeader>{t("Installations")}</TableHeader>
+            <TableHeader />
+          </TableRow>
+        </TableHead>
+      )}
 
       <TableBody>
         {components.map((component) => (
