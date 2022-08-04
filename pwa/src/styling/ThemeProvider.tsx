@@ -9,7 +9,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
     link.type = "text/css";
     link.rel = "stylesheet";
-    link.href = `themes/${theme}.css`;
+    link.href = `/themes/${theme}.css`;
 
     document.head.appendChild(link);
 
