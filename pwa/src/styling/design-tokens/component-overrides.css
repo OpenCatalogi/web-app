@@ -121,6 +121,7 @@
   --denhaag-link-focus-color: var(--web-app-color-link-active);
   --denhaag-link-color: var(--web-app-color-link);
   --denhaag-link-icon-size: var(--web-app-size-md);
+  --denhaag-link-icon-gap: var(--web-app-size-2xs);
   --denhaag-link-icon-margin-end: var(--web-app-size-xs);
   --denhaag-link-icon-margin-start: var(--web-app-size-xs);
   --denhaag-link-padding: var(--web-app-size-xs);
