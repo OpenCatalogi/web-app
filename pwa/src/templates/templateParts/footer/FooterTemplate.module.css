@@ -38,7 +38,7 @@
 
 .list > li > * {
   width: 90%;
-  display: block;
+  display: flex;
   color: var(--web-app-color-footer-links);
 }
 
