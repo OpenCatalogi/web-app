@@ -51,9 +51,20 @@
   width: fit-content;
 }
 
+.panels,
+.tabs {
+  position: relative;
+  left: calc(var(--web-app-size-lg) * -1);
+}
+
 .tabPanel {
   padding-inline-start: var(--web-app-size-lg) !important;
   padding-inline-end: var(--web-app-size-lg) !important;
   padding-block-start: var(--web-app-size-lg) !important;
   padding-block-end: var(--web-app-size-lg) !important;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-end;
 }
