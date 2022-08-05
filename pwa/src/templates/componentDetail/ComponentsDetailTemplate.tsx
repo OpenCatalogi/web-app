@@ -133,7 +133,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <div className={styles.panels}>
                 <TabPanel className={styles.tabPanel} value="0">
-                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 7)} hideTableHead />
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 5)} hideTableHead />
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="1">
@@ -290,10 +290,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="4">
-                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(5, 10)} hideTableHead />
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 1)} hideTableHead />
                 </TabPanel>
                 <TabPanel className={styles.tabPanel} value="5">
-                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 9)} hideTableHead />
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 3)} hideTableHead />
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="6">

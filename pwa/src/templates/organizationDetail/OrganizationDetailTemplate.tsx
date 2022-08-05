@@ -67,11 +67,11 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="1">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 9)} hideTableHead />
+            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="2">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(2, 8)} hideTableHead />
+            <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
           </TabPanel>
         </TabContext>
       </div>
@@ -129,4 +129,3 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
     </Container>
   );
 };
-
