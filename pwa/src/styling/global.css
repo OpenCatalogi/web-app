@@ -1,5 +1,10 @@
 html,
 body {
   margin: 0;
-  font-family: var(--skeleton-primary-font-family);
+  background-color: var(--web-app-color-body-background);
+  font-family: var(--web-app-primary-font-family);
+}
+
+.MuiTabs-indicator {
+  background-color: var(--web-app-color-link) !important;
 }

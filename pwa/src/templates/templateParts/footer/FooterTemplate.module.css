@@ -1,11 +1,11 @@
 .footer {
-  background-color: var(--skeleton-color-grey-1);
-  padding-block-start: var(--skeleton-size-xl);
-  padding-block-end: var(--skeleton-size-xl);
+  background-color: var(--web-app-color-background-footer);
+  padding-block-start: var(--web-app-size-xl);
+  padding-block-end: var(--web-app-size-xl);
 }
 
 .footerContainer > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-xl);
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .navigation {
@@ -18,9 +18,9 @@
 
 .heading {
   font-weight: bold;
-  color: var(--skeleton-color-grey-4);
-  margin-block-end: var(--skeleton-size-lg);
-  font-size: var(--skeleton-font-size-lg);
+  color: var(--web-app-color-footer-headings);
+  margin-block-end: var(--web-app-size-lg);
+  font-size: var(--web-app-font-size-lg);
 }
 
 .list {
@@ -33,26 +33,43 @@
 }
 
 .list > li:not(:last-child) {
-  margin-block-end: var(--skeleton-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .list > li > * {
-  width: 90%;
-  display: block;
-}
-
-.logos {
+  width: fit-content;
   display: flex;
+  justify-content: flex-start;
+  color: var(--web-app-color-footer-links);
 }
 
-.logos > * {
-  height: var(--skeleton-size-2xl);
+.logosContainer {
+  display: flex;
+  width: fit-content;
+  height: var(--web-app-footer-loog-container-height);
+  border-radius: var(--web-app-footer-logo-container-border-radius);
+  padding: var(--web-app-footer-logo-container-padding);
+  background-color: var(--web-app-footer-logo-container-background-color);
 }
 
-.logos > *:hover {
+.logosContainer > * {
+  height: 100%;
+}
+
+.logosContainer > *:hover {
   cursor: pointer;
 }
 
-.logos > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-lg);
+.logosContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-lg);
+}
+
+.organisationLogo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: var(--web-app-footer-organisation-logo-padding);
+  width: var(--web-app-footer-organisation-logo-width);
+  background-image: var(--web-app-footer-organisation-logo-src);
+  background-color: var(--web-app-footer-organisation-logo-background-color);
+  background-origin: content-box;
 }

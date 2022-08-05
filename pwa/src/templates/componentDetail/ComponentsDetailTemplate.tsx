@@ -1,15 +1,27 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import {
+  Button,
+  Heading1,
+  LeadParagraph,
+  Link,
+  Tab,
+  TabContext,
+  TabPanel,
+  Tabs,
+} from "@gemeente-denhaag/components-react";
 import { Container, InfoCard, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
+import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
+import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -37,15 +49,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       {_getComponent.isSuccess && (
         <>
           <div className={styles.headingContainer}>
-            <div className={styles.headingContent}>
+            <div>
               <Heading1>{_getComponent.data.name}</Heading1>
 
-              <span className={styles.subtitle}>Organisation</span>
-
-              <Paragraph className={styles.description}>
+              <LeadParagraph className={styles.description}>
                 Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl
                 consectetur et.
-              </Paragraph>
+              </LeadParagraph>
+
+              <LeadParagraph className={styles.description}>
+                Dit component wordt aangeboden door{" "}
+                <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                  <Link icon={<ArrowRightIcon />} iconAlign="start">
+                    Gemeente Rotterdam
+                  </Link>
+                </span>
+              </LeadParagraph>
 
               <div className={styles.tags}>
                 <Tag tag="layer" />
@@ -60,7 +79,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            <InfoCard title={_getComponent.data.name} content="ipsum dolor sit amet consectetur adipiscing" />
+            <InfoCard title="Organisatie" content="ipsum dolor sit amet consectetur adipiscing" />
             <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
             <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
             <InfoCard title="Nulla posuere" content="Faucibus nisl tincidunt eget nullam non" />
@@ -103,54 +122,199 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 className={styles.tabs}
                 variant="scrollable"
               >
-                <Tab label={t("Components")} value={0} />
-                <Tab label={t("Dependencies")} value={1} />
-                <Tab label={t("Standards")} value={2} />
-                <Tab label={t("Suppliers")} value={3} />
-                <Tab label={t("Reuse")} value={4} />
-                <Tab label={t("Schema's")} value={5} />
-                <Tab label={t("Processes")} value={6} />
-                <Tab label={t("Products")} value={7} />
+                <Tab className={styles.tab} label="Componenten & Afhankelijkheden" value={0} />
+                <Tab className={styles.tab} label={t("Standards")} value={1} />
+                <Tab className={styles.tab} label={t("Suppliers")} value={2} />
+                <Tab className={styles.tab} label={t("Reuse")} value={3} />
+                <Tab className={styles.tab} label={t("Schema's")} value={4} />
+                <Tab className={styles.tab} label={t("Processes")} value={5} />
+                <Tab className={styles.tab} label={t("Products")} value={6} />
               </Tabs>
 
-              <TabPanel className={styles.tabPanel} value="0">
-                Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor.
-                rhoncus.
-              </TabPanel>
+              <div className={styles.panels}>
+                <TabPanel className={styles.tabPanel} value="0">
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 5)} hideTableHead />
+                </TabPanel>
 
-              <TabPanel className={styles.tabPanel} value="1">
-                Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero
-                volutpat sed cras ornare.
-              </TabPanel>
+                <TabPanel className={styles.tabPanel} value="1">
+                  Op dit moment zijn er geen standaarden beschikbaar.
+                </TabPanel>
 
-              <TabPanel className={styles.tabPanel} value="2">
-                Sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis
-                ultricies
-              </TabPanel>
+                <TabPanel className={styles.tabPanel} value="2">
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableHeader>Gemeente Rotterdam</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            010 - 123 456 7
+                          </Link>
+                        </TableCell>
 
-              <TabPanel className={styles.tabPanel} value="3">
-                Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies integer quis
-              </TabPanel>
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
 
-              <TabPanel className={styles.tabPanel} value="4">
-                Est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa
-                tincidunt nunc pulvinar sapien
-              </TabPanel>
+                      <TableRow>
+                        <TableHeader>Conduction</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            020 - 123 456 7
+                          </Link>
+                        </TableCell>
 
-              <TabPanel className={styles.tabPanel} value="5">
-                Amet risus nullam eget felis eget nunc lobortis mattis aliquam faucibus purus in massa tempor nec
-                feugiat nisl pretium fusce
-              </TabPanel>
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
 
-              <TabPanel className={styles.tabPanel} value="6">
-                Morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra
-                pharetra massa massa ultricies
-              </TabPanel>
+                      <TableRow>
+                        <TableHeader>Gemeente Utrecht</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            030 - 123 456 7
+                          </Link>
+                        </TableCell>
 
-              <TabPanel className={styles.tabPanel} value="7">
-                Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida
-                neque convallis a cras
-              </TabPanel>
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TabPanel>
+
+                <TabPanel className={styles.tabPanel} value="3">
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableHeader>Gemeente Amsterdam</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            020 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableHeader>Gemeente Rotterdam</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            010 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                        <TableHeader>Gemeente Waterland</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            030 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TabPanel>
+
+                <TabPanel className={styles.tabPanel} value="4">
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 1)} hideTableHead />
+                </TabPanel>
+                <TabPanel className={styles.tabPanel} value="5">
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 3)} hideTableHead />
+                </TabPanel>
+
+                <TabPanel className={styles.tabPanel} value="6">
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableHeader>Adoptie aangifte</TableHeader>
+                        <TableCell>Artikel 2.38 Wet basisregistratie personen</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableHeader>Adoptie- of pleegzorguitkering</TableHeader>
+                        <TableCell>Artikel 3:9 Wet arbeid en zorg</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableHeader>Adoptieherroeping</TableHeader>
+                        <TableCell>Artikel 231 Burgerlijk Wetboek Boek 1</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TabPanel>
+              </div>
             </TabContext>
           </div>
         </>

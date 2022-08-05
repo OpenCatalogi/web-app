@@ -1,0 +1,113 @@
+/*
+ * Generics global
+*/
+:root {
+  /* Sizes */
+  --web-app-size-4xs: var(--skeleton-size-4xs);
+  --web-app-size-3xs: var(--skeleton-size-3xs);
+  --web-app-size-2xs: var(--skeleton-size-2xs);
+  --web-app-size-xs: var(--skeleton-size-xs);
+  --web-app-size-sm: var(--skeleton-size-sm);
+  --web-app-size-md: var(--skeleton-size-md);
+  --web-app-size-lg: var(--skeleton-size-lg);
+  --web-app-size-xl: var(--skeleton-size-xl);
+  --web-app-size-2xl: var(--skeleton-size-2xl);
+  --web-app-size-3xl: var(--skeleton-size-3xl);
+  --web-app-size-4xl: var(--skeleton-size-4xl);
+
+  /* Font families */
+  --web-app-primary-font-family: "Lucida Grande";
+  --web-app-content-font-family: "Lucida Grande";
+
+  /* Font sizes */
+  --web-app-font-size-4xs: var(--skeleton-font-size-4xs);
+  --web-app-font-size-3xs: var(--skeleton-font-size-3xs);
+  --web-app-font-size-2xs: var(--skeleton-font-size-2xs);
+  --web-app-font-size-xs: var(--skeleton-font-size-xs);
+  --web-app-font-size-sm: var(--skeleton-font-size-sm);
+  --web-app-font-size-md: var(--skeleton-font-size-md);
+  --web-app-font-size-lg: var(--skeleton-font-size-lg);
+  --web-app-font-size-xl: var(--skeleton-font-size-xl);
+  --web-app-font-size-2xl: var(--skeleton-font-size-2xl);
+  --web-app-font-size-3xl: var(--skeleton-font-size-3xl);
+  --web-app-font-size-4xl: var(--skeleton-font-size-4xl);
+
+  /* Line heights */
+  --web-app-line-height-xs: var(--skeleton-line-height-xs);
+  --web-app-line-height-sm: var(--skeleton-line-height-sm);
+  --web-app-line-height-md: var(--skeleton-line-height-md);
+  --web-app-line-height-lg: var(--skeleton-line-height-lg);
+
+  /* Font weights */
+  --web-app-font-weight-light: var(--skeleton-font-weight-light);
+  --web-app-font-weight-normal: var(--skeleton-font-weight-normal);
+  --web-app-font-weight-bold: var(--skeleton-font-weight-bold);
+
+  /* Border radiuses */
+  --web-app-border-radius-sm: 0;
+  --web-app-border-radius-md: 0;
+  --web-app-border-radius-lg: 0;
+
+  /* Focus border */
+  --web-app-focus-border: 2px dashed var(--web-app-color-black);
+
+  /* Theme colors */
+  --web-app-color-white: hsl(0 0% 100%);
+  --web-app-color-black: hsl(0 0% 0%);
+
+  --web-app-color-link: hsl(211 60% 35%);
+  --web-app-color-link-active: hsl(211 60% 35%);
+
+  --web-app-color-heading: var(--web-app-color-black);
+
+  --web-app-color-primary-text: var(--web-app-color-black);
+
+  --web-app-color-disabled: hsl(0 0% 80%);
+
+  --web-app-color-primary-action: hsl(211 60% 35%);
+  --web-app-color-primary-action-hover: hsl(211 60% 40%);
+
+  --web-app-color-secondary-action: hsl(211 60% 35%);
+  --web-app-color-secondary-action-hover: hsl(211 60% 35%);
+
+  --web-app-color-table-row-background-hover: hsl(0 0% 95%);
+
+  --web-app-color-invalid: hsl(0 100% 40%);
+
+  --web-app-color-background-light: hsl(0 0% 95%);
+  --web-app-color-body-background: var(--web-app-color-white);
+
+  --web-app-color-background-page-header: hsl(211 60% 35%);
+  --web-app-color-page-header: var(--web-app-color-white);
+
+  --web-app-color-background-page-top-bar: var(--web-app-color-white);
+
+  --web-app-color-background-footer: hsl(0 100% 40%);
+  --web-app-color-footer-headings: var(--web-app-color-white);
+  --web-app-color-footer-links: var(--web-app-color-white);
+
+  --web-app-footer-logo-container-background-color: var(--web-app-color-white);
+  --web-app-footer-logo-container-padding: var(--web-app-size-md);
+  --web-app-footer-logo-container-border-radius: unset;
+  --web-app-footer-loog-container-height: 67px;
+  --web-app-footer-organisation-logo-width: 126px;
+  --web-app-footer-organisation-logo-src: url("images/LogoUtrecht.svg");
+
+  /*
+   * Components
+  */
+
+  /* @conduction: Secondary Top Navigation */
+  --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
+  --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
+  --web-app-secondary-top-nav-color: var(--web-app-color-black);
+  --web-app-secondary-top-nav-background-color-hover: auto;
+  --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-normal);
+
+  /* @condcution: Primary Top Navigation */
+  --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
+  --web-app-primary-top-nav-color: var(--web-app-color-white);
+  --web-app-primary-top-nav-background-color: hsl(211 60% 35%);
+  --web-app-primary-top-nav-background-color-hover: hsl(211 60% 40%);
+  --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
+}

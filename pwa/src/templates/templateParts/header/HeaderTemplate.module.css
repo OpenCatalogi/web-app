@@ -1,24 +1,24 @@
 .header {
-  background-color: var(--skeleton-color-blue-3);
+  background-color: var(--web-app-color-background-page-header);
 }
 
 .top {
-  background-color: var(--skeleton-color-blue-5);
+  background-color: var(--web-app-color-background-page-top-bar);
 }
 
 .headingContainer {
-  padding-block-start: var(--skeleton-size-3xl);
-  padding-block-end: var(--skeleton-size-3xl);
+  padding-block-start: var(--web-app-size-3xl);
+  padding-block-end: var(--web-app-size-3xl);
 }
 
 .title {
-  padding-block-end: var(--skeleton-size-lg);
-  color: var(--skeleton-color-white) !important;
+  padding-block-end: var(--web-app-size-lg);
+  color: var(--web-app-color-page-header) !important;
 }
 
 .subTitle {
-  font-weight: var(--skeleton-font-weight-light);
-  color: var(--skeleton-color-white);
+  font-weight: var(--web-app-font-weight-light);
+  color: var(--web-app-color-page-header);
 }
 
 .secondaryNavContainer {

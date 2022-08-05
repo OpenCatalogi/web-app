@@ -3,12 +3,12 @@
 }
 
 .container > *:not(:last-child) {
-  margin-bottom: var(--skeleton-size-md);
+  margin-bottom: var(--web-app-size-md);
 }
 
 .heading {
   font-weight: bold;
-  font-size: var(--skeleton-font-size-xl);
+  font-size: var(--web-app-font-size-xl);
 }
 
 .button {

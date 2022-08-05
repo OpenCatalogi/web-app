@@ -1,26 +1,23 @@
 .container > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-4xl);
+  margin-block-end: var(--web-app-size-4xl);
 }
 
 .backButton {
-  margin-block-start: var(--skeleton-size-2xl);
+  margin-block-start: var(--web-app-size-2xl);
 }
 
 .container > .headingContainer {
   display: flex;
-  margin-block-end: var(--skeleton-size-2xl);
+  margin-block-end: var(--web-app-size-2xl);
 }
 
-.headingContainer > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-xl);
-}
-
-.headingContent > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-md);
+.description {
+  padding-top: 0 !important;
+  margin-block-end: var(--web-app-size-md) !important;
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-sm);
+  margin-inline-end: var(--web-app-size-sm);
 }
 
 .addToCatalogusContainer {
@@ -33,18 +30,13 @@
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
-  margin-block-end: var(--skeleton-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .cardsContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: var(--skeleton-size-md);
-}
-
-.subtitle {
-  font-weight: 100;
-  font-size: var(--skeleton-font-size-lg);
+  column-gap: var(--web-app-size-md);
 }
 
 .externalLink {
@@ -52,16 +44,31 @@
 }
 
 .description {
-  padding-top: var(--skeleton-size-md);
+  padding-top: var(--web-app-size-md);
 }
 
 .tabs :first-child {
   width: fit-content;
 }
 
+.panels,
+.tabs {
+  position: relative;
+  left: calc(var(--web-app-size-lg) * -1);
+}
+
 .tabPanel {
-  padding-inline-start: var(--skeleton-size-lg) !important;
-  padding-inline-end: var(--skeleton-size-lg) !important;
-  padding-block-start: var(--skeleton-size-lg) !important;
-  padding-block-end: var(--skeleton-size-lg) !important;
+  padding-inline-start: var(--web-app-size-lg) !important;
+  padding-inline-end: var(--web-app-size-lg) !important;
+  padding-block-start: var(--web-app-size-lg) !important;
+  padding-block-end: var(--web-app-size-lg) !important;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tab {
+  max-width: unset !important;
 }

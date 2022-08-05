@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  gap: var(--skeleton-size-lg);
+  gap: var(--web-app-size-lg);
 }
 
 .container > * {
@@ -9,9 +9,9 @@
 
 /* Card */
 .cardContainer {
-  background: #f5f5f5;
-  padding: var(--skeleton-size-lg);
-  border-radius: var(--skeleton-border-radius-md);
+  background: var(--web-app-color-background-light);
+  padding: var(--web-app-size-lg);
+  border-radius: var(--web-app-border-radius-md);
 }
 
 .cardContainer:hover {
@@ -19,7 +19,7 @@
 }
 
 .cardCount {
-  font-size: var(--skeleton-font-size-4xl);
+  font-size: var(--web-app-font-size-4xl);
   font-weight: bold;
   display: flex;
   justify-content: center;

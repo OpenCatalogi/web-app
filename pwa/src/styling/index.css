@@ -4,8 +4,5 @@
 /* Skeleton Design Tokens */
 @import "./design-tokens/skeleton-design-tokens.css";
 
-/* Theme token overrides */
-@import "./design-tokens/theme-overrides.css";
-
 /* Global css */
 @import "./global.css";
