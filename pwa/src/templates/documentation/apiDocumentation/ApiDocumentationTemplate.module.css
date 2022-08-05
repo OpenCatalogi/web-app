@@ -5,7 +5,3 @@
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
-
-.link {
-  margin-inline-start: var(--web-app-size-xs);
-}
