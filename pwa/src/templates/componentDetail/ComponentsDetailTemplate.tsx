@@ -6,7 +6,7 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
@@ -114,27 +114,80 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </Tabs>
 
               <TabPanel className={styles.tabPanel} value="0">
-                Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor.
-                rhoncus.
+                Op dit moment zijn er geen standaarden beschikbaar.
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero
-                volutpat sed cras ornare.
+              <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableHeader>{t("Name")}</TableHeader>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Vestibulum Ante Ipsum</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Adresservice</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Morbi Mattis Ullamcorper Velit</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Suspendisse</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
-                Sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis
-                ultricies
+                Op dit moment zijn er geen standaarden beschikbaar.
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="3">
-                Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies integer quis
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableHeader>{t("Name")}</TableHeader>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Conduction</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Icat</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Gemeente Rotterdam</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Gemeente Utrecht</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="4">
-                Est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa
-                tincidunt nunc pulvinar sapien
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableHeader>{t("Reuser")}</TableHeader>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>City of Amsterdam</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Gemeente Waterland</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell>Gemeente Utrecht</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="5">
