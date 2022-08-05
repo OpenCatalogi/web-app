@@ -19,6 +19,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
+import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
+import { TEMPORARY_COMPONENTS } from "../../data/components";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -134,27 +136,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-              <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableHeader>{t("Name")}</TableHeader>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>Vestibulum Ante Ipsum</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Adresservice</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Morbi Mattis Ullamcorper Velit</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Suspendisse</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 7)} hideTableHead />
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
@@ -190,30 +172,55 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <TableHead>
                     <TableRow>
                       <TableHeader>{t("Reuser")}</TableHeader>
+                      <TableHeader></TableHeader>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <TableCell>City of Amsterdam</TableCell>
+                      <TableCell>Gemeente Rotterdam</TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Bekijk Organisatie
+                        </Link>
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Gemeente Waterland</TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/kujahe-fa3o8rh-faiu3hgf-dfa83jd-f3")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Bekijk Organisatie
+                        </Link>
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>Gemeente Utrecht</TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/f478239fa-fai3ehf3-fdaiu3e3")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Bekijk Organisatie
+                        </Link>
+                      </TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="5">
-                Amet risus nullam eget felis eget nunc lobortis mattis aliquam faucibus purus in massa tempor nec
-                feugiat nisl pretium fusce
+                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(5, 10)} hideTableHead />
               </TabPanel>
-
               <TabPanel className={styles.tabPanel} value="6">
-                Morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra
-                pharetra massa massa ultricies
+                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 9)} hideTableHead />
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="7">

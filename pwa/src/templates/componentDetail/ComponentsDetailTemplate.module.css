@@ -57,3 +57,8 @@
   padding-block-start: var(--web-app-size-lg) !important;
   padding-block-end: var(--web-app-size-lg) !important;
 }
+
+.details {
+  display: flex;
+  justify-content: flex-end;
+}
