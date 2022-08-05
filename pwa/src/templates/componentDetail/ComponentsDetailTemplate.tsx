@@ -15,10 +15,12 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
+import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
+import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 
 interface ComponentsDetailTemplateProps {
@@ -120,33 +122,25 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 className={styles.tabs}
                 variant="scrollable"
               >
-                <Tab label={t("Components")} value={0} />
-                <Tab label={t("Dependencies")} value={1} />
-                <Tab label={t("Standards")} value={2} />
-                <Tab label={t("Suppliers")} value={3} />
-                <Tab label={t("Reuse")} value={4} />
-                <Tab label={t("Schema's")} value={5} />
-                <Tab label={t("Processes")} value={6} />
-                <Tab label={t("Products")} value={7} />
+                <Tab className={styles.tab} label="Componenten & Afhankelijkheden" value={0} />
+                <Tab className={styles.tab} label={t("Standards")} value={1} />
+                <Tab className={styles.tab} label={t("Suppliers")} value={2} />
+                <Tab className={styles.tab} label={t("Reuse")} value={3} />
+                <Tab className={styles.tab} label={t("Schema's")} value={4} />
+                <Tab className={styles.tab} label={t("Processes")} value={5} />
+                <Tab className={styles.tab} label={t("Products")} value={6} />
               </Tabs>
 
               <div className={styles.panels}>
                 <TabPanel className={styles.tabPanel} value="0">
-                  Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus magna fringilla urna porttitor.
-                  rhoncus.
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 5)} hideTableHead />
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="1">
-                  Egestas diam in arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero
-                  volutpat sed cras ornare.
+                  Op dit moment zijn er geen standaarden beschikbaar.
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="2">
-                  Sem fringilla ut morbi tincidunt augue interdum velit euismod in pellentesque massa placerat duis
-                  ultricies
-                </TabPanel>
-
-                <TabPanel className={styles.tabPanel} value="3">
                   <Table>
                     <TableBody>
                       <TableRow>
@@ -221,22 +215,88 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </Table>
                 </TabPanel>
 
-                <TabPanel className={styles.tabPanel} value="4">
-                  Est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa
-                  tincidunt nunc pulvinar sapien
+                <TabPanel className={styles.tabPanel} value="3">
+                  <Table>
+                    <TableBody>
+                      <TableRow>
+                        <TableHeader>Gemeente Amsterdam</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            020 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableHeader>Gemeente Rotterdam</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            010 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+
+                      <TableRow>
+                        <TableHeader>Gemeente Waterland</TableHeader>
+                        <TableCell>
+                          <Link icon={<GitHubLogo />} iconAlign="start">
+                            Componenten GitHub
+                          </Link>
+                        </TableCell>
+                        <TableCell>
+                          <Link icon={<CallIcon />} iconAlign="start">
+                            030 - 123 456 7
+                          </Link>
+                        </TableCell>
+
+                        <TableCell
+                          className={styles.details}
+                          onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                        >
+                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                            {t("Details")}
+                          </Link>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
                 </TabPanel>
 
+                <TabPanel className={styles.tabPanel} value="4">
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 1)} hideTableHead />
+                </TabPanel>
                 <TabPanel className={styles.tabPanel} value="5">
-                  Amet risus nullam eget felis eget nunc lobortis mattis aliquam faucibus purus in massa tempor nec
-                  feugiat nisl pretium fusce
+                  <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 3)} hideTableHead />
                 </TabPanel>
 
                 <TabPanel className={styles.tabPanel} value="6">
-                  Morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra
-                  pharetra massa massa ultricies
-                </TabPanel>
-
-                <TabPanel className={styles.tabPanel} value="7">
                   <Table>
                     <TableBody>
                       <TableRow>

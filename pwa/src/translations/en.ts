@@ -50,4 +50,5 @@ export const en = {
   Installation: "Installation",
   Usage: "Usage",
   API: "API",
+  Reuser: "Reuser",
 };

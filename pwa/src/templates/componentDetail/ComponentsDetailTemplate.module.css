@@ -68,3 +68,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.tab {
+  max-width: unset !important;
+}
