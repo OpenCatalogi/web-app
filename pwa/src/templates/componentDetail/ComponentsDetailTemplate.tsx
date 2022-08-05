@@ -1,9 +1,18 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Heading1, Link, Paragraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import {
+  Button,
+  Heading1,
+  LeadParagraph,
+  Link,
+  Tab,
+  TabContext,
+  TabPanel,
+  Tabs,
+} from "@gemeente-denhaag/components-react";
 import { Container, InfoCard, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -37,15 +46,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       {_getComponent.isSuccess && (
         <>
           <div className={styles.headingContainer}>
-            <div className={styles.headingContent}>
+            <div>
               <Heading1>{_getComponent.data.name}</Heading1>
 
-              <span className={styles.subtitle}>Organisation</span>
-
-              <Paragraph className={styles.description}>
+              <LeadParagraph className={styles.description}>
                 Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl
                 consectetur et.
-              </Paragraph>
+              </LeadParagraph>
+
+              <LeadParagraph className={styles.description}>
+                Dit component wordt aangeboden door{" "}
+                <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                  <Link icon={<ArrowRightIcon />} iconAlign="start">
+                    Gemeente Rotterdam
+                  </Link>
+                </span>
+              </LeadParagraph>
 
               <div className={styles.tags}>
                 <Tag tag="layer" />
@@ -60,7 +76,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            <InfoCard title={_getComponent.data.name} content="ipsum dolor sit amet consectetur adipiscing" />
+            <InfoCard title="Organisatie" content="ipsum dolor sit amet consectetur adipiscing" />
             <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
             <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
             <InfoCard title="Nulla posuere" content="Faucibus nisl tincidunt eget nullam non" />
