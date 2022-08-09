@@ -25,15 +25,40 @@ $ npm run develop
 ```
 
 
-### Docker @TODO IN PROGRESS
+### Docker
 You will need to have docker installed. This will also run Conductions gateway on port :80 and the app itself on :8000 so make sure nothing runs on those.
 ```cli
 $ docker-compose pull
-$ docker-compose up --build (for first time)
-$ docker-compose up (after first time)
 ```
 
-After succesfully setting up your dev environment, navigate to [http://localhost:8000/](http://localhost:8000/) to view the app in your browser.
+The first time you start the docker containers or when you made major changes to the working of the application you run the following command:
+```cli
+$ docker-compose up --build
+```
+
+Otherwise you run the containers without rebuilding the application container
+```
+$ docker-compose up
+```
+
+After succesfully setting up your dev environment, navigate to [http://localhost:81/](http://localhost:81/) to view the app in your browser.
+
+To edit the working of the common gateway spun with the application we kindly refer to the technical documentation of the [common gateway](https://docs.conductor-gateway.app/en/latest/installation/).
+
+## Installing on Kubernetes environments
+In order to install the application in your own cloud environment we support installation in [Kubernetes](https://kubernetes.io) using the supplied [helm](https://helm.sh) chart. Kubernetes is a Container Orchestration Engine that has been standardised for Dutch municipalities under the [Haven](https://haven.commonground.nl) standard, and for which Helm is the default installation method of components.
+
+This helm chart can be installed with the help of Kubernetes Management Tools like [Daskube](https://dashkube.com) or [Rancher](https://rancher.com).
+
+This helm chart can be installed by running Helm from your local machine (see instructions on how to install Helm on [helm.sh](https://helm.sh/docs/intro/install/#through-package-managers), which requires to have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed).
+
+If you have Helm and Kubectl installed and you have configured access to your cluster (usually via a kubeconfig file) you can run the following commands to install the application.
+```cli
+$ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
+$ helm install my-opencatalogi opencatalogi/opencatalogi
+```
+
+For further configuration we kindly refer to the documentation of the helm chart found [here](helm/README.md)
 
 ## Technical Documentation @TODO IN PROGRESS
 
