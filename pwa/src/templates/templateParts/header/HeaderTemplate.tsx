@@ -34,6 +34,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
+      label: t("Processes"),
+      handleClick: () => {
+        setFilters({ ...filters, softwareType: "process" });
+        navigate("/components");
+      },
+    },
+    {
       label: t("Data models"),
       handleClick: () => {
         setFilters({ ...filters, softwareType: "schema" });

@@ -11,4 +11,5 @@ export const softwareTypes = [
   { label: "API", value: "api" },
   { label: "Schema", value: "schema" },
   { label: "Data", value: "data" },
+  { label: "Processen", value: "process" },
 ];
