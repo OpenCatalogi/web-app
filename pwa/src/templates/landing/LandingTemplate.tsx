@@ -9,6 +9,7 @@ import { MiniDashboardTemplate } from "../templateParts/miniDashboard/MiniDashbo
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import clsx from "clsx";
+import { CategorySearchTemplate } from "../templateParts/categorySearch/CategorySearchTemplate";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -25,6 +26,10 @@ export const LandingTemplate: React.FC = () => {
       </section>
 
       <Divider />
+
+      <section className={styles.section}>
+        <CategorySearchTemplate />
+      </section>
 
       <section className={styles.section}>
         <Heading3>Open Catalogi in getallen</Heading3>
