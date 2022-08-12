@@ -1,0 +1,102 @@
+/* 
+ * Filters
+*/
+.filters {
+  display: flex;
+}
+
+.filters > * {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.filters > *.open {
+  font-weight: var(--web-app-font-weight-bold);
+}
+
+.filters > *:hover {
+  cursor: pointer;
+}
+
+.filters > *::before {
+  content: " ";
+  display: inline-block;
+  width: var(--web-app-size-md);
+  height: var(--web-app-size-md);
+  background-color: var(--web-app-color-background-light);
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.filters > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.filters > .interaction.open::before {
+  background-color: #cfe2ff;
+}
+
+.filters > .process.open::before {
+  background-color: #f8d7da;
+}
+
+.filters > .integration.open::before {
+  background-color: #fff3cd;
+}
+
+.filters > .services.open::before {
+  background-color: #d1e7dd;
+}
+
+.filters > .data.open::before {
+  background-color: #e2d9f3;
+}
+
+/*
+* Layer
+*/
+.categoriesContainer {
+  padding-block-end: var(--web-app-size-md);
+}
+
+.categoriesContainer > * {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.categoriesContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
+
+/* 
+ * Layer Header
+*/
+.layerHeaderContainer {
+  user-select: none;
+  padding-block-end: var(--web-app-size-md);
+}
+
+.layerHeaderContainer:hover {
+  cursor: pointer;
+}
+
+.layerHeaderContainer:not(.open) {
+  opacity: 0.5;
+}
+
+.layerHeaderContent {
+  display: flex;
+  align-items: center;
+}
+
+.layerHeaderContent > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.layerHeaderToggleIcon {
+  font-size: var(--web-app-font-size-lg);
+  transition: transform 200ms ease-in-out;
+}
+
+.layerHeaderToggleIcon.open {
+  transform: rotate(180deg);
+}
