@@ -1,134 +1,82 @@
 import * as React from "react";
 import * as styles from "./CategorySearchTemplate.module.css";
-import { Button, Divider, Heading3 } from "@gemeente-denhaag/components-react";
-import Collapsible from "react-collapsible";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { QuoteWrapper } from "@conduction/components";
 import clsx from "clsx";
 import { categories } from "../../../data/categories";
+import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 
 export const CategorySearchTemplate: React.FC = () => {
-  const [interactionOpen, setInteractionOpen] = React.useState<boolean>(true);
-  const [processOpen, setProcessOpen] = React.useState<boolean>(true);
-  const [integrationOpen, setIntegrationOpen] = React.useState<boolean>(true);
-  const [servicesOpen, setServicesOpen] = React.useState<boolean>(true);
-  const [dataOpen, setDataOpen] = React.useState<boolean>(true);
+  const Accordion = LayerAccordion.accordion;
+  const AccordionController = LayerAccordion.controller;
+
+  const { open: openInteraction, setOpen: setOpenInteraction } = AccordionController();
+  const { open: openProcess, setOpen: setOpenProcess } = AccordionController();
+  const { open: openIntegration, setOpen: setOpenIntegration } = AccordionController();
+  const { open: openServices, setOpen: setOpenServices } = AccordionController();
+  const { open: openData, setOpen: setOpenData } = AccordionController();
 
   return (
     <>
       <div className={styles.filters}>
         <span
-          onClick={() => setInteractionOpen((o) => !o)}
-          className={clsx(styles.interaction, interactionOpen && styles.open)}
+          onClick={() => setOpenInteraction((o) => !o)}
+          className={clsx(styles.interaction, openInteraction && styles.open)}
         >
           Interactie
         </span>
 
-        <span onClick={() => setProcessOpen((o) => !o)} className={clsx(styles.process, processOpen && styles.open)}>
+        <span onClick={() => setOpenProcess((o) => !o)} className={clsx(styles.process, openProcess && styles.open)}>
           Proces
         </span>
 
         <span
-          onClick={() => setIntegrationOpen((o) => !o)}
-          className={clsx(styles.integration, integrationOpen && styles.open)}
+          onClick={() => setOpenIntegration((o) => !o)}
+          className={clsx(styles.integration, openIntegration && styles.open)}
         >
           Integratie
         </span>
 
-        <span onClick={() => setServicesOpen((o) => !o)} className={clsx(styles.services, servicesOpen && styles.open)}>
+        <span onClick={() => setOpenServices((o) => !o)} className={clsx(styles.services, openServices && styles.open)}>
           Services
         </span>
 
-        <span onClick={() => setDataOpen((o) => !o)} className={clsx(styles.data, dataOpen && styles.open)}>
+        <span onClick={() => setOpenData((o) => !o)} className={clsx(styles.data, openData && styles.open)}>
           Data
         </span>
       </div>
 
-      <Layer
+      <Accordion
         title="Interactie"
-        open={interactionOpen}
-        setOpen={setInteractionOpen}
+        open={openInteraction}
+        setOpen={setOpenInteraction}
         color="#CFE2FF"
         categories={categories.interaction}
       />
-      <Layer
+
+      <Accordion
         title="Proces"
-        open={processOpen}
-        setOpen={setProcessOpen}
+        open={openProcess}
+        setOpen={setOpenProcess}
         color="#F8D7DA"
         categories={categories.process}
       />
-      <Layer
+
+      <Accordion
         title="Integratie"
-        open={integrationOpen}
-        setOpen={setIntegrationOpen}
+        open={openIntegration}
+        setOpen={setOpenIntegration}
         color="#FFF3CD"
         categories={categories.integration}
       />
-      <Layer
+
+      <Accordion
         title="Services"
-        open={servicesOpen}
-        setOpen={setServicesOpen}
+        open={openServices}
+        setOpen={setOpenServices}
         color="#D1E7DD"
         categories={categories.services}
       />
-      <Layer title="Data" open={dataOpen} setOpen={setDataOpen} color="#E2D9F3" categories={categories.data} />
+
+      <Accordion title="Data" open={openData} setOpen={setOpenData} color="#E2D9F3" categories={categories.data} />
     </>
-  );
-};
-
-/**
- * Layer
- */
-interface LayerProps {
-  title: string;
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  color: string;
-  categories: any[];
-}
-
-const Layer: React.FC<LayerProps> = ({ title, open, setOpen, color, categories }) => {
-  return (
-    <QuoteWrapper borderColor={color}>
-      <Collapsible
-        trigger={<LayerHeader {...{ open, title }} />}
-        {...{ open }}
-        transitionTime={200}
-        onOpening={() => setOpen(true)}
-        onClosing={() => setOpen(false)}
-      >
-        <div className={styles.categoriesContainer}>
-          {categories.map((category) => (
-            <Button variant="secondary-action" icon={category.icon}>
-              {category.title}
-            </Button>
-          ))}
-        </div>
-      </Collapsible>
-    </QuoteWrapper>
-  );
-};
-
-/**
- * Header
- */
-interface LayerHeaderProps {
-  title: string;
-  open: boolean;
-}
-
-const LayerHeader: React.FC<LayerHeaderProps> = ({ open, title }) => {
-  return (
-    <div className={clsx(styles.layerHeaderContainer, open && styles.open)}>
-      <div className={styles.layerHeaderContent}>
-        <Heading3>{title}</Heading3>
-
-        <FontAwesomeIcon className={clsx(styles.layerHeaderToggleIcon, open && styles.open)} icon={faChevronDown} />
-      </div>
-
-      <Divider />
-    </div>
   );
 };
