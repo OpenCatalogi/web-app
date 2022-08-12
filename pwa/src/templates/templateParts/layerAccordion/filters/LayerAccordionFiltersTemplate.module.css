@@ -1,25 +1,22 @@
-/* 
- * Filters
-*/
-.filters {
+.container {
   display: flex;
 }
 
-.filters > * {
+.container > * {
   display: flex;
   align-items: center;
   user-select: none;
 }
 
-.filters > *.open {
+.container > *.active {
   font-weight: var(--web-app-font-weight-bold);
 }
 
-.filters > *:hover {
+.container > *:hover {
   cursor: pointer;
 }
 
-.filters > *::before {
+.container > *::before {
   content: " ";
   display: inline-block;
   width: var(--web-app-size-md);
@@ -28,26 +25,26 @@
   margin-inline-end: var(--web-app-size-2xs);
 }
 
-.filters > *:not(:last-child) {
+.container > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-md);
 }
 
-.filters > .interaction.open::before {
+.container > .interactie.active::before {
   background-color: #cfe2ff;
 }
 
-.filters > .process.open::before {
+.container > .proces.active::before {
   background-color: #f8d7da;
 }
 
-.filters > .integration.open::before {
+.container > .integratie.active::before {
   background-color: #fff3cd;
 }
 
-.filters > .services.open::before {
+.container > .service.active::before {
   background-color: #d1e7dd;
 }
 
-.filters > .data.open::before {
+.container > .data.active::before {
   background-color: #e2d9f3;
 }

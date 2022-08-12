@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as styles from "./CategorySearchTemplate.module.css";
-import clsx from "clsx";
 import { categories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
+import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 
 export const CategorySearchTemplate: React.FC = () => {
   const Accordion = LayerAccordion.accordion;
@@ -16,33 +15,15 @@ export const CategorySearchTemplate: React.FC = () => {
 
   return (
     <>
-      <div className={styles.filters}>
-        <span
-          onClick={() => setOpenInteraction((o) => !o)}
-          className={clsx(styles.interaction, openInteraction && styles.open)}
-        >
-          Interactie
-        </span>
-
-        <span onClick={() => setOpenProcess((o) => !o)} className={clsx(styles.process, openProcess && styles.open)}>
-          Proces
-        </span>
-
-        <span
-          onClick={() => setOpenIntegration((o) => !o)}
-          className={clsx(styles.integration, openIntegration && styles.open)}
-        >
-          Integratie
-        </span>
-
-        <span onClick={() => setOpenServices((o) => !o)} className={clsx(styles.services, openServices && styles.open)}>
-          Services
-        </span>
-
-        <span onClick={() => setOpenData((o) => !o)} className={clsx(styles.data, openData && styles.open)}>
-          Data
-        </span>
-      </div>
+      <LayerAccordionFiltersTemplate
+        items={[
+          { label: "Interactie", handleClick: setOpenInteraction, active: openInteraction },
+          { label: "Proces", handleClick: setOpenProcess, active: openProcess },
+          { label: "Integratie", handleClick: setOpenIntegration, active: openIntegration },
+          { label: "Service", handleClick: setOpenServices, active: openServices },
+          { label: "Data", handleClick: setOpenData, active: openData },
+        ]}
+      />
 
       <Accordion
         title="Interactie"
