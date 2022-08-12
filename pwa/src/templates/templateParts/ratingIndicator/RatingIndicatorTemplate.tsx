@@ -1,5 +1,10 @@
 import * as React from "react";
+import * as styles from "./RatingIndicatorTemplate.module.css";
 import { PieChart } from "react-minimal-pie-chart";
+import Link from "@gemeente-denhaag/link";
+import { navigate } from "gatsby";
+import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { getTokenValue } from "../../../services/getTokenValue";
 
 interface RatingIndicatorTemplateProps {
   component: any;
@@ -7,10 +12,10 @@ interface RatingIndicatorTemplateProps {
 
 export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = ({ component }) => {
   const [rating, setRating] = React.useState<number>(0);
-  const highestPossibleRating = 2;
+  const maximumRating = 2;
 
   React.useEffect(() => {
-    let _rating = 0;
+    let _rating = 1;
 
     if (component.legal?.license) {
       _rating += 1;
@@ -23,34 +28,38 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
     setRating(_rating);
   });
 
-  const calculatePercentage = (rating: number, highestPossibleRating: number) => {
-    const percentage = (100 * rating) / highestPossibleRating;
-    return percentage;
-  };
-
-  const ratingColor = getComputedStyle(document.documentElement).getPropertyValue(
-    "--web-app-color-background-page-header",
-  );
-  const ratingFont = getComputedStyle(document.documentElement).getPropertyValue("--web-app-primary-font-family");
-
   return (
-    <PieChart
-      data={[{ value: 1, key: 1, color: ratingColor, title: `${rating}/${highestPossibleRating}` }]}
-      reveal={calculatePercentage(rating, highestPossibleRating)}
-      lineWidth={20}
-      background="#bfbfbf"
-      startAngle={270}
-      lengthAngle={360}
-      rounded
-      animate
-      animationDuration={1750}
-      label={({ dataEntry }) => dataEntry.title}
-      labelStyle={{
-        fontSize: "25px",
-        fontFamily: ratingFont,
-        fill: ratingColor,
-      }}
-      labelPosition={0}
-    />
+    <>
+      <PieChart className={styles.ratingPieChart}
+        data={[
+          { value: 1, key: 1, color: getTokenValue(styles.ratingActiveColor), title: `${rating}/${maximumRating}` },
+        ]}
+        reveal={(rating / maximumRating) * 100}
+        lineWidth={20}
+        background={getTokenValue(styles.ratingDisabledColor)}
+        startAngle={270}
+        lengthAngle={360}
+        rounded
+        animate
+        animationDuration={1750}
+        label={({ dataEntry }) => dataEntry.title}
+        labelStyle={{
+          fontSize: getTokenValue(styles.ratingFontSize),
+          fontFamily: getTokenValue(styles.ratingFontFamily),
+          fill: getTokenValue(styles.ratingActiveColor),
+        }}
+        labelPosition={0}
+      />
+      <span
+        onClick={() => {
+          navigate("/about");
+        }}
+        className={styles.link}
+      >
+        <Link icon={<ArrowRightIcon />} iconAlign="start">
+          Rating
+        </Link>
+      </span>
+    </>
   );
 };

@@ -83,7 +83,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard title="Organisatie" content="ipsum dolor sit amet consectetur adipiscing" />
             <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
             <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
-            <InfoCard title="Rating" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
+            <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 
           <div>

@@ -1,0 +1,15 @@
+:export {
+  ratingFontFamily: --web-app-primary-font-family;
+  ratingFontSize: --web-app-font-size-xl;
+  ratingActiveColor: --web-app-rating-active-color;
+  ratingDisabledColor: --web-app-rating-disable-color;
+}
+
+.ratingPieChart {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}
