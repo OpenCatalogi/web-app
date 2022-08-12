@@ -15,7 +15,7 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
   const maximumRating = 2;
 
   React.useEffect(() => {
-    let _rating = 1;
+    let _rating = 0;
 
     if (component.legal?.license) {
       _rating += 1;
@@ -30,7 +30,8 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
 
   return (
     <>
-      <PieChart className={styles.ratingPieChart}
+      <PieChart
+        className={styles.ratingPieChart}
         data={[
           { value: 1, key: 1, color: getTokenValue(styles.ratingActiveColor), title: `${rating}/${maximumRating}` },
         ]}
