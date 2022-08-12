@@ -22,6 +22,7 @@ import Skeleton from "react-loading-skeleton";
 import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -82,7 +83,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard title="Organisatie" content="ipsum dolor sit amet consectetur adipiscing" />
             <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
             <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
-            <InfoCard title="Nulla posuere" content="Faucibus nisl tincidunt eget nullam non" />
+            <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 
           <div>
@@ -319,7 +320,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
         </>
       )}
-
       {_getComponent.isLoading && <Skeleton height="200px" />}
     </Container>
   );
