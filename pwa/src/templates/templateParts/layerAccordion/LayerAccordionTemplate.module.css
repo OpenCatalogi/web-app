@@ -1,0 +1,11 @@
+.items {
+  padding-block-end: var(--web-app-size-md);
+}
+
+.items > * {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.items > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
