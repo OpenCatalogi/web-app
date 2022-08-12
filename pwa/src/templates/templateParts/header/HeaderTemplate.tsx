@@ -70,7 +70,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         {
           label: t("Usage"),
           handleClick: () => {
-            navigate("#");
+            navigate("/documentation/usage");
           },
         },
         {
