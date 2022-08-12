@@ -39,7 +39,7 @@ export const categories = {
     { title: "Data analyse ondersteuning", icon: <FontAwesomeIcon icon={faMagnifyingGlassChart} /> },
     { title: "Functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> },
     { title: "Doel en groendslag", icon: <FontAwesomeIcon icon={faBullseye} /> },
-    { title: "Audit loggin", icon: <FontAwesomeIcon icon={faMagnifyingGlassDollar} /> },
+    { title: "Audit logging", icon: <FontAwesomeIcon icon={faMagnifyingGlassDollar} /> },
   ],
   integration: [
     { title: "Netwerk", icon: <FontAwesomeIcon icon={faNetworkWired} /> },
