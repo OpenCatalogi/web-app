@@ -19,10 +19,12 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph>
           Open Catalogi is gebouwd op het Europese public code framework. Uitgangspunt hierbij is dat open source,
           betekent dat de source code in een git repository staat (bijvoorbeeld Github, Gitlab of SourceTree) die
-          openbaar toegankelijk is.<br></br>
-          <br></br>Vanuit de gedachte zelf documenterende code hoef je in dit geval alleen een publiccode.yaml op te
-          nemen in de root van je repository. In deze yaml beschrijf je het project op een voor machines leesbare
-          manier. Meer uitleg over publiccode.yaml vind je{" "}
+          openbaar toegankelijk is.
+          <br />
+          <br />
+          Vanuit de gedachte zelf documenterende code hoef je in dit geval alleen een publiccode.yaml op te nemen in de
+          root van je repository. In deze yaml beschrijf je het project op een voor machines leesbare manier. Meer
+          uitleg over publiccode.yaml vind je{" "}
           <span
             onClick={() => {
               navigate("#");
@@ -49,8 +51,9 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Open Catalogi is een federatief ecosysteem dat betekent dat iedere organisatie zijn eigen componenten
           catalogus kan starten. Vanuit de eigen catalogus kunnen zowel componenten worden geïmporteerd als beschikbaar
           gesteld voor andere catalogussen.
-          <br></br>
-          <br></br>Meer informatie over het zelf inrichten van een Open Catalogi vind je{" "}
+          <br />
+          <br />
+          Meer informatie over het zelf inrichten van een Open Catalogi vind je{" "}
           <span
             onClick={() => {
               navigate("#");
@@ -80,7 +83,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
               </Link>
             </span>
           </a>{" "}
-          en <br></br>
+          en <br />
           <a href=" https://www.softwarecatalogus.nl/" target={"_blank"}>
             <span>
               <Link icon={<ExternalLinkIcon />} iconAlign="start">
