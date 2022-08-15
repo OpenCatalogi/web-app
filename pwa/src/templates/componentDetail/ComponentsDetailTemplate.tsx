@@ -96,8 +96,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <TableCell>Rhoncus aenean vel elit scelerisque mauris</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader>UPL</TableHeader>
-                  <TableCell>Sit amet nisl suscipit adipiscing bibendum est ultricies</TableCell>
+                  <TableHeader>{t("Products")}</TableHeader>
+                  <TableCell>
+                    {_getComponent.data.embedded.nl.upl.map((product: string, idx: any) => (
+                      <a
+                        key={idx}
+                        href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                        target={"_blank"}
+                      >
+                        <span>
+                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                            {product},
+                          </Link>
+                        </span>
+                      </a>
+                    ))}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableHeader>Standaarden</TableHeader>
@@ -129,7 +143,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab className={styles.tab} label={t("Reuse")} value={3} />
                 <Tab className={styles.tab} label={t("Schema's")} value={4} />
                 <Tab className={styles.tab} label={t("Processes")} value={5} />
-                <Tab className={styles.tab} label={t("Products")} value={6} />
               </Tabs>
 
               <div className={styles.panels}>
@@ -295,25 +308,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </TabPanel>
                 <TabPanel className={styles.tabPanel} value="5">
                   <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 3)} hideTableHead />
-                </TabPanel>
-
-                <TabPanel className={styles.tabPanel} value="6">
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableHeader>Adoptie aangifte</TableHeader>
-                        <TableCell>Artikel 2.38 Wet basisregistratie personen</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableHeader>Adoptie- of pleegzorguitkering</TableHeader>
-                        <TableCell>Artikel 3:9 Wet arbeid en zorg</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableHeader>Adoptieherroeping</TableHeader>
-                        <TableCell>Artikel 231 Burgerlijk Wetboek Boek 1</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
                 </TabPanel>
               </div>
             </TabContext>
