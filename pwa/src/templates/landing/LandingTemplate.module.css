@@ -1,21 +1,24 @@
 .container > *:not(:last-child) {
-  margin-bottom: var(--web-app-size-3xl);
+  margin-block-end: var(--web-app-size-3xl);
 }
 
 .section > *:not(:last-child) {
-  margin-bottom: var(--web-app-size-xl);
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .headingAndSearchForm {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .heading {
-  text-align: center;
   padding-block-start: var(--web-app-size-3xl);
-  padding-block-end: var(--web-app-size-3xl);
+}
+
+.section > .subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
 }
 
 .searchFormContainer {

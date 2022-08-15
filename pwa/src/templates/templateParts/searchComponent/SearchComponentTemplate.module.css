@@ -1,6 +1,5 @@
 .buttons {
   display: flex;
-  justify-content: center;
   margin-block-start: var(--web-app-size-md);
 }
 
