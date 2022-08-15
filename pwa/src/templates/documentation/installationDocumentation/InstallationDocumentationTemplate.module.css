@@ -1,7 +1,22 @@
+:root {
+  --init-size-sm: 12px;
+  --init-size-md: 24px;
+
+  --init-border-radius: 3px;
+
+  --init-color-lightgrey: #f5f5f5;
+}
+
 .container > * {
   margin-block-start: var(--web-app-size-3xl);
 }
 
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+.code {
+  margin-block: var(--init-size-sm);
+  background-color: var(--init-color-lightgrey);
+  border-radius: var(--init-border-radius);
+  padding: var(--init-size-md);
 }
