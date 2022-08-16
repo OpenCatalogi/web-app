@@ -1,36 +1,31 @@
 import * as React from "react";
 import * as styles from "./CardsResultTemplate.module.css";
 import _ from "lodash";
-import { RichContentCard } from "@conduction/components";
-import { useTranslation } from "react-i18next";
-import { HamburgerIcon, HouseIcon, SettingsIcon } from "@gemeente-denhaag/icons";
+import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.ComponentsGrid}>
       {components.map((component) => (
-        <RichContentCard
+        <ComponentCard
           key={component.id}
-          link={{ label: component.name, href: `/components/${component.id}` }}
-          labelsWithIcon={[
-            { label: t("Layer"), icon: <HamburgerIcon /> },
-            { label: t("Organisation"), icon: <HouseIcon /> },
-            { label: t("Installations"), icon: <SettingsIcon /> },
-          ]}
-          tags={[component.developmentStatus, component.softwareType , component.usedBy ? component.usedBy.length : 0]}
-          contentLinks={[
-            {
-              title: t("Repository"),
-              subTitle: t("Check out the repository on GitHub"),
-              href: component.isBasedOn,
-            },
-          ]}
+          title={{ label: component.name, href: `/components/${component.id}` }}
+          description={component.embedded.description.shortDescription}
+          layer={component.embedded.nl.embedded.commonground.layerType}
+          category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
+          tags={{
+            status: component.developmentStatus,
+            installations: "279",
+            organisation: "Gemeente Rotterdam",
+            licence: component.embedded.legal.license,
+            githubLink: component?.url,
+          }}
         />
       ))}
     </div>

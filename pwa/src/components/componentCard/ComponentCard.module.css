@@ -1,0 +1,80 @@
+:root {
+  --conduction-rich-content-card-border: 1px solid var(--skeleton-color-grey-2);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: var(--conduction-rich-content-card-border);
+  border-radius: var(--skeleton-border-radius-md);
+
+  padding-inline-start: var(--skeleton-size-md);
+  padding-inline-end: var(--skeleton-size-md);
+  padding-block-start: var(--skeleton-size-md);
+  padding-block-end: var(--skeleton-size-md);
+}
+
+.container > *:not(.link):not(:last-child) {
+  margin-block-end: var(--skeleton-size-md);
+}
+
+.link {
+  margin-block-end: var(--skeleton-size-xs);
+}
+
+.link > :first-child {
+  display: flex;
+}
+
+.layerTags {
+  display: flex;
+}
+
+.layerTags > *:not(:last-child) {
+  margin-inline-end: var(--skeleton-size-md);
+}
+
+.tags > *:not(:last-child) {
+  margin-inline-end: var(--skeleton-size-md);
+}
+
+/* Colors of the 5 layers */
+.interactie {
+  --conduction-tag-backgrond-color: #1a75ff;
+  --conduction-tag-color: white;
+}
+.interactieCategorie {
+  --conduction-tag-backgrond-color: #cfe2ff;
+}
+
+.proces {
+  --conduction-tag-backgrond-color: #dd3c49;
+  --conduction-tag-color: white;
+}
+.procesCategorie {
+  --conduction-tag-backgrond-color: #f8d7da;
+}
+
+.integratie {
+  --conduction-tag-backgrond-color: #efc025;
+  --conduction-tag-color: white;
+}
+.integratieCategorie {
+  --conduction-tag-backgrond-color: #fff3cd;
+}
+
+.services {
+  --conduction-tag-backgrond-color: #69b090;
+  --conduction-tag-color: white;
+}
+.servicesCategorie {
+  --conduction-tag-backgrond-color: #d1e7dd;
+}
+
+.data {
+  --conduction-tag-backgrond-color: #7a51c8;
+  --conduction-tag-color: white;
+}
+.dataCategorie {
+  --conduction-tag-backgrond-color: #e2d9f3;
+}
