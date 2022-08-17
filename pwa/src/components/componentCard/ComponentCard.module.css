@@ -1,29 +1,37 @@
-:root {
-  --conduction-rich-content-card-border: 1px solid var(--skeleton-color-grey-2);
-}
-
 .container {
   display: flex;
   flex-direction: column;
-  border: var(--conduction-rich-content-card-border);
-  border-radius: var(--skeleton-border-radius-md);
-
-  padding-inline-start: var(--skeleton-size-md);
-  padding-inline-end: var(--skeleton-size-md);
-  padding-block-start: var(--skeleton-size-md);
-  padding-block-end: var(--skeleton-size-md);
+  border: var(--web-app-card-border-color);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+  padding-block-start: var(--web-app-size-md);
+  padding-block-end: var(--web-app-size-md);
 }
 
-.container > *:not(.link):not(:last-child) {
-  margin-block-end: var(--skeleton-size-md);
+.container > *:not(.titleLink):not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
 }
 
-.link {
-  margin-block-end: var(--skeleton-size-xs);
+.titleLink {
+  font-size: var(--web-app-font-size-lg);
+  --denhaag-link-icon-gap: var(--web-app-size-xs);
 }
 
-.link > :first-child {
+.titleLink > :first-child > span > svg {
+  width: var(--web-app-font-size-lg);
+  height: var(--web-app-font-size-lg);
+}
+
+.titleLink > :first-child {
   display: flex;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .layerTags {
@@ -31,50 +39,54 @@
 }
 
 .layerTags > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-md);
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--skeleton-size-md);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 /* Colors of the 5 layers */
 .interactie {
-  --conduction-tag-backgrond-color: #1a75ff;
-  --conduction-tag-color: white;
+  --web-app-tag-background-color: #1a75ff;
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .interactieCategorie {
-  --conduction-tag-backgrond-color: #cfe2ff;
+  --web-app-tag-background-color: #cfe2ff;
 }
 
 .proces {
-  --conduction-tag-backgrond-color: #dd3c49;
-  --conduction-tag-color: white;
+  --web-app-tag-background-color: #dd3c49;
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .procesCategorie {
-  --conduction-tag-backgrond-color: #f8d7da;
+  --web-app-tag-background-color: #f8d7da;
 }
 
 .integratie {
-  --conduction-tag-backgrond-color: #efc025;
-  --conduction-tag-color: white;
+  --web-app-tag-background-color: #efc025;
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .integratieCategorie {
-  --conduction-tag-backgrond-color: #fff3cd;
+  --web-app-tag-background-color: #fff3cd;
 }
 
 .services {
-  --conduction-tag-backgrond-color: #69b090;
-  --conduction-tag-color: white;
+  --web-app-tag-background-color: #69b090;
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .servicesCategorie {
-  --conduction-tag-backgrond-color: #d1e7dd;
+  --web-app-tag-background-color: #d1e7dd;
 }
 
 .data {
-  --conduction-tag-backgrond-color: #7a51c8;
-  --conduction-tag-color: white;
+  --web-app-tag-background-color: #7a51c8;
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .dataCategorie {
-  --conduction-tag-backgrond-color: #e2d9f3;
+  --web-app-tag-background-color: #e2d9f3;
 }

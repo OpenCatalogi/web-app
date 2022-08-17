@@ -21,8 +21,8 @@ interface TagIconLinkProps {
   href: string;
 }
 
-export const TagIconLinkProps: React.FC<TagIconLinkProps> = ({ icon, href, tag }) => (
-  <div className={clsx(styles.tag, styles.tagIconLinkProps)} onClick={() => navigate(href)}>
+export const TagIconLink: React.FC<TagIconLinkProps> = ({ icon, href, tag }) => (
+  <div className={clsx(styles.tag, styles.tagIconLink)} onClick={() => navigate(href)}>
     {tag && <span>{tag}</span>}
     <span>{icon}</span>
   </div>

@@ -125,6 +125,11 @@
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
 
+  --web-app-tag-color: var(--web-app-color-black);
+  --web-app-tag-background-color: var(--skeleton-color-grey-1);
+
+  --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
+
   /*
    * Components
   */
