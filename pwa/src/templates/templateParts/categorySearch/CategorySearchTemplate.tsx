@@ -30,7 +30,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openInteraction}
         setOpen={setOpenInteraction}
         color="#CFE2FF"
-        categories={categories.interaction}
+        categories={categories.interactie}
       />
 
       <Accordion
@@ -38,7 +38,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openProcess}
         setOpen={setOpenProcess}
         color="#F8D7DA"
-        categories={categories.process}
+        categories={categories.proces}
       />
 
       <Accordion
@@ -46,7 +46,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openIntegration}
         setOpen={setOpenIntegration}
         color="#FFF3CD"
-        categories={categories.integration}
+        categories={categories.integratie}
       />
 
       <Accordion
