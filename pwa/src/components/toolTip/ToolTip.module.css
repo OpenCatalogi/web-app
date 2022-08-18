@@ -14,11 +14,13 @@
   font-family: var(--web-app-content-font-family);
   line-height: var(--web-app-line-height-xs);
   white-space: nowrap;
+  user-select: none;
 }
 
 .content::before {
   content: " ";
   left: 50%;
+  border: solid transparent;
   height: 0;
   width: 0;
   position: absolute;
@@ -33,38 +35,4 @@
 .top::before {
   top: 100%;
   border-top-color: var(--web-app-color-black);
-}
-
-.right {
-  left: calc(100% + var(--web-app-size-xl));
-  top: 50%;
-  transform: translateX(0) translateY(-50%);
-}
-.right::before {
-  left: calc(var(--web-app-font-size-4xs) * -1);
-  top: 50%;
-  transform: translateX(0) translateY(-50%);
-  border-right-color: var(--web-app-color-black);
-}
-
-.bottom {
-  bottom: calc(var(--web-app-size-xl) * -1);
-}
-.bottom::before {
-  bottom: 100%;
-  border-bottom-color: var(--web-app-color-black);
-}
-
-.left {
-  left: auto;
-  right: calc(100% + var(--web-app-size-xl));
-  top: 50%;
-  transform: translateX(0) translateY(-50%);
-}
-.left::before {
-  left: auto;
-  right: calc(var(--web-app-font-size-4xs) * -2);
-  top: 50%;
-  transform: translateX(0) translateY(-50%);
-  border-left-color: var(--web-app-color-black);
 }

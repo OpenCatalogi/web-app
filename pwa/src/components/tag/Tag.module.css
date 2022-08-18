@@ -8,6 +8,7 @@
   padding-inline-end: var(--web-app-size-xs);
   padding-block-start: var(--web-app-size-xs);
   padding-block-end: var(--web-app-size-xs);
+  user-select: none;
 }
 
 .tag > *:not(:last-child) {
