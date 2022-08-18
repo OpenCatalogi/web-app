@@ -76,7 +76,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         {
           label: t("API"),
           handleClick: () => {
-            navigate("/documentation/api");
+            navigate("#");
           },
         },
       ],

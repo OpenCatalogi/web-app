@@ -40,15 +40,15 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.developmentStatus)} />
+              <Tag tag={_.upperFirst(component.developmentStatus ?? "Onbekend")} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.softwareType} />
+              <Tag tag={component.softwareType ?? "Onbekend"} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType)} />
+              <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")} />
             </TableCell>
 
             <TableCell>
@@ -56,7 +56,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.usedBy ? component.usedBy.length() : 0} />
+              <Tag tag={component.usedBy?.length() ?? 0} />
             </TableCell>
 
             <TableCell className={styles.details} onClick={() => navigate(`/components/${component.id}`)}>

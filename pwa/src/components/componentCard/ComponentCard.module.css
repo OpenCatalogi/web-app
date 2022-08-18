@@ -76,7 +76,7 @@
   --web-app-tag-background-color: #fff3cd;
 }
 
-.services {
+.services, .service {
   --web-app-tag-background-color: #69b090;
   --web-app-tag-color: var(--web-app-color-white);
 }
