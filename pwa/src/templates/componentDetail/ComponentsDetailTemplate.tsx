@@ -98,18 +98,15 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <TableRow>
                   <TableHeader>{t("Products")}</TableHeader>
                   <TableCell>
-                    {_getComponent.data.embedded.nl.upl.map((product: string, idx: any) => (
-                      <a
+                    {_getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
+                      <span
                         key={idx}
-                        href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
-                        target={"_blank"}
+                        onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
                       >
-                        <span>
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                            {product},
-                          </Link>
-                        </span>
-                      </a>
+                        <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                          {product},
+                        </Link>
+                      </span>
                     ))}
                   </TableCell>
                 </TableRow>
