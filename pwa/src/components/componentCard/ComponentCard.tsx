@@ -66,7 +66,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           <Tag icon={<FontAwesomeIcon icon={faRepeat} />} tag={_.toString(_.random(0, 250))} />
         </ToolTip>
         <ToolTip tooltip="Organisatie" direction="top">
-          <Tag icon={<FontAwesomeIcon icon={faHouse} />} tag={!organisation ? " " : organisation} />
+          <Tag icon={<FontAwesomeIcon icon={faHouse} />} tag={organisation ?? " "} />
         </ToolTip>
         <ToolTip tooltip="Licentie" direction="top">
           <Tag icon={<FontAwesomeIcon icon={faScroll} />} tag={tags.licence} />

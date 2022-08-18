@@ -6,6 +6,7 @@ import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import _ from "lodash";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -39,7 +40,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.developmentStatus} />
+              <Tag tag={_.upperFirst(component.developmentStatus)} />
             </TableCell>
 
             <TableCell>
@@ -47,15 +48,15 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={t("Layer")} />
+              <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType)} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.embedded?.legal?.mainCopyrightOwner ?? "Onbekend"} />
+              <Tag tag={component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"} />
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.usedBy ? component.usedBy.length : 0} />
+              <Tag tag={component.usedBy ? component.usedBy.length() : 0} />
             </TableCell>
 
             <TableCell className={styles.details} onClick={() => navigate(`/components/${component.id}`)}>
