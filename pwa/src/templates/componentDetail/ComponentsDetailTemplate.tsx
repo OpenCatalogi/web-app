@@ -86,14 +86,20 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title="Organisatie"
               content={
-                <div>
-                  Dit component wordt aangeboden door{" "}
-                  <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                    <Link icon={<ArrowRightIcon />} iconAlign="start">
-                      Gemeente Rotterdam
-                    </Link>
-                  </span>
-                </div>
+                <>
+                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                    <div>
+                      Dit component wordt aangeboden door{" "}
+                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                        </Link>
+                      </span>
+                    </div>
+                  ) : (
+                    "Er is geen informatie beschikbaar"
+                  )}
+                </>
               }
             />
             <InfoCard
@@ -109,7 +115,25 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </div>
               }
             />
-            <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
+            <InfoCard
+              title="Licentie"
+              content={
+                <>
+                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                    <div>
+                      De lecentie van dit component is{" "}
+                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                        </Link>
+                      </span>
+                    </div>
+                  ) : (
+                    "Er is geen informatie beschikbaar"
+                  )}
+                </>
+              }
+            />
             <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 

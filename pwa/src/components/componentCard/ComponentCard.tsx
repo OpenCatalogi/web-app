@@ -51,23 +51,29 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
             <Tag icon={<FontAwesomeIcon icon={faLayerGroup} />} tag={_.upperFirst(layer)}></Tag>
           </ToolTip>
         </div>
-        <div className={styles[_.camelCase(`${layer} categorie`)]}>
-          <ToolTip tooltip="Categorie">
-            <Tag icon={_category?.icon} tag={_.upperFirst(_category?.title)}></Tag>
-          </ToolTip>
+        <div className={styles[_.camelCase(`${layer} category`)]}>
+          {_category && (
+            <ToolTip tooltip="Categorie">
+              <Tag icon={_category?.icon} tag={_.upperFirst(_category?.title)}></Tag>
+            </ToolTip>
+          )}
         </div>
       </div>
 
       <div className={styles.tags}>
-        <ToolTip tooltip="Status">
-          <Tag icon={<FontAwesomeIcon icon={faInfoCircle} />} tag={_.upperFirst(tags.status)} />
-        </ToolTip>
+        {tags.status && (
+          <ToolTip tooltip="Status">
+            <Tag icon={<FontAwesomeIcon icon={faInfoCircle} />} tag={_.upperFirst(tags.status)} />
+          </ToolTip>
+        )}
         <ToolTip tooltip="Aantal Installaties">
           <Tag icon={<FontAwesomeIcon icon={faRepeat} />} tag={_.toString(_.random(0, 250))} />
         </ToolTip>
-        <ToolTip tooltip="Organisatie">
-          <Tag icon={<FontAwesomeIcon icon={faHouse} />} tag={organisation} />
-        </ToolTip>
+        {tags.organisation && (
+          <ToolTip tooltip="Organisatie">
+            <Tag icon={<FontAwesomeIcon icon={faHouse} />} tag={tags.organisation} />
+          </ToolTip>
+        )}
         <ToolTip tooltip="Licentie">
           {tags.licence && <Tag icon={<FontAwesomeIcon icon={faScroll} />} tag={tags.licence} />}
         </ToolTip>
