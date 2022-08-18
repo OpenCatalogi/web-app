@@ -93,12 +93,14 @@
   --web-app-footer-organisation-logo-width: 230px;
   --web-app-footer-organisation-logo-src: url("./../../../assets/svgs/LogoRotterdam.svg");
 
-    --web-app-rating-active-color: var(--rotterdam-color-green);
+  --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
 
-  /*
-   * Components
-  */
+  /* Components */
+  --web-app-tag-color: var(--web-app-color-black);
+  --web-app-tag-background-color: var(--skeleton-color-grey-1);
+
+  --web-app-component-card-border-color: 1px solid var(--skeleton-color-grey-2);
 
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);

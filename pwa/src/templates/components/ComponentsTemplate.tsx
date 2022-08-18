@@ -26,8 +26,8 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2>Components</Heading2>
-          <span>Donec id elit non mi porta gravida at eget metus.</span>
+          <Heading2>Componenten</Heading2>
+          <span>Alle gefilterde componenten</span>
         </div>
         <div className={styles.resultsDisplaySwitchButtons}>
           <Button
@@ -77,9 +77,11 @@ export const ComponentsTemplate: React.FC = () => {
             </>
           )}
 
-          {getComponents.data?.results.length === 0 &&
+          {getComponents.data?.results?.length === 0 &&
             !getComponents.isLoading &&
             t("No components found with active filters")}
+
+          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
 
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>

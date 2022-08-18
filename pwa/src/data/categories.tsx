@@ -26,14 +26,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+export type TCategories = "interactie" | "proces" | "integratie" | "services" | "data";
+
 export const categories = {
-  interaction: [
+  interactie: [
     { title: "Procesondersteuning", icon: <FontAwesomeIcon icon={faMicrochip} /> },
     { title: "Regie op gegevens", icon: <FontAwesomeIcon icon={faFileShield} /> },
     { title: "Aanvragen en meldingen", icon: <FontAwesomeIcon icon={faBell} /> },
     { title: "Eindgebruiker authenticatie", icon: <FontAwesomeIcon icon={faUserShield} /> },
   ],
-  process: [
+  proces: [
     { title: "Procesinrichting en uitvoering", icon: <FontAwesomeIcon icon={faMicrochip} /> },
     { title: "Bedrijfsregels", icon: <FontAwesomeIcon icon={faGavel} /> },
     { title: "Data analyse ondersteuning", icon: <FontAwesomeIcon icon={faMagnifyingGlassChart} /> },
@@ -41,7 +43,7 @@ export const categories = {
     { title: "Doel en groendslag", icon: <FontAwesomeIcon icon={faBullseye} /> },
     { title: "Audit logging", icon: <FontAwesomeIcon icon={faMagnifyingGlassDollar} /> },
   ],
-  integration: [
+  integratie: [
     { title: "Netwerk", icon: <FontAwesomeIcon icon={faNetworkWired} /> },
     { title: "Netwerk beveiliging", icon: <FontAwesomeIcon icon={faKey} /> },
     { title: "Verbinden", icon: <FontAwesomeIcon icon={faLink} /> },
