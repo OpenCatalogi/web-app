@@ -62,10 +62,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </LeadParagraph>
 
               <div className={styles.tags}>
-                <div className={styles[_.camelCase(_getComponent.data.embedded?.nl.embedded.commonground.layerType)]}>
+                <div
+                  className={
+                    styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
+                  }
+                >
                   <Tag
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                    tag={_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)}
+                    tag={_.upperFirst(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))}
                   ></Tag>
                 </div>
                 <div>
