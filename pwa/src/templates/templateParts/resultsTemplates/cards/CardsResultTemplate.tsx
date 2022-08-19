@@ -24,7 +24,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
             installations: component.usedBy?.length(),
             organisation: component.embedded?.legal.embedded?.repoOwner.name,
             licence: component.embedded?.legal.license,
-            githubLink: component?.url,
+            githubLink: component.embedded?.url?.url,
           }}
         />
       ))}

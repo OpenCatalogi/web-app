@@ -25,7 +25,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 
 interface ComponentsDetailTemplateProps {
@@ -119,14 +119,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title="Licentie"
               content={
                 <>
-                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                  {_getComponent.data.embedded?.legal.license ? (
                     <div>
                       De lecentie van dit component is{" "}
-                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
-                        </Link>
-                      </span>
+                      <Tag
+                        icon={<FontAwesomeIcon icon={faScroll} />}
+                        tag={_getComponent.data.embedded?.legal.license}
+                      />
                     </div>
                   ) : (
                     "Er is geen informatie beschikbaar"

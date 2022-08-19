@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
-import { Tag, TagIconLink } from "../tag/Tag";
+import { Tag, TagIconLinkExternal } from "../tag/Tag";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -78,7 +78,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           {tags.licence && <Tag icon={<FontAwesomeIcon icon={faScroll} />} tag={tags.licence} />}
         </ToolTip>
         <ToolTip tooltip="GitHub">
-          {tags.githubLink && <TagIconLink href={tags.githubLink} icon={<GitHubLogo />} />}
+          {tags.githubLink && <TagIconLinkExternal href={tags.githubLink} icon={<GitHubLogo />} />}
         </ToolTip>
       </div>
     </div>

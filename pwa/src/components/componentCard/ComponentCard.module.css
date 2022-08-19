@@ -67,7 +67,7 @@
   --web-app-tag-background-color: #dd3c49;
   --web-app-tag-color: var(--web-app-color-white);
 }
-.procesCategory .processCategory {
+.procesCategory, .processCategory {
   --web-app-tag-background-color: #f8d7da;
 }
 
