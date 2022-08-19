@@ -10,12 +10,12 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, Tag } from "@conduction/components";
+import { Container, InfoCard } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
@@ -23,6 +23,10 @@ import { TableResultTemplate } from "../templateParts/resultsTemplates/table/Tab
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
+import { Tag } from "../../components/tag/Tag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import _ from "lodash";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -54,22 +58,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <Heading1>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
-                Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl
-                consectetur et.
-              </LeadParagraph>
-
-              <LeadParagraph className={styles.description}>
-                Dit component wordt aangeboden door{" "}
-                <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                  <Link icon={<ArrowRightIcon />} iconAlign="start">
-                    Gemeente Rotterdam
-                  </Link>
-                </span>
+                {_getComponent.data.embedded.description.longDescription}
               </LeadParagraph>
 
               <div className={styles.tags}>
-                <Tag tag="layer" />
-                <Tag tag={_getComponent.data.developmentStatus} />
+                <div className={styles[_.camelCase(_getComponent.data.embedded?.nl.embedded.commonground.layerType)]}>
+                  <Tag
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                    tag={_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)}
+                  ></Tag>
+                </div>
+                <div>
+                  {_getComponent.data.developmentStatus && (
+                    <Tag tag={_.upperFirst(_getComponent.data.developmentStatus)} />
+                  )}
+                </div>
               </div>
             </div>
 
@@ -80,39 +83,102 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            <InfoCard title="Organisatie" content="ipsum dolor sit amet consectetur adipiscing" />
-            <InfoCard title="Github" content="Enim blandit volutpat maecenas volutpat blandit" />
-            <InfoCard title="Dolor purus non" content="Ultrices eros in cursus turpis massa" />
+            <InfoCard
+              title="Organisatie"
+              content={
+                <>
+                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                    <div>
+                      Dit component wordt aangeboden door{" "}
+                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                        </Link>
+                      </span>
+                    </div>
+                  ) : (
+                    "Er is geen informatie beschikbaar"
+                  )}
+                </>
+              }
+            />
+            <InfoCard
+              title="Github"
+              content={
+                <div>
+                  De broncode van dit component is te vinden op{" "}
+                  <span onClick={() => navigate("#")}>
+                    <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                      GitHub
+                    </Link>
+                  </span>
+                </div>
+              }
+            />
+            <InfoCard
+              title="Licentie"
+              content={
+                <>
+                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                    <div>
+                      De lecentie van dit component is{" "}
+                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                        </Link>
+                      </span>
+                    </div>
+                  ) : (
+                    "Er is geen informatie beschikbaar"
+                  )}
+                </>
+              }
+            />
             <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 
           <div>
-            <h2>Magna ullamcorper ultricies</h2>
+            <h2>Technische gegevens</h2>
 
             <Table>
               <TableBody>
                 <TableRow>
                   <TableHeader>Gemma</TableHeader>
-                  <TableCell>Rhoncus aenean vel elit scelerisque mauris</TableCell>
+                  <TableCell>Op dit moment is er geen gemma data beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader>UPL</TableHeader>
-                  <TableCell>Sit amet nisl suscipit adipiscing bibendum est ultricies</TableCell>
+                  <TableHeader>{t("Products")}</TableHeader>
+                  <TableCell>
+                    {_getComponent.data.embedded.nl.upl ? (
+                      _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
+                        <span
+                          key={idx}
+                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
+                        >
+                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                            {product},
+                          </Link>
+                        </span>
+                      ))
+                    ) : (
+                      <span>Op dit moment zijn er geen producten beschikbaar.</span>
+                    )}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableHeader>Standaarden</TableHeader>
-                  <TableCell>Dui faucibus in ornare quam viverra orci sagittis</TableCell>
+                  <TableCell>Op dit moment zijn er geen standaarden beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableHeader>Wet en regelgeving</TableHeader>
-                  <TableCell>Congue quisque egestas diam in arcu cursus euismod</TableCell>
+                  <TableCell>Op dit moment zijn er geen wetten en regelgevingen beschikbaar.</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </div>
 
           <div>
-            <h2>Magna ullamcorper ultricies</h2>
+            <h2>Tabbladen</h2>
 
             <TabContext value={currentTab.toString()}>
               <Tabs
@@ -129,7 +195,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab className={styles.tab} label={t("Reuse")} value={3} />
                 <Tab className={styles.tab} label={t("Schema's")} value={4} />
                 <Tab className={styles.tab} label={t("Processes")} value={5} />
-                <Tab className={styles.tab} label={t("Products")} value={6} />
               </Tabs>
 
               <div className={styles.panels}>
@@ -295,25 +360,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </TabPanel>
                 <TabPanel className={styles.tabPanel} value="5">
                   <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(1, 3)} hideTableHead />
-                </TabPanel>
-
-                <TabPanel className={styles.tabPanel} value="6">
-                  <Table>
-                    <TableBody>
-                      <TableRow>
-                        <TableHeader>Adoptie aangifte</TableHeader>
-                        <TableCell>Artikel 2.38 Wet basisregistratie personen</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableHeader>Adoptie- of pleegzorguitkering</TableHeader>
-                        <TableCell>Artikel 3:9 Wet arbeid en zorg</TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableHeader>Adoptieherroeping</TableHeader>
-                        <TableCell>Artikel 231 Burgerlijk Wetboek Boek 1</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
                 </TabPanel>
               </div>
             </TabContext>
