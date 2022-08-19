@@ -94,10 +94,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         <Link icon={<ArrowRightIcon />} iconAlign="start">
                           {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
                         </Link>
+                        .
                       </span>
                     </div>
                   ) : (
-                    "Er is geen informatie beschikbaar"
+                    "Er is geen informatie beschikbaar."
                   )}
                 </>
               }
@@ -105,14 +106,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title="Github"
               content={
-                <div>
-                  De broncode van dit component is te vinden op{" "}
-                  <span onClick={() => navigate("#")}>
-                    <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                      GitHub
-                    </Link>
-                  </span>
-                </div>
+                <>
+                  {_getComponent.data.embedded?.url?.url ? (
+                    <div>
+                      De broncode van dit component is te vinden op{" "}
+                      <span onClick={() => open(_getComponent.data.embedded?.url?.url)}>
+                        <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                          GitHub
+                        </Link>
+                      </span>
+                      .
+                    </div>
+                  ) : (
+                    "Er is geen GitHub link beschikbaar."
+                  )}
+                </>
               }
             />
             <InfoCard
@@ -128,7 +136,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       />
                     </div>
                   ) : (
-                    "Er is geen informatie beschikbaar"
+                    "Er is geen informatie beschikbaar."
                   )}
                 </>
               }

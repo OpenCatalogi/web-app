@@ -11,6 +11,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ToolTip } from "../toolTip/ToolTip";
 import { organisations } from "../../data/filters";
 import { categories, TCategories } from "../../data/categories";
+import { useTranslation } from "react-i18next";
 
 export interface ComponentCardProps {
   title: {
@@ -33,6 +34,8 @@ export interface ComponentCardProps {
 }
 
 export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, category, description, tags }) => {
+  const { t } = useTranslation();
+
   const organisation = _.sample(organisations)?.label ?? "";
   const _category = _.sample(categories[layer]);
 
@@ -46,9 +49,9 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
       <Paragraph className={styles.description}>{description}</Paragraph>
       <div className={styles.layerTags}>
-        <div className={styles[_.camelCase(layer)]}>
+        <div className={styles[_.camelCase(t(`${layer}`))]}>
           <ToolTip tooltip="Laag">
-            <Tag icon={<FontAwesomeIcon icon={faLayerGroup} />} tag={_.upperFirst(layer)}></Tag>
+            <Tag icon={<FontAwesomeIcon icon={faLayerGroup} />} tag={_.upperFirst(t(`${layer}`))}></Tag>
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
