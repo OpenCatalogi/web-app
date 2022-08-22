@@ -69,20 +69,31 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
             <Tag content={{ icon: <FontAwesomeIcon icon={faInfoCircle} />, tag: _.upperFirst(tags.status) }}></Tag>
           </ToolTip>
         )}
-        <ToolTip tooltip="Aantal Installaties">
-          <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: _.toString(_.random(0, 250)) }}></Tag>
-        </ToolTip>
+        {tags.installations && (
+          <ToolTip tooltip="Aantal Installaties">
+            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: _.toString(tags.installations) }}></Tag>
+          </ToolTip>
+        )}
+        {!tags.installations && (
+          <ToolTip tooltip="Aantal Installaties">
+            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: "0" }}></Tag>
+          </ToolTip>
+        )}
         {tags.organisation && (
           <ToolTip tooltip="Organisatie">
             <Tag content={{ icon: <FontAwesomeIcon icon={faHouse} />, tag: tags.organisation }}></Tag>
           </ToolTip>
         )}
-        <ToolTip tooltip="Licentie">
-          {tags.licence && <Tag content={{ icon: <FontAwesomeIcon icon={faScroll} />, tag: tags.licence }}></Tag>}
-        </ToolTip>
-        <ToolTip tooltip="GitHub">
-          {tags.githubLink && <Tag content={{ icon: <GitHubLogo />, tag: "Repository" }} onClick={() => open(tags.githubLink)}></Tag>}
-        </ToolTip>
+        {tags.licence && (
+          <ToolTip tooltip="Licentie">
+            <Tag content={{ icon: <FontAwesomeIcon icon={faScroll} />, tag: tags.licence }}></Tag>
+          </ToolTip>
+        )}
+        {tags.githubLink && (
+          <ToolTip tooltip="GitHub">
+            <Tag content={{ icon: <GitHubLogo />, tag: "Repository" }} onClick={() => open(tags.githubLink)}></Tag>
+          </ToolTip>
+        )}
       </div>
     </div>
   );
