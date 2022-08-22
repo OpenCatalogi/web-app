@@ -2,8 +2,9 @@
   margin-block-end: var(--web-app-size-4xl);
 }
 
-.backButton {
+.container > .backButton {
   margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
 }
 
 .container > .headingContainer {
@@ -15,6 +16,7 @@
 .description {
   padding-top: 0 !important;
   padding-inline-end: var(--skeleton-size-xs);
+  margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
 }
 
