@@ -1,0 +1,40 @@
+.container {
+  margin-block-start: var(--web-app-size-4xl);
+}
+
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-3xl);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.headerContainer {
+  display: flex;
+  gap: var(--web-app-size-md);
+  justify-content: space-between;
+}
+
+.headerContent {
+  flex: 2;
+}
+
+.headerLogo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+.tab {
+  max-width: unset !important;
+}
+
+.tabPanel {
+  padding: 0 !important;
+}

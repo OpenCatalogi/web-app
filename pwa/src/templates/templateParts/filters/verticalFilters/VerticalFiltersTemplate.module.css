@@ -1,0 +1,27 @@
+.container {
+  border-radius: var(--web-app-border-radius-md);
+  background-color: var(--web-app-color-background-light);
+  padding-inline-start: var(--web-app-size-lg);
+  padding-inline-end: var(--web-app-size-lg);
+  padding-block-start: var(--web-app-size-lg);
+  padding-block-end: var(--web-app-size-lg);
+}
+
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.label {
+  font-weight: var(--web-app-font-weight-normal);
+  font-size: var(--web-app-size-md);
+}
+
+.title {
+  display: block;
+  font-weight: var(--web-app-font-weight-bold);
+  font-size: var(--web-app-size-md);
+}
+
+.form > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}

@@ -1,0 +1,41 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-3xl);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.headingAndSearchForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  padding-block-start: var(--web-app-size-3xl);
+}
+
+.section > .subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.searchFormContainer {
+  width: 100%;
+  max-width: 650px;
+}
+
+.cards {
+  display: flex;
+  gap: var(--web-app-size-lg);
+}
+
+.cards > * {
+  flex: 1;
+}
+
+.feedback {
+  width: 100%;
+  max-width: 800px;
+}

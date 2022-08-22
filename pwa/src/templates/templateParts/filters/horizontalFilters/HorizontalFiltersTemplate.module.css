@@ -1,0 +1,8 @@
+.form {
+  display: flex;
+  gap: var(--web-app-size-md);
+}
+
+.form > * {
+  flex: 1;
+}

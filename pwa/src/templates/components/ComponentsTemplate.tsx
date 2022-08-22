@@ -1,57 +1,91 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
-import { Container } from "../../components/container/Container";
-import { FormField, FormFieldInput, FormFieldLabel, Heading2 } from "@gemeente-denhaag/components-react";
-import { useForm } from "react-hook-form";
-import { InputText, SelectMultiple } from "../../components/formFields";
-import { SearchIcon } from "@gemeente-denhaag/icons";
-import { ISelectValue } from "../../components/formFields/select/select";
+import * as _ from "lodash";
+import { Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Container, Pagination } from "@conduction/components";
+import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
+import { FiltersContext } from "../../context/filters";
+import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
+import { QueryClient } from "react-query";
+import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
+import { useComponent } from "../../hooks/components";
+import Skeleton from "react-loading-skeleton";
+import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
-  const {
-    register,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm();
+  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { t } = useTranslation();
 
-  const watchSearchForm = watch();
-
-  React.useEffect(() => {
-    const name: string = watchSearchForm.name;
-    const types: string[] = watchSearchForm.types?.map((type: any) => type.value);
-  }, [watchSearchForm]);
+  const queryClient = new QueryClient();
+  const _useComponent = useComponent(queryClient);
+  const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2>Components</Heading2>
-        <span className={styles.subHeader}>Donec id elit non mi porta gravida at eget metus.</span>
+        <div>
+          <Heading2>Componenten</Heading2>
+          <span>Alle gefilterde componenten</span>
+        </div>
+        <div className={styles.resultsDisplaySwitchButtons}>
+          <Button
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "table" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "table" })}
+          >
+            <FontAwesomeIcon icon={faTable} />
+            {t("Table")}
+          </Button>
+          <Button
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "cards" })}
+          >
+            <FontAwesomeIcon icon={faGripVertical} />
+            {t("Cards")}
+          </Button>
+          <Button
+            className={styles.buttonIcon}
+            variant={filters.resultDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, resultDisplayLayout: "layer" })}
+          >
+            <FontAwesomeIcon icon={faLayerGroup} />
+            {t("Layers")}
+          </Button>
+        </div>
       </div>
 
-      <form className={styles.form}>
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op naam</FormFieldLabel>
-            <InputText {...{ register, errors }} name="name" icon={<SearchIcon />} validation={{ required: true }} />
-          </FormFieldInput>
-        </FormField>
+      <HorizontalFiltersTemplate />
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>Filter op type</FormFieldLabel>
-            <SelectMultiple name="types" options={types} {...{ errors, control, register }} />
-          </FormFieldInput>
-        </FormField>
-      </form>
+      <div className={styles.filtersAndResultsContainer}>
+        <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
+
+        <div className={styles.results}>
+          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
+            <>
+              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+
+              {getComponents.data.results.length && (
+                <Pagination
+                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
+                  pages={getComponents.data.pages}
+                  currentPage={getComponents.data.page}
+                />
+              )}
+            </>
+          )}
+
+          {getComponents.data?.results?.length === 0 &&
+            !getComponents.isLoading &&
+            t("No components found with active filters")}
+
+          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
+
+          {getComponents.isLoading && <Skeleton height="200px" />}
+        </div>
+      </div>
     </Container>
   );
 };
-
-const types: ISelectValue[] = [
-  { label: "Software", value: "software" },
-  { label: "Data", value: "data" },
-  { label: "Processen", value: "process" },
-  { label: "API's", value: "api" },
-  { label: "Informatie modellen", value: "information-model" },
-];

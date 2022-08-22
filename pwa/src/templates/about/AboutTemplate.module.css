@@ -1,0 +1,35 @@
+.container > * {
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.buttonsContainer {
+  display: flex;
+}
+
+.buttonsContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
+
+.quoteWrapperContainer {
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-md);
+}
+
+.quoteWrapperContainer > * {
+  padding-block-start: var(--web-app-size-md);
+  padding-block-end: var(--web-app-size-md);
+}
+
+.author {
+  font-size: var(--web-app-font-size-md);
+  display: block;
+  margin-block-start: var(--web-app-size-sm);
+}
+
+.layersVisual {
+  width: 100%;
+}

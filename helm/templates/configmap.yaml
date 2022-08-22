@@ -11,10 +11,13 @@ data:
   gateway-location: {{ .Values.gateway.location }}
   {{- end }}
   properties: |-
-    export const GATSBY_API_URL= "{{ .Values.pwa.apiUrl }}"
-    export const GATSBY_ADMIN_URL= "{{ .Values.pwa.adminUrl }}"
-    export const GATSBY_ME_URL= "{{ .Values.pwa.meUrl }}"
-    export const GATSBY_BASE_URL= "{{ .Values.pwa.baseUrl }}"
-    export const GATSBY_FRONTEND_URL= "{{ .Values.pwa.frontendUrl }}"
-    export const GATSBY_ORGANIZATION= "{{ .Values.pwa.organization }}"
-    export const GATSBY_LOGIN_REDIRECT= "{{ .Values.pwa.redirectUrl }}"
+    export const setEnv = () => {
+      window.GATSBY_ME_URL = "{{ .Values.pwa.meUrl }}";
+      window.GATSBY_API_URL = "{{ .Values.pwa.apiUrl }}";
+      window.GATSBY_ADMIN_URL = "{{ .Values.pwa.adminUrl }}";
+      window.GATSBY_BASE_URL= "{{ .Values.pwa.baseUrl }}";
+      window.GATSBY_FRONTEND_URL= "{{ .Values.pwa.frontendUrl }}";
+      window.GATSBY_ORGANIZATION= "{{ .Values.pwa.organization }}";
+      window.GATSBY_LOGIN_REDIRECT= "{{ .Values.pwa.redirectUrl }}";
+    };
+    

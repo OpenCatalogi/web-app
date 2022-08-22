@@ -5,9 +5,12 @@ import "./../translations/i18n";
 import APIContext, { APIProvider } from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
 import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
-import { StylesProvider } from "@gemeente-denhaag/components-react";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
+import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
+import { ThemeProvider } from "../styling/ThemeProvider";
+
+const { setEnv } = require("./../../static/env.js");
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,26 +19,38 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
-  const [API] = React.useState<APIService>(React.useContext(APIContext));
+  const [filters, setFilters] = React.useState<IFilters>(_filters);
+  const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
   const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
+
+  React.useEffect(() => {
+    setEnv();
+    setAPI(new APIService());
+  }, []);
 
   React.useEffect(() => {
     setGatsbyContext({ ...{ pageContext, location } });
 
     const JWT = sessionStorage.getItem("JWT");
 
-    !API.authenticated && JWT && API.setAuthentication(JWT);
+    API && !API.authenticated && JWT && API.setAuthentication(JWT);
   }, [pageContext, location]);
 
+  if (!API) return <></>;
+
   return (
-    <div className={styles.layout}>
+    <div>
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
-          <StylesProvider>
-            <HeaderTemplate />
-            <div className={styles.pageContent}>{children}</div>
-            <FooterTemplate />
-          </StylesProvider>
+          <FiltersProvider value={[filters, setFilters]}>
+            <ThemeProvider>
+              <HeaderTemplate />
+
+              <div className={styles.pageContent}>{children}</div>
+
+              <FooterTemplate layoutClassName={styles.footer} />
+            </ThemeProvider>
+          </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>
     </div>

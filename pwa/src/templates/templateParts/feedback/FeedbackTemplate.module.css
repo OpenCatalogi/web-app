@@ -1,0 +1,16 @@
+.container > * {
+  display: block;
+}
+
+.container > *:not(:last-child) {
+  margin-bottom: var(--web-app-size-md);
+}
+
+.heading {
+  font-weight: bold;
+  font-size: var(--web-app-font-size-xl);
+}
+
+.button {
+  width: fit-content;
+}

@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import Case from "./resources/case";
+import Component from "./resources/components";
 import Message from "./resources/message";
 
 import Login from "./services/login";
@@ -24,19 +25,23 @@ export default class APIService {
   }
 
   public get apiClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
     return axios.create({
-      baseURL: process.env.GATSBY_API_URL,
+      //@ts-ignore
+      baseURL: window.GATSBY_API_URL,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + this.JWT,
       },
+      ...authorization,
     });
   }
 
   public get LoginClient(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.GATSBY_API_URL,
+      //@ts-ignore
+      baseURL: window.GATSBY_API_URL,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -46,7 +51,8 @@ export default class APIService {
 
   public get BaseClient(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.GATSBY_BASE_URL,
+      //@ts-ignore
+      baseURL: window.GATSBY_BASE_URL,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -62,6 +68,10 @@ export default class APIService {
 
   public get Message(): Message {
     return new Message(this.apiClient);
+  }
+
+  public get Component(): Component {
+    return new Component(this.apiClient);
   }
 
   // Services

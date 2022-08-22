@@ -1,0 +1,26 @@
+.tag {
+  display: inline-block;
+  width: fit-content;
+  font-size: var(--web-app-font-size-sm);
+  color: var(--web-app-tag-color);
+  background-color: var(--web-app-tag-background-color);
+  padding-inline-start: var(--web-app-size-xs);
+  padding-inline-end: var(--web-app-size-xs);
+  padding-block-start: var(--web-app-size-xs);
+  padding-block-end: var(--web-app-size-xs);
+  user-select: none;
+}
+
+.tag > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.tag > span > svg {
+  vertical-align: -0.125em;
+  max-width: var(--web-app-font-size-sm);
+  max-height: var(--web-app-font-size-sm);
+}
+
+.tagIconLink :hover {
+  cursor: pointer;
+}

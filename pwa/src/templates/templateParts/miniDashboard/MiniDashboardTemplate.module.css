@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  gap: var(--web-app-size-lg);
+}
+
+.container > * {
+  flex: 1;
+}
+
+/* Card */
+.cardContainer {
+  background: var(--web-app-color-background-light);
+  padding: var(--web-app-size-lg);
+  border-radius: var(--web-app-border-radius-md);
+}
+
+.cardContainer:hover {
+  cursor: pointer;
+}
+
+.cardCount {
+  font-size: var(--web-app-font-size-4xl);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.cardLinkContainer {
+  display: flex;
+  justify-content: center;
+}

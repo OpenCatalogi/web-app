@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+}
+
+.container > * {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.container > *.active {
+  font-weight: var(--web-app-font-weight-bold);
+}
+
+.container > *:hover {
+  cursor: pointer;
+}
+
+.container > *::before {
+  content: " ";
+  display: inline-block;
+  width: var(--web-app-size-md);
+  height: var(--web-app-size-md);
+  background-color: var(--web-app-color-background-light);
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.container > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.container > .interactie.active::before {
+  background-color: #cfe2ff;
+}
+
+.container > .proces.active::before {
+  background-color: #f8d7da;
+}
+
+.container > .integratie.active::before {
+  background-color: #fff3cd;
+}
+
+.container > .service.active::before {
+  background-color: #d1e7dd;
+}
+
+.container > .data.active::before {
+  background-color: #e2d9f3;
+}

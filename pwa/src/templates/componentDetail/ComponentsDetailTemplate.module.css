@@ -1,0 +1,129 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-4xl);
+}
+
+.backButton {
+  margin-block-start: var(--web-app-size-2xl);
+}
+
+.container > .headingContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.description {
+  padding-top: 0 !important;
+  padding-inline-end: var(--skeleton-size-xs);
+  margin-block-end: var(--web-app-size-md) !important;
+}
+
+.tags {
+  display: flex;
+}
+
+.tags > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
+
+.addToCatalogusContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.addToCatalogusContainer > .componentImg {
+  max-width: 300px;
+}
+
+.addToCatalogusContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+  column-gap: var(--web-app-size-md);
+}
+
+.externalLink {
+  text-decoration: none;
+}
+
+.description {
+  padding-top: var(--web-app-size-md);
+}
+
+.tabs :first-child {
+  width: fit-content;
+}
+
+.panels,
+.tabs {
+  position: relative;
+  left: calc(var(--web-app-size-lg) * -1);
+}
+
+.tabPanel {
+  padding-inline-start: var(--web-app-size-lg) !important;
+  padding-inline-end: var(--web-app-size-lg) !important;
+  padding-block-start: var(--web-app-size-lg) !important;
+  padding-block-end: var(--web-app-size-lg) !important;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tab {
+  max-width: unset !important;
+}
+
+/* Colors of the 5 layers */
+.interactie {
+  --web-app-tag-background-color: #1a75ff;
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.interactieCategory,
+.interfaceCategory {
+  --web-app-tag-background-color: #cfe2ff;
+}
+
+.proces,
+.process,
+.processs {
+  --web-app-tag-background-color: #dd3c49;
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.procesCategory .processCategory {
+  --web-app-tag-background-color: #f8d7da;
+}
+
+.integratie,
+.integration {
+  --web-app-tag-background-color: #efc025;
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.integratieCategory,
+.integrationCategory {
+  --web-app-tag-background-color: #fff3cd;
+}
+
+.services,
+.service {
+  --web-app-tag-background-color: #69b090;
+  --web-app-tag-color: var(--web-app-color-white);
+}
+
+.servicesCategory,
+.serviceCategory {
+  --web-app-tag-background-color: #d1e7dd;
+}
+
+.data {
+  --web-app-tag-background-color: #7a51c8;
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.dataCategory {
+  --web-app-tag-background-color: #e2d9f3;
+}
