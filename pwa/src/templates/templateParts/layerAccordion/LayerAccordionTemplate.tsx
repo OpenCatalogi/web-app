@@ -1,9 +1,9 @@
+import * as React from "react";
+import * as styles from "./LayerAccordionTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
 import { Button } from "@gemeente-denhaag/components-react";
-import * as React from "react";
 import Collapsible from "react-collapsible";
 import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
-import * as styles from "./LayerAccordionTemplate.module.css";
 
 interface LayerAccordionTemplateProps {
   open: boolean;
