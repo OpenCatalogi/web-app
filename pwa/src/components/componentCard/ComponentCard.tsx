@@ -81,7 +81,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           {tags.licence && <Tag content={{ icon: <FontAwesomeIcon icon={faScroll} />, tag: tags.licence }}></Tag>}
         </ToolTip>
         <ToolTip tooltip="GitHub">
-          {tags.githubLink && <Tag content={{ icon: <GitHubLogo /> }} onClick={() => open(tags.githubLink)}></Tag>}
+          {tags.githubLink && <Tag content={{ icon: <GitHubLogo />, tag: "Repository" }} onClick={() => open(tags.githubLink)}></Tag>}
         </ToolTip>
       </div>
     </div>

@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 interface TagProps {
   content: {
-    tag?: string;
+    tag: string;
     icon?: JSX.Element;
   };
   onClick?: () => any;
