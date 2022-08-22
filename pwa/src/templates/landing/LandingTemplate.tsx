@@ -31,9 +31,7 @@ export const LandingTemplate: React.FC = () => {
         <div className={styles.subHeading}>
           <Heading2>Zoeken per categorie</Heading2>
 
-          <LeadParagraph>
-            Hier kunnen de components gezocht worden op categorie.
-          </LeadParagraph>
+          <LeadParagraph>Hier kunnen de components gezocht worden op categorie.</LeadParagraph>
         </div>
 
         <CategorySearchTemplate />

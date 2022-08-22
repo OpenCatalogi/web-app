@@ -52,4 +52,7 @@ export const nl = {
   API: "API",
   Reuser: "Hergebruiker",
   interface: "Interactie",
+  Username: "Gebruikersnaam",
+  Password: "Wachtwoord",
+  Send: "Versturen",
 };
