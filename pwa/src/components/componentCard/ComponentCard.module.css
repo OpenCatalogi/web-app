@@ -52,8 +52,9 @@
 }
 
 /* Colors of the 5 layers */
+
 .interactie {
-  --web-app-tag-background-color: #1a75ff;
+  --web-app-tag-background-color: var(--web-app-layer-color-intraction);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .interactieCategory,
@@ -64,7 +65,7 @@
 .proces,
 .process,
 .processs {
-  --web-app-tag-background-color: #dd3c49;
+  --web-app-tag-background-color: var(--web-app-layer-color-process);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .procesCategory,
@@ -74,7 +75,7 @@
 
 .integratie,
 .integration {
-  --web-app-tag-background-color: #efc025;
+  --web-app-tag-background-color: var(--web-app-layer-color-integration);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .integratieCategory,
@@ -84,7 +85,7 @@
 
 .services,
 .service {
-  --web-app-tag-background-color: #69b090;
+  --web-app-tag-background-color: var(--web-app-layer-color-services);
   --web-app-tag-color: var(--web-app-color-white);
 }
 
@@ -94,7 +95,7 @@
 }
 
 .data {
-  --web-app-tag-background-color: #7a51c8;
+  --web-app-tag-background-color: var(--web-app-layer-color-data);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
