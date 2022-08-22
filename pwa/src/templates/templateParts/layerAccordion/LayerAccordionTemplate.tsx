@@ -1,9 +1,12 @@
+import * as React from "react";
+import * as styles from "./LayerAccordionTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
 import { Button } from "@gemeente-denhaag/components-react";
-import * as React from "react";
+import { navigate } from "gatsby";
+import _ from "lodash";
 import Collapsible from "react-collapsible";
+import { FiltersContext } from "../../../context/filters";
 import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
-import * as styles from "./LayerAccordionTemplate.module.css";
 
 interface LayerAccordionTemplateProps {
   open: boolean;
@@ -14,6 +17,8 @@ interface LayerAccordionTemplateProps {
 }
 
 const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, setOpen, color, title, categories }) => {
+  const [filters, setFilters] = React.useContext(FiltersContext);
+
   return (
     <QuoteWrapper borderColor={color}>
       <Collapsible
@@ -25,7 +30,14 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
       >
         <div className={styles.items}>
           {categories.map((category) => (
-            <Button variant="secondary-action" icon={category.icon}>
+            <Button
+              variant="secondary-action"
+              icon={category.icon}
+              onClick={() => {
+                setFilters({ ...filters, category: _.lowerCase(category?.value) });
+                navigate("/components");
+              }}
+            >
               {category.title}
             </Button>
           ))}
