@@ -57,7 +57,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   />
                 </ToolTip>
               </div>
-              {/* <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")} /> */}
             </TableCell>
 
             <TableCell>
