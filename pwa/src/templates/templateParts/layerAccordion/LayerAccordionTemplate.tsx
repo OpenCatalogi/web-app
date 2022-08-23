@@ -1,5 +1,6 @@
 import { QuoteWrapper } from "@conduction/components";
 import { Button } from "@gemeente-denhaag/components-react";
+import _ from "lodash";
 import * as React from "react";
 import Collapsible from "react-collapsible";
 import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
@@ -25,7 +26,11 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
       >
         <div className={styles.items}>
           {categories.map((category) => (
-            <Button variant="secondary-action" icon={category.icon}>
+            <Button
+              className={styles[_.camelCase(`${title} category`)]}
+              variant="secondary-action"
+              icon={category.icon}
+            >
               {category.title}
             </Button>
           ))}

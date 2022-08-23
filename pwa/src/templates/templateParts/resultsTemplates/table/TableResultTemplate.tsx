@@ -84,7 +84,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableCell>
               <ToolTip tooltip="Organisatie">
                 <Tag
-                  layoutClassName={styles.tagWidthTest}
                   content={{
                     icon: <FontAwesomeIcon icon={faHouse} />,
                     tag: _.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"),
