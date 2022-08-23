@@ -1,12 +1,16 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
-import { Tag } from "@conduction/components";
 import { Link } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import _ from "lodash";
+import { ToolTip } from "../../../../components/toolTip/ToolTip";
+import { Tag } from "../../../../components/tag/Tag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faT } from "@fortawesome/free-solid-svg-icons";
+import clsx from "clsx";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -22,9 +26,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
         <TableHead>
           <TableRow>
             <TableHeader>{t("Name")}</TableHeader>
+            <TableHeader>{t("Layer")}</TableHeader>
             <TableHeader>{t("Status")}</TableHeader>
             <TableHeader>{t("Type")}</TableHeader>
-            <TableHeader>{t("Layer")}</TableHeader>
             <TableHeader>{t("Organisation")}</TableHeader>
             <TableHeader>{t("Installations")}</TableHeader>
             <TableHeader />
@@ -40,23 +44,65 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.developmentStatus ?? "Onbekend")} />
+              <div
+                className={clsx(styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType}`))])}
+              >
+                <ToolTip tooltip="Laag">
+                  <Tag
+                    layoutClassName={styles.tagWidth}
+                    content={{
+                      icon: <FontAwesomeIcon icon={faLayerGroup} />,
+                      tag: _.upperFirst(t(`${component.embedded?.nl.embedded.commonground.layerType}` ?? "Onbekend")),
+                    }}
+                  />
+                </ToolTip>
+              </div>
+              {/* <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")} /> */}
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.softwareType ?? "Onbekend"} />
+              <ToolTip tooltip="Status">
+                <Tag
+                  layoutClassName={styles.tagWidth}
+                  content={{
+                    icon: <FontAwesomeIcon icon={faInfoCircle} />,
+                    tag: _.upperFirst(component.developmentStatus ?? "Onbekend"),
+                  }}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")} />
+              <ToolTip tooltip="Type">
+                <Tag
+                  content={{
+                    tag: _.upperFirst(component.softwareType ?? "Onbekend"),
+                  }}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"} />
+              <ToolTip tooltip="Organisatie">
+                <Tag
+                  layoutClassName={styles.tagWidthTest}
+                  content={{
+                    icon: <FontAwesomeIcon icon={faHouse} />,
+                    tag: _.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"),
+                  }}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.usedBy?.length() ?? 0} />
+              <ToolTip tooltip="Installaties">
+                <Tag
+                  content={{
+                    icon: <FontAwesomeIcon icon={faRepeat} />,
+                    tag: _.upperFirst(component.usedBy?.length ?? 0),
+                  }}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell className={styles.details} onClick={() => navigate(`/components/${component.id}`)}>

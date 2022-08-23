@@ -8,10 +8,11 @@ interface TagProps {
     icon?: JSX.Element;
   };
   onClick?: () => any;
+  layoutClassName?: string;
 }
 
-export const Tag: React.FC<TagProps> = ({ content, onClick }) => (
-  <div className={clsx(styles.tag, onClick && styles.tagLink)} onClick={onClick}>
+export const Tag: React.FC<TagProps> = ({ content, onClick, layoutClassName }) => (
+  <div className={clsx(styles.tag, [layoutClassName && layoutClassName], onClick && styles.tagLink)} onClick={onClick}>
     {content.icon && <span>{content.icon}</span>}
     <span>{content.tag}</span>
   </div>
