@@ -25,7 +25,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 
 interface ComponentsDetailTemplateProps {
@@ -62,15 +62,25 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </LeadParagraph>
 
               <div className={styles.tags}>
-                <div className={styles[_.camelCase(_getComponent.data.embedded?.nl.embedded.commonground.layerType)]}>
+                <div
+                  className={
+                    styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
+                  }
+                >
                   <Tag
-                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                    tag={_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)}
+                    content={{
+                      icon: <FontAwesomeIcon icon={faLayerGroup} />,
+                      tag: _.upperFirst(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`)),
+                    }}
                   ></Tag>
                 </div>
                 <div>
                   {_getComponent.data.developmentStatus && (
-                    <Tag tag={_.upperFirst(_getComponent.data.developmentStatus)} />
+                    <Tag
+                      content={{
+                        tag: _.upperFirst(_getComponent.data.developmentStatus),
+                      }}
+                    ></Tag>
                   )}
                 </div>
               </div>
@@ -87,50 +97,56 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title="Organisatie"
               content={
                 <>
-                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                     <div>
                       Dit component wordt aangeboden door{" "}
                       <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
                         <Link icon={<ArrowRightIcon />} iconAlign="start">
                           {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
                         </Link>
+                        .
                       </span>
                     </div>
-                  ) : (
-                    "Er is geen informatie beschikbaar"
                   )}
+                  {!_getComponent.data.embedded?.legal.embedded?.repoOwner.name && "Er is geen informatie beschikbaar."}
                 </>
               }
             />
             <InfoCard
               title="Github"
               content={
-                <div>
-                  De broncode van dit component is te vinden op{" "}
-                  <span onClick={() => navigate("#")}>
-                    <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                      GitHub
-                    </Link>
-                  </span>
-                </div>
+                <>
+                  {_getComponent.data.embedded?.url?.url && (
+                    <div>
+                      De broncode van dit component is te vinden op{" "}
+                      <span onClick={() => open(_getComponent.data.embedded?.url?.url)}>
+                        <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                          GitHub
+                        </Link>
+                      </span>
+                      .
+                    </div>
+                  )}
+                  {!_getComponent.data.embedded?.url?.url && "Er is geen informatie beschikbaar."}
+                </>
               }
             />
             <InfoCard
               title="Licentie"
               content={
                 <>
-                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name ? (
+                  {_getComponent.data.embedded?.legal.license && (
                     <div>
-                      De lecentie van dit component is{" "}
-                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
-                        </Link>
-                      </span>
+                      De licentie van dit component is{" "}
+                      <Tag
+                        content={{
+                          icon: <FontAwesomeIcon icon={faScroll} />,
+                          tag: _getComponent.data.embedded?.legal.license,
+                        }}
+                      ></Tag>
                     </div>
-                  ) : (
-                    "Er is geen informatie beschikbaar"
                   )}
+                  {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."}
                 </>
               }
             />
@@ -149,7 +165,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <TableRow>
                   <TableHeader>{t("Products")}</TableHeader>
                   <TableCell>
-                    {_getComponent.data.embedded.nl.upl ? (
+                    {_getComponent.data.embedded.nl.upl &&
                       _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
                         <span
                           key={idx}
@@ -159,8 +175,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             {product},
                           </Link>
                         </span>
-                      ))
-                    ) : (
+                      ))}
+                    {!_getComponent.data.embedded.nl.upl && (
                       <span>Op dit moment zijn er geen producten beschikbaar.</span>
                     )}
                   </TableCell>

@@ -51,4 +51,5 @@ export const en = {
   Usage: "Usage",
   API: "API",
   Reuser: "Reuser",
+  Interface: "Interface",
 };
