@@ -91,7 +91,7 @@
   --web-app-footer-logo-container-border-radius: 0;
   --web-app-footer-loog-container-height: 50px;
   --web-app-footer-organisation-logo-width: 230px;
-  --web-app-footer-organisation-logo-src: url("./../../../assets/svgs/LogoRotterdam.svg");
+  --web-app-footer-organisation-logo-src: url("../../../assets/svgs/LogoRotterdam.svg");
 
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;

@@ -91,7 +91,7 @@
   --web-app-footer-logo-container-border-radius: unset;
   --web-app-footer-loog-container-height: 67px;
   --web-app-footer-organisation-logo-width: 126px;
-  --web-app-footer-organisation-logo-src: url("images/LogoUtrecht.svg");
+  --web-app-footer-organisation-logo-src: url("https://opencatalogi.nl/images/LogoUtrecht.svg");
 
   --web-app-rating-active-color: hsl(211 60% 35%);
   --web-app-rating-disable-color: #bfbfbf;
