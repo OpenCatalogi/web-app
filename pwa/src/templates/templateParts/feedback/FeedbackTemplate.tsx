@@ -13,19 +13,29 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <span className={styles.heading}>Wensen of feedback?</span>
 
-      <span>
-        Deze website is 'permanente beta' en zal worden aangepast naar de behoeften van gebruikers. Wensen en
-        opmerkingen kunnen via een melding op GitHub doorgegeven worden.
-      </span>
-
-      <Button
-        className={styles.button}
-        variant="secondary-action"
-        onClick={() => open("https://github.com/OpenCatalogi/.github/issues/new/choose")}
-        icon={<ExternalLinkIcon />}
-      >
-        Melding maken op GitHub
-      </Button>
+      <span>Iedereen die geïnteresseerd is in dit product kan de roadmap bekijken of zelf ideën aandragen.</span>
+      <div className={styles.buttons}>
+        <Button
+          className={styles.button}
+          variant="secondary-action"
+          onClick={() =>
+            open(
+              "https://github.com/OpenCatalogi/.github/issues/new?assignees=rubenvdlinde%2CRonaldvCortenberghe&labels=feature-request&template=feature.yml&title=%5Bfeature%5D%3A+Als+gebruiker+wil+ik+",
+            )
+          }
+          icon={<ExternalLinkIcon />}
+        >
+          Wens of opmerking indienen op GitHub
+        </Button>
+        <Button
+          className={styles.button}
+          variant="secondary-action"
+          onClick={() => open("https://github.com/orgs/OpenCatalogi/projects/1")}
+          icon={<ExternalLinkIcon />}
+        >
+          Roadmap bekijken
+        </Button>
+      </div>
     </div>
   );
 };
