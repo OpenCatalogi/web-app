@@ -24,6 +24,7 @@ import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
+import { layers } from "../../../../data/filters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -42,6 +43,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
+      layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
@@ -62,6 +64,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     const subscription = watch(
       ({
+        layerType,
         upl,
         platforms,
         maintenanceType,
@@ -77,6 +80,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         setFilters({
           ...filters,
           currentPage: 1,
+          "nl.commonground.layerType": layerType?.map((l: any) => l.value),
           platforms: platforms?.map((p: any) => p.value),
           "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "nl.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
@@ -102,6 +106,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       <Divider />
 
       <form className={styles.form}>
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Laag</span>
+            </FormFieldLabel>
+            <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>
