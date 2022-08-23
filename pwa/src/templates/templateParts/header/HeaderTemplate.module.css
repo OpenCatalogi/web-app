@@ -23,6 +23,37 @@
 
 .secondaryNavContainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+}
+
+.organisationLogo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: var(--web-app-header-organisation-logo-padding);
+  width: var(--web-app-header-organisation-logo-width);
+  background-image: var(--web-app-header-organisation-logo-src);
+  background-color: var(--web-app-header-organisation-logo-background-color);
+  background-origin: content-box;
+}
+
+.logoContainer {
+  display: flex;
+  width: fit-content;
+  height: var(--web-app-header-logo-container-height);
+  border-radius: var(--web-app-header-logo-container-border-radius);
+  padding: var(--web-app-header-logo-container-padding);
+  background-color: var(--web-app-header-logo-container-background-color);
+}
+
+.logoContainer > * {
+  height: 100%;
+}
+
+.logoContainer > *:hover {
+  cursor: pointer;
+}
+
+.logoContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-lg);
 }
