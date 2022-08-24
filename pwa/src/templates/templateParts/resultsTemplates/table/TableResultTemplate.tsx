@@ -38,7 +38,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
       <TableBody>
         {components.map((component) => (
-          <TableRow key={component.id}>
+          <TableRow key={component.id} onClick={() => navigate(`/components/${component.id}`)}>
             <TableCell>
               <span className={styles.name}>{component.name}</span>
             </TableCell>
@@ -103,7 +103,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               </ToolTip>
             </TableCell>
 
-            <TableCell className={styles.details} onClick={() => navigate(`/components/${component.id}`)}>
+            <TableCell onClick={() => navigate(`/components/${component.id}`)}>
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Details")}
               </Link>

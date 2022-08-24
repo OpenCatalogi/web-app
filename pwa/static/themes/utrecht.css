@@ -103,6 +103,13 @@
   --web-app-rating-active-color: hsl(211 60% 35%);
   --web-app-rating-disable-color: #bfbfbf;
 
+  --web-app-layer-color-intraction: #1a75ff;
+  --web-app-layer-color-process: #dd3c49;
+  --web-app-layer-color-integration: #efc025;
+  --web-app-layer-color-services: #69b090;
+  --web-app-layer-color-data: #7a51c8;
+
+
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);

@@ -10,6 +10,8 @@ import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/component
 import { FiltersContext } from "../../../context/filters";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -111,6 +113,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         window.open("https://github.com/OpenCatalogi");
       },
       icon: <GitHubLogo />,
+    },
+    {
+      label: "Login",
+      handleClick: () => {
+        navigate("/login");
+      },
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
 

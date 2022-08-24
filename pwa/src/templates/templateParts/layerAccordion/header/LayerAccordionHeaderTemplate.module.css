@@ -20,6 +20,10 @@
   margin-inline-end: var(--web-app-size-md);
 }
 
+.content > .layerIcon {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
 .toggleIcon {
   font-size: var(--web-app-font-size-lg);
   transition: transform 200ms ease-in-out;
