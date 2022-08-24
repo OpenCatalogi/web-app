@@ -19,6 +19,7 @@ import {
   applicatiefuncties,
   referentieComponenten,
   organisations,
+  _categories,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
@@ -46,6 +47,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      category: getSelectedItemFromFilters(_categories, filters.category),
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
       bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -67,6 +69,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         layerType,
         upl,
         platforms,
+        category,
         maintenanceType,
         status,
         softwareType,
@@ -82,6 +85,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           currentPage: 1,
           "nl.commonground.layerType": layerType?.map((l: any) => l.value),
           platforms: platforms?.map((p: any) => p.value),
+          category: category?.value,
           "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "nl.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
           "nl.gemma.referentieComponenten": referentieComponenten?.map((rC: any) => rC.value),
@@ -130,6 +134,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
             <SelectSingle name="organisation" options={organisations} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Categorie</span>
+            </FormFieldLabel>
+            <SelectSingle name="category" options={_categories} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

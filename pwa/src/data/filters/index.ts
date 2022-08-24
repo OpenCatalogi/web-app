@@ -10,6 +10,7 @@ import { bedrijfsservices } from "./bedrijfsservices";
 import { applicatiefuncties } from "./applicatiefuncties";
 import { referentieComponenten } from "./referentieComponenten";
 import { organisations } from "./organisations";
+import { _categories } from "./categories";
 
 export {
   licenses,
@@ -24,4 +25,5 @@ export {
   applicatiefuncties,
   referentieComponenten,
   organisations,
+  _categories,
 };
