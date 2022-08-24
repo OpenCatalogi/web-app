@@ -51,7 +51,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(`${layer}`))]}>
           <ToolTip tooltip="Laag">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faLayerGroup} />, tag: _.upperFirst(t(`${layer}`)) }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faLayerGroup} />, tag: t(_.upperFirst(layer)) }}></Tag>
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>

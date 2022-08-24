@@ -8,6 +8,7 @@ export const en = {
   "Privacy declaration": "Privacy declaration",
   Interaction: "Interaction",
   Process: "Process",
+  Processs: "Process",
   Integration: "Integration",
   Services: "Services",
   Data: "Data",
