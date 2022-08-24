@@ -12,88 +12,88 @@
 
 /* Colors of the 5 layers */
 .interactie {
-  --web-app-tag-background-color: #1a75ff;
-  --web-app-tag-color: var(--web-app-color-white);
+  --web-app-tag-background-color: #1a75ff !important;
+  --web-app-tag-color: var(--web-app-color-white) !important;
 }
 .interactieCategory,
 .interfaceCategory {
-  background-color: #cfe2ff;
-  color: var(--web-app-color-black);
-  border: none;
+  background-color: #cfe2ff !important;
+  color: var(--web-app-color-black) !important;
+  border: none !important;
 }
 .interactieCategory:hover,
 .interfaceCategory:hover {
-  background-color: #cfe2ff;
-  color: #1a75ff;
-  cursor: pointer;
+  background-color: #cfe2ff !important;
+  color: #1a75ff !important;
+  cursor: pointer !important;
 }
 
 .proces,
 .process,
 .processs {
-  --web-app-tag-background-color: #dd3c49;
-  --web-app-tag-color: var(--web-app-color-white);
+  --web-app-tag-background-color: #dd3c49 !important;
+  --web-app-tag-color: var(--web-app-color-white) !important;
 }
 .procesCategory,
 .processCategory {
-  background-color: #f8d7da;
-  color: var(--web-app-color-black);
-  border: none;
+  background-color: #f8d7da !important;
+  color: var(--web-app-color-black) !important;
+  border: none !important;
 }
 .procesCategory:hover,
 .processCategory:hover {
-  background-color: #f8d7da;
-  color: #dd3c49;
-  cursor: pointer;
+  background-color: #f8d7da !important;
+  color: #dd3c49 !important;
+  cursor: pointer !important;
 }
 
 .integratie,
 .integration {
-  --web-app-tag-background-color: #efc025;
-  --web-app-tag-color: var(--web-app-color-white);
+  --web-app-tag-background-color: #efc025 !important;
+  --web-app-tag-color: var(--web-app-color-white) !important;
 }
 .integratieCategory,
 .integrationCategory {
-  background-color: #fff3cd;
-  color: var(--web-app-color-black);
-  border: none;
+  background-color: #fff3cd !important;
+  color: var(--web-app-color-black) !important;
+  border: none !important;
 }
 .integratieCategory:hover,
 .integrationCategory:hover {
-  background-color: #fff3cd;
-  color: #efc025;
-  cursor: pointer;
+  background-color: #fff3cd !important;
+  color: #efc025 !important;
+  cursor: pointer !important;
 }
 
 .services,
 .service {
-  --web-app-tag-background-color: #69b090;
-  --web-app-tag-color: var(--web-app-color-white);
+  --web-app-tag-background-color: #69b090 !important;
+  --web-app-tag-color: var(--web-app-color-white) !important;
 }
 .servicesCategory,
 .serviceCategory {
-  background-color: #d1e7dd;
-  color: var(--web-app-color-black);
-  border: none;
+  background-color: #d1e7dd !important;
+  color: var(--web-app-color-black) !important;
+  border: none !important;
 }
 .servicesCategory:hover,
 .serviceCategory:hover {
-  background-color: #d1e7dd;
-  color: #69b090;
-  cursor: pointer;
+  background-color: #d1e7dd !important;
+  color: #69b090 !important;
+  cursor: pointer !important;
 }
 
 .data {
-  --web-app-tag-background-color: #7a51c8;
-  --web-app-tag-color: var(--web-app-color-white);
+  --web-app-tag-background-color: #7a51c8 !important;
+  --web-app-tag-color: var(--web-app-color-white) !important;
 }
 .dataCategory {
-  background-color: #e2d9f3;
-  color: var(--web-app-color-black);
-  border: none;
+  background-color: #e2d9f3 !important;
+  color: var(--web-app-color-black) !important;
+  border: none !important;
 }
 .dataCategory:hover {
-  background-color: #e2d9f3;
-  color: #7a51c8;
-  cursor: pointer;
+  background-color: #e2d9f3 !important;
+  color: #7a51c8 !important;
+  cursor: pointer !important;
 }
