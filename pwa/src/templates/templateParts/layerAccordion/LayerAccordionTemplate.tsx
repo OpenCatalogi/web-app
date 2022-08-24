@@ -20,7 +20,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <QuoteWrapper borderColor={color}>
+    <QuoteWrapper borderColor={open ? color : ""}>
       <Collapsible
         trigger={<LayerAccordionHeaderTemplate {...{ open, title }} />}
         {...{ open }}
