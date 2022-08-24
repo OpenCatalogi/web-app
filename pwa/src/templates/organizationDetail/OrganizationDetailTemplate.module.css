@@ -38,3 +38,7 @@
 .tabPanel {
   padding: 0 !important;
 }
+
+.quote {
+  font-style: italic;
+}
