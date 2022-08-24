@@ -13,63 +13,63 @@
 /* Colors of the 5 layers */
 .interactieCategory,
 .interfaceCategory {
-  background-color: #cfe2ff !important;
+  background-color: var(--web-app-layer-category-color-intraction) !important;
   color: var(--web-app-color-black) !important;
   border: none !important;
 }
 .interactieCategory:hover,
 .interfaceCategory:hover {
-  background-color: #cfe2ff !important;
-  color: #1a75ff !important;
+  background-color: var(--web-app-layer-category-color-intraction) !important;
+  color: var(--web-app-layer-color-intraction) !important;
   cursor: pointer !important;
 }
 
 .procesCategory,
 .processCategory {
-  background-color: #f8d7da !important;
+  background-color: var(--web-app-layer-category-color-process) !important;
   color: var(--web-app-color-black) !important;
   border: none !important;
 }
 .procesCategory:hover,
 .processCategory:hover {
-  background-color: #f8d7da !important;
-  color: #dd3c49 !important;
+  background-color: var(--web-app-layer-category-color-process) !important;
+  color: var(--web-app-layer-color-process) !important;
   cursor: pointer !important;
 }
 
 .integratieCategory,
 .integrationCategory {
-  background-color: #fff3cd !important;
+  background-color: var(--web-app-layer-category-color-integration) !important;
   color: var(--web-app-color-black) !important;
   border: none !important;
 }
 .integratieCategory:hover,
 .integrationCategory:hover {
-  background-color: #fff3cd !important;
-  color: #efc025 !important;
+  background-color: var(--web-app-layer-category-color-integration) !important;
+  color: var(--web-app-layer-color-integration) !important;
   cursor: pointer !important;
 }
 
 .servicesCategory,
 .serviceCategory {
-  background-color: #d1e7dd !important;
+  background-color: var(--web-app-layer-category-color-services) !important;
   color: var(--web-app-color-black) !important;
   border: none !important;
 }
 .servicesCategory:hover,
 .serviceCategory:hover {
-  background-color: #d1e7dd !important;
-  color: #69b090 !important;
+  background-color: var(--web-app-layer-category-color-services) !important;
+  color: var(--web-app-layer-color-services) !important;
   cursor: pointer !important;
 }
 
 .dataCategory {
-  background-color: #e2d9f3 !important;
+  background-color: var(--web-app-layer-category-color-data) !important;
   color: var(--web-app-color-black) !important;
   border: none !important;
 }
 .dataCategory:hover {
-  background-color: #e2d9f3 !important;
-  color: #7a51c8 !important;
+  background-color: var(--web-app-layer-category-color-data) !important;
+  color: var(--web-app-layer-color-data) !important;
   cursor: pointer !important;
 }
