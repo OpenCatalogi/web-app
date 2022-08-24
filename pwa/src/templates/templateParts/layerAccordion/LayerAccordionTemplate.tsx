@@ -20,7 +20,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <QuoteWrapper borderColor={color}>
+    <QuoteWrapper borderColor={open ? color : ""}>
       <Collapsible
         trigger={<LayerAccordionHeaderTemplate {...{ open, title }} />}
         {...{ open }}
@@ -31,6 +31,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
         <div className={styles.items}>
           {categories.map((category) => (
             <Button
+              className={styles[_.camelCase(`${title} category`)]}
               variant="secondary-action"
               icon={category.icon}
               onClick={() => {

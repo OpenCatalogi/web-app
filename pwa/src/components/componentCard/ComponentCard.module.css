@@ -59,7 +59,9 @@
 }
 .interactieCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: #cfe2ff;
+  --web-app-tag-background-color: var(
+    --web-app-layer-category-color-intraction
+  );
 }
 
 .proces,
@@ -70,7 +72,7 @@
 }
 .procesCategory,
 .processCategory {
-  --web-app-tag-background-color: #f8d7da;
+  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
 }
 
 .integratie,
@@ -80,7 +82,9 @@
 }
 .integratieCategory,
 .integrationCategory {
-  --web-app-tag-background-color: #fff3cd;
+  --web-app-tag-background-color: var(
+    --web-app-layer-category-color-integration
+  );
 }
 
 .services,
@@ -91,7 +95,7 @@
 
 .servicesCategory,
 .serviceCategory {
-  --web-app-tag-background-color: #d1e7dd;
+  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
 }
 
 .data {
@@ -99,5 +103,5 @@
   --web-app-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
-  --web-app-tag-background-color: #e2d9f3;
+  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
 }

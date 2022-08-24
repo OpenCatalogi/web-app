@@ -27,7 +27,6 @@ export const ComponentsTemplate: React.FC = () => {
       <div className={styles.header}>
         <div>
           <Heading2>Componenten</Heading2>
-          <span>Alle gefilterde componenten</span>
         </div>
         <div className={styles.resultsDisplaySwitchButtons}>
           <Button

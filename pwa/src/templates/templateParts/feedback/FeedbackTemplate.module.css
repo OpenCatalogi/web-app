@@ -11,6 +11,16 @@
   font-size: var(--web-app-font-size-xl);
 }
 
+.buttons {
+  width: fit-content;
+  display: flex;
+}
+
+.buttons > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
 .button {
   width: fit-content;
+  display: flex;
 }

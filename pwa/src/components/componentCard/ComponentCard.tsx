@@ -51,13 +51,13 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(`${layer}`))]}>
           <ToolTip tooltip="Laag">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faLayerGroup} />, tag: _.upperFirst(t(`${layer}`)) }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faLayerGroup} />, tag: _.upperFirst(t(`${layer}`)) }} />
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
           {_category && (
             <ToolTip tooltip="Categorie">
-              <Tag content={{ icon: _category?.icon, tag: _.upperFirst(_category?.title) }}></Tag>
+              <Tag content={{ icon: _category?.icon, tag: _.upperFirst(_category?.title) }} />
             </ToolTip>
           )}
         </div>
@@ -66,32 +66,32 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.tags}>
         {tags.status && (
           <ToolTip tooltip="Status">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faInfoCircle} />, tag: _.upperFirst(tags.status) }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faInfoCircle} />, tag: _.upperFirst(tags.status) }} />
           </ToolTip>
         )}
         {tags.installations && (
           <ToolTip tooltip="Aantal Installaties">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: _.toString(tags.installations) }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: _.toString(tags.installations) }} />
           </ToolTip>
         )}
         {!tags.installations && (
           <ToolTip tooltip="Aantal Installaties">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: "0" }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: "0" }} />
           </ToolTip>
         )}
         {tags.organisation && (
           <ToolTip tooltip="Organisatie">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faHouse} />, tag: tags.organisation }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faHouse} />, tag: tags.organisation }} />
           </ToolTip>
         )}
         {tags.licence && (
           <ToolTip tooltip="Licentie">
-            <Tag content={{ icon: <FontAwesomeIcon icon={faScroll} />, tag: tags.licence }}></Tag>
+            <Tag content={{ icon: <FontAwesomeIcon icon={faScroll} />, tag: tags.licence }} />
           </ToolTip>
         )}
         {tags.githubLink && (
           <ToolTip tooltip="GitHub">
-            <Tag content={{ icon: <GitHubLogo />, tag: "Repository" }} onClick={() => open(tags.githubLink)}></Tag>
+            <Tag content={{ icon: <GitHubLogo />, tag: "Repository" }} onClick={() => open(tags.githubLink)} />
           </ToolTip>
         )}
       </div>
