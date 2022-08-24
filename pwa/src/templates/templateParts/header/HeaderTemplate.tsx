@@ -127,6 +127,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
       <div className={styles.top}>
         <Container layoutClassName={styles.secondaryNavContainer}>
+          <div className={styles.logoContainer}>
+            <div onClick={() => navigate("/")} className={styles.organisationLogo}></div>
+          </div>
           <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
