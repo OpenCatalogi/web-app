@@ -52,4 +52,7 @@ export const en = {
   API: "API",
   Reuser: "Reuser",
   Interface: "Interface",
+  Username: "Username",
+  Password: "Password",
+  Send: "Send",
 };
