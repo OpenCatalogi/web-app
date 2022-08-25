@@ -15,7 +15,7 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table"; 
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
@@ -70,7 +70,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <Tag
                     content={{
                       icon: <FontAwesomeIcon icon={faLayerGroup} />,
-                      tag: _.upperFirst(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`)),
+                      tag: t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)),
                     }}
                   ></Tag>
                 </div>

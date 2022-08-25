@@ -52,7 +52,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     layoutClassName={styles.tagWidth}
                     content={{
                       icon: <FontAwesomeIcon icon={faLayerGroup} />,
-                      tag: _.upperFirst(t(`${component.embedded?.nl.embedded.commonground.layerType}` ?? "Onbekend")),
+                      tag: t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")),
                     }}
                   />
                 </ToolTip>
