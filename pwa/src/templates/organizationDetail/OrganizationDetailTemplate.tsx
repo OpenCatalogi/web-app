@@ -14,12 +14,10 @@ import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { ExternalLinkIcon, CallIcon, EmailIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
-import { navigate } from "gatsby";
-import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { Tag } from "../../components/tag/Tag";
@@ -67,11 +65,11 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           title="ISO"
           content={
             <>
-              <div className={styles.test}>
+              <div className={styles.iso}>
                 <FontAwesomeIcon icon={faCheck} />
                 <span>9001</span>
               </div>
-              <div className={styles.test}>
+              <div className={styles.iso}>
                 <FontAwesomeIcon icon={faCheck} />
                 <span>27010</span>
               </div>
@@ -81,41 +79,31 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <InfoCard
           title="Componenten"
           content={
-            <>
-              {/* {_getComponent.data.embedded?.url?.url && ( */}
-              <div>
-                Gemeente Rotterdam heeft{" "}
-                <Tag
-                  content={{
-                    icon: <FontAwesomeIcon icon={faRepeat} />,
-                    tag: "24",
-                  }}
-                />{" "}
-                componenten.
-              </div>
-              {/* )}
-                  {!_getComponent.data.embedded?.url?.url && "Er is geen informatie beschikbaar."} */}
-            </>
+            <div>
+              Gemeente Rotterdam heeft{" "}
+              <Tag
+                content={{
+                  icon: <FontAwesomeIcon icon={faRepeat} />,
+                  tag: "24",
+                }}
+              />{" "}
+              componenten.
+            </div>
           }
         />
         <InfoCard
           title="Gebruik"
           content={
-            <>
-              {/* {_getComponent.data.embedded?.legal.license && ( */}
-              <div>
-                Gemeente Rotterdam heeft: <br />
-                <Tag
-                  content={{
-                    icon: <FontAwesomeIcon icon={faRepeat} />,
-                    tag: "215",
-                  }}
-                />{" "}
-                componenten in gebruik.
-              </div>
-              {/* )}
-                  {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."} */}
-            </>
+            <div>
+              Gemeente Rotterdam heeft: <br />
+              <Tag
+                content={{
+                  icon: <FontAwesomeIcon icon={faRepeat} />,
+                  tag: "215",
+                }}
+              />{" "}
+              componenten in gebruik.
+            </div>
           }
         />
         <InfoCard

@@ -49,7 +49,7 @@
   column-gap: var(--web-app-size-md);
 }
 
-.test > *:not(:last-child) {
+.iso > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
   color: green;
 }
