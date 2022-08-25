@@ -42,3 +42,14 @@
 .quote {
   font-style: italic;
 }
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr;
+  column-gap: var(--web-app-size-md);
+}
+
+.test > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+  color: green;
+}

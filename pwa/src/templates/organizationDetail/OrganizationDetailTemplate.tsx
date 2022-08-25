@@ -1,4 +1,4 @@
-import { Container } from "@conduction/components";
+import { Container, InfoCard } from "@conduction/components";
 import {
   Divider,
   Heading1,
@@ -14,10 +14,15 @@ import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
+import { ExternalLinkIcon, CallIcon, EmailIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { navigate } from "gatsby";
+import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { Tag } from "../../components/tag/Tag";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -55,6 +60,79 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <div className={styles.headerLogo}>
           <img className={styles.logo} src={organizationLogo} alt="Organization logo" />
         </div>
+      </div>
+
+      <div className={styles.cardsContainer}>
+        <InfoCard
+          title="ISO"
+          content={
+            <>
+              <div className={styles.test}>
+                <FontAwesomeIcon icon={faCheck} />
+                <span>9001</span>
+              </div>
+              <div className={styles.test}>
+                <FontAwesomeIcon icon={faCheck} />
+                <span>27010</span>
+              </div>
+            </>
+          }
+        />
+        <InfoCard
+          title="Componenten"
+          content={
+            <>
+              {/* {_getComponent.data.embedded?.url?.url && ( */}
+              <div>
+                Gemeente Rotterdam heeft{" "}
+                <Tag
+                  content={{
+                    icon: <FontAwesomeIcon icon={faRepeat} />,
+                    tag: "24",
+                  }}
+                />{" "}
+                componenten.
+              </div>
+              {/* )}
+                  {!_getComponent.data.embedded?.url?.url && "Er is geen informatie beschikbaar."} */}
+            </>
+          }
+        />
+        <InfoCard
+          title="Gebruik"
+          content={
+            <>
+              {/* {_getComponent.data.embedded?.legal.license && ( */}
+              <div>
+                Gemeente Rotterdam heeft: <br />
+                <Tag
+                  content={{
+                    icon: <FontAwesomeIcon icon={faRepeat} />,
+                    tag: "215",
+                  }}
+                />{" "}
+                componenten in gebruik.
+              </div>
+              {/* )}
+                  {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."} */}
+            </>
+          }
+        />
+        <InfoCard
+          title="Ondersteuning"
+          content={
+            <div>
+              Gemeente Rotterdam ondersteund{" "}
+              <Tag
+                content={{
+                  icon: <FontAwesomeIcon icon={faRepeat} />,
+                  tag: "137",
+                }}
+              />{" "}
+              componenten.
+            </div>
+          }
+        />
       </div>
 
       <Divider />
