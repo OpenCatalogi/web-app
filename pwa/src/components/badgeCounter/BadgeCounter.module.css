@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+}
+
+.badge {
+  height: var(--web-app-size-md);
+  width: var(--web-app-size-md);
+  border-radius: 50%;
+  font-size: var(--web-app-size-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
