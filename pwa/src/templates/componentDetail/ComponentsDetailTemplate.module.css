@@ -47,6 +47,10 @@
   column-gap: var(--web-app-size-md);
 }
 
+.layersContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
 .externalLink {
   text-decoration: none;
 }
