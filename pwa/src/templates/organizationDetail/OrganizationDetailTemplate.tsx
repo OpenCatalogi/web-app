@@ -3,6 +3,7 @@ import {
   Divider,
   Heading1,
   Heading2,
+  Heading3,
   LeadParagraph,
   Link,
   Tab,
@@ -18,6 +19,7 @@ import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -61,32 +63,20 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
       <div className={styles.section}>
         <Heading2>Componenten</Heading2>
-
-        <TabContext value={currentTab.toString()}>
-          <Tabs
-            value={currentTab}
-            onChange={(_, newValue: number) => {
-              setCurrentTab(newValue);
-            }}
-            variant="scrollable"
-          >
-            <Tab className={styles.tab} label="Eigen componenten" value={0} />
-            <Tab className={styles.tab} label="Ondersteunde componenten" value={1} />
-            <Tab className={styles.tab} label="Gebruikte componenten" value={2} />
-          </Tabs>
-
-          <TabPanel className={styles.tabPanel} value="0">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} hideTableHead />
-          </TabPanel>
-
-          <TabPanel className={styles.tabPanel} value="1">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
-          </TabPanel>
-
-          <TabPanel className={styles.tabPanel} value="2">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
-          </TabPanel>
-        </TabContext>
+        <div className={styles.layersContainer}>
+          <div className={styles.components}>
+            <Heading3>Eigen componenten</Heading3>
+            <CardsSearchTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} />
+          </div>
+          <div className={styles.components}>
+            <Heading3>Ondersteunde componenten</Heading3>
+            <CardsSearchTemplate components={TEMPORARY_COMPONENTS.slice(7, 13)} />
+          </div>
+          <div className={styles.components}>
+            <Heading3>Gebruikte componenten</Heading3>
+            <CardsSearchTemplate components={TEMPORARY_COMPONENTS} />
+          </div>
+        </div>
       </div>
 
       <Divider />

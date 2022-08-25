@@ -42,3 +42,11 @@
 .quote {
   font-style: italic;
 }
+
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.layersContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-2xl);
+}
