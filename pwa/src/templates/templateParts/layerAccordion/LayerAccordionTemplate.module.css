@@ -10,6 +10,10 @@
   margin-inline-end: var(--web-app-size-sm);
 }
 
+.container {
+  opacity: 0.65;
+}
+
 /* Colors of the 5 layers */
 .interactieCategory,
 .interfaceCategory {
@@ -20,7 +24,7 @@
 .interactieCategory:hover,
 .interfaceCategory:hover {
   background-color: var(--web-app-layer-category-color-intraction) !important;
-  color: var(--web-app-layer-color-intraction) !important;
+  color: var(--web-app-layer-color-interaction) !important;
   cursor: pointer !important;
 }
 

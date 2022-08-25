@@ -16,7 +16,7 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
       {items.map(({ label, active, handleClick }) => (
         <span
           onClick={() => handleClick((o) => !o)}
-          className={clsx(styles[label.toLowerCase()], active && styles.active)}
+          className={clsx(styles[label.toLowerCase()], active ? styles.active : styles.inactive)}
         >
           {label}
         </span>

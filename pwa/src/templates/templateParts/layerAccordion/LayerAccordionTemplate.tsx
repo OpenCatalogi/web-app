@@ -20,31 +20,33 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <QuoteWrapper borderColor={open ? color : ""}>
-      <Collapsible
-        trigger={<LayerAccordionHeaderTemplate {...{ open, title }} />}
-        {...{ open }}
-        transitionTime={200}
-        onOpening={() => setOpen(true)}
-        onClosing={() => setOpen(false)}
-      >
-        <div className={styles.items}>
-          {categories.map((category) => (
-            <Button
-              className={styles[_.camelCase(`${title} category`)]}
-              variant="secondary-action"
-              icon={category.icon}
-              onClick={() => {
-                setFilters({ ...filters, category: _.lowerCase(category?.value) });
-                navigate("/components");
-              }}
-            >
-              {category.title}
-            </Button>
-          ))}
-        </div>
-      </Collapsible>
-    </QuoteWrapper>
+    <div className={!open && styles.container}>
+      <QuoteWrapper borderColor={color}>
+        <Collapsible
+          trigger={<LayerAccordionHeaderTemplate {...{ open, title }} />}
+          {...{ open }}
+          transitionTime={200}
+          onOpening={() => setOpen(true)}
+          onClosing={() => setOpen(false)}
+        >
+          <div className={styles.items}>
+            {categories.map((category) => (
+              <Button
+                className={styles[_.camelCase(`${title} category`)]}
+                variant="secondary-action"
+                icon={category.icon}
+                onClick={() => {
+                  setFilters({ ...filters, category: _.lowerCase(category?.value) });
+                  navigate("/components");
+                }}
+              >
+                {category.title}
+              </Button>
+            ))}
+          </div>
+        </Collapsible>
+      </QuoteWrapper>
+    </div>
   );
 };
 
