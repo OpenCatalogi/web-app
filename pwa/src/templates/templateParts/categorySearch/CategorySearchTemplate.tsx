@@ -30,7 +30,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openInteraction}
         setOpen={setOpenInteraction}
         color="#1a75ff"
-        categories={categories.interactie}
+        categories={categories.Interactie}
       />
 
       <Accordion
@@ -38,7 +38,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openProcess}
         setOpen={setOpenProcess}
         color="#dd3c49"
-        categories={categories.proces}
+        categories={categories.Proces}
       />
 
       <Accordion
@@ -46,7 +46,7 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openIntegration}
         setOpen={setOpenIntegration}
         color="#efc025"
-        categories={categories.integratie}
+        categories={categories.Integratie}
       />
 
       <Accordion
@@ -54,10 +54,10 @@ export const CategorySearchTemplate: React.FC = () => {
         open={openServices}
         setOpen={setOpenServices}
         color="#69b090"
-        categories={categories.services}
+        categories={categories.Service}
       />
 
-      <Accordion title="Data" open={openData} setOpen={setOpenData} color="#7a51c8" categories={categories.data} />
+      <Accordion title="Data" open={openData} setOpen={setOpenData} color="#7a51c8" categories={categories.Data} />
     </>
   );
 };

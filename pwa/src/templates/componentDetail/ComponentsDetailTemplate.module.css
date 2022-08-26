@@ -20,12 +20,21 @@
   margin-block-end: var(--web-app-size-md) !important;
 }
 
-.tags {
+.layerTags {
   display: flex;
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerTags > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-sm);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .addToCatalogusContainer {
