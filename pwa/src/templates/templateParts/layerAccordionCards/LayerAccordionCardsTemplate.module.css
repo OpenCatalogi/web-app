@@ -1,3 +1,7 @@
+.container {
+  opacity: 0.65 !important;
+}
+
 .items {
   padding-block-end: var(--web-app-size-md);
 }
@@ -14,8 +18,4 @@
   display: grid;
   grid-gap: var(--web-app-size-lg);
   grid-template-columns: 1fr 1fr;
-}
-
-.container {
-  opacity: 0.65;
 }

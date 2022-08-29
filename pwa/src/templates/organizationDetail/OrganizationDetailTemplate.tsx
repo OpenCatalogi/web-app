@@ -1,22 +1,10 @@
-import { Container } from "@conduction/components";
-import {
-  Divider,
-  Heading1,
-  Heading2,
-  Heading3,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
+import { Container } from "@conduction/components";
+import { Divider, Heading1, Heading2, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
 import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
-import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
@@ -26,8 +14,6 @@ interface OrganizationDetailTemplateProps {
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
-  const [currentTab, setCurrentTab] = React.useState<number>(0);
-
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.headerContainer}>
