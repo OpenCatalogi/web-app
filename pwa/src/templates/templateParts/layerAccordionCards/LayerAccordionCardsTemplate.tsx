@@ -36,9 +36,9 @@ const LayerAccordionCardsTemplate: React.FC<LayerAccordionCardsTemplateProps> = 
           onClosing={() => setOpen(false)}
         >
           <div className={styles.ComponentsGrid}>
-            {components.map((component) => (
+            {components.map((component, idx) => (
               <ComponentCard
-                key={component.id}
+                key={idx}
                 title={{ label: component.name, href: `/components/${component.id}` }}
                 description={component.embedded?.description?.shortDescription}
                 layer={component.embedded?.nl.embedded?.commonground.layerType}

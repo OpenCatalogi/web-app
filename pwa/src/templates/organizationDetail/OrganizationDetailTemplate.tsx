@@ -35,13 +35,14 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Heading1>Gemeente Rotterdam</Heading1>
 
           <LeadParagraph>
-            <div className={styles.quote}>
+            <span className={styles.quote}>
               Een stad waar je ruimte ervaart. <br />
               Bij een organisatie die je vrijheid en verantwoordelijkheid biedt. <br />
               Voor werk waar je uitdaging voelt. <br />
               Zodat jij en de stad blijven groeien. <br />
               Voor en met alle Rotterdammers.
-            </div>
+            </span>
+            <br />
             <br />
             Bij een stad die je elke dag uitdaagt en het beste in jou naar boven haalt, hoort een eigentijdse overheid
             die meebeweegt met de energie van de stad. Zo’n organisatie wil de gemeente Rotterdam zijn. Daarom bieden we
