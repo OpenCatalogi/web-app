@@ -14,8 +14,9 @@ interface LayerAccordionCardsFiltersTemplateProps {
 export const LayerAccordionCardsFiltersTemplate: React.FC<LayerAccordionCardsFiltersTemplateProps> = ({ items }) => {
   return (
     <div className={styles.container}>
-      {items.map(({ label, active, handleClick, count }) => (
+      {items.map(({ label, active, handleClick, count }, idx) => (
         <span
+          key={idx}
           onClick={() => count > 0 && handleClick((o) => !o)}
           className={clsx(
             styles[label.toLowerCase()],

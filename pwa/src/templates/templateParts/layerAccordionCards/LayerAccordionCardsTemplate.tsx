@@ -25,7 +25,7 @@ const LayerAccordionCardsTemplate: React.FC<LayerAccordionCardsTemplateProps> = 
 }) => {
   const count = components.length;
   return (
-    <div className={!open && styles.container}>
+    <div className={!open ? styles.container : ""}>
       <QuoteWrapper borderColor={count > 0 ? color : ""}>
         <Collapsible
           triggerDisabled={count <= 0}
