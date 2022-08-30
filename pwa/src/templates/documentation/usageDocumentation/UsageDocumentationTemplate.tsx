@@ -34,7 +34,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
               hier
             </Link>
           </span>{" "}
-          en een online-editor kan je{" "}
+          en een online-editor kun je{" "}
           <span
             onClick={() => {
               navigate("#");
@@ -68,29 +68,23 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Heading2>3. Via andere catalogussen</Heading2>
         <Paragraph>
           Open Catalogi synchroniseert onder andere met{" "}
-          <a href="https://componentencatalogus.commonground.nl/" target={"_blank"}>
-            <span>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                Common Ground Componenten­catalogus
-              </Link>
-            </span>
-          </a>
+          <span onClick={() => open("https://componentencatalogus.commonground.nl/")}>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              Common Ground Componenten­catalogus
+            </Link>
+          </span>
           ,{" "}
-          <a href="https://developer.overheid.nl/" target={"_blank"}>
-            <span>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                Developer Overheid
-              </Link>
-            </span>
-          </a>{" "}
+          <span onClick={() => open("https://developer.overheid.nl/")}>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              Developer Overheid
+            </Link>
+          </span>{" "}
           en <br />
-          <a href=" https://www.softwarecatalogus.nl/" target={"_blank"}>
-            <span>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                GEMMA Softwarecatalogus
-              </Link>
-            </span>
-          </a>{" "}
+          <span onClick={() => open("https://www.softwarecatalogus.nl/")}>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              GEMMA Softwarecatalogus
+            </Link>
+          </span>,{" "}
           het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in Open Catalogi.
         </Paragraph>
         <Heading2>4. Via het aanmaken van een account</Heading2>
