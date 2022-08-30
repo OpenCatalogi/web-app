@@ -13,6 +13,7 @@ import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilter
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
+import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -84,6 +85,9 @@ export const ComponentsTemplate: React.FC = () => {
 
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
+      </div>
+      <div className={styles.feedback}>
+        <SubmitComponentTemplate />
       </div>
     </Container>
   );

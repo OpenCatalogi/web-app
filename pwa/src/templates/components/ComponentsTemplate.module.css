@@ -47,3 +47,8 @@
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
+
+.feedback {
+  display: flex;
+  justify-content: flex-end;
+}
