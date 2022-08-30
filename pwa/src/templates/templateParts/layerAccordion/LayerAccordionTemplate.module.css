@@ -10,66 +10,81 @@
   margin-inline-end: var(--web-app-size-sm);
 }
 
+.categoryButton {
+  border: none !important;
+  --denhaag-button-secondary-action-color: var(--web-app-color-black);
+}
+.categoryButton:hover {
+  cursor: pointer !important;
+}
+
 /* Colors of the 5 layers */
-.interactieCategory,
-.interfaceCategory {
-  background-color: var(--web-app-layer-category-color-intraction) !important;
-  color: var(--web-app-color-black) !important;
-  border: none !important;
+.interactieCategory {
+  --denhaag-button-secondary-action-background-color: var(
+    --web-app-layer-category-color-intraction
+  );
 }
-.interactieCategory:hover,
-.interfaceCategory:hover {
-  background-color: var(--web-app-layer-category-color-intraction) !important;
-  color: var(--web-app-layer-color-intraction) !important;
-  cursor: pointer !important;
-}
-
-.procesCategory,
-.processCategory {
-  background-color: var(--web-app-layer-category-color-process) !important;
-  color: var(--web-app-color-black) !important;
-  border: none !important;
-}
-.procesCategory:hover,
-.processCategory:hover {
-  background-color: var(--web-app-layer-category-color-process) !important;
-  color: var(--web-app-layer-color-process) !important;
-  cursor: pointer !important;
+.interactieCategory:hover {
+  --denhaag-button-secondary-action-hover-background-color: var(
+    --web-app-layer-category-color-intraction
+  );
+  --denhaag-button-secondary-action-hover-color: var(
+    --web-app-layer-color-intraction
+  );
 }
 
-.integratieCategory,
-.integrationCategory {
-  background-color: var(--web-app-layer-category-color-integration) !important;
-  color: var(--web-app-color-black) !important;
-  border: none !important;
+.procesCategory {
+  --denhaag-button-secondary-action-background-color: var(
+    --web-app-layer-category-color-process
+  );
 }
-.integratieCategory:hover,
-.integrationCategory:hover {
-  background-color: var(--web-app-layer-category-color-integration) !important;
-  color: var(--web-app-layer-color-integration) !important;
-  cursor: pointer !important;
+.procesCategory:hover {
+  --denhaag-button-secondary-action-hover-background-color: var(
+    --web-app-layer-category-color-process
+  );
+  --denhaag-button-secondary-action-hover-color: var(
+    --web-app-layer-color-process
+  );
 }
 
-.servicesCategory,
-.serviceCategory {
-  background-color: var(--web-app-layer-category-color-services) !important;
-  color: var(--web-app-color-black) !important;
-  border: none !important;
+.integratieCategory {
+  --denhaag-button-secondary-action-background-color: var(
+    --web-app-layer-category-color-integration
+  );
 }
-.servicesCategory:hover,
-.serviceCategory:hover {
-  background-color: var(--web-app-layer-category-color-services) !important;
-  color: var(--web-app-layer-color-services) !important;
-  cursor: pointer !important;
+.integratieCategory:hover {
+  --denhaag-button-secondary-action-hover-background-color: var(
+    --web-app-layer-category-color-integration
+  );
+  --denhaag-button-secondary-action-hover-color: var(
+    --web-app-layer-color-integration
+  );
+}
+
+.servicesCategory {
+  --denhaag-button-secondary-action-background-color: var(
+    --web-app-layer-category-color-services
+  );
+}
+.servicesCategory:hover {
+  --denhaag-button-secondary-action-hover-background-color: var(
+    --web-app-layer-category-color-services
+  );
+  --denhaag-button-secondary-action-hover-color: var(
+    --web-app-layer-color-services
+  );
 }
 
 .dataCategory {
-  background-color: var(--web-app-layer-category-color-data) !important;
-  color: var(--web-app-color-black) !important;
-  border: none !important;
+  --denhaag-button-secondary-action-background-color: var(
+    --web-app-layer-category-color-data
+  );
 }
 .dataCategory:hover {
-  background-color: var(--web-app-layer-category-color-data) !important;
-  color: var(--web-app-layer-color-data) !important;
-  cursor: pointer !important;
+  --denhaag-button-secondary-action-hover-background-color: var(
+    --web-app-layer-category-color-data
+  );
+  --denhaag-button-secondary-action-hover-color: var(
+    --web-app-layer-color-data
+  );
 }
