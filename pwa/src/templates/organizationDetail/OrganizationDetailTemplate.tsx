@@ -1,4 +1,6 @@
-import { Container, InfoCard } from "@conduction/components";
+import * as React from "react";
+import * as styles from "./OrganizationDetailTemplate.module.css";
+import { Container, QuoteWrapper, InfoCard } from "@conduction/components";
 import {
   Divider,
   Heading1,
@@ -10,8 +12,6 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import * as React from "react";
-import * as styles from "./OrganizationDetailTemplate.module.css";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
 import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
@@ -36,13 +36,13 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Heading1>Gemeente Rotterdam</Heading1>
 
           <LeadParagraph>
-            <div className={styles.quote}>
+            <QuoteWrapper>
               Een stad waar je ruimte ervaart. <br />
               Bij een organisatie die je vrijheid en verantwoordelijkheid biedt. <br />
               Voor werk waar je uitdaging voelt. <br />
               Zodat jij en de stad blijven groeien. <br />
               Voor en met alle Rotterdammers.
-            </div>
+            </QuoteWrapper>
             <br />
             Bij een stad die je elke dag uitdaagt en het beste in jou naar boven haalt, hoort een eigentijdse overheid
             die meebeweegt met de energie van de stad. Zo’n organisatie wil de gemeente Rotterdam zijn. Daarom bieden we
@@ -80,14 +80,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           title="Componenten"
           content={
             <div>
-              Gemeente Rotterdam heeft{" "}
-              <Tag
-                content={{
-                  icon: <FontAwesomeIcon icon={faRepeat} />,
-                  tag: "24",
-                }}
-              />{" "}
-              componenten.
+              Gemeente Rotterdam heeft <Tag label="24" icon={<FontAwesomeIcon icon={faRepeat} />} /> componenten.
             </div>
           }
         />
@@ -96,13 +89,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           content={
             <div>
               Gemeente Rotterdam heeft: <br />
-              <Tag
-                content={{
-                  icon: <FontAwesomeIcon icon={faRepeat} />,
-                  tag: "215",
-                }}
-              />{" "}
-              componenten in gebruik.
+              <Tag label="215" icon={<FontAwesomeIcon icon={faRepeat} />} /> componenten in gebruik.
             </div>
           }
         />
@@ -110,14 +97,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           title="Ondersteuning"
           content={
             <div>
-              Gemeente Rotterdam ondersteund{" "}
-              <Tag
-                content={{
-                  icon: <FontAwesomeIcon icon={faRepeat} />,
-                  tag: "137",
-                }}
-              />{" "}
-              componenten.
+              Gemeente Rotterdam ondersteund <Tag label="137" icon={<FontAwesomeIcon icon={faRepeat} />} /> componenten.
             </div>
           }
         />

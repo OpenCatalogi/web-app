@@ -39,10 +39,6 @@
   padding: 0 !important;
 }
 
-.quote {
-  font-style: italic;
-}
-
 .cardsContainer {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr 2fr;
