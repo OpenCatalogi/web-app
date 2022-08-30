@@ -19,7 +19,7 @@ import {
   applicatiefuncties,
   referentieComponenten,
   organisations,
-  _categories,
+  categories,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
@@ -47,7 +47,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
-      category: getSelectedItemFromFilters(_categories, filters.category),
+      category: getSelectedItemFromFilters(categories, filters.category),
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
       bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -142,7 +142,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Categorie</span>
             </FormFieldLabel>
-            <SelectSingle name="category" options={_categories} {...{ errors, control, register }} />
+            <SelectSingle name="category" options={categories} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

@@ -29,7 +29,7 @@ import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortaw
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
-import { _categories } from "../../data/filters";
+import { categories as _categories } from "../../data/filters";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -79,24 +79,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 >
                   <ToolTip tooltip="Laag">
                     <Tag
-                      content={{
-                        icon: <FontAwesomeIcon icon={faLayerGroup} />,
-                        tag: t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)),
-                      }}
-                    ></Tag>
+                      label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
+                      icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                    />
                   </ToolTip>
                 </div>
 
                 {_getComponent.data?.categories && category && (
-                <div
-                  className={
-                    styles[_.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)]
-                  }
-                >
-                  <ToolTip tooltip="Categorie">
-                    <Tag content={{ icon: category?.icon, tag: _.upperFirst(category?.title) }} />
-                  </ToolTip>
-                </div>
+                  <div
+                    className={
+                      styles[_.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)]
+                    }
+                  >
+                    <ToolTip tooltip="Categorie">
+                      <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
+                    </ToolTip>
+                  </div>
                 )}
               </div>
 
@@ -104,36 +102,30 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.developmentStatus && (
                   <ToolTip tooltip="Status">
                     <Tag
-                      content={{
-                        icon: <FontAwesomeIcon icon={faInfoCircle} />,
-                        tag: _.upperFirst(_getComponent.data.developmentStatus),
-                      }}
-                    ></Tag>
+                      label={_.upperFirst(_getComponent.data.developmentStatus)}
+                      icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                    />
                   </ToolTip>
                 )}
                 {_getComponent.data.usedBy?.length && (
                   <ToolTip tooltip="Installaties">
                     <Tag
-                      content={{
-                        icon: <FontAwesomeIcon icon={faRepeat} />,
-                        tag: _.toString(_getComponent.data.usedBy?.length),
-                      }}
-                    ></Tag>
+                      label={_.toString(_getComponent.data.usedBy?.length)}
+                      icon={<FontAwesomeIcon icon={faRepeat} />}
+                    />
                   </ToolTip>
                 )}
                 {!_getComponent.data.usedBy?.length && (
                   <ToolTip tooltip="Installaties">
-                    <Tag content={{ icon: <FontAwesomeIcon icon={faRepeat} />, tag: "0" }}></Tag>
+                    <Tag label="0" icon={<FontAwesomeIcon icon={faRepeat} />} />
                   </ToolTip>
                 )}
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
-                      content={{
-                        icon: <FontAwesomeIcon icon={faHouse} />,
-                        tag: _getComponent.data.embedded?.legal.embedded?.repoOwner.name,
-                      }}
-                    ></Tag>
+                      label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                      icon={<FontAwesomeIcon icon={faHouse} />}
+                    />
                   </ToolTip>
                 )}
               </div>
@@ -192,11 +184,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <div>
                       De licentie van dit component is{" "}
                       <Tag
-                        content={{
-                          icon: <FontAwesomeIcon icon={faScroll} />,
-                          tag: _getComponent.data.embedded?.legal.license,
-                        }}
-                      ></Tag>
+                        label={_getComponent.data.embedded?.legal.license}
+                        icon={<FontAwesomeIcon icon={faScroll} />}
+                      />
                     </div>
                   )}
                   {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."}
