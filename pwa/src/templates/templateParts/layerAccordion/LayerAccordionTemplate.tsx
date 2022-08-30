@@ -7,6 +7,7 @@ import _ from "lodash";
 import Collapsible from "react-collapsible";
 import { FiltersContext } from "../../../context/filters";
 import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
+import clsx from "clsx";
 
 interface LayerAccordionTemplateProps {
   open: boolean;
@@ -31,7 +32,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, s
         <div className={styles.items}>
           {categories.map((category) => (
             <Button
-              className={styles[_.camelCase(`${title} category`)]}
+              className={clsx(styles[_.camelCase(`${title} category`)], styles.categoryButton)}
               variant="secondary-action"
               icon={category.icon}
               onClick={() => {
