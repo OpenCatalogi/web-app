@@ -39,10 +39,6 @@
   padding: 0 !important;
 }
 
-.quote {
-  font-style: italic;
-}
-
 .components > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }

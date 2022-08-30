@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, QuoteWrapper } from "@conduction/components";
 import { Divider, Heading1, Heading2, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
@@ -21,13 +21,13 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Heading1>Gemeente Rotterdam</Heading1>
 
           <LeadParagraph>
-            <span className={styles.quote}>
+            <QuoteWrapper>
               Een stad waar je ruimte ervaart. <br />
               Bij een organisatie die je vrijheid en verantwoordelijkheid biedt. <br />
               Voor werk waar je uitdaging voelt. <br />
               Zodat jij en de stad blijven groeien. <br />
               Voor en met alle Rotterdammers.
-            </span>
+            </QuoteWrapper>
             <br />
             <br />
             Bij een stad die je elke dag uitdaagt en het beste in jou naar boven haalt, hoort een eigentijdse overheid

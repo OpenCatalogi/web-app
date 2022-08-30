@@ -18,7 +18,7 @@
 .interactieCategory,
 .interfaceCategory {
   --web-app-tag-background-color: var(
-    --web-app-layer-category-color-intraction
+    --web-app-layer-category-color-interaction
   );
 }
 

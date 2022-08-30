@@ -57,19 +57,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   }
                 >
                   <Tag
-                    content={{
-                      icon: <FontAwesomeIcon icon={faLayerGroup} />,
-                      tag: t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType)),
-                    }}
-                  ></Tag>
+                    label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                  />
                 </div>
                 <div>
                   {_getComponent.data.developmentStatus && (
-                    <Tag
-                      content={{
-                        tag: _.upperFirst(_getComponent.data.developmentStatus),
-                      }}
-                    ></Tag>
+                    <Tag label={_.upperFirst(_getComponent.data.developmentStatus)} />
                   )}
                 </div>
               </div>
@@ -128,11 +122,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <div>
                       De licentie van dit component is{" "}
                       <Tag
-                        content={{
-                          icon: <FontAwesomeIcon icon={faScroll} />,
-                          tag: _getComponent.data.embedded?.legal.license,
-                        }}
-                      ></Tag>
+                        label={_getComponent.data.embedded?.legal.license}
+                        icon={<FontAwesomeIcon icon={faScroll} />}
+                      />
                     </div>
                   )}
                   {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."}

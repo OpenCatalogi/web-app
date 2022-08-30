@@ -50,10 +50,8 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={styles.tagWidth}
-                    content={{
-                      icon: <FontAwesomeIcon icon={faLayerGroup} />,
-                      tag: t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")),
-                    }}
+                    label={t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend"))}
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
               </div>
@@ -63,43 +61,30 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <ToolTip tooltip="Status">
                 <Tag
                   layoutClassName={styles.tagWidth}
-                  content={{
-                    icon: <FontAwesomeIcon icon={faInfoCircle} />,
-                    tag: _.upperFirst(component.developmentStatus ?? "Onbekend"),
-                  }}
+                  label={_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                  icon={<FontAwesomeIcon icon={faInfoCircle} />}
                 />
               </ToolTip>
             </TableCell>
 
             <TableCell>
               <ToolTip tooltip="Type">
-                <Tag
-                  content={{
-                    tag: _.upperFirst(component.softwareType ?? "Onbekend"),
-                  }}
-                />
+                <Tag label={_.upperFirst(component.softwareType ?? "Onbekend")} />
               </ToolTip>
             </TableCell>
 
             <TableCell>
               <ToolTip tooltip="Organisatie">
                 <Tag
-                  content={{
-                    icon: <FontAwesomeIcon icon={faHouse} />,
-                    tag: _.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"),
-                  }}
+                  label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
+                  icon={<FontAwesomeIcon icon={faHouse} />}
                 />
               </ToolTip>
             </TableCell>
 
             <TableCell>
               <ToolTip tooltip="Installaties">
-                <Tag
-                  content={{
-                    icon: <FontAwesomeIcon icon={faRepeat} />,
-                    tag: _.upperFirst(component.usedBy?.length ?? 0),
-                  }}
-                />
+                <Tag label={_.upperFirst(component.usedBy?.length ?? 0)} icon={<FontAwesomeIcon icon={faRepeat} />} />
               </ToolTip>
             </TableCell>
 
