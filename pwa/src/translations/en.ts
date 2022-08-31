@@ -56,4 +56,7 @@ export const en = {
   Username: "Username",
   Password: "Password",
   Send: "Send",
+  Private: "Private",
+  Public: "Public",
+  Unkown: "Unkown",
 };

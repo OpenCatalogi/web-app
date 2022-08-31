@@ -56,4 +56,7 @@ export const nl = {
   Username: "Gebruikersnaam",
   Password: "Wachtwoord",
   Send: "Versturen",
+  Private: "Privé",
+  Public: "Openbaar",
+  Unkown: "Onbekend",
 };
