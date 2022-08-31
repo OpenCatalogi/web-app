@@ -1,0 +1,36 @@
+:root {
+  --conduction-input-select-border: 1px solid var(--skeleton-color-grey-3);
+  --conduction-input-select-border-focus: 2px dashed
+    var(--skeleton-color-grey-5);
+}
+
+.select > div {
+  background-color: var(--skeleton-color-white);
+  border: var(--conduction-input-select-border);
+  border-radius: var(--skeleton-border-radius-md);
+  box-sizing: border-box;
+  padding-block-start: var(--skeleton-size-xs);
+  padding-block-end: var(--skeleton-size-xs);
+}
+
+.select > div:focus-within {
+  outline: none;
+  box-shadow: none;
+}
+
+.select > div:hover {
+  border-color: var(--skeleton-color-grey-3);
+}
+
+.select > div:focus-within::after {
+  content: "";
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  bottom: calc(var(--skeleton-size-2xs) * -1);
+  left: calc(var(--skeleton-size-2xs) * -1);
+  right: calc(var(--skeleton-size-2xs) * -1);
+  top: calc(var(--skeleton-size-2xs) * -1);
+  border: var(--conduction-input-select-border-focus);
+  border-radius: var(--skeleton-border-radius-md);
+}

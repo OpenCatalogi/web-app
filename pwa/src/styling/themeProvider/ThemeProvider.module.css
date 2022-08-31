@@ -1,0 +1,23 @@
+.container {
+  background-color: var(--web-app-color-background-footer);
+  display: flex;
+  justify-content: center;
+  padding-block-end: var(--web-app-size-xl);
+}
+.content > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.label {
+  font-weight: var(--web-app-font-weight-normal);
+  font-size: var(--web-app-size-md);
+}
+
+.themeSwitcher {
+  background-color: var(--web-app-color-darkgrey);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+  padding-block-start: var(--web-app-size-md);
+  padding-block-end: var(--web-app-size-md);
+  border-radius: 25px;
+}
