@@ -59,8 +59,8 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
 
   return (
     <>
-      <div className={styles.themeSwitcher}>
-        <Heading2>Thema Aanpassen:</Heading2>
+      <div className={styles.themeSwitcherContainer}>
+        <Heading2 className={styles.header}>Thema Aanpassen:</Heading2>
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>

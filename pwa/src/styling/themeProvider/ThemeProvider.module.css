@@ -1,8 +1,11 @@
 .container {
   background-color: var(--web-app-color-background-footer);
-  display: flex;
-  justify-content: center;
-  padding-block-end: var(--web-app-size-xl);
+  padding-block-end: var(--web-app-size-3xl);
+  padding-block-start: var(--web-app-size-3xl);
+}
+.content {
+  margin-inline: auto;
+  max-width: var(--conduction-container-max-width);
 }
 .content > *:not(:last-child) {
   margin-block-end: var(--web-app-size-sm);
@@ -11,13 +14,12 @@
 .label {
   font-weight: var(--web-app-font-weight-normal);
   font-size: var(--web-app-size-md);
+  color: var(--web-app-color-footer-headings);
+}
+.header {
+  color: var(--web-app-color-footer-headings);
 }
 
-.themeSwitcher {
-  background-color: var(--web-app-color-darkgrey);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-md);
-  padding-block-end: var(--web-app-size-md);
-  border-radius: 25px;
+.themeSwitcherContainer {
+  max-width: 600px;
 }
