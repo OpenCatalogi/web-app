@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { Heading2 } from "@gemeente-denhaag/components-react";
-import { SelectSingle } from "../../pages/components/formFields/select/select";
+import { SelectSingle } from "@conduction/components";
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
