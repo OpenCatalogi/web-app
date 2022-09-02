@@ -20,12 +20,12 @@
   margin-block-end: var(--web-app-size-md) !important;
 }
 
-.layerTags {
+.layerAndCategoryContainer {
   display: flex;
   margin-block-end: var(--web-app-size-xs);
 }
 
-.layerTags > *:not(:last-child) {
+.layerAndCategoryContainer > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
 }
 

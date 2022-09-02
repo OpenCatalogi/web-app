@@ -71,30 +71,29 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded.description.longDescription}
               </LeadParagraph>
 
-              <div className={styles.layerTags}>
-                <div
-                  className={
-                    styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
-                  }
-                >
-                  <ToolTip tooltip="Laag">
-                    <Tag
-                      label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
-                      icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                    />
-                  </ToolTip>
-                </div>
+              <div className={styles.layerAndCategoryContainer}>
+                <ToolTip tooltip="Laag">
+                  <Tag
+                    layoutClassName={
+                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
+                    }
+                    label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                  />
+                </ToolTip>
 
                 {_getComponent.data?.categories && category && (
-                  <div
-                    className={
-                      styles[_.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)]
-                    }
-                  >
-                    <ToolTip tooltip="Categorie">
-                      <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
-                    </ToolTip>
-                  </div>
+                  <ToolTip tooltip="Categorie">
+                    <Tag
+                      layoutClassName={
+                        styles[
+                          _.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)
+                        ]
+                      }
+                      label={_.upperFirst(category?.title)}
+                      icon={category?.icon}
+                    />
+                  </ToolTip>
                 )}
               </div>
 
