@@ -102,6 +102,8 @@
 
   --web-app-component-card-border-color: 1px solid var(--skeleton-color-grey-2);
 
+  --web-app-code-block-background-color: var(--skeleton-color-grey-1);
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);

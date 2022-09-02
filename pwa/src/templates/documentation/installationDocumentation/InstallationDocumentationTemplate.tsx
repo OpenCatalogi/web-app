@@ -3,14 +3,15 @@ import * as styles from "./InstallationDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading1, Heading2, Heading3, LeadParagraph, Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { CodeBlock } from "../../../components/codeBlock/CodeBlock";
 
 export const InstallationDocumentationTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Componenten Installeren met de Skeleton Applicatie</Heading1>
+        <Heading1>Componenten installeren met de skeleton application</Heading1>
         <LeadParagraph>
-          De skeleton applicatie is ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
+          De skeleton application is ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
           System. Het biedt een basis skelet ontwerp met volledige NL Design System functionaliteit die elke
           ontwikkelaar gemakkelijk kan uitbreiden, lokaal kan bekijken en kan implementeren in een online omgeving voor
           demonstratiedoeleinden. De belangrijkste voordelen zijn:
@@ -25,7 +26,8 @@ export const InstallationDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading2>Aan de slag </Heading2>
         <Paragraph>
-          Om een eigen project op te zetten moet u een GitHub-account hebben en ingelogd zijn. Klik op de groene "Use this template" op de <br />
+          Om een eigen project op te zetten heeft u een GitHub-account nodig en daar mee ingelogd zijn. Klik op de
+          groene "Use this template" op de <br />
           <span onClick={() => open("https://github.com/ConductionNL/skeleton-app")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               GitHub-pagina
@@ -45,23 +47,27 @@ export const InstallationDocumentationTemplate: React.FC = () => {
         <Paragraph>
           U heeft een Git client nodig(optioneel), en u moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
-          <div className={styles.code}>
-            $ cd /pwa <br />
-            $ npm install <br />
-            $ npm run develop <br />
-          </div>
+          <CodeBlock
+            codeBlock={
+              <div>
+                $ cd /pwa <br />
+                $ npm install <br />
+                $ npm run develop <br />
+              </div>
+            }
+          />
         </Paragraph>
         <Heading3>Docker</Heading3>
         <Paragraph>
           U moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
           zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
-          <div className={styles.code}>$ docker-compose pull</div>
+          <CodeBlock codeBlock={"$ docker-compose pull"} />
           De eerste keer dat u Docker containers of wanneer u grote veranderingen heeft gemaakt aan de werking van de
           applicatie, voert u het volgende commando uit:
-          <div className={styles.code}>$ docker-compose up --build</div>
+          <CodeBlock codeBlock={"$ docker-compose up --build"} />
           Als u dit niet doet dan draait u de containers zonder de applicatie container te herbouwen.
-          <div className={styles.code}>$ docker-compose up</div>
-          Na het succesvol instellen van je ontwikkelomgeving, navigeer naar{" "}
+          <CodeBlock codeBlock={"$ docker-compose up"} />
+          Na het succesvol instellen van uw ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               http://localhost:81/
@@ -80,7 +86,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Heading2>Installeren op Kubernetes omgevingen</Heading2>
         <Paragraph>
-          Om de applicatie te installeren op uw eigen cloud omgeving ondersteunen Website installaties in{" "}
+          Om de applicatie te installeren op uw eigen cloud omgeving ondersteunen website installaties in{" "}
           <span onClick={() => open("https://kubernetes.io/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               Kubernetes
@@ -92,7 +98,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
               Helm
             </Link>
           </span>{" "}
-          grafiek Kubernetes is een Container Orkestratie en dat is een standaard geworden voor Nederlandse gemeenten
+          grafiek. Kubernetes is een Container Orkestratie en dat is een standaard geworden voor Nederlandse gemeenten
           onder de{" "}
           <span onClick={() => open("https://haven.commonground.nl/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -117,8 +123,8 @@ export const InstallationDocumentationTemplate: React.FC = () => {
           .
           <br />
           <br />
-          Deze Helm grafiek kan geïnstalleerd worden door Helm te draaien van uw lokale machine (zie de instructies over
-          hoe je Helm installeert op <br />
+          De Helm grafiek kan ook geïnstalleerd worden door Helm te draaien van uw lokale machine (zie de instructies
+          over hoe u Helm installeert op <br />
           <span onClick={() => open("https://helm.sh/docs/intro/install/#through-package-managers/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               helm.sh
@@ -133,10 +139,15 @@ export const InstallationDocumentationTemplate: React.FC = () => {
           te hebben geïnstalleerd).
           <br />
           <br />
-          <div className={styles.code}>
-            $ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/ <br />
-            $ helm install my-opencatalogi opencatalogi/opencatalogi <br />
-          </div>
+          <CodeBlock
+            codeBlock={
+              <div>
+                $ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
+                <br />
+                $ helm install my-opencatalogi opencatalogi/opencatalogi <br />
+              </div>
+            }
+          />
           Voor overige configuratie verwijzen we vriendelijk naar de documentatie van de helm grafiek die vind u{" "}
           <span
             onClick={() =>
@@ -168,8 +179,8 @@ export const InstallationDocumentationTemplate: React.FC = () => {
           .
           <br /> <br />
           Als u de technische documentatie lokaal wilt draaien, kunt u dit doen door middel van de MKDocs server en het
-          serve commando. Ga naar de lokale repository en voer het commando uit om de documentatie beschikbaar te
-          stellen op poort 8000. <br />
+          "serve" commando. <CodeBlock codeBlock={"$ mkdocs serve"} /> Ga naar de lokale repository en voer het commando
+          uit om de documentatie beschikbaar te stellen op poort:8000. <br />
           Zorg er voor dat je eerst{" "}
           <span onClick={() => open("https://www.mkdocs.org/user-guide/installation/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
