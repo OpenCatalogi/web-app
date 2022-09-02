@@ -1,7 +1,4 @@
 .container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-
   border: var(--web-app-component-card-border-color);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
@@ -10,11 +7,31 @@
 }
 
 .container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.header {
+  display: flex;
+}
+
+.header > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-md);
 }
 
-.content > *:not(.titleLink):not(.tags):not(:last-child) {
-  margin-block-end: var(--web-app-size-md);
+.header > .headerContent {
+  flex: 1;
+}
+
+.header > .logoContainer {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: 50px;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--web-app-color-background-light);
 }
 
 .titleLink {
@@ -39,25 +56,16 @@
   text-overflow: ellipsis;
 }
 
-.tags > div {
-  margin-block-end: var(--web-app-size-xs);
-}
-
-.tags > *:not(:last-child) {
+.tagsContainer > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
 }
 
-.logoContent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: calc(100%);
-  max-width: calc(100%);
+.tagsContainer > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .logo {
-  vertical-align: middle;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
