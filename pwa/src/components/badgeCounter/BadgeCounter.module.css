@@ -3,11 +3,14 @@
 }
 
 .badge {
-  height: var(--web-app-size-md);
-  width: var(--web-app-size-md);
+  height: var(--web-app-font-size-lg);
+  width: var(--web-app-font-size-lg);
   border-radius: 50%;
-  font-size: var(--web-app-size-sm);
+  font-size: var(--web-app-font-size-xs);
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.maxNumber {
+  font-size: var(--web-app-font-size-2xs);
 }

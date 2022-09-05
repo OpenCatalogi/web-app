@@ -1,19 +1,35 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Divider, Heading1, Heading2, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import {
+  Divider,
+  Heading1,
+  Heading2,
+  LeadParagraph,
+  Link,
+  Tab,
+  TabContext,
+  TabPanel,
+  Tabs,
+} from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
 import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
+import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
+  const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const TempComponentsOwned = TEMPORARY_COMPONENTS.slice(0, 7);
+  const TempComponentsSupported = TEMPORARY_COMPONENTS.slice(8, 13);
+  const TempComponentsUsed = TEMPORARY_COMPONENTS;
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.headerContainer}>
@@ -50,21 +66,79 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
       <div className={styles.section}>
         <Heading2>Componenten</Heading2>
-        <div className={styles.layersContainer}>
-          <div className={styles.components}>
-            <Heading3>Eigen componenten</Heading3>
-            <CardsSearchTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} />
-          </div>
-          <div className={styles.components}>
-            <Heading3>Ondersteunde componenten</Heading3>
-            <CardsSearchTemplate components={TEMPORARY_COMPONENTS.slice(7, 13)} />
-          </div>
-          <div className={styles.components}>
-            <Heading3>Gebruikte componenten</Heading3>
-            <CardsSearchTemplate components={TEMPORARY_COMPONENTS} />
-          </div>
-        </div>
+        <TabContext value={currentTab.toString()}>
+          <Tabs
+            value={currentTab}
+            onChange={(_, newValue: number) => {
+              setCurrentTab(newValue);
+            }}
+            variant="scrollable"
+          >
+            <Tab
+              id="Tab"
+              className={styles.tab}
+              label={
+                <BadgeCounter
+                  layoutClassName={styles.badgeLayout}
+                  stylingClassName={styles.badgeStyle}
+                  number={TempComponentsOwned.length}
+                >
+                  Eigen componenten
+                </BadgeCounter>
+              }
+              value={0}
+            />
+            <Tab
+              id="Tab"
+              className={styles.tab}
+              label={
+                <BadgeCounter
+                  layoutClassName={styles.badgeLayout}
+                  stylingClassName={styles.badgeStyle}
+                  number={TempComponentsSupported.length}
+                >
+                  Ondersteunde componenten
+                </BadgeCounter>
+              }
+              value={1}
+            />
+            <Tab
+              id="Tab"
+              className={styles.tab}
+              label={
+                <BadgeCounter
+                  layoutClassName={styles.badgeLayout}
+                  stylingClassName={styles.badgeStyle}
+                  number={TempComponentsUsed.length}
+                >
+                  Gebruikte componenten
+                </BadgeCounter>
+              }
+              value={2}
+            />
+          </Tabs>
+
+          <TabPanel className={styles.tabPanel} value="0">
+            <div className={styles.components}>
+              <CardsSearchTemplate components={TempComponentsOwned} />
+            </div>
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="1">
+            <div className={styles.components}>
+              <CardsSearchTemplate components={TempComponentsSupported} />
+            </div>
+          </TabPanel>
+
+          <TabPanel className={styles.tabPanel} value="2">
+            <div className={styles.components}>
+              <CardsSearchTemplate components={TempComponentsUsed} />
+            </div>
+          </TabPanel>
+        </TabContext>
       </div>
+
+      <div className={styles.section}></div>
 
       <Divider />
 

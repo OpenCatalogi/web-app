@@ -3,7 +3,7 @@ import * as styles from "./LayerAccordionCardsHeaderTemplate.module.css";
 import clsx from "clsx";
 import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { BadgeCounter } from "../../../../components/badgeCounter/BadgeCounter";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
@@ -27,14 +27,14 @@ export const LayerAccordionCardsHeaderTemplate: React.FC<LayerAccordionHeaderTem
         <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
         {count > 0 && (
           <>
-            <BadgeCounter number={count} layoutClassName={styles[_.camelCase(`${title} badge`)]}>
+            <BadgeCounter number={count} stylingClassName={styles[_.camelCase(`${title} badge`)]}>
               <Heading3 className={styles.title}>{t(title)}</Heading3>
             </BadgeCounter>
             <FontAwesomeIcon className={clsx(styles.toggleIcon, open && styles.open)} icon={faChevronRight} />
           </>
         )}
         {count <= 0 && (
-          <BadgeCounter number={count} layoutClassName={styles.disabledBadge}>
+          <BadgeCounter number={count} stylingClassName={styles.disabledBadge}>
             <Heading3 className={styles.title}>{t(title)}</Heading3>
           </BadgeCounter>
         )}

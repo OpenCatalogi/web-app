@@ -43,6 +43,10 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.layersContainer > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-2xl);
+.badgeLayout {
+  margin-inline-start: var(--skeleton-size-xs);
+  align-items: inherit !important;
+}
+.badgeStyle {
+  background-color: var(--web-app-color-background-light);
 }
