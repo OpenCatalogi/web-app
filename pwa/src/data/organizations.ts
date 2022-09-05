@@ -1,4 +1,4 @@
-export const TEMPORARY_ORGANISATIONS = [
+export const TEMPORARY_ORGANIZATIONS = [
   {
     id: "5acfe26f-e485-4de9-acd7-140908ed503f",
     name: "Conduction",
@@ -105,11 +105,12 @@ export const TEMPORARY_ORGANISATIONS = [
   {
     id: "3034b57d-3013-4718-9202-aa7692129f0d",
     name: "Gemeente Onbekend",
-    description: "Onbekend",
+    description:
+      "Onbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend ",
     logo: "",
-    supports: [" 497f6eca-6276-4993-bfeb-53cbbbba6f08"],
-    owns: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
-    uses: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
+    supports: [],
+    owns: [],
+    uses: undefined,
     token: "",
     github: "",
     gitlab: "",

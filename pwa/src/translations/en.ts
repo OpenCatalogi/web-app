@@ -33,7 +33,7 @@ export const en = {
   Name: "Name",
   Repository: "Repository",
   "Check out the repository on GitHub": "Check out the repository on GitHub",
-  Organisation: "Organisation",
+  Organization: "Organization",
   Layer: "Layer",
   Layers: "Layers",
   Type: "Type",

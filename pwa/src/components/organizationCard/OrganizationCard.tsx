@@ -1,19 +1,18 @@
 import * as React from "react";
-import * as styles from "./OrganisationCard.module.css";
+import * as styles from "./OrganizationCard.module.css";
 import { Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { Tag } from "../tag/Tag";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe, faHouse, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
-import grey from "../../assets/images/grey.png";
 
-export interface OrganisationCardProps {
+export interface OrganizationCardProps {
   title: {
     label: string;
     href: string;
@@ -23,15 +22,15 @@ export interface OrganisationCardProps {
   logo?: string;
   type?: string;
   components: {
-    owned?: number;
-    supported?: number;
-    used?: number;
+    owned: string;
+    supported: string;
+    used: string;
   };
   github?: string;
   gitlab?: string;
 }
 
-export const OrganisationCard: React.FC<OrganisationCardProps> = ({
+export const OrganizationCard: React.FC<OrganizationCardProps> = ({
   title,
   description,
   website,
@@ -66,49 +65,52 @@ export const OrganisationCard: React.FC<OrganisationCardProps> = ({
       <div className={styles.tagsContainer}>
         {type && (
           <ToolTip tooltip="Bedrijstype">
-            <Tag label={t(_.upperFirst(type))} icon={<FontAwesomeIcon icon={faHouse} />} />
+            <Tag
+              label={t(_.upperFirst(type))}
+              onClick={() => navigate(title.href)}
+              icon={<FontAwesomeIcon icon={faBuilding} />}
+            />
           </ToolTip>
         )}
         {!type && (
           <ToolTip tooltip="Bedrijstype">
-            <Tag label={_.upperFirst("Onbekend")} icon={<FontAwesomeIcon icon={faHouse} />} />
+            <Tag
+              label={_.upperFirst("Onbekend")}
+              onClick={() => navigate(title.href)}
+              icon={<FontAwesomeIcon icon={faBuilding} />}
+            />
           </ToolTip>
         )}
+
         {website && (
           <ToolTip tooltip={website}>
             <Tag label={"Website"} icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
           </ToolTip>
         )}
-        {components.owned && (
-          <ToolTip tooltip="Aantal eigen componenten">
-            <Tag label={_.toString(components.owned)} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {!components.owned && (
-          <ToolTip tooltip="Aantal eigen componenten">
-            <Tag label={"0"} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {components.supported && (
-          <ToolTip tooltip="Aantal ondersteunde componenten">
-            <Tag label={_.toString(components.supported)} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {!components.supported && (
-          <ToolTip tooltip="Aantal ondersteunde componenten">
-            <Tag label={"0"} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {components.used && (
-          <ToolTip tooltip="Aantal gebruikte componenten">
-            <Tag label={_.toString(components.used)} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {!components.used && (
-          <ToolTip tooltip="Aantal gebruikte componenten">
-            <Tag label={"0"} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
+
+        <ToolTip tooltip="Aantal eigen componenten">
+          <Tag
+            label={components.owned}
+            onClick={() => navigate(title.href)}
+            icon={<FontAwesomeIcon icon={faHouseLaptop} />}
+          />
+        </ToolTip>
+
+        <ToolTip tooltip="Aantal ondersteunde componenten">
+          <Tag
+            label={components.supported}
+            onClick={() => navigate(title.href)}
+            icon={<FontAwesomeIcon icon={faUserCog} />}
+          />
+        </ToolTip>
+
+        <ToolTip tooltip="Aantal gebruikte componenten">
+          <Tag
+            label={components.used}
+            onClick={() => navigate(title.href)}
+            icon={<FontAwesomeIcon icon={faRepeat} />}
+          />
+        </ToolTip>
         {github && (
           <ToolTip tooltip="GitHub">
             <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(github)} />

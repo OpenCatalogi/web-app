@@ -4,8 +4,8 @@ import _ from "lodash";
 import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { TEMPORARY_ORGANISATIONS } from "../../../../data/organisations";
-import { OrganisationCard } from "../../../../components/organisationCard/OrganisationCard";
+import { TEMPORARY_ORGANIZATIONS } from "../../../../data/organizations";
+import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 
 interface CardsResultTemplateProps {
   components: any[];
@@ -14,20 +14,20 @@ interface CardsResultTemplateProps {
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
   return (
     <div className={styles.ComponentsGrid}>
-      {TEMPORARY_ORGANISATIONS.map((organisation) => (
-        <OrganisationCard
-          title={{ label: organisation.name, href: `/organizations/${organisation.id}` }}
-          description={organisation.description}
-          website={organisation.website}
-          logo={organisation.logo}
+      {TEMPORARY_ORGANIZATIONS.map((organization) => (
+        <OrganizationCard
+          title={{ label: organization.name, href: `/organizations/${organization.id}` }}
+          description={organization.description}
+          website={organization.website}
+          logo={organization.logo}
           components={{
-            owned: organisation.owns.length,
-            supported: organisation.supports.length,
-            used: organisation.uses.length,
+            owned: organization.owns?.length.toString() ?? "0",
+            supported: organization.supports?.length.toString() ?? "0",
+            used: organization.uses?.length.toString() ?? "0",
           }}
-          github={organisation.github}
-          gitlab={organisation.gitlab}
-          type={organisation.type}
+          github={organization.github}
+          gitlab={organization.gitlab}
+          type={organization.type}
         />
       ))}
       {components.map((component) => (
@@ -39,8 +39,8 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
           tags={{
             status: component.developmentStatus,
-            installations: component.usedBy?.length(),
-            organisation: component.embedded?.legal.embedded?.repoOwner.name,
+            installations: component.usedBy?.length.toString() ?? "0",
+            organization: component.embedded?.legal.embedded?.repoOwner.name,
             licence: component.embedded?.legal.license,
             githubLink: component.embedded?.url?.url,
           }}

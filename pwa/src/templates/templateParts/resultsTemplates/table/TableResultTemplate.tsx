@@ -9,7 +9,7 @@ import _ from "lodash";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { Tag } from "../../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faT } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 
 interface LayersResultTemplateProps {
@@ -29,7 +29,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableHeader>{t("Layer")}</TableHeader>
             <TableHeader>{t("Status")}</TableHeader>
             <TableHeader>{t("Type")}</TableHeader>
-            <TableHeader>{t("Organisation")}</TableHeader>
+            <TableHeader>{t("Organization")}</TableHeader>
             <TableHeader>{t("Installations")}</TableHeader>
             <TableHeader />
           </TableRow>

@@ -175,7 +175,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <div className={styles.heading}>{t("An initiative of")}</div>
 
           <div className={styles.logosContainer}>
-            <div className={styles.organisationLogo}></div>
+            <div className={styles.organizationLogo}></div>
             <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
           </div>
         </div>
