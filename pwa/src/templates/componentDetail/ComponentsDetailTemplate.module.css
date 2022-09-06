@@ -56,10 +56,6 @@
   column-gap: var(--web-app-size-md);
 }
 
-.layersContainer > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-xl);
-}
-
 .externalLink {
   text-decoration: none;
 }
@@ -68,14 +64,8 @@
   padding-top: var(--web-app-size-md);
 }
 
-.tabs :first-child {
-  width: fit-content;
-}
-
-.panels,
-.tabs {
-  position: relative;
-  left: calc(var(--web-app-size-lg) * -1);
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .tabPanel {
@@ -92,6 +82,14 @@
 
 .tab {
   max-width: unset !important;
+}
+
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+  align-items: inherit !important;
+}
+.badgeStyle {
+  background-color: var(--web-app-color-background-light);
 }
 
 /* Colors of the 5 layers */

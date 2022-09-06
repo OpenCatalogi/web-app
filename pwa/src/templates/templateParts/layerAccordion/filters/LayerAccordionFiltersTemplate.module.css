@@ -16,6 +16,14 @@
   cursor: pointer;
 }
 
+.container > .disabled:hover {
+  cursor: no-drop;
+}
+
+.container .disabled {
+  opacity: 0.45;
+}
+
 .container > *::before {
   content: " ";
   display: inline-block;
@@ -29,11 +37,11 @@
   margin-inline-end: var(--web-app-size-md);
 }
 
-.container > .interactie.inactive,
-.proces.inactive,
-.integratie.inactive,
-.service.inactive,
-.data.inactive {
+.container > :not(.disabled).interactie.inactive,
+:not(.disabled).proces.inactive,
+:not(.disabled).integratie.inactive,
+:not(.disabled).service.inactive,
+:not(.disabled).data.inactive {
   opacity: 0.65;
 }
 

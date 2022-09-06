@@ -1,50 +1,40 @@
 import * as React from "react";
 import * as styles from "./LayerAccordionTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
-import { Button } from "@gemeente-denhaag/components-react";
-import { navigate } from "gatsby";
-import _ from "lodash";
 import Collapsible from "react-collapsible";
-import { FiltersContext } from "../../../context/filters";
 import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
-import clsx from "clsx";
 
 interface LayerAccordionTemplateProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   color: string;
   title: string;
-  categories: any[];
+  badgeNumber?: number;
+  children: React.ReactNode;
 }
 
-const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({ open, setOpen, color, title, categories }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
+  open,
+  setOpen,
+  color,
+  title,
+  badgeNumber,
+  children,
+}) => {
+  const borderColor = badgeNumber?.toString ? (badgeNumber > 0 ? color : "") : color;
 
   return (
     <div className={!open && styles.container}>
-      <QuoteWrapper borderColor={color}>
+      <QuoteWrapper borderColor={borderColor}>
         <Collapsible
-          trigger={<LayerAccordionHeaderTemplate {...{ open, title }} />}
+          triggerDisabled={badgeNumber ? badgeNumber <= 0 : false}
+          trigger={<LayerAccordionHeaderTemplate {...{ open, title, badgeNumber }} />}
           {...{ open }}
           transitionTime={200}
           onOpening={() => setOpen(true)}
           onClosing={() => setOpen(false)}
         >
-          <div className={styles.items}>
-            {categories.map((category) => (
-              <Button
-                className={clsx(styles[_.camelCase(`${title} category`)], styles.categoryButton)}
-                variant="secondary-action"
-                icon={category.icon}
-                onClick={() => {
-                  setFilters({ ...filters, category: _.lowerCase(category?.value) });
-                  navigate("/components");
-                }}
-              >
-                {category.title}
-              </Button>
-            ))}
-          </div>
+          {children}
         </Collapsible>
       </QuoteWrapper>
     </div>

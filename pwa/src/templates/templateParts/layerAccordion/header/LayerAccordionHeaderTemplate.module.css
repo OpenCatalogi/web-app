@@ -7,13 +7,26 @@
   cursor: pointer;
 }
 
-.container:not(.open) {
+.container:not(.open):not(.disabled) {
   opacity: 0.65;
+}
+
+.disabled {
+  opacity: 0.45;
+}
+
+.disabled:hover {
+  cursor: no-drop;
 }
 
 .content {
   display: flex;
   align-items: center;
+}
+
+.title:not(:last-child) {
+  display: flex;
+  margin-inline-end: var(--web-app-size-2xs);
 }
 
 .content > *:not(:last-child) {
@@ -31,4 +44,30 @@
 
 .toggleIcon.open {
   transform: rotate(90deg);
+}
+
+/* badges */
+.interactionBadge {
+  background-color: var(--web-app-layer-color-interaction);
+  color: var(--web-app-color-white);
+}
+.processBadge {
+  background-color: var(--web-app-layer-color-process);
+  color: var(--web-app-color-white);
+}
+.integrationBadge {
+  background-color: var(--web-app-layer-color-integration);
+  color: var(--web-app-color-white);
+}
+.servicesBadge {
+  background-color: var(--web-app-layer-color-services);
+  color: var(--web-app-color-white);
+}
+.dataBadge {
+  background-color: var(--web-app-layer-color-data);
+  color: var(--web-app-color-white);
+}
+.disabledBadge {
+  background-color: var(--web-app-color-background-light);
+  color: var(--web-app-color-black);
 }

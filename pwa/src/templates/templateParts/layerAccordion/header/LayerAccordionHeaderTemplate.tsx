@@ -4,23 +4,60 @@ import clsx from "clsx";
 import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import { BadgeCounter } from "../../../../components/badgeCounter/BadgeCounter";
+import _ from "lodash";
 
 interface LayerAccordionHeaderTemplateProps {
   title: string;
   open: boolean;
+  badgeNumber?: number;
 }
 
-export const LayerAccordionHeaderTemplate: React.FC<LayerAccordionHeaderTemplateProps> = ({ open, title }) => {
+export const LayerAccordionHeaderTemplate: React.FC<LayerAccordionHeaderTemplateProps> = ({
+  open,
+  title,
+  badgeNumber,
+}) => {
+  const { t } = useTranslation();
+  const badge = badgeNumber?.toString;
+
   return (
-    <div className={clsx(styles.container, open && styles.open)}>
-      <div className={styles.content}>
-        <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
-        <Heading3>{title}</Heading3>
+    <>
+      {badge && (
+        <div className={clsx(styles.container, open && styles.open, badgeNumber <= 0 && styles.disabled)}>
+          <div className={styles.content}>
+            <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
+            {badgeNumber > 0 && (
+              <>
+                <BadgeCounter number={badgeNumber} stylingClassName={styles[_.camelCase(`${title} badge`)]}>
+                  <Heading3 className={styles.title}>{t(title)}</Heading3>
+                </BadgeCounter>
+                <FontAwesomeIcon className={clsx(styles.toggleIcon, open && styles.open)} icon={faChevronRight} />
+              </>
+            )}
+            {badgeNumber <= 0 && (
+              <BadgeCounter number={badgeNumber} stylingClassName={styles.disabledBadge}>
+                <Heading3 className={styles.title}>{t(title)}</Heading3>
+              </BadgeCounter>
+            )}
+          </div>
 
-        <FontAwesomeIcon className={clsx(styles.toggleIcon, open && styles.open)} icon={faChevronRight} />
-      </div>
+          <Divider />
+        </div>
+      )}
+      {!badge && (
+        <div className={clsx(styles.container, open && styles.open)}>
+          <div className={styles.content}>
+            <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
+            <Heading3>{title}</Heading3>
 
-      <Divider />
-    </div>
+            <FontAwesomeIcon className={clsx(styles.toggleIcon, open && styles.open)} icon={faChevronRight} />
+          </div>
+
+          <Divider />
+        </div>
+      )}
+    </>
   );
 };

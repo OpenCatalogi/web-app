@@ -44,7 +44,7 @@
 }
 
 .badgeLayout {
-  margin-inline-start: var(--skeleton-size-xs);
+  margin-inline-start: var(--web-app-size-xs);
   align-items: inherit !important;
 }
 .badgeStyle {

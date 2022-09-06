@@ -1,15 +1,22 @@
-:export {
-  layerColorInteraction: --web-app-layer-color-interaction;
-  layerColorProcess: --web-app-layer-color-process;
-  layerColorIntegration: --web-app-layer-color-integration;
-  layerColorServices: --web-app-layer-color-services;
-  layerColorData: --web-app-layer-color-data;
+.items {
+  padding-block-end: var(--web-app-size-md);
 }
 
-.ComponentsGrid {
-  display: grid;
-  grid-gap: var(--web-app-size-lg);
-  grid-template-columns: 1fr 1fr;
+.items > * {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.items > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
+
+.categoryButton {
+  border: none !important;
+  --denhaag-button-secondary-action-color: var(--web-app-color-black);
+}
+
+.categoryButton:hover {
+  cursor: pointer !important;
 }
 
 /* Colors of the 5 layers */

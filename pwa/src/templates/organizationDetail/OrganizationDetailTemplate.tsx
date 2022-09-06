@@ -75,7 +75,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             variant="scrollable"
           >
             <Tab
-              id="Tab"
               className={styles.tab}
               label={
                 <BadgeCounter
@@ -89,7 +88,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               value={0}
             />
             <Tab
-              id="Tab"
               className={styles.tab}
               label={
                 <BadgeCounter
@@ -103,7 +101,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               value={1}
             />
             <Tab
-              id="Tab"
               className={styles.tab}
               label={
                 <BadgeCounter

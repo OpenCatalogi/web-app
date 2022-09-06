@@ -1,9 +1,19 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import {
+  Button,
+  Heading1,
+  Heading2,
+  LeadParagraph,
+  Link,
+  Tab,
+  TabContext,
+  TabPanel,
+  Tabs,
+} from "@gemeente-denhaag/components-react";
 import { Container, InfoCard } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import grey from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -19,6 +29,8 @@ import _ from "lodash";
 import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -26,9 +38,13 @@ interface ComponentsDetailTemplateProps {
 
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId }) => {
   const { t } = useTranslation();
+  const [currentTab, setCurrentTab] = React.useState<number>(0);
+
+  const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
+  const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
+  const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
 
   const queryClient = new QueryClient();
-
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
@@ -222,10 +238,226 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TableBody>
             </Table>
           </div>
-          <div className={styles.layersContainer}>
-            <h2>Componenten en afhankelijkheden</h2>
+          <div>
+            <Heading2>Tabbladen</Heading2>
 
-            <CardsSearchTemplate components={TEMPORARY_COMPONENTS.slice(1, 6)} />
+            <TabContext value={currentTab.toString()}>
+              <Tabs
+                value={currentTab}
+                onChange={(_, newValue: number) => {
+                  setCurrentTab(newValue);
+                }}
+                variant="scrollable"
+              >
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      stylingClassName={styles.badgeStyle}
+                      number={TempComponentsDependencies.length}
+                    >
+                      Componenten & Afhankelijkheden
+                    </BadgeCounter>
+                  }
+                  value={0}
+                />
+                <Tab className={styles.tab} label={t("Suppliers")} value={1} />
+                <Tab className={styles.tab} label={t("Reuse")} value={2} />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      stylingClassName={styles.badgeStyle}
+                      number={TempComponentsSchema.length}
+                    >
+                      {t("Schema's")}
+                    </BadgeCounter>
+                  }
+                  value={3}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      stylingClassName={styles.badgeStyle}
+                      number={TempComponentsProcesses.length}
+                    >
+                      {t("Processes")}
+                    </BadgeCounter>
+                  }
+                  value={4}
+                />
+              </Tabs>
+
+              <TabPanel className={styles.tabPanel} value="0">
+                <div className={styles.components}>
+                  <CardsSearchTemplate components={TempComponentsDependencies} />
+                </div>
+              </TabPanel>
+
+              <TabPanel className={styles.tabPanel} value="1">
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableHeader>Conduction</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableHeader>Gemeente Utrecht</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+
+              <TabPanel className={styles.tabPanel} value="2">
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableHeader>Gemeente Amsterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableHeader>Gemeente Waterland</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+
+              <TabPanel className={styles.tabPanel} value="3">
+                <div className={styles.components}>
+                  <CardsSearchTemplate components={TempComponentsSchema} />
+                </div>
+              </TabPanel>
+              <TabPanel className={styles.tabPanel} value="4">
+                <div className={styles.components}>
+                  <CardsSearchTemplate components={TempComponentsProcesses} />
+                </div>
+              </TabPanel>
+            </TabContext>
           </div>
         </>
       )}
