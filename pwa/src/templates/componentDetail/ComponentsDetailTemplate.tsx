@@ -14,9 +14,11 @@ import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
+import { ToolTip } from "../../components/toolTip/ToolTip";
+import { categories, TCategories } from "../../data/categories";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -29,6 +31,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
+
+  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
+  const category =
+    layer &&
+    categories[layer].find((category) => {
+      return category.value === _getComponent.data?.categories;
+    });
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
@@ -50,22 +59,62 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded.description.longDescription}
               </LeadParagraph>
 
-              <div className={styles.tags}>
-                <div
-                  className={
-                    styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
-                  }
-                >
+              <div className={styles.layerAndCategoryContainer}>
+                <ToolTip tooltip="Laag">
                   <Tag
+                    layoutClassName={
+                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
+                    }
                     label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
-                </div>
-                <div>
-                  {_getComponent.data.developmentStatus && (
-                    <Tag label={_.upperFirst(_getComponent.data.developmentStatus)} />
-                  )}
-                </div>
+                </ToolTip>
+
+                {_getComponent.data?.categories && category && (
+                  <ToolTip tooltip="Categorie">
+                    <Tag
+                      layoutClassName={
+                        styles[
+                          _.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)
+                        ]
+                      }
+                      label={_.upperFirst(category?.title)}
+                      icon={category?.icon}
+                    />
+                  </ToolTip>
+                )}
+              </div>
+
+              <div className={styles.tags}>
+                {_getComponent.data.developmentStatus && (
+                  <ToolTip tooltip="Status">
+                    <Tag
+                      label={_.upperFirst(_getComponent.data.developmentStatus)}
+                      icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                    />
+                  </ToolTip>
+                )}
+                {_getComponent.data.usedBy?.length && (
+                  <ToolTip tooltip="Installaties">
+                    <Tag
+                      label={_.toString(_getComponent.data.usedBy?.length)}
+                      icon={<FontAwesomeIcon icon={faRepeat} />}
+                    />
+                  </ToolTip>
+                )}
+                {!_getComponent.data.usedBy?.length && (
+                  <ToolTip tooltip="Installaties">
+                    <Tag label="0" icon={<FontAwesomeIcon icon={faRepeat} />} />
+                  </ToolTip>
+                )}
+                {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
+                  <ToolTip tooltip="Organisatie">
+                    <Tag
+                      label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                      icon={<FontAwesomeIcon icon={faHouse} />}
+                    />
+                  </ToolTip>
+                )}
               </div>
             </div>
 

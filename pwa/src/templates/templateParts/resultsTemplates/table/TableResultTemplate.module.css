@@ -10,6 +10,10 @@
   width: max-content !important;
 }
 
+.detailsLink {
+  display: inline-flex;
+}
+
 /* Colors of the 5 layers */
 .interactie {
   --web-app-tag-background-color: var(--web-app-layer-color-interaction);
