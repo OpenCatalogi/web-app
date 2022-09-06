@@ -26,10 +26,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export type TCategories = "interactie" | "proces" | "integratie" | "services" | "data";
+export type TCategories = "Interactie" | "Proces" | "Integratie" | "Service" | "Data";
 
 export const categories = {
-  interactie: [
+  Interactie: [
     { title: "Procesondersteuning", icon: <FontAwesomeIcon icon={faMicrochip} />, value: "process support" },
     { title: "Regie op gegevens", icon: <FontAwesomeIcon icon={faFileShield} />, value: "control over data" },
     { title: "Aanvragen en meldingen", icon: <FontAwesomeIcon icon={faBell} />, value: "request and notifications" },
@@ -39,7 +39,7 @@ export const categories = {
       value: "end user authentication",
     },
   ],
-  proces: [
+  Proces: [
     {
       title: "Procesinrichting en uitvoering",
       icon: <FontAwesomeIcon icon={faMicrochip} />,
@@ -55,13 +55,13 @@ export const categories = {
     { title: "Doel en grondslag", icon: <FontAwesomeIcon icon={faBullseye} />, value: "purpose limitation" },
     { title: "Audit logging", icon: <FontAwesomeIcon icon={faMagnifyingGlassDollar} />, value: "audit log" },
   ],
-  integratie: [
+  Integratie: [
     { title: "Netwerk", icon: <FontAwesomeIcon icon={faNetworkWired} />, value: "network" },
     { title: "Netwerk beveiliging", icon: <FontAwesomeIcon icon={faKey} />, value: "network security" },
     { title: "Verbinden", icon: <FontAwesomeIcon icon={faLink} />, value: "connecting" },
     { title: "Dienstencatalogus", icon: <FontAwesomeIcon icon={faBook} />, value: "service catalog" },
   ],
-  services: [
+  Service: [
     {
       title: "Organisatie authenticatie",
       icon: <FontAwesomeIcon icon={faFingerprint} />,
@@ -88,7 +88,7 @@ export const categories = {
       value: "pseudonymization and anonymization",
     },
   ],
-  data: [
+  Data: [
     { title: "Bijhouding gegevens", icon: <FontAwesomeIcon icon={faDatabase} />, value: "record keeping" },
     {
       title: "Historie en metadatering",
