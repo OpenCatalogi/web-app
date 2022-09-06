@@ -27,6 +27,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
   return (
     <>
       {children}
+
       <div className={styles.container}>
         <div className={styles.content}>
           <ThemeSwitcher {...{ setTheme }} />
@@ -58,25 +59,20 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
   });
 
   return (
-    <>
-      <div className={styles.themeSwitcherContainer}>
-        <Heading2>
-          <span className={styles.header}>Thema Aanpassen:</span>
-        </Heading2>
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Thema</span>
-            </FormFieldLabel>
-            <SelectSingle
-              name="themeSwitcher"
-              defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
-              options={themes}
-              {...{ errors, control, register }}
-            />
-          </FormFieldInput>
-        </FormField>
-      </div>
-    </>
+    <div className={styles.themeSwitcherContainer}>
+      <FormField>
+        <FormFieldInput>
+          <FormFieldLabel>
+            <span className={styles.label}>Thema aanpasssen:</span>
+          </FormFieldLabel>
+          <SelectSingle
+            name="themeSwitcher"
+            defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
+            options={themes}
+            {...{ errors, control, register }}
+          />
+        </FormFieldInput>
+      </FormField>
+    </div>
   );
 };

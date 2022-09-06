@@ -54,7 +54,6 @@
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
-  --web-app-color-darkgrey: var(--skeleton-color-grey-3);
 
   --web-app-color-link: var(--web-app-color-black);
   --web-app-color-link-active: var(--web-app-color-black);
