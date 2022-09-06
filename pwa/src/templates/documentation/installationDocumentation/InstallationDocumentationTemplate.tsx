@@ -26,26 +26,26 @@ export const InstallationDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading2>Aan de slag </Heading2>
         <Paragraph>
-          Om een eigen project op te zetten heeft u een GitHub-account nodig en daar mee ingelogd zijn. Klik op de
-          groene "Use this template" op de <br />
+          Om een eigen project op te zetten heb je een GitHub-account nodig en daar mee ingelogd zijn. Klik op de groene
+          "Use this template" knop op de <br />
           <span onClick={() => open("https://github.com/ConductionNL/skeleton-app")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               GitHub-pagina
             </Link>
           </span>
-          . Vertel GitHub waar u uw prototype wilt hebben draaien en klik op "Create a repository from template".
+          . Vertel GitHub waar je je prototype wilt hebben draaien en klik op "Create a repository from template".
           <br />
           <br />
         </Paragraph>
-        <Heading2>Uw lokale omgeving laten draaien</Heading2>
+        <Heading2>Lokaal je omgeving laten draaien</Heading2>
         <Paragraph>
-          Om lokaal te ontwikkelen, moet u uw nieuwe repository klonen naar uw lokale machine. Open een terminal,
-          navigeer naar de folder die uw repository bevat, en maak een keuze tussen Node.js/npm of Docker om uw app te
+          Om lokaal te ontwikkelen, moet je de nieuwe repository klonen naar je eigen lokale machine. Open een terminal,
+          navigeer naar de folder die de repository bevat, en maak een keuze tussen Node.js/npm of Docker om de app te
           laten draaien.
         </Paragraph>
         <Heading3>Node.js / NPM</Heading3>
         <Paragraph>
-          U heeft een Git client nodig(optioneel), en u moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
+          Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
           <CodeBlock
             codeBlock={
@@ -59,21 +59,21 @@ export const InstallationDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Heading3>Docker</Heading3>
         <Paragraph>
-          U moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
+          Je moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
           zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
           <CodeBlock codeBlock={"$ docker-compose pull"} />
-          De eerste keer dat u Docker containers of wanneer u grote veranderingen heeft gemaakt aan de werking van de
-          applicatie, voert u het volgende commando uit:
+          De eerste keer dat je Docker containers of wanneer je grote veranderingen hebt gemaakt aan de werking van de
+          applicatie, voert je het volgende commando uit:
           <CodeBlock codeBlock={"$ docker-compose up --build"} />
-          Als u dit niet doet dan draait u de containers zonder de applicatie container te herbouwen.
+          Als je dit niet doet dan draai je de containers zonder de applicatie container te herbouwen.
           <CodeBlock codeBlock={"$ docker-compose up"} />
-          Na het succesvol instellen van uw ontwikkelomgeving, navigeer naar{" "}
+          Na het succesvol instellen van de ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               http://localhost:81/
             </Link>
           </span>{" "}
-          om de app in uw browser te bekijken.
+          om de app in de browser te bekijken.
           <br /> <br />
           Om de werking van de common-gateway die samen met de applicatie gaat draaien, te veranderen verwijzen we
           vriendelijk naar de technische documentatie van de{" "}
@@ -86,7 +86,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Heading2>Installeren op Kubernetes omgevingen</Heading2>
         <Paragraph>
-          Om de applicatie te installeren op uw eigen cloud omgeving ondersteunen website installaties in{" "}
+          Om de applicatie te installeren op je eigen cloud omgeving ondersteunen we installaties in{" "}
           <span onClick={() => open("https://kubernetes.io/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               Kubernetes
@@ -98,7 +98,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
               Helm
             </Link>
           </span>{" "}
-          grafiek. Kubernetes is een Container Orkestratie en dat is een standaard geworden voor Nederlandse gemeenten
+          grafiek. Kubernetes is een Container Orkestratie dat een standaard is geworden voor Nederlandse gemeenten
           onder de{" "}
           <span onClick={() => open("https://haven.commonground.nl/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -123,8 +123,8 @@ export const InstallationDocumentationTemplate: React.FC = () => {
           .
           <br />
           <br />
-          De Helm grafiek kan ook geïnstalleerd worden door Helm te draaien van uw lokale machine (zie de instructies
-          over hoe u Helm installeert op <br />
+          De Helm grafiek kan ook geïnstalleerd worden door Helm te draaien van je lokale machine (zie de instructies
+          over hoe je Helm installeert op <br />
           <span onClick={() => open("https://helm.sh/docs/intro/install/#through-package-managers/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               helm.sh
@@ -148,7 +148,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
               </div>
             }
           />
-          Voor overige configuratie verwijzen we vriendelijk naar de documentatie van de helm grafiek die vind u{" "}
+          Voor overige configuratie verwijzen we vriendelijk naar de documentatie van de helm grafiek die vind je{" "}
           <span
             onClick={() =>
               open(
@@ -178,7 +178,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
           </span>
           .
           <br /> <br />
-          Als u de technische documentatie lokaal wilt draaien, kunt u dit doen door middel van de MKDocs server en het
+          Als je de technische documentatie lokaal wilt draaien, kan je dit doen door middel van de MKDocs server en het
           "serve" commando. <CodeBlock codeBlock={"$ mkdocs serve"} /> Ga naar de lokale repository en voer het commando
           uit om de documentatie beschikbaar te stellen op poort:8000. <br />
           Zorg er voor dat je eerst{" "}
