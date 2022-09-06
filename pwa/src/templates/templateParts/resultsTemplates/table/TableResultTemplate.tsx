@@ -89,7 +89,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Details")}
               </Link>
             </TableCell>

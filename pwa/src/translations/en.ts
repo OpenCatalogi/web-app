@@ -11,6 +11,7 @@ export const en = {
   Processs: "Process",
   Integration: "Integration",
   Services: "Services",
+  Service: "Services",
   Data: "Data",
   "All Open Catalog components": "All Open Catalog components",
   "View all components": "View all components",
