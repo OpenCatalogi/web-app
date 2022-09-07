@@ -16,14 +16,24 @@
   justify-content: space-between;
 }
 
-.headerContent {
+.headerOrganizationDescription {
   flex: 2;
 }
 
-.headerLogo {
+.headerOrganizationData {
   flex: 1;
-  display: flex;
-  justify-content: flex-end;
+}
+
+.headerOrganizationData > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.tagsContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tagsContainer > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .logo {
