@@ -11,16 +11,9 @@ export const InstallationDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading1>Componenten installeren met de skeleton application</Heading1>
         <LeadParagraph>
-          De skeleton application is ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
-          System. Het biedt een basis skelet ontwerp met volledige NL Design System functionaliteit die elke
-          ontwikkelaar gemakkelijk kan uitbreiden, lokaal kan bekijken en kan implementeren in een online omgeving voor
-          demonstratiedoeleinden. De belangrijkste voordelen zijn:
-          <ul>
-            <li>Ontwikkelen en (online) presenteren van prototypes zonder een server nodig te hebben.</li>
-            <li>
-              Een kant-en-klare basis applicatie dat geen configuratie nodig heeft en direct kan worden uitgebreid.
-            </li>
-          </ul>
+          De skeleton application is een makkelijke manier om de componenten te installeren en te gebruiken. De skeleton
+          application is namelijk ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
+          System.
         </LeadParagraph>
       </section>
       <section className={styles.section}>
