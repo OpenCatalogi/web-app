@@ -1,4 +1,4 @@
-export const organisations = [
+export const organizations = [
   { label: "Gemeente Waterland", value: "Gemeente Waterland" },
   { label: "Gemeente Almere", value: "Gemeente Almere" },
   { label: "Gemeente Groningen", value: "Gemeente Groningen" },

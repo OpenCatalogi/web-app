@@ -9,7 +9,7 @@ import { bedrijfsfuncties } from "./bedrijfsfuncties";
 import { bedrijfsservices } from "./bedrijfsservices";
 import { applicatiefuncties } from "./applicatiefuncties";
 import { referentieComponenten } from "./referentieComponenten";
-import { organisations } from "./organisations";
+import { organizations } from "./organizations";
 import { categories } from "./categories";
 
 export {
@@ -24,6 +24,6 @@ export {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organisations,
+  organizations,
   categories,
 };
