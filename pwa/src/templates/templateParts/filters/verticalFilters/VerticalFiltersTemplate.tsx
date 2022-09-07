@@ -133,7 +133,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle name="organization" options={organizations} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="organisation" options={organisations} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -142,7 +142,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Categorie</span>
             </FormFieldLabel>
-            <SelectSingle name="category" options={categories} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -160,7 +160,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Status</span>
             </FormFieldLabel>
-            <SelectSingle name="status" options={statuses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -169,7 +169,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Onderhoudstypes</span>
             </FormFieldLabel>
-            <SelectSingle name="maintenanceType" options={maintenanceTypes} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="maintenanceType"
+              options={maintenanceTypes}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
 
@@ -178,7 +183,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Softwaretypes</span>
             </FormFieldLabel>
-            <SelectSingle name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -187,7 +192,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Licentie</span>
             </FormFieldLabel>
-            <SelectSingle name="license" options={licenses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -227,7 +232,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Applicatiefunctie</span>
             </FormFieldLabel>
-            <SelectSingle name="applicatiefunctie" options={applicatiefuncties} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="applicatiefunctie"
+              options={applicatiefuncties}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
       </form>
