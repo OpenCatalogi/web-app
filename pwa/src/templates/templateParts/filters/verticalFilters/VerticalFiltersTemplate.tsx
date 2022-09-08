@@ -133,7 +133,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="organisation" options={organisations} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="organisation" options={organizations} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

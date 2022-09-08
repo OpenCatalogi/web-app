@@ -12,7 +12,7 @@
 
 .headerContainer {
   display: flex;
-  gap: var(--web-app-size-md);
+  gap: var(--web-app-size-xl);
   justify-content: space-between;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .headerOrganizationData > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-lg);
 }
 
 .tagsContainer > *:not(:last-child) {
@@ -36,9 +36,33 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.headerContent {
+  flex: 2;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  max-height: 300px;
+  max-width: 350px;
+}
+
 .logo {
+  vertical-align: middle;
   max-width: 100%;
-  max-height: 100px;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.headerLogo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.oldLogo {
+  max-width: 100%;
+  max-height: 350px;
 }
 
 .tab {
