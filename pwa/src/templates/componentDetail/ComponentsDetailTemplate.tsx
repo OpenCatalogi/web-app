@@ -30,12 +30,18 @@ import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { categories as _categories } from "../../data/filters";
+import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
+import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
+  TempOrganization: any[];
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId }) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({
+  componentId,
+  TempOrganization,
+}) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
 
@@ -137,25 +143,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            <InfoCard
-              title="Organisatie"
-              content={
-                <>
-                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
-                    <div>
-                      Dit component wordt aangeboden door{" "}
-                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
-                        </Link>
-                        .
-                      </span>
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.legal.embedded?.repoOwner.name && "Er is geen informatie beschikbaar."}
-                </>
-              }
-            />
+            {TempOrganization.map((organization) => (
+              <OrganizationCard
+                title={{ label: organization.name, href: `/organizations/${organization.id}` }}
+                description={organization.description}
+                website={organization.website}
+                logo={organization.logo}
+                components={{
+                  owned: organization.owns?.length.toString() ?? "0",
+                  supported: organization.supports?.length.toString() ?? "0",
+                  used: organization.uses?.length.toString() ?? "0",
+                }}
+                github={organization.github}
+                gitlab={organization.gitlab}
+                type={organization.type}
+              />
+            ))}
             <InfoCard
               title="Github"
               content={
