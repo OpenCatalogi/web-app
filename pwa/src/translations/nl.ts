@@ -34,7 +34,7 @@ export const nl = {
   Name: "Naam",
   Repository: "Repository",
   "Check out the repository on GitHub": "Bekijk de repository op GitHub",
-  Organisation: "Organisatie",
+  Organization: "Organisatie",
   Layer: "Laag",
   Type: "Type",
   Layers: "Lagen",
@@ -57,4 +57,7 @@ export const nl = {
   Username: "Gebruikersnaam",
   Password: "Wachtwoord",
   Send: "Versturen",
+  Private: "Privé",
+  Public: "Openbaar",
+  Unkown: "Onbekend",
 };

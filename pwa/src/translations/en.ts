@@ -34,7 +34,7 @@ export const en = {
   Name: "Name",
   Repository: "Repository",
   "Check out the repository on GitHub": "Check out the repository on GitHub",
-  Organisation: "Organisation",
+  Organization: "Organization",
   Layer: "Layer",
   Layers: "Layers",
   Type: "Type",
@@ -57,4 +57,7 @@ export const en = {
   Username: "Username",
   Password: "Password",
   Send: "Send",
+  Private: "Private",
+  Public: "Public",
+  Unkown: "Unkown",
 };

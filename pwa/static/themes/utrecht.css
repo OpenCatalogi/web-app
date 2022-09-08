@@ -90,15 +90,15 @@
   --web-app-header-logo-container-padding: unset;
   --web-app-header-logo-container-border-radius: 0;
   --web-app-header-logo-container-height: 25px;
-  --web-app-header-organisation-logo-width: 115px;
-  --web-app-header-organisation-logo-src: url("images/LogoUtrecht.svg");
+  --web-app-header-organization-logo-width: 115px;
+  --web-app-header-organization-logo-src: url("images/LogoUtrecht.svg");
 
   --web-app-footer-logo-container-background-color: var(--web-app-color-white);
   --web-app-footer-logo-container-padding: var(--web-app-size-md);
   --web-app-footer-logo-container-border-radius: unset;
-  --web-app-footer-loog-container-height: 67px;
-  --web-app-footer-organisation-logo-width: 126px;
-  --web-app-footer-organisation-logo-src: url("images/LogoUtrecht.svg");
+  --web-app-footer-logo-container-height: 67px;
+  --web-app-footer-organization-logo-width: 126px;
+  --web-app-footer-organization-logo-src: url("images/LogoUtrecht.svg");
 
   --web-app-rating-active-color: hsl(211 60% 35%);
   --web-app-rating-disable-color: #bfbfbf;
