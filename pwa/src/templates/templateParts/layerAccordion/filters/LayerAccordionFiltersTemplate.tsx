@@ -22,7 +22,8 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
               onClick={() => badgeNumber > 0 && handleClick((o) => !o)}
               className={clsx(
                 styles[label.toLowerCase()],
-                active && badgeNumber > 0 ? styles.active : styles.inactive,
+                active && badgeNumber > 0 && styles.active,
+                styles.filter,
                 badgeNumber <= 0 && styles.disabled,
               )}
             >
@@ -32,7 +33,7 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
           {!badgeNumber?.toString && (
             <span
               onClick={() => handleClick((o) => !o)}
-              className={clsx(styles[label.toLowerCase()], active ? styles.active : styles.inactive)}
+              className={clsx(styles[label.toLowerCase()], active && styles.active)}
             >
               {label}
             </span>
