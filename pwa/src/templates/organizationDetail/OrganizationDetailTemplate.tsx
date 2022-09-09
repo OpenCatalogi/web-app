@@ -66,23 +66,23 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <ToolTip tooltip="GitLab">
               <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open("gitlab")} />
             </ToolTip>
-            <ToolTip tooltip={"Website"}>
+            <ToolTip tooltip="Website">
               <Tag
-                label={"www.rotterdam.nl"}
+                label="www.rotterdam.nl"
                 icon={<FontAwesomeIcon icon={faGlobe} />}
                 onClick={() => open("https://rotterdam.nl")}
               />
             </ToolTip>
-            <ToolTip tooltip={"Telefoonnummer"}>
+            <ToolTip tooltip="Telefoonnummer">
               <Tag
-                label={"+31 - 102 - 671 - 625"}
+                label="+31 - 102 - 671 - 625"
                 icon={<FontAwesomeIcon icon={faPhone} />}
                 onClick={() => navigate("tel:+31102671625")}
               />
             </ToolTip>
-            <ToolTip tooltip={"EmailAddress"}>
+            <ToolTip tooltip="EmailAddress">
               <Tag
-                label={"componenten-support@rotterdam.nl"}
+                label="componenten-support@rotterdam.nl"
                 icon={<FontAwesomeIcon icon={faEnvelope} />}
                 onClick={() => navigate("mailto:componenten-support@rotterdam.nl")}
               />

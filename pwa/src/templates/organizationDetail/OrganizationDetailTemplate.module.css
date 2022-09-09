@@ -12,7 +12,7 @@
 
 .headerContainer {
   display: flex;
-  gap: var(--web-app-size-md);
+  gap: var(--web-app-size-xl);
   justify-content: space-between;
 }
 
