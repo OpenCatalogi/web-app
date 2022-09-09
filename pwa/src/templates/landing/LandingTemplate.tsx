@@ -9,6 +9,8 @@ import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import clsx from "clsx";
 import { CategorySearchTemplate } from "../templateParts/categorySearch/CategorySearchTemplate";
+import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -32,6 +34,23 @@ export const LandingTemplate: React.FC = () => {
 
           <LeadParagraph>Hier kunnen de components gezocht worden op categorie.</LeadParagraph>
         </div>
+
+        {TEMPORARY_ORGANIZATIONS.map((organization) => (
+          <OrganizationCard
+            title={{ label: organization.name, href: `/organizations/${organization.id}` }}
+            description={organization.description}
+            website={organization.website}
+            logo={organization.logo}
+            components={{
+              owned: organization.owns?.length.toString() ?? "0",
+              supported: organization.supports?.length.toString() ?? "0",
+              used: organization.uses?.length.toString() ?? "0",
+            }}
+            github={organization.github}
+            gitlab={organization.gitlab}
+            type={organization.type}
+          />
+        ))}
 
         <CategorySearchTemplate />
       </section>

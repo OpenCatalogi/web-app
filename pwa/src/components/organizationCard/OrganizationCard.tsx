@@ -84,7 +84,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
         {website && (
           <ToolTip tooltip={website}>
-            <Tag label={"Website"} icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
+            <Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
           </ToolTip>
         )}
 
@@ -111,6 +111,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
             icon={<FontAwesomeIcon icon={faRepeat} />}
           />
         </ToolTip>
+
         {github && (
           <ToolTip tooltip="GitHub">
             <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(github)} />
