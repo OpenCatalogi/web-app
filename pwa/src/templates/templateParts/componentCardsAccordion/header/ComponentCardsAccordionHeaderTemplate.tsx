@@ -26,11 +26,11 @@ export const ComponentCardsAccordionHeaderTemplate: React.FC<ComponentCardsAccor
     <div className={clsx(styles.container, active && styles.active, !hasItems && styles.disabled)}>
       <div className={styles.content}>
         <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
-
-        <BadgeCounter number={badgeNumber} stylingClassName={clsx(styles[_.camelCase(`${title} badge`)], styles.badge)}>
-          <Heading3 className={styles.title}>{t(title)}</Heading3>
-        </BadgeCounter>
-
+        <span className={clsx(styles[_.camelCase(`${title} badge`)], styles.badge)}>
+          <BadgeCounter number={badgeNumber}>
+            <Heading3 className={styles.title}>{t(title)}</Heading3>
+          </BadgeCounter>
+        </span>
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
       </div>
 

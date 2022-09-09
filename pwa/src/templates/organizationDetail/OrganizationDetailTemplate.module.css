@@ -47,6 +47,3 @@
   margin-inline-start: var(--web-app-size-xs);
   align-items: inherit !important;
 }
-.badgeStyle {
-  background-color: var(--web-app-color-background-light);
-}

@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.container:not(.open):not(.disabled) {
+.container:not(.active):not(.disabled) {
   opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
 
@@ -42,6 +42,6 @@
   transition: transform 200ms ease-in-out;
 }
 
-.toggleIcon.open {
+.toggleIcon.active {
   transform: rotate(90deg);
 }

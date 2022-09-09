@@ -3,7 +3,6 @@ import * as styles from "./ComponentCardsAccordionTemplate.module.css";
 import { getTokenValue } from "../../../services/getTokenValue";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
-import { TCategories } from "../../../data/categories";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
@@ -64,23 +63,21 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         ]}
       />
 
-      <div className={styles.test}>
-        <Accordion
-          open={openInteraction}
-          setOpen={setOpenInteraction}
-          color={getTokenValue(styles.layerColorInteraction)}
-          disabled={interaction.length === 0}
-          header={
-            <ComponentCardsAccordionHeaderTemplate
-              title="Interaction"
-              active={openInteraction}
-              badgeNumber={interaction.length}
-            />
-          }
-        >
-          <Components components={interaction} layer="Interactie" />
-        </Accordion>
-      </div>
+      <Accordion
+        open={openInteraction}
+        setOpen={setOpenInteraction}
+        color={getTokenValue(styles.layerColorInteraction)}
+        disabled={interaction.length === 0}
+        header={
+          <ComponentCardsAccordionHeaderTemplate
+            title="Interaction"
+            active={openInteraction}
+            badgeNumber={interaction.length}
+          />
+        }
+      >
+        <Components components={interaction} />
+      </Accordion>
 
       <Accordion
         open={openProcess}
@@ -91,7 +88,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           <ComponentCardsAccordionHeaderTemplate title="Process" active={openProcess} badgeNumber={process.length} />
         }
       >
-        <Components components={process} layer="Proces" />
+        <Components components={process} />
       </Accordion>
 
       <Accordion
@@ -107,7 +104,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           />
         }
       >
-        <Components components={integration} layer="Integratie" />
+        <Components components={integration} />
       </Accordion>
 
       <Accordion
@@ -119,7 +116,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           <ComponentCardsAccordionHeaderTemplate title="Services" active={openServices} badgeNumber={services.length} />
         }
       >
-        <Components components={services} layer="Service" />
+        <Components components={services} />
       </Accordion>
 
       <Accordion
@@ -129,18 +126,17 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         disabled={data.length === 0}
         header={<ComponentCardsAccordionHeaderTemplate title="Data" active={openData} badgeNumber={data.length} />}
       >
-        <Components components={data} layer="Data" />
+        <Components components={data} />
       </Accordion>
     </>
   );
 };
 
 interface ComponentsProps {
-  layer: TCategories;
   components: any[];
 }
 
-const Components: React.FC<ComponentsProps> = ({ layer, components }) => {
+const Components: React.FC<ComponentsProps> = ({ components }) => {
   return (
     <div className={styles.ComponentsGrid}>
       {components.map((component, idx) => (

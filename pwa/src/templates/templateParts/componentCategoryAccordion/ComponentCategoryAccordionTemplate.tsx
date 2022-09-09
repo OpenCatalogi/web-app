@@ -8,6 +8,7 @@ import { FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { navigate } from "gatsby";
 import _ from "lodash";
+import { ComponentCategoryAccordionHeaderTemplate } from "./header/ComponentCategoryAccordionHeaderTemplate";
 
 export const ComponentCategoryAccordionTemplate: React.FC = () => {
   const Accordion = LayerAccordion.accordion;
@@ -31,23 +32,48 @@ export const ComponentCategoryAccordionTemplate: React.FC = () => {
         ]}
       />
 
-      <Accordion title="Interactie" open={openInteraction} setOpen={setOpenInteraction} color="#1a75ff">
+      <Accordion
+        open={openInteraction}
+        setOpen={setOpenInteraction}
+        color="#1a75ff"
+        header={<ComponentCategoryAccordionHeaderTemplate title="Interactie" active={openInteraction} />}
+      >
         <Categories layer="Interactie" />
       </Accordion>
 
-      <Accordion title="Proces" open={openProcess} setOpen={setOpenProcess} color="#dd3c49">
+      <Accordion
+        open={openProcess}
+        setOpen={setOpenProcess}
+        color="#dd3c49"
+        header={<ComponentCategoryAccordionHeaderTemplate title="Proces" active={openProcess} />}
+      >
         <Categories layer="Proces" />
       </Accordion>
 
-      <Accordion title="Integratie" open={openIntegration} setOpen={setOpenIntegration} color="#efc025">
+      <Accordion
+        open={openIntegration}
+        setOpen={setOpenIntegration}
+        color="#efc025"
+        header={<ComponentCategoryAccordionHeaderTemplate title="Integratie" active={openIntegration} />}
+      >
         <Categories layer="Integratie" />
       </Accordion>
 
-      <Accordion title="Services" open={openServices} setOpen={setOpenServices} color="#69b090">
+      <Accordion
+        open={openServices}
+        setOpen={setOpenServices}
+        color="#69b090"
+        header={<ComponentCategoryAccordionHeaderTemplate title="Services" active={openServices} />}
+      >
         <Categories layer="Service" />
       </Accordion>
 
-      <Accordion title="Data" open={openData} setOpen={setOpenData} color="#7a51c8">
+      <Accordion
+        open={openData}
+        setOpen={setOpenData}
+        color="#7a51c8"
+        header={<ComponentCategoryAccordionHeaderTemplate title="Data" active={openData} />}
+      >
         <Categories layer="Data" />
       </Accordion>
     </>

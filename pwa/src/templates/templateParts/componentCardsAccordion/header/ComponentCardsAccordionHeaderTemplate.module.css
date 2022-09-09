@@ -47,8 +47,10 @@
 }
 
 .disabled .badge {
-  background-color: var(--web-app-color-background-light);
-  color: var(--web-app-color-black);
+  --web-app-badge-counter-background-color: var(
+    --web-app-color-background-light
+  );
+  --web-app-badge-counter-color: var(--web-app-color-black);
 }
 
 .disabled .toggleIcon {
@@ -56,22 +58,26 @@
 }
 
 .interactionBadge {
-  background-color: var(--web-app-layer-color-interaction);
-  color: var(--web-app-color-white);
+  --web-app-badge-counter-background-color: var(
+    --web-app-layer-color-interaction
+  );
+  --web-app-badge-counter-color: var(--web-app-color-white);
 }
 .processBadge {
-  background-color: var(--web-app-layer-color-process);
-  color: var(--web-app-color-white);
+  --web-app-badge-counter-background-color: var(--web-app-layer-color-process);
+  --web-app-badge-counter-color: var(--web-app-color-white);
 }
 .integrationBadge {
-  background-color: var(--web-app-layer-color-integration);
-  color: var(--web-app-color-white);
+  --web-app-badge-counter-background-color: var(
+    --web-app-layer-color-integration
+  );
+  --web-app-badge-counter-color: var(--web-app-color-white);
 }
 .servicesBadge {
-  background-color: var(--web-app-layer-color-services);
-  color: var(--web-app-color-white);
+  --web-app-badge-counter-background-color: var(--web-app-layer-color-services);
+  --web-app-badge-counter-color: var(--web-app-color-white);
 }
 .dataBadge {
-  background-color: var(--web-app-layer-color-data);
-  color: var(--web-app-color-white);
+  --web-app-badge-counter-background-color: var(--web-app-layer-color-data);
+  --web-app-badge-counter-color: var(--web-app-color-white);
 }
