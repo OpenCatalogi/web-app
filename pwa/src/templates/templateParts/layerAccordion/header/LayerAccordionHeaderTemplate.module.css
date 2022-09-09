@@ -8,11 +8,11 @@
 }
 
 .container:not(.open):not(.disabled) {
-  opacity: 0.65;
+  opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
 
 .disabled {
-  opacity: 0.45;
+  opacity: var(--web-app-layer-accordion-disabled-opacity);
 }
 
 .disabled:hover {
@@ -70,4 +70,9 @@
 .disabledBadge {
   background-color: var(--web-app-color-background-light);
   color: var(--web-app-color-black);
+}
+
+.interactie {
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
+  --web-app-tag-color: var(--web-app-color-white);
 }

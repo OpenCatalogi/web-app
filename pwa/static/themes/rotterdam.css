@@ -149,6 +149,8 @@
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
 
   --web-app-component-card-border-color: 1px solid var(--skeleton-color-grey-2);
+  --web-app-layer-accordion-inactive-opacity: 0.65;
+  --web-app-layer-accordion-disabled-opacity: 0.45;
 
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);

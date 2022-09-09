@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./CategorySearchTemplate.module.css";
+import * as styles from "./ComponentCategoryAccordionTemplate.module.css";
 import { categories, TCategories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { navigate } from "gatsby";
 import _ from "lodash";
 
-export const CategorySearchTemplate: React.FC = () => {
+export const ComponentCategoryAccordionTemplate: React.FC = () => {
   const Accordion = LayerAccordion.accordion;
   const AccordionController = LayerAccordion.controller;
 

@@ -8,7 +8,7 @@ import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import clsx from "clsx";
-import { CategorySearchTemplate } from "../templateParts/categorySearch/CategorySearchTemplate";
+import { ComponentCategoryAccordionTemplate } from "../templateParts/componentCategoryAccordion/ComponentCategoryAccordionTemplate";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ export const LandingTemplate: React.FC = () => {
           <LeadParagraph>Hier kunnen de components gezocht worden op categorie.</LeadParagraph>
         </div>
 
-        <CategorySearchTemplate />
+        <ComponentCategoryAccordionTemplate />
       </section>
 
       <section className={styles.section}>

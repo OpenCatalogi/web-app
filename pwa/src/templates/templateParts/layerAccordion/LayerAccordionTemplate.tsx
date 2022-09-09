@@ -24,7 +24,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
   const borderColor = badgeNumber?.toString ? (badgeNumber > 0 ? color : "") : color;
 
   return (
-    <div className={!open && styles.container}>
+    <div className={!open && styles.containerInactive}>
       <QuoteWrapper borderColor={borderColor}>
         <Collapsible
           triggerDisabled={badgeNumber ? badgeNumber <= 0 : false}

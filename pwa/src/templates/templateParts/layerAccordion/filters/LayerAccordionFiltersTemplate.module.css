@@ -21,7 +21,7 @@
 }
 
 .container .disabled {
-  opacity: 0.45;
+  opacity: var(--web-app-layer-accordion-disabled-opacity);
 }
 
 .container > *::before {
@@ -42,7 +42,7 @@
 :not(.disabled).integratie.inactive,
 :not(.disabled).service.inactive,
 :not(.disabled).data.inactive {
-  opacity: 0.65;
+  opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
 
 .container > .interactie.active::before {

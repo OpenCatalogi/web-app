@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./CardsSearchTemplate.module.css";
+import * as styles from "./ComponentCardsAccordionTemplate.module.css";
 import { getTokenValue } from "../../../services/getTokenValue";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
@@ -10,11 +10,11 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 
-interface CardsSearchTemplateProps {
+interface ComponentCardsAccordionProps {
   components: any[];
 }
 
-export const CardsSearchTemplate: React.FC<CardsSearchTemplateProps> = ({ components }) => {
+export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionProps> = ({ components }) => {
   const Accordion = LayerAccordion.accordion;
   const AccordionCardsController = LayerAccordion.controller;
   const { t } = useTranslation();

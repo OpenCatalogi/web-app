@@ -17,7 +17,7 @@ import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
 import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
-import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 
 interface OrganizationDetailTemplateProps {
@@ -117,19 +117,19 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
           <TabPanel className={styles.tabPanel} value="0">
             <div className={styles.components}>
-              <CardsSearchTemplate components={TempComponentsOwned} />
+              <ComponentCardsAccordionTemplate components={TempComponentsOwned} />
             </div>
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="1">
             <div className={styles.components}>
-              <CardsSearchTemplate components={TempComponentsSupported} />
+              <ComponentCardsAccordionTemplate components={TempComponentsSupported} />
             </div>
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="2">
             <div className={styles.components}>
-              <CardsSearchTemplate components={TempComponentsUsed} />
+              <ComponentCardsAccordionTemplate components={TempComponentsUsed} />
             </div>
           </TabPanel>
         </TabContext>

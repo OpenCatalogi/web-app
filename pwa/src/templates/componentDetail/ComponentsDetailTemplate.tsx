@@ -26,7 +26,7 @@ import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { CardsSearchTemplate } from "../templateParts/CardsSearch/CardsSearchTemplate";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -294,7 +294,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <CardsSearchTemplate components={TempComponentsDependencies} />
+                  <ComponentCardsAccordionTemplate components={TempComponentsDependencies} />
                 </div>
               </TabPanel>
 
@@ -449,12 +449,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="3">
                 <div className={styles.components}>
-                  <CardsSearchTemplate components={TempComponentsSchema} />
+                  <ComponentCardsAccordionTemplate components={TempComponentsSchema} />
                 </div>
               </TabPanel>
               <TabPanel className={styles.tabPanel} value="4">
                 <div className={styles.components}>
-                  <CardsSearchTemplate components={TempComponentsProcesses} />
+                  <ComponentCardsAccordionTemplate components={TempComponentsProcesses} />
                 </div>
               </TabPanel>
             </TabContext>
