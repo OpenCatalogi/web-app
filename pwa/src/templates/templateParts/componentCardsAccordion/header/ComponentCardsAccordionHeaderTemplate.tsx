@@ -27,7 +27,7 @@ export const ComponentCardsAccordionHeaderTemplate: React.FC<ComponentCardsAccor
       <div className={styles.content}>
         <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
         <span className={clsx(styles[_.camelCase(`${title} badge`)], styles.badge)}>
-          <BadgeCounter number={badgeNumber}>
+          <BadgeCounter number={badgeNumber < 100 ? badgeNumber : "99+"}>
             <Heading3 className={styles.title}>{t(title)}</Heading3>
           </BadgeCounter>
         </span>

@@ -123,8 +123,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         </TabContext>
       </div>
 
-      <div className={styles.section}></div>
-
       <Divider />
 
       <div className={styles.section}>
