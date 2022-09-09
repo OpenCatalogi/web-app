@@ -1,3 +1,8 @@
+:root {
+  --badge-counter-background: black;
+  --badge-counter-color: white;
+}
+
 .content {
   display: flex;
 }
@@ -10,6 +15,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--badge-counter-background);
+  color: var(--badge-counter-color);
 }
 .maxNumber {
   font-size: var(--web-app-font-size-2xs);

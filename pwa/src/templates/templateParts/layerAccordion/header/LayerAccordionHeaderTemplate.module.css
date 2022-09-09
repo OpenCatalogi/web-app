@@ -45,34 +45,3 @@
 .toggleIcon.open {
   transform: rotate(90deg);
 }
-
-/* badges */
-.interactionBadge {
-  background-color: var(--web-app-layer-color-interaction);
-  color: var(--web-app-color-white);
-}
-.processBadge {
-  background-color: var(--web-app-layer-color-process);
-  color: var(--web-app-color-white);
-}
-.integrationBadge {
-  background-color: var(--web-app-layer-color-integration);
-  color: var(--web-app-color-white);
-}
-.servicesBadge {
-  background-color: var(--web-app-layer-color-services);
-  color: var(--web-app-color-white);
-}
-.dataBadge {
-  background-color: var(--web-app-layer-color-data);
-  color: var(--web-app-color-white);
-}
-.disabledBadge {
-  background-color: var(--web-app-color-background-light);
-  color: var(--web-app-color-black);
-}
-
-.interactie {
-  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
-  --web-app-tag-color: var(--web-app-color-white);
-}

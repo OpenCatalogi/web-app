@@ -2,14 +2,13 @@ import * as React from "react";
 import * as styles from "./LayerAccordionTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
 import Collapsible from "react-collapsible";
-import { LayerAccordionHeaderTemplate } from "./header/LayerAccordionHeaderTemplate";
 
 interface LayerAccordionTemplateProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   color: string;
-  title: string;
-  badgeNumber?: number;
+  disabled?: boolean;
+  header: JSX.Element;
   children: React.ReactNode;
 }
 
@@ -17,18 +16,16 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
   open,
   setOpen,
   color,
-  title,
-  badgeNumber,
   children,
+  header,
+  disabled,
 }) => {
-  const borderColor = badgeNumber?.toString ? (badgeNumber > 0 ? color : "") : color;
-
   return (
     <div className={!open && styles.containerInactive}>
-      <QuoteWrapper borderColor={borderColor}>
+      <QuoteWrapper borderColor={!disabled ? color : ""}>
         <Collapsible
-          triggerDisabled={badgeNumber ? badgeNumber <= 0 : false}
-          trigger={<LayerAccordionHeaderTemplate {...{ open, title, badgeNumber }} />}
+          triggerDisabled={disabled}
+          trigger={header}
           {...{ open }}
           transitionTime={200}
           onOpening={() => setOpen(true)}

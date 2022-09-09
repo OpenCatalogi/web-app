@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
+import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
 
 interface ComponentCardsAccordionProps {
   components: any[];
@@ -31,7 +32,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
   const process = components.filter((component) => {
     return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Process");
   });
-  const intergration = components.filter((component) => {
+  const integration = components.filter((component) => {
     return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Integration");
   });
   const services = components.filter((component) => {
@@ -56,58 +57,77 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
             label: "Integratie",
             handleClick: setOpenIntegration,
             active: openIntegration,
-            badgeNumber: intergration.length,
+            badgeNumber: integration.length,
           },
           { label: "Service", handleClick: setOpenServices, active: openServices, badgeNumber: services.length },
           { label: "Data", handleClick: setOpenData, active: openData, badgeNumber: data.length },
         ]}
       />
 
-      <Accordion
-        title="Interaction"
-        open={interaction.length > 0 && openInteraction}
-        setOpen={setOpenInteraction}
-        color={getTokenValue(styles.layerColorInteraction)}
-        badgeNumber={interaction.length}
-      >
-        <Components components={interaction} layer="Interactie" />
-      </Accordion>
+      <div className={styles.test}>
+        <Accordion
+          open={openInteraction}
+          setOpen={setOpenInteraction}
+          color={getTokenValue(styles.layerColorInteraction)}
+          disabled={interaction.length === 0}
+          header={
+            <ComponentCardsAccordionHeaderTemplate
+              title="Interaction"
+              active={openInteraction}
+              badgeNumber={interaction.length}
+            />
+          }
+        >
+          <Components components={interaction} layer="Interactie" />
+        </Accordion>
+      </div>
 
       <Accordion
-        title="Process"
-        open={process.length > 0 && openProcess}
+        open={openProcess}
         setOpen={setOpenProcess}
         color={getTokenValue(styles.layerColorProcess)}
-        badgeNumber={process.length}
+        disabled={process.length === 0}
+        header={
+          <ComponentCardsAccordionHeaderTemplate title="Process" active={openProcess} badgeNumber={process.length} />
+        }
       >
         <Components components={process} layer="Proces" />
       </Accordion>
+
       <Accordion
-        title="Integration"
-        open={intergration.length > 0 && openIntegration}
+        open={openIntegration}
         setOpen={setOpenIntegration}
         color={getTokenValue(styles.layerColorIntegration)}
-        badgeNumber={intergration.length}
+        disabled={integration.length === 0}
+        header={
+          <ComponentCardsAccordionHeaderTemplate
+            title="Integration"
+            active={openIntegration}
+            badgeNumber={integration.length}
+          />
+        }
       >
-        <Components components={intergration} layer="Integratie" />
+        <Components components={integration} layer="Integratie" />
       </Accordion>
 
       <Accordion
-        title="Services"
-        open={services.length > 0 && openServices}
+        open={openServices}
         setOpen={setOpenServices}
         color={getTokenValue(styles.layerColorServices)}
-        badgeNumber={services.length}
+        disabled={services.length === 0}
+        header={
+          <ComponentCardsAccordionHeaderTemplate title="Services" active={openServices} badgeNumber={services.length} />
+        }
       >
         <Components components={services} layer="Service" />
       </Accordion>
 
       <Accordion
-        title="Data"
-        open={data.length > 0 && openData}
+        open={openData}
         setOpen={setOpenData}
         color={getTokenValue(styles.layerColorData)}
-        badgeNumber={data.length}
+        disabled={data.length === 0}
+        header={<ComponentCardsAccordionHeaderTemplate title="Data" active={openData} badgeNumber={data.length} />}
       >
         <Components components={data} layer="Data" />
       </Accordion>
