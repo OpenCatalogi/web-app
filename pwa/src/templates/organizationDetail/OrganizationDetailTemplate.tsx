@@ -6,7 +6,6 @@ import {
   Heading1,
   Heading2,
   LeadParagraph,
-  Link,
   Tab,
   TabContext,
   TabPanel,
@@ -14,17 +13,23 @@ import {
 } from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
+import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { ToolTip } from "../../components/toolTip/ToolTip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Tag } from "../../components/tag/Tag";
+import { useTranslation } from "react-i18next";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { navigate } from "gatsby";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
+  const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const TempComponentsOwned = TEMPORARY_COMPONENTS.slice(0, 7);
   const TempComponentsSupported = TEMPORARY_COMPONENTS.slice(8, 13);
@@ -33,7 +38,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerContent}>
+        <div className={styles.headerOrganizationDescription}>
           <Heading1>Gemeente Rotterdam</Heading1>
 
           <LeadParagraph>
@@ -57,8 +62,37 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           </LeadParagraph>
         </div>
 
-        <div className={styles.headerLogo}>
+        <div className={styles.headerOrganizationData}>
           <img className={styles.logo} src={organizationLogo} alt="Organization logo" />
+          <div className={styles.tagsContainer}>
+            <ToolTip tooltip="GitHub">
+              <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open("github")} />
+            </ToolTip>
+            <ToolTip tooltip="GitLab">
+              <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open("gitlab")} />
+            </ToolTip>
+            <ToolTip tooltip="Website">
+              <Tag
+                label="www.rotterdam.nl"
+                icon={<FontAwesomeIcon icon={faGlobe} />}
+                onClick={() => open("https://rotterdam.nl")}
+              />
+            </ToolTip>
+            <ToolTip tooltip="Telefoonnummer">
+              <Tag
+                label="+31 - 102 - 671 - 625"
+                icon={<FontAwesomeIcon icon={faPhone} />}
+                onClick={() => navigate("tel:+31102671625")}
+              />
+            </ToolTip>
+            <ToolTip tooltip="EmailAddress">
+              <Tag
+                label="componenten-support@rotterdam.nl"
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+                onClick={() => navigate("mailto:componenten-support@rotterdam.nl")}
+              />
+            </ToolTip>
+          </div>
         </div>
       </div>
 
@@ -121,57 +155,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             </div>
           </TabPanel>
         </TabContext>
-      </div>
-
-      <Divider />
-
-      <div className={styles.section}>
-        <Heading2>Organisatie gegevens</Heading2>
-
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableHeader>Naam</TableHeader>
-              <TableCell>Gemeente Rotterdam</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>GitHub</TableHeader>
-              <TableCell>
-                <Link icon={<GitHubLogo />} iconAlign="start">
-                  Gemeente Rotterdam componenten GitHub
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Website</TableHeader>
-              <TableCell>
-                <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                  rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Telefoonnummer</TableHeader>
-              <TableCell>
-                <Link icon={<CallIcon />} iconAlign="start">
-                  010 - 123 456 7
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>E-mailadres</TableHeader>
-              <TableCell>
-                <Link icon={<EmailIcon />} iconAlign="start">
-                  componenten-support@rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
       </div>
     </Container>
   );
