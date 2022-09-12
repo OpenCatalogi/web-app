@@ -23,6 +23,7 @@ import { Tag } from "../../components/tag/Tag";
 import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
+import _ from "lodash";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -111,7 +112,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.badgeLayout} number={TempComponentsOwned.length}>
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsOwned.length)}>
                   Eigen componenten
                 </BadgeCounter>
               }
@@ -120,7 +121,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.badgeLayout} number={TempComponentsSupported.length}>
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsSupported.length)}>
                   Ondersteunde componenten
                 </BadgeCounter>
               }
@@ -129,7 +130,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.badgeLayout} number={TempComponentsUsed.length}>
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsUsed.length)}>
                   Gebruikte componenten
                 </BadgeCounter>
               }

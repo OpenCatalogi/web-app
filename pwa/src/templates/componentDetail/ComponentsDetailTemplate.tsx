@@ -254,7 +254,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={TempComponentsDependencies.length}
+                      number={_.toString(TempComponentsDependencies.length)}
                     >
                       Componenten & Afhankelijkheden
                     </BadgeCounter>
@@ -266,10 +266,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={TempComponentsSchema.length}
-                    >
+                    <BadgeCounter layoutClassName={styles.badgeLayout} number={_.toString(TempComponentsSchema.length)}>
                       {t("Schema's")}
                     </BadgeCounter>
                   }
@@ -280,7 +277,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={TempComponentsProcesses.length}
+                      number={_.toString(TempComponentsProcesses.length)}
                     >
                       {t("Processes")}
                     </BadgeCounter>

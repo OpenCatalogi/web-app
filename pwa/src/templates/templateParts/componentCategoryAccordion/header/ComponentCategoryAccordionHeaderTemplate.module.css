@@ -16,7 +16,7 @@
 }
 
 .disabled:hover {
-  cursor: no-drop;
+  cursor: not-allowed;
 }
 
 .content {

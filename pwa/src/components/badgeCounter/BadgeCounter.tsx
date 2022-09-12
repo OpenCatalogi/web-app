@@ -3,7 +3,7 @@ import * as styles from "./BadgeCounter.module.css";
 import clsx from "clsx";
 
 interface BadgeCounterProps {
-  number: number | string;
+  number: string;
   children: React.ReactNode;
   layoutClassName?: string;
 }

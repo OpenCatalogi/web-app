@@ -152,6 +152,10 @@
 
   --web-app-badge-counter-color: var(--web-app-color-black);
   --web-app-badge-counter-background-color: var(--skeleton-color-grey-1);
+  --web-app-badge-counter-height: 18px;
+  --web-app-badge-counter-width: 18px;
+  --web-app-badge-counter-font-size: 12px;
+  --web-app-badge-counter-max-number-font-size: 10px;
 
   --web-app-layer-accordion-inactive-opacity: 0.65;
   --web-app-layer-accordion-disabled-opacity: 0.15;

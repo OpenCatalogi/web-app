@@ -21,13 +21,15 @@ export const ComponentCardsAccordionHeaderTemplate: React.FC<ComponentCardsAccor
 }) => {
   const { t } = useTranslation();
   const hasItems = badgeNumber > 0;
+  const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
+  const maxItems = badgeNumber > 100;
 
   return (
     <div className={clsx(styles.container, active && styles.active, !hasItems && styles.disabled)}>
       <div className={styles.content}>
         <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
-        <span className={clsx(styles[_.camelCase(`${title} badge`)], styles.badge)}>
-          <BadgeCounter number={badgeNumber < 100 ? badgeNumber : "99+"}>
+        <span className={clsx(styles[_.camelCase(`${title} badge`)], styles.badge, maxItems && styles.maxNumber)}>
+          <BadgeCounter number={badgeLabel}>
             <Heading3 className={styles.title}>{t(title)}</Heading3>
           </BadgeCounter>
         </span>

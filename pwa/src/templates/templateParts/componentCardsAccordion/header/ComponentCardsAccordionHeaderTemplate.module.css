@@ -57,6 +57,12 @@
   display: none;
 }
 
+.maxNumber {
+  --web-app-badge-counter-font-size: var(
+    --web-app-badge-counter-max-number-font-size
+  );
+}
+
 .interactionBadge {
   --web-app-badge-counter-background-color: var(
     --web-app-layer-color-interaction

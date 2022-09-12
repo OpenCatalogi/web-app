@@ -3,10 +3,10 @@
 }
 
 .badge {
-  height: var(--web-app-font-size-lg);
-  width: var(--web-app-font-size-lg);
+  height: var(--web-app-badge-counter-height);
+  width: var(--web-app-badge-counter-width);
   border-radius: 50%;
-  font-size: var(--web-app-font-size-xs);
+  font-size: var(--web-app-badge-counter-font-size);
   display: flex;
   align-items: center;
   justify-content: space-around;
