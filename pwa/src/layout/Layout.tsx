@@ -8,7 +8,7 @@ import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
-import { ThemeProvider } from "../styling/ThemeProvider";
+import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 
 const { setEnv } = require("./../../static/env.js");
 

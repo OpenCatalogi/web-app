@@ -19,11 +19,13 @@ import {
   applicatiefuncties,
   referentieComponenten,
   organisations,
+  categories,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
+import { layers } from "../../../../data/filters";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -42,8 +44,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
+      layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      category: getSelectedItemFromFilters(categories, filters.category),
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
       bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -62,8 +66,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     const subscription = watch(
       ({
+        layerType,
         upl,
         platforms,
+        category,
         maintenanceType,
         status,
         softwareType,
@@ -77,7 +83,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         setFilters({
           ...filters,
           currentPage: 1,
+          "nl.commonground.layerType": layerType?.map((l: any) => l.value),
           platforms: platforms?.map((p: any) => p.value),
+          category: category?.value,
           "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "nl.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
           "nl.gemma.referentieComponenten": referentieComponenten?.map((rC: any) => rC.value),
@@ -105,6 +113,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         <FormField>
           <FormFieldInput>
             <FormFieldLabel>
+              <span className={styles.label}>Laag</span>
+            </FormFieldLabel>
+            <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
             <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />
@@ -116,7 +133,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle name="organisation" options={organisations} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="organisation" options={organisations} {...{ errors, control, register }} />
+          </FormFieldInput>
+        </FormField>
+
+        <FormField>
+          <FormFieldInput>
+            <FormFieldLabel>
+              <span className={styles.label}>Categorie</span>
+            </FormFieldLabel>
+            <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -134,7 +160,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Status</span>
             </FormFieldLabel>
-            <SelectSingle name="status" options={statuses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -143,7 +169,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Onderhoudstypes</span>
             </FormFieldLabel>
-            <SelectSingle name="maintenanceType" options={maintenanceTypes} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="maintenanceType"
+              options={maintenanceTypes}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
 
@@ -152,7 +183,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Softwaretypes</span>
             </FormFieldLabel>
-            <SelectSingle name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -161,7 +192,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Licentie</span>
             </FormFieldLabel>
-            <SelectSingle name="license" options={licenses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -201,7 +232,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Applicatiefunctie</span>
             </FormFieldLabel>
-            <SelectSingle name="applicatiefunctie" options={applicatiefuncties} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="applicatiefunctie"
+              options={applicatiefuncties}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
       </form>

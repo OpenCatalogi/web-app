@@ -5,11 +5,10 @@ import { Divider, Heading1, Heading2, Heading3, LeadParagraph } from "@gemeente-
 import { useTranslation } from "react-i18next";
 import { Container, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
-import { MiniDashboardTemplate } from "../templateParts/miniDashboard/MiniDashboardTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import clsx from "clsx";
-import { CategorySearchTemplate } from "../templateParts/categorySearch/CategorySearchTemplate";
+import { ComponentCategoryAccordionTemplate } from "../templateParts/componentCategoryAccordion/ComponentCategoryAccordionTemplate";
 
 export const LandingTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -31,18 +30,10 @@ export const LandingTemplate: React.FC = () => {
         <div className={styles.subHeading}>
           <Heading2>Zoeken per categorie</Heading2>
 
-          <LeadParagraph>
-            Hier kunnen de components gezocht worden op categorie.
-          </LeadParagraph>
+          <LeadParagraph>Hier kunnen de components gezocht worden op categorie.</LeadParagraph>
         </div>
 
-        <CategorySearchTemplate />
-      </section>
-
-      <section className={styles.section}>
-        <Heading3>Open Catalogi in getallen</Heading3>
-
-        <MiniDashboardTemplate />
+        <ComponentCategoryAccordionTemplate />
       </section>
 
       <section className={styles.section}>

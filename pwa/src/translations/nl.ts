@@ -8,8 +8,10 @@ export const nl = {
   "Privacy declaration": "Privacyverklaring",
   Interaction: "Interactie",
   Process: "Proces",
+  Processs: "Proces",
   Integration: "Integratie",
-  Services: "Services",
+  Services: "Service",
+  Service: "Service",
   Data: "Data",
   "All Open Catalog components": "Alle Open Catalogi componenten",
   "View all components": "Bekijk alle componenten",
@@ -50,5 +52,9 @@ export const nl = {
   Installation: "Installatie",
   Usage: "Gebruik",
   API: "API",
-  Reuser: "Hergebruiker"
+  Reuser: "Hergebruiker",
+  interface: "Interactie",
+  Username: "Gebruikersnaam",
+  Password: "Wachtwoord",
+  Send: "Versturen",
 };

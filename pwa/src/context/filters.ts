@@ -10,6 +10,7 @@ export interface IFilters {
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];
+  category?: string;
   "nl.commonground.layerType"?: string[];
   "nl.gemma.bedrijfsfuncties"?: string[];
   "nl.gemma.bedrijfsservices"?: string[];

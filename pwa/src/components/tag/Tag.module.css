@@ -21,6 +21,6 @@
   max-height: var(--web-app-font-size-sm);
 }
 
-.tagIconLink :hover {
+.clickable :hover {
   cursor: pointer;
 }

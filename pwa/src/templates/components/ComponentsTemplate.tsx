@@ -27,7 +27,6 @@ export const ComponentsTemplate: React.FC = () => {
       <div className={styles.header}>
         <div>
           <Heading2>Componenten</Heading2>
-          <span>Alle gefilterde componenten</span>
         </div>
         <div className={styles.resultsDisplaySwitchButtons}>
           <Button
@@ -57,12 +56,12 @@ export const ComponentsTemplate: React.FC = () => {
         </div>
       </div>
 
-      <HorizontalFiltersTemplate />
-
       <div className={styles.filtersAndResultsContainer}>
         <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
+          <HorizontalFiltersTemplate />
+
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />

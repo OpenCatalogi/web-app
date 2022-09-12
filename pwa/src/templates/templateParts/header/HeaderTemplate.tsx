@@ -10,6 +10,8 @@ import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/component
 import { FiltersContext } from "../../../context/filters";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -112,12 +114,22 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
       icon: <GitHubLogo />,
     },
+    {
+      label: "Login",
+      handleClick: () => {
+        navigate("/login");
+      },
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
+    },
   ];
 
   return (
     <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
       <div className={styles.top}>
         <Container layoutClassName={styles.secondaryNavContainer}>
+          <div className={styles.logoContainer}>
+            <div onClick={() => navigate("/")} className={styles.organisationLogo}></div>
+          </div>
           <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>

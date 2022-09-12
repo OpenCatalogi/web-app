@@ -1,29 +1,17 @@
 import * as React from "react";
 import * as styles from "./Tag.module.css";
 import clsx from "clsx";
-import { navigate } from "gatsby";
 
 interface TagProps {
-  tag: string;
+  label: string;
   icon?: JSX.Element;
+  onClick?: () => any;
+  layoutClassName?: string;
 }
 
-export const Tag: React.FC<TagProps> = ({ tag, icon }) => (
-  <a className={styles.tag}>
+export const Tag: React.FC<TagProps> = ({ label, icon, onClick, layoutClassName }) => (
+  <div className={clsx(styles.tag, [layoutClassName && layoutClassName], onClick && styles.clickable)} {...{ onClick }}>
     {icon && <span>{icon}</span>}
-    <span>{tag}</span>
-  </a>
-);
-
-interface TagIconLinkProps {
-  tag?: string;
-  icon: JSX.Element;
-  href: string;
-}
-
-export const TagIconLink: React.FC<TagIconLinkProps> = ({ icon, href, tag }) => (
-  <div className={clsx(styles.tag, styles.tagIconLink)} onClick={() => navigate(href)}>
-    {tag && <span>{tag}</span>}
-    <span>{icon}</span>
+    <span>{label}</span>
   </div>
 );

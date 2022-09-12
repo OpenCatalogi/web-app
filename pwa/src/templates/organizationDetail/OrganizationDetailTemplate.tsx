@@ -1,46 +1,99 @@
-import { Container } from "@conduction/components";
+import * as React from "react";
+import * as styles from "./OrganizationDetailTemplate.module.css";
+import { Container, QuoteWrapper } from "@conduction/components";
 import {
   Divider,
   Heading1,
   Heading2,
   LeadParagraph,
-  Link,
   Tab,
   TabContext,
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import * as React from "react";
-import * as styles from "./OrganizationDetailTemplate.module.css";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
-import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { ToolTip } from "../../components/toolTip/ToolTip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Tag } from "../../components/tag/Tag";
+import { useTranslation } from "react-i18next";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { navigate } from "gatsby";
+import _ from "lodash";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
+  const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const TempComponentsOwned = TEMPORARY_COMPONENTS.slice(0, 7);
+  const TempComponentsSupported = TEMPORARY_COMPONENTS.slice(8, 13);
+  const TempComponentsUsed = TEMPORARY_COMPONENTS;
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerContent}>
+        <div className={styles.headerOrganizationDescription}>
           <Heading1>Gemeente Rotterdam</Heading1>
 
           <LeadParagraph>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Duis
-            mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
+            <QuoteWrapper>
+              Een stad waar je ruimte ervaart. <br />
+              Bij een organisatie die je vrijheid en verantwoordelijkheid biedt. <br />
+              Voor werk waar je uitdaging voelt. <br />
+              Zodat jij en de stad blijven groeien. <br />
+              Voor en met alle Rotterdammers.
+            </QuoteWrapper>
+            <br />
+            <br />
+            Bij een stad die je elke dag uitdaagt en het beste in jou naar boven haalt, hoort een eigentijdse overheid
+            die meebeweegt met de energie van de stad. Zo’n organisatie wil de gemeente Rotterdam zijn. Daarom bieden we
+            je ruimte en kansen om Rotterdam en daarmee jezelf vooruit te blijven helpen.
+            <br />
+            <br />
+            Wij creëren de voorwaarden zodat jij de ruimte ervaart om te groeien: in de stad en binnen de eigen
+            organisatie. In een omgeving met collega’s die veilig en vertrouwd voelt. Waar we samen beslissen en samen
+            aanpakken.
           </LeadParagraph>
         </div>
 
-        <div className={styles.headerLogo}>
+        <div className={styles.headerOrganizationData}>
           <img className={styles.logo} src={organizationLogo} alt="Organization logo" />
+          <div className={styles.tagsContainer}>
+            <ToolTip tooltip="GitHub">
+              <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open("github")} />
+            </ToolTip>
+            <ToolTip tooltip="GitLab">
+              <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open("gitlab")} />
+            </ToolTip>
+            <ToolTip tooltip="Website">
+              <Tag
+                label="www.rotterdam.nl"
+                icon={<FontAwesomeIcon icon={faGlobe} />}
+                onClick={() => open("https://rotterdam.nl")}
+              />
+            </ToolTip>
+            <ToolTip tooltip="Telefoonnummer">
+              <Tag
+                label="+31 - 102 - 671 - 625"
+                icon={<FontAwesomeIcon icon={faPhone} />}
+                onClick={() => navigate("tel:+31102671625")}
+              />
+            </ToolTip>
+            <ToolTip tooltip="EmailAddress">
+              <Tag
+                label="componenten-support@rotterdam.nl"
+                icon={<FontAwesomeIcon icon={faEnvelope} />}
+                onClick={() => navigate("mailto:componenten-support@rotterdam.nl")}
+              />
+            </ToolTip>
+          </div>
         </div>
       </div>
 
@@ -48,7 +101,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
       <div className={styles.section}>
         <Heading2>Componenten</Heading2>
-
         <TabContext value={currentTab.toString()}>
           <Tabs
             value={currentTab}
@@ -57,74 +109,53 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             }}
             variant="scrollable"
           >
-            <Tab className={styles.tab} label="Eigen componenten" value={0} />
-            <Tab className={styles.tab} label="Ondersteunde componenten" value={1} />
-            <Tab className={styles.tab} label="Gebruikte componenten" value={2} />
+            <Tab
+              className={styles.tab}
+              label={
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsOwned.length)}>
+                  Eigen componenten
+                </BadgeCounter>
+              }
+              value={0}
+            />
+            <Tab
+              className={styles.tab}
+              label={
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsSupported.length)}>
+                  Ondersteunde componenten
+                </BadgeCounter>
+              }
+              value={1}
+            />
+            <Tab
+              className={styles.tab}
+              label={
+                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsUsed.length)}>
+                  Gebruikte componenten
+                </BadgeCounter>
+              }
+              value={2}
+            />
           </Tabs>
 
           <TabPanel className={styles.tabPanel} value="0">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} hideTableHead />
+            <div className={styles.components}>
+              <ComponentCardsAccordionTemplate components={TempComponentsOwned} />
+            </div>
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="1">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
+            <div className={styles.components}>
+              <ComponentCardsAccordionTemplate components={TempComponentsSupported} />
+            </div>
           </TabPanel>
 
           <TabPanel className={styles.tabPanel} value="2">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
+            <div className={styles.components}>
+              <ComponentCardsAccordionTemplate components={TempComponentsUsed} />
+            </div>
           </TabPanel>
         </TabContext>
-      </div>
-
-      <Divider />
-
-      <div className={styles.section}>
-        <Heading2>Organisatie gegevens</Heading2>
-
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableHeader>Naam</TableHeader>
-              <TableCell>Gemeente Rotterdam</TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>GitHub</TableHeader>
-              <TableCell>
-                <Link icon={<GitHubLogo />} iconAlign="start">
-                  Gemeente Rotterdam componenten GitHub
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Website</TableHeader>
-              <TableCell>
-                <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                  rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Telefoonnummer</TableHeader>
-              <TableCell>
-                <Link icon={<CallIcon />} iconAlign="start">
-                  010 - 123 456 7
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>E-mailadres</TableHeader>
-              <TableCell>
-                <Link icon={<EmailIcon />} iconAlign="start">
-                  componenten-support@rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
       </div>
     </Container>
   );

@@ -1,12 +1,16 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
-import { Tag } from "@conduction/components";
 import { Link } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import _ from "lodash";
+import { ToolTip } from "../../../../components/toolTip/ToolTip";
+import { Tag } from "../../../../components/tag/Tag";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import clsx from "clsx";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -22,9 +26,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
         <TableHead>
           <TableRow>
             <TableHeader>{t("Name")}</TableHeader>
+            <TableHeader>{t("Layer")}</TableHeader>
             <TableHeader>{t("Status")}</TableHeader>
             <TableHeader>{t("Type")}</TableHeader>
-            <TableHeader>{t("Layer")}</TableHeader>
             <TableHeader>{t("Organisation")}</TableHeader>
             <TableHeader>{t("Installations")}</TableHeader>
             <TableHeader />
@@ -34,33 +38,58 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
       <TableBody>
         {components.map((component) => (
-          <TableRow key={component.id}>
+          <TableRow key={component.id} onClick={() => navigate(`/components/${component.id}`)}>
             <TableCell>
               <span className={styles.name}>{component.name}</span>
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.developmentStatus ?? "Onbekend")} />
+              <div
+                className={clsx(styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType}`))])}
+              >
+                <ToolTip tooltip="Laag">
+                  <Tag
+                    layoutClassName={styles.tagWidth}
+                    label={t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend"))}
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                  />
+                </ToolTip>
+              </div>
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.softwareType ?? "Onbekend"} />
+              <ToolTip tooltip="Status">
+                <Tag
+                  layoutClassName={styles.tagWidth}
+                  label={_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                  icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend")} />
+              <ToolTip tooltip="Type">
+                <Tag label={_.upperFirst(component.softwareType ?? "Onbekend")} />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend"} />
+              <ToolTip tooltip="Organisatie">
+                <Tag
+                  label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
+                  icon={<FontAwesomeIcon icon={faHouse} />}
+                />
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <Tag tag={component.usedBy?.length() ?? 0} />
+              <ToolTip tooltip="Installaties">
+                <Tag label={_.upperFirst(component.usedBy?.length ?? 0)} icon={<FontAwesomeIcon icon={faRepeat} />} />
+              </ToolTip>
             </TableCell>
 
-            <TableCell className={styles.details} onClick={() => navigate(`/components/${component.id}`)}>
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <TableCell onClick={() => navigate(`/components/${component.id}`)}>
+              <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Details")}
               </Link>
             </TableCell>

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  margin-block-start: var(--web-app-size-2xl);
+}
+
+.header {
+  margin-block-end: var(--web-app-size-xl);
+}

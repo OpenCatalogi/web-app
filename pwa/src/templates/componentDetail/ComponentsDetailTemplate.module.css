@@ -2,8 +2,9 @@
   margin-block-end: var(--web-app-size-4xl);
 }
 
-.backButton {
+.container > .backButton {
   margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
 }
 
 .container > .headingContainer {
@@ -15,15 +16,25 @@
 .description {
   padding-top: 0 !important;
   padding-inline-end: var(--skeleton-size-xs);
+  margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
 }
 
-.tags {
+.layerAndCategoryContainer {
   display: flex;
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-sm);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .addToCatalogusContainer {
@@ -53,14 +64,8 @@
   padding-top: var(--web-app-size-md);
 }
 
-.tabs :first-child {
-  width: fit-content;
-}
-
-.panels,
-.tabs {
-  position: relative;
-  left: calc(var(--web-app-size-lg) * -1);
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .tabPanel {
@@ -79,51 +84,61 @@
   max-width: unset !important;
 }
 
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+  align-items: inherit !important;
+}
+
 /* Colors of the 5 layers */
 .interactie {
-  --web-app-tag-background-color: #1a75ff;
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .interactieCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: #cfe2ff;
+  --web-app-tag-background-color: var(
+    --web-app-layer-category-color-interaction
+  );
 }
 
 .proces,
 .process,
 .processs {
-  --web-app-tag-background-color: #dd3c49;
+  --web-app-tag-background-color: var(--web-app-layer-color-process);
   --web-app-tag-color: var(--web-app-color-white);
 }
-.procesCategory .processCategory {
-  --web-app-tag-background-color: #f8d7da;
+.procesCategory,
+.processCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
 }
 
 .integratie,
 .integration {
-  --web-app-tag-background-color: #efc025;
+  --web-app-tag-background-color: var(--web-app-layer-color-integration);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .integratieCategory,
 .integrationCategory {
-  --web-app-tag-background-color: #fff3cd;
+  --web-app-tag-background-color: var(
+    --web-app-layer-category-color-integration
+  );
 }
 
 .services,
 .service {
-  --web-app-tag-background-color: #69b090;
+  --web-app-tag-background-color: var(--web-app-layer-color-services);
   --web-app-tag-color: var(--web-app-color-white);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --web-app-tag-background-color: #d1e7dd;
+  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
 }
 
 .data {
-  --web-app-tag-background-color: #7a51c8;
+  --web-app-tag-background-color: var(--web-app-layer-color-data);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
-  --web-app-tag-background-color: #e2d9f3;
+  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
 }
