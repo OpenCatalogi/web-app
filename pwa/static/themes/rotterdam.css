@@ -132,13 +132,13 @@
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
 
-  --web-app-layer-color-intraction: #1a75ff;
+  --web-app-layer-color-interaction: #1a75ff;
   --web-app-layer-color-process: #dd3c49;
   --web-app-layer-color-integration: #efc025;
   --web-app-layer-color-services: #69b090;
   --web-app-layer-color-data: #7a51c8;
 
-  --web-app-layer-category-color-intraction: #cfe2ff;
+  --web-app-layer-category-color-interaction: #cfe2ff;
   --web-app-layer-category-color-process: #f8d7da;
   --web-app-layer-category-color-integration: #fff3cd;
   --web-app-layer-category-color-services: #d1e7dd;
@@ -149,6 +149,16 @@
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
 
   --web-app-component-card-border-color: 1px solid var(--skeleton-color-grey-2);
+
+  --web-app-badge-counter-color: var(--web-app-color-black);
+  --web-app-badge-counter-background-color: var(--skeleton-color-grey-1);
+  --web-app-badge-counter-height: 18px;
+  --web-app-badge-counter-width: 18px;
+  --web-app-badge-counter-font-size: 12px;
+  --web-app-badge-counter-max-number-font-size: 10px;
+
+  --web-app-layer-accordion-inactive-opacity: 0.65;
+  --web-app-layer-accordion-disabled-opacity: 0.15;
 
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);

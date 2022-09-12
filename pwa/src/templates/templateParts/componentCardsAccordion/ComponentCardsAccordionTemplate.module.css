@@ -1,0 +1,13 @@
+:export {
+  layerColorInteraction: --web-app-layer-color-interaction;
+  layerColorProcess: --web-app-layer-color-process;
+  layerColorIntegration: --web-app-layer-color-integration;
+  layerColorServices: --web-app-layer-color-services;
+  layerColorData: --web-app-layer-color-data;
+}
+
+.ComponentsGrid {
+  display: grid;
+  grid-gap: var(--web-app-size-lg);
+  grid-template-columns: 1fr 1fr;
+}
