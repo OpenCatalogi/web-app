@@ -51,4 +51,5 @@
 .feedback {
   display: flex;
   justify-content: flex-end;
+  margin-block-start: var(--web-app-size-3xl);
 }
