@@ -10,7 +10,8 @@
   height: 500px;
   width: var(--conduction-container-max-width);
   border: 2px;
-  border: 1px solid lightgrey;
+  border: 1px solid #dddddd;
+  background-color: rgb(251, 251, 251);
 }
 
 /* Colors of the 5 layers */

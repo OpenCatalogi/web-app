@@ -360,7 +360,7 @@ export const TEMPORARY_COMPONENTS = [
     },
   },
   {
-    id: "82e924b9-8c59-4403-bed9-434a459d3839",
+    id: "bed7fced-f358-42a1-8b47-ed508de79030",
     applicationId: null,
     applicationSuite: null,
     categories: ["Acounting"],
@@ -396,7 +396,7 @@ export const TEMPORARY_COMPONENTS = [
     },
   },
   {
-    id: "82e924b9-8c59-4403-bed9-434a459d3839",
+    id: "c35fb28d-2a06-4ec4-b145-c7a789dfd2fb",
     applicationId: null,
     applicationSuite: null,
     categories: ["Acounting"],
@@ -432,7 +432,7 @@ export const TEMPORARY_COMPONENTS = [
     },
   },
   {
-    id: "82e924b9-8c59-4403-bed9-434a459d3839",
+    id: "4adbbe88-e2bd-4675-b8cf-66e6e549c2b5",
     applicationId: null,
     applicationSuite: null,
     categories: ["Acounting"],
@@ -468,7 +468,7 @@ export const TEMPORARY_COMPONENTS = [
     },
   },
   {
-    id: "82e924b9-8c59-4403-bed9-434a459d3839",
+    id: "1e4d30aa-2d5f-435c-ad60-d527cffbd2e5",
     applicationId: null,
     applicationSuite: null,
     categories: ["Acounting"],
@@ -504,7 +504,7 @@ export const TEMPORARY_COMPONENTS = [
     },
   },
   {
-    id: "82e924b9-8c59-4403-bed9-434a459d3839",
+    id: "41c502d9-3c4b-4b14-9928-1ab2b5b92f6a",
     applicationId: null,
     applicationSuite: null,
     categories: ["Acounting"],

@@ -34,13 +34,13 @@ import {
   faTable,
 } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../context/filters";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;

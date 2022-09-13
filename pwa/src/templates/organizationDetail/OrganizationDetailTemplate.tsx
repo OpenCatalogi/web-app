@@ -121,7 +121,10 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsSupported.length)}>
+                <BadgeCounter
+                  layoutClassName={styles.tabAmountBadge}
+                  number={_.toString(TempComponentsSupported.length)}
+                >
                   Ondersteunde componenten
                 </BadgeCounter>
               }
