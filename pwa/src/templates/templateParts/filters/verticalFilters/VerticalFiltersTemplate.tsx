@@ -18,7 +18,7 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organisations,
+  organizations,
   categories,
 } from "./../../../../data/filters";
 import {
@@ -59,7 +59,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organisation: getSelectedItemFromFilters(organisations, filters["legal.mainCopyrightOwner"]),
+      organization: getSelectedItemFromFilters(organizations, filters["legal.mainCopyrightOwner"]),
     });
   }, [filters]);
 
@@ -78,7 +78,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         bedrijfsfuncties,
         referentieComponenten,
         applicatiefunctie,
-        organisation,
+        organization,
       }) => {
         setFilters({
           ...filters,
@@ -94,7 +94,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
-          "legal.mainCopyrightOwner": organisation?.value,
+          "legal.mainCopyrightOwner": organization?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
@@ -133,7 +133,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="organisation" options={organisations} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="organisation" options={organizations} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 

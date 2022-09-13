@@ -25,8 +25,8 @@ export interface ComponentCardProps {
   };
   tags: {
     status?: string;
-    installations?: number;
-    organisation?: string;
+    installations: string;
+    organization?: string;
     licence?: string;
     githubLink?: string;
   };
@@ -46,7 +46,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
       <Paragraph className={styles.description}>{description}</Paragraph>
       <div className={styles.layerTags}>
-        <div className={styles[_.camelCase(t(layer))]}>
+        <div className={styles[_.camelCase(t(_.upperFirst(layer)))]}>
           <ToolTip tooltip="Laag">
             <Tag label={t(_.upperFirst(layer))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
           </ToolTip>
@@ -66,19 +66,13 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
             <Tag label={_.upperFirst(tags.status)} icon={<FontAwesomeIcon icon={faInfoCircle} />} />
           </ToolTip>
         )}
-        {tags.installations && (
-          <ToolTip tooltip="Aantal Installaties">
-            <Tag label={_.toString(tags.installations)} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {!tags.installations && (
-          <ToolTip tooltip="Aantal Installaties">
-            <Tag label={"0"} icon={<FontAwesomeIcon icon={faRepeat} />} />
-          </ToolTip>
-        )}
-        {tags.organisation && (
+        <ToolTip tooltip="Aantal installaties">
+          <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
+        </ToolTip>
+
+        {tags.organization && (
           <ToolTip tooltip="Organisatie">
-            <Tag label={tags.organisation} icon={<FontAwesomeIcon icon={faHouse} />} />
+            <Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
           </ToolTip>
         )}
         {tags.licence && (
