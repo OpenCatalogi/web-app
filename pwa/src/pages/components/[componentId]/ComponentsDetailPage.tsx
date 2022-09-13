@@ -8,9 +8,8 @@ const ComponentsDetailPage: React.FC<PageProps> = (props: PageProps) => {
   let TempOrganization = [];
 
   const sample = _.sample(TEMPORARY_ORGANIZATIONS);
-  
+
   TempOrganization.push(sample);
-  
 
   return (
     <>

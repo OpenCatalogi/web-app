@@ -31,7 +31,6 @@ import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
-import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 
@@ -46,7 +45,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
-
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
   const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
@@ -159,8 +157,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   supported: organization.supports?.length.toString() ?? "0",
                   used: organization.uses?.length.toString() ?? "0",
                 }}
-                github={organization.github}
-                gitlab={organization.gitlab}
+                gitHub={organization.github}
+                gitLab={organization.gitlab}
                 type={organization.type}
               />
             ))}
