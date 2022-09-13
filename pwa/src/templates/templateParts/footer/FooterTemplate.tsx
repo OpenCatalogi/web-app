@@ -77,7 +77,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("#");
+                navigate("/documentation/installation");
               }}
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">

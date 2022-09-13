@@ -153,6 +153,8 @@
   --web-app-organization-card-logo-height: 100px;
   --web-app-organization-card-logo-width: 100px;
 
+  --web-app-code-block-background-color: var(--skeleton-color-grey-1);
+
   --web-app-badge-counter-color: var(--web-app-color-black);
   --web-app-badge-counter-background-color: var(--skeleton-color-grey-1);
   --web-app-badge-counter-height: 18px;
