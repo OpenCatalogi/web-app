@@ -1,5 +1,5 @@
 .container {
-  border: var(--web-app-component-card-border-color);
+  border: var(--web-app-card-border-color);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
   padding-block-start: var(--web-app-size-md);

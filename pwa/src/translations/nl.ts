@@ -54,10 +54,11 @@ export const nl = {
   API: "API",
   Reuser: "Hergebruiker",
   interface: "Interactie",
+  Interface: "Interactie",
   Username: "Gebruikersnaam",
   Password: "Wachtwoord",
   Send: "Versturen",
   Private: "Privé",
   Public: "Openbaar",
-  Unkown: "Onbekend",
+  Unknown: "Onbekend",
 };
