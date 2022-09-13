@@ -51,7 +51,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               <div className={styles.logoContainer}>
                 <img className={styles.logo} src={tempOrganization.logo} alt="Organization logo" />
               </div>
-              <div className={styles.test}>
+              <div>
                 <div className={styles.tagsContainer}>
                   {tempOrganization.github && (
                     <ToolTip tooltip="GitHub">
@@ -156,8 +156,50 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               </LeadParagraph>
             </div>
 
-            <div className={styles.headerLogo}>
-              <img className={styles.oldLogo} src={organizationLogo} alt="Organization logo" />
+            <div className={styles.headerOrganizationData}>
+              <div className={styles.logoContainer}>
+                <img className={styles.oldLogo} src={organizationLogo} alt="Organization logo" />
+              </div>
+              <div>
+                <div className={styles.tagsContainer}>
+                  <ToolTip tooltip="GitHub">
+                    <Tag
+                      label={t("GitHub")}
+                      icon={<GitHubLogo />}
+                      onClick={() => open("https://github.com/OpenCatalogi")}
+                    />
+                  </ToolTip>
+                  <ToolTip tooltip="GitLab">
+                    <Tag
+                      label={t("GitLab")}
+                      icon={<GitLabLogo />}
+                      onClick={() => open("https://github.com/OpenCatalogi")}
+                    />
+                  </ToolTip>
+
+                  <ToolTip tooltip={"Website"}>
+                    <Tag
+                      label={"https://www.rotterdam.nl"}
+                      icon={<FontAwesomeIcon icon={faGlobe} />}
+                      onClick={() => open("https://www.rotterdam.nl")}
+                    />
+                  </ToolTip>
+                  <ToolTip tooltip={"Telefoonnummer"}>
+                    <Tag
+                      label={"+31 10 267 16 25"}
+                      icon={<FontAwesomeIcon icon={faPhone} />}
+                      onClick={() => navigate(`tel:${"+31 10 267 16 25"}`)}
+                    />
+                  </ToolTip>
+                  <ToolTip tooltip={"EmailAddress"}>
+                    <Tag
+                      label={"info@rotterdam.nl"}
+                      icon={<FontAwesomeIcon icon={faEnvelope} />}
+                      onClick={() => navigate(`mailto:${"info@rotterdam.nl"}`)}
+                    />
+                  </ToolTip>
+                </div>
+              </div>
             </div>
           </div>
 
