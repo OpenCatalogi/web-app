@@ -18,8 +18,8 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organisations,
-  _categories,
+  organizations,
+  categories,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
@@ -47,7 +47,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
-      category: getSelectedItemFromFilters(_categories, filters.category),
+      category: getSelectedItemFromFilters(categories, filters.category),
       bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
       bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -59,7 +59,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organisation: getSelectedItemFromFilters(organisations, filters["legal.mainCopyrightOwner"]),
+      organization: getSelectedItemFromFilters(organizations, filters["legal.mainCopyrightOwner"]),
     });
   }, [filters]);
 
@@ -78,7 +78,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         bedrijfsfuncties,
         referentieComponenten,
         applicatiefunctie,
-        organisation,
+        organization,
       }) => {
         setFilters({
           ...filters,
@@ -94,7 +94,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
-          "legal.mainCopyrightOwner": organisation?.value,
+          "legal.mainCopyrightOwner": organization?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
@@ -133,7 +133,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle name="organisation" options={organisations} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="organisation" options={organizations} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -142,7 +142,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Categorie</span>
             </FormFieldLabel>
-            <SelectSingle name="category" options={_categories} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -160,7 +160,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Status</span>
             </FormFieldLabel>
-            <SelectSingle name="status" options={statuses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -169,7 +169,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Onderhoudstypes</span>
             </FormFieldLabel>
-            <SelectSingle name="maintenanceType" options={maintenanceTypes} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="maintenanceType"
+              options={maintenanceTypes}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
 
@@ -178,7 +183,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Softwaretypes</span>
             </FormFieldLabel>
-            <SelectSingle name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -187,7 +192,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Licentie</span>
             </FormFieldLabel>
-            <SelectSingle name="license" options={licenses} {...{ errors, control, register }} />
+            <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />
           </FormFieldInput>
         </FormField>
 
@@ -227,7 +232,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Applicatiefunctie</span>
             </FormFieldLabel>
-            <SelectSingle name="applicatiefunctie" options={applicatiefuncties} {...{ errors, control, register }} />
+            <SelectSingle
+              isClearable
+              name="applicatiefunctie"
+              options={applicatiefuncties}
+              {...{ errors, control, register }}
+            />
           </FormFieldInput>
         </FormField>
       </form>

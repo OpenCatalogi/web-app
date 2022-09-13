@@ -16,14 +16,14 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
         <ComponentCard
           key={component.id}
           title={{ label: component.name, href: `/components/${component.id}` }}
-          description={component.embedded?.description.shortDescription}
+          description={component.embedded?.description?.shortDescription}
           layer={component.embedded?.nl.embedded?.commonground.layerType}
           category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
           tags={{
             status: component.developmentStatus,
-            installations: component.usedBy?.length(),
-            organisation: component.embedded?.legal.embedded?.repoOwner.name,
-            licence: component.embedded?.legal.license,
+            installations: component.usedBy?.length.toString() ?? "0",
+            organization: component.embedded?.legal?.embedded?.repoOwner?.name,
+            licence: component.embedded?.legal?.license,
             githubLink: component.embedded?.url?.url,
           }}
         />

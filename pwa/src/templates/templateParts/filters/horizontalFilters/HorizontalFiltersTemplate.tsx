@@ -36,13 +36,12 @@ export const HorizontalFiltersTemplate: React.FC = () => {
 
   return (
     <form
-      className={styles.form}
       onSubmit={(e) => {
         e.preventDefault();
       }}
     >
-      <FormField className={styles.container}>
-        <FormFieldInput className={styles.content}>
+      <FormField>
+        <FormFieldInput>
           <FormFieldLabel>Zoek op naam</FormFieldLabel>
           <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
         </FormFieldInput>

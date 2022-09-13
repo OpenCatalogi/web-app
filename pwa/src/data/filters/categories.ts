@@ -1,4 +1,4 @@
-export const _categories = [
+export const categories = [
   { label: "Procesondersteuning", value: "process support" },
   { label: "Regie op gegevens", value: "control over data" },
   { label: "Aanvragen en meldingen", value: "request and notifications" },
