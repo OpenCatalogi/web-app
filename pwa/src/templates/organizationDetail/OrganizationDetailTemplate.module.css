@@ -72,3 +72,12 @@
 .tabPanel {
   padding: 0 !important;
 }
+
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.tabAmountBadge {
+  margin-inline-start: var(--web-app-size-xs);
+  align-items: inherit !important;
+}

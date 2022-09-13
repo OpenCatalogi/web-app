@@ -1,5 +1,5 @@
 .container {
-  border: var(--web-app-component-card-border-color);
+  border: var(--web-app-card-border-color);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
   padding-block-start: var(--web-app-size-md);
@@ -24,7 +24,6 @@
 
 .titleLink {
   font-size: var(--web-app-font-size-lg);
-  --denhaag-link-icon-gap: var(--web-app-size-xs);
 }
 
 .titleLink > :first-child > span > svg {
@@ -61,8 +60,7 @@
 }
 
 .logo {
-  vertical-align: middle;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }

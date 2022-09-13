@@ -114,9 +114,9 @@ export const TEMPORARY_ORGANIZATIONS = [
   //   token: "",
   //   github: "",
   //   gitlab: "",
-  //   website: "https://www.unkown.nl/",
+  //   website: "",
   //   phone: "+31 10 267 16 25",
-  //   email: "info@unkown.unkown",
-  //   type: "unkown",
+  //   email: "info@unknown.unknown",
+  //   type: "unknown",
   // },
 ];

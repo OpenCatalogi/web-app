@@ -1,3 +1,5 @@
+import * as React from "react";
+import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
 import {
   Divider,
@@ -9,11 +11,10 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import * as React from "react";
-import * as styles from "./OrganizationDetailTemplate.module.css";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,14 +24,19 @@ import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import _ from "lodash";
+import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
-  const [currentTab, setCurrentTab] = React.useState<number>(0);
   const { t } = useTranslation();
+  const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const TempComponentsOwned = TEMPORARY_COMPONENTS.slice(0, 7);
+  const TempComponentsSupported = TEMPORARY_COMPONENTS.slice(8, 13);
+  const TempComponentsUsed = TEMPORARY_COMPONENTS;
 
   const tempOrganization = TEMPORARY_ORGANIZATIONS.find((organization) => {
     return organization.id === organizationId;
@@ -99,7 +105,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
           <div className={styles.section}>
             <Heading2>Componenten</Heading2>
-
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
@@ -108,26 +113,64 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 }}
                 variant="scrollable"
               >
-                <Tab className={styles.tab} label="Eigen componenten" value={0} />
-                <Tab className={styles.tab} label="Ondersteunde componenten" value={1} />
-                <Tab className={styles.tab} label="Gebruikte componenten" value={2} />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsOwned.length)}
+                    >
+                      Eigen componenten
+                    </BadgeCounter>
+                  }
+                  value={0}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsSupported.length)}
+                    >
+                      Ondersteunde componenten
+                    </BadgeCounter>
+                  }
+                  value={1}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsUsed.length)}
+                    >
+                      Gebruikte componenten
+                    </BadgeCounter>
+                  }
+                  value={2}
+                />
               </Tabs>
 
               <TabPanel className={styles.tabPanel} value="0">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsOwned} />
+                </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsSupported} />
+                </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsUsed} />
+                </div>
               </TabPanel>
             </TabContext>
           </div>
 
-          <Divider />
         </>
       )}
       {!tempOrganization && (
@@ -207,7 +250,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
           <div className={styles.section}>
             <Heading2>Componenten</Heading2>
-
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
@@ -216,26 +258,63 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 }}
                 variant="scrollable"
               >
-                <Tab className={styles.tab} label="Eigen componenten" value={0} />
-                <Tab className={styles.tab} label="Ondersteunde componenten" value={1} />
-                <Tab className={styles.tab} label="Gebruikte componenten" value={2} />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsOwned.length)}
+                    >
+                      Eigen componenten
+                    </BadgeCounter>
+                  }
+                  value={0}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsSupported.length)}
+                    >
+                      Ondersteunde componenten
+                    </BadgeCounter>
+                  }
+                  value={1}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.tabAmountBadge}
+                      number={_.toString(TempComponentsUsed.length)}
+                    >
+                      Gebruikte componenten
+                    </BadgeCounter>
+                  }
+                  value={2}
+                />
               </Tabs>
 
               <TabPanel className={styles.tabPanel} value="0">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsOwned} />
+                </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsSupported} />
+                </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
-                <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsUsed} />
+                </div>
               </TabPanel>
             </TabContext>
           </div>
-
-          <Divider />
         </>
       )}
     </Container>
