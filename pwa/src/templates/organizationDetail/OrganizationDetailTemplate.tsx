@@ -25,8 +25,6 @@ import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import _ from "lodash";
-import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
-import _ from "lodash";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;

@@ -163,6 +163,12 @@
   --web-app-layer-accordion-inactive-opacity: 0.65;
   --web-app-layer-accordion-disabled-opacity: 0.15;
 
+  --web-app-ornaziation-detail-logo-height: 300px;
+  --web-app-ornaziation-detail-logo-width: 350px;
+
+  /* This token is TEMPORARY and only for DEV & DEMO purposes */
+  --web-app-ornaziation-detail-old-logo-height: 300px;
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);

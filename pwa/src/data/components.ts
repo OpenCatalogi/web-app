@@ -204,7 +204,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "configurationFiles",
     softwareVersion: "1.0",
     url: null,
-    usedBy: ["test"],
+    usedBy: ["Conduction"],
     embedded: {
       nl: {
         embedded: {
