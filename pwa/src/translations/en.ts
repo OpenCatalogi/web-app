@@ -53,11 +53,12 @@ export const en = {
   Usage: "Usage",
   API: "API",
   Reuser: "Reuser",
+  interface: "Interface",
   Interface: "Interface",
   Username: "Username",
   Password: "Password",
   Send: "Send",
   Private: "Private",
   Public: "Public",
-  Unkown: "Unkown",
+  Unknown: "Unknown",
 };

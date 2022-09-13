@@ -64,14 +64,8 @@
   padding-top: var(--web-app-size-md);
 }
 
-.tabs :first-child {
-  width: fit-content;
-}
-
-.panels,
-.tabs {
-  position: relative;
-  left: calc(var(--web-app-size-lg) * -1);
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .tabPanel {
@@ -90,15 +84,20 @@
   max-width: unset !important;
 }
 
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+  align-items: inherit !important;
+}
+
 /* Colors of the 5 layers */
 .interactie {
-  --web-app-tag-background-color: var(--web-app-layer-color-intraction);
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
   --web-app-tag-color: var(--web-app-color-white);
 }
 .interactieCategory,
 .interfaceCategory {
   --web-app-tag-background-color: var(
-    --web-app-layer-category-color-intraction
+    --web-app-layer-category-color-interaction
   );
 }
 
