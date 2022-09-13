@@ -1,9 +1,11 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
+export type TComponentDependenciesLayout = "layer" | "network";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
+  dependenciesDisplayLayout: TComponentDependenciesLayout;
   currentPage: number;
 
   search?: string;
@@ -22,7 +24,7 @@ export interface IFilters {
   "legal.mainCopyrightOwner"?: string;
 }
 
-export const filters = { resultDisplayLayout: "table", currentPage: 1 } as IFilters;
+export const filters = { resultDisplayLayout: "table", dependenciesDisplayLayout: "layer", currentPage: 1 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
 

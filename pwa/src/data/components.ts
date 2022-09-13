@@ -65,7 +65,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "service",
+            layerType: "services",
           },
         },
       },
@@ -209,7 +209,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "interactie",
+            layerType: "interaction",
           },
         },
       },
@@ -281,7 +281,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "interactie",
+            layerType: "interaction",
           },
         },
       },
@@ -317,7 +317,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "interactie",
+            layerType: "interaction",
           },
         },
       },
@@ -353,7 +353,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "proces",
+            layerType: "process",
           },
         },
       },
@@ -461,7 +461,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "service",
+            layerType: "services",
           },
         },
       },
@@ -497,7 +497,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "proces",
+            layerType: "process",
           },
         },
       },
@@ -533,7 +533,7 @@ export const TEMPORARY_COMPONENTS = [
       nl: {
         embedded: {
           commonground: {
-            layerType: "proces",
+            layerType: "process",
           },
         },
       },

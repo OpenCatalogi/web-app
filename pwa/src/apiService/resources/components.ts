@@ -34,6 +34,7 @@ export default class Component {
 
 const filtersToQueryParams = (filters: any): string => {
   delete filters.resultDisplayLayout;
+  delete filters.dependenciesDisplayLayout;
 
   let params: string = "";
 
