@@ -1,71 +1,24 @@
 :export {
-  layerColorInteraction: --web-app-layer-color-interaction;
-  layerColorProcess: --web-app-layer-color-process;
-  layerColorIntegration: --web-app-layer-color-integration;
-  layerColorServices: --web-app-layer-color-services;
+  layerColorInteractie: --web-app-layer-color-interaction;
+  layerColorProces: --web-app-layer-color-process;
+  layerColorIntegratie: --web-app-layer-color-integration;
+  layerColorService: --web-app-layer-color-services;
   layerColorData: --web-app-layer-color-data;
+  borderLayerColorInteractie: --web-app-border-layer-color-interaction;
+  borderLayerColorProces: --web-app-border-layer-color-process;
+  borderLayerColorIntegratie: --web-app-border-layer-color-integration;
+  borderLayerColorService: --web-app-border-layer-color-services;
+  borderLayerColorData: --web-app-border-layer-color-data;
+  highlightLayerColorInteractie: --web-app-layer-category-color-interaction;
+  highlightLayerColorProces: --web-app-layer-category-color-process;
+  highlightLayerColorIntegratie: --web-app-layer-category-color-integration;
+  highlightLayerColorService: --web-app-layer-category-color-services;
+  highlightLayerColorData: --web-app-layer-category-color-data;
 }
 
-.test {
+.networkContainer {
   height: 500px;
   width: var(--conduction-container-max-width);
-  border: 2px;
   border: 1px solid #dddddd;
   background-color: rgb(251, 251, 251);
-}
-
-/* Colors of the 5 layers */
-.interactie,
-.interaction {
-  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
-  --web-app-tag-color: var(--web-app-color-white);
-}
-.interactieCategory,
-.interactionCategory,
-.interfaceCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-interaction
-  );
-}
-
-.proces,
-.process,
-.processs {
-  --web-app-tag-background-color: var(--web-app-layer-color-process);
-  --web-app-tag-color: var(--web-app-color-white);
-}
-.procesCategory,
-.processCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
-}
-
-.integratie,
-.integration {
-  --web-app-tag-background-color: var(--web-app-layer-color-integration);
-  --web-app-tag-color: var(--web-app-color-white);
-}
-.integratieCategory,
-.integrationCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-integration
-  );
-}
-
-.services,
-.service {
-  --web-app-tag-background-color: var(--web-app-layer-color-services);
-  --web-app-tag-color: var(--web-app-color-white);
-}
-
-.servicesCategory,
-.serviceCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
-}
-
-.data {
-  --web-app-tag-background-color: var(--web-app-layer-color-data);
-  --web-app-tag-color: var(--web-app-color-white);
-}
-.dataCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
 }
