@@ -34,23 +34,6 @@ export const TEMPORARY_ORGANIZATIONS = [
     type: "public",
   },
 
-  // {
-  //   id: "963a2d50-0065-44af-8aa6-f8e3db4344f8",
-  //   name: "Gemeente Rotterdam",
-  //   description:
-  //     "Een stad waar je ruimte ervaart. Bij een organisatie die je vrijheid en verantwoordelijkheid biedt. Voor werk waar je uitdaging voelt. Zodat jij en de stad blijven groeien. Voor en met alle Rotterdammers. Bij een stad die je elke dag uitdaagt en het beste in jou naar boven haalt, hoort een eigentijdse overheid die meebeweegt met de energie van de stad. Zo’n organisatie wil de gemeente Rotterdam zijn. Daarom bieden we je ruimte en kansen om Rotterdam en daarmee jezelf vooruit te blijven helpen. Wij creëren de voorwaarden zodat jij de ruimte ervaart om te groeien: in de stad en binnen de eigen organisatie. In een omgeving met collega’s die veilig en vertrouwd voelt. Waar we samen beslissen en samen aanpakken.",
-  //   logo: "https://uploads-ssl.webflow.com/60549d92a835b8a7cfc8b734/623c90de960ed237429ce416_Logo-gemeente-Rotterdam.png",
-  //   supports: [" 497f6eca-6276-4993-bfeb-53cbbbba6f08"],
-  //   owns: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
-  //   uses: ["497f6eca-6276-4993-bfeb-53cbbbba6f08"],
-  //   token: "string",
-  //   github: "https://github.com/OpenCatalogi",
-  //   gitlab: "string",
-  //   website: "https://www.rotterdam.nl/",
-  //   phone: "+31 10 267 16 25",
-  //   email: "info@conduction.nl",
-  // },
-
   {
     id: "d1635c51-6323-4bd3-842a-79411a166e15",
     name: "Gemeente Den Haag",
@@ -102,21 +85,4 @@ export const TEMPORARY_ORGANIZATIONS = [
     email: "info@amsterdam.nl",
     type: "public",
   },
-  // {
-  //   id: "3034b57d-3013-4718-9202-aa7692129f0d",
-  //   name: "Gemeente Onbekend",
-  //   description:
-  //     "Onbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  OnbekendOnbekend Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend  Onbekend ",
-  //   logo: "",
-  //   supports: [],
-  //   owns: [],
-  //   uses: undefined,
-  //   token: "",
-  //   github: "",
-  //   gitlab: "",
-  //   website: "",
-  //   phone: "+31 10 267 16 25",
-  //   email: "info@unknown.unknown",
-  //   type: "unknown",
-  // },
 ];
