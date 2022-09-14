@@ -13,9 +13,11 @@
   margin-block-end: var(--web-app-size-2xl);
 }
 
+.headingContent {
+  max-width: 700px;
+}
+
 .description {
-  padding-top: 0 !important;
-  padding-inline-end: var(--skeleton-size-xs);
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
 }
@@ -40,28 +42,36 @@
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
+  max-width: 300px;
 }
 
-.addToCatalogusContainer > .componentImg {
+.cardsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.organizationCardContainer {
+  max-width: 700px;
+  max-height: 200px;
+  box-sizing: border-box;
+}
+
+.infoCard {
   max-width: 300px;
+  max-height: 200px;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+.ratingIndicatorContainer {
+  max-height: 160px;
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
-.cardsContainer {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  column-gap: var(--web-app-size-md);
-}
-
 .externalLink {
   text-decoration: none;
-}
-
-.description {
-  padding-top: var(--web-app-size-md);
 }
 
 .components > *:not(:last-child) {

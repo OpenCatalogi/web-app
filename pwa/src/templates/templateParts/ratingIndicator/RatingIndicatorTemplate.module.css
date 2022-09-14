@@ -4,7 +4,10 @@
   ratingActiveColor: --web-app-rating-active-color;
   ratingDisabledColor: --web-app-rating-disable-color;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .ratingPieChart {
   margin-block-end: var(--web-app-size-sm);
 }

@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -33,16 +33,14 @@ import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
+import { InfoCard } from "../../components/infoCard/InfoCard";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
-  TempOrganization: any[];
+  organization: any;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({
-  componentId,
-  TempOrganization,
-}) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, organization }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
@@ -73,7 +71,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       {_getComponent.isSuccess && (
         <>
           <div className={styles.headingContainer}>
-            <div>
+            <div className={styles.headingContent}>
               <Heading1>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
@@ -136,6 +134,25 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     />
                   </ToolTip>
                 )}
+
+                {_getComponent.data.embedded?.url?.url && (
+                  <ToolTip tooltip="GitHub/GitLab">
+                    <Tag
+                      label={t("Repository")}
+                      icon={<GitHubLogo />}
+                      onClick={() => open(_getComponent.data.embedded?.url?.url)}
+                    />
+                  </ToolTip>
+                )}
+
+                {_getComponent.data.embedded?.legal.license && (
+                  <ToolTip tooltip="Licentie">
+                    <Tag
+                      label={_getComponent.data.embedded?.legal.license}
+                      icon={<FontAwesomeIcon icon={faScroll} />}
+                    />
+                  </ToolTip>
+                )}
               </div>
             </div>
 
@@ -146,59 +163,31 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {TempOrganization.map((organization) => (
-              <OrganizationCard
-                title={{ label: organization.name, href: `/organizations/${organization.id}` }}
-                description={organization.description}
-                website={organization.website}
-                logo={organization.logo}
-                components={{
-                  owned: organization.owns?.length.toString() ?? "0",
-                  supported: organization.supports?.length.toString() ?? "0",
-                  used: organization.uses?.length.toString() ?? "0",
-                }}
-                gitHub={organization.github}
-                gitLab={organization.gitlab}
-                type={organization.type}
-              />
-            ))}
-            <InfoCard
-              title="Github"
-              content={
-                <>
-                  {_getComponent.data.embedded?.url?.url && (
-                    <div>
-                      De broncode van dit component is te vinden op{" "}
-                      <span onClick={() => open(_getComponent.data.embedded?.url?.url)}>
-                        <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                          GitHub
-                        </Link>
-                      </span>
-                      .
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.url?.url && "Er is geen informatie beschikbaar."}
-                </>
-              }
+            <OrganizationCard
+              title={{ label: organization.name, href: `/organizations/${organization.id}` }}
+              description={organization.description}
+              website={organization.website}
+              logo={organization.logo}
+              components={{
+                owned: organization.owns?.length.toString() ?? "0",
+                supported: organization.supports?.length.toString() ?? "0",
+                used: organization.uses?.length.toString() ?? "0",
+              }}
+              gitHub={organization.github}
+              gitLab={organization.gitlab}
+              type={organization.type}
+              layoutClassName={styles.organizationCardContainer}
             />
             <InfoCard
-              title="Licentie"
+              title=""
               content={
-                <>
-                  {_getComponent.data.embedded?.legal.license && (
-                    <div>
-                      De licentie van dit component is{" "}
-                      <Tag
-                        label={_getComponent.data.embedded?.legal.license}
-                        icon={<FontAwesomeIcon icon={faScroll} />}
-                      />
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."}
-                </>
+                <RatingIndicatorTemplate
+                  layoutClassName={styles.ratingIndicatorContainer}
+                  component={_getComponent.data}
+                />
               }
+              layoutClassName={styles.infoCard}
             />
-            <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 
           <div>
