@@ -50,11 +50,18 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
     },
     font: {
       color: "white",
-      size: 10,
-      highlight: {
-        color: "black",
+    },
+    scaling: {
+      min: 10,
+      max: 10,
+      label: {
+        enabled: true,
+        min: 10,
+        max: 10,
       },
     },
+    value: 1,
+    widthConstraint: 90,
   }));
 
   const mainComponentNode = {
@@ -69,7 +76,7 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
         border: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
       },
     },
-    font: { color: "white", size: 20 },
+    font: { color: "white", size: 15 },
   };
 
   const nodes = [mainComponentNode, ...componentNodes];
@@ -87,12 +94,6 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
   const options = {
     nodes: {
       shape: "circle",
-      margin: {
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-      },
       borderWidth: 2,
       borderWidthSelected: 1,
     },
@@ -103,7 +104,7 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
       forceAtlas2Based: {
         gravitationalConstant: -26,
         centralGravity: 0.005,
-        springLength: 250,
+        springLength: 225,
         springConstant: 0.18,
       },
       maxVelocity: 146,
