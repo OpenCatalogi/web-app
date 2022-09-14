@@ -76,7 +76,7 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
         border: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
       },
     },
-    font: { color: "white", size: 15 },
+    font: { color: "white", size: 20 },
   };
 
   const nodes = [mainComponentNode, ...componentNodes];
