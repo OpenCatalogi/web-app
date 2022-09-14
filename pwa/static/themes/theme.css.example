@@ -90,15 +90,15 @@
   --web-app-header-logo-container-padding: unset;
   --web-app-header-logo-container-border-radius: 0;
   --web-app-header-logo-container-height: 25px;
-  --web-app-header-organisation-logo-width: 115px;
-  --web-app-header-organisation-logo-src: url("../../../assets/svgs/LogoRotterdam.svg");
+  --web-app-header-organization-logo-width: 115px;
+  --web-app-header-organization-logo-src: url("../../../assets/svgs/LogoRotterdam.svg");
 
   --web-app-footer-logo-container-background-color: unset;
   --web-app-footer-logo-container-padding: unset;
   --web-app-footer-logo-container-border-radius: 0;
-  --web-app-footer-loog-container-height: 50px;
-  --web-app-footer-organisation-logo-width: 230px;
-  --web-app-footer-organisation-logo-src: url("../../../assets/svgs/LogoRotterdam.svg");
+  --web-app-footer-logo-container-height: 50px;
+  --web-app-footer-organization-logo-width: 230px;
+  --web-app-footer-organization-logo-src: url("../../../assets/svgs/LogoRotterdam.svg");
 
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
@@ -125,7 +125,9 @@
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
 
-  --web-app-component-card-border-color: 1px solid var(--skeleton-color-grey-2);
+  --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
+
+  --web-app-code-block-background-color: var(--skeleton-color-grey-1);
 
   --web-app-badge-counter-color: var(--web-app-color-black);
   --web-app-badge-counter-background-color: var(--skeleton-color-grey-1);
