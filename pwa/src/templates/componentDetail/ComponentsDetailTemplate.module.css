@@ -9,13 +9,15 @@
 
 .container > .headingContainer {
   display: flex;
-  justify-content: space-between;
+  gap: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-2xl);
 }
 
+.headingContent {
+  flex: 5;
+}
+
 .description {
-  padding-top: 0 !important;
-  padding-inline-end: var(--skeleton-size-xs);
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
 }
@@ -40,28 +42,35 @@
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
+  flex: 2;
 }
 
-.addToCatalogusContainer > .componentImg {
-  max-width: 300px;
+.componentImage {
+  max-width: var(--web-app-component-image-max-width);
+}
+
+.cardsContainer {
+  display: flex;
+  gap: var(--web-app-size-xl);
+}
+
+.organizationCardContainer {
+  flex: 5;
+}
+
+.infoCard {
+  flex: 2;
+}
+.ratingIndicatorContainer {
+  max-height: var(--web-app-component-rating-indicator-max-height);
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
-.cardsContainer {
-  display: grid;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
-  column-gap: var(--web-app-size-md);
-}
-
 .externalLink {
   text-decoration: none;
-}
-
-.description {
-  padding-top: var(--web-app-size-md);
 }
 
 .components > *:not(:last-child) {

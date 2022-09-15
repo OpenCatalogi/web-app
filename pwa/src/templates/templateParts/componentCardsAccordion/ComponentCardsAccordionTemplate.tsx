@@ -148,8 +148,8 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
           category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
           tags={{
             status: component.developmentStatus,
-            installations: component.usedBy?.length(),
-            organisation: component?.embedded?.legal?.embedded?.repoOwner.name,
+            installations: component.usedBy?.length.toString() ?? "0",
+            organization: component?.embedded?.legal?.embedded?.repoOwner.name,
             licence: component?.embedded?.legal?.license,
             githubLink: component?.embedded?.url?.url,
           }}

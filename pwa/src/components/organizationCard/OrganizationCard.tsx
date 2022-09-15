@@ -11,6 +11,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export interface OrganizationCardProps {
   title: {
@@ -28,6 +29,7 @@ export interface OrganizationCardProps {
   };
   gitHub?: string;
   gitLab?: string;
+  layoutClassName?: string;
 }
 
 export const OrganizationCard: React.FC<OrganizationCardProps> = ({
@@ -39,11 +41,12 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
   components,
   gitHub,
   gitLab,
+  layoutClassName,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container}>
+    <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.titleLink} onClick={() => navigate(title.href)}>

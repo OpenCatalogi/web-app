@@ -5,12 +5,14 @@ import Link from "@gemeente-denhaag/link";
 import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { getTokenValue } from "../../../services/getTokenValue";
+import clsx from "clsx";
 
 interface RatingIndicatorTemplateProps {
   component: any;
+  layoutClassName?: string;
 }
 
-export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = ({ component }) => {
+export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = ({ component, layoutClassName }) => {
   const [rating, setRating] = React.useState<number>(0);
   const maximumRating = 2;
 
@@ -29,7 +31,7 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
   });
 
   return (
-    <>
+    <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
       <PieChart
         className={styles.ratingPieChart}
         data={[
@@ -61,6 +63,6 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
           Rating
         </Link>
       </span>
-    </>
+    </div>
   );
 };
