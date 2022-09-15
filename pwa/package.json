@@ -45,6 +45,7 @@
     "react-minimal-pie-chart": "^8.3.0",
     "react-query": "^3.34.19",
     "react-select": "^5.3.2",
+    "vis-data": "^7.1.4",
     "vis-network": "^9.1.2"
   },
   "devDependencies": {
