@@ -114,7 +114,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 )}
                 <ToolTip tooltip="Installaties">
                   <Tag
-                    label={_.toString(_getComponent.data.usedBy?.length)}
+                    label={_.toString(_getComponent.data.usedBy?.length ?? "0")}
                     icon={<FontAwesomeIcon icon={faRepeat} />}
                   />
                 </ToolTip>
