@@ -139,6 +139,9 @@
   --web-app-layer-accordion-inactive-opacity: 0.65;
   --web-app-layer-accordion-disabled-opacity: 0.15;
 
+  --web-app-component-image-max-width: 300px;
+  --web-app-component-rating-indicator-max-height: 160px;
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
