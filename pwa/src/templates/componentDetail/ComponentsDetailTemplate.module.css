@@ -9,12 +9,12 @@
 
 .container > .headingContainer {
   display: flex;
-  justify-content: space-between;
+  gap: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-2xl);
 }
 
 .headingContent {
-  max-width: 700px;
+  flex: 5;
 }
 
 .description {
@@ -42,28 +42,27 @@
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  flex: 2;
+}
+
+.componentImage {
+  max-width: var(--web-app-component-image-max-width);
 }
 
 .cardsContainer {
   display: flex;
-  justify-content: space-between;
+  gap: var(--web-app-size-xl);
 }
 
 .organizationCardContainer {
-  max-width: 700px;
-  max-height: 200px;
-  box-sizing: border-box;
+  flex: 5;
 }
 
 .infoCard {
-  max-width: 300px;
-  max-height: 200px;
-  box-sizing: border-box;
-  border-radius: 0 !important;
+  flex: 2;
 }
 .ratingIndicatorContainer {
-  max-height: 160px;
+  max-height: var(--web-app-component-rating-indicator-max-height);
 }
 
 .addToCatalogusContainer > *:not(:last-child) {

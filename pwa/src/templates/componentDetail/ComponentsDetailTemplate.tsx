@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { Container, InfoCard } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -33,7 +33,6 @@ import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
-import { InfoCard } from "../../components/infoCard/InfoCard";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -157,7 +156,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
 
             <div className={styles.addToCatalogusContainer}>
-              <img src={grey} className={styles.componentImg} />
+              <img src={grey} className={styles.componentImage} />
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
