@@ -112,19 +112,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     />
                   </ToolTip>
                 )}
-                {_getComponent.data.usedBy?.length && (
-                  <ToolTip tooltip="Installaties">
-                    <Tag
-                      label={_.toString(_getComponent.data.usedBy?.length)}
-                      icon={<FontAwesomeIcon icon={faRepeat} />}
-                    />
-                  </ToolTip>
-                )}
-                {!_getComponent.data.usedBy?.length && (
-                  <ToolTip tooltip="Installaties">
-                    <Tag label="0" icon={<FontAwesomeIcon icon={faRepeat} />} />
-                  </ToolTip>
-                )}
+                <ToolTip tooltip="Installaties">
+                  <Tag
+                    label={_.toString(_getComponent.data.usedBy?.length)}
+                    icon={<FontAwesomeIcon icon={faRepeat} />}
+                  />
+                </ToolTip>
+
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
