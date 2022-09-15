@@ -121,6 +121,8 @@
 
   --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
 
+  --web-app-code-block-background-color: var(--skeleton-color-grey-1);
+
   --web-app-badge-counter-color: var(--web-app-color-black);
   --web-app-badge-counter-background-color: var(--skeleton-color-grey-1);
   --web-app-badge-counter-height: 18px;
@@ -130,6 +132,9 @@
 
   --web-app-layer-accordion-inactive-opacity: 0.65;
   --web-app-layer-accordion-disabled-opacity: 0.15;
+
+  --web-app-component-image-max-width: 300px;
+  --web-app-component-rating-indicator-max-height: 160px;
 
   --web-app-ornaziation-detail-logo-height: 300px;
   --web-app-ornaziation-detail-logo-width: 350px;
