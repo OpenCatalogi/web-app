@@ -49,17 +49,17 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
             label: "Interactie",
             handleClick: setOpenInteraction,
             active: openInteraction,
-            badgeNumber: interaction.length,
+            disabled: interaction.length === 0,
           },
-          { label: "Proces", handleClick: setOpenProcess, active: openProcess, badgeNumber: process.length },
+          { label: "Proces", handleClick: setOpenProcess, active: openProcess, disabled: process.length === 0 },
           {
             label: "Integratie",
             handleClick: setOpenIntegration,
             active: openIntegration,
-            badgeNumber: integration.length,
+            disabled: integration.length === 0,
           },
-          { label: "Service", handleClick: setOpenServices, active: openServices, badgeNumber: services.length },
-          { label: "Data", handleClick: setOpenData, active: openData, badgeNumber: data.length },
+          { label: "Service", handleClick: setOpenServices, active: openServices, disabled: services.length === 0 },
+          { label: "Data", handleClick: setOpenData, active: openData, disabled: data.length === 0 },
         ]}
       />
 

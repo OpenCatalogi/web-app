@@ -3,8 +3,8 @@ import * as _ from "lodash";
 import { TComponentDependenciesLayout } from "../../../context/filters";
 import { RelationsDependenciesTemplate } from "./relationsDependenciesTemplate/RelationsDependenciesTemplate";
 import { LayerDependenciesTemplate } from "./layerDependenciesTemplate/LayerDependenciesTemplate";
-import { RelationsDependenciesFiltersTemplate } from "./relationsDependenciesTemplate/filters/RelationsDependenciesFiltersTemplate";
 import { useTranslation } from "react-i18next";
+import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 
 interface DependenciesTemplateProps {
   type: TComponentDependenciesLayout;
@@ -74,23 +74,23 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
   ];
   return (
     <>
-      <RelationsDependenciesFiltersTemplate
+      <LayerAccordionFiltersTemplate
         items={[
           {
             label: "Interactie",
             handleClick: setActiveInteraction,
             active: activeInteraction,
-            disabled: interaction.length,
+            disabled: interaction.length === 0,
           },
-          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: process.length },
+          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: process.length === 0 },
           {
             label: "Integratie",
             handleClick: setActiveIntegration,
             active: activeIntegration,
-            disabled: integration.length,
+            disabled: integration.length === 0,
           },
-          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: services.length },
-          { label: "Data", handleClick: setActiveData, active: activeData, disabled: data.length },
+          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: services.length === 0 },
+          { label: "Data", handleClick: setActiveData, active: activeData, disabled: data.length === 0 },
         ]}
       />
       <RelationsDependenciesTemplate
