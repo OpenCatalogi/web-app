@@ -127,6 +127,9 @@
 
   --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
 
+  --web-app-organization-card-logo-height: 100px;
+  --web-app-organization-card-logo-width: 100px;
+
   --web-app-code-block-background-color: var(--skeleton-color-grey-1);
 
   --web-app-badge-counter-color: var(--web-app-color-black);
