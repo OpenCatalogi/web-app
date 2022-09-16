@@ -41,14 +41,11 @@
 }
 
 .logoContainer {
-  display: flex;
-  align-items: center;
   max-height: var(--web-app-ornaziation-detail-logo-height);
   max-width: var(--web-app-ornaziation-detail-logo-width);
 }
 
 .logo {
-  vertical-align: middle;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -75,10 +72,4 @@
 .tabAmountBadge {
   margin-inline-start: var(--web-app-size-xs);
   align-items: inherit !important;
-}
-
-/* This styling is TEMPORARY and only for DEV & DEMO purposes */
-.oldLogo {
-  max-width: 100%;
-  max-height: var(--web-app-ornaziation-detail-old-logo-height);
 }
