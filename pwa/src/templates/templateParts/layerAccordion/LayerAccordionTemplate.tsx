@@ -21,7 +21,7 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
   disabled,
 }) => {
   return (
-    <div className={!open && styles.containerInactive}>
+    <div className={!open ? styles.containerInactive : ""}>
       <QuoteWrapper borderColor={!disabled ? color : ""}>
         <Collapsible
           triggerDisabled={disabled}

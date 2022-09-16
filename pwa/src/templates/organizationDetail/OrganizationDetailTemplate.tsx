@@ -111,7 +111,10 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsOwned.length)}>
+                <BadgeCounter
+                  layoutClassName={styles.tabAmountBadge}
+                  number={_.toString(TempComponentsOwned.length ?? 0)}
+                >
                   Eigen componenten
                 </BadgeCounter>
               }
@@ -122,7 +125,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               label={
                 <BadgeCounter
                   layoutClassName={styles.tabAmountBadge}
-                  number={_.toString(TempComponentsSupported.length)}
+                  number={_.toString(TempComponentsSupported.length ?? 0)}
                 >
                   Ondersteunde componenten
                 </BadgeCounter>
@@ -132,7 +135,10 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Tab
               className={styles.tab}
               label={
-                <BadgeCounter layoutClassName={styles.tabAmountBadge} number={_.toString(TempComponentsUsed.length)}>
+                <BadgeCounter
+                  layoutClassName={styles.tabAmountBadge}
+                  number={_.toString(TempComponentsUsed.length ?? 0)}
+                >
                   Gebruikte componenten
                 </BadgeCounter>
               }

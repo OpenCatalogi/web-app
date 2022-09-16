@@ -24,15 +24,24 @@ import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleNodes,
+  faHouse,
+  faInfoCircle,
+  faLayerGroup,
+  faRepeat,
+  faScroll,
+} from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
+import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
+import { FiltersContext } from "../../context/filters";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -42,6 +51,8 @@ interface ComponentsDetailTemplateProps {
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, organization }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const [filters, setFilters] = React.useContext(FiltersContext);
+
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
   const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
@@ -272,7 +283,36 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsDependencies} />
+                  <div className={styles.dependenciesDisplaySwitchButtons}>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
+                    >
+                      <FontAwesomeIcon icon={faLayerGroup} />
+                      {t("Layers")}
+                    </Button>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={
+                        filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"
+                      }
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
+                    >
+                      <FontAwesomeIcon icon={faCircleNodes} />
+                      {t("Relations")}
+                    </Button>
+                  </div>
+
+                  <DependenciesTemplate
+                    type={filters.dependenciesDisplayLayout}
+                    components={TempComponentsDependencies}
+                    mainComponent={{
+                      id: componentId,
+                      name: _getComponent.data.name,
+                      layer: _getComponent.data.embedded?.nl.embedded.commonground.layerType,
+                    }}
+                  />
                 </div>
               </TabPanel>
 

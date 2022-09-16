@@ -1,0 +1,24 @@
+:export {
+  layerColorInteractie: --web-app-layer-color-interaction;
+  layerColorProces: --web-app-layer-color-process;
+  layerColorIntegratie: --web-app-layer-color-integration;
+  layerColorService: --web-app-layer-color-services;
+  layerColorData: --web-app-layer-color-data;
+  borderLayerColorInteractie: --web-app-border-layer-color-interaction;
+  borderLayerColorProces: --web-app-border-layer-color-process;
+  borderLayerColorIntegratie: --web-app-border-layer-color-integration;
+  borderLayerColorService: --web-app-border-layer-color-services;
+  borderLayerColorData: --web-app-border-layer-color-data;
+  highlightLayerColorInteractie: --web-app-layer-category-color-interaction;
+  highlightLayerColorProces: --web-app-layer-category-color-process;
+  highlightLayerColorIntegratie: --web-app-layer-category-color-integration;
+  highlightLayerColorService: --web-app-layer-category-color-services;
+  highlightLayerColorData: --web-app-layer-category-color-data;
+}
+
+.networkContainer {
+  height: 500px;
+  width: var(--conduction-container-max-width);
+  border: 1px solid #dddddd;
+  background-color: rgb(251, 251, 251);
+}

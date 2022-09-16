@@ -98,6 +98,19 @@
   align-items: inherit !important;
 }
 
+.dependenciesDisplaySwitchButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dependenciesDisplaySwitchButtons *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
 /* Colors of the 5 layers */
 .interactie {
   --web-app-tag-background-color: var(--web-app-layer-color-interaction);
