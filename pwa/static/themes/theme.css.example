@@ -136,6 +136,9 @@
   --web-app-component-image-max-width: 300px;
   --web-app-component-rating-indicator-max-height: 160px;
 
+  --web-app-ornaziation-detail-logo-height: 300px;
+  --web-app-ornaziation-detail-logo-width: 350px;
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);

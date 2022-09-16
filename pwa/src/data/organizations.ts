@@ -16,6 +16,7 @@ export const TEMPORARY_ORGANIZATIONS = [
     email: "info@conduction.nl",
     type: "private",
   },
+
   {
     id: "963a2d50-0065-44af-8aa6-f8e3db4344f8",
     name: "Gemeente Rotterdam",
@@ -33,6 +34,7 @@ export const TEMPORARY_ORGANIZATIONS = [
     email: "info@rotterdam.nl",
     type: "public",
   },
+
   {
     id: "d1635c51-6323-4bd3-842a-79411a166e15",
     name: "Gemeente Den Haag",
@@ -50,6 +52,7 @@ export const TEMPORARY_ORGANIZATIONS = [
     email: "info@denhaag.nl",
     type: "public",
   },
+
   {
     id: "ac13ba7e-33a8-4330-9e89-55f39a2eedaa",
     name: "Gemeente Utrecht",
@@ -67,6 +70,7 @@ export const TEMPORARY_ORGANIZATIONS = [
     email: "info@utrecht.nl",
     type: "public",
   },
+
   {
     id: "1eddcf86-ba15-47ac-8358-541d7a01d704",
     name: "Gemeente Amsterdam",
