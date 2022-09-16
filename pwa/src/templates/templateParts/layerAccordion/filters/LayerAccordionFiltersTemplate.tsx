@@ -33,7 +33,7 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
           {!badgeNumber?.toString && (
             <span
               onClick={() => handleClick((o) => !o)}
-              className={clsx(styles[label.toLowerCase()], active && styles.active)}
+              className={clsx(styles[label.toLowerCase()], active && styles.active, styles.filter)}
             >
               {label}
             </span>
