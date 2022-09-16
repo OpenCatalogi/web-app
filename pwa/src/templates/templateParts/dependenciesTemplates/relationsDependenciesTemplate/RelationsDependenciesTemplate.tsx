@@ -1,12 +1,12 @@
 import * as React from "react";
-import * as styles from "./NetworkDependenciesTemplate.module.css";
+import * as styles from "./RelationsDependenciesTemplate.module.css";
 import { Network } from "vis-network";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
 
-interface LayersResultTemplateProps {
+interface RelationsDependenciesTemplateProps {
   components: any[];
   mainComponent: {
     id: string;
@@ -15,7 +15,10 @@ interface LayersResultTemplateProps {
   };
 }
 
-export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = ({ components, mainComponent }) => {
+export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTemplateProps> = ({
+  components,
+  mainComponent,
+}) => {
   const { t } = useTranslation();
 
   const container = React.useRef(null);
@@ -82,9 +85,8 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
   const nodes = [mainComponentNode, ...componentNodes];
 
   const edges = nodes.map((component) => {
-    if (component.id === mainComponent.id) {
-      return {};
-    }
+    if (component.id === mainComponent.id) return {};
+
     return {
       from: component.id,
       to: mainComponent.id,
@@ -118,5 +120,5 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
     container.current && new Network(container.current, { nodes, edges }, options);
   }, [container, nodes, edges]);
 
-  return <div ref={container} className={styles.networkContainer} />;
+  return <div ref={container} className={styles.relationsContainer} />;
 };

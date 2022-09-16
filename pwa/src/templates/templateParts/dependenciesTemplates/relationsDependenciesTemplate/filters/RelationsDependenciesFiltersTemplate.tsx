@@ -1,8 +1,8 @@
 import * as React from "react";
-import * as styles from "./NetworkDependenciesFiltersTemplate.module.css";
+import * as styles from "./RelationsDependenciesFiltersTemplate.module.css";
 import clsx from "clsx";
 
-interface NetworkDependenciesFiltersTemplateProps {
+interface RelationsDependenciesFiltersTemplateProps {
   items: {
     label: string;
     active: boolean;
@@ -11,7 +11,7 @@ interface NetworkDependenciesFiltersTemplateProps {
   }[];
 }
 
-export const NetworkDependenciesFiltersTemplate: React.FC<NetworkDependenciesFiltersTemplateProps> = ({ items }) => {
+export const RelationsDependenciesFiltersTemplate: React.FC<RelationsDependenciesFiltersTemplateProps> = ({ items }) => {
   return (
     <div className={styles.container}>
       {items.map(({ label, active, handleClick, disabled }, idx) => (

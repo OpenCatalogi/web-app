@@ -16,9 +16,9 @@
   highlightLayerColorData: --web-app-layer-category-color-data;
 }
 
-.networkContainer {
-  height: 500px;
-  width: var(--conduction-container-max-width);
-  border: 1px solid #dddddd;
-  background-color: rgb(251, 251, 251);
+.relationsContainer {
+  height: var(--web-app-relations-container-height);
+  width: var(--web-app-relations-container-width);
+  border: var(--web-app-relations-border);
+  background-color: var(--web-app-relations-background-color);
 }
