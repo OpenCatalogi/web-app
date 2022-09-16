@@ -21,7 +21,7 @@ export const DependenciesTemplate: React.FC<DependenciesTemplateProps> = ({ comp
     case "layer":
       return <LayerDependenciesTemplate {...{ components }} />;
 
-    case "network":
+    case "relations":
       return <NetworkDependencies {...{ components, mainComponent }} />;
   }
 };
@@ -38,20 +38,25 @@ interface NetworkDependenciesProps {
 const NetworkDependencies: React.FC<NetworkDependenciesProps> = ({ components, mainComponent }) => {
   const { t } = useTranslation();
 
-  const interaction = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Interaction");
+  const mappedComponents = components.map((component) => ({
+    ...component,
+    layerType: component?.embedded?.nl?.embedded?.commonground?.layerType,
+  }));
+
+  const interaction = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Interaction");
   });
-  const process = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Process");
+  const process = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Process");
   });
-  const integration = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Integration");
+  const integration = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Integration");
   });
-  const services = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Service");
+  const services = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Service");
   });
-  const data = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Data");
+  const data = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Data");
   });
 
   const { active: activeInteraction, setActive: setActiveInteraction } = FilterController();

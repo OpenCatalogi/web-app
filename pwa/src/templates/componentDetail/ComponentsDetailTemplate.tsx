@@ -25,13 +25,12 @@ import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/Rating
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faGripVertical,
+  faCircleNodes,
   faHouse,
   faInfoCircle,
   faLayerGroup,
   faRepeat,
   faScroll,
-  faTable,
 } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
@@ -290,16 +289,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
                       onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
                     >
-                      <FontAwesomeIcon icon={faTable} />
+                      <FontAwesomeIcon icon={faLayerGroup} />
                       {t("Layers")}
                     </Button>
                     <Button
                       className={styles.buttonIcon}
-                      variant={filters.dependenciesDisplayLayout === "network" ? "primary-action" : "secondary-action"}
-                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "network" })}
+                      variant={
+                        filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"
+                      }
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
                     >
-                      <FontAwesomeIcon icon={faGripVertical} />
-                      {t("Network")}
+                      <FontAwesomeIcon icon={faCircleNodes} />
+                      {t("Relations")}
                     </Button>
                   </div>
 

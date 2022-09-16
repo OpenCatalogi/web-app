@@ -61,5 +61,5 @@ export const nl = {
   Private: "Privé",
   Public: "Openbaar",
   Unknown: "Onbekend",
-  Network: "Netwerk",
+  Relations: "Verbanden",
 };

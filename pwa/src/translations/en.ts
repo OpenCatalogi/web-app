@@ -61,5 +61,5 @@ export const en = {
   Private: "Private",
   Public: "Public",
   Unknown: "Unknown",
-  Network: "Network",
+  Relations: "Relations",
 };
