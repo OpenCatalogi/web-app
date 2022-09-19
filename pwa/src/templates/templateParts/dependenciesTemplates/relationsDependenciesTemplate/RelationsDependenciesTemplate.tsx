@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
+import { navigate } from "gatsby";
 
 interface RelationsDependenciesTemplateProps {
   components: any[];
@@ -31,25 +32,6 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
       background: getTokenValue(
         styles[_.camelCase(`layerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)],
       ),
-      border: getTokenValue(
-        styles[
-          _.camelCase(`borderLayerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)
-        ],
-      ),
-      highlight: {
-        background: getTokenValue(
-          styles[
-            _.camelCase(
-              `highlightLayerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`,
-            )
-          ],
-        ),
-        border: getTokenValue(
-          styles[
-            _.camelCase(`layerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)
-          ],
-        ),
-      },
     },
     font: {
       color: "white",
@@ -73,11 +55,6 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     layer: mainComponent.layer,
     color: {
       background: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      border: getTokenValue(styles[_.camelCase(`borderLayerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      highlight: {
-        background: getTokenValue(styles[_.camelCase(`highlightLayerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-        border: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      },
     },
     font: { color: "white", size: 20 },
   };
@@ -96,8 +73,8 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
   const options = {
     nodes: {
       shape: "circle",
-      borderWidth: 2,
-      borderWidthSelected: 1,
+      borderWidth: 0,
+      chosen: false,
     },
     edges: {
       color: "darkGray",
@@ -116,9 +93,17 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     },
   };
 
-  React.useEffect(() => {
-    container.current && new Network(container.current, { nodes, edges }, options);
-  }, [container, nodes, edges]);
+  const visJsRef = React.useRef<HTMLDivElement>(null);
 
-  return <div ref={container} className={styles.relationsContainer} />;
+  React.useEffect(() => {
+    const network = visJsRef.current && new Network(visJsRef.current, { nodes, edges }, options);
+    network?.on("doubleClick", (event: { nodes: string[] }) => {
+      if (event.nodes?.length === 1 && event.nodes[0] !== mainComponent.id) {
+        navigate(`/components/${event.nodes[0]}`);
+        console.log(event.nodes[0]);
+      }
+    });
+  }, [visJsRef, nodes, edges]);
+
+  return <div ref={visJsRef} className={styles.relationsContainer} />;
 };
