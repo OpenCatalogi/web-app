@@ -3,7 +3,7 @@
 }
 
 .container > *:not(:last-child) {
-  margin-bottom: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .heading {
@@ -11,11 +11,11 @@
   font-size: var(--web-app-font-size-xl);
 }
 
-.description {
-  max-width: var(--web-app-max-width-400);
-}
+/* .description {
+  max-width: var(--web-app-feedback-description-max-width);
+} */
 
-.buttons {
+/* .buttons {
   width: fit-content;
   display: flex;
 }
@@ -23,6 +23,7 @@
 .buttons > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-md);
 }
+*/
 
 .button {
   width: fit-content;

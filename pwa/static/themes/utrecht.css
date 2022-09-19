@@ -15,8 +15,6 @@
   --web-app-size-3xl: var(--skeleton-size-3xl);
   --web-app-size-4xl: var(--skeleton-size-4xl);
 
-  --web-app-max-width-400: 400px;
-
   /* Font families */
   --web-app-primary-font-family: "Lucida Grande";
   --web-app-content-font-family: "Lucida Grande";
@@ -149,6 +147,8 @@
 
   --web-app-ornaziation-detail-logo-height: 300px;
   --web-app-ornaziation-detail-logo-width: 350px;
+
+  --web-app-feedback-description-max-width: 400px;
 
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);

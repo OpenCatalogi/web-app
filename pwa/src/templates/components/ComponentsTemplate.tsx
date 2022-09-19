@@ -86,7 +86,7 @@ export const ComponentsTemplate: React.FC = () => {
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
       </div>
-      <div className={styles.feedback}>
+      <div className={styles.submitComponent}>
         <SubmitComponentTemplate />
       </div>
     </Container>

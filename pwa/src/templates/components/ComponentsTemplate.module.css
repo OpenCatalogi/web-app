@@ -48,8 +48,12 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.feedback {
+.submitComponent {
+  margin-block-start: var(--web-app-size-3xl);
   display: flex;
   justify-content: flex-end;
-  margin-block-start: var(--web-app-size-3xl);
+}
+
+.submitComponent > * {
+  max-width: var(--web-app-feedback-description-max-width);
 }
