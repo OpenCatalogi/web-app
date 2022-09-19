@@ -12,6 +12,7 @@ import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../context/gatsby";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -122,6 +123,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
+  const {
+    location: { pathname },
+  } = React.useContext(GatsbyContext);
 
   return (
     <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
@@ -133,11 +137,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
-
-      <Container layoutClassName={styles.headingContainer}>
-        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
-        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-      </Container>
+      {pathname === "/" && (
+        <Container layoutClassName={styles.headingContainer}>
+          <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+          <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
+        </Container>
+      )}
 
       <Container>
         <PrimaryTopNav items={primaryTopNavItems} />
