@@ -117,11 +117,20 @@
   --web-app-layer-category-color-services: #d1e7dd;
   --web-app-layer-category-color-data: #e2d9f3;
 
+  --web-app-border-layer-color-interaction: #0047b3;
+  --web-app-border-layer-color-process: #981b25;
+  --web-app-border-layer-color-integration: #a6820c;
+  --web-app-border-layer-color-services: #3e755c;
+  --web-app-border-layer-color-data: #4b2b88;
+
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
 
   --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
+
+  --web-app-organization-card-logo-height: 100px;
+  --web-app-organization-card-logo-width: 100px;
 
   --web-app-code-block-background-color: var(--skeleton-color-grey-1);
 
@@ -134,6 +143,12 @@
 
   --web-app-layer-accordion-inactive-opacity: 0.65;
   --web-app-layer-accordion-disabled-opacity: 0.15;
+
+  --web-app-component-image-max-width: 300px;
+  --web-app-component-rating-indicator-max-height: 160px;
+
+  --web-app-ornaziation-detail-logo-height: 300px;
+  --web-app-ornaziation-detail-logo-width: 350px;
 
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);

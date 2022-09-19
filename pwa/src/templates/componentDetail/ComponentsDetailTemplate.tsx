@@ -24,21 +24,34 @@ import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleNodes,
+  faHouse,
+  faInfoCircle,
+  faLayerGroup,
+  faRepeat,
+  faScroll,
+} from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
+import { categories as _categories } from "../../data/filters";
+import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
+import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
+import { FiltersContext } from "../../context/filters";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
+  organization: any;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId }) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, organization }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const [filters, setFilters] = React.useContext(FiltersContext);
 
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
@@ -68,7 +81,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       {_getComponent.isSuccess && (
         <>
           <div className={styles.headingContainer}>
-            <div>
+            <div className={styles.headingContent}>
               <Heading1>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
@@ -110,19 +123,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     />
                   </ToolTip>
                 )}
-                {_getComponent.data.usedBy?.length && (
-                  <ToolTip tooltip="Installaties">
-                    <Tag
-                      label={_.toString(_getComponent.data.usedBy?.length)}
-                      icon={<FontAwesomeIcon icon={faRepeat} />}
-                    />
-                  </ToolTip>
-                )}
-                {!_getComponent.data.usedBy?.length && (
-                  <ToolTip tooltip="Installaties">
-                    <Tag label="0" icon={<FontAwesomeIcon icon={faRepeat} />} />
-                  </ToolTip>
-                )}
+                <ToolTip tooltip="Installaties">
+                  <Tag
+                    label={_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                    icon={<FontAwesomeIcon icon={faRepeat} />}
+                  />
+                </ToolTip>
+
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
@@ -131,72 +138,60 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     />
                   </ToolTip>
                 )}
+
+                {_getComponent.data.embedded?.url?.url && (
+                  <ToolTip tooltip="GitHub/GitLab">
+                    <Tag
+                      label={t("Repository")}
+                      icon={<GitHubLogo />}
+                      onClick={() => open(_getComponent.data.embedded?.url?.url)}
+                    />
+                  </ToolTip>
+                )}
+
+                {_getComponent.data.embedded?.legal.license && (
+                  <ToolTip tooltip="Licentie">
+                    <Tag
+                      label={_getComponent.data.embedded?.legal.license}
+                      icon={<FontAwesomeIcon icon={faScroll} />}
+                    />
+                  </ToolTip>
+                )}
               </div>
             </div>
 
             <div className={styles.addToCatalogusContainer}>
-              <img src={grey} className={styles.componentImg} />
+              <img src={grey} className={styles.componentImage} />
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
 
           <div className={styles.cardsContainer}>
-            <InfoCard
-              title="Organisatie"
-              content={
-                <>
-                  {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
-                    <div>
-                      Dit component wordt aangeboden door{" "}
-                      <span onClick={() => navigate("/organizations/f9d9190e-74f0-4e91-a5d8-0f0e6dad2bd0")}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
-                        </Link>
-                        .
-                      </span>
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.legal.embedded?.repoOwner.name && "Er is geen informatie beschikbaar."}
-                </>
-              }
+            <OrganizationCard
+              title={{ label: organization.name, href: `/organizations/${organization.id}` }}
+              description={organization.description}
+              website={organization.website}
+              logo={organization.logo}
+              components={{
+                owned: organization.owns?.length.toString() ?? "0",
+                supported: organization.supports?.length.toString() ?? "0",
+                used: organization.uses?.length.toString() ?? "0",
+              }}
+              gitHub={organization.github}
+              gitLab={organization.gitlab}
+              type={organization.type}
+              layoutClassName={styles.organizationCardContainer}
             />
             <InfoCard
-              title="Github"
+              title=""
               content={
-                <>
-                  {_getComponent.data.embedded?.url?.url && (
-                    <div>
-                      De broncode van dit component is te vinden op{" "}
-                      <span onClick={() => open(_getComponent.data.embedded?.url?.url)}>
-                        <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                          GitHub
-                        </Link>
-                      </span>
-                      .
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.url?.url && "Er is geen informatie beschikbaar."}
-                </>
+                <RatingIndicatorTemplate
+                  layoutClassName={styles.ratingIndicatorContainer}
+                  component={_getComponent.data}
+                />
               }
+              layoutClassName={styles.infoCard}
             />
-            <InfoCard
-              title="Licentie"
-              content={
-                <>
-                  {_getComponent.data.embedded?.legal.license && (
-                    <div>
-                      De licentie van dit component is{" "}
-                      <Tag
-                        label={_getComponent.data.embedded?.legal.license}
-                        icon={<FontAwesomeIcon icon={faScroll} />}
-                      />
-                    </div>
-                  )}
-                  {!_getComponent.data.embedded?.legal.license && "Er is geen informatie beschikbaar."}
-                </>
-              }
-            />
-            <InfoCard title="" content={<RatingIndicatorTemplate component={_getComponent.data} />} />
           </div>
 
           <div>
@@ -288,7 +283,36 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsDependencies} />
+                  <div className={styles.dependenciesDisplaySwitchButtons}>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
+                    >
+                      <FontAwesomeIcon icon={faLayerGroup} />
+                      {t("Layers")}
+                    </Button>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={
+                        filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"
+                      }
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
+                    >
+                      <FontAwesomeIcon icon={faCircleNodes} />
+                      {t("Relations")}
+                    </Button>
+                  </div>
+
+                  <DependenciesTemplate
+                    type={filters.dependenciesDisplayLayout}
+                    components={TempComponentsDependencies}
+                    mainComponent={{
+                      id: componentId,
+                      name: _getComponent.data.name,
+                      layer: _getComponent.data.embedded?.nl.embedded.commonground.layerType,
+                    }}
+                  />
                 </div>
               </TabPanel>
 

@@ -25,7 +25,7 @@
 }
 
 .headerOrganizationData > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-lg);
 }
 
 .tagsContainer > *:not(:last-child) {
@@ -36,9 +36,25 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.headerContent {
+  flex: 2;
+}
+
+.logoContainer {
+  max-height: var(--web-app-ornaziation-detail-logo-height);
+  max-width: var(--web-app-ornaziation-detail-logo-width);
+}
+
 .logo {
   max-width: 100%;
-  max-height: 100px;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.headerLogo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .tab {

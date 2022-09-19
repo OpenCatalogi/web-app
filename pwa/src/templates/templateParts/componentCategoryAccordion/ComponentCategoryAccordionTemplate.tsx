@@ -89,8 +89,9 @@ const Categories: React.FC<CategoriesProps> = ({ layer }) => {
 
   return (
     <div className={styles.items}>
-      {categories[layer].map((category) => (
+      {categories[layer].map((category, idx) => (
         <Button
+          key={idx}
           className={clsx(styles[_.camelCase(`${layer} category`)], styles.categoryButton)}
           variant="secondary-action"
           icon={category.icon}

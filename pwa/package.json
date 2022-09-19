@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@conduction/components": "2.0.3",
+    "@conduction/components": "2.0.5",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -44,7 +44,9 @@
     "react-loading-skeleton": "^3.1.0",
     "react-minimal-pie-chart": "^8.3.0",
     "react-query": "^3.34.19",
-    "react-select": "^5.3.2"
+    "react-select": "^5.3.2",
+    "vis-data": "^7.1.4",
+    "vis-network": "^9.1.2"
   },
   "devDependencies": {
     "@types/dateformat": "^5.0.0",
