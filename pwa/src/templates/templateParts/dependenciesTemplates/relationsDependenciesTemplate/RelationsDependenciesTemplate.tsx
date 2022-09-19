@@ -100,7 +100,6 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     network?.on("doubleClick", (event: { nodes: string[] }) => {
       if (event.nodes?.length === 1 && event.nodes[0] !== mainComponent.id) {
         navigate(`/components/${event.nodes[0]}`);
-        console.log(event.nodes[0]);
       }
     });
   }, [visJsRef, nodes, edges]);
