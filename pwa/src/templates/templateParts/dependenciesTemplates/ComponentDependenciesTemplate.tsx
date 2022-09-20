@@ -80,17 +80,17 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
             label: "Interactie",
             handleClick: setActiveInteraction,
             active: activeInteraction,
-            disabled: interaction.length === 0,
+            disabled: !interaction.length,
           },
-          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: process.length === 0 },
+          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: !process.length },
           {
             label: "Integratie",
             handleClick: setActiveIntegration,
             active: activeIntegration,
-            disabled: integration.length === 0,
+            disabled: !integration.length,
           },
-          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: services.length === 0 },
-          { label: "Data", handleClick: setActiveData, active: activeData, disabled: data.length === 0 },
+          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: !services.length },
+          { label: "Data", handleClick: setActiveData, active: activeData, disabled: !data.length },
         ]}
       />
       <RelationsDependenciesTemplate

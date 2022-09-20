@@ -142,8 +142,8 @@
   --web-app-ornaziation-detail-logo-height: 300px;
   --web-app-ornaziation-detail-logo-width: 350px;
 
-  --web-app-relations-container-width: 1024px;
-  --web-app-relations-container-height: 500px;
+  --web-app-relations-frame-width: 1024px;
+  --web-app-relations-frame-height: 500px;
   --web-app-relations-border: 1px solid #dddddd;
   --web-app-relations-background-color: rgb(251, 251, 251);
 

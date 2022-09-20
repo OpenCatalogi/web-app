@@ -22,8 +22,6 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
 }) => {
   const { t } = useTranslation();
 
-  const container = React.useRef(null);
-
   const componentNodes = components.map((component) => ({
     id: component.id,
     label: addNewLineToString(component.name),
@@ -93,16 +91,22 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     },
   };
 
-  const visJsRef = React.useRef<HTMLDivElement>(null);
+  const relationsContainerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const network = visJsRef.current && new Network(visJsRef.current, { nodes, edges }, options);
-    network?.on("doubleClick", (event: { nodes: string[] }) => {
-      if (event.nodes?.length === 1 && event.nodes[0] !== mainComponent.id) {
-        navigate(`/components/${event.nodes[0]}`);
-      }
-    });
-  }, [visJsRef, nodes, edges]);
+    const network =
+      relationsContainerRef.current && new Network(relationsContainerRef.current, { nodes, edges }, options);
 
-  return <div ref={visJsRef} className={styles.relationsContainer} />;
+    if (!network) return;
+
+    network?.on("doubleClick", (event: { nodes: string[] }) => {
+      const componentId = event.nodes[0];
+
+      if (!componentId || componentId === mainComponent.id) return;
+
+      navigate(`/components/${event.nodes[0]}`);
+    });
+  }, [relationsContainerRef, nodes, edges]);
+
+  return <div ref={relationsContainerRef} className={styles.relationsContainer} />;
 };

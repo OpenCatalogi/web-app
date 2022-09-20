@@ -7,8 +7,9 @@
 }
 
 .relationsContainer {
-  height: var(--web-app-relations-container-height);
-  width: var(--web-app-relations-container-width);
+  height: var(--web-app-relations-frame-height);
+  width: 100%;
+  max-width: var(--web-app-relations-frame-width);
   border: var(--web-app-relations-border);
   background-color: var(--web-app-relations-background-color);
 }
