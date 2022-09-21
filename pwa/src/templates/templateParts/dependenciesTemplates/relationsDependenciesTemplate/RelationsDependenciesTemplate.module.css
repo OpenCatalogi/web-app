@@ -13,3 +13,10 @@
   border: var(--web-app-relations-border);
   background-color: var(--web-app-relations-background-color);
 }
+
+/* Hides tooltip created by visjs */
+.relationsContainer > * > div {
+  background-color: inherit !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
