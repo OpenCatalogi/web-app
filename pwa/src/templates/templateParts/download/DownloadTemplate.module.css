@@ -1,0 +1,22 @@
+.notification {
+  position: fixed;
+  max-width: var(--pip-notification-popup-width);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  outline: 0;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--web-app-overlay-background);
+  z-index: 500;
+  display: block;
+}

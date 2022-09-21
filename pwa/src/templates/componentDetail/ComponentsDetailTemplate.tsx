@@ -26,6 +26,7 @@ import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleNodes,
+  faDatabase,
   faHouse,
   faInfoCircle,
   faLayerGroup,
@@ -42,6 +43,7 @@ import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -193,6 +195,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               layoutClassName={styles.infoCard}
             />
           </div>
+
+          <DownloadTemplate
+            label={_getComponent.data.name}
+            sizeKb="478193"
+            icon={<FontAwesomeIcon icon={faDatabase} />}
+          />
 
           <div>
             <h2>Technische gegevens</h2>

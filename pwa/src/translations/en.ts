@@ -62,4 +62,8 @@ export const en = {
   Public: "Public",
   Unknown: "Unknown",
   Relations: "Relations",
+  Warning: "Warning",
+  "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
+    "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
+  "Go back": "Go back",
 };

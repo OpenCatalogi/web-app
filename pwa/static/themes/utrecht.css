@@ -148,6 +148,9 @@
   --web-app-ornaziation-detail-logo-height: 300px;
   --web-app-ornaziation-detail-logo-width: 350px;
 
+  --web-app-download-popup-width: 500px;
+  --web-app-overlay-background: rgba(0, 0, 0, 0.3);
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
