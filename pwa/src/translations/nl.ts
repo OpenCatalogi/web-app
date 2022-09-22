@@ -24,6 +24,7 @@ export const nl = {
   "View component on GitHub": "Bekijk dit component op GitHub",
   Dependencies: "Afhankelijkheden",
   Standards: "Standaarden",
+  Standard: "Standaard",
   Components: "Componenten",
   Suppliers: "Leveranciers",
   Reuse: "Hergebruik",
@@ -62,4 +63,6 @@ export const nl = {
   Public: "Openbaar",
   Unknown: "Onbekend",
   Relations: "Verbanden",
+  Version: "Versie",
+  "Management organization": "Beheerorganisatie",
 };

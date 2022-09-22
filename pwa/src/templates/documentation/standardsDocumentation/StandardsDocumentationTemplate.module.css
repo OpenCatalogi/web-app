@@ -1,0 +1,36 @@
+.container {
+  max-width: 1440px;
+}
+
+.container > * {
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--web-app-size-2xl);
+}
+
+.standardsTable {
+  flex: 3;
+}
+
+.filters {
+  flex: 1;
+}
+.filters > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+}
+.buttonContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-sm);
+}
