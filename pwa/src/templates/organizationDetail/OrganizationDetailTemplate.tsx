@@ -6,6 +6,7 @@ import {
   Heading1,
   Heading2,
   LeadParagraph,
+  Link,
   Tab,
   TabContext,
   TabPanel,
@@ -17,13 +18,15 @@ import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faCertificate, faCheck, faEnvelope, faGlobe, faPhone, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Tag } from "../../components/tag/Tag";
 import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import _ from "lodash";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -93,7 +96,66 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               )}
             </div>
           </div>
+
+          <Divider />
+
+          <div className={styles.tagsContainer}>
+            <ToolTip tooltip={"ISO-9001"}>
+              <Tag
+                label={"ISO-9001"}
+                icon={<FontAwesomeIcon icon={faCertificate} />}
+                onClick={() => open("https://www.iso.org/iso-9001-quality-management.html")}
+              />
+            </ToolTip>
+            <ToolTip tooltip={"ISO-27001"}>
+              <Tag
+                label={"ISO-27001"}
+                icon={<FontAwesomeIcon icon={faCertificate} />}
+                onClick={() => open("https://www.iso.org/isoiec-27001-information-security.html")}
+              />
+            </ToolTip>
+          </div>
         </div>
+      </div>
+
+      <Divider />
+
+      <div className={styles.section}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeader>Naam</TableHeader>
+              <TableHeader>Behaald</TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <span onClick={() => open("https://www.iso.org/iso-9001-quality-management.html")}>
+                  <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
+                    ISO-9001
+                  </Link>
+                </span>
+              </TableCell>
+              <TableCell>
+                <FontAwesomeIcon icon={faCheck} />
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell>
+                <span onClick={() => open("https://www.iso.org/isoiec-27001-information-security.html")}>
+                  <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
+                    ISO-27001
+                  </Link>
+                </span>
+              </TableCell>
+              <TableCell>
+                <FontAwesomeIcon icon={faXmark} />
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
 
       <Divider />
