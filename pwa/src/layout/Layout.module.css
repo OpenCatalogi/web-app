@@ -5,3 +5,10 @@
 .footer {
   margin-block-start: var(--web-app-size-4xl);
 }
+
+.breadcrumbsContainer {
+  margin-block-start: var(--web-app-size-xl);
+  margin-block-end: var(--web-app-size-xl);
+
+  --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
+}
