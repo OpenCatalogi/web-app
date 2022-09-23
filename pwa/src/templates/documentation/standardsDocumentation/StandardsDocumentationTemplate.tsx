@@ -26,7 +26,13 @@ export const StandardsDocumentationTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1>Gebruikte standaarden</Heading1>
-        <LeadParagraph>De standaarden die gebruikt worden door Open Catalogi [moet nog veranderd worden]</LeadParagraph>
+        <LeadParagraph>
+          Dit zijn de standaarden die gebruikt worden door Open Catalogi. Deze standaarden zijn in lijn met de&nbsp;
+          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start" >verplichte standaarden</Link>
+          </span>{" "}
+          die aangewezen zijn door de Nederlandse overheid.
+        </LeadParagraph>
 
         <div className={styles.paragraphButtons}>
           <span onClick={() => open("https://forumstandaardisatie.nl/")}>
