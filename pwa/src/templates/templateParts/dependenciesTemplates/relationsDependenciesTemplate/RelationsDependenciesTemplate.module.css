@@ -1,0 +1,22 @@
+:export {
+  layerColorInteractie: --web-app-layer-color-interaction;
+  layerColorProces: --web-app-layer-color-process;
+  layerColorIntegratie: --web-app-layer-color-integration;
+  layerColorService: --web-app-layer-color-services;
+  layerColorData: --web-app-layer-color-data;
+}
+
+.relationsContainer {
+  height: var(--web-app-relations-frame-height);
+  width: 100%;
+  max-width: var(--web-app-relations-frame-width);
+  border: var(--web-app-relations-border);
+  background-color: var(--web-app-relations-background-color);
+}
+
+/* Hides tooltip created by visjs */
+.relationsContainer > * > div {
+  background-color: inherit !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
