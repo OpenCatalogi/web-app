@@ -35,6 +35,7 @@ export const nl = {
   Repository: "Repository",
   "Check out the repository on GitHub": "Bekijk de repository op GitHub",
   Organization: "Organisatie",
+  Organizations: "Organisaties",
   Layer: "Laag",
   Type: "Type",
   Layers: "Lagen",

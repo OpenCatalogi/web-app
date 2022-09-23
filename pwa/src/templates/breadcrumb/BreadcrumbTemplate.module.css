@@ -1,8 +1,8 @@
 .container {
-    margin: var(--web-app-size-xl) auto;
-    max-width: var(--conduction-container-max-width);
+  margin: var(--web-app-size-xl) auto;
+  max-width: var(--conduction-container-max-width);
 }
 
 .container > * {
-    color: var(--web-app-breadcrumb-color);
+  color: var(--web-app-breadcrumb-color);
 }

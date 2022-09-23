@@ -30,9 +30,9 @@ module.exports = {
             crumbLabel: "Component",
           },
           {
-            pathname: "/organization/[organizationId]",
-            crumbLabel: "Organization"
-          }
+            pathname: "/organizations/[organizationId]",
+            crumbLabel: "Organization",
+          },
         ],
       },
     },

@@ -63,5 +63,5 @@ export const en = {
   Unknown: "Unknown",
   Relations: "Relations",
   About: "About",
-  Documentation: "Documentation"
+  Documentation: "Documentation",
 };

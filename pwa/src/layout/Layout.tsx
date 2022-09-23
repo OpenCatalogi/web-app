@@ -46,7 +46,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
               <HeaderTemplate />
-              <BreadcrumbTemplate/>
+              <BreadcrumbTemplate />
 
               <div className={styles.pageContent}>{children}</div>
 
