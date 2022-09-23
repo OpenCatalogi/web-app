@@ -110,7 +110,7 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
 
     if (!network) return;
 
-    network?.on("doubleClick", (event: { nodes: string[] }) => {
+    network.on("doubleClick", (event: { nodes: string[] }) => {
       const componentId = event.nodes[0];
 
       if (!componentId || componentId === mainComponent.id) return;
