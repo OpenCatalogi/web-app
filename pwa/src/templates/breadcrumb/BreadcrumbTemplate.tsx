@@ -14,14 +14,9 @@ export const BreadcrumbTemplate: React.FC = () => {
     },
   } = React.useContext(GatsbyContext);
 
-  const uppercaseCrumbs = crumbs.map((crumb: any) => ({
+  const translatedBreadcrumbs = crumbs.map((crumb: any) => ({
     ...crumb,
-    crumbLabel: _.upperFirst(crumb.crumbLabel),
-  }));
-
-  const translatedBreadcrumbs = uppercaseCrumbs.map((crumb: any) => ({
-    ...crumb,
-    crumbLabel: t(crumb.crumbLabel),
+    crumbLabel: t(_.upperFirst(crumb.crumbLabel)),
   }));
 
   return (
