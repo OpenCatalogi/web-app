@@ -26,7 +26,20 @@ export const StandardsDocumentationTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1>Gebruikte standaarden</Heading1>
-        <LeadParagraph>De standaarden die gebruikt worden door Open Catalogi</LeadParagraph>
+        <LeadParagraph>De standaarden die gebruikt worden door Open Catalogi [moet nog veranderd worden]</LeadParagraph>
+
+        <div className={styles.paragraphButtons}>
+          <span onClick={() => open("https://forumstandaardisatie.nl/")}>
+            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+              Forum Standaardisatie
+            </Button>
+          </span>
+          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
+            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+              Verplichte Standaarden
+            </Button>
+          </span>
+        </div>
       </section>
       <section className={styles.section}>
         <div className={styles.content}>
@@ -44,84 +57,12 @@ export const StandardsDocumentationTemplate: React.FC = () => {
                 <TableRow key={idx}>
                   <TableCell>{standard.name}</TableCell>
                   <TableCell>{standard.type}</TableCell>
-                  <TableCell>{standard.version.join(", ")}</TableCell>
-                  <TableCell>{standard.organisation}</TableCell>
+                  <TableCell>{standard.versions.join(", ")}</TableCell>
+                  <TableCell>{standard.organization}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-          <div className={styles.filters}>
-            <div>
-              <Heading3>Filters</Heading3>
-              <Paragraph>En expoteer:</Paragraph>
-              <div className={styles.buttonContainer}>
-                <Button>
-                  <b>Expoteer naar XML</b>
-                </Button>
-                <Button>In PDF formaat</Button>
-              </div>
-            </div>
-            <div>
-              <Heading5>Domein</Heading5>
-              <ul>
-                <li>
-                  <span
-                    onClick={() => {
-                      open("https://forumstandaardisatie.nl/open-standaarden/verplicht");
-                    }}
-                  >
-                    <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                      - Any -
-                    </Link>
-                  </span>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      open("https://forumstandaardisatie.nl/open-standaarden/verplicht?domein=130");
-                    }}
-                  >
-                    <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                      Bouw
-                    </Link>
-                  </span>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      open("https://forumstandaardisatie.nl/open-standaarden/verplicht?domein=128");
-                    }}
-                  >
-                    <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                      Document en (web)content
-                    </Link>
-                  </span>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      open("https://forumstandaardisatie.nl/open-standaarden/verplicht?domein=127");
-                    }}
-                  >
-                    <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                      E-facturatie en administratie
-                    </Link>
-                  </span>
-                </li>
-                <li>
-                  <span
-                    onClick={() => {
-                      navigate("/documentation/usage");
-                    }}
-                  >
-                    <Link icon={<ArrowRightIcon />} iconAlign={"start"}>
-                      meer lezen.
-                    </Link>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
     </Container>

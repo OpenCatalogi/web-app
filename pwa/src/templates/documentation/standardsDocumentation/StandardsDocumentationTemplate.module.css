@@ -1,5 +1,5 @@
 .container {
-  max-width: 1440px;
+  max-width: var(--conduction-container-max-width);
 }
 
 .container > * {
@@ -10,27 +10,12 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
+.paragraphButtons > *:not(:last-child) {
+  margin-right: var(--web-app-size-sm);
+}
+
 .content {
   display: flex;
   justify-content: space-between;
   gap: var(--web-app-size-2xl);
-}
-
-.standardsTable {
-  flex: 3;
-}
-
-.filters {
-  flex: 1;
-}
-.filters > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-xl);
-}
-
-.buttonContainer {
-  display: flex;
-  flex-direction: column;
-}
-.buttonContainer > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-sm);
 }
