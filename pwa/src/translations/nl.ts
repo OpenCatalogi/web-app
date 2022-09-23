@@ -62,4 +62,6 @@ export const nl = {
   Public: "Openbaar",
   Unknown: "Onbekend",
   Relations: "Verbanden",
+  About: "Over",
+  Documentation: "Documentatie",
 };

@@ -121,6 +121,8 @@
   --web-app-border-layer-color-services: #3e755c;
   --web-app-border-layer-color-data: #4b2b88;
 
+  --web-app-breadcrumb-color: var(--rotterdam-color-green);
+
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);

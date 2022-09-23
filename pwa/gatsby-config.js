@@ -23,44 +23,16 @@ module.exports = {
         excludeOptions: {
           separator: ".",
         },
-        autoGenHomeLabel: "Overview",
+        autoGenHomeLabel: "Open Catalogi",
         crumbLabelUpdates: [
           {
-            pathname: "/self-services",
-            crumbLabel: "Self services",
+            pathname: "/components/[componentId]",
+            crumbLabel: "Component",
           },
           {
-            pathname: "/my-messages",
-            crumbLabel: "My messages",
-          },
-          {
-            pathname: "/my-messages/[messageId]",
-            crumbLabel: "Message",
-          },
-          {
-            pathname: "/my-cases",
-            crumbLabel: "My cases",
-          },
-          {
-            pathname: "/my-cases/[caseId]",
-            crumbLabel: "Case",
-          },
-          {
-            pathname: "/my-account",
-            crumbLabel: "My account",
-          },
-          {
-            pathname: "/self-services/marriage",
-            crumbLabel: "Marriage / Partnership",
-          },
-          {
-            pathname: "/self-services/moving",
-            crumbLabel: "Moving away",
-          },
-          {
-            pathname: "/self-services/moving/form",
-            crumbLabel: "Form",
-          },
+            pathname: "/organization/[organizationId]",
+            crumbLabel: "Organization"
+          }
         ],
       },
     },

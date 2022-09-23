@@ -9,6 +9,7 @@ import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
 import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
+import { BreadcrumbTemplate } from "../templates/breadcrumb/BreadcrumbTemplate";
 
 const { setEnv } = require("./../../static/env.js");
 
@@ -45,6 +46,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
               <HeaderTemplate />
+              <BreadcrumbTemplate/>
 
               <div className={styles.pageContent}>{children}</div>
 
