@@ -1,44 +1,32 @@
-import clsx from "clsx";
 import * as React from "react";
 import * as styles from "./LayerAccordionFiltersTemplate.module.css";
+import clsx from "clsx";
 
 interface LayerAccordionFiltersTemplateProps {
   items: {
     label: string;
     active: boolean;
     handleClick: React.Dispatch<React.SetStateAction<boolean>>;
-    badgeNumber?: number;
+    disabled?: boolean;
   }[];
 }
 
 export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTemplateProps> = ({ items }) => {
   return (
     <div className={styles.container}>
-      {items.map(({ label, active, handleClick, badgeNumber }, idx) => (
-        <>
-          {badgeNumber?.toString && (
-            <span
-              key={idx}
-              onClick={() => badgeNumber > 0 && handleClick((o) => !o)}
-              className={clsx(
-                styles[label.toLowerCase()],
-                active && badgeNumber > 0 && styles.active,
-                styles.filter,
-                badgeNumber <= 0 && styles.disabled,
-              )}
-            >
-              {label}
-            </span>
+      {items.map(({ label, active, handleClick, disabled }, idx) => (
+        <span
+          key={idx}
+          onClick={() => !disabled && handleClick((o) => !o)}
+          className={clsx(
+            styles[label.toLowerCase()],
+            active && !disabled && styles.active,
+            styles.filter,
+            disabled && styles.disabled,
           )}
-          {!badgeNumber?.toString && (
-            <span
-              onClick={() => handleClick((o) => !o)}
-              className={clsx(styles[label.toLowerCase()], active && styles.active, styles.filter)}
-            >
-              {label}
-            </span>
-          )}
-        </>
+        >
+          {label}
+        </span>
       ))}
     </div>
   );
