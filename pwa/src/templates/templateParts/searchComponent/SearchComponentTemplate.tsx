@@ -40,11 +40,10 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
-        <Button className={styles.button} type="submit" icon={<SearchIcon />}>
+        <Button type="submit" icon={<SearchIcon />}>
           {t("Search")}
         </Button>
         <Button
-          className={styles.button}
           icon={<ArrowRightIcon />}
           iconAlign="start"
           onClick={() => navigate("/components")}

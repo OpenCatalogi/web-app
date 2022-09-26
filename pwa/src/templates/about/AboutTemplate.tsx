@@ -27,7 +27,6 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.buttonsContainer}>
           <Button
-            className={styles.button}
             onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
             icon={<ExternalLinkIcon />}
           >
@@ -35,7 +34,6 @@ export const AboutTemplate: React.FC = () => {
           </Button>
 
           <Button
-            className={styles.button}
             onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
             icon={<ExternalLinkIcon />}
           >
