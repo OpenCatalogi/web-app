@@ -115,12 +115,6 @@
   --web-app-layer-category-color-services: #d1e7dd;
   --web-app-layer-category-color-data: #e2d9f3;
 
-  --web-app-border-layer-color-interaction: #0047b3;
-  --web-app-border-layer-color-process: #981b25;
-  --web-app-border-layer-color-integration: #a6820c;
-  --web-app-border-layer-color-services: #3e755c;
-  --web-app-border-layer-color-data: #4b2b88;
-
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
@@ -147,6 +141,11 @@
 
   --web-app-ornaziation-detail-logo-height: 300px;
   --web-app-ornaziation-detail-logo-width: 350px;
+
+  --web-app-relations-frame-width: 1024px;
+  --web-app-relations-frame-height: 500px;
+  --web-app-relations-border: 1px solid #dddddd;
+  --web-app-relations-background-color: rgb(251, 251, 251);
 
   --web-app-download-popup-width: 500px;
   --web-app-overlay-background: rgba(0, 0, 0, 0.3);

@@ -25,6 +25,7 @@ export const en = {
   Dependencies: "Dependencies",
   Components: "Components",
   Standards: "Standards",
+  Standard: "Standard",
   Suppliers: "Suppliers",
   Reuse: "Reuse",
   "Schema's": "Schema's",
@@ -66,4 +67,6 @@ export const en = {
   "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
     "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
   "Go back": "Go back",
+  Version: "Version",
+  "Management organization": "Management organization",
 };

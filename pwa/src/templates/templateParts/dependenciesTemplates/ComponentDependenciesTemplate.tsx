@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as _ from "lodash";
 import { TComponentDependenciesLayout } from "../../../context/filters";
-import { NetworkDependenciesTemplate } from "./networkDependenciesTemplate/NetworkDependenciesTemplate";
+import { RelationsDependenciesTemplate } from "./relationsDependenciesTemplate/RelationsDependenciesTemplate";
 import { LayerDependenciesTemplate } from "./layerDependenciesTemplate/LayerDependenciesTemplate";
-import { NetworkDependenciesFiltersTemplate } from "./networkDependenciesTemplate/filters/NetworkDependenciesFiltersTemplate";
 import { useTranslation } from "react-i18next";
+import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 
 interface DependenciesTemplateProps {
   type: TComponentDependenciesLayout;
@@ -22,11 +22,11 @@ export const DependenciesTemplate: React.FC<DependenciesTemplateProps> = ({ comp
       return <LayerDependenciesTemplate {...{ components }} />;
 
     case "relations":
-      return <NetworkDependencies {...{ components, mainComponent }} />;
+      return <RelationsDependencies {...{ components, mainComponent }} />;
   }
 };
 
-interface NetworkDependenciesProps {
+interface RelationsDependenciesProps {
   components: any[];
   mainComponent: {
     id: string;
@@ -35,7 +35,7 @@ interface NetworkDependenciesProps {
   };
 }
 
-const NetworkDependencies: React.FC<NetworkDependenciesProps> = ({ components, mainComponent }) => {
+const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ components, mainComponent }) => {
   const { t } = useTranslation();
 
   const mappedComponents = components.map((component) => ({
@@ -65,7 +65,7 @@ const NetworkDependencies: React.FC<NetworkDependenciesProps> = ({ components, m
   const { active: activeServices, setActive: setActiveServices } = FilterController();
   const { active: activeData, setActive: setActiveData } = FilterController();
 
-  const _components = [
+  const filteredComponents = [
     ...(activeInteraction ? interaction : []),
     ...(activeProcess ? process : []),
     ...(activeIntegration ? integration : []),
@@ -74,28 +74,28 @@ const NetworkDependencies: React.FC<NetworkDependenciesProps> = ({ components, m
   ];
   return (
     <>
-      <NetworkDependenciesFiltersTemplate
+      <LayerAccordionFiltersTemplate
         items={[
           {
             label: "Interactie",
             handleClick: setActiveInteraction,
             active: activeInteraction,
-            disabled: interaction.length,
+            disabled: !interaction.length,
           },
-          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: process.length },
+          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: !process.length },
           {
             label: "Integratie",
             handleClick: setActiveIntegration,
             active: activeIntegration,
-            disabled: integration.length,
+            disabled: !integration.length,
           },
-          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: services.length },
-          { label: "Data", handleClick: setActiveData, active: activeData, disabled: data.length },
+          { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: !services.length },
+          { label: "Data", handleClick: setActiveData, active: activeData, disabled: !data.length },
         ]}
       />
-      <NetworkDependenciesTemplate
+      <RelationsDependenciesTemplate
         mainComponent={{ id: mainComponent.id, name: mainComponent.name, layer: mainComponent.layer }}
-        components={_components}
+        components={filteredComponents}
       />
     </>
   );
