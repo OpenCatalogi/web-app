@@ -81,6 +81,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             navigate("#");
           },
         },
+        {
+          label: t("Standards"),
+          handleClick: () => {
+            navigate("/documentation/standards");
+          },
+        },
       ],
     },
   ];

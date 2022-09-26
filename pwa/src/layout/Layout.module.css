@@ -1,5 +1,11 @@
+.header {
+  position: relative;
+  z-index: 2;
+}
+
 .pageContent {
   min-height: 100vh;
+  z-index: 1;
 }
 
 .footer {

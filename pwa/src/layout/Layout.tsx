@@ -66,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
-              <HeaderTemplate />
+              <HeaderTemplate layoutClassName={styles.header} />
 
               <Container layoutClassName={styles.breadcrumbsContainer}>
                 <Breadcrumbs crumbs={breadcrumbs} />

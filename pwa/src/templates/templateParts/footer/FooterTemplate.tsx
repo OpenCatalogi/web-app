@@ -107,6 +107,16 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
+                navigate("/documentation/standards");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                Standaarden
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
                 open("https://github.com/OpenCatalogi");
               }}
             >
