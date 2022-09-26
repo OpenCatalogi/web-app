@@ -2,6 +2,8 @@
   background-color: var(--web-app-color-background-footer);
   padding-block-end: var(--web-app-size-3xl);
   padding-block-start: var(--web-app-size-3xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
 .content {
   margin-inline: auto;

@@ -9,6 +9,8 @@
 .headingContainer {
   padding-block-start: var(--web-app-size-3xl);
   padding-block-end: var(--web-app-size-3xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .title {
@@ -25,6 +27,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .organizationLogo {

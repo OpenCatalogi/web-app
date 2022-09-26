@@ -2,6 +2,8 @@
   background-color: var(--web-app-color-background-footer);
   padding-block-start: var(--web-app-size-xl);
   padding-block-end: var(--web-app-size-xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .footerContainer > *:not(:last-child) {
