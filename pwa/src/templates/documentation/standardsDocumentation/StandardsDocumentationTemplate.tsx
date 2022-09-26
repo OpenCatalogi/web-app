@@ -49,7 +49,7 @@ export const StandardsDocumentationTemplate: React.FC = () => {
       </section>
       <section className={styles.section}>
         <div className={styles.content}>
-          <Table className={styles.standardsTable}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableHeader>{t("Standard")}</TableHeader>
