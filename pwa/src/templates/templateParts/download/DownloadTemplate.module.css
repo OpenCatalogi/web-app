@@ -1,6 +1,6 @@
-.notification {
+.popup {
   position: fixed;
-  max-width: var(--pip-notification-popup-width);
+  max-width: var(--web-app-download-popup-width);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

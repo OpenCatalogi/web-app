@@ -51,7 +51,7 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ layoutClassN
               icon: <ArrowLeftIcon />,
               handleClick: () => {},
             }}
-            layoutClassName={styles.notification}
+            layoutClassName={styles.popup}
           />
         </div>
       )}
