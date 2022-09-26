@@ -29,7 +29,9 @@ export const StandardsDocumentationTemplate: React.FC = () => {
         <LeadParagraph>
           Dit zijn de standaarden die gebruikt worden door Open Catalogi. Deze standaarden zijn in lijn met de&nbsp;
           <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start" >verplichte standaarden</Link>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              verplichte standaarden
+            </Link>
           </span>{" "}
           die aangewezen zijn door de Nederlandse overheid.
         </LeadParagraph>
