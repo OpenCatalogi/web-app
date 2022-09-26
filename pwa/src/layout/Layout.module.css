@@ -5,3 +5,8 @@
 .footer {
   margin-block-start: var(--web-app-size-4xl);
 }
+
+.header {
+  position: relative;
+  z-index: 2;
+}
