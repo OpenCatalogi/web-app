@@ -16,8 +16,6 @@
   margin-block-start: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-xl);
   padding-inline-start: var(--web-app-size-md);
-
   background-color: var(--web-app-color-background-light);
-
   --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
 }
