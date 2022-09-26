@@ -36,12 +36,12 @@ export const StandardsDocumentationTemplate: React.FC = () => {
 
         <div className={styles.paragraphButtons}>
           <span onClick={() => open("https://forumstandaardisatie.nl/")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+            <Button className={styles.button} icon={<ExternalLinkIcon />} iconAlign="start">
               Forum Standaardisatie
             </Button>
           </span>
           <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+            <Button className={styles.button} icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
               Verplichte Standaarden
             </Button>
           </span>

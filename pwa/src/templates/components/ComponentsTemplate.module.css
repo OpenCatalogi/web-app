@@ -30,6 +30,10 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.buttonIcon:hover {
+  cursor: pointer;
+}
+
 .filtersAndResultsContainer {
   display: flex;
   gap: var(--web-app-size-lg);

@@ -19,3 +19,7 @@
   justify-content: space-between;
   gap: var(--web-app-size-2xl);
 }
+
+.button:hover {
+  cursor: pointer;
+}

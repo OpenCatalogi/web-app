@@ -6,3 +6,7 @@
 .buttons > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-sm);
 }
+
+.button:hover {
+  cursor: pointer;
+}
