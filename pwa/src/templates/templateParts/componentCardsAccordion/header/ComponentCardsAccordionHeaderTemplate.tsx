@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
-import { BadgeCounter } from "../../../../components/badgeCounter/BadgeCounter";
 import _ from "lodash";
+import { BadgeCounter } from "@conduction/components";
 
 interface ComponentCardsAccordionHeaderTemplateProps {
   title: string;

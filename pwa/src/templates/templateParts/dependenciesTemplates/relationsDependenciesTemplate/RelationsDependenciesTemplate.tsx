@@ -1,12 +1,17 @@
 import * as React from "react";
-import * as styles from "./NetworkDependenciesTemplate.module.css";
+import * as styles from "./RelationsDependenciesTemplate.module.css";
 import { Network } from "vis-network";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
+import { navigate } from "gatsby";
+import { NodeToolTip } from "../../../../components/toolTip/ToolTip";
+import { NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import "vis-network/styles/vis-network.css";
+import { renderToStaticMarkup } from "react-dom/server";
 
-interface LayersResultTemplateProps {
+interface RelationsDependenciesTemplateProps {
   components: any[];
   mainComponent: {
     id: string;
@@ -15,38 +20,27 @@ interface LayersResultTemplateProps {
   };
 }
 
-export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = ({ components, mainComponent }) => {
+export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTemplateProps> = ({
+  components,
+  mainComponent,
+}) => {
   const { t } = useTranslation();
 
-  const container = React.useRef(null);
+  const ToolTip = document.createElement("div");
+  const staticToolTipElement = renderToStaticMarkup(
+    <NodeToolTip tooltip="Dubbelklik het component om naar het component te gaan" />,
+  );
+  ToolTip.innerHTML = `${staticToolTipElement}`;
 
   const componentNodes = components.map((component) => ({
     id: component.id,
     label: addNewLineToString(component.name),
+    title: ToolTip,
     layer: component.embedded?.nl?.embedded?.commonground?.layerType,
     color: {
       background: getTokenValue(
         styles[_.camelCase(`layerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)],
       ),
-      border: getTokenValue(
-        styles[
-          _.camelCase(`borderLayerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)
-        ],
-      ),
-      highlight: {
-        background: getTokenValue(
-          styles[
-            _.camelCase(
-              `highlightLayerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`,
-            )
-          ],
-        ),
-        border: getTokenValue(
-          styles[
-            _.camelCase(`layerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)
-          ],
-        ),
-      },
     },
     font: {
       color: "white",
@@ -70,11 +64,6 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
     layer: mainComponent.layer,
     color: {
       background: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      border: getTokenValue(styles[_.camelCase(`borderLayerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      highlight: {
-        background: getTokenValue(styles[_.camelCase(`highlightLayerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-        border: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
-      },
     },
     font: { color: "white", size: 20 },
   };
@@ -82,9 +71,8 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
   const nodes = [mainComponentNode, ...componentNodes];
 
   const edges = nodes.map((component) => {
-    if (component.id === mainComponent.id) {
-      return {};
-    }
+    if (component.id === mainComponent.id) return {};
+
     return {
       from: component.id,
       to: mainComponent.id,
@@ -94,8 +82,8 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
   const options = {
     nodes: {
       shape: "circle",
-      borderWidth: 2,
-      borderWidthSelected: 1,
+      borderWidth: 0,
+      chosen: false,
     },
     edges: {
       color: "darkGray",
@@ -114,9 +102,22 @@ export const NetworkDependenciesTemplate: React.FC<LayersResultTemplateProps> = 
     },
   };
 
-  React.useEffect(() => {
-    container.current && new Network(container.current, { nodes, edges }, options);
-  }, [container, nodes, edges]);
+  const relationsContainerRef = React.useRef<HTMLDivElement>(null);
 
-  return <div ref={container} className={styles.networkContainer} />;
+  React.useEffect(() => {
+    const network =
+      relationsContainerRef.current && new Network(relationsContainerRef.current, { nodes, edges }, options);
+
+    if (!network) return;
+
+    network.on("doubleClick", (event: { nodes: string[] }) => {
+      const componentId = event.nodes[0];
+
+      if (!componentId || componentId === mainComponent.id) return;
+
+      navigate(`/components/${event.nodes[0]}`);
+    });
+  }, [relationsContainerRef, nodes, edges]);
+
+  return <div ref={relationsContainerRef} className={styles.relationsContainer} />;
 };

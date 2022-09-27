@@ -47,10 +47,10 @@
 }
 
 .disabled .badge {
-  --web-app-badge-counter-background-color: var(
+  --conduction-badge-counter-background-color: var(
     --web-app-color-background-light
   );
-  --web-app-badge-counter-color: var(--web-app-color-black);
+  --conduction-badge-counter-color: var(--web-app-color-black);
 }
 
 .disabled .toggleIcon {
@@ -58,32 +58,36 @@
 }
 
 .maxNumber {
-  --web-app-badge-counter-font-size: var(
+  --conduction-badge-counter-font-size: var(
     --web-app-badge-counter-max-number-font-size
   );
 }
 
 .interactionBadge {
-  --web-app-badge-counter-background-color: var(
+  --conduction-badge-counter-background-color: var(
     --web-app-layer-color-interaction
   );
-  --web-app-badge-counter-color: var(--web-app-color-white);
+  --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .processBadge {
-  --web-app-badge-counter-background-color: var(--web-app-layer-color-process);
-  --web-app-badge-counter-color: var(--web-app-color-white);
+  --conduction-badge-counter-background-color: var(
+    --web-app-layer-color-process
+  );
+  --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .integrationBadge {
-  --web-app-badge-counter-background-color: var(
+  --conduction-badge-counter-background-color: var(
     --web-app-layer-color-integration
   );
-  --web-app-badge-counter-color: var(--web-app-color-white);
+  --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .servicesBadge {
-  --web-app-badge-counter-background-color: var(--web-app-layer-color-services);
-  --web-app-badge-counter-color: var(--web-app-color-white);
+  --conduction-badge-counter-background-color: var(
+    --web-app-layer-color-services
+  );
+  --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .dataBadge {
-  --web-app-badge-counter-background-color: var(--web-app-layer-color-data);
-  --web-app-badge-counter-color: var(--web-app-color-white);
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-data);
+  --conduction-badge-counter-color: var(--web-app-color-white);
 }

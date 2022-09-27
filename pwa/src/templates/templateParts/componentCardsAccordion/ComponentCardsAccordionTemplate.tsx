@@ -49,17 +49,17 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
             label: "Interactie",
             handleClick: setOpenInteraction,
             active: openInteraction,
-            badgeNumber: interaction.length,
+            disabled: !interaction.length,
           },
-          { label: "Proces", handleClick: setOpenProcess, active: openProcess, badgeNumber: process.length },
+          { label: "Proces", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
           {
             label: "Integratie",
             handleClick: setOpenIntegration,
             active: openIntegration,
-            badgeNumber: integration.length,
+            disabled: !integration.length,
           },
-          { label: "Service", handleClick: setOpenServices, active: openServices, badgeNumber: services.length },
-          { label: "Data", handleClick: setOpenData, active: openData, badgeNumber: data.length },
+          { label: "Service", handleClick: setOpenServices, active: openServices, disabled: !services.length },
+          { label: "Data", handleClick: setOpenData, active: openData, disabled: !data.length },
         ]}
       />
 
@@ -67,7 +67,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         open={openInteraction}
         setOpen={setOpenInteraction}
         color={getTokenValue(styles.layerColorInteraction)}
-        disabled={interaction.length === 0}
+        disabled={!interaction.length}
         header={
           <ComponentCardsAccordionHeaderTemplate
             title="Interaction"
@@ -83,7 +83,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         open={openProcess}
         setOpen={setOpenProcess}
         color={getTokenValue(styles.layerColorProcess)}
-        disabled={process.length === 0}
+        disabled={!process.length}
         header={
           <ComponentCardsAccordionHeaderTemplate title="Process" active={openProcess} badgeNumber={process.length} />
         }
@@ -95,7 +95,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         open={openIntegration}
         setOpen={setOpenIntegration}
         color={getTokenValue(styles.layerColorIntegration)}
-        disabled={integration.length === 0}
+        disabled={!integration.length}
         header={
           <ComponentCardsAccordionHeaderTemplate
             title="Integration"
@@ -111,7 +111,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         open={openServices}
         setOpen={setOpenServices}
         color={getTokenValue(styles.layerColorServices)}
-        disabled={services.length === 0}
+        disabled={!services.length}
         header={
           <ComponentCardsAccordionHeaderTemplate title="Services" active={openServices} badgeNumber={services.length} />
         }
@@ -123,7 +123,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         open={openData}
         setOpen={setOpenData}
         color={getTokenValue(styles.layerColorData)}
-        disabled={data.length === 0}
+        disabled={!data.length}
         header={<ComponentCardsAccordionHeaderTemplate title="Data" active={openData} badgeNumber={data.length} />}
       >
         <Components components={data} />

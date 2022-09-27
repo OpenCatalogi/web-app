@@ -25,6 +25,7 @@ export const en = {
   Dependencies: "Dependencies",
   Components: "Components",
   Standards: "Standards",
+  Standard: "Standard",
   Suppliers: "Suppliers",
   Reuse: "Reuse",
   "Schema's": "Schema's",
@@ -62,4 +63,8 @@ export const en = {
   Public: "Public",
   Unknown: "Unknown",
   Relations: "Relations",
+  About: "About",
+  Documentation: "Documentation",
+  Version: "Version",
+  "Management organization": "Management organization",
 };
