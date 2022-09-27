@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as styles from "./InstallationDocumentationTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, CodeBlock } from "@conduction/components";
 import { Heading1, Heading2, Heading3, LeadParagraph, Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { CodeBlock } from "../../../components/codeBlock/CodeBlock";
 
 export const InstallationDocumentationTemplate: React.FC = () => {
   return (
