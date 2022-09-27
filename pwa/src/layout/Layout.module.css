@@ -12,4 +12,6 @@
 
 .footer {
   margin-block-start: var(--web-app-size-4xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
