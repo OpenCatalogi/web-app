@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, BadgeCounter } from "@conduction/components";
 import {
   Divider,
   Heading1,
@@ -13,7 +13,6 @@ import {
 } from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
