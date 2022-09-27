@@ -36,6 +36,7 @@ export const nl = {
   Repository: "Repository",
   "Check out the repository on GitHub": "Bekijk de repository op GitHub",
   Organization: "Organisatie",
+  Organizations: "Organisaties",
   Layer: "Laag",
   Type: "Type",
   Layers: "Lagen",
@@ -63,6 +64,8 @@ export const nl = {
   Public: "Openbaar",
   Unknown: "Onbekend",
   Relations: "Verbanden",
+  About: "Over",
+  Documentation: "Documentatie",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
 };
