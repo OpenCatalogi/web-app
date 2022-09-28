@@ -137,6 +137,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: "Login",
+      current: pathname === "/login",
       handleClick: () => {
         navigate("/login");
       },
