@@ -23,7 +23,44 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   } = useForm();
 
   const onSubmit = (data: any): void => {
-    setFilters({ ...filters, search: data.name });
+    setFilters({
+      ...filters,
+      search: data.name,
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+    });
+    navigate("/components");
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      ...filters,
+      search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+    });
     navigate("/components");
   };
 
@@ -40,15 +77,10 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
-        <Button type="submit" icon={<SearchIcon />}>
+        <Button type="submit" icon={<SearchIcon />} variant="secondary-action">
           {t("Search")}
         </Button>
-        <Button
-          icon={<ArrowRightIcon />}
-          iconAlign="start"
-          onClick={() => navigate("/components")}
-          variant="secondary-action"
-        >
+        <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={clearFilters} variant="secondary-action">
           {t("View all components")}
         </Button>
       </div>
