@@ -1,6 +1,0 @@
-.code {
-  margin-block: var(--web-app-size-sm);
-  background-color: var(--web-app-code-block-background-color);
-  border-radius: var(--web-app-size-2xs);
-  padding: var(--web-app-size-lg);
-}

@@ -61,7 +61,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       subItems: [
         {
           label: t("About Open Catalogi"),
-          handleClick: () => navigate("/about"),
+          handleClick: () => navigate("/documentation/about"),
         },
         {
           label: t("Installation"),
@@ -79,6 +79,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("API"),
           handleClick: () => {
             navigate("#");
+          },
+        },
+        {
+          label: t("Standards"),
+          handleClick: () => {
+            navigate("/documentation/standards");
           },
         },
       ],
