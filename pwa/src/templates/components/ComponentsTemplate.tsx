@@ -67,6 +67,8 @@ export const ComponentsTemplate: React.FC = () => {
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 
+              <SubmitComponentTemplate />
+
               {getComponents.data.results.length && (
                 <Pagination
                   setPage={(page) => setFilters({ ...filters, currentPage: page })}
@@ -85,9 +87,6 @@ export const ComponentsTemplate: React.FC = () => {
 
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
-      </div>
-      <div className={styles.submitComponent}>
-        <SubmitComponentTemplate />
       </div>
     </Container>
   );

@@ -117,6 +117,8 @@
 
   --web-app-breadcrumb-color: var(--rotterdam-color-green);
 
+  --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
+
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);

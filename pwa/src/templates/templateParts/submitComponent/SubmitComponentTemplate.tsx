@@ -12,20 +12,24 @@ interface SubmitComponentTemplateProps {
 export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = ({ layoutClassName }) => {
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
-      <span className={styles.heading}>Aan de slag met Open Catalogi</span>
+      <div className={styles.header}>
+        <div className={styles.title}>Aan de slag met Open Catalogi</div>
 
-      <span>
-        Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan
-        de doorontwikkeling van uw component?
-      </span>
-      <Button
-        className={styles.button}
-        variant="secondary-action"
-        onClick={() => navigate("/documentation/usage")}
-        icon={<ArrowRightIcon />}
-      >
-        Component toevoegen!
-      </Button>
+        <div>
+          Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen
+          aan de doorontwikkeling van uw component?
+        </div>
+      </div>
+      <div className={styles.buttonContainer}>
+        <Button
+          className={styles.button}
+          variant="secondary-action"
+          onClick={() => navigate("/documentation/usage")}
+          icon={<ArrowRightIcon />}
+        >
+          Component toevoegen!
+        </Button>
+      </div>
     </div>
   );
 };
