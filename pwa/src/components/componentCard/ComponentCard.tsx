@@ -8,9 +8,9 @@ import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
-import { ToolTip } from "../toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
+import { ToolTip } from "@conduction/components";
 
 export interface ComponentCardProps {
   title: {

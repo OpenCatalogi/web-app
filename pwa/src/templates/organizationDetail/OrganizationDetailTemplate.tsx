@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, BadgeCounter } from "@conduction/components";
+import { Container, BadgeCounter, ToolTip } from "@conduction/components";
 import {
   Divider,
   Heading1,
@@ -14,7 +14,6 @@ import {
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Tag } from "../../components/tag/Tag";

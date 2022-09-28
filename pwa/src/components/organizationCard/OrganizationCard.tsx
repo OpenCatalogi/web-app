@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
-import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
+import { ToolTip } from "@conduction/components";
 import clsx from "clsx";
 
 export interface OrganizationCardProps {

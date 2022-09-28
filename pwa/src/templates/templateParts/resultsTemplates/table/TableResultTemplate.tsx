@@ -6,11 +6,11 @@ import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import _ from "lodash";
-import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { Tag } from "../../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
+import { ToolTip } from "@conduction/components";
 
 interface LayersResultTemplateProps {
   components: any[];
