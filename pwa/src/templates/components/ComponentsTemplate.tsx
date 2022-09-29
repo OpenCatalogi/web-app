@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Button, Heading2 } from "@gemeente-denhaag/components-react";
-import { Container, Pagination } from "@conduction/components";
+import { Button, Heading2, Heading4 } from "@gemeente-denhaag/components-react";
+import { Container, Pagination, Tag } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
@@ -61,6 +61,16 @@ export const ComponentsTemplate: React.FC = () => {
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
+
+          <div>
+            <Heading4>Active Filters</Heading4>
+            <div>
+              {console.log(filters["nl.commonground.layerType"])}
+              {filters["nl.commonground.layerType"]?.map((layer, idx) => (
+                <Tag label={layer} />
+              ))}
+            </div>
+          </div>
 
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
