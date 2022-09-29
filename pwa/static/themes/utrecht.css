@@ -153,7 +153,6 @@
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
   --web-app-secondary-top-nav-color: var(--web-app-color-black);
-  --web-app-secondary-top-nav-background-color-hover: auto;
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-normal);
 
   /* @condcution: Primary Top Navigation */

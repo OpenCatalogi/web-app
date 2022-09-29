@@ -6,9 +6,6 @@
     --web-app-secondary-top-nav-font-size
   );
   --conduction-secondary-top-nav-color: var(--web-app-secondary-top-nav-color);
-  --conduction-secondary-top-nav-background-color-hover: var(
-    --web-app-secondary-top-nav-background-color-hover
-  );
   --conduction-secondary-top-nav-font-weight: var(
     --web-app-secondary-top-nav-font-weight
   );
@@ -19,9 +16,6 @@
   --conduction-primary-top-nav-color: var(--web-app-primary-top-nav-color);
   --conduction-primary-top-nav-background-color: var(
     --web-app-primary-top-nav-background-color
-  );
-  --conduction-primary-top-nav-background-color-hover: var(
-    --web-app-primary-top-nav-background-color-hover
   );
   --conduction-primary-top-nav-dropdown-border-radius: var(
     --web-app-primary-top-nav-dropdown-border-radius
