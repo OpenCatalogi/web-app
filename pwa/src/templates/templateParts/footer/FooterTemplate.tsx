@@ -41,7 +41,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-			<li
+            <li
               onClick={() => {
                 setFilters({ ...filters, softwareType: "process" });
                 navigate("/components");
@@ -192,7 +192,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-			<li
+            <li
               onClick={() => {
                 navigate("/login");
               }}
