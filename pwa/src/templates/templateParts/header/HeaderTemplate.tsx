@@ -149,14 +149,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         <Container layoutClassName={styles.headerContent}>
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
-              <Heading1 className={styles.title}>
-                {t("A central place for reuse of information technology within the government")}
-              </Heading1>
+              <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+
               <LeadParagraph className={styles.subTitle}>
-                {t("Here you will find components for all Common Ground layers")}
+                {t("One central place for reuse of information technology within the government")}
               </LeadParagraph>
             </div>
-
             <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
           </section>
         </Container>
