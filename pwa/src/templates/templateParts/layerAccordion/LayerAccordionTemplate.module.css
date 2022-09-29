@@ -3,5 +3,5 @@
 }
 
 .collapsibleContainer > div > * {
-	overflow: visible !important;
+  overflow: visible !important;
 }
