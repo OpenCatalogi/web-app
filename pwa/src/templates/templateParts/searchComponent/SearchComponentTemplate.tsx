@@ -3,7 +3,7 @@ import * as styles from "./SearchComponentTemplate.module.css";
 import { FormField, FormFieldInput, Button } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../context/filters";
+import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
@@ -24,43 +24,21 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
 
   const onSubmit = (data: any): void => {
     setFilters({
-      ...filters,
       search: data.name,
-      softwareType: "",
-      developmentStatus: "",
-      platforms: [],
-      category: "",
-      "nl.commonground.layerType": [],
-      "nl.gemma.bedrijfsfuncties": [],
-      "nl.gemma.bedrijfsservices": [],
-      "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": "",
-      "nl.upl": [],
-      "maintenance.type": "",
-      "legal.license": "",
-      "legal.mainCopyrightOwner": "",
-    });
+      resultDisplayLayout: filters.resultDisplayLayout,
+      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
+      currentPage: filters.currentPage,
+    } as IFilters);
+
     navigate("/components");
   };
 
   const clearFilters = () => {
     setFilters({
-      ...filters,
-      search: "",
-      softwareType: "",
-      developmentStatus: "",
-      platforms: [],
-      category: "",
-      "nl.commonground.layerType": [],
-      "nl.gemma.bedrijfsfuncties": [],
-      "nl.gemma.bedrijfsservices": [],
-      "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": "",
-      "nl.upl": [],
-      "maintenance.type": "",
-      "legal.license": "",
-      "legal.mainCopyrightOwner": "",
-    });
+      resultDisplayLayout: filters.resultDisplayLayout,
+      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
+      currentPage: filters.currentPage,
+    } as IFilters);
     navigate("/components");
   };
 
