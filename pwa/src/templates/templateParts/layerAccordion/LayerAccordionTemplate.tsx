@@ -23,16 +23,18 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
   return (
     <div className={!open ? styles.containerInactive : ""}>
       <QuoteWrapper borderColor={!disabled ? color : ""}>
-        <Collapsible
-          triggerDisabled={disabled}
-          trigger={header}
-          {...{ open }}
-          transitionTime={200}
-          onOpening={() => setOpen(true)}
-          onClosing={() => setOpen(false)}
-        >
-          {children}
-        </Collapsible>
+        <div className={styles.collapsibleContainer}>
+          <Collapsible
+            triggerDisabled={disabled}
+            trigger={header}
+            {...{ open }}
+            transitionTime={200}
+            onOpening={() => setOpen(true)}
+            onClosing={() => setOpen(false)}
+          >
+            {children}
+          </Collapsible>
+        </div>
       </QuoteWrapper>
     </div>
   );

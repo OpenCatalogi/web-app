@@ -1,3 +1,7 @@
 .containerInactive {
   opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
+
+.collapsibleContainer > div > * {
+	overflow: visible !important;
+}
