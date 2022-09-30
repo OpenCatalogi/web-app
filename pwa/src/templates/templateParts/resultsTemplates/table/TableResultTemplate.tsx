@@ -49,7 +49,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
             <TableCell>
               <div
-                className={clsx(styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType}`))])}
+                className={clsx(
+                  styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType} layer`))],
+                )}
               >
                 <ToolTip tooltip="Laag">
                   <Tag
