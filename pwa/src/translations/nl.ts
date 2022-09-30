@@ -15,10 +15,8 @@ export const nl = {
   Data: "Data",
   "All Open Catalog components": "Alle Open Catalogi componenten",
   "View all components": "Bekijk alle componenten",
-  "Here you will find components for all Common Ground layers":
-    "Hier vind je componenten voor alle Common Ground lagen",
-  "A central place for reuse of information technology within the government":
-    "Een centrale plek voor hergebruik van informatie technologie binnen de overheid",
+  "One central place for reuse of information technology within the government":
+    "Één centrale plek voor hergebruik van informatie technologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
   "Back to components": "Terug naar componenten",
   "View component on GitHub": "Bekijk dit component op GitHub",
@@ -36,6 +34,7 @@ export const nl = {
   Repository: "Repository",
   "Check out the repository on GitHub": "Bekijk de repository op GitHub",
   Organization: "Organisatie",
+  Organizations: "Organisaties",
   Layer: "Laag",
   Type: "Type",
   Layers: "Lagen",
@@ -63,6 +62,8 @@ export const nl = {
   Public: "Openbaar",
   Unknown: "Onbekend",
   Relations: "Verbanden",
+  About: "Over",
+  Documentation: "Documentatie",
   Warning: "Waarschuwing",
   "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
     "Dit bestand is afkomstig van een 3de partij en kan mogelijk schadelijk zijn voor je pc. Weet je zeker dat je dit wilt downloaden?",

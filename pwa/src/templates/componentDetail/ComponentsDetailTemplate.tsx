@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard } from "@conduction/components";
+import { Container, InfoCard, BadgeCounter } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -39,7 +39,6 @@ import { categories, TCategories } from "../../data/categories";
 import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
-import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";

@@ -12,6 +12,8 @@ import { FiltersContext } from "../../../context/filters";
 import { HavenLogo } from "../../../assets/svgs/Haven";
 import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -36,6 +38,17 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Software")}
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                setFilters({ ...filters, softwareType: "process" });
+                navigate("/components");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("Processes")}
               </Link>
             </li>
 
@@ -176,6 +189,16 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             >
               <Link icon={<ExternalLinkIcon />} iconAlign="start">
                 {t("Privacy declaration")}
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
+                {t("Login")}
               </Link>
             </li>
           </ul>
