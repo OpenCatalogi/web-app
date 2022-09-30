@@ -166,7 +166,5 @@
   --web-app-primary-top-nav-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color: hsl(211 60% 35%);
   --web-app-primary-top-nav-background-color-hover: hsl(211 60% 40%);
-  --web-app-primary-top-nav-dropdown-border-radius: var(
-    --web-app-border-radius-md
-  );
+  --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 }

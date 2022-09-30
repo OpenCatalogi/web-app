@@ -84,8 +84,8 @@ export const UsageDocumentationTemplate: React.FC = () => {
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               GEMMA Softwarecatalogus
             </Link>
-          </span>,{" "}
-          het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in Open Catalogi.
+          </span>
+          , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in Open Catalogi.
         </Paragraph>
         <Heading2>4. Via het aanmaken van een account</Heading2>
         <Paragraph>

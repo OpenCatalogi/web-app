@@ -26,9 +26,7 @@
 }
 .interactionCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-interaction
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .processLayer,
@@ -46,9 +44,7 @@
   --web-app-tag-color: var(--web-app-color-white);
 }
 .integrationCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-integration
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .servicesLayer,
