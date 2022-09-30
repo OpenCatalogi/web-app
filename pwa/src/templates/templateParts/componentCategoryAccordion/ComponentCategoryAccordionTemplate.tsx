@@ -24,9 +24,9 @@ export const ComponentCategoryAccordionTemplate: React.FC = () => {
     <>
       <LayerAccordionFiltersTemplate
         items={[
-          { label: "Interactie", handleClick: setOpenInteraction, active: openInteraction },
-          { label: "Proces", handleClick: setOpenProcess, active: openProcess },
-          { label: "Integratie", handleClick: setOpenIntegration, active: openIntegration },
+          { label: "Interaction", handleClick: setOpenInteraction, active: openInteraction },
+          { label: "Process", handleClick: setOpenProcess, active: openProcess },
+          { label: "Integration", handleClick: setOpenIntegration, active: openIntegration },
           { label: "Service", handleClick: setOpenServices, active: openServices },
           { label: "Data", handleClick: setOpenData, active: openData },
         ]}

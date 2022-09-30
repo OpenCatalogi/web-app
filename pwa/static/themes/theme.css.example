@@ -117,6 +117,8 @@
 
   --web-app-breadcrumb-color: var(--rotterdam-color-green);
 
+  --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
+
   /* Components */
   --web-app-tag-color: var(--web-app-color-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
@@ -149,6 +151,9 @@
   --web-app-relations-border: 1px solid #dddddd;
   --web-app-relations-background-color: rgb(251, 251, 251);
 
+  --web-app-download-popup-width: 500px;
+  --web-app-overlay-background: rgba(0, 0, 0, 0.3);
+  
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);

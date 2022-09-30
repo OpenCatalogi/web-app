@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Heading1 } from "@gemeente-denhaag/components-react";
+import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
+import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -144,10 +145,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
+  const {
+    location: { pathname },
+  } = React.useContext(GatsbyContext);
 
   return (
-    <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
-      <div className={styles.top}>
+    <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
+      <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <div className={styles.logoContainer}>
             <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
@@ -156,10 +160,20 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         </Container>
       </div>
 
-      <Container layoutClassName={styles.headingContainer}>
-        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
-        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-      </Container>
+      {pathname === "/" && (
+        <Container layoutClassName={styles.headerContent}>
+          <section className={clsx(styles.headerSearchForm, styles.section)}>
+            <div>
+              <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+
+              <LeadParagraph className={styles.subTitle}>
+                {t("One central place for reuse of information technology within the government")}
+              </LeadParagraph>
+            </div>
+            <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
+          </section>
+        </Container>
+      )}
 
       <Container>
         <PrimaryTopNav items={primaryTopNavItems} />
