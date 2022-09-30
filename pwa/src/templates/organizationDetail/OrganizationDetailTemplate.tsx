@@ -6,7 +6,6 @@ import {
   Heading1,
   Heading2,
   LeadParagraph,
-  Link,
   Tab,
   TabContext,
   TabPanel,
@@ -18,15 +17,13 @@ import { BadgeCounter } from "../../components/badgeCounter/BadgeCounter";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCertificate, faCheck, faEnvelope, faGlobe, faPhone, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Tag } from "../../components/tag/Tag";
 import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import _ from "lodash";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
