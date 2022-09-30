@@ -6,6 +6,11 @@
   text-overflow: ellipsis;
 }
 
+.tooltipWrapper {
+  display: inline-block;
+  position: relative;
+}
+
 .tagWidth {
   width: max-content !important;
 }
@@ -21,9 +26,7 @@
 }
 .interactieCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-interaction
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .proces,
@@ -44,9 +47,7 @@
 }
 .integratieCategory,
 .integrationCategory {
-  --web-app-tag-background-color: var(
-    --web-app-layer-category-color-integration
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .services,

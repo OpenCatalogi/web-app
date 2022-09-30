@@ -14,7 +14,6 @@ import {
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Tag } from "../../components/tag/Tag";
@@ -54,41 +53,41 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <div>
             <div className={styles.tagsContainer}>
               {tempOrganization.github && (
-                <ToolTip tooltip="GitHub">
+                <div className={styles.tooltipWrapper} data-tip="GitHub">
                   <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(tempOrganization.github)} />
-                </ToolTip>
+                </div>
               )}
               {tempOrganization.gitlab && (
-                <ToolTip tooltip="GitLab">
+                <div className={styles.tooltipWrapper} data-tip="GitLab">
                   <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(tempOrganization.gitlab)} />
-                </ToolTip>
+                </div>
               )}
               {tempOrganization.website && (
-                <ToolTip tooltip={"Website"}>
+                <div className={styles.tooltipWrapper} data-tip={"Website"}>
                   <Tag
                     label={tempOrganization.website}
                     icon={<FontAwesomeIcon icon={faGlobe} />}
                     onClick={() => open(tempOrganization.website)}
                   />
-                </ToolTip>
+                </div>
               )}
               {tempOrganization.phone && (
-                <ToolTip tooltip={"Telefoonnummer"}>
+                <div className={styles.tooltipWrapper} data-tip={"Telefoonnummer"}>
                   <Tag
                     label={tempOrganization.phone}
                     icon={<FontAwesomeIcon icon={faPhone} />}
                     onClick={() => navigate(`tel:${tempOrganization.phone}`)}
                   />
-                </ToolTip>
+                </div>
               )}
               {tempOrganization.email && (
-                <ToolTip tooltip={"EmailAddress"}>
+                <div className={styles.tooltipWrapper} data-tip={"EmailAddress"}>
                   <Tag
                     label={tempOrganization.email}
                     icon={<FontAwesomeIcon icon={faEnvelope} />}
                     onClick={() => navigate(`mailto:${tempOrganization.email}`)}
                   />
-                </ToolTip>
+                </div>
               )}
             </div>
           </div>

@@ -36,6 +36,11 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.tooltipWrapper {
+  display: inline-block;
+  position: relative;
+}
+
 .headerContent {
   flex: 2;
 }

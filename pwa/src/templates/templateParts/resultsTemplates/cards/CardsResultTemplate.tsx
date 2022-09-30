@@ -4,6 +4,7 @@ import _ from "lodash";
 import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
+import ReactTooltip from "react-tooltip";
 
 interface CardsResultTemplateProps {
   components: any[];
@@ -28,6 +29,8 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           }}
         />
       ))}
+
+      <ReactTooltip effect="solid" />
     </div>
   );
 };

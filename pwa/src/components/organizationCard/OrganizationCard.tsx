@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
-import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 
@@ -66,54 +65,54 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       </div>
 
       <div className={styles.tagsContainer}>
-        <ToolTip tooltip="Organisatie type">
+        <div className={styles.tooltipWrapper} data-tip="Organisatie type">
           <Tag
             label={t(_.upperFirst(type ? type : "Unknown"))}
             onClick={() => navigate(title.href)}
             icon={<FontAwesomeIcon icon={faBuilding} />}
           />
-        </ToolTip>
+        </div>
 
-        <ToolTip tooltip="Aantal eigen componenten">
+        <div className={styles.tooltipWrapper} data-tip="Aantal eigen componenten">
           <Tag
             label={components.owned}
             onClick={() => navigate(title.href)}
             icon={<FontAwesomeIcon icon={faHouseLaptop} />}
           />
-        </ToolTip>
+        </div>
 
-        <ToolTip tooltip="Aantal ondersteunde componenten">
+        <div className={styles.tooltipWrapper} data-tip="Aantal ondersteunde componenten">
           <Tag
             label={components.supported}
             onClick={() => navigate(title.href)}
             icon={<FontAwesomeIcon icon={faUserCog} />}
           />
-        </ToolTip>
+        </div>
 
-        <ToolTip tooltip="Aantal gebruikte componenten">
+        <div className={styles.tooltipWrapper} data-tip="Aantal gebruikte componenten">
           <Tag
             label={components.used}
             onClick={() => navigate(title.href)}
             icon={<FontAwesomeIcon icon={faRepeat} />}
           />
-        </ToolTip>
+        </div>
 
         {website && (
-          <ToolTip tooltip={website}>
+          <div className={styles.tooltipWrapper} data-tip={website}>
             <Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
-          </ToolTip>
+          </div>
         )}
 
         {gitHub && (
-          <ToolTip tooltip="GitHub">
+          <div className={styles.tooltipWrapper} data-tip="GitHub">
             <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(gitHub)} />
-          </ToolTip>
+          </div>
         )}
 
         {gitLab && (
-          <ToolTip tooltip="GitLab">
+          <div className={styles.tooltipWrapper} data-tip="GitLab">
             <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(gitLab)} />
-          </ToolTip>
+          </div>
         )}
       </div>
     </div>
