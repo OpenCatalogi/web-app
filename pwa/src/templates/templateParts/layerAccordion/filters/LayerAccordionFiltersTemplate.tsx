@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./LayerAccordionFiltersTemplate.module.css";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 
 interface LayerAccordionFiltersTemplateProps {
   items: {
@@ -12,6 +13,8 @@ interface LayerAccordionFiltersTemplateProps {
 }
 
 export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTemplateProps> = ({ items }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       {items.map(({ label, active, handleClick, disabled }, idx) => (
@@ -25,7 +28,7 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
             disabled && styles.disabled,
           )}
         >
-          {label}
+          {t(label)}
         </span>
       ))}
     </div>
