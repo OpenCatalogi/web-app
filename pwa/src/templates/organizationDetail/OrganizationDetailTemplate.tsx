@@ -121,46 +121,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
       <Divider />
 
       <div className={styles.section}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeader>Naam</TableHeader>
-              <TableHeader>Behaald</TableHeader>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <span onClick={() => open("https://www.iso.org/iso-9001-quality-management.html")}>
-                  <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                    ISO-9001
-                  </Link>
-                </span>
-              </TableCell>
-              <TableCell>
-                <FontAwesomeIcon icon={faCheck} />
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableCell>
-                <span onClick={() => open("https://www.iso.org/isoiec-27001-information-security.html")}>
-                  <Link icon={<ExternalLinkIcon />} iconAlign={"start"}>
-                    ISO-27001
-                  </Link>
-                </span>
-              </TableCell>
-              <TableCell>
-                <FontAwesomeIcon icon={faXmark} />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
-
-      <Divider />
-
-      <div className={styles.section}>
         <Heading2>Componenten</Heading2>
         <TabContext value={currentTab.toString()}>
           <Tabs
