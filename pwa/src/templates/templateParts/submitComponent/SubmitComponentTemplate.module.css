@@ -21,11 +21,17 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.description {
+  line-height: var(--web-app-line-height-sm);
+}
+
 .buttonContainer {
   flex: 1;
-  align-self: center;
-  text-align: -webkit-right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
+
 .button {
   width: fit-content;
   display: flex;

@@ -15,10 +15,10 @@ export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = (
       <div className={styles.header}>
         <div className={styles.title}>Aan de slag met Open Catalogi</div>
 
-        <div>
+        <span className={styles.description}>
           Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen
           aan de doorontwikkeling van uw component?
-        </div>
+        </span>
       </div>
       <div className={styles.buttonContainer}>
         <Button
@@ -27,7 +27,7 @@ export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = (
           onClick={() => navigate("/documentation/usage")}
           icon={<ArrowRightIcon />}
         >
-          Component toevoegen!
+          Component toevoegen
         </Button>
       </div>
     </div>

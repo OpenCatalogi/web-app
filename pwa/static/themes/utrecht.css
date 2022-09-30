@@ -151,8 +151,6 @@
   --web-app-relations-border: 1px solid #dddddd;
   --web-app-relations-background-color: rgb(251, 251, 251);
 
-  --web-app-feedback-description-max-width: 400px;
-
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
