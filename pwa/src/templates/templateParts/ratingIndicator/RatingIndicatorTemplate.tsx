@@ -55,7 +55,7 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
       />
       <span
         onClick={() => {
-          navigate("/about");
+          navigate("/documentation/about");
         }}
         className={styles.link}
       >
