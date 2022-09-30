@@ -64,6 +64,10 @@ export const nl = {
   Relations: "Verbanden",
   About: "Over",
   Documentation: "Documentatie",
+  Warning: "Waarschuwing",
+  "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
+    "Dit bestand is afkomstig van een 3de partij en kan mogelijk schadelijk zijn voor je pc. Weet je zeker dat je dit wilt downloaden?",
+  "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
 };

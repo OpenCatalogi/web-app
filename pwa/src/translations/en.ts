@@ -63,6 +63,10 @@ export const en = {
   Relations: "Relations",
   About: "About",
   Documentation: "Documentation",
+  Warning: "Warning",
+  "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
+    "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
+  "Go back": "Go back",
   Version: "Version",
   "Management organization": "Management organization",
 };
