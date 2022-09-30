@@ -1,31 +1,15 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { SearchComponentTemplate } from "../templateParts/searchComponent/SearchComponentTemplate";
-import { Divider, Heading1, Heading2, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { useTranslation } from "react-i18next";
+import { Divider, Heading2, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Container, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import clsx from "clsx";
 import { ComponentCategoryAccordionTemplate } from "../templateParts/componentCategoryAccordion/ComponentCategoryAccordionTemplate";
 
 export const LandingTemplate: React.FC = () => {
-  const { t } = useTranslation();
-
   return (
     <Container layoutClassName={styles.container}>
-      <section className={clsx(styles.headingAndSearchForm, styles.section)}>
-        <div className={styles.heading}>
-          <Heading1>{t("A central place for reuse of information technology within the government")}</Heading1>
-          <LeadParagraph> {t("Here you will find components for all Common Ground layers")}</LeadParagraph>
-        </div>
-
-        <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
-      </section>
-
-      <Divider />
-
       <section className={styles.section}>
         <div className={styles.subHeading}>
           <Heading2>Zoeken per categorie</Heading2>
