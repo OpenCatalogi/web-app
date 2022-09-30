@@ -47,9 +47,14 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 interface ComponentsDetailTemplateProps {
   componentId: string;
   organization: any;
+  sizeKb: string;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, organization }) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({
+  componentId,
+  organization,
+  sizeKb,
+}) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -197,8 +202,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
           <DownloadTemplate
             label={_getComponent.data.name}
-            sizeKb="478193"
             icon={<FontAwesomeIcon icon={faDatabase} />}
+            {...{ sizeKb }}
           />
 
           <div>
