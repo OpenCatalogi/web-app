@@ -15,10 +15,8 @@ export const nl = {
   Data: "Data",
   "All Open Catalog components": "Alle Open Catalogi componenten",
   "View all components": "Bekijk alle componenten",
-  "Here you will find components for all Common Ground layers":
-    "Hier vind je componenten voor alle Common Ground lagen",
-  "A central place for reuse of information technology within the government":
-    "Een centrale plek voor hergebruik van informatie technologie binnen de overheid",
+  "One central place for reuse of information technology within the government":
+    "Één centrale plek voor hergebruik van informatie technologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
   "Back to components": "Terug naar componenten",
   "View component on GitHub": "Bekijk dit component op GitHub",
