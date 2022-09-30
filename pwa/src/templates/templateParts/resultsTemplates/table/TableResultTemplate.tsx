@@ -37,14 +37,20 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
       <TableBody>
         {components.map((component) => (
-          <TableRow key={component.id} onClick={() => navigate(`/components/${component.id}`)}>
+          <TableRow
+            className={styles.tableRow}
+            key={component.id}
+            onClick={() => navigate(`/components/${component.id}`)}
+          >
             <TableCell>
               <span className={styles.name}>{component.name}</span>
             </TableCell>
 
             <TableCell>
               <div
-                className={clsx(styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType}`))])}
+                className={clsx(
+                  styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType} layer`))],
+                )}
               >
                 <div className={styles.tooltipWrapper} data-tip="Laag">
                   <Tag

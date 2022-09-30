@@ -14,6 +14,7 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import ReactTooltip from "react-tooltip";
+import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -68,6 +69,8 @@ export const ComponentsTemplate: React.FC = () => {
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 
               <ReactTooltip effect="solid" />
+              
+              <SubmitComponentTemplate />
 
               {getComponents.data.results.length && (
                 <Pagination

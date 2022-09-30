@@ -41,24 +41,24 @@
   opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
 
-.container > .interactie.active::before {
+.container > .interaction.active::before {
   background-color: var(--web-app-layer-color-interaction);
 }
-.container > :not(.disabled).interactie:not(.active)::before {
+.container > :not(.disabled).interaction:not(.active)::before {
   background-color: var(--web-app-layer-color-interaction);
 }
 
-.container > .proces.active::before {
+.container > .process.active::before {
   background-color: var(--web-app-layer-color-process);
 }
-.container > :not(.disabled).proces:not(.active)::before {
+.container > :not(.disabled).process:not(.active)::before {
   background-color: var(--web-app-layer-color-process);
 }
 
-.container > .integratie.active::before {
+.container > .integration.active::before {
   background-color: var(--web-app-layer-color-integration);
 }
-.container > :not(.disabled).integratie:not(.active)::before {
+.container > :not(.disabled).integration:not(.active)::before {
   background-color: var(--web-app-layer-color-integration);
 }
 

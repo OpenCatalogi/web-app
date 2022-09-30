@@ -77,14 +77,14 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
       <LayerAccordionFiltersTemplate
         items={[
           {
-            label: "Interactie",
+            label: "Interaction",
             handleClick: setActiveInteraction,
             active: activeInteraction,
             disabled: !interaction.length,
           },
-          { label: "Proces", handleClick: setActiveProcess, active: activeProcess, disabled: !process.length },
+          { label: "Process", handleClick: setActiveProcess, active: activeProcess, disabled: !process.length },
           {
-            label: "Integratie",
+            label: "Integration",
             handleClick: setActiveIntegration,
             active: activeIntegration,
             disabled: !integration.length,

@@ -1,26 +1,9 @@
-.header {
+.headerContainer {
   background-color: var(--web-app-color-background-page-header);
 }
 
-.top {
+.headerTopBar {
   background-color: var(--web-app-color-background-page-top-bar);
-}
-
-.headingContainer {
-  padding-block-start: var(--web-app-size-3xl);
-  padding-block-end: var(--web-app-size-3xl);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-}
-
-.title {
-  padding-block-end: var(--web-app-size-lg);
-  color: var(--web-app-color-page-header) !important;
-}
-
-.subTitle {
-  font-weight: var(--web-app-font-weight-light);
-  color: var(--web-app-color-page-header);
 }
 
 .secondaryNavContainer {
@@ -29,16 +12,6 @@
   align-items: center;
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
-}
-
-.organizationLogo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: var(--web-app-header-organization-logo-padding);
-  width: var(--web-app-header-organization-logo-width);
-  background-image: var(--web-app-header-organization-logo-src);
-  background-color: var(--web-app-header-organization-logo-background-color);
-  background-origin: content-box;
 }
 
 .logoContainer {
@@ -60,4 +33,49 @@
 
 .logoContainer > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-lg);
+}
+
+.organizationLogo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: var(--web-app-header-organization-logo-padding);
+  width: var(--web-app-header-organization-logo-width);
+  background-image: var(--web-app-header-organization-logo-src);
+  background-color: var(--web-app-header-organization-logo-background-color);
+  background-origin: content-box;
+}
+
+.headerContent {
+  padding-block-start: var(--web-app-size-3xl);
+  padding-block-end: var(--web-app-size-3xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+}
+
+.headerSearchForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.section > .subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.title {
+  color: var(--web-app-color-page-header) !important;
+}
+
+.subTitle {
+  color: var(--web-app-color-page-header) !important;
+}
+
+.searchFormContainer {
+  width: 100%;
+  max-width: 650px;
 }

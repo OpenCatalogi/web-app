@@ -15,10 +15,8 @@ export const en = {
   Data: "Data",
   "All Open Catalog components": "All Open Catalog components",
   "View all components": "View all components",
-  "Here you will find components for all Common Ground layers":
-    "Here you will find components for all Common Ground layers",
-  "A central place for reuse of information technology within the government":
-    "A central place for reuse of information technology within the government",
+  "One central place for reuse of information technology within the government":
+    "One central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",
   "Back to components": "Back to components",
   "View component on GitHub": "View component on GitHub",
@@ -65,6 +63,10 @@ export const en = {
   Relations: "Relations",
   About: "About",
   Documentation: "Documentation",
+  Warning: "Warning",
+  "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
+    "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
+  "Go back": "Go back",
   Version: "Version",
   "Management organization": "Management organization",
 };
