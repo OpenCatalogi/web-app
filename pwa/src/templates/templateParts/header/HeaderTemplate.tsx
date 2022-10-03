@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
+import { isLoggedIn } from "../../../services/auth";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -23,7 +24,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
-  const primaryTopNavItems = [
+  const PrimaryTopNavItems = [
     {
       label: "Home",
       handleClick: () => {
@@ -93,6 +94,15 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
+  const authenticatedPrimaryTopNavItems = [
+    {
+      label: "Home",
+      handleClick: () => {
+        navigate("/admin");
+      },
+    },
+  ];
+
   const secondaryTopNavItems = [
     {
       label: "Common ground",
@@ -122,13 +132,22 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
       icon: <GitHubLogo />,
     },
-    {
-      label: "Login",
-      handleClick: () => {
-        navigate("/login");
-      },
-      icon: <FontAwesomeIcon icon={faCircleUser} />,
-    },
+
+    isLoggedIn()
+      ? {
+          label: "Logout",
+          handleClick: () => {
+            navigate("/logout");
+          },
+          icon: <FontAwesomeIcon icon={faCircleUser} />,
+        }
+      : {
+          label: "Login",
+          handleClick: () => {
+            navigate("/login");
+          },
+          icon: <FontAwesomeIcon icon={faCircleUser} />,
+        },
   ];
   const {
     location: { pathname },
@@ -161,7 +180,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
 
       <Container>
-        <PrimaryTopNav items={primaryTopNavItems} />
+        {isLoggedIn() ? (
+          <PrimaryTopNav items={authenticatedPrimaryTopNavItems} />
+        ) : (
+          <PrimaryTopNav items={PrimaryTopNavItems} />
+        )}
       </Container>
     </header>
   );
