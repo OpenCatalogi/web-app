@@ -24,7 +24,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
-  const PrimaryTopNavItems = [
+  const {
+    location: { pathname },
+  } = React.useContext(GatsbyContext);
+
+  const primaryTopNavItems = [
     {
       label: "Home",
       handleClick: () => {
@@ -132,26 +136,26 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
       icon: <GitHubLogo />,
     },
-
-    isLoggedIn()
-      ? {
-          label: "Logout",
-          handleClick: () => {
-            navigate("/logout");
-          },
-          icon: <FontAwesomeIcon icon={faCircleUser} />,
-        }
-      : {
-          label: "Login",
-          handleClick: () => {
-            navigate("/login");
-          },
-          icon: <FontAwesomeIcon icon={faCircleUser} />,
-        },
   ];
-  const {
-    location: { pathname },
-  } = React.useContext(GatsbyContext);
+
+  const logoutMenuItem = {
+    label: "Logout",
+    handleClick: () => {
+      navigate("/logout");
+    },
+    icon: <FontAwesomeIcon icon={faCircleUser} />,
+  };
+
+  const loginMenuItem = {
+    label: "Login",
+    handleClick: () => {
+      navigate("/login");
+    },
+    icon: <FontAwesomeIcon icon={faCircleUser} />,
+  };
+
+  if (isLoggedIn()) secondaryTopNavItems.push(logoutMenuItem);
+  if (!isLoggedIn()) secondaryTopNavItems.push(loginMenuItem);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
@@ -183,7 +187,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         {isLoggedIn() ? (
           <PrimaryTopNav items={authenticatedPrimaryTopNavItems} />
         ) : (
-          <PrimaryTopNav items={PrimaryTopNavItems} />
+          <PrimaryTopNav items={primaryTopNavItems} />
         )}
       </Container>
     </header>

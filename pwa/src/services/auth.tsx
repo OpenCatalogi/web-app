@@ -11,7 +11,7 @@ export const isBrowser = (): boolean => typeof window !== "undefined";
 export const handleLogin = async (data: IUnvalidatedUser, API: APIService) => {
   if (!isBrowser()) return;
 
-  API.setAuthentication("0b4c72dd-3530-4f34-bfde-c7cc3e27c328");
+  API.setAuthentication("TEMPORARY-DUMMY-KEY");
   navigate("/admin");
 };
 
