@@ -101,6 +101,36 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         navigate("/admin");
       },
     },
+    {
+      label: "User",
+      handleClick: () => {
+        navigate("/admin/user");
+      },
+    },
+    {
+      label: "Components",
+      handleClick: () => {
+        navigate("/admin/components");
+      },
+    },
+    {
+      label: "My Catalogi",
+      handleClick: () => {
+        navigate("/admin/myCatalogi");
+      },
+    },
+    {
+      label: "Catalogi",
+      handleClick: () => {
+        navigate("/admin/catalogi");
+      },
+    },
+    {
+      label: "Sources",
+      handleClick: () => {
+        navigate("/admin/sources");
+      },
+    },
   ];
 
   const secondaryTopNavItems = [
