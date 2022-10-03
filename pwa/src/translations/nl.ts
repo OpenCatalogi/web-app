@@ -70,4 +70,5 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
+  "No rating available": "Geen rating beschikbaar",
 };

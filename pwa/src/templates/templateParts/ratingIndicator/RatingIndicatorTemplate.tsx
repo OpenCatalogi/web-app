@@ -8,36 +8,20 @@ import { getTokenValue } from "../../../services/getTokenValue";
 import clsx from "clsx";
 
 interface RatingIndicatorTemplateProps {
-  component: any;
+  maxRating: number;
+  rating: number;
   layoutClassName?: string;
 }
 
-export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = ({ component, layoutClassName }) => {
-  const [rating, setRating] = React.useState<number>(0);
-  const maximumRating = 2;
-
-  React.useEffect(() => {
-    let _rating = 0;
-
-    if (component.legal?.license) {
-      _rating += 1;
-    }
-
-    if (component.maintenance?.contractors) {
-      _rating += 1;
-    }
-
-    setRating(_rating);
-  });
-
+export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = ({ maxRating, rating, layoutClassName }) => {
   return (
     <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
       <PieChart
         className={styles.ratingPieChart}
         data={[
-          { value: 1, key: 1, color: getTokenValue(styles.ratingActiveColor), title: `${rating}/${maximumRating}` },
+          { value: 1, key: 1, color: getTokenValue(styles.ratingActiveColor), title: `${rating}/${maxRating}` },
         ]}
-        reveal={(rating / maximumRating) * 100}
+        reveal={(rating / maxRating) * 100}
         lineWidth={20}
         background={getTokenValue(styles.ratingDisabledColor)}
         startAngle={270}
@@ -53,16 +37,6 @@ export const RatingIndicatorTemplate: React.FC<RatingIndicatorTemplateProps> = (
         }}
         labelPosition={0}
       />
-      <span
-        onClick={() => {
-          navigate("/documentation/about");
-        }}
-        className={styles.link}
-      >
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
-          Rating
-        </Link>
-      </span>
     </div>
   );
 };

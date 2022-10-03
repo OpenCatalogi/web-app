@@ -111,6 +111,19 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.noRatingStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  max-height: var(--web-app-component-rating-indicator-max-height);
+}
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {

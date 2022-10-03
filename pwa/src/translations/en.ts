@@ -69,4 +69,5 @@ export const en = {
   "Go back": "Go back",
   Version: "Version",
   "Management organization": "Management organization",
+  "No rating available": "No rating available",
 };

@@ -191,10 +191,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title=""
               content={
-                <RatingIndicatorTemplate
-                  layoutClassName={styles.ratingIndicatorContainer}
-                  component={_getComponent.data}
-                />
+                <>
+                  {_getComponent.data.embedded?.rating ? (
+                    <RatingIndicatorTemplate
+                      layoutClassName={styles.ratingIndicatorContainer}
+                      maxRating={_getComponent.data.embedded?.rating?.maxRating}
+                      rating={_getComponent.data.embedded?.rating?.rating}
+                    />
+                  ) : (
+                    <div className={styles.noRatingStyle}>{t("No rating available")}</div>
+                  )}
+                  <span
+                    onClick={() => {
+                      navigate("/documentation/about");
+                    }}
+                    className={styles.link}
+                  >
+                    <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      Rating
+                    </Link>
+                  </span>
+                </>
               }
               layoutClassName={styles.infoCard}
             />
