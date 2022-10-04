@@ -228,22 +228,30 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   description={
                     <>
                       <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
-                      <h4>Behaalde punten</h4>
-                      <ul>
-                        {_getComponent.data.embedded?.rating.results
-                          .filter((result: string) => !/^Cannot rate the/.test(result))
-                          .map((result: string) => (
-                            <li>{result}</li>
-                          ))}
-                      </ul>
-                      <h4>Onbehaalde punten</h4>
-                      <ul>
-                        {_getComponent.data.embedded?.rating.results
-                          .filter((result: string) => /^Cannot rate the/.test(result))
-                          .map((result: string) => (
-                            <li>{result}</li>
-                          ))}
-                      </ul>
+                      {_getComponent.data.embedded?.rating.rating !== 0 && (
+                        <>
+                          <h4>Behaalde punten</h4>
+                          <ul>
+                            {_getComponent.data.embedded?.rating.results
+                              .filter((result: string) => !/^Cannot rate the/.test(result))
+                              .map((result: string) => (
+                                <li>{result}</li>
+                              ))}
+                          </ul>
+                        </>
+                      )}
+                      {_getComponent.data.embedded?.rating.rating !== _getComponent.data.embedded?.rating.maxRating && (
+                        <>
+                          <h4>Onbehaalde punten</h4>
+                          <ul>
+                            {_getComponent.data.embedded?.rating.results
+                              .filter((result: string) => /^Cannot rate the/.test(result))
+                              .map((result: string) => (
+                                <li>{result}</li>
+                              ))}
+                          </ul>
+                        </>
+                      )}
                     </>
                   }
                   primaryButton={{
