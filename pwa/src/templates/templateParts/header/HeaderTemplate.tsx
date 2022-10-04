@@ -145,9 +145,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
-  const {
-    location: { pathname },
-  } = React.useContext(GatsbyContext);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
