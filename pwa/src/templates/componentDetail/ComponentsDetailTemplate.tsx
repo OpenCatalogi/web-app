@@ -231,7 +231,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <h4>Behaalde punten</h4>
                       <ul>
                         {_getComponent.data.embedded?.rating.results
-                          .filter((result: string) => !/Cannot rate the/.test(result))
+                          .filter((result: string) => !/^Cannot rate the/.test(result))
                           .map((result: string) => (
                             <li>{result}</li>
                           ))}
@@ -239,7 +239,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <h4>Onbehaalde punten</h4>
                       <ul>
                         {_getComponent.data.embedded?.rating.results
-                          .filter((result: string) => /Cannot rate the/.test(result))
+                          .filter((result: string) => /^Cannot rate the/.test(result))
                           .map((result: string) => (
                             <li>{result}</li>
                           ))}
