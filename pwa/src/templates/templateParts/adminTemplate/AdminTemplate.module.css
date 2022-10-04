@@ -1,16 +1,11 @@
 .container {
   display: flex;
-  justify-content: space-between;
+  gap: 160px;
   margin-block-start: var(--web-app-size-3xl);
 }
 
 .menu {
-  flex: 1;
   margin-block-start: var(--web-app-size-3xl);
-}
-
-.content {
-  flex: 2;
 }
 
 .iconsSidenav {

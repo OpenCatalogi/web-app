@@ -102,7 +102,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: "Logout",
+      label: t("Logout"),
       handleClick: () => {
         navigate("/logout");
       },
@@ -112,7 +112,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   const unauthenticatedSecondaryTopNavItems = [
     {
-      label: "Login",
+      label: t("Login"),
       handleClick: () => {
         navigate("/login");
       },

@@ -42,13 +42,8 @@ const Menu: React.FC = () => {
   } = React.useContext(GatsbyContext);
 
   const menuItems: MenuItem[] = [
-    { label: t("Home"), href: "/admin", current: pathname === "/admin", icon: <FontAwesomeIcon icon={faHouse} /> },
-    {
-      label: t("User"),
-      href: "/admin/user",
-      current: pathname.includes("/admin/user"),
-      icon: <FontAwesomeIcon icon={faUser} />,
-    },
+    { label: t("Dashboard"), href: "/admin", current: pathname === "/admin", icon: <FontAwesomeIcon icon={faHouse} /> },
+
     {
       label: t("Components"),
       href: "/admin/components",
@@ -72,6 +67,12 @@ const Menu: React.FC = () => {
       href: "/admin/sources",
       current: pathname.includes("/admin/sources"),
       icon: <FontAwesomeIcon icon={faServer} />,
+    },
+    {
+      label: t("User"),
+      href: "/admin/user",
+      current: pathname.includes("/admin/user"),
+      icon: <FontAwesomeIcon icon={faUser} />,
     },
   ];
 
