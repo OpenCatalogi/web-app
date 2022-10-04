@@ -167,4 +167,13 @@
   --web-app-primary-top-nav-background-color: var(--rotterdam-color-green);
   --web-app-primary-top-nav-background-color-hover: var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
+
+  /* @gemeent-denhaag: SideNav */
+  --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
+  --web-app-sidenav-link-hover-color: var(--rotterdam-color-green);
+  --web-app-sidenav-link-padding-block-end: var(--web-app-size-xs);
+  --web-app-sidenav-link-padding-block-start: var(--web-app-size-xs);
+  --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
+  --web-app-sidenav-item-font-weight: 400;
+  --web-app-sidenav-item-font-size: var(--web-app-size-md);
 }

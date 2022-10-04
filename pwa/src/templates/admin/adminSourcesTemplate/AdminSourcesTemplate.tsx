@@ -7,9 +7,9 @@ import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 export const AdminSourcesTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
-          <Heading1>Admin Sources</Heading1>
+          <Heading1>Sources</Heading1>
         </section>
       </Container>
     </AdminTemplate>

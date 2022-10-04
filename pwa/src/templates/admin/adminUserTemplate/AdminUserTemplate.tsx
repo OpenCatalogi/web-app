@@ -7,9 +7,9 @@ import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 export const AdminUserTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
-          <Heading1>Admin User</Heading1>
+          <Heading1>User</Heading1>
         </section>
       </Container>
     </AdminTemplate>

@@ -262,6 +262,14 @@
   --denhaag-pagination-font-weight: var(--web-app-font-weight-normal);
   --denhaag-pagination-font-size: var(--web-app-font-size-lg);
   --denhaag-pagination-border-radius: var(--web-app-border-radius-md);
+
+  --denhaag-sidenav-link-active-color: var(--web-app-sidenav-link-active-color);
+  --denhaag-sidenav-link-hover-color: var(--web-app-sidenav-link-hover-color);
+  --denhaag-sidenav-link-padding-block-end: var(--web-app-sidenav-link-padding-block-end);
+  --denhaag-sidenav-link-padding-block-start: var(--web-app-sidenav-link-padding-block-start);
+  --denhaag-sidenav-item-font-family: var(--web-app-sidenav-item-font-family);
+  --denhaag-sidenav-item-font-weight: var(--web-app-sidenav-item-font-weight);
+  --denhaag-sidenav-item-font-size: var(--web-app-sidenav-item-font-size);
 }
 
 .denhaag-button:hover {

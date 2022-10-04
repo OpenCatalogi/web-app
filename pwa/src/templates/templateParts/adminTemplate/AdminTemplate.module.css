@@ -1,5 +1,19 @@
 .container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.menu {
+  flex: 1;
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.content {
+  flex: 2;
+}
+
+.iconsSidenav {
+  height: var(--conduction-sidenav-icon-size);
+  width: var(--conduction-sidenav-icon-size);
 }

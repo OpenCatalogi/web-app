@@ -1,6 +1,6 @@
 import * as React from "react";
-import { AdminHomeTemplate } from "../../templates/admin/adminHomeTemplate/AdminHomeTemplate";
+import { AdminDashboardTemplate } from "../../templates/admin/adminDashboardTemplate/AdminDashboardTemplate";
 
-const AdminHomePage = () => <AdminHomeTemplate />;
+const AdminDashboardPage = () => <AdminDashboardTemplate />;
 
-export default AdminHomePage;
+export default AdminDashboardPage;
