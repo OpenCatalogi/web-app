@@ -70,4 +70,11 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
+  Location: "locatie",
+  "Last used": "Laatst gebruikt",
+  Edit: "Bewerken",
+  Add: "Toevoegen",
+  "Last login": "Laatst ingelogd",
+  "Last synced": "Laatst gesynchroniseerd",
+  "Owner": "Eigenaar",
 };

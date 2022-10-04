@@ -69,4 +69,11 @@ export const en = {
   "Go back": "Go back",
   Version: "Version",
   "Management organization": "Management organization",
+  Location: "Location",
+  "Last used": "Last used",
+  Edit: "Edit",
+  Add: "Add",
+  "Last login": "Last login",
+  "Last synced": "Last synced",
+  "Owner": "Owner",
 };

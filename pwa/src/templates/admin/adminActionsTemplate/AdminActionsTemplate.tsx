@@ -1,18 +1,18 @@
 import * as React from "react";
-import * as styles from "./AdminSourcesTemplate.module.css";
+import * as styles from "./AdminActionsTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Button, Heading1 } from "@gemeente-denhaag/components-react";
 import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { t } from "i18next";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { navigate } from "gatsby";
 
-export const AdminSourcesTemplate: React.FC = () => {
+export const AdminActionsTemplate: React.FC = () => {
   return (
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>Sources</Heading1>
+          <Heading1>Actions</Heading1>
         </section>
         <section className={styles.section}>
           <div className={styles.tableButtons}>
@@ -36,10 +36,11 @@ export const AdminSourcesTemplate: React.FC = () => {
             <TableHead>
               <TableRow>
                 <TableHeader>{t("Name")}</TableHeader>
-                <TableHeader>{t("Location")}</TableHeader>
-                <TableHeader>{t("Type")}</TableHeader>
+                <TableHeader>{t("Listens")}</TableHeader>
+                <TableHeader>{t("Throws")}</TableHeader>
+                <TableHeader>{t("Class")}</TableHeader>
                 <TableHeader>{t("Status")}</TableHeader>
-                <TableHeader>{t("Last used")}</TableHeader>
+                <TableHeader>{t("Last run")}</TableHeader>
               </TableRow>
             </TableHead>
 
@@ -50,8 +51,10 @@ export const AdminSourcesTemplate: React.FC = () => {
                 <TableCell>#</TableCell>
                 <TableCell>#</TableCell>
                 <TableCell>#</TableCell>
+                <TableCell>#</TableCell>
               </TableRow>
               <TableRow>
+                <TableCell>#</TableCell>
                 <TableCell>#</TableCell>
                 <TableCell>#</TableCell>
                 <TableCell>#</TableCell>

@@ -5,3 +5,13 @@
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
+
+.tableButtons {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.tableButtons > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-lg);
+}
