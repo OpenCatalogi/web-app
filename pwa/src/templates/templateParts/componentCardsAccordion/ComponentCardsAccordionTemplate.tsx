@@ -46,14 +46,14 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       <LayerAccordionFiltersTemplate
         items={[
           {
-            label: "Interactie",
+            label: "Interaction",
             handleClick: setOpenInteraction,
             active: openInteraction,
             disabled: !interaction.length,
           },
-          { label: "Proces", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
+          { label: "Process", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
           {
-            label: "Integratie",
+            label: "Integration",
             handleClick: setOpenIntegration,
             active: openIntegration,
             disabled: !integration.length,

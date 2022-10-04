@@ -25,6 +25,7 @@ import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/Rating
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleNodes,
+  faDatabase,
   faHouse,
   faInfoCircle,
   faLayerGroup,
@@ -40,13 +41,19 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
   organization: any;
+  sizeKb: string;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, organization }) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({
+  componentId,
+  organization,
+  sizeKb,
+}) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -90,7 +97,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={
-                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType}`))]
+                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} layer`))]
                     }
                     label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
@@ -191,6 +198,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               layoutClassName={styles.infoCard}
             />
           </div>
+
+          <DownloadTemplate
+            label={_getComponent.data.name}
+            icon={<FontAwesomeIcon icon={faDatabase} />}
+            {...{ sizeKb }}
+          />
 
           <div>
             <h2>Technische gegevens</h2>

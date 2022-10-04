@@ -1,3 +1,7 @@
+.tableRow {
+  cursor: pointer;
+}
+
 .name {
   display: block;
   width: 180px;
@@ -15,44 +19,38 @@
 }
 
 /* Colors of the 5 layers */
-.interactie {
-  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--web-app-color-white);
+.interactionLayer,
+.interfaceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
+  --web-app-tag-color: var(--web-app-color-white);
 }
-.interactieCategory,
+.interactionCategory,
 .interfaceCategory {
-  --conduction-tag-background-color: var(
-    --web-app-layer-category-color-interaction
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
 }
 
-.proces,
-.process,
-.processs {
-  --conduction-tag-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--web-app-color-white);
+.processLayer,
+.processsLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-process);
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .procesCategory,
 .processCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-process);
 }
 
-.integratie,
-.integration {
-  --conduction-tag-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--web-app-color-white);
+.integrationLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-integration);
+  --web-app-tag-color: var(--web-app-color-white);
 }
-.integratieCategory,
 .integrationCategory {
-  --conduction-tag-background-color: var(
-    --web-app-layer-category-color-integration
-  );
+  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
 }
 
-.services,
-.service {
-  --conduction-tag-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--web-app-color-white);
+.servicesLayer,
+.serviceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-services);
+  --web-app-tag-color: var(--web-app-color-white);
 }
 
 .servicesCategory,
@@ -60,9 +58,9 @@
   --conduction-tag-background-color: var(--web-app-layer-category-color-services);
 }
 
-.data {
-  --conduction-tag-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--web-app-color-white);
+.dataLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-data);
+  --web-app-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-data);

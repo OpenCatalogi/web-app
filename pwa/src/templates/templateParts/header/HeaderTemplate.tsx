@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Heading1 } from "@gemeente-denhaag/components-react";
+import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
@@ -12,6 +12,9 @@ import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../context/gatsby";
+import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
+import { isLoggedIn } from "../../../services/auth";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -20,6 +23,10 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const {
+    location: { pathname },
+  } = React.useContext(GatsbyContext);
 
   const primaryTopNavItems = [
     {
@@ -91,6 +98,45 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
+  const authenticatedPrimaryTopNavItems = [
+    {
+      label: "Home",
+      handleClick: () => {
+        navigate("/admin");
+      },
+    },
+    {
+      label: "User",
+      handleClick: () => {
+        navigate("/admin/user");
+      },
+    },
+    {
+      label: "Components",
+      handleClick: () => {
+        navigate("/admin/components");
+      },
+    },
+    {
+      label: "My Catalogi",
+      handleClick: () => {
+        navigate("/admin/myCatalogi");
+      },
+    },
+    {
+      label: "Catalogi",
+      handleClick: () => {
+        navigate("/admin/catalogi");
+      },
+    },
+    {
+      label: "Sources",
+      handleClick: () => {
+        navigate("/admin/sources");
+      },
+    },
+  ];
+
   const secondaryTopNavItems = [
     {
       label: "Common ground",
@@ -120,18 +166,30 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
       icon: <GitHubLogo />,
     },
-    {
-      label: "Login",
-      handleClick: () => {
-        navigate("/login");
-      },
-      icon: <FontAwesomeIcon icon={faCircleUser} />,
-    },
   ];
 
+  const logoutMenuItem = {
+    label: "Logout",
+    handleClick: () => {
+      navigate("/logout");
+    },
+    icon: <FontAwesomeIcon icon={faCircleUser} />,
+  };
+
+  const loginMenuItem = {
+    label: "Login",
+    handleClick: () => {
+      navigate("/login");
+    },
+    icon: <FontAwesomeIcon icon={faCircleUser} />,
+  };
+
+  if (isLoggedIn()) secondaryTopNavItems.push(logoutMenuItem);
+  if (!isLoggedIn()) secondaryTopNavItems.push(loginMenuItem);
+
   return (
-    <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
-      <div className={styles.top}>
+    <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
+      <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <div className={styles.logoContainer}>
             <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
@@ -140,13 +198,27 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         </Container>
       </div>
 
-      <Container layoutClassName={styles.headingContainer}>
-        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
-        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-      </Container>
+      {pathname === "/" && (
+        <Container layoutClassName={styles.headerContent}>
+          <section className={clsx(styles.headerSearchForm, styles.section)}>
+            <div>
+              <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
+
+              <LeadParagraph className={styles.subTitle}>
+                {t("One central place for reuse of information technology within the government")}
+              </LeadParagraph>
+            </div>
+            <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
+          </section>
+        </Container>
+      )}
 
       <Container>
-        <PrimaryTopNav items={primaryTopNavItems} />
+        {isLoggedIn() ? (
+          <PrimaryTopNav items={authenticatedPrimaryTopNavItems} />
+        ) : (
+          <PrimaryTopNav items={primaryTopNavItems} />
+        )}
       </Container>
     </header>
   );

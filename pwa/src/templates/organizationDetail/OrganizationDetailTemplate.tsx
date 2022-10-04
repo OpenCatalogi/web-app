@@ -16,7 +16,8 @@ import { ComponentCardsAccordionTemplate } from "../templateParts/componentCards
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Tag } from "../../components/tag/Tag";
 import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
@@ -90,6 +91,25 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 </ToolTip>
               )}
             </div>
+          </div>
+
+          <Divider />
+
+          <div className={styles.tagsContainer}>
+            <ToolTip tooltip={"ISO-9001"}>
+              <Tag
+                label={"ISO-9001"}
+                icon={<FontAwesomeIcon icon={faCertificate} />}
+                onClick={() => open("https://www.iso.org/iso-9001-quality-management.html")}
+              />
+            </ToolTip>
+            <ToolTip tooltip={"ISO-27001"}>
+              <Tag
+                label={"ISO-27001"}
+                icon={<FontAwesomeIcon icon={faCertificate} />}
+                onClick={() => open("https://www.iso.org/isoiec-27001-information-security.html")}
+              />
+            </ToolTip>
           </div>
         </div>
       </div>

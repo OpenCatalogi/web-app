@@ -3,7 +3,7 @@ import * as styles from "./SearchComponentTemplate.module.css";
 import { FormField, FormFieldInput, Button } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../context/filters";
+import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
@@ -23,7 +23,22 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   } = useForm();
 
   const onSubmit = (data: any): void => {
-    setFilters({ ...filters, search: data.name });
+    setFilters({
+      search: data.name,
+      resultDisplayLayout: filters.resultDisplayLayout,
+      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
+      currentPage: filters.currentPage,
+    } as IFilters);
+
+    navigate("/components");
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      resultDisplayLayout: filters.resultDisplayLayout,
+      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
+      currentPage: filters.currentPage,
+    } as IFilters);
     navigate("/components");
   };
 
@@ -40,15 +55,10 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
-        <Button type="submit" icon={<SearchIcon />}>
+        <Button type="submit" icon={<SearchIcon />} variant="secondary-action">
           {t("Search")}
         </Button>
-        <Button
-          icon={<ArrowRightIcon />}
-          iconAlign="start"
-          onClick={() => navigate("/components")}
-          variant="secondary-action"
-        >
+        <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={clearFilters} variant="secondary-action">
           {t("View all components")}
         </Button>
       </div>
