@@ -228,7 +228,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   description={
                     <>
                       <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
-                      {_getComponent.data.embedded?.rating.rating !== 0 && (
+                      {_getComponent.data.embedded?.rating?.rating !== 0 && (
                         <>
                           <h4>Behaalde punten</h4>
                           <ul>
@@ -240,7 +240,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           </ul>
                         </>
                       )}
-                      {_getComponent.data.embedded?.rating.rating !== _getComponent.data.embedded?.rating.maxRating && (
+                      {_getComponent.data.embedded?.rating?.rating !== _getComponent.data.embedded?.rating?.maxRating && (
                         <>
                           <h4>Onbehaalde punten</h4>
                           <ul>
