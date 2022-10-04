@@ -71,4 +71,5 @@ export const nl = {
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
   "No rating available": "Geen rating beschikbaar",
+  "How score is calculated": "hoe punten worden berekend",
 };

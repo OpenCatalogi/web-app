@@ -70,4 +70,5 @@ export const en = {
   Version: "Version",
   "Management organization": "Management organization",
   "No rating available": "No rating available",
+  "How score is calculated": "How score is calculated",
 };

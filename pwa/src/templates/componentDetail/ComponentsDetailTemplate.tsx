@@ -227,7 +227,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   title={"Rating"}
                   description={
                     <>
-                      <p>Deze rating is gebaseerd op de volgende punten: </p>
+                      <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
+                      <h4>Behaalde punten</h4>
                       <ul>
                         {_getComponent.data.embedded?.rating.results
                           .filter((result: string) => !/Cannot rate the/.test(result))
@@ -235,11 +236,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             <li>{result}</li>
                           ))}
                       </ul>
+                      <h4>Onbehaalde punten</h4>
+                      <ul>
+                        {_getComponent.data.embedded?.rating.results
+                          .filter((result: string) => /Cannot rate the/.test(result))
+                          .map((result: string) => (
+                            <li>{result}</li>
+                          ))}
+                      </ul>
                     </>
                   }
                   primaryButton={{
-                    label: "doorgaan",
-                    handleClick: () => {},
+                    label: t("How score is calculated"),
+                    handleClick: () => {
+                      navigate("/documentation/about");
+                    },
                   }}
                   secondaryButton={{
                     label: t("Go back"),
