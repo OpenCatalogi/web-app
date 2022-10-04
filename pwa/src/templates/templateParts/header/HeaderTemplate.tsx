@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
-import { isLoggedIn } from "../../../services/auth";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -23,10 +22,6 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const {
-    location: { pathname },
-  } = React.useContext(GatsbyContext);
-
   const {
     location: { pathname },
   } = React.useContext(GatsbyContext);
@@ -112,45 +107,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
-  const authenticatedPrimaryTopNavItems = [
-    {
-      label: "Home",
-      handleClick: () => {
-        navigate("/admin");
-      },
-    },
-    {
-      label: "User",
-      handleClick: () => {
-        navigate("/admin/user");
-      },
-    },
-    {
-      label: "Components",
-      handleClick: () => {
-        navigate("/admin/components");
-      },
-    },
-    {
-      label: "My Catalogi",
-      handleClick: () => {
-        navigate("/admin/myCatalogi");
-      },
-    },
-    {
-      label: "Catalogi",
-      handleClick: () => {
-        navigate("/admin/catalogi");
-      },
-    },
-    {
-      label: "Sources",
-      handleClick: () => {
-        navigate("/admin/sources");
-      },
-    },
-  ];
-
   const secondaryTopNavItems = [
     {
       label: "Common ground",
@@ -180,26 +136,15 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
       icon: <GitHubLogo />,
     },
+    {
+      label: "Login",
+      current: pathname === "/login",
+      handleClick: () => {
+        navigate("/login");
+      },
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
+    },
   ];
-
-  const logoutMenuItem = {
-    label: "Logout",
-    handleClick: () => {
-      navigate("/logout");
-    },
-    icon: <FontAwesomeIcon icon={faCircleUser} />,
-  };
-
-  const loginMenuItem = {
-    label: "Login",
-    handleClick: () => {
-      navigate("/login");
-    },
-    icon: <FontAwesomeIcon icon={faCircleUser} />,
-  };
-
-  if (isLoggedIn()) secondaryTopNavItems.push(logoutMenuItem);
-  if (!isLoggedIn()) secondaryTopNavItems.push(loginMenuItem);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
@@ -228,11 +173,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
 
       <Container>
-        {isLoggedIn() ? (
-          <PrimaryTopNav items={authenticatedPrimaryTopNavItems} />
-        ) : (
-          <PrimaryTopNav items={primaryTopNavItems} />
-        )}
+        <PrimaryTopNav items={primaryTopNavItems} />
       </Container>
     </header>
   );
