@@ -187,13 +187,13 @@
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
   --web-app-secondary-top-nav-color: var(--web-app-color-black);
-  --web-app-secondary-top-nav-background-color-hover: auto;
+  --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-light);
 
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-primary-top-nav-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color: var(--rotterdam-color-green);
-  --web-app-primary-top-nav-background-color-hover: var(--rotterdam-color-green);
+  --web-app-primary-top-nav-background-color-hover: rgba(255, 255, 255, 0.2);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 }
