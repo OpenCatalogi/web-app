@@ -10,6 +10,7 @@ import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortaw
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
+import { ToolTip } from "@conduction/components";
 
 export interface ComponentCardProps {
   title: {
@@ -46,43 +47,43 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <Paragraph className={styles.description}>{description}</Paragraph>
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(_.upperFirst(`${layer} layer`)))]}>
-          <div className={styles.tooltipWrapper} data-tip="Laag">
+          <ToolTip tooltip="Laag">
             <Tag label={t(_.upperFirst(layer))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
-          </div>
+          </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
           {_category && (
-            <div className={styles.tooltipWrapper} data-tip="Categorie">
+            <ToolTip tooltip="Categorie">
               <Tag label={_.upperFirst(_category?.title)} icon={_category?.icon} />
-            </div>
+            </ToolTip>
           )}
         </div>
       </div>
 
       <div className={styles.tags}>
         {tags.status && (
-          <div className={styles.tooltipWrapper} data-tip="Status">
+          <ToolTip tooltip="Status">
             <Tag label={_.upperFirst(tags.status)} icon={<FontAwesomeIcon icon={faInfoCircle} />} />
-          </div>
+          </ToolTip>
         )}
-        <div className={styles.tooltipWrapper} data-tip="Aantal installaties">
+        <ToolTip tooltip="Aantal installaties">
           <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
-        </div>
+        </ToolTip>
 
         {tags.organization && (
-          <div className={styles.tooltipWrapper} data-tip="Organisatie">
+          <ToolTip tooltip="Organisatie">
             <Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
-          </div>
+          </ToolTip>
         )}
         {tags.licence && (
-          <div className={styles.tooltipWrapper} data-tip="Licentie">
+          <ToolTip tooltip="Licentie">
             <Tag label={tags.licence} icon={<FontAwesomeIcon icon={faScroll} />} />
-          </div>
+          </ToolTip>
         )}
         {tags.githubLink && (
-          <div className={styles.tooltipWrapper} data-tip="GitHub">
+          <ToolTip tooltip="GitHub">
             <Tag label={t("Repository")} icon={<GitHubLogo />} onClick={() => open(tags.githubLink)} />
-          </div>
+          </ToolTip>
         )}
       </div>
     </div>

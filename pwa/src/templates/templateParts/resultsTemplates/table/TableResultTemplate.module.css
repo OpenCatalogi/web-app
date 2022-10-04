@@ -10,11 +10,6 @@
   text-overflow: ellipsis;
 }
 
-.tooltipWrapper {
-  display: inline-block;
-  position: relative;
-}
-
 .tagWidth {
   width: max-content !important;
 }

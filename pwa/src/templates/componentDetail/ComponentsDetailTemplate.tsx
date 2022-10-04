@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import { Container, InfoCard, BadgeCounter, ToolTip } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -94,7 +94,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
-                <div className={styles.tooltipWrapper} data-tip="Laag">
+                <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={
                       styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} layer`))]
@@ -102,10 +102,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
-                </div>
+                </ToolTip>
 
                 {_getComponent.data?.categories && category && (
-                  <div className={styles.tooltipWrapper} data-tip="Categorie">
+                  <ToolTip tooltip="Categorie">
                     <Tag
                       layoutClassName={
                         styles[
@@ -115,52 +115,52 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       label={_.upperFirst(category?.title)}
                       icon={category?.icon}
                     />
-                  </div>
+                  </ToolTip>
                 )}
               </div>
 
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
-                  <div className={styles.tooltipWrapper} data-tip="Status">
+                  <ToolTip tooltip="Status">
                     <Tag
                       label={_.upperFirst(_getComponent.data.developmentStatus)}
                       icon={<FontAwesomeIcon icon={faInfoCircle} />}
                     />
-                  </div>
+                  </ToolTip>
                 )}
-                <div className={styles.tooltipWrapper} data-tip="Installaties">
+                <ToolTip tooltip="Installaties">
                   <Tag
                     label={_.toString(_getComponent.data.usedBy?.length ?? "0")}
                     icon={<FontAwesomeIcon icon={faRepeat} />}
                   />
-                </div>
+                </ToolTip>
 
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
-                  <div className={styles.tooltipWrapper} data-tip="Organisatie">
+                  <ToolTip tooltip="Organisatie">
                     <Tag
                       label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
                       icon={<FontAwesomeIcon icon={faHouse} />}
                     />
-                  </div>
+                  </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.url?.url && (
-                  <div className={styles.tooltipWrapper} data-tip="GitHub/GitLab">
+                  <ToolTip tooltip="GitHub/GitLab">
                     <Tag
                       label={t("Repository")}
                       icon={<GitHubLogo />}
                       onClick={() => open(_getComponent.data.embedded?.url?.url)}
                     />
-                  </div>
+                  </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.legal.license && (
-                  <div className={styles.tooltipWrapper} data-tip="Licentie">
+                  <ToolTip tooltip="Licentie">
                     <Tag
                       label={_getComponent.data.embedded?.legal.license}
                       icon={<FontAwesomeIcon icon={faScroll} />}
                     />
-                  </div>
+                  </ToolTip>
                 )}
               </div>
             </div>

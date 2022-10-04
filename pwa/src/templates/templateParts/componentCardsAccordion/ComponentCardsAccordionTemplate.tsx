@@ -9,7 +9,6 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
-import ReactTooltip from "react-tooltip";
 
 interface ComponentCardsAccordionProps {
   components: any[];
@@ -156,8 +155,6 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
           }}
         />
       ))}
-
-      <ReactTooltip effect="solid" />
     </div>
   );
 };

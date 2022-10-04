@@ -31,11 +31,6 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
-.tooltipWrapper {
-  display: inline-block;
-  position: relative;
-}
-
 .tags > div {
   margin-block-end: var(--web-app-size-xs);
 }

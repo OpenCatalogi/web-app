@@ -34,11 +34,6 @@
   text-overflow: ellipsis;
 }
 
-.tooltipWrapper {
-  display: inline-block;
-  position: relative;
-}
-
 .layerTags {
   display: flex;
   margin-block-end: var(--web-app-size-xs);

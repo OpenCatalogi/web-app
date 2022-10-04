@@ -10,6 +10,7 @@ import { Tag } from "../../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
+import { ToolTip } from "@conduction/components";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -52,45 +53,45 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType} layer`))],
                 )}
               >
-                <div className={styles.tooltipWrapper} data-tip="Laag">
+                <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={styles.tagWidth}
                     label={t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend"))}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
-                </div>
+                </ToolTip>
               </div>
             </TableCell>
 
             <TableCell>
-              <div className={styles.tooltipWrapper} data-tip="Status">
+              <ToolTip tooltip="Status">
                 <Tag
                   layoutClassName={styles.tagWidth}
                   label={_.upperFirst(component.developmentStatus ?? "Onbekend")}
                   icon={<FontAwesomeIcon icon={faInfoCircle} />}
                 />
-              </div>
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <div className={styles.tooltipWrapper} data-tip="Type">
+              <ToolTip tooltip="Type">
                 <Tag label={_.upperFirst(component.softwareType ?? "Onbekend")} />
-              </div>
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <div className={styles.tooltipWrapper} data-tip="Organisatie">
+              <ToolTip tooltip="Organisatie">
                 <Tag
                   label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
                   icon={<FontAwesomeIcon icon={faHouse} />}
                 />
-              </div>
+              </ToolTip>
             </TableCell>
 
             <TableCell>
-              <div className={styles.tooltipWrapper} data-tip="Installaties">
+              <ToolTip tooltip="Installaties">
                 <Tag label={_.upperFirst(component.usedBy?.length ?? 0)} icon={<FontAwesomeIcon icon={faRepeat} />} />
-              </div>
+              </ToolTip>
             </TableCell>
 
             <TableCell onClick={() => navigate(`/components/${component.id}`)}>
