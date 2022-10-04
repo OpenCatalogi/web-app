@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import { Container, InfoCard, BadgeCounter, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -58,6 +58,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const NotificationPopUpController = _NotificationPopUp.controller;
+  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
+
+  const { isVisible, show, hide } = NotificationPopUpController();
 
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
@@ -203,7 +208,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   )}
                   <span
                     onClick={() => {
-                      navigate("/documentation/about");
+                      show();
                     }}
                     className={styles.link}
                   >
@@ -215,6 +220,37 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               }
               layoutClassName={styles.infoCard}
             />
+            {isVisible && (
+              <div className={styles.overlay}>
+                <NotificationPopUp
+                  {...{ hide, isVisible }}
+                  title={"Rating"}
+                  description={
+                    <>
+                      <p>Deze rating is gebaseerd op de volgende punten: </p>
+                      <ul>
+                        {_getComponent.data.embedded?.rating.results
+                          .filter((result: string) => !/Cannot rate the/.test(result))
+                          .map((result: string) => (
+                            <li>{result}</li>
+                          ))}
+                      </ul>
+                    </>
+                  }
+                  primaryButton={{
+                    label: "doorgaan",
+                    handleClick: () => {},
+                  }}
+                  secondaryButton={{
+                    label: t("Go back"),
+                    icon: <ArrowLeftIcon />,
+                    handleClick: () => {},
+                  }}
+                  layoutClassName={styles.popup}
+                />
+              </div>
+            )}
+            {_getComponent.isLoading && <Skeleton height="200px" />}
           </div>
 
           <DownloadTemplate
@@ -508,7 +544,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
         </>
       )}
-      {_getComponent.isLoading && <Skeleton height="200px" />}
     </Container>
   );
 };
