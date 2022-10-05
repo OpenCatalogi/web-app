@@ -147,6 +147,11 @@
   outline: 0;
 }
 
+.popupDescription {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
