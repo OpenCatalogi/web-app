@@ -227,13 +227,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   title={"Rating"}
                   description={
                     <>
-                      <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
+                      {_getComponent.data.embedded?.rating?.rating ? (
+                        <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
+                      ) : (
+                        <p>{t("No rating available")}</p>
+                      )}
+
                       <div className={styles.popupDescription}>
-                        {_getComponent.data.embedded?.rating?.rating !== 0 && (
+                        {_getComponent.data.embedded?.rating?.rating >= 1 && (
                           <>
                             <h4>Behaalde punten</h4>
                             <ul>
-                              {_getComponent.data.embedded?.rating.results
+                              {_getComponent.data.embedded?.rating?.results
                                 .filter((result: string) => !/^Cannot rate the/.test(result))
                                 .map((result: string) => (
                                   <li>{result}</li>
