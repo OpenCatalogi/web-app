@@ -25,6 +25,6 @@ appVersion: 0.1.0
 dependencies:
   - name: commonground-gateway
     alias: gateway
-    version: 0.1.11
+    version: 0.1.12
     repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
     condition: gateway.enabled
