@@ -1,5 +1,7 @@
 .container > * {
-  margin-block-start: var(--web-app-size-3xl);
+  margin-block-start: var(--web-app-size-xl);
+  display: flex;
+  justify-content: space-between;
 }
 
 .section > *:not(:last-child) {
@@ -7,9 +9,7 @@
 }
 
 .tableButtons {
-  width: 100%;
-  display: flex;
-  justify-content: end;
+  margin-block-start: var(--web-app-size-sm);
 }
 
 .tableButtons > *:not(:last-child) {

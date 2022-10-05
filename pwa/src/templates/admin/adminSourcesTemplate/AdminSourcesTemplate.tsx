@@ -12,9 +12,9 @@ export const AdminSourcesTemplate: React.FC = () => {
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>{t("Sources")}</Heading1>
-        </section>
-        <section className={styles.section}>
+          <div>
+            <Heading1>{t("Sources")}</Heading1>
+          </div>
           <div className={styles.tableButtons}>
             <Button
               onClick={() => {
@@ -31,7 +31,9 @@ export const AdminSourcesTemplate: React.FC = () => {
               {t("Add")}
             </Button>
           </div>
+        </section>
 
+        <section className={styles.section}>
           <Table>
             <TableHead>
               <TableRow>

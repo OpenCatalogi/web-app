@@ -12,9 +12,9 @@ export const AdminUserTemplate: React.FC = () => {
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>{t("User")}</Heading1>
-        </section>
-        <section className={styles.section}>
+          <div>
+            <Heading1>{t("User")}</Heading1>
+          </div>
           <div className={styles.tableButtons}>
             <Button
               onClick={() => {
@@ -24,7 +24,9 @@ export const AdminUserTemplate: React.FC = () => {
               {t("Edit")}
             </Button>
           </div>
+        </section>
 
+        <section className={styles.section}>
           <Table>
             <TableHead>
               <TableRow>
