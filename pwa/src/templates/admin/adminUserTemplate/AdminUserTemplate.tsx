@@ -12,7 +12,7 @@ export const AdminUserTemplate: React.FC = () => {
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>User</Heading1>
+          <Heading1>{t("User")}</Heading1>
         </section>
         <section className={styles.section}>
           <div className={styles.tableButtons}>

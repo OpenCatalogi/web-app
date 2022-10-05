@@ -12,7 +12,7 @@ export const AdminActionsTemplate: React.FC = () => {
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>Actions</Heading1>
+          <Heading1>{t("Actions")}</Heading1>
         </section>
         <section className={styles.section}>
           <div className={styles.tableButtons}>

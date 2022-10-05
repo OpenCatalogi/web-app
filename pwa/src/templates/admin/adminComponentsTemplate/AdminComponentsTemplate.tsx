@@ -13,7 +13,7 @@ export const AdminComponentsTemplate: React.FC = () => {
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
         <section className={styles.section}>
-          <Heading1>Components</Heading1>
+          <Heading1>{t("Components")}</Heading1>
         </section>
         <section className={styles.section}>
           <div className={styles.tableButtons}>

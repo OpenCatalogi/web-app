@@ -1,5 +1,5 @@
 .container > * {
-  margin-block-start: var(--web-app-size-3xl);
+  margin-block-start: var(--web-app-size-xl);
 }
 
 .section > *:not(:last-child) {

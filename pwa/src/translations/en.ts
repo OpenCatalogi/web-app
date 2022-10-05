@@ -75,5 +75,9 @@ export const en = {
   Add: "Add",
   "Last login": "Last login",
   "Last synced": "Last synced",
-  "Owner": "Owner",
+  Owner: "Owner",
+  "My Catalogi": "My Catalogi",
+  User: "User",
+  Sources: "Sources",
+  Actions: "Actions",
 };

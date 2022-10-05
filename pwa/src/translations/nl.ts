@@ -76,5 +76,9 @@ export const nl = {
   Add: "Toevoegen",
   "Last login": "Laatst ingelogd",
   "Last synced": "Laatst gesynchroniseerd",
-  "Owner": "Eigenaar",
+  Owner: "Eigenaar",
+  "My Catalogi": "Mijn Catalogi",
+  User: "Gebruiker",
+  Sources: "Bronnen",
+  Actions: "Acties",
 };

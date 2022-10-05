@@ -102,19 +102,19 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: "User",
+      label: t("User"),
       handleClick: () => {
         navigate("/admin/user");
       },
     },
     {
-      label: "Components",
+      label: t("Components"),
       handleClick: () => {
         navigate("/admin/components");
       },
     },
     {
-      label: "My Catalogi",
+      label: t("My Catalogi"),
       handleClick: () => {
         navigate("/admin/myCatalogi");
       },
@@ -126,13 +126,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: "Sources",
+      label: t("Sources"),
       handleClick: () => {
         navigate("/admin/sources");
       },
     },
     {
-      label: "Actions",
+      label: t("Actions"),
       handleClick: () => {
         navigate("/admin/actions");
       },
