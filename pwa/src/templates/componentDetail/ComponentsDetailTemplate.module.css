@@ -111,6 +111,47 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.noRatingStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  max-height: var(--web-app-component-rating-indicator-max-height);
+}
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--web-app-overlay-background);
+  z-index: 500;
+  display: block;
+}
+
+.popup {
+  position: fixed;
+  max-width: var(--web-app-download-popup-width);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  outline: 0;
+}
+
+.popupDescription {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
