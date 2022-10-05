@@ -19,6 +19,7 @@ export const AdminTemplate: React.FC = ({ children }) => {
           <Menu />
         </div>
         <div className={styles.content}>{children}</div>
+        <div className={styles.fillerDiv}/>
       </div>
     </PrivateRoute>
   );

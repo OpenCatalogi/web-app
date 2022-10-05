@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  justify-content: space-between;
   margin-block-start: var(--web-app-size-3xl);
 }
 
@@ -9,8 +10,11 @@
 
 .content {
   width: 100%;
-  margin-inline: auto;
   max-width: var(--conduction-container-max-width);
+}
+
+.fillerDiv {
+  width: 145px;
 }
 
 .iconsSidenav {
