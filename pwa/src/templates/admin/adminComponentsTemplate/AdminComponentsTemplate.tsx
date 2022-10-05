@@ -10,7 +10,7 @@ import _ from "lodash";
 export const AdminComponentsTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
           <Heading1>Components</Heading1>
         </section>

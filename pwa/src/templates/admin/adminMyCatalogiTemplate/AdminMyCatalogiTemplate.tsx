@@ -9,9 +9,9 @@ import { t } from "i18next";
 export const AdminMyCatalogiTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
-          <Heading1>my Catalogi</Heading1>
+          <Heading1>My Catalogi</Heading1>
         </section>
         <section className={styles.section}>
           <Table>

@@ -1,17 +1,17 @@
 import * as React from "react";
-import * as styles from "./AdminHomeTemplate.module.css";
+import * as styles from "./AdminDashboardTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading1 } from "@gemeente-denhaag/components-react";
 import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 import { t } from "i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 
-export const AdminHomeTemplate: React.FC = () => {
+export const AdminDashboardTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
-          <Heading1>Home</Heading1>
+          <Heading1>Dashboard</Heading1>
         </section>
         <section className={styles.section}>
           <Table>

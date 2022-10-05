@@ -9,7 +9,7 @@ import { t } from "i18next";
 export const AdminCatalogiTemplate: React.FC = () => {
   return (
     <AdminTemplate>
-      <Container layoutClassName={styles.container}>
+      <Container>
         <section className={styles.section}>
           <Heading1>Catalogi</Heading1>
         </section>
