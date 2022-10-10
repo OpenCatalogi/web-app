@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./ToolTip.module.css";
+import * as styles from "./NodeToolTip.module.css";
 import clsx from "clsx";
 
 interface NodeToolTipProps {
