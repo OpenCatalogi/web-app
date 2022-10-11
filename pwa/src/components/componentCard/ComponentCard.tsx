@@ -2,7 +2,6 @@ import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
-import { Tag } from "../tag/Tag";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +10,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ToolTip } from "../toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
+import { Tag } from "@conduction/components";
 
 export interface ComponentCardProps {
   title: {
