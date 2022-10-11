@@ -62,7 +62,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
-  const organizationData = _getComponent?.data?.embedded?.url?.embedded?.organisation
+  const organizationData = _getComponent?.data?.embedded?.url?.embedded?.organisation;
 
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
   const category =
@@ -186,7 +186,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 type={organizationData.type}
                 layoutClassName={styles.organizationCardContainer}
               />
-            ) : <div className={styles.organizationCardContainer} />}
+            ) : (
+              <div className={styles.organizationCardContainer} />
+            )}
             <InfoCard
               title=""
               content={
