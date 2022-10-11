@@ -46,15 +46,10 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
-  organization: any;
   sizeKb: string;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({
-  componentId,
-  organization,
-  sizeKb,
-}) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -66,6 +61,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
+
+  const organizationData = _getComponent?.data?.embedded?.url?.embedded?.organisation
 
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
   const category =
@@ -173,21 +170,23 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            <OrganizationCard
-              title={{ label: organization.name, href: `/organizations/${organization.id}` }}
-              description={organization.description}
-              website={organization.website}
-              logo={organization.logo}
-              components={{
-                owned: organization.owns?.length.toString() ?? "0",
-                supported: organization.supports?.length.toString() ?? "0",
-                used: organization.uses?.length.toString() ?? "0",
-              }}
-              gitHub={organization.github}
-              gitLab={organization.gitlab}
-              type={organization.type}
-              layoutClassName={styles.organizationCardContainer}
-            />
+            {organizationData ? (
+              <OrganizationCard
+                title={{ label: organizationData.name, href: `/organizations/${organizationData.id}` }}
+                description={organizationData.description}
+                website={organizationData.website}
+                logo={organizationData.logo}
+                components={{
+                  owned: organizationData.owns?.length.toString() ?? "0",
+                  supported: organizationData.supports?.length.toString() ?? "0",
+                  used: organizationData.uses?.length.toString() ?? "0",
+                }}
+                gitHub={organizationData.github}
+                gitLab={organizationData.gitlab}
+                type={organizationData.type}
+                layoutClassName={styles.organizationCardContainer}
+              />
+            ) : <div className={styles.organizationCardContainer} />}
             <InfoCard
               title=""
               content={
