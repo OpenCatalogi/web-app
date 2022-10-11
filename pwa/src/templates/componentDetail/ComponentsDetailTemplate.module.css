@@ -58,6 +58,13 @@
   flex: 5;
 }
 
+.noOrganizationCardAvailable {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 5;
+}
+
 .infoCard {
   flex: 2;
 }

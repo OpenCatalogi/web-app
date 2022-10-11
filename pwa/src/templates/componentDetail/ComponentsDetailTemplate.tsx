@@ -62,8 +62,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
-  const organizationData = _getComponent?.data?.embedded?.url?.embedded?.organisation;
-
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
   const category =
     layer &&
@@ -170,24 +168,29 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {organizationData ? (
+            {_getComponent?.data?.embedded?.url && (
               <OrganizationCard
-                title={{ label: organizationData.name, href: `/organizations/${organizationData.id}` }}
-                description={organizationData.description}
-                website={organizationData.website}
-                logo={organizationData.logo}
-                components={{
-                  owned: organizationData.owns?.length.toString() ?? "0",
-                  supported: organizationData.supports?.length.toString() ?? "0",
-                  used: organizationData.uses?.length.toString() ?? "0",
+                title={{
+                  label: _getComponent?.data?.embedded?.url?.embedded?.organisation?.name,
+                  href: `/organizations/${_getComponent?.data?.embedded?.url?.embedded?.organisation?.id}`,
                 }}
-                gitHub={organizationData.github}
-                gitLab={organizationData.gitlab}
-                type={organizationData.type}
+                description={_getComponent?.data?.embedded?.url?.embedded?.organisation?.description}
+                website={_getComponent?.data?.embedded?.url?.embedded?.organisation?.website}
+                logo={_getComponent?.data?.embedded?.url?.embedded?.organisation?.logo}
+                components={{
+                  owned: _getComponent?.data?.embedded?.url?.embedded?.organisation?.owns?.length.toString() ?? "0",
+                  supported:
+                    _getComponent?.data?.embedded?.url?.embedded?.organisation?.supports?.length.toString() ?? "0",
+                  used: _getComponent?.data?.embedded?.url?.embedded?.organisation?.uses?.length.toString() ?? "0",
+                }}
+                gitHub={_getComponent?.data?.embedded?.url?.embedded?.organisation?.github}
+                gitLab={_getComponent?.data?.embedded?.url?.embedded?.organisation?.gitlab}
+                type={_getComponent?.data?.embedded?.url?.embedded?.organisation?.type}
                 layoutClassName={styles.organizationCardContainer}
               />
-            ) : (
-              <div className={styles.organizationCardContainer} />
+            )}
+            {!_getComponent?.data?.embedded?.url && (
+              <span className={styles.noOrganizationCardAvailable}>There is no organization available</span>
             )}
             <InfoCard
               title=""
