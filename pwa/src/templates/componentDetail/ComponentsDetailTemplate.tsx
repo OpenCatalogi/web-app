@@ -168,7 +168,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {_getComponent?.data?.embedded?.url && (
+            {_getComponent?.data?.embedded?.url?.embedded?.organisation && (
               <OrganizationCard
                 title={{
                   label: _getComponent?.data?.embedded?.url?.embedded?.organisation?.name,
@@ -189,7 +189,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 layoutClassName={styles.organizationCardContainer}
               />
             )}
-            {!_getComponent?.data?.embedded?.url && (
+            {!_getComponent?.data?.embedded?.url?.embedded?.organisation && (
               <span className={styles.noOrganizationCardAvailable}>There is no organization available</span>
             )}
             <InfoCard
