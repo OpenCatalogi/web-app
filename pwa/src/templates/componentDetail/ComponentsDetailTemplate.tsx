@@ -167,7 +167,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
 
             <div className={styles.addToCatalogusContainer}>
-              <img src={grey} className={styles.componentImage} />
+              <img src={_getComponent.data.logo || grey} className={styles.componentImage} />
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
