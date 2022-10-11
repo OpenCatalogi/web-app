@@ -19,7 +19,6 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
-
   const {
     location: { pathname },
   } = React.useContext(GatsbyContext);
@@ -27,12 +26,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const primaryTopNavItems = [
     {
       label: "Home",
+      current: true,
       handleClick: () => {
         navigate("/");
       },
     },
     {
       label: t("Software"),
+      current: pathname === "/components" && filters.softwareType === "standalone/desktop",
       handleClick: () => {
         setFilters({ ...filters, softwareType: "standalone/desktop" });
         navigate("/components");
@@ -40,6 +41,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Processes"),
+      current: pathname === "/components" && filters.softwareType === "process",
       handleClick: () => {
         setFilters({ ...filters, softwareType: "process" });
         navigate("/components");
@@ -47,6 +49,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Data models"),
+      current: pathname === "/components" && filters.softwareType === "schema",
       handleClick: () => {
         setFilters({ ...filters, softwareType: "schema" });
         navigate("/components");
@@ -54,6 +57,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("API's"),
+      current: pathname === "/components" && filters.softwareType === "api",
       handleClick: () => {
         setFilters({ ...filters, softwareType: "api" });
         navigate("/components");
@@ -61,31 +65,37 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: "Documentatie",
+      current: pathname.includes("documentation"),
       subItems: [
         {
           label: t("About Open Catalogi"),
+          current: pathname === "/documentation/about",
           handleClick: () => navigate("/documentation/about"),
         },
         {
           label: t("Installation"),
+          current: pathname === "/documentation/installation",
           handleClick: () => {
             navigate("/documentation/installation");
           },
         },
         {
           label: t("Usage"),
+          current: pathname === "/documentation/usage",
           handleClick: () => {
             navigate("/documentation/usage");
           },
         },
         {
           label: t("API"),
+          current: pathname === "/documentation/api",
           handleClick: () => {
             navigate("#");
           },
         },
         {
           label: t("Standards"),
+          current: pathname === "/documentation/standards",
           handleClick: () => {
             navigate("/documentation/standards");
           },
@@ -97,6 +107,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const authenticatedSecondaryTopNavItems = [
     {
       label: "Dashboard",
+      current: pathname === "/admin",
       handleClick: () => {
         navigate("/admin");
       },
@@ -113,6 +124,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const unauthenticatedSecondaryTopNavItems = [
     {
       label: t("Login"),
+      current: pathname === "/login",
       handleClick: () => {
         navigate("/login");
       },
