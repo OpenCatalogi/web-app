@@ -11,12 +11,15 @@ export const isBrowser = (): boolean => typeof window !== "undefined";
 export const handleLogin = async (data: IUnvalidatedUser, API: APIService) => {
   if (!isBrowser()) return;
 
-  API.setAuthentication("TEMPORARY-DUMMY-KEY");
-  navigate("/admin");
+  return await API.Login.login(data).then((res) => {
+    API.setAuthentication(res.data.jwtToken);
+    navigate("/");
+  });
 };
 
-export const isLoggedIn = (): boolean => {
-  if (!isBrowser()) return false;
+export const isLoggedIn = (): boolean | void => {
+  if (!isBrowser()) return;
+
   return !!window.sessionStorage.getItem("JWT");
 };
 
