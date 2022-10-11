@@ -115,7 +115,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 130px;
+  height: var(--web-app-component-rating-indicator-height);
   max-height: var(--web-app-component-rating-indicator-max-height);
 }
 
