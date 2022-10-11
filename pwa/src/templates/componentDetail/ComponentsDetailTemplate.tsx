@@ -190,7 +190,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               />
             )}
             {!_getComponent?.data?.embedded?.url?.embedded?.organisation && (
-              <span className={styles.noOrganizationCardAvailable}>There is no organization available</span>
+              <span className={styles.noOrganizationCardAvailable}>{t("There is no organization available")}</span>
             )}
             <InfoCard
               title=""
