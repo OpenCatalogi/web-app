@@ -11,3 +11,8 @@
 .ratingPieChart {
   margin-block-end: var(--web-app-size-sm);
 }
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}

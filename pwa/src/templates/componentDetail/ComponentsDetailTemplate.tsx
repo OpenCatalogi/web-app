@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { Container, InfoCard, BadgeCounter } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -58,11 +58,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
-
-  const NotificationPopUpController = _NotificationPopUp.controller;
-  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
-
-  const { isVisible, show, hide } = NotificationPopUpController();
 
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
@@ -196,87 +191,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title=""
               content={
-                <>
-                  {_getComponent.data.embedded?.rating ? (
-                    <RatingIndicatorTemplate
-                      layoutClassName={styles.ratingIndicatorContainer}
-                      maxRating={_getComponent.data.embedded?.rating?.maxRating}
-                      rating={_getComponent.data.embedded?.rating?.rating}
-                    />
-                  ) : (
-                    <div className={styles.noRatingStyle}>{t("No rating available")}</div>
-                  )}
-                  <span
-                    onClick={() => {
-                      show();
-                    }}
-                    className={styles.link}
-                  >
-                    <Link icon={<ArrowRightIcon />} iconAlign="start">
-                      Rating
-                    </Link>
-                  </span>
-                </>
+                <RatingIndicatorTemplate
+                  layoutClassName={styles.ratingIndicatorContainer}
+                  component={_getComponent.data}
+                />
               }
               layoutClassName={styles.infoCard}
             />
-            {isVisible && (
-              <div className={styles.overlay}>
-                <NotificationPopUp
-                  {...{ hide, isVisible }}
-                  title={"Rating"}
-                  description={
-                    <>
-                      {_getComponent.data.embedded?.rating?.rating ? (
-                        <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
-                      ) : (
-                        <p>{t("No rating available")}</p>
-                      )}
-
-                      <div className={styles.popupDescription}>
-                        {_getComponent.data.embedded?.rating?.rating >= 1 && (
-                          <>
-                            <h4>Behaalde punten</h4>
-                            <ul>
-                              {_getComponent.data.embedded?.rating?.results
-                                .filter((result: string) => !/^Cannot rate the/.test(result))
-                                .map((result: string) => (
-                                  <li>{result}</li>
-                                ))}
-                            </ul>
-                          </>
-                        )}
-                        {_getComponent.data.embedded?.rating?.rating !==
-                          _getComponent.data.embedded?.rating?.maxRating && (
-                          <>
-                            <h4>Onbehaalde punten</h4>
-                            <ul>
-                              {_getComponent.data.embedded?.rating.results
-                                .filter((result: string) => /^Cannot rate the/.test(result))
-                                .map((result: string) => (
-                                  <li>{result}</li>
-                                ))}
-                            </ul>
-                          </>
-                        )}
-                      </div>
-                    </>
-                  }
-                  primaryButton={{
-                    label: t("How score is calculated"),
-                    handleClick: () => {
-                      navigate("/documentation/about");
-                    },
-                  }}
-                  secondaryButton={{
-                    label: t("Go back"),
-                    icon: <ArrowLeftIcon />,
-                    handleClick: () => {},
-                  }}
-                  layoutClassName={styles.popup}
-                />
-              </div>
-            )}
           </div>
 
           <DownloadTemplate

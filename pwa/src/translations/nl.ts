@@ -74,6 +74,4 @@ export const nl = {
   "My catalogi": "Mijn catalogi",
   Login: "Inloggen",
   Logout: "Uitloggen",
-  "No rating available": "Geen rating beschikbaar",
-  "How score is calculated": "hoe punten worden berekend",
 };

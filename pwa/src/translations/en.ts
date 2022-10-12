@@ -73,6 +73,4 @@ export const en = {
   "My catalogi": "My catalogi",
   Login: "Login",
   Logout: "Logout",
-  "No rating available": "No rating available",
-  "How score is calculated": "How score is calculated",
 };
