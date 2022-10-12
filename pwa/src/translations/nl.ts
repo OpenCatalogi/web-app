@@ -70,5 +70,6 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
+  "There is no organization available": "Er is geen organisatie beschikbaar",
   "There is no description available": "Er is geen omschrijving beschikbaar",
 };
