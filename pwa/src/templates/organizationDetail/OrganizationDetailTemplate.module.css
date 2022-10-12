@@ -41,8 +41,8 @@
 }
 
 .logoContainer {
-  max-height: var(--web-app-ornaziation-detail-logo-height);
-  max-width: var(--web-app-ornaziation-detail-logo-width);
+  max-height: var(--web-app-organization-detail-logo-height);
+  max-width: var(--web-app-organization-detail-logo-width);
 }
 
 .logo {

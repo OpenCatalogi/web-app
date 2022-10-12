@@ -45,8 +45,16 @@
   flex: 2;
 }
 
+.logoContainer {
+  max-height: var(--web-app-component-detail-logo-height);
+  max-width: var(--web-app-component-detail-logo-width);
+  text-align: center;
+}
+
 .componentImage {
   max-width: var(--web-app-component-image-max-width);
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .cardsContainer {
