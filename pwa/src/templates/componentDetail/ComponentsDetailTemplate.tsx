@@ -134,7 +134,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
-                      label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                      label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
                       icon={<FontAwesomeIcon icon={faHouse} />}
                     />
                   </ToolTip>

@@ -82,7 +82,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableCell>
               <ToolTip tooltip="Organisatie">
                 <Tag
-                  label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
+                  label={_.upperFirst(component.embedded?.url?.embedded?.organisation?.name ?? "Onbekend")}
                   icon={<FontAwesomeIcon icon={faHouse} />}
                 />
               </ToolTip>
