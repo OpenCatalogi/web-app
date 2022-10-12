@@ -70,6 +70,7 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
+  "There is no organization available": "Er is geen organisatie beschikbaar",
   User: "Gebruiker",
   "My catalogi": "Mijn Catalogi",
   Login: "Inloggen",
