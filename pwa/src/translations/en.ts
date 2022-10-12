@@ -71,4 +71,5 @@ export const en = {
   "Management organization": "Management organization",
   "No rating available": "No rating available",
   "How score is calculated": "How score is calculated",
+  "There is no organization available": "There is no organization available",
 };

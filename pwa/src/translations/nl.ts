@@ -72,4 +72,5 @@ export const nl = {
   "Management organization": "Beheerorganisatie",
   "No rating available": "Geen rating beschikbaar",
   "How score is calculated": "hoe punten worden berekend",
+  "There is no organization available": "Er is geen organisatie beschikbaar",
 };
