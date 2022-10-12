@@ -70,7 +70,7 @@ export const en = {
   Version: "Version",
   "Management organization": "Management organization",
   User: "User",
-  "My catalogi": "My catalogi",
+  "My catalogi": "My Catalogi",
   Login: "Login",
   Logout: "Logout",
 };

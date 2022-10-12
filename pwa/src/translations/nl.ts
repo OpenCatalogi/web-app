@@ -71,7 +71,7 @@ export const nl = {
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
   User: "Gebruiker",
-  "My catalogi": "Mijn catalogi",
+  "My catalogi": "Mijn Catalogi",
   Login: "Inloggen",
   Logout: "Uitloggen",
 };
