@@ -48,31 +48,31 @@ const Menu: React.FC = () => {
     {
       label: t("Components"),
       href: "/admin/components",
-      current: pathname.includes("/admin/components"),
+      current: pathname === "/admin/components",
       icon: <FontAwesomeIcon icon={faFile} />,
     },
     {
       label: t("My Catalogi"),
       href: "/admin/myCatalogi",
-      current: pathname.includes("/admin/myCatalogi"),
+      current: pathname === "/admin/myCatalogi",
       icon: <FontAwesomeIcon icon={faList} />,
     },
     {
       label: t("Catalogi"),
       href: "/admin/catalogi",
-      current: pathname.includes("/admin/catalogi"),
+      current: pathname === "/admin/catalogi",
       icon: <FontAwesomeIcon icon={faListCheck} />,
     },
     {
       label: t("Sources"),
       href: "/admin/sources",
-      current: pathname.includes("/admin/sources"),
+      current: pathname === "/admin/sources",
       icon: <FontAwesomeIcon icon={faServer} />,
     },
     {
       label: t("User"),
       href: "/admin/user",
-      current: pathname.includes("/admin/user"),
+      current: pathname === "/admin/user",
       icon: <FontAwesomeIcon icon={faUser} />,
     },
   ];

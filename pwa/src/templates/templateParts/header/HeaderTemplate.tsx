@@ -71,7 +71,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: "Documentatie",
-      current: pathname.includes("documentation"),
+      current: pathname.includes("/documentation"),
       subItems: [
         {
           label: t("About Open Catalogi"),
@@ -113,7 +113,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const authenticatedSecondaryTopNavItems = [
     {
       label: "Dashboard",
-      current: pathname === "/admin",
+      current: pathname.includes("/admin"),
       handleClick: () => {
         navigate("/admin");
       },

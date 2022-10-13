@@ -7,12 +7,7 @@
 }
 .headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
-  --conduction-primary-top-nav-background-color: var(--web-app-color-background-page-top-bar);
   box-shadow: 0px 10px 13px -14px #000000, 0px -10px 13px -14px #000000;
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-md);
-  padding-block-end: var(--web-app-size-md);
 }
 
 .secondaryNavContainer {
@@ -21,7 +16,6 @@
   align-items: center;
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
-  --conduction-secondary-top-nav-color: var(--web-app-secondary-top-nav-color);
 }
 
 .primaryNavContainer {
@@ -30,8 +24,6 @@
   align-items: center;
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
-  --conduction-primary-top-nav-color: var(--web-app-primary-top-nav-color);
-  --conduction-primary-top-nav-background-color-hover: var(--web-app-color-background-page-top-bar);
 }
 
 .logoContainer {

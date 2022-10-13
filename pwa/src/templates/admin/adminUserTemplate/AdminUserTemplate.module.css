@@ -2,6 +2,26 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
+.tableRow {
+  cursor: pointer;
+}
+
+.name {
+  display: block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tagWidth {
+  width: max-content !important;
+}
+
+.detailsLink {
+  display: inline-flex;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
