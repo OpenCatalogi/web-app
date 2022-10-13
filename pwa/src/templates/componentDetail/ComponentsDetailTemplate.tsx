@@ -234,7 +234,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </span>
                       ))}
                     {!_getComponent.data.embedded.nl.upl ||
-                      (!_getComponent.data.embedded.nl.upl[0] && (
+                      (!_getComponent.data.embedded.nl.upl.length && (
                         <span>Op dit moment zijn er geen producten beschikbaar.</span>
                       ))}
                   </TableCell>
