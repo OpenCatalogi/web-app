@@ -3,7 +3,7 @@ import * as styles from "./HeaderTemplate.module.css";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
+import { Container, SecondaryTopNav, PrimaryTopNav, Breadcrumbs } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +19,12 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const {
+    pageContext: {
+      breadcrumb: { crumbs },
+    },
+  } = React.useContext(GatsbyContext);
   const {
     location: { pathname },
   } = React.useContext(GatsbyContext);
@@ -164,6 +170,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             </div>
             <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
           </section>
+        </Container>
+      )}
+      {pathname !== "/" && (
+        <Container layoutClassName={styles.breadcrumbsContainer}>
+          <Breadcrumbs crumbs={crumbs} />
         </Container>
       )}
     </header>

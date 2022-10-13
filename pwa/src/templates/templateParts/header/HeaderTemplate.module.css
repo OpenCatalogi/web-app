@@ -8,7 +8,7 @@
 .headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
   --conduction-primary-top-nav-background-color: var(--web-app-color-background-page-top-bar);
-  box-shadow: 0px 10px 13px -14px #000000;
+  box-shadow: 0px 10px 13px -14px #000000, 0px -10px 13px -14px #000000;
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
   padding-block-start: var(--web-app-size-md);
@@ -75,6 +75,14 @@
 .headerSearchForm {
   display: flex;
   flex-direction: column;
+}
+
+.breadcrumbsContainer {
+  padding-inline-start: var(--web-app-size-sm);
+  padding-inline-end: var(--web-app-size-sm);
+  padding-block-start: var(--web-app-size-sm);
+  padding-block-end: var(--web-app-size-sm);
+  --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
 }
 
 .section > *:not(:last-child) {

@@ -1,6 +1,7 @@
 .header {
   position: relative;
   z-index: 2;
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .pageContent {
@@ -14,12 +15,4 @@
   margin-block-start: var(--web-app-size-4xl);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
-}
-
-.breadcrumbsContainer {
-  margin-block-start: var(--web-app-size-xl);
-  margin-block-end: var(--web-app-size-xl);
-  padding-inline-start: var(--web-app-size-md);
-  background-color: var(--web-app-color-background-light);
-  --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
 }
