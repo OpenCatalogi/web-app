@@ -143,13 +143,6 @@
   --web-app-component-image-max-width: 300px;
   --web-app-component-rating-indicator-max-height: 160px;
 
-  --web-app-organization-detail-logo-height: 300px;
-  --web-app-organization-detail-logo-width: 350px;
-
-  --web-app-component-detail-logo-height: 225px;
-  --web-app-component-detail-logo-width: 300px;
-
-
   --web-app-relations-frame-width: 1024px;
   --web-app-relations-frame-height: 500px;
   --web-app-relations-border: 1px solid #dddddd;
