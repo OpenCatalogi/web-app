@@ -88,11 +88,11 @@
 }
 
 .title {
-  color: var(--web-app-primary-top-nav-color) !important;
+  color: var(--web-app-color-black);
 }
 
 .subTitle {
-  color: var(--web-app-primary-top-nav-color) !important;
+  color: var(--web-app-color-black);
 }
 
 .searchFormContainer {
