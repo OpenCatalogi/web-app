@@ -203,20 +203,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               content={
                 <>
                   {_getComponent.data.embedded?.rating && (
-                    <RatingIndicatorTemplate
-                      layoutClassName={styles.ratingIndicatorContainer}
-                      maxRating={_getComponent.data.embedded?.rating?.maxRating}
-                      rating={_getComponent.data.embedded?.rating?.rating}
-                    />
+                    <>
+                      <RatingIndicatorTemplate
+                        layoutClassName={styles.ratingIndicatorContainer}
+                        maxRating={_getComponent.data.embedded?.rating?.maxRating}
+                        rating={_getComponent.data.embedded?.rating?.rating}
+                      />
+                      <span onClick={show} className={styles.link}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Rating
+                        </Link>
+                      </span>
+                    </>
                   )}
                   {!_getComponent.data.embedded?.rating && (
                     <div className={styles.noRatingStyle}>{t("No rating available")}</div>
                   )}
-                  <span onClick={show} className={styles.link}>
-                    <Link icon={<ArrowRightIcon />} iconAlign="start">
-                      Rating
-                    </Link>
-                  </span>
                 </>
               }
               layoutClassName={styles.infoCard}
