@@ -69,6 +69,8 @@ export const en = {
   "Go back": "Go back",
   Version: "Version",
   "Management organization": "Management organization",
+  "No organization found": "No organization found",
+  "There is no description available": "There is no description available",
   "There is no organization available": "There is no organization available",
   User: "User",
   "My catalogi": "My Catalogi",

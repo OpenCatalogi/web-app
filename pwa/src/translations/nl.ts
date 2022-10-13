@@ -70,6 +70,8 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
+  "No organization found": "Geen organisatie gevonden",
+  "There is no description available": "Er is geen omschrijving beschikbaar",
   "There is no organization available": "Er is geen organisatie beschikbaar",
   User: "Gebruiker",
   "My catalogi": "Mijn Catalogi",

@@ -3,7 +3,7 @@ import { AxiosInstance } from "axios";
 import { IFilters } from "../../context/filters";
 import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
-export default class Component {
+export default class Organization {
   private _instance: AxiosInstance;
 
   constructor(_instance: AxiosInstance) {
@@ -11,7 +11,7 @@ export default class Component {
   }
 
   public getOne = async (id: string): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components/${id}`);
+    const { data } = await Send(this._instance, "GET", `/organizations/${id}`);
 
     return data;
   };
@@ -20,17 +20,21 @@ export default class Component {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+      `/organizations?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
     );
 
     return data;
   };
 
   public getCount = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters, deletes)}`);
+    const { data } = await Send(
+      this._instance,
+      "GET",
+      `/organizations?limit=1${filtersToQueryParams(filters, deletes)}`,
+    );
 
     return data.total;
   };
 }
 
-const deletes = [{ name: "resultDisplayLayout" }, { name: "dependenciesDisplayLayout" }];
+const deletes = [{ name: "resultDisplayLayout" }];
