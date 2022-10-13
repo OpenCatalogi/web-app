@@ -24,7 +24,7 @@ import _ from "lodash";
 import { QueryClient } from "react-query";
 import { useOrganization } from "../../hooks/organization";
 import Skeleton from "react-loading-skeleton";
-import grey from "../../assets/images/grey.png";
+import organizationPlaceholderImage from "../../assets/images/grey.png";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -45,7 +45,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <div className={styles.headerContent}>
               <Heading1>{_getOrganization.data.name}</Heading1>
 
-              {!_getOrganization.data.description && <LeadParagraph>{_getOrganization.data.description}</LeadParagraph>}
+              {_getOrganization.data.description && <LeadParagraph>{_getOrganization.data.description}</LeadParagraph>}
               {!_getOrganization.data.description && (
                 <LeadParagraph>{t("There is no description available")}</LeadParagraph>
               )}
@@ -53,10 +53,11 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
             <div className={styles.headerOrganizationData}>
               <div className={styles.logoContainer}>
-                {_getOrganization.data.logo && (
-                  <img className={styles.logo} src={_getOrganization.data.logo} alt="Organization logo" />
-                )}
-                {!_getOrganization.data.logo && <img src={grey} className={styles.logo} />}
+                <img
+                  className={styles.logo}
+                  src={_getOrganization.data.logo ?? organizationPlaceholderImage}
+                  alt="Organization logo"
+                />
               </div>
               <div>
                 <div className={styles.tagsContainer}>
