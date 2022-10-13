@@ -73,4 +73,6 @@ export const en = {
   "Score calculation": "Score calculation",
   "There is no organization available": "There is no organization available",
   Close: "Close",
+  "No organization found": "No organization found",
+  "There is no description available": "There is no description available",
 };
