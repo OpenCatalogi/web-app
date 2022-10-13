@@ -46,8 +46,10 @@
 }
 
 .logoContainer {
-  height: 255px;
-  width: 300px;
+  height: var(--web-app-component-detail-logo-height);
+  width: var(--web-app-component-detail-logo-width);
+  max-height: 255px;
+  max-width: 300px;
   display: flex;
   justify-content: center;
 }
