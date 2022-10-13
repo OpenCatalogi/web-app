@@ -1,6 +1,7 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
 import { IFilters } from "../../context/filters";
+import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Organization {
   private _instance: AxiosInstance;
@@ -14,4 +15,26 @@ export default class Organization {
 
     return data;
   };
+
+  public getAll = async (filters: IFilters): Promise<any> => {
+    const { data } = await Send(
+      this._instance,
+      "GET",
+      `/organizations?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+    );
+
+    return data;
+  };
+
+  public getCount = async (filters: IFilters): Promise<any> => {
+    const { data } = await Send(
+      this._instance,
+      "GET",
+      `/organizations?limit=1${filtersToQueryParams(filters, deletes)}`,
+    );
+
+    return data.total;
+  };
 }
+
+const deletes = [{ name: "resultDisplayLayout" }];
