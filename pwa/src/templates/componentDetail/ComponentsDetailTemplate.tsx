@@ -43,6 +43,7 @@ import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/Com
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
+import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -201,21 +202,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title=""
               content={
                 <>
-                  {_getComponent.data.embedded?.rating ? (
+                  {_getComponent.data.embedded?.rating && (
                     <RatingIndicatorTemplate
                       layoutClassName={styles.ratingIndicatorContainer}
                       maxRating={_getComponent.data.embedded?.rating?.maxRating}
                       rating={_getComponent.data.embedded?.rating?.rating}
                     />
-                  ) : (
+                  )}
+                  {!_getComponent.data.embedded?.rating && (
                     <div className={styles.noRatingStyle}>{t("No rating available")}</div>
                   )}
-                  <span
-                    onClick={() => {
-                      show();
-                    }}
-                    className={styles.link}
-                  >
+                  <span onClick={show} className={styles.link}>
                     <Link icon={<ArrowRightIcon />} iconAlign="start">
                       Rating
                     </Link>
@@ -228,52 +225,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.overlay}>
                 <NotificationPopUp
                   {...{ hide, isVisible }}
-                  title={"Rating"}
-                  description={
-                    <>
-                      {_getComponent.data.embedded?.rating?.rating ? (
-                        <p>{`${_getComponent.data.embedded?.rating?.rating}/${_getComponent.data.embedded?.rating?.maxRating}`}</p>
-                      ) : (
-                        <p>{t("No rating available")}</p>
-                      )}
-
-                      <div className={styles.popupDescription}>
-                        {_getComponent.data.embedded?.rating?.rating >= 1 && (
-                          <>
-                            <h4>Behaalde punten</h4>
-                            <ul>
-                              {_getComponent.data.embedded?.rating?.results
-                                .filter((result: string) => !/^Cannot rate the/.test(result))
-                                .map((result: string) => (
-                                  <li>{result}</li>
-                                ))}
-                            </ul>
-                          </>
-                        )}
-                        {_getComponent.data.embedded?.rating?.rating !==
-                          _getComponent.data.embedded?.rating?.maxRating && (
-                          <>
-                            <h4>Onbehaalde punten</h4>
-                            <ul>
-                              {_getComponent.data.embedded?.rating.results
-                                .filter((result: string) => /^Cannot rate the/.test(result))
-                                .map((result: string) => (
-                                  <li>{result}</li>
-                                ))}
-                            </ul>
-                          </>
-                        )}
-                      </div>
-                    </>
-                  }
+                  title="Rating"
+                  description={<RatingOverview getComponent={_getComponent} />}
                   primaryButton={{
-                    label: t("How score is calculated"),
+                    label: t("Score calculation"),
                     handleClick: () => {
-                      navigate("/documentation/about");
+                      navigate("/documentation/about#score-calculation");
                     },
                   }}
                   secondaryButton={{
-                    label: t("Go back"),
+                    label: t("Close"),
                     icon: <ArrowLeftIcon />,
                     handleClick: () => {},
                   }}

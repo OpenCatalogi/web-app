@@ -70,7 +70,8 @@ export const nl = {
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
-  "No rating available": "Geen rating beschikbaar",
-  "How score is calculated": "hoe punten worden berekend",
+  "No rating available": "Geen beoordeling beschikbaar",
+  "Score calculation": "Score opbouw",
   "There is no organization available": "Er is geen organisatie beschikbaar",
+  Close: "Sluiten",
 };
