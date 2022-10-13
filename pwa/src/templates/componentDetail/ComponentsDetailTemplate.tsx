@@ -134,7 +134,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
-                      label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
+                      label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
                       icon={<FontAwesomeIcon icon={faHouse} />}
                     />
                   </ToolTip>
@@ -195,7 +195,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               />
             )}
             {!_getComponent?.data?.embedded?.url?.embedded?.organisation && (
-              <span className={styles.noOrganizationCardAvailable}>{t("There is no organization available")}</span>
+              <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
             )}
             <InfoCard
               title=""

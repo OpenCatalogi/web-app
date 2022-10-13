@@ -22,7 +22,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           tags={{
             status: component.developmentStatus,
             installations: component.usedBy?.length.toString() ?? "0",
-            organization: component.embedded?.legal?.embedded?.repoOwner?.name,
+            organization: component.embedded?.url?.embedded?.organisation?.name,
             licence: component.embedded?.legal?.license,
             githubLink: component.embedded?.url?.url,
           }}
