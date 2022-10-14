@@ -1,0 +1,179 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-4xl);
+}
+
+.container > .backButton {
+  margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.container > .headingContainer {
+  display: flex;
+  gap: var(--web-app-size-xl);
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.headingContent {
+  flex: 5;
+}
+
+.description {
+  margin-block-start: var(--web-app-size-sm) !important;
+  margin-block-end: var(--web-app-size-md) !important;
+}
+
+.layerAndCategoryContainer {
+  display: flex;
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.tags > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.addToCatalogusContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.logoContainer {
+  height: var(--web-app-component-detail-logo-height);
+  width: var(--web-app-component-detail-logo-width);
+  max-height: 255px;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: var(--web-app-size-xl);
+}
+
+.organizationCardContainer {
+  flex: 5;
+}
+
+.noOrganizationCardAvailable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 5;
+  background-color: var(--web-app-color-grey);
+}
+
+.infoCard {
+  flex: 2;
+}
+.ratingIndicatorContainer {
+  max-height: var(--web-app-component-rating-indicator-max-height);
+}
+
+.addToCatalogusContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.externalLink {
+  text-decoration: none;
+}
+
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.tabPanel {
+  padding-inline-start: var(--web-app-size-lg) !important;
+  padding-inline-end: var(--web-app-size-lg) !important;
+  padding-block-start: var(--web-app-size-lg) !important;
+  padding-block-end: var(--web-app-size-lg) !important;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tab {
+  max-width: unset !important;
+}
+
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+  align-items: inherit !important;
+}
+
+.dependenciesDisplaySwitchButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dependenciesDisplaySwitchButtons *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+/* Colors of the 5 layers */
+.interactionLayer,
+.interfaceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.interactionCategory,
+.interfaceCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
+}
+
+.processLayer,
+.processsLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-process);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.processCategory,
+.processsCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
+}
+
+.integrationLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-integration);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.integrationCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
+}
+
+.servicesLayer,
+.serviceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-services);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+
+.servicesCategory,
+.serviceCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
+}
+
+.dataLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-data);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.dataCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
+}
