@@ -190,14 +190,25 @@
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
-  --web-app-secondary-top-nav-color: var(--web-app-color-black);
+  --web-app-secondary-top-nav-color: var(--rotterdam-color-green);
   --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
+  --web-app-secondary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-light);
 
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-primary-top-nav-color: var(--web-app-color-white);
-  --web-app-primary-top-nav-background-color: var(--rotterdam-color-green);
-  --web-app-primary-top-nav-background-color-hover: rgba(255, 255, 255, 0.2);
+  --web-app-primary-top-nav-color: var(--rotterdam-color-green);
+  --web-app-primary-top-nav-background-color: var(--web-app-color-white);
+  --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
+
+  /* @gemeent-denhaag: SideNav */
+  --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
+  --web-app-sidenav-link-hover-color: var(--rotterdam-color-green);
+  --web-app-sidenav-link-padding-block-end: var(--web-app-size-xs);
+  --web-app-sidenav-link-padding-block-start: var(--web-app-size-xs);
+  --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
+  --web-app-sidenav-item-font-weight: var(--web-app-font-weight-normal);
+  --web-app-sidenav-item-font-size: var(--web-app-size-md);
 }
