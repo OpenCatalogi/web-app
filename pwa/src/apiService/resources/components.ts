@@ -33,4 +33,8 @@ export default class Component {
   };
 }
 
-const deletes = [{ name: "resultDisplayLayout" }, { name: "dependenciesDisplayLayout" }];
+const deletes = [
+  { name: "resultDisplayLayout" },
+  { name: "dependenciesDisplayLayout" },
+  { name: "landingDisplayLayout" },
+];
