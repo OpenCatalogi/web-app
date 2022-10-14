@@ -24,7 +24,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/desktop",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -60,7 +60,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "library",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -96,7 +96,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/desktop",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -132,7 +132,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/backend",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -168,7 +168,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/desktop",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -240,7 +240,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/mobile",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -276,7 +276,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "library",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -312,7 +312,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "softwareAddon",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -348,7 +348,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -384,7 +384,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -420,7 +420,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -456,7 +456,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -492,7 +492,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {
@@ -528,7 +528,7 @@ export const TEMPORARY_COMPONENTS = [
     softwareType: "standalone/iot",
     softwareVersion: "1.0",
     url: null,
-    usedBy: null,
+    usedBy: [],
     embedded: {
       nl: {
         embedded: {

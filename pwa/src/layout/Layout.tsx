@@ -68,10 +68,6 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
             <ThemeProvider>
               <HeaderTemplate layoutClassName={styles.header} />
 
-              <Container layoutClassName={styles.breadcrumbsContainer}>
-                <Breadcrumbs crumbs={breadcrumbs} />
-              </Container>
-
               <div className={styles.pageContent}>{children}</div>
 
               <FooterTemplate layoutClassName={styles.footer} />
