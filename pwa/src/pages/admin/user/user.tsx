@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AdminUserTemplate } from "../../templates/admin/adminUserTemplate/AdminUserTemplate";
+import { AdminUserTemplate } from "../../../templates/admin/adminUserTemplate/AdminUserTemplate";
 
 const AdminUserPage = () => <AdminUserTemplate />;
 
