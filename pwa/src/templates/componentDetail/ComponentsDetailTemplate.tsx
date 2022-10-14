@@ -119,7 +119,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.developmentStatus && (
                   <ToolTip tooltip="Status">
                     <Tag
-                      label={_.upperFirst(_getComponent.data.developmentStatus)}
+                      label={t(_.upperFirst(_getComponent.data.developmentStatus))}
                       icon={<FontAwesomeIcon icon={faInfoCircle} />}
                     />
                   </ToolTip>
