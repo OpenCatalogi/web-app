@@ -4,10 +4,6 @@ import { PageProps } from "gatsby";
 import { AdminUsersDetailTemplate } from "../../../../templates/admin/adminUserDetailTemplate/AdminUserDetailTemplate";
 
 const UserDetailPage: React.FC<PageProps> = (props: PageProps) => {
-  return (
-    <AdminUsersDetailTemplate
-      userId={props.params.sourceId}
-    />
-  );
+  return <AdminUsersDetailTemplate userId={props.params.userId} />;
 };
 export default UserDetailPage;

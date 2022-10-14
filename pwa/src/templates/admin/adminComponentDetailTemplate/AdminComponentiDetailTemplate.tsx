@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./AdminSourcesDetailTemplate.module.css";
+import * as styles from "./AdminComponentDetailTemplate.module.css";
 import {
   Button,
   Heading1,
@@ -45,17 +45,17 @@ import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCa
 import { DownloadTemplate } from "../../templateParts/download/DownloadTemplate";
 import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 
-interface AdminSourcesDetailTemplateProps {
-  sourcesId: string;
+interface AdminComponentDetailTemplateProps {
+  componentId: string;
 }
 
-export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProps> = ({ sourcesId }) => {
+export const AdminComponentDetailTemplate: React.FC<AdminComponentDetailTemplateProps> = ({ componentId }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   const tempComponent =
-    TEMPORARY_COMPONENTS.find((component: any) => component.id === sourcesId) ?? TEMPORARY_COMPONENTS[1];
+    TEMPORARY_COMPONENTS.find((component: any) => component.id === componentId) ?? TEMPORARY_COMPONENTS[1];
 
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
@@ -73,9 +73,9 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
   return (
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
-        <div className={styles.backButton} onClick={() => navigate("/admin/sources")}>
+        <div className={styles.backButton} onClick={() => navigate("/admin/components")}>
           <Link icon={<ArrowLeftIcon />} iconAlign="start">
-            {t("Back to Sources")}
+            {t("Back to components")}
           </Link>
         </div>
 
@@ -326,7 +326,7 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
                     type={filters.dependenciesDisplayLayout}
                     components={TempComponentsDependencies}
                     mainComponent={{
-                      id: sourcesId,
+                      id: componentId,
                       name: tempComponent.name,
                       layer: tempComponent.embedded?.nl.embedded.commonground.layerType,
                     }}

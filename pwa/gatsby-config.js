@@ -33,6 +33,26 @@ module.exports = {
             pathname: "/organizations/[organizationId]",
             crumbLabel: "Organization",
           },
+          {
+            pathname: "/admin/components/[componentId]",
+            crumbLabel: "Component",
+          },
+		  {
+			pathname: "/admin/myCatalogi/[myCatalogiId]",
+			crumbLabel: "MyCatalogi",
+		  },
+		  {
+			pathname: "/admin/catalogi/[catalogiId]",
+			crumbLabel: "Catalogi",
+		  },
+		  {
+			pathname: "/admin/sources/[sourceId]",
+			crumbLabel: "Source",
+		  },
+          {
+            pathname: "/admin/users/[userId]",
+            crumbLabel: "User",
+          },
         ],
       },
     },

@@ -44,35 +44,34 @@ const Menu: React.FC = () => {
 
   const menuItems: MenuItem[] = [
     { label: t("Dashboard"), href: "/admin", current: pathname === "/admin", icon: <FontAwesomeIcon icon={faHouse} /> },
-
     {
       label: t("Components"),
       href: "/admin/components",
-      current: pathname === "/admin/components",
+	  current: pathname.includes("/admin/components"),
       icon: <FontAwesomeIcon icon={faFile} />,
     },
     {
       label: t("My Catalogi"),
       href: "/admin/myCatalogi",
-      current: pathname === "/admin/myCatalogi",
+	  current: pathname.includes("/admin/myCatalogi"),
       icon: <FontAwesomeIcon icon={faList} />,
     },
     {
       label: t("Catalogi"),
       href: "/admin/catalogi",
-      current: pathname === "/admin/catalogi",
+	  current: pathname.includes("/admin/catalogi"),
       icon: <FontAwesomeIcon icon={faListCheck} />,
     },
     {
       label: t("Sources"),
       href: "/admin/sources",
-      current: pathname === "/admin/sources",
+	  current: pathname.includes("/admin/sources"),
       icon: <FontAwesomeIcon icon={faServer} />,
     },
     {
-      label: t("User"),
-      href: "/admin/user",
-      current: pathname === "/admin/user",
+      label: t("Users"),
+      href: "/admin/users",
+	  current: pathname.includes("/admin/users"),
       icon: <FontAwesomeIcon icon={faUser} />,
     },
   ];

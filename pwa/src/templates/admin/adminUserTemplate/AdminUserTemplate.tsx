@@ -21,7 +21,7 @@ export const AdminUserTemplate: React.FC = () => {
     <AdminTemplate>
       <Container>
         <section className={styles.section}>
-          <Heading1>User</Heading1>
+          <Heading1>Users</Heading1>
         </section>
         <section className={styles.section}>
           <Table>
@@ -36,7 +36,7 @@ export const AdminUserTemplate: React.FC = () => {
 
             <TableBody>
               {users.map((user) => (
-                <TableRow className={styles.tableRow} key={user.id} onClick={() => navigate(`/admin/user/${user.id}`)}>
+                <TableRow className={styles.tableRow} key={user.id} onClick={() => navigate(`/admin/users/${user.id}`)}>
                   <TableCell>
                     <span>{user.name}</span>
                   </TableCell>

@@ -73,6 +73,7 @@ export const en = {
   "There is no description available": "There is no description available",
   "There is no organization available": "There is no organization available",
   User: "User",
+  Users: "Users",
   "My catalogi": "My Catalogi",
   Login: "Login",
   Logout: "Logout",

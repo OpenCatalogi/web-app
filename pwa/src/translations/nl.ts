@@ -74,6 +74,7 @@ export const nl = {
   "There is no description available": "Er is geen omschrijving beschikbaar",
   "There is no organization available": "Er is geen organisatie beschikbaar",
   User: "Gebruiker",
+  Users: "Gebruikers",
   "My catalogi": "Mijn Catalogi",
   Login: "Inloggen",
   Logout: "Uitloggen",

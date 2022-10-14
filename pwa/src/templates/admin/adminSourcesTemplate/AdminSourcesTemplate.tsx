@@ -24,7 +24,7 @@ export const AdminSourcesTemplate: React.FC = () => {
           <Heading1>Sources</Heading1>
         </section>
         <section className={styles.section}>
-        <Table>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableHeader>{t("Name")}</TableHeader>

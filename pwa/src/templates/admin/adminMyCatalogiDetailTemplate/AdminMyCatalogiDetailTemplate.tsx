@@ -43,6 +43,7 @@ import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/
 import { FiltersContext } from "../../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../../templateParts/download/DownloadTemplate";
+import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 
 interface AdminMyCatalogiDetailTemplateProps {
   myCatalogiId: string;
@@ -70,33 +71,34 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
   //   if (tempComponent.isError) return <>Something went wrong...</>;
 
   return (
-    <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/components")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
-          {t("Back to components")}
-        </Link>
-      </div>
+    <AdminTemplate>
+      <Container layoutClassName={styles.container}>
+        <div className={styles.backButton} onClick={() => navigate("/admin/myCatalogi")}>
+          <Link icon={<ArrowLeftIcon />} iconAlign="start">
+            {t("Back to My Catalogi")}
+          </Link>
+        </div>
 
-      {/* {tempComponent.isSuccess && ( */}
-      <>
-        <div className={styles.headingContainer}>
-          <div className={styles.headingContent}>
-            <Heading1>{tempComponent.name}</Heading1>
+        {/* {tempComponent.isSuccess && ( */}
+        <>
+          <div className={styles.headingContainer}>
+            <div className={styles.headingContent}>
+              <Heading1>{tempComponent.name}</Heading1>
 
-            <LeadParagraph className={styles.description}>{tempComponent.description}</LeadParagraph>
+              <LeadParagraph className={styles.description}>{tempComponent.description}</LeadParagraph>
 
-            <div className={styles.layerAndCategoryContainer}>
-              <ToolTip tooltip="Laag">
-                <Tag
-                  layoutClassName={
-                    styles[_.camelCase(t(`${tempComponent.embedded?.nl.embedded.commonground.layerType} layer`))]
-                  }
-                  label={t(_.upperFirst(tempComponent.embedded?.nl.embedded.commonground.layerType))}
-                  icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                />
-              </ToolTip>
+              <div className={styles.layerAndCategoryContainer}>
+                <ToolTip tooltip="Laag">
+                  <Tag
+                    layoutClassName={
+                      styles[_.camelCase(t(`${tempComponent.embedded?.nl.embedded.commonground.layerType} layer`))]
+                    }
+                    label={t(_.upperFirst(tempComponent.embedded?.nl.embedded.commonground.layerType))}
+                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                  />
+                </ToolTip>
 
-              {/* {tempComponent.categories && category && (
+                {/* {tempComponent.categories && category && (
                   <ToolTip tooltip="Categorie">
                     <Tag
                       layoutClassName={
@@ -109,25 +111,25 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
                     />
                   </ToolTip>
                 )} */}
-            </div>
+              </div>
 
-            <div className={styles.tags}>
-              {tempComponent.developmentStatus && (
-                <ToolTip tooltip="Status">
+              <div className={styles.tags}>
+                {tempComponent.developmentStatus && (
+                  <ToolTip tooltip="Status">
+                    <Tag
+                      label={_.upperFirst(tempComponent.developmentStatus)}
+                      icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                    />
+                  </ToolTip>
+                )}
+                <ToolTip tooltip="Installaties">
                   <Tag
-                    label={_.upperFirst(tempComponent.developmentStatus)}
-                    icon={<FontAwesomeIcon icon={faInfoCircle} />}
+                    label={_.toString(tempComponent.usedBy?.length ?? "0")}
+                    icon={<FontAwesomeIcon icon={faRepeat} />}
                   />
                 </ToolTip>
-              )}
-              <ToolTip tooltip="Installaties">
-                <Tag
-                  label={_.toString(tempComponent.usedBy?.length ?? "0")}
-                  icon={<FontAwesomeIcon icon={faRepeat} />}
-                />
-              </ToolTip>
 
-              {/* {tempComponent.embedded?.legal.embedded?.repoOwner.name && (
+                {/* {tempComponent.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
                       label={tempComponent.embedded?.url?.embedded?.organisation?.name}
@@ -136,25 +138,25 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
                   </ToolTip>
                 )} */}
 
-              {tempComponent.url && (
-                <ToolTip tooltip="GitHub/GitLab">
-                  <Tag
-                    label={t("Repository")}
-                    icon={<GitHubLogo />}
-                    //   onClick={() => open(tempComponent.url)}
-                  />
-                </ToolTip>
-              )}
+                {tempComponent.url && (
+                  <ToolTip tooltip="GitHub/GitLab">
+                    <Tag
+                      label={t("Repository")}
+                      icon={<GitHubLogo />}
+                      //   onClick={() => open(tempComponent.url)}
+                    />
+                  </ToolTip>
+                )}
 
-              {tempComponent.legal && (
-                <ToolTip tooltip="Licentie">
-                  <Tag label={tempComponent.legal} icon={<FontAwesomeIcon icon={faScroll} />} />
-                </ToolTip>
-              )}
+                {tempComponent.legal && (
+                  <ToolTip tooltip="Licentie">
+                    <Tag label={tempComponent.legal} icon={<FontAwesomeIcon icon={faScroll} />} />
+                  </ToolTip>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* <div className={styles.addToCatalogusContainer}>
+            {/* <div className={styles.addToCatalogusContainer}>
               <div className={styles.logoContainer}>
                 <img
                   src={tempComponent.embedded?.url?.avatar_url ?? componentPlacholderLogo}
@@ -163,9 +165,9 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
               </div>
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div> */}
-        </div>
+          </div>
 
-        {/* <div className={styles.cardsContainer}>
+          {/* <div className={styles.cardsContainer}>
             {tempComponent.embedded?.url?.embedded?.organisation && (
               <OrganizationCard
                 title={{
@@ -202,13 +204,13 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
             />
           </div> */}
 
-        {/* <DownloadTemplate
+          {/* <DownloadTemplate
             label={tempComponent.name}
             icon={<FontAwesomeIcon icon={faDatabase} />}
             {...{ sizeKb }}
           /> */}
 
-        {/* <div>
+          {/* <div>
             <h2>Technische gegevens</h2>
 
             <Table>
@@ -249,251 +251,254 @@ export const AdminMyCatalogiDetailTemplate: React.FC<AdminMyCatalogiDetailTempla
             </Table>
           </div> */}
 
-        <div>
-          <Heading2>Tabbladen</Heading2>
+          <div>
+            <Heading2>Tabbladen</Heading2>
 
-          <TabContext value={currentTab.toString()}>
-            <Tabs
-              value={currentTab}
-              onChange={(_, newValue: number) => {
-                setCurrentTab(newValue);
-              }}
-              variant="scrollable"
-            >
-              <Tab
-                className={styles.tab}
-                label={
-                  <BadgeCounter
-                    layoutClassName={styles.badgeLayout}
-                    number={_.toString(TempComponentsDependencies.length)}
-                  >
-                    Componenten & Afhankelijkheden
-                  </BadgeCounter>
-                }
-                value={0}
-              />
-              <Tab className={styles.tab} label={t("Suppliers")} value={1} />
-              <Tab className={styles.tab} label={t("Reuse")} value={2} />
-              <Tab
-                className={styles.tab}
-                label={
-                  <BadgeCounter layoutClassName={styles.badgeLayout} number={_.toString(TempComponentsSchema.length)}>
-                    {t("Schema's")}
-                  </BadgeCounter>
-                }
-                value={3}
-              />
-              <Tab
-                className={styles.tab}
-                label={
-                  <BadgeCounter
-                    layoutClassName={styles.badgeLayout}
-                    number={_.toString(TempComponentsProcesses.length)}
-                  >
-                    {t("Processes")}
-                  </BadgeCounter>
-                }
-                value={4}
-              />
-            </Tabs>
-
-            <TabPanel className={styles.tabPanel} value="0">
-              <div className={styles.components}>
-                <div className={styles.dependenciesDisplaySwitchButtons}>
-                  <Button
-                    className={styles.buttonIcon}
-                    variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-                    onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
-                  >
-                    <FontAwesomeIcon icon={faLayerGroup} />
-                    {t("Layers")}
-                  </Button>
-                  <Button
-                    className={styles.buttonIcon}
-                    variant={filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"}
-                    onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
-                  >
-                    <FontAwesomeIcon icon={faCircleNodes} />
-                    {t("Relations")}
-                  </Button>
-                </div>
-
-                <DependenciesTemplate
-                  type={filters.dependenciesDisplayLayout}
-                  components={TempComponentsDependencies}
-                  mainComponent={{
-                    id: myCatalogiId,
-                    name: tempComponent.name,
-                    layer: tempComponent.embedded?.nl.embedded.commonground.layerType,
-                  }}
+            <TabContext value={currentTab.toString()}>
+              <Tabs
+                value={currentTab}
+                onChange={(_, newValue: number) => {
+                  setCurrentTab(newValue);
+                }}
+                variant="scrollable"
+              >
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      number={_.toString(TempComponentsDependencies.length)}
+                    >
+                      Componenten & Afhankelijkheden
+                    </BadgeCounter>
+                  }
+                  value={0}
                 />
-              </div>
-            </TabPanel>
-
-            <TabPanel className={styles.tabPanel} value="1">
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableHeader>Gemeente Rotterdam</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        010 - 123 456 7
-                      </Link>
-                    </TableCell>
-
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                <Tab className={styles.tab} label={t("Suppliers")} value={1} />
+                <Tab className={styles.tab} label={t("Reuse")} value={2} />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter layoutClassName={styles.badgeLayout} number={_.toString(TempComponentsSchema.length)}>
+                      {t("Schema's")}
+                    </BadgeCounter>
+                  }
+                  value={3}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      number={_.toString(TempComponentsProcesses.length)}
                     >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
+                      {t("Processes")}
+                    </BadgeCounter>
+                  }
+                  value={4}
+                />
+              </Tabs>
 
-                  <TableRow>
-                    <TableHeader>Conduction</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        020 - 123 456 7
-                      </Link>
-                    </TableCell>
-
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+              <TabPanel className={styles.tabPanel} value="0">
+                <div className={styles.components}>
+                  <div className={styles.dependenciesDisplaySwitchButtons}>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
                     >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableHeader>Gemeente Utrecht</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        030 - 123 456 7
-                      </Link>
-                    </TableCell>
-
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      <FontAwesomeIcon icon={faLayerGroup} />
+                      {t("Layers")}
+                    </Button>
+                    <Button
+                      className={styles.buttonIcon}
+                      variant={
+                        filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"
+                      }
+                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
                     >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TabPanel>
+                      <FontAwesomeIcon icon={faCircleNodes} />
+                      {t("Relations")}
+                    </Button>
+                  </div>
 
-            <TabPanel className={styles.tabPanel} value="2">
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableHeader>Gemeente Amsterdam</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        020 - 123 456 7
-                      </Link>
-                    </TableCell>
+                  <DependenciesTemplate
+                    type={filters.dependenciesDisplayLayout}
+                    components={TempComponentsDependencies}
+                    mainComponent={{
+                      id: myCatalogiId,
+                      name: tempComponent.name,
+                      layer: tempComponent.embedded?.nl.embedded.commonground.layerType,
+                    }}
+                  />
+                </div>
+              </TabPanel>
 
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                    >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableHeader>Gemeente Rotterdam</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        010 - 123 456 7
-                      </Link>
-                    </TableCell>
+              <TabPanel className={styles.tabPanel} value="1">
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
 
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                    >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
 
-                  <TableRow>
-                    <TableHeader>Gemeente Waterland</TableHeader>
-                    <TableCell>
-                      <Link icon={<GitHubLogo />} iconAlign="start">
-                        Componenten GitHub
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Link icon={<CallIcon />} iconAlign="start">
-                        030 - 123 456 7
-                      </Link>
-                    </TableCell>
+                    <TableRow>
+                      <TableHeader>Conduction</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
 
-                    <TableCell
-                      className={styles.details}
-                      onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                    >
-                      <Link icon={<ArrowRightIcon />} iconAlign="start">
-                        {t("Details")}
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TabPanel>
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
 
-            <TabPanel className={styles.tabPanel} value="3">
-              <div className={styles.components}>
-                <ComponentCardsAccordionTemplate components={TempComponentsSchema} />
-              </div>
-            </TabPanel>
-            <TabPanel className={styles.tabPanel} value="4">
-              <div className={styles.components}>
-                <ComponentCardsAccordionTemplate components={TempComponentsProcesses} />
-              </div>
-            </TabPanel>
-          </TabContext>
-        </div>
-      </>
-      {/* )} */}
-      {/* {_getComponent.isLoading && <Skeleton height="200px" />} */}
-    </Container>
+                    <TableRow>
+                      <TableHeader>Gemeente Utrecht</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+
+              <TabPanel className={styles.tabPanel} value="2">
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableHeader>Gemeente Amsterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableHeader>Gemeente Waterland</TableHeader>
+                      <TableCell>
+                        <Link icon={<GitHubLogo />} iconAlign="start">
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link icon={<CallIcon />} iconAlign="start">
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell
+                        className={styles.details}
+                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
+                      >
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+
+              <TabPanel className={styles.tabPanel} value="3">
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsSchema} />
+                </div>
+              </TabPanel>
+              <TabPanel className={styles.tabPanel} value="4">
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={TempComponentsProcesses} />
+                </div>
+              </TabPanel>
+            </TabContext>
+          </div>
+        </>
+        {/* )} */}
+        {/* {_getComponent.isLoading && <Skeleton height="200px" />} */}
+      </Container>
+    </AdminTemplate>
   );
 };

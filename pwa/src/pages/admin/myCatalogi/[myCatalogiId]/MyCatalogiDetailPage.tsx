@@ -4,10 +4,6 @@ import { PageProps } from "gatsby";
 import { AdminMyCatalogiDetailTemplate } from "../../../../templates/admin/adminMyCatalogiDetailTemplate/AdminMyCatalogiDetailTemplate";
 
 const MyCatalogiDetailPage: React.FC<PageProps> = (props: PageProps) => {
-  return (
-    <AdminMyCatalogiDetailTemplate
-	  myCatalogiId={props.params.sourceId}
-    />
-  );
+  return <AdminMyCatalogiDetailTemplate myCatalogiId={props.params.myCatalogiId} />;
 };
 export default MyCatalogiDetailPage;

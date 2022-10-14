@@ -42,7 +42,7 @@ export const AdminCatalogiTemplate: React.FC = () => {
                 <TableRow
                   className={styles.tableRow}
                   key={component.id}
-                  onClick={() => navigate(`/components/${component.id}`)}
+                  onClick={() => navigate(`/admin/catalogi/${component.id}`)}
                 >
                   <TableCell>
                     <span className={styles.name}>{component.name}</span>

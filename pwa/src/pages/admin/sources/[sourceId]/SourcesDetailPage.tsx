@@ -4,10 +4,6 @@ import { PageProps } from "gatsby";
 import { AdminSourcesDetailTemplate } from "../../../../templates/admin/adminSourcesDetailTemplate/AdminSourcesDetailTemplate";
 
 const SourcesDetailPage: React.FC<PageProps> = (props: PageProps) => {
-  return (
-    <AdminSourcesDetailTemplate
-      sourcesId={props.params.sourceId}
-    />
-  );
+  return <AdminSourcesDetailTemplate sourcesId={props.params.sourceId} />;
 };
 export default SourcesDetailPage;
