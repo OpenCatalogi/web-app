@@ -67,6 +67,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
+      label: t("Initiatives"),
+      current: pathname === "/components" && filters.softwareType === "api",
+      handleClick: () => {
+        setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
+        navigate("/components");
+      },
+    },
+    {
       label: "Documentatie",
       current: pathname.includes("documentation"),
       subItems: [

@@ -72,4 +72,8 @@ export const nl = {
   "Management organization": "Beheerorganisatie",
   "No organization found": "Geen organisatie gevonden",
   "There is no description available": "Er is geen omschrijving beschikbaar",
+  Initiatives: "Initiatieven",
+  Development: "In Ontwikkeling",
+  Stable: "Bruikbaar",
+  Obsolete: "Uitgefaseerd",
 };
