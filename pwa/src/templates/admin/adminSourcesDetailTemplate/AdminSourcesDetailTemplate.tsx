@@ -11,38 +11,22 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import { Container, BadgeCounter } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ArrowRightIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { QueryClient } from "react-query";
-import { useComponent } from "../../../hooks/components";
-import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_COMPONENTS } from "../../../data/components";
-import { RatingIndicatorTemplate } from "../../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { Tag } from "../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleNodes,
-  faDatabase,
-  faHouse,
-  faInfoCircle,
-  faLayerGroup,
-  faRepeat,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleNodes, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../../components/toolTip/ToolTip";
-import { categories, TCategories } from "../../../data/categories";
 import { categories as _categories } from "../../../data/filters";
-import { OrganizationCard } from "../../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { DownloadTemplate } from "../../templateParts/download/DownloadTemplate";
 import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 
 interface AdminSourcesDetailTemplateProps {
@@ -61,15 +45,6 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
   const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
 
-  const layer: TCategories = t(_.upperFirst(tempComponent.embedded?.nl.embedded.commonground.layerType));
-  //   const category =
-  //     layer &&
-  //     categories[layer].find((category) => {
-  //       return category.value === tempComponent.categories;
-  //     });
-
-  //   if (tempComponent.isError) return <>Something went wrong...</>;
-
   return (
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
@@ -79,7 +54,6 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
           </Link>
         </div>
 
-        {/* {tempComponent.isSuccess && ( */}
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
@@ -97,20 +71,6 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
-
-                {/* {tempComponent.categories && category && (
-                  <ToolTip tooltip="Categorie">
-                    <Tag
-                      layoutClassName={
-                        styles[
-                          _.camelCase(`${tempComponent.embedded?.nl.embedded.commonground.layerType} category`)
-                        ]
-                      }
-                      label={_.upperFirst(category?.title)}
-                      icon={category?.icon}
-                    />
-                  </ToolTip>
-                )} */}
               </div>
 
               <div className={styles.tags}>
@@ -129,22 +89,9 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
                   />
                 </ToolTip>
 
-                {/* {tempComponent.embedded?.legal.embedded?.repoOwner.name && (
-                  <ToolTip tooltip="Organisatie">
-                    <Tag
-                      label={tempComponent.embedded?.url?.embedded?.organisation?.name}
-                      icon={<FontAwesomeIcon icon={faHouse} />}
-                    />
-                  </ToolTip>
-                )} */}
-
                 {tempComponent.url && (
                   <ToolTip tooltip="GitHub/GitLab">
-                    <Tag
-                      label={t("Repository")}
-                      icon={<GitHubLogo />}
-                      //   onClick={() => open(tempComponent.url)}
-                    />
+                    <Tag label={t("Repository")} icon={<GitHubLogo />} />
                   </ToolTip>
                 )}
 
@@ -155,101 +102,7 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
                 )}
               </div>
             </div>
-
-            {/* <div className={styles.addToCatalogusContainer}>
-              <div className={styles.logoContainer}>
-                <img
-                  src={tempComponent.embedded?.url?.avatar_url ?? componentPlacholderLogo}
-                  className={styles.logo}
-                />
-              </div>
-              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
-            </div> */}
           </div>
-
-          {/* <div className={styles.cardsContainer}>
-            {tempComponent.embedded?.url?.embedded?.organisation && (
-              <OrganizationCard
-                title={{
-                  label: tempComponent.embedded?.url?.embedded?.organisation?.name,
-                  href: `/organizations/${tempComponent.embedded?.url?.embedded?.organisation?.id}`,
-                }}
-                description={tempComponent.embedded?.url?.embedded?.organisation?.description}
-                website={tempComponent.embedded?.url?.embedded?.organisation?.website}
-                logo={tempComponent.embedded?.url?.embedded?.organisation?.logo}
-                components={{
-                  owned: tempComponent.embedded?.url?.embedded?.organisation?.owns?.length.toString() ?? "0",
-                  supported:
-                    tempComponent.embedded?.url?.embedded?.organisation?.supports?.length.toString() ?? "0",
-                  used: tempComponent.embedded?.url?.embedded?.organisation?.uses?.length.toString() ?? "0",
-                }}
-                gitHub={tempComponent.embedded?.url?.embedded?.organisation?.github}
-                gitLab={tempComponent.embedded?.url?.embedded?.organisation?.gitlab}
-                type={tempComponent.embedded?.url?.embedded?.organisation?.type}
-                layoutClassName={styles.organizationCardContainer}
-              />
-            )}
-            {!tempComponent.embedded?.url?.embedded?.organisation && (
-              <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
-            )}
-            <InfoCard
-              title=""
-              content={
-                <RatingIndicatorTemplate
-                  layoutClassName={styles.ratingIndicatorContainer}
-                  component={tempComponent}
-                />
-              }
-              layoutClassName={styles.infoCard}
-            />
-          </div> */}
-
-          {/* <DownloadTemplate
-            label={tempComponent.name}
-            icon={<FontAwesomeIcon icon={faDatabase} />}
-            {...{ sizeKb }}
-          /> */}
-
-          {/* <div>
-            <h2>Technische gegevens</h2>
-
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableHeader>Gemma</TableHeader>
-                  <TableCell>Op dit moment is er geen gemma data beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>{t("Products")}</TableHeader>
-                  <TableCell>
-                    {tempComponent.embedded.nl.upl &&
-                      tempComponent.embedded.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                            {product},
-                          </Link>
-                        </span>
-                      ))}
-                    {!tempComponent.embedded.nl.upl ||
-                      (!tempComponent.embedded.nl.upl.length && (
-                        <span>Op dit moment zijn er geen producten beschikbaar.</span>
-                      ))}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>Standaarden</TableHeader>
-                  <TableCell>Op dit moment zijn er geen standaarden beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>Wet en regelgeving</TableHeader>
-                  <TableCell>Op dit moment zijn er geen wetten en regelgevingen beschikbaar.</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div> */}
 
           <div>
             <Heading2>Tabbladen</Heading2>
@@ -496,8 +349,6 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
             </TabContext>
           </div>
         </>
-        {/* )} */}
-        {/* {_getComponent.isLoading && <Skeleton height="200px" />} */}
       </Container>
     </AdminTemplate>
   );
