@@ -71,4 +71,8 @@ export const en = {
   "Management organization": "Management organization",
   "No organization found": "No organization found",
   "There is no description available": "There is no description available",
+  Initiatives: "Initiatives",
+  Development: "Devlopment",
+  Stable: "Stable",
+  Obsolete: "Obsolete",
 };
