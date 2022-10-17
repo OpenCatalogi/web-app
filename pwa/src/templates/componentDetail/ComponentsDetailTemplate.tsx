@@ -43,6 +43,7 @@ import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/Com
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
+import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -61,6 +62,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
+
+  const tempOrganization = TEMPORARY_ORGANIZATIONS;
 
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
   const category =
@@ -339,78 +342,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableHeader>Gemeente Rotterdam</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          010 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableHeader>Conduction</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          020 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableHeader>Gemeente Utrecht</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          030 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                {tempOrganization.map((organization) => (
+                  <OrganizationCard
+                    key={organization.id}
+                    title={{
+                      label: organization?.name,
+                      href: `#`,
+                    }}
+                    description={organization?.description}
+                    website={organization?.website}
+                    logo={organization?.logo}
+                    components={{
+                      owned: organization?.owns?.length.toString() ?? "0",
+                      supported: organization?.supports?.length.toString() ?? "0",
+                      used: organization?.uses?.length.toString() ?? "0",
+                    }}
+                    gitHub={organization?.github}
+                    gitLab={organization?.gitlab}
+                    type={organization?.type}
+                    layoutClassName={styles.organizationCardContainer}
+                  />
+                ))}
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
