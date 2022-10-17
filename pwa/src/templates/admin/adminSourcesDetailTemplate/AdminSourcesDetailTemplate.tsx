@@ -1,33 +1,36 @@
 import * as React from "react";
 import * as styles from "./AdminSourcesDetailTemplate.module.css";
 import {
-  Button,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
-import { Container, BadgeCounter } from "@conduction/components";
-import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, CallIcon } from "@gemeente-denhaag/icons";
-import { useTranslation } from "react-i18next";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { TEMPORARY_COMPONENTS } from "../../../data/components";
-import { Tag } from "../../../components/tag/Tag";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleNodes, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
-import _ from "lodash";
-import { ToolTip } from "../../../components/toolTip/ToolTip";
-import { categories as _categories } from "../../../data/filters";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
-import { FiltersContext } from "../../../context/filters";
-import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
+	Button,
+	Heading1,
+	Heading2,
+	LeadParagraph,
+	Link,
+	Tab,
+	TabContext,
+	TabPanel,
+	Tabs,
+  } from "@gemeente-denhaag/components-react";
+  import { Container, BadgeCounter, InfoCard } from "@conduction/components";
+  import { navigate } from "gatsby";
+  import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+  import { useTranslation } from "react-i18next";
+  import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+  import { TEMPORARY_COMPONENTS } from "../../../data/components";
+  import { Tag } from "../../../components/tag/Tag";
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  import componentPlacholderLogo from "../../../assets/images/grey.png";
+  import { faCircleNodes, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
+  import _ from "lodash";
+  import { ToolTip } from "../../../components/toolTip/ToolTip";
+  import { categories as _categories } from "../../../data/filters";
+  import { GitHubLogo } from "../../../assets/svgs/GitHub";
+  import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
+  import { FiltersContext } from "../../../context/filters";
+  import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+  import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
+  import { categories, TCategories } from "../../../data/categories";
+  import { RatingIndicatorTemplate } from "../../templateParts/ratingIndicator/RatingIndicatorTemplate";
 
 interface AdminSourcesDetailTemplateProps {
   sourcesId: string;
@@ -45,6 +48,13 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
   const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
 
+  const layer: TCategories = t(_.upperFirst(tempComponent.embedded?.nl.embedded.commonground.layerType));
+  const category =
+    layer &&
+    categories[layer].find((category) => {
+      return tempComponent.categories.includes(category.value);
+    });
+
   return (
     <AdminTemplate>
       <Container layoutClassName={styles.container}>
@@ -59,7 +69,10 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
             <div className={styles.headingContent}>
               <Heading1>{tempComponent.name}</Heading1>
 
-              <LeadParagraph className={styles.description}>{tempComponent.description}</LeadParagraph>
+              <LeadParagraph className={styles.description}>
+                {tempComponent.description ??
+                  `Documenten API,Een API om een documentregistratiecomponent (DRC) te benaderen. In een documentregistratiecomponent worden INFORMATIEOBJECTen opgeslagen. Een INFORMATIEOBJECT is een digitaal document voorzien van meta-gegevens. INFORMATIEOBJECTen kunnen aan andere objecten zoals zaken en besluiten worden gerelateerd (maar dat hoeft niet) en kunnen gebruiksrechten hebben.`}
+              </LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
@@ -71,6 +84,18 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
+
+                {tempComponent?.categories && category && (
+                  <ToolTip tooltip="Categorie">
+                    <Tag
+                      layoutClassName={
+                        styles[_.camelCase(`${tempComponent.embedded?.nl.embedded.commonground.layerType} category`)]
+                      }
+                      label={_.upperFirst(category?.title)}
+                      icon={category?.icon}
+                    />
+                  </ToolTip>
+                )}
               </div>
 
               <div className={styles.tags}>
@@ -91,19 +116,58 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
 
                 {tempComponent.url && (
                   <ToolTip tooltip="GitHub/GitLab">
-                    <Tag label={t("Repository")} icon={<GitHubLogo />} />
-                  </ToolTip>
-                )}
-
-                {tempComponent.legal && (
-                  <ToolTip tooltip="Licentie">
-                    <Tag label={tempComponent.legal} icon={<FontAwesomeIcon icon={faScroll} />} />
+                    <Tag label={t("Repository")} icon={<GitHubLogo />} onClick={() => open(tempComponent?.url ?? "")} />
                   </ToolTip>
                 )}
               </div>
             </div>
+
+            <div className={styles.addToCatalogusContainer}>
+              <div className={styles.logoContainer}>
+                <img
+                  src={componentPlacholderLogo}
+                  className={styles.logo}
+                />
+              </div>
+              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+            </div>
           </div>
 
+          <div className={styles.cardsContainer}>
+            <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
+            <InfoCard
+              title=""
+              content={
+                <RatingIndicatorTemplate layoutClassName={styles.ratingIndicatorContainer} component={tempComponent} />
+              }
+              layoutClassName={styles.infoCard}
+            />
+          </div>
+
+          <div>
+            <h2>Technische gegevens</h2>
+
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableHeader>Gemma</TableHeader>
+                  <TableCell>Op dit moment is er geen gemma data beschikbaar.</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader>{t("Products")}</TableHeader>
+                  <TableCell>Op dit moment zijn er geen producten beschikbaar.</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader>Standaarden</TableHeader>
+                  <TableCell>Op dit moment zijn er geen standaarden beschikbaar.</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader>Wet en regelgeving</TableHeader>
+                  <TableCell>Op dit moment zijn er geen wetten en regelgevingen beschikbaar.</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
           <div>
             <Heading2>Tabbladen</Heading2>
 

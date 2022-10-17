@@ -40,7 +40,7 @@ export const AdminDashboardTemplate: React.FC = () => {
                 <TableRow
                   className={styles.tableRow}
                   key={component.id}
-                  onClick={() => navigate(`/components/${component.id}`)}
+                  onClick={() => navigate(`/admin/components/${component.id}`)}
                 >
                   <TableCell>
                     <span className={styles.name}>{component.name}</span>
