@@ -1,23 +1,22 @@
 .container {
   display: flex;
-  justify-content: space-between;
-  margin-block-start: var(--web-app-size-3xl);
+  gap: var(--web-app-size-3xl);
+  margin-block-start: var(--web-app-size-4xl);
+  max-width: var(--web-app-container-width-lg);
 }
 
 .menu {
-  margin-block-start: var(--web-app-size-3xl);
+  min-width: 200px;
+  padding-inline: var(--web-app-size-lg);
+  padding-block: var(--web-app-size-lg);
+  background-color: var(--web-app-color-background-light);
 }
 
 .content {
   width: 100%;
-  max-width: var(--conduction-container-max-width);
-}
-
-.fillerDiv {
-  width: 145px;
 }
 
 .iconsSidenav {
-  height: var(--conduction-sidenav-icon-size);
-  width: var(--conduction-sidenav-icon-size);
+  height: var(--web-app-size-lg);
+  width: var(--web-app-size-lg);
 }
