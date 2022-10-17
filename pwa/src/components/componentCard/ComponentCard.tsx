@@ -63,7 +63,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.tags}>
         {tags.status && (
           <ToolTip tooltip="Status">
-            <Tag label={_.upperFirst(tags.status)} icon={<FontAwesomeIcon icon={faInfoCircle} />} />
+            <Tag label={t(_.upperFirst(tags.status))} icon={<FontAwesomeIcon icon={faInfoCircle} />} />
           </ToolTip>
         )}
         <ToolTip tooltip="Aantal installaties">

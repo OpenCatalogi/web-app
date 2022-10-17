@@ -47,9 +47,7 @@
 }
 
 .disabled .badge {
-  --conduction-badge-counter-background-color: var(
-    --web-app-color-background-light
-  );
+  --conduction-badge-counter-background-color: var(--web-app-color-background-light);
   --conduction-badge-counter-color: var(--web-app-color-black);
 }
 
@@ -58,33 +56,23 @@
 }
 
 .maxNumber {
-  --conduction-badge-counter-font-size: var(
-    --web-app-badge-counter-max-number-font-size
-  );
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }
 
 .interactionBadge {
-  --conduction-badge-counter-background-color: var(
-    --web-app-layer-color-interaction
-  );
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-interaction);
   --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .processBadge {
-  --conduction-badge-counter-background-color: var(
-    --web-app-layer-color-process
-  );
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-process);
   --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .integrationBadge {
-  --conduction-badge-counter-background-color: var(
-    --web-app-layer-color-integration
-  );
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-integration);
   --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .servicesBadge {
-  --conduction-badge-counter-background-color: var(
-    --web-app-layer-color-services
-  );
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-services);
   --conduction-badge-counter-color: var(--web-app-color-white);
 }
 .dataBadge {

@@ -10,7 +10,7 @@ export const useMe = () => {
     useQuery<any, Error>(["me"], () => API.Me.getMe(), {
       onError: (error) => {
         throw new Error(error.message);
-      }
+      },
     });
 
   return { getMe };

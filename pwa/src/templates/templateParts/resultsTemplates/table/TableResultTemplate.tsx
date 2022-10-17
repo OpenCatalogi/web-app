@@ -67,7 +67,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <ToolTip tooltip="Status">
                 <Tag
                   layoutClassName={styles.tagWidth}
-                  label={_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                  label={t(_.upperFirst(component.developmentStatus ?? "Onbekend"))}
                   icon={<FontAwesomeIcon icon={faInfoCircle} />}
                 />
               </ToolTip>
@@ -82,7 +82,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableCell>
               <ToolTip tooltip="Organisatie">
                 <Tag
-                  label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
+                  label={_.upperFirst(component.embedded?.url?.embedded?.organisation?.name ?? "Onbekend")}
                   icon={<FontAwesomeIcon icon={faHouse} />}
                 />
               </ToolTip>
