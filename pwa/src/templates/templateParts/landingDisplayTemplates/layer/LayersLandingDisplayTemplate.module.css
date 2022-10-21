@@ -28,25 +28,12 @@
   cursor: pointer;
 }
 
-.beta,
-.gewenst,
-.gepland {
-  border-right-width: var(--web-app-size-xs);
-  border-right-style: solid;
-}
-
-.beta {
-  border-right-color: #ffbc2c;
-}
-
-.gepland {
-  border-right-color: #005282;
-}
-
-.gewenst {
-  border-right-color: #38aeda;
-}
-
 .layer {
   margin-bottom: var(--web-app-size-lg);
+}
+
+.subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
 }
