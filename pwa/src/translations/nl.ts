@@ -85,4 +85,5 @@ export const nl = {
   Login: "Inloggen",
   Logout: "Uitloggen",
   Applications: "Applicaties",
+  "Software products": "Software producten",
 };

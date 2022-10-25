@@ -38,35 +38,48 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: t("Software"),
-      current: pathname === "/components" && filters.softwareType === "standalone/desktop",
+      label: t("Portofolio"),
+      current: pathname === "/portofolio",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "standalone/desktop" });
-        navigate("/components");
+        navigate("#");
       },
     },
     {
-      label: t("Processes"),
-      current: pathname === "/components" && filters.softwareType === "process",
-      handleClick: () => {
-        setFilters({ ...filters, softwareType: "process" });
-        navigate("/components");
-      },
-    },
-    {
-      label: t("Applications"),
+      label: t("Software products"),
       current: pathname === "/applications",
       handleClick: () => {
         navigate("/applications");
       },
     },
     {
-      label: t("API's"),
-      current: pathname === "/components" && filters.softwareType === "api",
-      handleClick: () => {
-        setFilters({ ...filters, softwareType: "api" });
-        navigate("/components");
-      },
+      label: t("Components"),
+      current: pathname.includes("/components"),
+      subItems: [
+        {
+          label: t("Processes"),
+          current: pathname === "/components" && filters.softwareType === "process",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "process" });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("Data models"),
+          current: pathname === "/components" && filters.softwareType === "schema",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "schema" });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("API's"),
+          current: pathname === "/components" && filters.softwareType === "api",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "api" });
+            navigate("/components");
+          },
+        },
+      ],
     },
     {
       label: t("Initiatives"),
@@ -114,6 +127,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           current: pathname === "/documentation/standards",
           handleClick: () => {
             navigate("/documentation/standards");
+          },
+        },
+        {
+          label: t("Contact"),
+          current: pathname === "/documentation/contact",
+          handleClick: () => {
+            navigate("#");
           },
         },
       ],
