@@ -74,6 +74,4 @@ export const nl = {
   "Score calculation": "Score opbouw",
   "There is no organization available": "Er is geen organisatie beschikbaar",
   Close: "Sluiten",
-  "No organization found": "Geen organisatie gevonden",
-  "There is no description available": "Er is geen omschrijving beschikbaar",
 };

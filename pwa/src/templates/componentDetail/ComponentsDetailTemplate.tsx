@@ -15,7 +15,7 @@ import { Container, InfoCard, BadgeCounter, NotificationPopUp as _NotificationPo
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import componentPlacholderLogo from "../../assets/images/grey.png";
+import grey from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
@@ -140,7 +140,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
-                      label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
+                      label={_getComponent.data.embedded?.legal.embedded?.repoOwner.name}
                       icon={<FontAwesomeIcon icon={faHouse} />}
                     />
                   </ToolTip>
@@ -168,12 +168,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
 
             <div className={styles.addToCatalogusContainer}>
-              <div className={styles.logoContainer}>
-                <img
-                  src={_getComponent.data?.embedded?.url?.avatar_url ?? componentPlacholderLogo}
-                  className={styles.logo}
-                />
-              </div>
+              <img src={grey} className={styles.componentImage} />
               <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
@@ -201,7 +196,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               />
             )}
             {!_getComponent?.data?.embedded?.url?.embedded?.organisation && (
-              <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
+              <span className={styles.noOrganizationCardAvailable}>{t("There is no organization available")}</span>
             )}
             <InfoCard
               title=""
@@ -280,10 +275,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           </Link>
                         </span>
                       ))}
-                    {!_getComponent.data.embedded.nl.upl ||
-                      (!_getComponent.data.embedded.nl.upl.length && (
-                        <span>Op dit moment zijn er geen producten beschikbaar.</span>
-                      ))}
+                    {!_getComponent.data.embedded.nl.upl && (
+                      <span>Op dit moment zijn er geen producten beschikbaar.</span>
+                    )}
                   </TableCell>
                 </TableRow>
                 <TableRow>
