@@ -29,14 +29,16 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
         </Link>
       </div>
 
-      {Portfolio && (
+      {tempApplications && (
         <div className={styles.header}>
-          <Heading1>{Portfolio.title}</Heading1>
-          <LeadParagraph className={styles.description}>{Portfolio.description}</LeadParagraph>
+          <Heading1>{tempApplications.name}</Heading1>
+          <LeadParagraph className={styles.description}>{tempApplications.description}</LeadParagraph>
+
+          <img src={detailPageImageUrl ?? } alt="" />
         </div>
       )}
 
-      {!Portfolio && <Skeleton height="200px" />}
+      {!tempApplications && <Skeleton height="200px" />}
     </Container>
   );
 };

@@ -45,14 +45,9 @@ export const ApplicationsTemplate: React.FC = () => {
               key={application.id}
               title={{ label: application.name, href: `/applications/${application.id}` }}
               description={application.shortDescription}
-              layer={application.layerType}
-              category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
               tags={{
-                status: application.developmentStatus,
-                installations: application.usedBy?.length.toString() ?? "0",
-                organization: application.embedded?.url?.embedded?.organisation?.name,
-                licence: application.embedded?.legal?.license,
-                githubLink: application.embedded?.url?.url,
+                organization: application.owner.fullName,
+                githubLink: application.demoUrl,
               }}
             />
           ))}
