@@ -71,7 +71,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Initiatives"),
-      current: pathname === "/components" && filters.developmentStatus === "concept" && filters.softwareType === "standalone/web",
+      current:
+        pathname === "/components" &&
+        filters.developmentStatus === "concept" &&
+        filters.softwareType === "standalone/web",
       handleClick: () => {
         setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
         navigate("/components");
@@ -140,7 +143,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        navigate("/login");
+        open("https://admin.opencatalogi.nl/");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },

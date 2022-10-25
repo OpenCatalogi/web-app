@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
-export type TLandingDisplayLayout = "cards" | "layer";
+export type TLandingDisplayLayout = "layer" | "cards";
 export type TComponentDependenciesLayout = "layer" | "relations";
 
 export interface IFilters {

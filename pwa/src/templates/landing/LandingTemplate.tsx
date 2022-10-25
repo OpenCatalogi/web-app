@@ -1,14 +1,13 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Button, Divider, Heading2, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Button, Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import { Container, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import { ComponentCategoryAccordionTemplate } from "../templateParts/componentCategoryAccordion/ComponentCategoryAccordionTemplate";
 import { FiltersContext } from "../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 
@@ -19,7 +18,7 @@ export const LandingTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <div className={styles.resultsDisplaySwitchButtons}>
+        <div className={styles.landingDisplaySwitchButtons}>
           <Button
             className={styles.buttonIcon}
             variant={filters.landingDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
