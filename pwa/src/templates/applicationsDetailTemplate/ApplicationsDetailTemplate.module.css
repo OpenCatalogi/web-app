@@ -9,6 +9,29 @@
 
 .header {
   margin-block-start: var(--web-app-size-3xl);
+  display: flex;
+}
+
+.description {
+  margin-inline-end: var(--web-app-size-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.layerAndCategoryContainer {
+  display: flex;
+  justify-self: end;
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.applicationImage {
+  max-width: 350px;
+  height: 100%;
 }
 
 .subHeading {

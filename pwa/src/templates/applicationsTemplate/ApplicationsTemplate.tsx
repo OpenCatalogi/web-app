@@ -4,13 +4,8 @@ import * as _ from "lodash";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
-import { QueryClient } from "react-query";
-import Skeleton from "react-loading-skeleton";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
-import { useApplications } from "../../hooks/applications";
 import { TEMPORARY_APPLICATIONS } from "../../data/applications";
 
 export const ApplicationsTemplate: React.FC = () => {

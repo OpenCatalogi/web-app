@@ -5,7 +5,7 @@ import { navigate } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";

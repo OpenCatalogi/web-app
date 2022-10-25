@@ -37,6 +37,10 @@ module.exports = {
             pathname: "/categories/[categorieId]",
             crumbLabel: "Categorie",
           },
+          {
+            pathname: "/applications/[applicationId]",
+            crumbLabel: "Application",
+          },
         ],
       },
     },
