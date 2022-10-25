@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./AdminTemplate.module.css";
 import { useTranslation } from "react-i18next";
-import { PrivateRoute } from "@conduction/components";
+import { Container, PrivateRoute } from "@conduction/components";
 import { isLoggedIn } from "../../../services/auth";
 import { GatsbyContext } from "../../../context/gatsby";
 import { navigate } from "gatsby";
@@ -10,17 +10,12 @@ import { faFile, faHouse, faList, faListCheck, faServer, faUser } from "@fortawe
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const AdminTemplate: React.FC = ({ children }) => {
-  const { t } = useTranslation();
-
   return (
     <PrivateRoute authenticated={isLoggedIn()}>
-      <div className={styles.container}>
-        <div className={styles.menu}>
-          <Menu />
-        </div>
+      <Container layoutClassName={styles.container}>
+        <Menu layoutClassName={styles.menu} />
         <div className={styles.content}>{children}</div>
-        <div className={styles.fillerDiv} />
-      </div>
+      </Container>
     </PrivateRoute>
   );
 };
@@ -36,7 +31,11 @@ interface MenuItem {
   current?: boolean;
 }
 
-const Menu: React.FC = () => {
+interface MenuProps {
+  layoutClassName?: string;
+}
+
+const Menu: React.FC<MenuProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const {
     location: { pathname },
@@ -83,17 +82,19 @@ const Menu: React.FC = () => {
   };
 
   return (
-    <Sidenav>
-      <SidenavList>
-        {menuItems.map(({ href, label, icon, current }) => (
-          <SidenavItem key={href}>
-            <SidenavLink href="" onClick={(e) => handleClick(e, href)} current={current}>
-              {icon}
-              {label}
-            </SidenavLink>
-          </SidenavItem>
-        ))}
-      </SidenavList>
-    </Sidenav>
+    <div className={layoutClassName && layoutClassName}>
+      <Sidenav>
+        <SidenavList>
+          {menuItems.map(({ href, label, icon, current }) => (
+            <SidenavItem key={href}>
+              <SidenavLink href="" onClick={(e) => handleClick(e, href)} current={current}>
+                {icon}
+                {label}
+              </SidenavLink>
+            </SidenavItem>
+          ))}
+        </SidenavList>
+      </Sidenav>
+    </div>
   );
 };
