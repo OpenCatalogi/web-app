@@ -1,5 +1,5 @@
 .container {
-  max-width: var(--web-app-container-width-lg);
+  max-width: 1440px;
 }
 
 .container > *:not(:last-child) {
