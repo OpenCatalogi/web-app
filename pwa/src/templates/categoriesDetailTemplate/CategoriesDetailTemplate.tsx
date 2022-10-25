@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoriesDetailTemplate.module.css";
 import { Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { Container, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
