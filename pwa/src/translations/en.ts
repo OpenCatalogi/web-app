@@ -84,4 +84,6 @@ export const en = {
   Login: "Login",
   Logout: "Logout",
   Applications: "Applications",
+  Categories: "Categories",
+  "Back to categories": "Back to categories",
 };
