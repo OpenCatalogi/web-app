@@ -5,6 +5,10 @@ import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Container, DetailsCard } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
+import { CategoryCard } from "../../components/categoryCard/CategoryCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 
 export const CategoriesTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -23,15 +27,7 @@ export const CategoriesTemplate: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.componentsGrid}>
-        {categories.map((category) => (
-          <DetailsCard
-            title={category.title}
-            introduction={category.description}
-            link={{ href: `/categories/${category.id}`, label: "details" }}
-          />
-        ))}
-      </div>
+      <CategoriesardsAccordionTemplate {...{ categories }} />
     </Container>
   );
 };

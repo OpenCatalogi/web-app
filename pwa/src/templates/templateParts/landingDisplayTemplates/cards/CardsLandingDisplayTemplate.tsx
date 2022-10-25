@@ -5,6 +5,7 @@ import { DetailsCard } from "@conduction/components";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import { useTranslation } from "react-i18next";
+import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 
 interface CardsLandingDisplayTemplateProps {}
 
@@ -23,11 +24,12 @@ export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplatePr
         </LeadParagraph>
       </div>
       <div className={styles.ComponentsGrid}>
-        {categories.map((categorie) => (
-          <DetailsCard
-            title={categorie.title}
-            introduction={categorie.description}
-            link={{ href: `/categories/${categorie.id}`, label: "details" }}
+        {categories.map((category) => (
+          <CategoryCard
+            title={{ label: category.title, href: `/categories/${category.id}` }}
+            description={category.description}
+            icon={category.icon}
+            domain={"domain"}
           />
         ))}
       </div>
