@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 import Case from "./resources/case";
 import Component from "./resources/components";
 import Message from "./resources/message";
+import Organization from "./resources/organization";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -29,7 +30,7 @@ export default class APIService {
 
     return axios.create({
       //@ts-ignore
-      baseURL: window.GATSBY_API_URL,
+      baseURL: window.sessionStorage.getItem("GATSBY_API_URL"),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -41,7 +42,7 @@ export default class APIService {
   public get LoginClient(): AxiosInstance {
     return axios.create({
       //@ts-ignore
-      baseURL: window.GATSBY_API_URL,
+      baseURL: window.sessionStorage.getItem("GATSBY_API_URL"),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -52,7 +53,7 @@ export default class APIService {
   public get BaseClient(): AxiosInstance {
     return axios.create({
       //@ts-ignore
-      baseURL: window.GATSBY_BASE_URL,
+      baseURL: window.sessionStorage.getItem("GATSBY_BASE_URL"),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -72,6 +73,10 @@ export default class APIService {
 
   public get Component(): Component {
     return new Component(this.apiClient);
+  }
+
+  public get Organization(): Organization {
+    return new Organization(this.apiClient);
   }
 
   // Services

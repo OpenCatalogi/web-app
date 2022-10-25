@@ -54,6 +54,7 @@
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
+  --web-app-color-grey: var(--skeleton-color-grey-1);
 
   --web-app-color-link: hsl(211 60% 35%);
   --web-app-color-link-active: hsl(211 60% 35%);
@@ -141,10 +142,13 @@
   --web-app-layer-accordion-disabled-opacity: 0.15;
 
   --web-app-component-image-max-width: 300px;
-  --web-app-component-rating-indicator-max-height: 160px;
+  --web-app-component-rating-indicator-height: 160px;
 
-  --web-app-ornaziation-detail-logo-height: 300px;
-  --web-app-ornaziation-detail-logo-width: 350px;
+  --web-app-organization-detail-logo-height: 300px;
+  --web-app-organization-detail-logo-width: 350px;
+
+  --web-app-component-detail-logo-height: 225px;
+  --web-app-component-detail-logo-width: 300px;
 
   --web-app-relations-frame-width: 1024px;
   --web-app-relations-frame-height: 500px;
@@ -154,17 +158,28 @@
   --web-app-download-popup-width: 500px;
   --web-app-overlay-background: rgba(0, 0, 0, 0.3);
 
+  --web-app-container-width-lg: 1440px;
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
-  --web-app-secondary-top-nav-color: var(--web-app-color-black);
+  --web-app-secondary-top-nav-color: var(--web-app-color-link);
   --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-normal);
 
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-primary-top-nav-color: var(--web-app-color-white);
-  --web-app-primary-top-nav-background-color: hsl(211 60% 35%);
-  --web-app-primary-top-nav-background-color-hover: rgba(255, 255, 255, 0.2);
+  --web-app-primary-top-nav-color: var(--web-app-color-link);
+  --web-app-primary-top-nav-background-color: var(--web-app-color-white);
+  --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
+
+  /* @gemeent-denhaag: SideNav */
+  --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
+  --web-app-sidenav-link-hover-color: var(--web-app-color-link-active);
+  --web-app-sidenav-link-padding-block-end: var(--web-app-size-xs);
+  --web-app-sidenav-link-padding-block-start: var(--web-app-size-xs);
+  --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
+  --web-app-sidenav-item-font-weight: var(--web-app-font-weight-normal);
+  --web-app-sidenav-item-font-size: var(--web-app-size-md);
 }
