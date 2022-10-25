@@ -26,56 +26,23 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
   const { open: openServices, setOpen: setOpenServices } = AccordionCardsController();
   const { open: openData, setOpen: setOpenData } = AccordionCardsController();
 
-  const interaction = categories.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Interaction");
-  });
-  const process = categories.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Process");
-  });
-  const integration = categories.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Integration");
-  });
-  const services = categories.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Service");
-  });
-  const data = categories.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Data");
-  });
-
   return (
     <>
       <LayerAccordionFiltersTemplate
         items={[
-          {
-            label: "Interaction",
-            handleClick: setOpenInteraction,
-            active: openInteraction,
-            disabled: !interaction.length,
-          },
-          { label: "Process", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
-          {
-            label: "Integration",
-            handleClick: setOpenIntegration,
-            active: openIntegration,
-            disabled: !integration.length,
-          },
-          { label: "Service", handleClick: setOpenServices, active: openServices, disabled: !services.length },
-          { label: "Data", handleClick: setOpenData, active: openData, disabled: !data.length },
+          { label: "Interaction", handleClick: setOpenInteraction, active: openInteraction },
+          { label: "Process", handleClick: setOpenProcess, active: openProcess },
+          { label: "Integration", handleClick: setOpenIntegration, active: openIntegration },
+          { label: "Service", handleClick: setOpenServices, active: openServices },
+          { label: "Data", handleClick: setOpenData, active: openData },
         ]}
       />
 
       <Accordion
         open={openInteraction}
         setOpen={setOpenInteraction}
-        color={getTokenValue(styles.layerColorInteraction)}
-        disabled={!interaction.length}
-        header={
-          <CategoriesCardsAccordionHeaderTemplate
-            title="Interaction"
-            active={openInteraction}
-            badgeNumber={interaction.length}
-          />
-        }
+        color="#1a75ff"
+        header={<CategoriesCardsAccordionHeaderTemplate title="Interactie" active={openInteraction} />}
       >
         <Categories categories={categories} />
       </Accordion>
@@ -83,11 +50,8 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
       <Accordion
         open={openProcess}
         setOpen={setOpenProcess}
-        color={getTokenValue(styles.layerColorProcess)}
-        disabled={!process.length}
-        header={
-          <CategoriesCardsAccordionHeaderTemplate title="Process" active={openProcess} badgeNumber={process.length} />
-        }
+        color="#dd3c49"
+        header={<CategoriesCardsAccordionHeaderTemplate title="Proces" active={openProcess} />}
       >
         <Categories categories={categories} />
       </Accordion>
@@ -95,15 +59,8 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
       <Accordion
         open={openIntegration}
         setOpen={setOpenIntegration}
-        color={getTokenValue(styles.layerColorIntegration)}
-        disabled={!integration.length}
-        header={
-          <CategoriesCardsAccordionHeaderTemplate
-            title="Integration"
-            active={openIntegration}
-            badgeNumber={integration.length}
-          />
-        }
+        color="#efc025"
+        header={<CategoriesCardsAccordionHeaderTemplate title="Integratie" active={openIntegration} />}
       >
         <Categories categories={categories} />
       </Accordion>
@@ -111,15 +68,8 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
       <Accordion
         open={openServices}
         setOpen={setOpenServices}
-        color={getTokenValue(styles.layerColorServices)}
-        disabled={!services.length}
-        header={
-          <CategoriesCardsAccordionHeaderTemplate
-            title="Services"
-            active={openServices}
-            badgeNumber={services.length}
-          />
-        }
+        color="#69b090"
+        header={<CategoriesCardsAccordionHeaderTemplate title="Services" active={openServices} />}
       >
         <Categories categories={categories} />
       </Accordion>
@@ -127,9 +77,8 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
       <Accordion
         open={openData}
         setOpen={setOpenData}
-        color={getTokenValue(styles.layerColorData)}
-        disabled={!data.length}
-        header={<CategoriesCardsAccordionHeaderTemplate title="Data" active={openData} badgeNumber={data.length} />}
+        color="#7a51c8"
+        header={<CategoriesCardsAccordionHeaderTemplate title="Data" active={openData} />}
       >
         <Categories categories={categories} />
       </Accordion>
