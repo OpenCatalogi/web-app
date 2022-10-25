@@ -88,4 +88,5 @@ export const nl = {
   "Software products": "Software producten",
   Categories: "Categorieën",
   "Back to categories": "Terug naar categorieën",
+  "Back to applications": "Terug naar applicaties",
 };

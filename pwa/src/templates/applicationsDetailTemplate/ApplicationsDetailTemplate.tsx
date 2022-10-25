@@ -53,7 +53,9 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               </div>
             </div>
 
-            <img src={tempApplications.detailPageImageUrl ?? grey} className={styles.applicationImage} />
+            <div className={styles.applicationImageContainer}>
+              <img src={tempApplications.detailPageImageUrl ?? grey} className={styles.applicationImage} />
+            </div>
           </div>
 
           <Divider />
