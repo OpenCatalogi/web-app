@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./AdminSourcesTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, Tag } from "@conduction/components";
 import { Heading1 } from "@gemeente-denhaag/components-react";
 import { AdminTemplate } from "../../templateParts/adminTemplate/AdminTemplate";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -11,7 +11,6 @@ import clsx from "clsx";
 import _ from "lodash";
 import { ToolTip } from "../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tag } from "../../../components/tag/Tag";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
 
 export const AdminSourcesTemplate: React.FC = () => {
@@ -24,7 +23,7 @@ export const AdminSourcesTemplate: React.FC = () => {
           <Heading1>Sources</Heading1>
         </section>
         <section className={styles.section}>
-        <Table>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableHeader>{t("Name")}</TableHeader>
