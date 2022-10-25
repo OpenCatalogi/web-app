@@ -342,7 +342,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </div>
               </TabPanel>
 
-              <TabPanel className={styles.tabPanel} value="1">
+              <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="1">
                 {tempOrganization.map((organization) => (
                   <OrganizationCard
                     key={organization.id}
