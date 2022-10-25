@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
-export type TLandingDisplayLayout = "layer" | "cards";
+export type TLandingDisplayLayout = "layer" | "categories";
 export type TComponentDependenciesLayout = "layer" | "relations";
 
 export interface IFilters {
@@ -29,7 +29,7 @@ export interface IFilters {
 export const filters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
-  landingDisplayLayout: "layer",
+  landingDisplayLayout: "categories",
   currentPage: 1,
 } as IFilters;
 

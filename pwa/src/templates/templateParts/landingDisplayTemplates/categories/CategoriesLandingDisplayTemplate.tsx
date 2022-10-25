@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./CardsLandingDisplayTemplate.module.css";
+import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import _ from "lodash";
 import { DetailsCard } from "@conduction/components";
 import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 
-interface CardsLandingDisplayTemplateProps {}
+interface CategoriesLandingDisplayTemplateProps {}
 
-export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplateProps> = ({}) => {
+export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
   const { t } = useTranslation();
 
   const categories = TEMPORARY_PORTFOLIOS;
