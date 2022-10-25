@@ -130,6 +130,12 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.organizations {
+  display: grid;
+  gap: var(--web-app-size-lg);
+  grid-template-columns: 1fr 1fr;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
