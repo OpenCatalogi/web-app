@@ -23,12 +23,12 @@ export const CategoriesTemplate: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.ComponentsGrid}>
-        {categories.map((categorie) => (
+      <div className={styles.componentsGrid}>
+        {categories.map((category) => (
           <DetailsCard
-            title={categorie.title}
-            introduction={categorie.description}
-            link={{ href: `/categories/${categorie.id}`, label: "details" }}
+            title={category.title}
+            introduction={category.description}
+            link={{ href: `/categories/${category.id}`, label: "details" }}
           />
         ))}
       </div>

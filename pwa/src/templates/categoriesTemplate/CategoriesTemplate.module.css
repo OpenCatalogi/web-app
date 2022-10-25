@@ -17,7 +17,7 @@
   margin-block-end: var(--web-app-size-2xl);
 }
 
-.ComponentsGrid {
+.componentsGrid {
   display: grid;
   grid-gap: var(--web-app-size-lg);
   grid-template-columns: 1fr 1fr 1fr;

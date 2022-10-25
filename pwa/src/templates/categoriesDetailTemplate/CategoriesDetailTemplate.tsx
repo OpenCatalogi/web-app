@@ -11,14 +11,14 @@ import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 
 interface CategoriesDetailTemplateProps {
-  categorieId: string;
+  categoryId: string;
 }
 
-export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> = ({ categorieId }) => {
+export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> = ({ categoryId }) => {
   const { t } = useTranslation();
 
-  const Portfolio = TEMPORARY_PORTFOLIOS.find((categorie) => {
-    return categorie.id === categorieId;
+  const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
+    return category.id === categoryId;
   });
 
   return (
@@ -29,14 +29,14 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
         </Link>
       </div>
 
-      {Portfolio && (
+      {portfolio && (
         <div className={styles.header}>
-          <Heading1>{Portfolio.title}</Heading1>
-          <LeadParagraph className={styles.description}>{Portfolio.description}</LeadParagraph>
+          <Heading1>{portfolio.title}</Heading1>
+          <LeadParagraph className={styles.description}>{portfolio.description}</LeadParagraph>
         </div>
       )}
 
-      {!Portfolio && <Skeleton height="200px" />}
+      {!portfolio && <Skeleton height="200px" />}
     </Container>
   );
 };

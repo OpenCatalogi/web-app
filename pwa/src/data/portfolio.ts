@@ -22,11 +22,11 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "cd0627fd-1179-4ecd-b883-65a3300ef4dd",
     title: "Mijn Zaken",
-    description: "Inwonders kunnen digitaal hun zaken bekijken.",
+    description: "Inwoners kunnen digitaal hun zaken bekijken.",
   },
   {
     id: "f88e6139-b86e-43d7-93d1-8ab71f07abeb",
     title: "Inburgering",
-    description: "De gemeente helpt nieuwe inwonders met het inburgeren.",
+    description: "De gemeente helpt nieuwe inwoners met het inburgeren.",
   },
 ];

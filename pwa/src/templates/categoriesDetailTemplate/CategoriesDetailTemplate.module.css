@@ -16,3 +16,8 @@
   max-width: 800px;
   margin-block-end: var(--web-app-size-2xl);
 }
+
+.description {
+  margin-block-start: var(--web-app-size-sm) !important;
+  margin-block-end: var(--web-app-size-md) !important;
+}
