@@ -11,7 +11,7 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import { Container, InfoCard, BadgeCounter, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -43,6 +43,7 @@ import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/Com
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
+import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import clsx from "clsx";
 
@@ -55,6 +56,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const NotificationPopUpController = _NotificationPopUp.controller;
+  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
+
+  const { isVisible, show, hide } = NotificationPopUpController();
 
   const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
   const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
@@ -204,13 +210,49 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title=""
               content={
-                <RatingIndicatorTemplate
-                  layoutClassName={styles.ratingIndicatorContainer}
-                  component={_getComponent.data}
-                />
+                <>
+                  {_getComponent.data.embedded?.rating && (
+                    <>
+                      <RatingIndicatorTemplate
+                        layoutClassName={styles.ratingIndicatorContainer}
+                        maxRating={_getComponent.data.embedded?.rating?.maxRating}
+                        rating={_getComponent.data.embedded?.rating?.rating}
+                      />
+                      <span onClick={show} className={styles.link}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Rating
+                        </Link>
+                      </span>
+                    </>
+                  )}
+                  {!_getComponent.data.embedded?.rating && (
+                    <div className={styles.noRatingStyle}>{t("No rating available")}</div>
+                  )}
+                </>
               }
               layoutClassName={styles.infoCard}
             />
+            {isVisible && (
+              <div className={styles.overlay}>
+                <NotificationPopUp
+                  {...{ hide, isVisible }}
+                  title="Rating"
+                  description={<RatingOverview getComponent={_getComponent} />}
+                  primaryButton={{
+                    label: t("Score calculation"),
+                    handleClick: () => {
+                      navigate("/documentation/about#score-calculation");
+                    },
+                  }}
+                  secondaryButton={{
+                    label: t("Close"),
+                    icon: <ArrowLeftIcon />,
+                    handleClick: () => {},
+                  }}
+                  layoutClassName={styles.popup}
+                />
+              </div>
+            )}
           </div>
 
           <DownloadTemplate
