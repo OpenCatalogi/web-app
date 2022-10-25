@@ -75,4 +75,13 @@ export const en = {
   Close: "Close",
   "No organization found": "No organization found",
   "There is no description available": "There is no description available",
+  Initiatives: "Initiatives",
+  Development: "Devlopment",
+  Stable: "Stable",
+  Obsolete: "Obsolete",
+  "There is no organization available": "There is no organization available",
+  User: "User",
+  "My catalogi": "My Catalogi",
+  Login: "Login",
+  Logout: "Logout",
 };

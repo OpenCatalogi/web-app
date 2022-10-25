@@ -76,4 +76,13 @@ export const nl = {
   Close: "Sluiten",
   "No organization found": "Geen organisatie gevonden",
   "There is no description available": "Er is geen omschrijving beschikbaar",
+  Initiatives: "Initiatieven",
+  Development: "In Ontwikkeling",
+  Stable: "Bruikbaar",
+  Obsolete: "Uitgefaseerd",
+  "There is no organization available": "Er is geen organisatie beschikbaar",
+  User: "Gebruiker",
+  "My catalogi": "Mijn Catalogi",
+  Login: "Inloggen",
+  Logout: "Uitloggen",
 };
