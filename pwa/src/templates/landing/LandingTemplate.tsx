@@ -33,7 +33,7 @@ export const LandingTemplate: React.FC = () => {
             onClick={() => setFilters({ ...filters, landingDisplayLayout: "cards" })}
           >
             <FontAwesomeIcon icon={faGripVertical} />
-            {t("Cards")}
+            {t("Categories")}
           </Button>
         </div>
 

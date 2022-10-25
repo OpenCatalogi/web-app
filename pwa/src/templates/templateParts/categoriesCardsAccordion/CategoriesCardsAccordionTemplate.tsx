@@ -1,86 +1,96 @@
 import * as React from "react";
 import * as styles from "./CategoriesCardsAccordionTemplate.module.css";
-import { getTokenValue } from "../../../services/getTokenValue";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
-import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
+import { CategoriesAccordion } from "../categoriesAccordion/CategoriesAccordionTemplate";
+import { CategoriesAccordionFiltersTemplate } from "../categoriesAccordion/filters/CategoriesAccordionFiltersTemplate";
 import { CategoriesCardsAccordionHeaderTemplate } from "./header/CategoriesCardsAccordionHeaderTemplate";
 import { CategoryCard } from "../../../components/categoryCard/CategoryCard";
-import { TEMPORARY_PORTFOLIOS } from "../../../data/portfolio";
 
 interface CategoriesardsAccordionProps {
   categories: any[];
 }
 
 export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionProps> = ({ categories }) => {
-  const Accordion = LayerAccordion.accordion;
-  const AccordionCardsController = LayerAccordion.controller;
+  const Accordion = CategoriesAccordion.accordion;
+  const AccordionCardsController = CategoriesAccordion.controller;
   const { t } = useTranslation();
 
-  const { open: openInteraction, setOpen: setOpenInteraction } = AccordionCardsController();
-  const { open: openProcess, setOpen: setOpenProcess } = AccordionCardsController();
-  const { open: openIntegration, setOpen: setOpenIntegration } = AccordionCardsController();
-  const { open: openServices, setOpen: setOpenServices } = AccordionCardsController();
-  const { open: openData, setOpen: setOpenData } = AccordionCardsController();
+  const { open: openGovernance, setOpen: setOpenGovernance } = AccordionCardsController();
+  const { open: openSocial, setOpen: setOpenSocial } = AccordionCardsController();
+  const { open: openSpace, setOpen: setOpenSpace } = AccordionCardsController();
+  const { open: openPublicServices, setOpen: setOpenPublicServices } = AccordionCardsController();
+  const { open: openPublicOrderAndSafety, setOpen: setOpenPublicOrderAndSafety } = AccordionCardsController();
+  const { open: openSupport, setOpen: setOpenSupport } = AccordionCardsController();
 
   return (
     <>
-      <LayerAccordionFiltersTemplate
+      <CategoriesAccordionFiltersTemplate
         items={[
-          { label: "Interaction", handleClick: setOpenInteraction, active: openInteraction },
-          { label: "Process", handleClick: setOpenProcess, active: openProcess },
-          { label: "Integration", handleClick: setOpenIntegration, active: openIntegration },
-          { label: "Service", handleClick: setOpenServices, active: openServices },
-          { label: "Data", handleClick: setOpenData, active: openData },
+          { label: "Bestuur", handleClick: setOpenGovernance, active: openGovernance },
+          { label: "Sociaal", handleClick: setOpenSocial, active: openSocial },
+          { label: "Ruimte", handleClick: setOpenSpace, active: openSpace },
+          { label: "Publieksdiensten", handleClick: setOpenPublicServices, active: openPublicServices },
+          {
+            label: "Openbare orde en veiligheid",
+            handleClick: setOpenPublicOrderAndSafety,
+            active: openPublicOrderAndSafety,
+          },
+          { label: "Ondersteuning", handleClick: setOpenSupport, active: openSupport },
         ]}
       />
 
       <Accordion
-        open={openInteraction}
-        setOpen={setOpenInteraction}
-        color="#1a75ff"
-        header={<CategoriesCardsAccordionHeaderTemplate title="Interactie" active={openInteraction} />}
+        open={openGovernance}
+        setOpen={setOpenGovernance}
+        header={<CategoriesCardsAccordionHeaderTemplate title="Bestuur" active={openGovernance} />}
       >
-        <Categories categories={categories} />
+        <Categories {...{ categories }} />
       </Accordion>
 
       <Accordion
-        open={openProcess}
-        setOpen={setOpenProcess}
-        color="#dd3c49"
-        header={<CategoriesCardsAccordionHeaderTemplate title="Proces" active={openProcess} />}
+        open={openSocial}
+        setOpen={setOpenSocial}
+        header={<CategoriesCardsAccordionHeaderTemplate title="Sociaal" active={openSocial} />}
       >
-        <Categories categories={categories} />
+        <Categories {...{ categories }} />
       </Accordion>
 
       <Accordion
-        open={openIntegration}
-        setOpen={setOpenIntegration}
-        color="#efc025"
-        header={<CategoriesCardsAccordionHeaderTemplate title="Integratie" active={openIntegration} />}
+        open={openSpace}
+        setOpen={setOpenSpace}
+        header={<CategoriesCardsAccordionHeaderTemplate title="Ruimte" active={openSpace} />}
       >
-        <Categories categories={categories} />
+        <Categories {...{ categories }} />
       </Accordion>
 
       <Accordion
-        open={openServices}
-        setOpen={setOpenServices}
-        color="#69b090"
-        header={<CategoriesCardsAccordionHeaderTemplate title="Services" active={openServices} />}
+        open={openPublicServices}
+        setOpen={setOpenPublicServices}
+        header={<CategoriesCardsAccordionHeaderTemplate title="Publieksdiensten" active={openPublicServices} />}
       >
-        <Categories categories={categories} />
+        <Categories {...{ categories }} />
       </Accordion>
 
       <Accordion
-        open={openData}
-        setOpen={setOpenData}
-        color="#7a51c8"
-        header={<CategoriesCardsAccordionHeaderTemplate title="Data" active={openData} />}
+        open={openPublicOrderAndSafety}
+        setOpen={setOpenPublicOrderAndSafety}
+        header={
+          <CategoriesCardsAccordionHeaderTemplate
+            title="Openbare orde en veiligheid"
+            active={openPublicOrderAndSafety}
+          />
+        }
       >
-        <Categories categories={categories} />
+        <Categories {...{ categories }} />
+      </Accordion>
+
+      <Accordion
+        open={openSupport}
+        setOpen={setOpenSupport}
+        header={<CategoriesCardsAccordionHeaderTemplate title="Ondersteuning" active={openSupport} />}
+      >
+        <Categories {...{ categories }} />
       </Accordion>
     </>
   );
@@ -102,22 +112,6 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
           domain={"domain"}
         />
       ))}
-      {/* {components.map((component, idx) => (
-        <ComponentCard
-          key={idx}
-          title={{ label: component.name, href: `/components/${component.id}` }}
-          description={component.embedded?.description?.shortDescription}
-          layer={component.embedded?.nl.embedded?.commonground.layerType}
-          category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
-          tags={{
-            status: component.developmentStatus,
-            installations: component.usedBy?.length.toString() ?? "0",
-            organization: component.embedded?.url?.embedded?.organisation?.name,
-            licence: component?.embedded?.legal?.license,
-            githubLink: component?.embedded?.url?.url,
-          }}
-        />
-      ))} */}
     </div>
   );
 };

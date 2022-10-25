@@ -3,7 +3,7 @@ import * as styles from "./CategoriesCardsAccordionHeaderTemplate.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
-import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faGripVertical } from "@fortawesome/free-solid-svg-icons";
 
 interface CategoriesCardsAccordionHeaderTemplateProps {
   title: string;
@@ -17,7 +17,7 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
   return (
     <div className={clsx(styles.container, active && styles.active)}>
       <div className={styles.content}>
-        <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
+        <FontAwesomeIcon className={styles.categoryIcon} icon={faGripVertical} />
         <Heading3>{title}</Heading3>
 
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
