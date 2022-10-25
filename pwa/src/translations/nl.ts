@@ -84,5 +84,5 @@ export const nl = {
   "My catalogi": "Mijn Catalogi",
   Login: "Inloggen",
   Logout: "Uitloggen",
-  Applications: "Software producten",
+  Applications: "Applicaties",
 };
