@@ -44,6 +44,7 @@ import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import clsx from "clsx";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -365,78 +366,31 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 ))}
               </TabPanel>
 
-              <TabPanel className={styles.tabPanel} value="2">
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableHeader>Gemeente Amsterdam</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          020 - 123 456 7
-                        </Link>
-                      </TableCell>
+              <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
+                {_getComponent.data?.usedBy[0] &&
+                  tempOrganization.map((organization) => (
+                    <OrganizationCard
+                      key={organization.id}
+                      title={{
+                        label: organization?.name,
+                        href: `#`,
+                      }}
+                      description={organization?.description}
+                      website={organization?.website}
+                      logo={organization?.logo}
+                      components={{
+                        owned: organization?.owns?.length.toString() ?? "0",
+                        supported: organization?.supports?.length.toString() ?? "0",
+                        used: organization?.uses?.length.toString() ?? "0",
+                      }}
+                      gitHub={organization?.github}
+                      gitLab={organization?.gitlab}
+                      type={organization?.type}
+                      layoutClassName={styles.organizationCardContainer}
+                    />
+                  ))}
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableHeader>Gemeente Rotterdam</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          010 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableHeader>Gemeente Waterland</TableHeader>
-                      <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
-                          030 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                {!_getComponent.data?.usedBy.length && <>Er zijn geen hergebruikers van dit component.</>}
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="3">

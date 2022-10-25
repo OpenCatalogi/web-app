@@ -1,9 +1,6 @@
 import * as React from "react";
 import * as styles from "./CardsLandingDisplayTemplate.module.css";
 import _ from "lodash";
-import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { InfoCard } from "@conduction/components";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 

@@ -80,7 +80,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("/about");
+                navigate("/documentation/about");
               }}
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">
@@ -194,7 +194,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("/login");
+                open("https://admin.opencatalogi.nl/");
               }}
             >
               <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
