@@ -79,9 +79,9 @@ export const en = {
   Development: "Devlopment",
   Stable: "Stable",
   Obsolete: "Obsolete",
-  "There is no organization available": "There is no organization available",
   User: "User",
   "My catalogi": "My Catalogi",
   Login: "Login",
   Logout: "Logout",
+  Applications: "Applications",
 };
