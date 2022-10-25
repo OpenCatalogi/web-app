@@ -44,6 +44,7 @@ import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import clsx from "clsx";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -416,7 +417,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Table>
               </TabPanel>
 
-              <TabPanel className={styles.tabPanel} value="2">
+              <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
                 {_getComponent.data?.usedBy[0] &&
                   tempOrganization.map((organization) => (
                     <OrganizationCard
@@ -439,6 +440,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       layoutClassName={styles.organizationCardContainer}
                     />
                   ))}
+
+                {!_getComponent.data?.usedBy.length && <>Er zijn geen hergebruikers van dit component.</>}
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="3">
