@@ -2,24 +2,23 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
+.container > .backButton {
+  margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
+}
+
 .header {
-  display: flex;
-  justify-content: space-between;
   margin-block-start: var(--web-app-size-3xl);
-}
-
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.ComponentsGrid {
-  display: grid;
-  grid-gap: var(--web-app-size-lg);
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .subHeading {
   width: 100%;
   max-width: 800px;
   margin-block-end: var(--web-app-size-2xl);
+}
+
+.ComponentsGrid {
+  display: grid;
+  grid-gap: var(--web-app-size-lg);
+  grid-template-columns: 1fr 1fr 1fr;
 }

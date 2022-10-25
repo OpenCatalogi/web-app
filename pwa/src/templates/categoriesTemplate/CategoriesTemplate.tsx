@@ -1,27 +1,28 @@
 import * as React from "react";
-import * as styles from "./CardsLandingDisplayTemplate.module.css";
-import _ from "lodash";
-import { DetailsCard } from "@conduction/components";
+import * as styles from "./CategoriesTemplate.module.css";
+import * as _ from "lodash";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
+import { Container, DetailsCard } from "@conduction/components";
 import { useTranslation } from "react-i18next";
+import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 
-interface CardsLandingDisplayTemplateProps {}
-
-export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplateProps> = ({}) => {
+export const CategoriesTemplate: React.FC = () => {
   const { t } = useTranslation();
 
   const categories = TEMPORARY_PORTFOLIOS;
 
   return (
-    <>
-      <div className={styles.subHeading}>
+    <Container layoutClassName={styles.container}>
+      <div className={styles.header}>
         <Heading2>{t("Categories")}</Heading2>
 
-        <LeadParagraph>
-          Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
-        </LeadParagraph>
+        <div className={styles.subHeading}>
+          <LeadParagraph>
+            Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
+          </LeadParagraph>
+        </div>
       </div>
+
       <div className={styles.ComponentsGrid}>
         {categories.map((categorie) => (
           <DetailsCard
@@ -31,6 +32,6 @@ export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplatePr
           />
         ))}
       </div>
-    </>
+    </Container>
   );
 };
