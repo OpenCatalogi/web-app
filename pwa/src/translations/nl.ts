@@ -80,9 +80,9 @@ export const nl = {
   Development: "In Ontwikkeling",
   Stable: "Bruikbaar",
   Obsolete: "Uitgefaseerd",
-  "There is no organization available": "Er is geen organisatie beschikbaar",
   User: "Gebruiker",
   "My catalogi": "Mijn Catalogi",
   Login: "Inloggen",
   Logout: "Uitloggen",
+  Applications: "Applicaties",
 };
