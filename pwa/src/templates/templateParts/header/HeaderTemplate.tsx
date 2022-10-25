@@ -54,11 +54,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: t("Data models"),
-      current: pathname === "/components" && filters.softwareType === "schema",
+      label: t("Applications"),
+      current: pathname === "/applications",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "schema" });
-        navigate("/components");
+        navigate("/applications");
       },
     },
     {
