@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  gap: var(--web-app-size-3xl);
+  margin-block-start: var(--web-app-size-4xl);
+  max-width: var(--web-app-container-width-lg);
+}
+
+.menu {
+  min-width: 200px;
+  padding-inline: var(--web-app-size-lg);
+  padding-block: var(--web-app-size-lg);
+  background-color: var(--web-app-color-background-light);
+}
+
+.content {
+  width: 100%;
+}
+
+.iconsSidenav {
+  height: var(--web-app-size-lg);
+  width: var(--web-app-size-lg);
+}

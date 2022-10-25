@@ -158,6 +158,8 @@
   --web-app-download-popup-width: 500px;
   --web-app-overlay-background: rgba(0, 0, 0, 0.3);
 
+  --web-app-container-width-lg: 1440px;
+
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
