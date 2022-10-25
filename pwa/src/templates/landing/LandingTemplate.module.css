@@ -6,12 +6,6 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.section > .subHeading {
-  width: 100%;
-  max-width: 800px;
-  margin-block-end: var(--web-app-size-2xl);
-}
-
 .cards {
   display: flex;
   gap: var(--web-app-size-lg);
@@ -24,4 +18,28 @@
 .feedback {
   width: 100%;
   max-width: 800px;
+}
+
+.landingDisplaySwitchButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.landingDisplaySwitchButtons > * {
+  display: flex;
+  align-items: center;
+}
+
+.landingDisplaySwitchButtons *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.filtersAndResultsContainer {
+  display: flex;
+  gap: var(--web-app-size-lg);
 }
