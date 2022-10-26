@@ -11,7 +11,13 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import {
+  Container,
+  InfoCard,
+  BadgeCounter,
+  Tag,
+  NotificationPopUp as _NotificationPopUp,
+} from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -460,7 +466,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
                 {_getComponent.data?.usedBy[0] &&
-                  tempOrganization.map((organization) => (
+                  _getComponent.data?.usedBy.map((organization: any) => (
                     <OrganizationCard
                       key={organization.id}
                       title={{
