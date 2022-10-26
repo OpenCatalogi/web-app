@@ -12,7 +12,8 @@ import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ComponentCard } from "../../components/componentCard/ComponentCard";
-import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
 
 interface CategoriesDetailTemplateProps {
   categoryId: string;
@@ -49,7 +50,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
       {portfolio && domain && (
         <div className={styles.header}>
           <Heading1>{portfolio.title}</Heading1>
-          <Tag label={t(domain.title)} icon={domain.icon} />
+          <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
           <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
         </div>
       )}

@@ -4,8 +4,6 @@ import { Divider, Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
-import { Tag } from "@conduction/components";
-import { TEMPORARY_DOMAINS } from "../../data/domains";
 
 export interface CategoryCardProps {
   title: {
@@ -14,18 +12,10 @@ export interface CategoryCardProps {
   };
   description: string;
   icon: JSX.Element;
-  domain: {
-    label: string;
-    icon: JSX.Element;
-  };
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon }) => {
   const { t } = useTranslation();
-
-  const domainIcon = TEMPORARY_DOMAINS.find((_domain) => {
-    return _domain.title === domain.label;
-  });
 
   return (
     <div className={styles.container}>
@@ -34,7 +24,6 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
           {title.label}
         </Link>
       </div>
-      {domainIcon && <Tag label={t(domain.label)} icon={domainIcon?.icon} />}
       <Divider />
       <Paragraph className={styles.description}>{description}</Paragraph>
     </div>
