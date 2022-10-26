@@ -20,6 +20,26 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
+  const setNewFilters = (newFilters: any) => {
+    const resets = {
+      search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+    };
+    setFilters({ ...filters, ...resets, ...newFilters });
+  };
+
   const {
     pageContext: {
       breadcrumb: { crumbs },
@@ -59,7 +79,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Processes"),
           current: pathname === "/components" && filters.softwareType === "process",
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "process" });
+            setNewFilters({ softwareType: "process" });
             navigate("/components");
           },
         },
@@ -67,7 +87,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Data models"),
           current: pathname === "/components" && filters.softwareType === "schema",
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "schema" });
+            setNewFilters({ softwareType: "schema" });
             navigate("/components");
           },
         },
@@ -75,7 +95,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("API's"),
           current: pathname === "/components" && filters.softwareType === "api",
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "api" });
+            setNewFilters({ softwareType: "api" });
             navigate("/components");
           },
         },
@@ -88,7 +108,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         filters.developmentStatus === "concept" &&
         filters.softwareType === "standalone/web",
       handleClick: () => {
-        setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
+        setNewFilters({ developmentStatus: "concept", softwareType: "standalone/web" });
         navigate("/components");
       },
     },

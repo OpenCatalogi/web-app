@@ -87,6 +87,26 @@ interface CategoriesProps {
 const Categories: React.FC<CategoriesProps> = ({ layer }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
 
+  const setNewFilters = (newFilters: any) => {
+    const resets = {
+      search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+    };
+    setFilters({ ...filters, ...resets, ...newFilters });
+  };
+
   return (
     <div className={styles.items}>
       {categories[layer].map((category, idx) => (
@@ -96,7 +116,7 @@ const Categories: React.FC<CategoriesProps> = ({ layer }) => {
           variant="secondary-action"
           icon={category.icon}
           onClick={() => {
-            setFilters({ ...filters, category: _.lowerCase(category?.value) });
+            setNewFilters({ category: _.lowerCase(category?.value) });
             navigate("/components");
           }}
         >
