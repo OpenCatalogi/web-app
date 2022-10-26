@@ -7,7 +7,7 @@ import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import { FiltersContext } from "../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faTags } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 
@@ -24,7 +24,7 @@ export const LandingTemplate: React.FC = () => {
             variant={filters.landingDisplayLayout === "categories" ? "primary-action" : "secondary-action"}
             onClick={() => setFilters({ ...filters, landingDisplayLayout: "categories" })}
           >
-            <FontAwesomeIcon icon={faGripVertical} />
+            <FontAwesomeIcon icon={faTags} />
             {t("Categories")}
           </Button>
           <Button
