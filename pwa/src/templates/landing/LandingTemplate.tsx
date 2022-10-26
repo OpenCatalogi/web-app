@@ -21,19 +21,19 @@ export const LandingTemplate: React.FC = () => {
         <div className={styles.landingDisplaySwitchButtons}>
           <Button
             className={styles.buttonIcon}
+            variant={filters.landingDisplayLayout === "categories" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, landingDisplayLayout: "categories" })}
+          >
+            <FontAwesomeIcon icon={faGripVertical} />
+            {t("Categories")}
+          </Button>
+          <Button
+            className={styles.buttonIcon}
             variant={filters.landingDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
             onClick={() => setFilters({ ...filters, landingDisplayLayout: "layer" })}
           >
             <FontAwesomeIcon icon={faLayerGroup} />
             {t("Layers")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.landingDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, landingDisplayLayout: "cards" })}
-          >
-            <FontAwesomeIcon icon={faGripVertical} />
-            {t("Cards")}
           </Button>
         </div>
 
