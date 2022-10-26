@@ -1,6 +1,6 @@
 export const TEMPORARY_COMPONENTS = [
   {
-    id: "04f28cfa-e99b-4f77-ab05-59cd35cb2f75",
+    id: "aa78c93b-d57d-4d9a-b255-e8cfe26bde48",
     applicationId: null,
     applicationSuite: null,
     categories: [],
