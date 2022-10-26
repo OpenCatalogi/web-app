@@ -41,10 +41,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: t("Categories"),
-      current: pathname === "/categories",
+      label: t("Portofolio"),
+      current: pathname === "/portofolio",
       handleClick: () => {
-        navigate("/categories");
+        navigate("#");
       },
     },
     {

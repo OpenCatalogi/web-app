@@ -85,7 +85,5 @@ export const en = {
   Logout: "Logout",
   Applications: "Applications",
   "Software products": "Software products",
-  Categories: "Categories",
-  "Back to categories": "Back to categories",
   "Back to applications": "Back to applications",
 };
