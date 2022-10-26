@@ -146,7 +146,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </ToolTip>
 
-                {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
+                {_getComponent.data?.embedded?.url?.embedded?.organisation?.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
                       label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
