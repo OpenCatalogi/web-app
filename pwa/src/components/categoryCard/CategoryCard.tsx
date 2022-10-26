@@ -10,7 +10,7 @@ export interface CategoryCardProps {
     label: string;
     href: string;
   };
-  description: string;
+  description: string | JSX.Element;
   icon: JSX.Element;
 }
 
