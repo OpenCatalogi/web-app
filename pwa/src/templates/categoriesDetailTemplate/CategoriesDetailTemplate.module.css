@@ -21,3 +21,8 @@
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
 }
+
+.title:not(:last-child) {
+  display: flex;
+  margin-inline-end: var(--web-app-size-2xs);
+}

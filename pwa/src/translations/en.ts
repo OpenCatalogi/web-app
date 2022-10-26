@@ -93,4 +93,5 @@ export const en = {
   "Public services": "Public services",
   "Public order and safety": "Public order and safety",
   Support: "Support",
+  Solutions: "Solutions",
 };

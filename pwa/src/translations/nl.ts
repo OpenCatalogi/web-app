@@ -94,4 +94,5 @@ export const nl = {
   "Public services": "Publieksdiensten",
   "Public order and safety": "Openbare orde en veiligheid",
   Support: "Ondersteuning",
+  Solutions: "Oplossingen",
 };
