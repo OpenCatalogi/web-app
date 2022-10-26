@@ -57,7 +57,6 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
       {component && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            {console.log(component.embedded?.nl.embedded?.commonground.layerType)}
             <span className={maxItems && styles.maxNumber}>
               <BadgeCounter number={badgeLabel}>
                 <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
