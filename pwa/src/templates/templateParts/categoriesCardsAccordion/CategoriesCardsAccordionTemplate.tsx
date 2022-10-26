@@ -6,8 +6,6 @@ import { CategoriesAccordion } from "../categoriesAccordion/CategoriesAccordionT
 import { CategoriesAccordionFiltersTemplate } from "../categoriesAccordion/filters/CategoriesAccordionFiltersTemplate";
 import { CategoriesCardsAccordionHeaderTemplate } from "./header/CategoriesCardsAccordionHeaderTemplate";
 import { CategoryCard } from "../../../components/categoryCard/CategoryCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface CategoriesardsAccordionProps {
   categories: any[];
@@ -157,7 +155,6 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
           title={{ label: category.title, href: `/categories/${category.id}` }}
           description={category.shortDescription}
           icon={category.icon}
-          domain={{ label: category.domain, icon: <FontAwesomeIcon icon={faLayerGroup} /> }}
         />
       ))}
     </div>

@@ -2,20 +2,20 @@ import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import _ from "lodash";
 import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
 
 interface CategoriesLandingDisplayTemplateProps {}
 
 export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
   const { t } = useTranslation();
 
-  const categories = TEMPORARY_PORTFOLIOS;
+  const domains = TEMPORARY_DOMAINS;
 
   return (
     <>
@@ -27,12 +27,11 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
         </LeadParagraph>
       </div>
       <div className={styles.ComponentsGrid}>
-        {categories.map((category) => (
+        {domains.map((domain) => (
           <CategoryCard
-            title={{ label: category.title, href: `/categories/${category.id}` }}
-            description={category.shortDescription}
-            icon={category.icon}
-            domain={{ label: category.domain, icon: <FontAwesomeIcon icon={faLayerGroup} /> }}
+            title={{ label: t(domain.title), href: `/categories` }}
+            description={domain.description}
+            icon={<FontAwesomeIcon icon={faTags} />}
           />
         ))}
       </div>
