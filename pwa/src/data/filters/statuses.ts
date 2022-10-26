@@ -1,7 +1,7 @@
 export const statuses = [
-  { label: "Bruikbaar", value: "bruikbaar" },
-  { label: "Gewenst", value: "gewenst" },
-  { label: "Gepland", value: "gepland" },
+  { label: "Concept", value: "concept" },
+  { label: "In Ontwikkeling", value: "development" },
   { label: "Beta", value: "beta" },
-  { label: "Uitgefaseerd", value: "uitgefaseerd" },
+  { label: "Bruikbaar", value: "stable" },
+  { label: "Uitgefaseerd", value: "obsolete" },
 ];

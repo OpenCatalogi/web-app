@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+}
+
+.container > * {
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.container > *.active {
+  font-weight: var(--web-app-font-weight-bold);
+}
+
+.container > *:hover {
+  cursor: pointer;
+}
+
+.container > .disabled:hover {
+  cursor: no-drop;
+}
+
+.container .disabled {
+  opacity: var(--web-app-layer-accordion-disabled-opacity);
+}
+
+.container > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+:not(.disabled).filter:not(.active) {
+  opacity: var(--web-app-layer-accordion-inactive-opacity);
+}

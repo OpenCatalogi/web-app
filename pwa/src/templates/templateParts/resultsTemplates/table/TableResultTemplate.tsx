@@ -7,10 +7,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import _ from "lodash";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
-import { Tag } from "../../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
+import { Tag } from "@conduction/components";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -67,7 +67,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <ToolTip tooltip="Status">
                 <Tag
                   layoutClassName={styles.tagWidth}
-                  label={_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                  label={t(_.upperFirst(component.developmentStatus ?? "Onbekend"))}
                   icon={<FontAwesomeIcon icon={faInfoCircle} />}
                 />
               </ToolTip>
@@ -82,7 +82,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
             <TableCell>
               <ToolTip tooltip="Organisatie">
                 <Tag
-                  label={_.upperFirst(component.embedded?.legal?.embedded?.repoOwner.name ?? "Onbekend")}
+                  label={_.upperFirst(component.embedded?.url?.embedded?.organisation?.name ?? "Onbekend")}
                   icon={<FontAwesomeIcon icon={faHouse} />}
                 />
               </ToolTip>

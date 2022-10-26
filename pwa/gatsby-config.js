@@ -33,6 +33,16 @@ module.exports = {
             pathname: "/organizations/[organizationId]",
             crumbLabel: "Organization",
           },
+          {
+            pathname: "/categories/[categoryId]",
+            crumbLabel: "Category",
+          },
+          {
+            pathname: "/documentation/about",
+            crumbLabel: "Over Open Catalogi",
+            pathname: "/applications/[applicationId]",
+            crumbLabel: "Application",
+          },
         ],
       },
     },

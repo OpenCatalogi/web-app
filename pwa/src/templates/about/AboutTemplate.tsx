@@ -82,7 +82,7 @@ export const AboutTemplate: React.FC = () => {
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} id="score-calculation">
         <Heading3>Ingevuld met (voor zover van toepassing) voor Open Catalogi</Heading3>
 
         <Table>

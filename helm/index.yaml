@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-08-18T11:12:47.796657+02:00"
+    created: "2022-10-24T13:45:10.379463842+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -17,27 +17,43 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 9.0.1
     description: A Helm chart for Kubernetes
-    digest: 7afafbeef29915b18067ed8ea18f98348b9c80312eafc8c0ffe259736fd10f13
+    digest: a4c33a8ea7095911c57608e121eb208322da46941865624f7f8f2ab2fab75b33
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-0.1.11.tgz
-    version: 0.1.11
+    - charts/commonground-gateway-0.1.12.tgz
+    version: 0.1.12
   opencatalogi:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-08-18T11:12:47.787961+02:00"
+    created: "2022-10-24T13:45:10.364004535+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
       name: commonground-gateway
       repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-      version: 0.1.11
+      version: 0.1.12
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: af84f8483d784cdaea2b75a78129596a47e2f6d85fb1806e50d7a7439fce4cc6
+    digest: 481d521f5a2a9ec4611d2ab6eac82e336341138a4607d08118d905b297319f7a
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-10-24T13:45:10.348063202+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 0.1.12
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 4c7e3d9f32803f610203e6227a40ae3b938dd17adfec738bd74654aaab0b828a
     name: opencatalogi
     type: application
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-18T11:12:47.775807+02:00"
+generated: "2022-10-24T13:45:10.327491104+02:00"

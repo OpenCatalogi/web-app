@@ -1,0 +1,52 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.container > .backButton {
+  margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.header {
+  display: flex;
+}
+
+.description {
+  margin-inline-end: var(--web-app-size-md);
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+}
+
+.layerAndCategoryContainer {
+  display: flex;
+  justify-self: end;
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.applicationImageContainer {
+  height: 225px;
+  width: 300px;
+  max-height: 255px;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  flex: 2;
+}
+
+.applicationImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
+}

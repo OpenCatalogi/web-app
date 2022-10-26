@@ -3,18 +3,15 @@ import * as styles from "./HeaderTemplate.module.css";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { HavenLogo } from "../../../assets/svgs/Haven";
-import { CommongroundLogo } from "../../../assets/svgs/Commonground";
-import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
+import { Container, SecondaryTopNav, PrimaryTopNav, Breadcrumbs } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import { isLoggedIn } from "../../../services/auth";
+import _ from "lodash";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -25,177 +22,173 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   const {
+    pageContext: {
+      breadcrumb: { crumbs },
+    },
+  } = React.useContext(GatsbyContext);
+  const {
     location: { pathname },
   } = React.useContext(GatsbyContext);
+
+  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
   const primaryTopNavItems = [
     {
       label: "Home",
+      current: pathname === "/",
       handleClick: () => {
         navigate("/");
       },
     },
     {
-      label: t("Software"),
+      label: t("Categories"),
+      current: pathname === "/categories",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "standalone/desktop" });
-        navigate("/components");
+        navigate("/categories");
       },
     },
     {
-      label: t("Processes"),
+      label: t("Software products"),
+      current: pathname === "/applications",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "process" });
-        navigate("/components");
+        navigate("/applications");
       },
     },
     {
-      label: t("Data models"),
-      handleClick: () => {
-        setFilters({ ...filters, softwareType: "schema" });
-        navigate("/components");
-      },
+      label: t("Components"),
+      current: pathname.includes("/components"),
+      subItems: [
+        {
+          label: t("Processes"),
+          current: pathname === "/components" && filters.softwareType === "process",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "process" });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("Data models"),
+          current: pathname === "/components" && filters.softwareType === "schema",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "schema" });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("API's"),
+          current: pathname === "/components" && filters.softwareType === "api",
+          handleClick: () => {
+            setFilters({ ...filters, softwareType: "api" });
+            navigate("/components");
+          },
+        },
+      ],
     },
     {
-      label: t("API's"),
+      label: t("Initiatives"),
+      current:
+        pathname === "/components" &&
+        filters.developmentStatus === "concept" &&
+        filters.softwareType === "standalone/web",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "api" });
+        setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
         navigate("/components");
       },
     },
     {
       label: "Documentatie",
+      current: pathname.includes("/documentation"),
       subItems: [
         {
           label: t("About Open Catalogi"),
+          current: pathname === "/documentation/about",
           handleClick: () => navigate("/documentation/about"),
         },
         {
           label: t("Installation"),
+          current: pathname === "/documentation/installation",
           handleClick: () => {
             navigate("/documentation/installation");
           },
         },
         {
           label: t("Usage"),
+          current: pathname === "/documentation/usage",
           handleClick: () => {
             navigate("/documentation/usage");
           },
         },
         {
           label: t("API"),
+          current: pathname === "/documentation/api",
           handleClick: () => {
             navigate("#");
           },
         },
         {
           label: t("Standards"),
+          current: pathname === "/documentation/standards",
           handleClick: () => {
             navigate("/documentation/standards");
+          },
+        },
+        {
+          label: t("Contact"),
+          current: pathname === "/documentation/contact",
+          handleClick: () => {
+            navigate("#");
           },
         },
       ],
     },
   ];
 
-  const authenticatedPrimaryTopNavItems = [
+  const authenticatedSecondaryTopNavItems = [
     {
-      label: "Home",
+      label: "Dashboard",
+      current: pathname.includes("/admin"),
       handleClick: () => {
         navigate("/admin");
       },
     },
     {
-      label: "User",
+      label: t("Logout"),
       handleClick: () => {
-        navigate("/admin/user");
+        navigate("/logout");
       },
-    },
-    {
-      label: "Components",
-      handleClick: () => {
-        navigate("/admin/components");
-      },
-    },
-    {
-      label: "My Catalogi",
-      handleClick: () => {
-        navigate("/admin/myCatalogi");
-      },
-    },
-    {
-      label: "Catalogi",
-      handleClick: () => {
-        navigate("/admin/catalogi");
-      },
-    },
-    {
-      label: "Sources",
-      handleClick: () => {
-        navigate("/admin/sources");
-      },
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
 
-  const secondaryTopNavItems = [
+  const unauthenticatedSecondaryTopNavItems = [
     {
-      label: "Common ground",
+      label: t("Login"),
+      current: pathname === "/login",
       handleClick: () => {
-        window.open("https://commonground.nl");
+        open("https://admin.opencatalogi.nl/");
       },
-      icon: <CommongroundLogo />,
-    },
-    {
-      label: "Haven",
-      handleClick: () => {
-        window.open("https://haven.commonground.nl/");
-      },
-      icon: <HavenLogo />,
-    },
-    {
-      label: "NL Design",
-      handleClick: () => {
-        window.open("https://designsystem.gebruikercentraal.nl/");
-      },
-      icon: <ExternalLinkIcon />,
-    },
-    {
-      label: "Github",
-      handleClick: () => {
-        window.open("https://github.com/OpenCatalogi");
-      },
-      icon: <GitHubLogo />,
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
-
-  const logoutMenuItem = {
-    label: "Logout",
-    handleClick: () => {
-      navigate("/logout");
-    },
-    icon: <FontAwesomeIcon icon={faCircleUser} />,
-  };
-
-  const loginMenuItem = {
-    label: "Login",
-    handleClick: () => {
-      navigate("/login");
-    },
-    icon: <FontAwesomeIcon icon={faCircleUser} />,
-  };
-
-  if (isLoggedIn()) secondaryTopNavItems.push(logoutMenuItem);
-  if (!isLoggedIn()) secondaryTopNavItems.push(loginMenuItem);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <div className={styles.logoContainer}>
-            <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
-          </div>
-          <SecondaryTopNav items={secondaryTopNavItems} />
+          <SecondaryTopNav
+            items={isLoggedIn() ? authenticatedSecondaryTopNavItems : unauthenticatedSecondaryTopNavItems}
+          />
         </Container>
+      </div>
+      <div>
+        <div className={styles.headerMiddleBar}>
+          <Container layoutClassName={styles.primaryNavContainer}>
+            <div className={styles.logoContainer}>
+              <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
+            </div>
+            <PrimaryTopNav items={primaryTopNavItems} />
+          </Container>
+        </div>
       </div>
 
       {pathname === "/" && (
@@ -212,14 +205,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           </section>
         </Container>
       )}
-
-      <Container>
-        {isLoggedIn() ? (
-          <PrimaryTopNav items={authenticatedPrimaryTopNavItems} />
-        ) : (
-          <PrimaryTopNav items={primaryTopNavItems} />
-        )}
-      </Container>
+      {pathname !== "/" && (
+        <Container layoutClassName={styles.breadcrumbsContainer}>
+          <Breadcrumbs crumbs={translatedCrumbs} />
+        </Container>
+      )}
     </header>
   );
 };
