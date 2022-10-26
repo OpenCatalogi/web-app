@@ -25,6 +25,9 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
   const { open: openPublicOrderAndSafety, setOpen: setOpenPublicOrderAndSafety } = AccordionCardsController();
   const { open: openSupport, setOpen: setOpenSupport } = AccordionCardsController();
 
+  const support = categories.filter((category) => {
+    return t(_.upperFirst(category.domain)) === t("Support");
+  });
   const governance = categories.filter((category) => {
     return t(_.upperFirst(category.domain)) === t("Governance");
   });
@@ -40,14 +43,12 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
   const publicOrderAndSafety = categories.filter((category) => {
     return t(_.upperFirst(category.domain)) === t("Pulbic order and safety");
   });
-  const support = categories.filter((category) => {
-    return t(_.upperFirst(category.domain)) === t("Support");
-  });
 
   return (
     <>
       <CategoriesAccordionFiltersTemplate
         items={[
+          { label: "Ondersteuning", handleClick: setOpenSupport, active: openSupport, disabled: !support.length },
           { label: "Bestuur", handleClick: setOpenGovernance, active: openGovernance, disabled: !governance.length },
           { label: "Sociaal", handleClick: setOpenSocial, active: openSocial, disabled: !social.length },
           { label: "Ruimte", handleClick: setOpenSpace, active: openSpace, disabled: !space.length },
@@ -63,7 +64,6 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
             active: openPublicOrderAndSafety,
             disabled: !publicOrderAndSafety.length,
           },
-          { label: "Ondersteuning", handleClick: setOpenSupport, active: openSupport, disabled: !support.length },
         ]}
       />
 
