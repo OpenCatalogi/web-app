@@ -86,4 +86,5 @@ export const nl = {
   Logout: "Uitloggen",
   Applications: "Applicaties",
   "Software products": "Software producten",
+  "Back to applications": "Terug naar applicaties",
 };

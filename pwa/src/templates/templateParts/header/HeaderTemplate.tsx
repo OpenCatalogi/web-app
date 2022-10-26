@@ -11,6 +11,7 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import { isLoggedIn } from "../../../services/auth";
+import _ from "lodash";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -28,6 +29,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const {
     location: { pathname },
   } = React.useContext(GatsbyContext);
+
+  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: _.upperFirst(crumb.crumbLabel) }));
 
   const primaryTopNavItems = [
     {
@@ -204,7 +207,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          <Breadcrumbs crumbs={crumbs} />
+          <Breadcrumbs crumbs={translatedCrumbs} />
         </Container>
       )}
     </header>
