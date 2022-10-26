@@ -24,19 +24,19 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
   const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
   const maxItems = badgeNumber > 100;
   return (
-    <div className={clsx(styles.container, active && styles.active, !hasItems && styles.disabled)}>
-      <div className={styles.content}>
-        <FontAwesomeIcon className={styles.categoryIcon} icon={faGripVertical} />
-        <span className={clsx(styles.badge, maxItems && styles.maxNumber)}>
-          <BadgeCounter number={badgeLabel}>
-            <Heading3 className={styles.title}>{t(title)}</Heading3>
-          </BadgeCounter>
-        </span>
+      <div className={clsx(styles.container, active && styles.active, !hasItems && styles.disabled)}>
+        <div className={styles.content}>
+          <FontAwesomeIcon className={styles.categoryIcon} icon={faGripVertical} />
+          <span className={clsx(styles.badge, maxItems && styles.maxNumber)}>
+            <BadgeCounter number={badgeLabel}>
+              <Heading3 className={styles.title}>{t(title)}</Heading3>
+            </BadgeCounter>
+          </span>
 
-        <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
+          <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
+        </div>
+
+        <Divider />
       </div>
-
-      <Divider />
-    </div>
   );
 };

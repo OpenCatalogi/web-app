@@ -8,7 +8,7 @@
   padding-block-end: var(--web-app-size-md);
 }
 
-.container > *:not(.titleLink):not(.layerTags):not(:last-child) {
+.container > *:not(.titleLink):not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
@@ -32,69 +32,4 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.layerTags {
-  display: flex;
-  margin-block-end: var(--web-app-size-xs);
-}
-
-.layerTags > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.tags > div {
-  margin-block-end: var(--web-app-size-xs);
-}
-
-.tags > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-/* Colors of the 5 layers */
-
-.interfaceLayer,
-.interactionLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--web-app-color-white);
-}
-.interactionCategory,
-.interfaceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
-}
-
-.processLayer,
-.processsLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--web-app-color-white);
-}
-.processCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-process);
-}
-
-.integrationLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--web-app-color-white);
-}
-.integrationCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
-}
-
-.servicesLayer,
-.serviceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--web-app-color-white);
-}
-
-.servicesCategory,
-.serviceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-services);
-}
-
-.dataLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--web-app-color-white);
-}
-.dataCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-data);
 }

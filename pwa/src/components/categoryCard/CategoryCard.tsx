@@ -3,14 +3,9 @@ import * as styles from "./CategoryCard.module.css";
 import { Divider, Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
-import { GitHubLogo } from "../../assets/svgs/GitHub";
-import { ToolTip } from "../toolTip/ToolTip";
-import { categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
+import { TEMPORARY_DOMAINS } from "../../data/domains";
 
 export interface CategoryCardProps {
   title: {
@@ -18,19 +13,19 @@ export interface CategoryCardProps {
     href: string;
   };
   description: string;
-  icon: JSX.Element | undefined;
-  domain: string;
-  // tags: {
-  //   status?: string;
-  //   installations: string;
-  //   organization?: string;
-  //   licence?: string;
-  //   githubLink?: string;
-  // };
+  icon: JSX.Element;
+  domain: {
+    label: string;
+    icon: JSX.Element;
+  };
 }
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
   const { t } = useTranslation();
+
+  const domainIcon = TEMPORARY_DOMAINS.find((_domain) => {
+    return _domain.title === domain.label;
+  });
 
   return (
     <div className={styles.container}>
@@ -39,6 +34,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
           {title.label}
         </Link>
       </div>
+      {domainIcon && <Tag label={t(domain.label)} icon={domainIcon?.icon} />}
       <Divider />
       <Paragraph className={styles.description}>{description}</Paragraph>
     </div>

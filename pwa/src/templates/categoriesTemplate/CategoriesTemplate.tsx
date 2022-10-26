@@ -2,12 +2,9 @@ import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import * as _ from "lodash";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Container, DetailsCard } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
-import { CategoryCard } from "../../components/categoryCard/CategoryCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 
 export const CategoriesTemplate: React.FC = () => {

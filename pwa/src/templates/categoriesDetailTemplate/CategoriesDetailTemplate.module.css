@@ -11,12 +11,6 @@
   margin-block-start: var(--web-app-size-3xl);
 }
 
-.subHeading {
-  width: 100%;
-  max-width: 800px;
-  margin-block-end: var(--web-app-size-2xl);
-}
-
 .description {
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
@@ -25,4 +19,20 @@
 .title:not(:last-child) {
   display: flex;
   margin-inline-end: var(--web-app-size-2xs);
+}
+
+.solutions {
+  margin-block-start: var(--web-app-size-xl);
+}
+
+.solutionsHeader {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.solutionsContent {
+  max-width: 500px;
+}
+
+.maxNumber {
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }

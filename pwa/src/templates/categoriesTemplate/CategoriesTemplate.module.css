@@ -2,11 +2,6 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.container > .backButton {
-  margin-block-start: var(--web-app-size-2xl);
-  margin-block-end: var(--web-app-size-sm);
-}
-
 .header {
   margin-block-start: var(--web-app-size-3xl);
 }
@@ -15,10 +10,4 @@
   width: 100%;
   max-width: 800px;
   margin-block-end: var(--web-app-size-2xl);
-}
-
-.componentsGrid {
-  display: grid;
-  grid-gap: var(--web-app-size-lg);
-  grid-template-columns: 1fr 1fr 1fr;
 }

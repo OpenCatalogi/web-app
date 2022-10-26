@@ -54,10 +54,10 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
         </div>
       )}
       {component && (
-        <>
+        <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             {console.log(component.embedded?.nl.embedded?.commonground.layerType)}
-            <span className={clsx(styles.badge, maxItems && styles.maxNumber)}>
+            <span className={maxItems && styles.maxNumber}>
               <BadgeCounter number={badgeLabel}>
                 <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
               </BadgeCounter>
@@ -80,7 +80,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
               }}
             />
           </div>
-        </>
+        </div>
       )}
 
       {!portfolio && <Skeleton height="200px" />}

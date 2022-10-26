@@ -40,10 +40,3 @@ export const TEMPORARY_DOMAINS = [
     icon: <FontAwesomeIcon icon={faCircleInfo} />,
   },
 ];
-
-// bestuur: richt zich op bestuurlijke taken (o.a. besturing, strategie, verantwoording)
-// sociaal: richt zich op de sociale kant van de maatschappij (o.a. werk, inkomen, zorg, jeugd)
-// ruimte: richt zich op de fysieke omgeving (o.a. beheer openbare ruimte, afvalinzameling)
-// publieksdiensten: richt zich op het verstrekken van, veelal door inwoners of bedrijven aangevraagde, gemeentelijke producten (o.a. reisdocumenten, sportstimulering)
-// openbare orde en veiligheid: richt zich op bestuurlijke handhaving onder verantwoordelijkheid van de veiligheidsdomeinketen (o.a. preventiecampagnes, rampenoefeningen).
-// ondersteuning: richt zich op het ondersteunen van bestuurlijke en primaire taken (o.a. huisvesting, personeelsmanagement).

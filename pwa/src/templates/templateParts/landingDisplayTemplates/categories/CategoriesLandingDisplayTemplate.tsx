@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface CategoriesLandingDisplayTemplateProps {}
 
@@ -30,7 +32,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
             title={{ label: category.title, href: `/categories/${category.id}` }}
             description={category.shortDescription}
             icon={category.icon}
-            domain={category.domain}
+            domain={{ label: category.domain, icon: <FontAwesomeIcon icon={faLayerGroup} /> }}
           />
         ))}
       </div>
