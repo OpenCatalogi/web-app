@@ -37,6 +37,10 @@ module.exports = {
             pathname: "/categories/[categoryId]",
             crumbLabel: "Category",
           },
+          {
+            pathname: "/documentation/about",
+            crumbLabel: "Over Open Catalogi",
+          },
         ],
       },
     },

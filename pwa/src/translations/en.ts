@@ -86,6 +86,7 @@ export const en = {
   Applications: "Applications",
   "Software products": "Software products",
   Categories: "Categories",
+  Category: "Category",
   "Back to categories": "Back to categories",
   Governance: "Governance",
   Social: "Social",

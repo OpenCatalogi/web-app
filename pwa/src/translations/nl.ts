@@ -87,6 +87,7 @@ export const nl = {
   Applications: "Applicaties",
   "Software products": "Software producten",
   Categories: "Categorieën",
+  Category: "Categorie",
   "Back to categories": "Terug naar categorieën",
   Governance: "Bestuur",
   Social: "Sociaal",

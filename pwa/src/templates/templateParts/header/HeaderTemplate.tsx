@@ -30,7 +30,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     location: { pathname },
   } = React.useContext(GatsbyContext);
 
-  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: _.upperFirst(crumb.crumbLabel) }));
+  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
   const primaryTopNavItems = [
     {
