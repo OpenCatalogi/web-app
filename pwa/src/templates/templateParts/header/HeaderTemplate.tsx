@@ -20,22 +20,24 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
+  console.log(filters)
+
   const setNewFilters = (newFilters: any) => {
     const resets = {
-      search: "",
-      softwareType: "",
-      developmentStatus: "",
+      search: undefined,
+      softwareType: undefined,
+      developmentStatus: undefined,
       platforms: [],
-      category: "",
+      category: undefined,
       "nl.commonground.layerType": [],
       "nl.gemma.bedrijfsfuncties": [],
       "nl.gemma.bedrijfsservices": [],
       "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": "",
+      "nl.gemma.applicatiefunctie": undefined,
       "nl.upl": [],
-      "maintenance.type": "",
-      "legal.license": "",
-      "legal.mainCopyrightOwner": "",
+      "maintenance.type": undefined,
+      "legal.license": undefined,
+      "legal.mainCopyrightOwner": undefined,
     };
     setFilters({ ...filters, ...resets, ...newFilters });
   };
