@@ -33,7 +33,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
   const component =
     portfolio &&
     TEMPORARY_COMPONENTS.find((component) => {
-      return component.id === "04f28cfa-e99b-4f77-ab05-59cd35cb2f75";
+      return component.id === "aa78c93b-d57d-4d9a-b255-e8cfe26bde48";
     });
   const badgeNumber = 1;
   const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
