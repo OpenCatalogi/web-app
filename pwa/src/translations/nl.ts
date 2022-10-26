@@ -86,6 +86,7 @@ export const nl = {
   Logout: "Uitloggen",
   Applications: "Applicaties",
   "Software products": "Software producten",
+  "Back to applications": "Terug naar applicaties",
   Categories: "Categorieën",
   Category: "Categorie",
   "Back to categories": "Terug naar categorieën",
