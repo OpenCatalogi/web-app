@@ -88,4 +88,10 @@ export const nl = {
   "Software products": "Software producten",
   Categories: "Categorieën",
   "Back to categories": "Terug naar categorieën",
+  Governance: "Bestuur",
+  Social: "Sociaal",
+  Space: "Ruimte",
+  "Public services": "Publieksdiensten",
+  "Public order and safety": "Openbare orde en veiligheid",
+  Support: "Ondersteuning",
 };

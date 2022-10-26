@@ -87,4 +87,10 @@ export const en = {
   "Software products": "Software products",
   Categories: "Categories",
   "Back to categories": "Back to categories",
+  Governance: "Governance",
+  Social: "Social",
+  Space: "Space",
+  "Public services": "Public services",
+  "Public order and safety": "Public order and safety",
+  Support: "Support",
 };
