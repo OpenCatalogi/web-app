@@ -1,22 +1,10 @@
 import * as React from "react";
 import * as styles from "./StandardsDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import {
-  Button,
-  Heading1,
-  Heading3,
-  Heading5,
-  LeadParagraph,
-  Link,
-  List,
-  ListItem,
-  Paragraph,
-} from "@gemeente-denhaag/components-react";
+import { Button, Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import clsx from "clsx";
 import { TEMPORARY_STANDARDS } from "../../../data/standards";
-import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { navigate } from "gatsby";
+import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 
 export const StandardsDocumentationTemplate: React.FC = () => {

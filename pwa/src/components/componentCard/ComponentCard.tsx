@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ToolTip } from "../toolTip/ToolTip";
-import { categories, TCategories } from "../../data/categories";
+import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
 
@@ -19,10 +19,7 @@ export interface ComponentCardProps {
   };
   description: string;
   layer: TCategories;
-  category: {
-    label: string;
-    icon: JSX.Element;
-  };
+  categories: string[];
   tags: {
     status?: string;
     installations: string;
@@ -32,9 +29,19 @@ export interface ComponentCardProps {
   };
 }
 
-export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, category, description, tags }) => {
+export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, categories, description, tags }) => {
   const { t } = useTranslation();
-  const _category = _.sample(categories[layer]);
+
+  const _layer: TCategories = t(_.upperFirst(layer));
+
+  const __categories =
+    layer &&
+    categories.length &&
+    categories.map((category: any) => {
+      return _categories[_layer].find((_category: any) => {
+        return _category.value === category;
+      });
+    });
 
   return (
     <div className={styles.container}>
@@ -52,11 +59,17 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
-          {_category && (
-            <ToolTip tooltip="Categorie">
-              <Tag label={_.upperFirst(_category?.title)} icon={_category?.icon} />
-            </ToolTip>
-          )}
+          {__categories !== 0 &&
+            __categories.map((category: any) => (
+              <>
+                {console.log(category)}
+                {category && (
+                  <ToolTip tooltip="Categorie">
+                    <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
+                  </ToolTip>
+                )}
+              </>
+            ))}
         </div>
       </div>
 

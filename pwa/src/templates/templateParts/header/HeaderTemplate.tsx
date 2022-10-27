@@ -186,7 +186,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             <div className={styles.logoContainer}>
               <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
             </div>
-            <PrimaryTopNav items={primaryTopNavItems} />
+            <PrimaryTopNav layoutClassName={styles.primaryNavDropdown} items={primaryTopNavItems} />
           </Container>
         </div>
       </div>

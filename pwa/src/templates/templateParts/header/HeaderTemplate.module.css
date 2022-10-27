@@ -99,3 +99,9 @@
   width: 100%;
   max-width: 650px;
 }
+
+.primaryNavDropdown > nav > ul > li > ul > li {
+  border: 1px solid var(--skeleton-color-grey-2);
+  border-top: none;
+  margin: -1px;
+}

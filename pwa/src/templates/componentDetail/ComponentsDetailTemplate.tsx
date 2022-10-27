@@ -26,7 +26,6 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-de
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -49,7 +48,6 @@ import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
-import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
 import clsx from "clsx";
 
 interface ComponentsDetailTemplateProps {
@@ -67,21 +65,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const { isVisible, show, hide } = NotificationPopUpController();
 
-  const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
-  const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
-  const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
-
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
-  const tempOrganization = TEMPORARY_ORGANIZATIONS;
-
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
-  const category =
+  const _categories =
     layer &&
-    categories[layer].find((category) => {
-      return category.value === _getComponent.data?.categories;
+    _getComponent.data?.categories.map((category: any) => {
+      return categories[layer].find((_category) => {
+        return _category.value === category;
+      });
     });
 
   if (_getComponent.isError) return <>Something went wrong...</>;
@@ -115,19 +109,26 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </ToolTip>
 
-                {_getComponent.data?.categories && category && (
-                  <ToolTip tooltip="Categorie">
-                    <Tag
-                      layoutClassName={
-                        styles[
-                          _.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)
-                        ]
-                      }
-                      label={_.upperFirst(category?.title)}
-                      icon={category?.icon}
-                    />
-                  </ToolTip>
-                )}
+                {_getComponent.data?.categories &&
+                  _categories &&
+                  _categories.map(
+                    (category: any) =>
+                      category && (
+                        <ToolTip tooltip="Categorie">
+                          <Tag
+                            layoutClassName={
+                              styles[
+                                _.camelCase(
+                                  `${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`,
+                                )
+                              ]
+                            }
+                            label={_.upperFirst(category?.title)}
+                            icon={category?.icon}
+                          />
+                        </ToolTip>
+                      ),
+                  )}
               </div>
 
               <div className={styles.tags}>
@@ -273,7 +274,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <TableBody>
                 <TableRow>
                   <TableHeader>Gemma</TableHeader>
-                  <TableCell>Op dit moment is er geen gemma data beschikbaar.</TableCell>
+                  <TableCell>
+                    <span>Op dit moment is er geen gemma data beschikbaar.</span>
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableHeader>{t("Products")}</TableHeader>
@@ -285,7 +288,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
                         >
                           <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                            {product},
+                            {product},{" "}
                           </Link>
                         </span>
                       ))}
@@ -322,7 +325,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={_.toString(TempComponentsDependencies.length)}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
                     >
                       Componenten & Afhankelijkheden
                     </BadgeCounter>
@@ -334,7 +337,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter layoutClassName={styles.badgeLayout} number={_.toString(TempComponentsSchema.length)}>
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
+                    >
                       {t("Schema's")}
                     </BadgeCounter>
                   }
@@ -345,7 +351,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={_.toString(TempComponentsProcesses.length)}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
                     >
                       {t("Processes")}
                     </BadgeCounter>
@@ -379,7 +385,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                   <DependenciesTemplate
                     type={filters.dependenciesDisplayLayout}
-                    components={TempComponentsDependencies}
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                     mainComponent={{
                       id: componentId,
                       name: _getComponent.data.name,
@@ -493,12 +499,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="3">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsSchema} />
+                  <ComponentCardsAccordionTemplate
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                  />
                 </div>
               </TabPanel>
               <TabPanel className={styles.tabPanel} value="4">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsProcesses} />
+                  <ComponentCardsAccordionTemplate
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                  />
                 </div>
               </TabPanel>
             </TabContext>

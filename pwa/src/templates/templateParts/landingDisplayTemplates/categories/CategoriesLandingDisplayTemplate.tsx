@@ -37,7 +37,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                 {categories.map(
                   (categorie) =>
                     categorie.domain === domain.title && (
-                      <div className={styles.titleLink} onClick={() => navigate(`/categories/${categorie.id}`)}>
+                      <div onClick={() => navigate(`/categories/${categorie.id}`)}>
                         <Link icon={<ArrowRightIcon />} iconAlign="start">
                           {categorie.title}
                         </Link>
