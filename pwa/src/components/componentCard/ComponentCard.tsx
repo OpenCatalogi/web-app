@@ -60,16 +60,14 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
           {__categories !== 0 &&
-            __categories.map((category: any) => (
-              <>
-                {console.log(category)}
-                {category && (
+            __categories.map(
+              (category: any) =>
+                category && (
                   <ToolTip tooltip="Categorie">
                     <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
                   </ToolTip>
-                )}
-              </>
-            ))}
+                ),
+            )}
         </div>
       </div>
 
