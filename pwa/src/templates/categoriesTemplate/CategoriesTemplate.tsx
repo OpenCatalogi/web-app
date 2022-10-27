@@ -15,10 +15,10 @@ export const CategoriesTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2>{t("Categories")}</Heading2>
+        <Heading2 className={styles.title}>{t("Categories")}</Heading2>
 
         <div className={styles.subHeading}>
-          <LeadParagraph>
+          <LeadParagraph className={styles.description}>
             Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
           </LeadParagraph>
         </div>

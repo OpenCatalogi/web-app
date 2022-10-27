@@ -11,3 +11,11 @@
   max-width: 800px;
   margin-block-end: var(--web-app-size-2xl);
 }
+
+.title {
+  color: var(--web-app-color-text-grey);
+}
+
+.description {
+  color: var(--web-app-color-text-grey);
+}

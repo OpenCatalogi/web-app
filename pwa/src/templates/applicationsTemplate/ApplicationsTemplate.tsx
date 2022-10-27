@@ -24,8 +24,8 @@ export const ApplicationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2>{t("Applications")}</Heading2>
-          <LeadParagraph>
+          <Heading2 className={styles.title}>{t("Applications")}</Heading2>
+          <LeadParagraph className={styles.description}>
             Deeloplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt voor
             een bepaald onderdeel.
           </LeadParagraph>

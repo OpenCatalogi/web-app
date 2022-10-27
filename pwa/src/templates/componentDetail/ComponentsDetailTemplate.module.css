@@ -17,9 +17,14 @@
   flex: 5;
 }
 
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
 .description {
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .layerAndCategoryContainer {

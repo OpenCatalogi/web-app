@@ -83,6 +83,7 @@
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
+  --web-app-color-text-grey: #404b4f;
   --web-app-color-grey: var(--skeleton-color-grey-1);
   --web-app-color-top-nav-grey: #586265;
 

@@ -6,6 +6,10 @@
   margin-block-start: var(--web-app-size-3xl);
 }
 
+.section {
+  color: var(--web-app-color-text-grey);
+}
+
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
@@ -18,4 +22,8 @@
   display: flex;
   justify-content: space-between;
   gap: var(--web-app-size-2xl);
+}
+
+.description {
+  color: var(--web-app-color-text-grey);
 }

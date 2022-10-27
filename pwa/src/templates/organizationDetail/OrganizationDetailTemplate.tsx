@@ -42,11 +42,13 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <>
           <div className={styles.headerContainer}>
             <div className={styles.headerContent}>
-              <Heading1>{_getOrganization.data.name}</Heading1>
+              <Heading1 className={styles.title}>{_getOrganization.data.name}</Heading1>
 
-              {_getOrganization.data.description && <LeadParagraph>{_getOrganization.data.description}</LeadParagraph>}
+              {_getOrganization.data.description && (
+                <LeadParagraph className={styles.description}>{_getOrganization.data.description}</LeadParagraph>
+              )}
               {!_getOrganization.data.description && (
-                <LeadParagraph>{t("There is no description available")}</LeadParagraph>
+                <LeadParagraph className={styles.description}>{t("There is no description available")}</LeadParagraph>
               )}
             </div>
 
@@ -132,7 +134,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Divider />
 
           <div className={styles.section}>
-            <Heading2>Componenten</Heading2>
+            <Heading2 className={styles.title}>Componenten</Heading2>
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}

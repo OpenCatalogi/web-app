@@ -22,9 +22,9 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
   return (
     <>
       <div className={styles.subHeading}>
-        <Heading2>{t("Categories")}</Heading2>
+        <Heading2 className={styles.title}>{t("Categories")}</Heading2>
 
-        <LeadParagraph>
+        <LeadParagraph className={styles.description}>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
         </LeadParagraph>
       </div>

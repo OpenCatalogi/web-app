@@ -88,11 +88,11 @@
 }
 
 .title {
-  color: var(--web-app-color-black);
+  color: var(--web-app-color-text-grey);
 }
 
 .subTitle {
-  color: var(--web-app-color-black);
+  color: var(--web-app-color-text-grey);
 }
 
 .searchFormContainer {

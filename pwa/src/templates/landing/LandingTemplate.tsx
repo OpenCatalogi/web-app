@@ -45,6 +45,7 @@ export const LandingTemplate: React.FC = () => {
 
         <div className={styles.cards}>
           <ImageAndDetailsCard
+            layoutClassName={styles.textColor}
             title="Over Open Catalogi"
             image={<img src={overOpenCatalogiImage} />}
             introduction="Open Catalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
@@ -52,6 +53,7 @@ export const LandingTemplate: React.FC = () => {
           />
 
           <ImageAndDetailsCard
+            layoutClassName={styles.textColor}
             title="Aan de slag met Open Catalogi"
             image={<img src={aanDeSlagMetOpenCatalogiImage} />}
             introduction="Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"

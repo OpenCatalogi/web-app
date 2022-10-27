@@ -4,6 +4,14 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.title {
+  color: var(--web-app-color-text-grey);
+}
+
+.description {
+  color: var(--web-app-color-text-grey);
+}
+
 .subHeading {
   width: 100%;
   max-width: 800px;

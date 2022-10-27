@@ -11,7 +11,9 @@ export const UsageDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading1>Componenten op Open Catalogi plaatsen</Heading1>
 
-        <LeadParagraph>Er zijn vier manieren om een component zichtbaar te maken op Open Catalogi.</LeadParagraph>
+        <LeadParagraph className={styles.description}>
+          Er zijn vier manieren om een component zichtbaar te maken op Open Catalogi.
+        </LeadParagraph>
       </section>
 
       <section className={styles.section}>
