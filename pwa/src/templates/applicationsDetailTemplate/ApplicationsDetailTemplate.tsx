@@ -50,9 +50,9 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
                 )}
 
                 {getApplications.data.demoUrl && (
-                  <ToolTip tooltip="GitHub">
+                  <ToolTip tooltip="Demo">
                     <Tag
-                      label={t("Repository")}
+                      label={t("Demo")}
                       icon={<FontAwesomeIcon icon={faLaptopCode} />}
                       onClick={() => open(getApplications.data.demoUrl)}
                     />
