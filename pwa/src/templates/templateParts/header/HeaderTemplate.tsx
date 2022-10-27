@@ -20,8 +20,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
-  console.log(filters)
-
   const setNewFilters = (newFilters: any) => {
     const resets = {
       search: undefined,
