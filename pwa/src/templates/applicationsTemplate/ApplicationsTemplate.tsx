@@ -2,24 +2,23 @@ import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
-import { TEMPORARY_APPLICATIONS } from "../../data/applications";
+import { QueryClient } from "react-query";
+import { useApplications } from "../../hooks/applications";
+import Skeleton from "react-loading-skeleton";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
-  // const queryClient = new QueryClient();
-  // const _useApplications = useApplications(queryClient);
-  // const getApplications = _useApplications.getAll({
-  //   ...filters,
-  //   "nl.commonground.layerType": ["interface"],
-  // });
-
-  const tempApplications = TEMPORARY_APPLICATIONS
+  const queryClient = new QueryClient();
+  const _useApplications = useApplications(queryClient);
+  const getApplications = _useApplications.getAll({
+    ...filters,
+  });
 
   return (
     <Container layoutClassName={styles.container}>
@@ -33,25 +32,32 @@ export const ApplicationsTemplate: React.FC = () => {
         </div>
       </div>
 
-      {/* {getApplications.data?.results && getApplications.data?.results?.length > 0 && ( */}
-        <div className={styles.ComponentsGrid}>
-          {tempApplications.map((application: any) => (
-            <ApplicationCard
-              key={application.id}
-              title={{ label: application.name, href: `/applications/${application.id}` }}
-              description={application.shortDescription}
-              tags={{
-                organization: application.owner.fullName,
-                githubLink: application.demoUrl,
-              }}
-            />
-          ))}
-        </div>
-      {/* )} */}
+      {getApplications.isSuccess && (
+        <>
+          <div className={styles.ComponentsGrid}>
+            {getApplications.data.results.map((application: any) => (
+              <ApplicationCard
+                key={application.id}
+                title={{ label: application.name, href: `/applications/${application.id}` }}
+                description={application.shortDescription}
+                tags={{
+                  organization: application?.embedded?.owner.fullName,
+                  githubLink: application?.demoUrl,
+                }}
+              />
+            ))}
+          </div>
+          <Pagination
+            setPage={(page) => setFilters({ ...filters, currentPage: page })}
+            pages={getApplications.data.pages}
+            currentPage={getApplications.data.page}
+          />
+        </>
+      )}
 
-      {/* {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"} */}
+      {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"}
 
-      {/* {getApplications.isLoading && <Skeleton height="200px" />} */}
+      {getApplications.isLoading && <Skeleton height="200px" />}
     </Container>
   );
 };
