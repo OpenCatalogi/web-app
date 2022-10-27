@@ -64,9 +64,11 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
           <Divider />
 
-          <div className={styles.applicationImageWrapper}>
+          <div>
             <Heading2>Screenshot</Heading2>
-            <img src={getApplications.data.detailPageImageUrl} className={styles.applicationImage} />
+            <div className={styles.screenshotContainer}>
+              <img src={getApplications.data.detailPageImageUrl} className={styles.screenshot} />
+            </div>
           </div>
         </>
       )}
