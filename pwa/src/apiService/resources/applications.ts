@@ -20,7 +20,7 @@ export default class Applications {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/applications?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+      `/applications?page=${filters.currentPage}&limit=9&extend[]=all${filtersToQueryParams(filters, deletes)}`,
     );
 
     return data;
