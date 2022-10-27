@@ -7,7 +7,7 @@
 }
 
 .section {
-  color: var(--web-app-color-text-grey);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .section > *:not(:last-child) {
@@ -25,5 +25,5 @@
 }
 
 .description {
-  color: var(--web-app-color-text-grey);
+  color: var(--web-app-color-text-grey) !important;
 }

@@ -15,7 +15,7 @@
   margin-inline-end: var(--web-app-size-md);
   flex-direction: column;
   flex: 5;
-  color: var(--web-app-color-text-grey);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .layerAndCategoryContainer {
@@ -43,5 +43,5 @@
 }
 
 .title {
-  color: var(--web-app-color-text-grey);
+  color: var(--web-app-color-text-grey) !important;
 }
