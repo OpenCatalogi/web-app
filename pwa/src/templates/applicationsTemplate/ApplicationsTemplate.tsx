@@ -6,7 +6,6 @@ import { Container, Pagination } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
-import { TEMPORARY_APPLICATIONS } from "../../data/applications";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";

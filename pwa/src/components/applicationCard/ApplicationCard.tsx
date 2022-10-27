@@ -5,8 +5,7 @@ import { navigate } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
@@ -43,8 +42,8 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
           </ToolTip>
         )}
         {tags.githubLink && (
-          <ToolTip tooltip="GitHub">
-            <Tag label={t("Repository")} icon={<GitHubLogo />} onClick={() => open(tags.githubLink)} />
+          <ToolTip tooltip="Demo">
+            <Tag label={t("Demo")} icon={<FontAwesomeIcon icon={faLaptopCode} />} onClick={() => open(tags.githubLink)} />
           </ToolTip>
         )}
       </div>

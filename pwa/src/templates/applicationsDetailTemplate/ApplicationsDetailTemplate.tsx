@@ -6,8 +6,7 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { categories as _categories } from "../../data/filters";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -54,7 +53,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
                   <ToolTip tooltip="GitHub">
                     <Tag
                       label={t("Repository")}
-                      icon={<GitHubLogo />}
+                      icon={<FontAwesomeIcon icon={faLaptopCode} />}
                       onClick={() => open(getApplications.data.demoUrl)}
                     />
                   </ToolTip>
