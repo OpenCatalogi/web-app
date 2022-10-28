@@ -261,59 +261,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             )}
           </div>
 
-          <DownloadTemplate
-            label={_getComponent.data.name}
-            icon={<FontAwesomeIcon icon={faDatabase} />}
-            {...{ sizeKb }}
-          />
-
           <div>
-            <h2 className={styles.title}>Technische gegevens</h2>
-
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableHeader className={styles.title}>Gemma</TableHeader>
-                  <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
-                  <TableCell>
-                    {_getComponent.data.embedded.nl.upl &&
-                      _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                            {product},{" "}
-                          </Link>
-                        </span>
-                      ))}
-                    {!_getComponent.data.embedded.nl.upl ||
-                      (!_getComponent.data.embedded.nl.upl.length && (
-                        <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
-                      ))}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader className={styles.title}>Standaarden</TableHeader>
-                  <TableCell className={styles.description}>
-                    Op dit moment zijn er geen standaarden beschikbaar.
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
-                  <TableCell className={styles.description}>
-                    Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-          <div>
-            <Heading2 className={styles.title}>Tabbladen</Heading2>
-
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
@@ -514,6 +462,57 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </div>
               </TabPanel>
             </TabContext>
+          </div>
+
+          <DownloadTemplate
+            label={_getComponent.data.name}
+            icon={<FontAwesomeIcon icon={faDatabase} />}
+            {...{ sizeKb }}
+          />
+
+          <div>
+            <h2 className={styles.title}>Meer informatie</h2>
+
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableHeader className={styles.title}>Gemma</TableHeader>
+                  <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
+                  <TableCell>
+                    {_getComponent.data.embedded.nl.upl &&
+                      _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
+                        <span
+                          key={idx}
+                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
+                        >
+                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                            {product},{" "}
+                          </Link>
+                        </span>
+                      ))}
+                    {!_getComponent.data.embedded.nl.upl ||
+                      (!_getComponent.data.embedded.nl.upl.length && (
+                        <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
+                      ))}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>Standaarden</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen standaarden beschikbaar.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
         </>
       )}

@@ -61,7 +61,7 @@ export const nl = {
   Private: "Privé",
   Public: "Openbaar",
   Unknown: "Onbekend",
-  Relations: "Verbanden",
+  Relations: "Relaties",
   About: "Over",
   Documentation: "Documentatie",
   Warning: "Waarschuwing",
