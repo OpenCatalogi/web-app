@@ -29,7 +29,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           uitleg over publiccode.yaml vind je{" "}
           <span
             onClick={() => {
-              navigate("#");
+              open("https://yml.publiccode.tools/schema.core.html#top-level-keys-and-sections");
             }}
           >
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -39,7 +39,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           en een online-editor kun je{" "}
           <span
             onClick={() => {
-              navigate("#");
+              open("https://publiccode-editor.developers.italia.it/");
             }}
           >
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -58,10 +58,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Meer informatie over het zelf inrichten van een OpenCatalogi vind je{" "}
           <span
             onClick={() => {
-              navigate("#");
+              navigate("/documentatin/installation");
             }}
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link icon={<ArrowRightIcon />} iconAlign="start">
               hier
             </Link>
           </span>
