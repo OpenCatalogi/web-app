@@ -40,6 +40,8 @@ module.exports = {
           {
             pathname: "/documentation/about",
             crumbLabel: "Over OpenCatalogi",
+          },
+          {
             pathname: "/applications/[applicationId]",
             crumbLabel: "Application",
           },

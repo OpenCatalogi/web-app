@@ -105,3 +105,7 @@
   border-top: none;
   margin: -1px;
 }
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
+}

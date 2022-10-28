@@ -65,7 +65,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
+                setFilters({ ...filters, developmentStatus: "concept" });
                 navigate("/components");
               }}
             >
