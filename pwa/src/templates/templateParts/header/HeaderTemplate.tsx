@@ -182,7 +182,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             <div className={styles.logoContainer}>
               <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
             </div>
-            <PrimaryTopNav layoutClassName={styles.textColor} items={primaryTopNavItems} />
+            <PrimaryTopNav
+              layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)}
+              items={primaryTopNavItems}
+            />
           </Container>
         </div>
       </div>

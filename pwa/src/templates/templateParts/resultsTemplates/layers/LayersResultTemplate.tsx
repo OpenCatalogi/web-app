@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./LayersResultTemplate.module.css";
-
 import _ from "lodash";
 import { ComponentCardsAccordionTemplate } from "../../componentCardsAccordion/ComponentCardsAccordionTemplate";
 

@@ -70,7 +70,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
               title={{ label: component.name, href: `/components/${component.id}` }}
               description={component.embedded?.description?.shortDescription}
               layer={component.embedded?.nl.embedded?.commonground.layerType}
-              category={{ label: component.categories?.label, icon: component.categories?.icon }}
+              categories={component.categories}
               tags={{
                 status: component.developmentStatus,
                 installations: component.usedBy?.length.toString() ?? "0",

@@ -4,8 +4,6 @@ import { getTokenValue } from "../../../services/getTokenValue";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
@@ -145,7 +143,7 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
           title={{ label: component.name, href: `/components/${component.id}` }}
           description={component.embedded?.description?.shortDescription}
           layer={component.embedded?.nl.embedded?.commonground.layerType}
-          category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
+          categories={component.categories}
           tags={{
             status: component.developmentStatus,
             installations: component.usedBy?.length.toString() ?? "0",
