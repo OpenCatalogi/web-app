@@ -31,7 +31,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
       <div className={styles.ComponentsGrid}>
         {domains.map((domain) => (
           <CategoryCard
-            title={{ label: t(domain.title), href: `/categories` }}
+            title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
             description={
               <div>
                 {categories.map(
@@ -47,6 +47,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
               </div>
             }
             icon={<FontAwesomeIcon icon={faTags} />}
+            domain={true}
           />
         ))}
       </div>

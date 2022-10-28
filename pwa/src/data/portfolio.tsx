@@ -5,8 +5,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "1224a58e-dfff-4198-a3e7-d4adab3ac624",
     title: "Huisvesting",
-    shortDescription: "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
-    longDescription: "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
+    shortDescription:
+      "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
+    longDescription:
+      "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
@@ -37,8 +39,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "8679ad28-ee65-497d-ae59-1cc6beca7d0e",
     title: "Informatie en archiefbeheer",
-    shortDescription: "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
-    longDescription: "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
+    shortDescription:
+      "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
+    longDescription:
+      "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
@@ -53,32 +57,40 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "3c8464f5-9c87-47f7-bfc6-c46f46e253b0",
     title: "Personeelsmanagement",
-    shortDescription: "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
-    longDescription: "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
+    shortDescription:
+      "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
+    longDescription:
+      "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
   {
     id: "bc81e154-e114-438f-b322-da3ca5afb79e",
     title: "Automatiseringsmanagement",
-    shortDescription: "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
-    longDescription: "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
+    shortDescription:
+      "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
+    longDescription:
+      "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
   {
     id: "81ef8a19-e626-446d-8c41-09ef9246f965",
     title: "Informatiseringsmanagement",
-    shortDescription: "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
-    longDescription: "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
+    shortDescription:
+      "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
+    longDescription:
+      "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
   {
     id: "d6f17288-4807-44c8-b61f-d054f2936095",
     title: "Communicatiemanagement",
-    shortDescription: "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
-    longDescription: "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
+    shortDescription:
+      "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
+    longDescription:
+      "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Support",
   },
@@ -101,34 +113,42 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "6181b79b-d2e3-4c68-9049-6c0dfae0a845",
     title: "Gegevensbeheer",
-    shortDescription: "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
-    longDescription: "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
+    shortDescription:
+      "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
+    longDescription:
+      "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
     icon: <FontAwesomeIcon icon={faCoins} />,
-    domain: "Performance",
+    domain: "Execution",
   },
   {
     id: "eee3f64c-d2a0-43a3-abfb-7e2de3e86d38",
     title: "Openbare orde en veiligheid",
-    shortDescription: "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
-    longDescription: "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
+    shortDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
+    longDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
     icon: <FontAwesomeIcon icon={faCoins} />,
-    domain: "Performance",
+    domain: "Execution",
   },
   {
     id: "b827c826-25af-4da7-b2fd-1116d2e02995",
     title: "Publieksdiensten",
-    shortDescription: "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
-    longDescription: "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
+    shortDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
+    longDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
     icon: <FontAwesomeIcon icon={faCoins} />,
-    domain: "Performance",
+    domain: "Execution",
   },
   {
     id: "06fb294c-37af-4f38-b36d-7fbfa606154a",
     title: "Ruimtelijk Domein",
-    shortDescription: "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
-    longDescription: "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
+    shortDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
+    longDescription:
+      "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
     icon: <FontAwesomeIcon icon={faCoins} />,
-    domain: "Performance",
+    domain: "Execution",
   },
   {
     id: "898a3186-1966-4e81-99f1-5d1e789a83ee",
@@ -136,7 +156,7 @@ export const TEMPORARY_PORTFOLIOS = [
     shortDescription: "Het leveren van gemeentelijke producten en diensten die tot het sociaal domein worden gerekend.",
     longDescription: "Het leveren van gemeentelijke producten en diensten die tot het sociaal domein worden gerekend.",
     icon: <FontAwesomeIcon icon={faCoins} />,
-    domain: "Performance",
+    domain: "Execution",
   },
   {
     id: "06131594-76ae-4677-a976-3c9736d970cc",
@@ -149,8 +169,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "a95ce825-dde6-490c-b866-d8a6ef0ed4c3",
     title: "Samenwerking en participatie",
-    shortDescription: "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
-    longDescription: "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
+    shortDescription:
+      "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
+    longDescription:
+      "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Customer and chain interaction",
   },
@@ -173,8 +195,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "2a46b511-add4-4d98-8e57-9dea30cc9a9c",
     title: "Ontvangst",
-    shortDescription: "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
-    longDescription: "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
+    shortDescription:
+      "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
+    longDescription:
+      "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Customer and chain interaction",
   },
@@ -205,8 +229,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "b004c232-e44e-4b75-b8a3-63f71526d595",
     title: "Afstemming",
-    shortDescription: "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
-    longDescription: "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
+    shortDescription:
+      "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
+    longDescription:
+      "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Directing",
   },
@@ -229,8 +255,10 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "a31b1340-9951-4dc2-8e97-fa5f1803d6b1",
     title: "Organisatiekeuze",
-    shortDescription: "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
-    longDescription: "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
+    shortDescription:
+      "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
+    longDescription:
+      "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Directing",
   },
@@ -269,16 +297,20 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "c9e04fd0-dd0d-48fd-a224-8411c9bbf616",
     title: "Verandermanagement",
-    shortDescription: "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
-    longDescription: "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
+    shortDescription:
+      "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
+    longDescription:
+      "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Surveillance",
   },
   {
     id: "f0258cec-26aa-4b92-adeb-f1793fbc6e97",
     title: "Performance management",
-    shortDescription: "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
-    longDescription: "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
+    shortDescription:
+      "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
+    longDescription:
+      "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Surveillance",
   },
@@ -317,48 +349,60 @@ export const TEMPORARY_PORTFOLIOS = [
   {
     id: "5b40c9bc-f1fb-4a43-a68f-437fa9eb7970",
     title: "Openbare orde en veiligheidontwikkeling",
-    shortDescription: "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
-    longDescription: "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
+    shortDescription:
+      "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
+    longDescription:
+      "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Development",
   },
   {
     id: "48452449-4d1a-481b-a66f-45890242d035",
     title: "Ontwikkeling dienstverlening",
-    shortDescription: "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
-    longDescription: "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
+    shortDescription:
+      "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
+    longDescription:
+      "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Development",
   },
   {
     id: "13d3d192-fd0e-441d-8e1a-ea684bfd16da",
     title: "Samenwerkingsvorming",
-    shortDescription: "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
-    longDescription: "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
+    shortDescription:
+      "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
+    longDescription:
+      "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Control",
   },
   {
     id: "a29d601b-4ff2-4b9f-9d2a-f964e332cfcf",
     title: "Verantwoording",
-    shortDescription: "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
-    longDescription: "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
+    shortDescription:
+      "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
+    longDescription:
+      "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Control",
   },
   {
     id: "f729c0d6-0d6f-47f4-b279-816079863a6d",
     title: "Stratagie",
-    shortDescription: "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
-    longDescription: "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
+    shortDescription:
+      "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
+    longDescription:
+      "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Control",
   },
   {
     id: "39cda7a0-a4a9-4a17-be8f-6c7ade70dd0a",
     title: "Besturing",
-    shortDescription: "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
-    longDescription: "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
+    shortDescription:
+      "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
+    longDescription:
+      "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
     icon: <FontAwesomeIcon icon={faCoins} />,
     domain: "Control",
   },

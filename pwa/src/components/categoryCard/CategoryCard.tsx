@@ -12,9 +12,10 @@ export interface CategoryCardProps {
   };
   description: string | JSX.Element;
   icon: JSX.Element;
+  domain?: boolean;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
   const { t } = useTranslation();
 
   return (
@@ -25,7 +26,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
         </Link>
       </div>
       <Divider />
-      <Paragraph className={styles.description}>{description}</Paragraph>
+      <Paragraph className={domain ?? styles.description}>{description}</Paragraph>
     </div>
   );
 };

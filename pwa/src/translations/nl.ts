@@ -96,5 +96,5 @@ export const nl = {
   Surveillance: "Bewaking",
   Directing: "Regievoering",
   "Customer and chain interaction": "Klant en keteninteractie",
-  Performance: "Uitvoering",
+  Execution: "Uitvoering",
 };
