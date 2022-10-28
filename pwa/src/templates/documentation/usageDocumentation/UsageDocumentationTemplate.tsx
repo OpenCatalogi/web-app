@@ -94,7 +94,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           U kunt via{" "}
           <span
             onClick={() => {
-              navigate("#");
+              navigate("/documentation/contact");
             }}
           >
             <Link icon={<ArrowRightIcon />} iconAlign="start">
