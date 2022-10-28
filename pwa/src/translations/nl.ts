@@ -1,5 +1,5 @@
 export const nl = {
-  "Open Catalogs": "Open Catalogi",
+  "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
   "A central place for re-use of information technology within government":
@@ -13,7 +13,7 @@ export const nl = {
   Services: "Service",
   Service: "Service",
   Data: "Data",
-  "All Open Catalog components": "Alle Open Catalogi componenten",
+  "All Open Catalog components": "Alle OpenCatalogi componenten",
   "View all components": "Bekijk alle componenten",
   "One central place for reuse of information technology within the government":
     "Één centrale plek voor hergebruik van informatie technologie binnen de overheid",
@@ -48,7 +48,7 @@ export const nl = {
   Software: "Software",
   "Data models": "Datamodellen",
   "API's": "API's",
-  "About Open Catalogi": "Over Open Catalogi",
+  "About OpenCatalogi": "Over OpenCatalogi",
   Installation: "Installatie",
   Usage: "Gebruik",
   API: "API",

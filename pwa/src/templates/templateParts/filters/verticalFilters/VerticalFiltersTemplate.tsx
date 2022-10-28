@@ -115,7 +115,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Laag</span>
             </FormFieldLabel>
-            <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <div className={styles.selectBorder}>
+                <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />{" "}
+              </div>
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -124,7 +128,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>UPL</span>
             </FormFieldLabel>
-            <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />
+
+            <div className={styles.selectBorder}>
+              <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -133,7 +140,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Organisatie</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="organisation" options={organizations} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                isClearable
+                name="organisation"
+                options={organizations}
+                {...{ errors, control, register }}
+              />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -142,7 +156,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Categorie</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -151,7 +167,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Platforms</span>
             </FormFieldLabel>
-            <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -160,7 +178,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Status</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -169,12 +189,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Onderhoudstypes</span>
             </FormFieldLabel>
-            <SelectSingle
-              isClearable
-              name="maintenanceType"
-              options={maintenanceTypes}
-              {...{ errors, control, register }}
-            />
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                isClearable
+                name="maintenanceType"
+                options={maintenanceTypes}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -183,7 +205,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Softwaretypes</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="softwareType" options={softwareTypes} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                isClearable
+                name="softwareType"
+                options={softwareTypes}
+                {...{ errors, control, register }}
+              />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -192,7 +221,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Licentie</span>
             </FormFieldLabel>
-            <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -201,7 +232,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Bedrijfsfuncties</span>
             </FormFieldLabel>
-            <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -210,7 +243,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Bedrijfsservices</span>
             </FormFieldLabel>
-            <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />
+            <div className={styles.selectBorder}>
+              <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -219,11 +254,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Referentie componenten</span>
             </FormFieldLabel>
-            <SelectMultiple
-              name="referentieComponenten"
-              options={referentieComponenten}
-              {...{ errors, control, register }}
-            />
+            <div className={styles.selectBorder}>
+              <SelectMultiple
+                name="referentieComponenten"
+                options={referentieComponenten}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormFieldInput>
         </FormField>
 
@@ -232,12 +269,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldLabel>
               <span className={styles.label}>Applicatiefunctie</span>
             </FormFieldLabel>
-            <SelectSingle
-              isClearable
-              name="applicatiefunctie"
-              options={applicatiefuncties}
-              {...{ errors, control, register }}
-            />
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                isClearable
+                name="applicatiefunctie"
+                options={applicatiefuncties}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormFieldInput>
         </FormField>
       </form>

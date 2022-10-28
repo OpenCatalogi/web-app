@@ -49,7 +49,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
 
       {portfolio && domain && (
         <div className={styles.header}>
-          <Heading1>{portfolio.title}</Heading1>
+          <Heading1 className={styles.title}>{portfolio.title}</Heading1>
           <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
           <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
         </div>

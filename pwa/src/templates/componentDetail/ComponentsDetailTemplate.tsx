@@ -92,7 +92,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1>{_getComponent.data.name}</Heading1>
+              <Heading1 className={styles.title}>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
                 {_getComponent.data.embedded.description.longDescription}
@@ -268,18 +268,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           />
 
           <div>
-            <h2>Technische gegevens</h2>
+            <h2 className={styles.title}>Technische gegevens</h2>
 
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableHeader>Gemma</TableHeader>
-                  <TableCell>
-                    <span>Op dit moment is er geen gemma data beschikbaar.</span>
-                  </TableCell>
+                  <TableHeader className={styles.title}>Gemma</TableHeader>
+                  <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader>{t("Products")}</TableHeader>
+                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
                   <TableCell>
                     {_getComponent.data.embedded.nl.upl &&
                       _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
@@ -294,23 +292,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       ))}
                     {!_getComponent.data.embedded.nl.upl ||
                       (!_getComponent.data.embedded.nl.upl.length && (
-                        <span>Op dit moment zijn er geen producten beschikbaar.</span>
+                        <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
                       ))}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader>Standaarden</TableHeader>
-                  <TableCell>Op dit moment zijn er geen standaarden beschikbaar.</TableCell>
+                  <TableHeader className={styles.title}>Standaarden</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen standaarden beschikbaar.
+                  </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader>Wet en regelgeving</TableHeader>
-                  <TableCell>Op dit moment zijn er geen wetten en regelgevingen beschikbaar.</TableCell>
+                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </div>
           <div>
-            <Heading2>Tabbladen</Heading2>
+            <Heading2 className={styles.title}>Tabbladen</Heading2>
 
             <TabContext value={currentTab.toString()}>
               <Tabs

@@ -25,3 +25,7 @@
 .form > *:not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
+
+.selectBorder > div > div {
+  border-radius: 0;
+}
