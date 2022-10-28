@@ -58,7 +58,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Meer informatie over het zelf inrichten van een OpenCatalogi vind je{" "}
           <span
             onClick={() => {
-              navigate("/documentatin/installation");
+              navigate("/documentation/installation");
             }}
           >
             <Link icon={<ArrowRightIcon />} iconAlign="start">
