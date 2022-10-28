@@ -9,7 +9,7 @@ export const InstallationDocumentationTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1>Componenten installeren met de skeleton application</Heading1>
-        <LeadParagraph>
+        <LeadParagraph className={styles.description}>
           De skeleton application is een makkelijke manier om de componenten te installeren en te gebruiken. De skeleton
           application is namelijk ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
           System.

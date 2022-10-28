@@ -18,7 +18,7 @@
 
 .heading {
   font-weight: bold;
-  color: var(--web-app-color-footer-headings);
+  color: var(--web-app-color-text-grey) !important;
   margin-block-end: var(--web-app-size-lg);
   font-size: var(--web-app-font-size-lg);
 }
@@ -40,7 +40,7 @@
   width: fit-content;
   display: flex;
   justify-content: flex-start;
-  color: var(--web-app-color-footer-links);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .logosContainer {

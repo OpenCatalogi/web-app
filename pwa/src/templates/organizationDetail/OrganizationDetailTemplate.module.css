@@ -10,6 +10,18 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
+.section {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.description {
+  color: var(--web-app-color-text-grey) !important;
+}
+
 .headerContainer {
   display: flex;
   gap: var(--web-app-size-xl);

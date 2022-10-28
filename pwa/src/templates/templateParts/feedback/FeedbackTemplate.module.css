@@ -9,6 +9,7 @@
 .heading {
   font-weight: bold;
   font-size: var(--web-app-font-size-xl);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .buttons {
@@ -23,4 +24,8 @@
 .button {
   width: fit-content;
   display: flex;
+}
+
+.description {
+  color: var(--web-app-color-text-grey) !important;
 }

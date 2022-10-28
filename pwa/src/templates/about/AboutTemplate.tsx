@@ -18,7 +18,7 @@ export const AboutTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Over Open Catalogi</Heading1>
+        <Heading1>Over OpenCatalogi</Heading1>
 
         <LeadParagraph>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
@@ -83,7 +83,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section} id="score-calculation">
-        <Heading3>Ingevuld met (voor zover van toepassing) voor Open Catalogi</Heading3>
+        <Heading3>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading3>
 
         <Table>
           <TableBody>

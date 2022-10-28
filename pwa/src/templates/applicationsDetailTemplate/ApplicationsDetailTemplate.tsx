@@ -36,7 +36,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
         <>
           <div className={styles.header}>
             <div className={styles.description}>
-              <Heading1>{getApplications.data.name}</Heading1>
+              <Heading1 className={styles.title}>{getApplications.data.name}</Heading1>
               <LeadParagraph className={styles.description}>{getApplications.data.description}</LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
@@ -65,7 +65,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div>
-            <Heading2>Screenshot</Heading2>
+            <Heading2 className={styles.title}>Screenshot</Heading2>
             <div className={styles.screenshotContainer}>
               <img src={getApplications.data.detailPageImageUrl} className={styles.screenshot} />
             </div>
