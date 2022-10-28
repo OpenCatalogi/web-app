@@ -1,0 +1,11 @@
+
+
+---
+name: "OpenCatalogi"
+description: 
+  short-description: "Federatieve catalogus"
+  long-description: "OpenCatalogi is een software die overzicht biedt per gekozen gemeente .Elke deelnemende gemeente installeert de software. De gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi"
+componenten: 
+  - "https://github.com/OpenCatalogi/web-app"
+  - "https://github.com/OpenCatalogi/OpenCatalogiBundle"
+  - "https://github.com/OpenCatalogi/api"    
