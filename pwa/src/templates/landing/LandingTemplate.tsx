@@ -46,18 +46,18 @@ export const LandingTemplate: React.FC = () => {
         <div className={styles.cards}>
           <ImageAndDetailsCard
             layoutClassName={styles.textColor}
-            title="Over Open Catalogi"
+            title="Over OpenCatalogi"
             image={<img src={overOpenCatalogiImage} />}
-            introduction="Open Catalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
-            link={{ label: "Ga naar Over Open Catalogi", href: "/about" }}
+            introduction="OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
+            link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
           />
 
           <ImageAndDetailsCard
             layoutClassName={styles.textColor}
-            title="Aan de slag met Open Catalogi"
+            title="Aan de slag met OpenCatalogi"
             image={<img src={aanDeSlagMetOpenCatalogiImage} />}
-            introduction="Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
-            link={{ label: "Aan de slag met Open Catalogi", href: "documentation/usage" }}
+            introduction="Wilt u uw component op OpenCatalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
+            link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
           />
         </div>
       </section>

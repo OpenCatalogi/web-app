@@ -48,7 +48,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: t("Software products"),
+      label: t("Applications"),
       current: pathname === "/applications",
       handleClick: () => {
         navigate("/applications");
@@ -86,12 +86,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Initiatives"),
-      current:
-        pathname === "/components" &&
-        filters.developmentStatus === "concept" &&
-        filters.softwareType === "standalone/web",
+      current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
+        setFilters({ ...filters, developmentStatus: "concept" });
         navigate("/components");
       },
     },
@@ -100,7 +97,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       current: pathname.includes("/documentation"),
       subItems: [
         {
-          label: t("About Open Catalogi"),
+          label: t("About OpenCatalogi"),
           current: pathname === "/documentation/about",
           handleClick: () => navigate("/documentation/about"),
         },
@@ -120,9 +117,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         },
         {
           label: t("API"),
-          current: pathname === "/documentation/api",
           handleClick: () => {
-            navigate("#");
+            open("https://redocly.github.io/redoc/?nocors&url=https://opencatalogi.nl/openapi.json");
           },
         },
         {

@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 export const Head: React.FC = () => {
   return (
     <Helmet>
-      <title>Open Catalogi</title>
+      <title>OpenCatalogi</title>
       <script src="/env.js"></script>
     </Helmet>
   );

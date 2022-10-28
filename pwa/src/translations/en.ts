@@ -47,7 +47,7 @@ export const en = {
   Software: "Software",
   "Data models": "Data models",
   "API's": "API's",
-  "About Open Catalogi": "About Open Catalogi",
+  "About OpenCatalogi": "About OpenCatalogi",
   Installation: "Installation",
   Usage: "Usage",
   API: "API",

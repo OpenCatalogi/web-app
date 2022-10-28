@@ -9,17 +9,17 @@ export const UsageDocumentationTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Componenten op Open Catalogi plaatsen</Heading1>
+        <Heading1>Componenten op OpenCatalogi plaatsen</Heading1>
 
         <LeadParagraph className={styles.description}>
-          Er zijn vier manieren om een component zichtbaar te maken op Open Catalogi.
+          Er zijn vier manieren om een component zichtbaar te maken op OpenCatalogi.
         </LeadParagraph>
       </section>
 
       <section className={styles.section}>
         <Heading2>1. Een publiccode.yaml opnemen in je repository</Heading2>
         <Paragraph>
-          Open Catalogi is gebouwd op het Europese public code framework. Uitgangspunt hierbij is dat open source,
+          OpenCatalogi is gebouwd op het Europese public code framework. Uitgangspunt hierbij is dat open source,
           betekent dat de source code in een git repository staat (bijvoorbeeld Github, Gitlab of SourceTree) die
           openbaar toegankelijk is.
           <br />
@@ -48,14 +48,14 @@ export const UsageDocumentationTemplate: React.FC = () => {
           </span>{" "}
           terug vinden.
         </Paragraph>
-        <Heading2>2. Start een eigen Open Catalogi installatie</Heading2>
+        <Heading2>2. Start een eigen OpenCatalogi installatie</Heading2>
         <Paragraph>
-          Open Catalogi is een federatief ecosysteem dat betekent dat iedere organisatie zijn eigen componenten
-          catalogus kan starten. Vanuit de eigen catalogus kunnen zowel componenten worden geïmporteerd als beschikbaar
-          gesteld voor andere catalogussen.
+          OpenCatalogi is een federatief ecosysteem dat betekent dat iedere organisatie zijn eigen componenten catalogus
+          kan starten. Vanuit de eigen catalogus kunnen zowel componenten worden geïmporteerd als beschikbaar gesteld
+          voor andere catalogussen.
           <br />
           <br />
-          Meer informatie over het zelf inrichten van een Open Catalogi vind je{" "}
+          Meer informatie over het zelf inrichten van een OpenCatalogi vind je{" "}
           <span
             onClick={() => {
               navigate("#");
@@ -69,7 +69,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Heading2>3. Via andere catalogussen</Heading2>
         <Paragraph>
-          Open Catalogi synchroniseert onder andere met{" "}
+          OpenCatalogi synchroniseert onder andere met{" "}
           <span onClick={() => open("https://componentencatalogus.commonground.nl/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               Common Ground Componenten­catalogus
@@ -87,7 +87,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
               GEMMA Softwarecatalogus
             </Link>
           </span>
-          , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in Open Catalogi.
+          , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in OpenCatalogi.
         </Paragraph>
         <Heading2>4. Via het aanmaken van een account</Heading2>
         <Paragraph>
