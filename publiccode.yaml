@@ -37,3 +37,12 @@ dependsOn:
   open:
     - name: common-gateway
     - versionMin: 1.0.0
+    
+ nl:
+  gemma:
+    bedrijfsfuncties:
+      - Algemene content publicatie
+      - Aanbesteding
+    bedrijfsservices:
+      - Aanvraag advies
+      - Bedrijfsservice Vergunningverlening
