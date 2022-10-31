@@ -12,6 +12,7 @@ import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { Head } from "./Head";
+import { getScreenSize } from "../services/getScreenSize";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,7 +23,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
-  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
+  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
+    ...{ pageContext, location, screenSize: "mobile" },
+  });
   const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
   const { t } = useTranslation();
 
@@ -31,12 +34,22 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   }, []);
 
   React.useEffect(() => {
-    setGatsbyContext({ ...{ pageContext, location } });
+    setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
 
     const JWT = sessionStorage.getItem("JWT");
 
     API && !API.authenticated && JWT && API.setAuthentication(JWT);
   }, [pageContext, location]);
+
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setGatsbyContext({ ...gatsbyContext, screenSize: getScreenSize(window.innerWidth) });
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   React.useEffect(() => {
     if (!gatsbyContext) return;
