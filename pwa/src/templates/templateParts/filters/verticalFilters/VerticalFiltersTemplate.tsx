@@ -28,7 +28,8 @@ import {
 import { layers } from "../../../../data/filters";
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../../context/gatsby";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -39,23 +40,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [windowWidth, setWindowWidth] = React.useState<number>(0);
   const [open, setOpen] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    setWindowWidth(window.innerWidth);
-
-    const handleScreenResize = (e: any) => {
-      setWindowWidth(e.target.innerWidth);
-    };
-
-    window.addEventListener("resize", handleScreenResize);
-
-    return () => {
-      window.removeEventListener("resize", handleScreenResize);
-    };
-  });
+  const { screenSize } = React.useContext(GatsbyContext);
 
   React.useEffect(() => {
-    setOpen(windowWidth > 568);
-  }, [windowWidth]);
+    console.log({ screenSize }); // bevat nu altijd "mobile" | "tablet" | "desktop";
+  }, [screenSize]);
+
+  React.useEffect(() => setOpen(screenSize === "desktop"), [screenSize]);
 
   const {
     register,
