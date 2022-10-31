@@ -26,6 +26,10 @@ module.exports = {
         autoGenHomeLabel: "OpenCatalogi",
         crumbLabelUpdates: [
           {
+            pathname: "/components",
+            crumbLabel: "Components overview",
+          },
+          {
             pathname: "/components/[componentId]",
             crumbLabel: "Component",
           },
