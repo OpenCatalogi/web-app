@@ -97,4 +97,5 @@ export const nl = {
   Directing: "Regievoering",
   "Customer and chain interaction": "Klant en keteninteractie",
   Execution: "Uitvoering",
+  "Components overview": "Componenten overzicht",
 };
