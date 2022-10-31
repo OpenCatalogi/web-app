@@ -28,6 +28,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
         </LeadParagraph>
       </div>
+
       <div className={styles.ComponentsGrid}>
         {domains.map((domain) => (
           <CategoryCard
@@ -51,6 +52,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
           />
         ))}
       </div>
+
       <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={() => navigate("/categories")}>
         Bekijk alle categorieën
       </Button>

@@ -13,19 +13,17 @@
 }
 
 .buttons {
-  width: fit-content;
-  display: flex;
-}
-
-.buttons > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-md);
-}
-
-.button {
-  width: fit-content;
-  display: flex;
+  display: grid;
+  gap: var(--web-app-size-md);
+  grid-template-columns: 1fr;
 }
 
 .description {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .buttons {
+    grid-template-columns: 1fr 1fr;
+  }
 }
