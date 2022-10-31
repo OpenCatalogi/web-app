@@ -1,11 +1,13 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
+export type TLandingDisplayLayout = "layer" | "categories";
 export type TComponentDependenciesLayout = "layer" | "relations";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   dependenciesDisplayLayout: TComponentDependenciesLayout;
+  landingDisplayLayout: TLandingDisplayLayout;
   currentPage: number;
 
   search?: string;
@@ -24,7 +26,12 @@ export interface IFilters {
   "legal.mainCopyrightOwner"?: string;
 }
 
-export const filters = { resultDisplayLayout: "table", dependenciesDisplayLayout: "layer", currentPage: 1 } as IFilters;
+export const filters = {
+  resultDisplayLayout: "table",
+  dependenciesDisplayLayout: "layer",
+  landingDisplayLayout: "categories",
+  currentPage: 1,
+} as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
 

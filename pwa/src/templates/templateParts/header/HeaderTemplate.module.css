@@ -1,12 +1,24 @@
 .headerContainer {
-  background-color: var(--web-app-color-background-page-header);
+  background-color: var(--web-app-color-background-light);
 }
 
 .headerTopBar {
+  background-color: var(--web-app-color-background-light);
+}
+.headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
+  box-shadow: 0px 10px 13px -14px #000000;
 }
 
 .secondaryNavContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+}
+
+.primaryNavContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,6 +69,12 @@
   flex-direction: column;
 }
 
+.breadcrumbsContainer {
+  padding-block-start: var(--web-app-size-sm);
+  padding-block-end: var(--web-app-size-sm);
+  --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
+}
+
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
@@ -68,14 +86,24 @@
 }
 
 .title {
-  color: var(--web-app-color-page-header) !important;
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .subTitle {
-  color: var(--web-app-color-page-header) !important;
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .searchFormContainer {
   width: 100%;
   max-width: 650px;
+}
+
+.primaryNavDropdown > nav > ul > li > ul > li {
+  border: 1px solid var(--skeleton-color-grey-2);
+  border-top: none;
+  margin: -1px;
+}
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
 }

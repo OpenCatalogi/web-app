@@ -10,15 +10,18 @@ import {
   Link,
   Paragraph,
 } from "@gemeente-denhaag/components-react";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { TEMPORARY_STANDARDS } from "../../data/standards";
+import { useTranslation } from "react-i18next";
 
 export const AboutTemplate: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Over Open Catalogi</Heading1>
+        <Heading1>Over OpenCatalogi</Heading1>
 
         <LeadParagraph>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
@@ -45,7 +48,7 @@ export const AboutTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading2>Component</Heading2>
 
-        <LeadParagraph>
+        <Paragraph className={styles.description}>
           Voor OpenCatalogi hanteren we de archimate definitie met de aanscherpingen die vanuit de VNG worden meegegeven
           in hoofdstuk 2.1 van{" "}
           <span
@@ -60,9 +63,9 @@ export const AboutTemplate: React.FC = () => {
             </Link>
           </span>
           .
-        </LeadParagraph>
+        </Paragraph>
 
-        <Paragraph>
+        <Paragraph className={styles.description}>
           De archimate definitie zoals vertaald door VNG: Een modulair, zelfstandig inzetbaar, herbruikbaar en
           vervangbaar deel van een systeem, dat zijn functionaliteit aanbiedt via goed gedefinieerde interfaces.
           Applicatiecomponenten stellen functionaliteit beschikbaar, die gebruikt wordt om de applicatiediensten mee te
@@ -71,19 +74,19 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.quoteWrapperContainer}>
           <QuoteWrapper>
-            <LeadParagraph>
+            <Paragraph className={styles.description}>
               We werken met componenten die afgebakende functionaliteit kennen, zoveel mogelijk ontkoppeld zijn en met
               elkaar communiceren via gestandaardiseerde interfaces.
               <span className={styles.author}>
                 — <i>Aanscherping vanuit de VNG</i>
               </span>
-            </LeadParagraph>
+            </Paragraph>
           </QuoteWrapper>
         </div>
       </section>
 
-      <section className={styles.section}>
-        <Heading3>Ingevuld met (voor zover van toepassing) voor Open Catalogi</Heading3>
+      <section className={styles.section} id="score-calculation">
+        <Heading2>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading2>
 
         <Table>
           <TableBody>
@@ -161,7 +164,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Paragraph>
+        <Paragraph className={styles.description}>
           De verschijningsvorm van een component is afhankelijk van de laag. In navolgende figuur is dit weergegeven:
         </Paragraph>
 
@@ -171,15 +174,65 @@ export const AboutTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading2>Applicatie</Heading2>
 
-        <LeadParagraph>
+        <Paragraph className={styles.description}>
           Samenstelling (toepassing) van componenten met minimaal één component op laag 5 ten behoeve van eindgebruik in
           een gemeentelijk bedrijfsproces/dienstverleningsproces.
-        </LeadParagraph>
+        </Paragraph>
 
-        <Paragraph>
+        <Paragraph className={styles.description}>
           In Opencatalogi kan vanuit een applicatie naar de samenstellende componenten worden doorgeklikt, waarbij ook
           een component kan zijn samengesteld uit meerdere (sub)componenten.
         </Paragraph>
+      </section>
+
+      <section className={styles.section}>
+        <Heading2>Gebruikte standaarden</Heading2>
+        <Paragraph className={styles.description}>
+          Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
+          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
+            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              verplichte standaarden
+            </Link>
+          </span>{" "}
+          die aangewezen zijn door de Nederlandse overheid.
+        </Paragraph>
+
+        <div className={styles.paragraphButtons}>
+          <span onClick={() => open("https://forumstandaardisatie.nl/")}>
+            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+              Forum Standaardisatie
+            </Button>
+          </span>
+          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
+            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+              Verplichte Standaarden
+            </Button>
+          </span>
+        </div>
+      </section>
+      <section className={styles.section}>
+        <div className={styles.content}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeader>{t("Standard")}</TableHeader>
+                <TableHeader>{t("Type")}</TableHeader>
+                <TableHeader>{t("Version")}</TableHeader>
+                <TableHeader>{t("Management organization")}</TableHeader>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {TEMPORARY_STANDARDS.map((standard, idx) => (
+                <TableRow key={idx}>
+                  <TableCell>{standard.name}</TableCell>
+                  <TableCell>{standard.type}</TableCell>
+                  <TableCell>{standard.versions.join(", ")}</TableCell>
+                  <TableCell>{standard.organization}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </section>
     </Container>
   );

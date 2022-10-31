@@ -1,7 +1,71 @@
-.container > * {
-  margin-block-start: var(--web-app-size-3xl);
-}
-
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+
+.tableRow {
+  cursor: pointer;
+}
+
+.name {
+  display: block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tagWidth {
+  width: max-content !important;
+}
+
+.detailsLink {
+  display: inline-flex;
+}
+
+/* Colors of the 5 layers */
+.interactionLayer,
+.interfaceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.interactionCategory,
+.interfaceCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
+}
+
+.processLayer,
+.processsLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-process);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.procesCategory,
+.processCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
+}
+
+.integrationLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-integration);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.integrationCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
+}
+
+.servicesLayer,
+.serviceLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-services);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+
+.servicesCategory,
+.serviceCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
+}
+
+.dataLayer {
+  --web-app-tag-background-color: var(--web-app-layer-color-data);
+  --web-app-tag-color: var(--web-app-color-white);
+}
+.dataCategory {
+  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
 }

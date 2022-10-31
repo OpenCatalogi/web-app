@@ -11,9 +11,8 @@ import { FiltersProvider, IFilters, filters as _filters } from "../context/filte
 import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
-import { Breadcrumbs, Container } from "@conduction/components";
-
-const { setEnv } = require("./../../static/env.js");
+import { Head } from "./Head";
+import { getScreenSize } from "../services/getScreenSize";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,22 +23,33 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
-  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
+  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
+    ...{ pageContext, location, screenSize: "mobile" },
+  });
   const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
   const { t } = useTranslation();
 
   React.useEffect(() => {
-    setEnv();
     setAPI(new APIService());
   }, []);
 
   React.useEffect(() => {
-    setGatsbyContext({ ...{ pageContext, location } });
+    setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
 
     const JWT = sessionStorage.getItem("JWT");
 
     API && !API.authenticated && JWT && API.setAuthentication(JWT);
   }, [pageContext, location]);
+
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setGatsbyContext({ ...gatsbyContext, screenSize: getScreenSize(window.innerWidth) });
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   React.useEffect(() => {
     if (!gatsbyContext) return;
@@ -61,16 +71,14 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   if (!API) return <></>;
 
   return (
-    <div>
+    <>
+      <Head />
+
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
               <HeaderTemplate layoutClassName={styles.header} />
-
-              <Container layoutClassName={styles.breadcrumbsContainer}>
-                <Breadcrumbs crumbs={breadcrumbs} />
-              </Container>
 
               <div className={styles.pageContent}>{children}</div>
 
@@ -79,7 +87,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
           </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>
-    </div>
+    </>
   );
 };
 

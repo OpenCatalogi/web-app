@@ -1,5 +1,5 @@
 .container {
-  max-width: 1440px;
+  max-width: var(--web-app-container-width-lg);
 }
 
 .container > *:not(:last-child) {
@@ -9,7 +9,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-block-start: var(--web-app-size-3xl);
+  margin-block-start: var(--web-app-size-3xl) !important;
 }
 
 .resultsDisplaySwitchButtons {
@@ -46,4 +46,8 @@
 
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
 }

@@ -21,18 +21,18 @@
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .interactionCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .processLayer,
 .processsLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-process);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-process);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .procesCategory,
 .processCategory {
@@ -40,17 +40,17 @@
 }
 
 .integrationLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-integration);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-integration);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .integrationCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .servicesLayer,
 .serviceLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-services);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-services);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 
 .servicesCategory,
@@ -59,8 +59,8 @@
 }
 
 .dataLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-data);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-data);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-data);

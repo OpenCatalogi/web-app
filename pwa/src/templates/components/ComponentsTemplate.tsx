@@ -27,7 +27,7 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2>Componenten</Heading2>
+          <Heading2 className={styles.title}>Componenten</Heading2>
         </div>
         <div className={styles.resultsDisplaySwitchButtons}>
           <Button

@@ -1,6 +1,7 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
 import { IFilters } from "../../context/filters";
+import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Component {
   private _instance: AxiosInstance;
@@ -19,42 +20,21 @@ export default class Component {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
+      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
     );
 
     return data;
   };
 
   public getCount = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters)}`);
+    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters, deletes)}`);
 
     return data.total;
   };
 }
 
-const filtersToQueryParams = (filters: any): string => {
-  delete filters.resultDisplayLayout;
-  delete filters.dependenciesDisplayLayout;
-
-  let params: string = "";
-
-  for (const [key, value] of Object.entries(filters)) {
-    if (!value) continue;
-
-    if (typeof value === "string") {
-      params += `&${key}=${value}`;
-    }
-
-    if (Array.isArray(value)) {
-      let arrayParams = "";
-
-      value.forEach((value) => {
-        arrayParams += `&${key}[]=${value}`;
-      });
-
-      params += arrayParams;
-    }
-  }
-
-  return params;
-};
+const deletes = [
+  { name: "resultDisplayLayout" },
+  { name: "dependenciesDisplayLayout" },
+  { name: "landingDisplayLayout" },
+];
