@@ -1,9 +1,33 @@
 ---
 name: "OpenCatalogi"
+url:
+  component:
+    - "https://github.com/OpenCatalogi/web-app"
+    - "https://github.com/OpenCatalogi/OpenCatalogiBundle"
+    - "https://github.com/OpenCatalogi/api" 
+platforms: 
+  - "web"
+categories: "application-development"
+roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
+softwareType: "standalone/desktop"
+intendedAudience:
+  scope: 
+    - "government"
 description: 
+  localisedName: "OpenCatalogi"
   short-description: "Federatieve catalogus"
-  long-description: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."
-componenten: 
-  - "https://github.com/OpenCatalogi/web-app"
-  - "https://github.com/OpenCatalogi/OpenCatalogiBundle"
-  - "https://github.com/OpenCatalogi/api"    
+  long-description: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."    
+  documentation: "https://conduction.stoplight.io/docs/publiccode/x7yg9vhm1mt4z-public-code"
+maintenance: 
+  type: "internal"
+nl:
+  commonground: 
+    layerType: "interface"
+    
+    
+    
+  
+
+
+
+
