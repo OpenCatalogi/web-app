@@ -1,8 +1,11 @@
 .headerContainer {
+  padding-inline: var(--web-app-size-md);
+  padding-block-start: var(--web-app-size-xl);
   background-color: var(--web-app-color-background-light);
 }
 
 .headerTopBar {
+  display: none;
   background-color: var(--web-app-color-background-light);
 }
 .headerMiddleBar {
@@ -14,20 +17,24 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
 }
 
 .primaryNavContainer {
+  position: fixed;
+  top: var(--web-app-size-md);
+  left: var(--web-app-size-md);
+  width: calc(100% - (var(--web-app-size-md) * 2)) !important;
+  background-color: var(--web-app-color-background-page-top-bar);
+  box-shadow: 0px 10px 13px -14px #000000;
+  z-index: 1;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
 }
 
 .logoContainer {
-  display: flex;
+  display: none;
   width: fit-content;
   height: var(--web-app-header-logo-container-height);
   border-radius: var(--web-app-header-logo-container-border-radius);
@@ -60,8 +67,6 @@
 .headerContent {
   padding-block-start: var(--web-app-size-3xl);
   padding-block-end: var(--web-app-size-3xl);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
 }
 
 .headerSearchForm {
@@ -98,12 +103,30 @@
   max-width: 650px;
 }
 
-.primaryNavDropdown > nav > ul > li > ul > li {
-  border: 1px solid var(--skeleton-color-grey-2);
-  border-top: none;
-  margin: -1px;
-}
-
 .textColor {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .logoContainer {
+    display: flex;
+  }
+
+  .headerContainer {
+    padding-inline: 0;
+  }
+
+  .headerTopBar {
+    display: block;
+  }
+
+  .primaryNavContainer {
+    position: unset;
+    top: unset;
+    left: unset;
+    width: auto;
+    background-color: unset;
+    box-shadow: unset;
+    z-index: unset;
+  }
 }
