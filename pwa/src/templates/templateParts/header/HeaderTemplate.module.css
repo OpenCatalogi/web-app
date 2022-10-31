@@ -114,6 +114,7 @@
 
   .headerContainer {
     padding-inline: 0;
+    padding-block-start: 0;
   }
 
   .headerTopBar {

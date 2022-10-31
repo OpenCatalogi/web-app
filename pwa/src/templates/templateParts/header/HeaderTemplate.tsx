@@ -21,12 +21,14 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
   const {
     pageContext: {
       breadcrumb: { crumbs },
     },
     location: { pathname },
+    screenSize,
   } = React.useContext(GatsbyContext);
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
@@ -118,24 +120,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
-  const authenticatedSecondaryTopNavItems = [
-    {
-      label: "Dashboard",
-      current: pathname.includes("/admin"),
-      handleClick: () => {
-        navigate("/admin");
-      },
-    },
-    {
-      label: t("Logout"),
-      handleClick: () => {
-        navigate("/logout");
-      },
-      icon: <FontAwesomeIcon icon={faCircleUser} />,
-    },
-  ];
-
-  const unauthenticatedSecondaryTopNavItems = [
+  const secondaryTopNavItems = [
     {
       label: t("Login"),
       current: pathname === "/login",
@@ -146,13 +131,20 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
+  React.useEffect(() => {
+    if (screenSize === "desktop") {
+      setTopNavItems(primaryTopNavItems);
+      return;
+    }
+
+    setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
+  }, [screenSize]);
+
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav
-            items={isLoggedIn() ? authenticatedSecondaryTopNavItems : unauthenticatedSecondaryTopNavItems}
-          />
+          <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
       <div>
@@ -162,10 +154,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
               <div onClick={() => navigate("/")} className={styles.organizationLogo} />
             </div>
 
-            <PrimaryTopNav
-              layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)}
-              items={primaryTopNavItems}
-            />
+            <PrimaryTopNav layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)} items={topNavItems} />
           </Container>
         </div>
       </div>
