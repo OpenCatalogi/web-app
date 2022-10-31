@@ -136,7 +136,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     }
 
     setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
-  }, [screenSize]);
+  }, [screenSize, pathname, crumbs]);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>

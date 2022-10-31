@@ -1,6 +1,6 @@
 .headerContainer {
   padding-inline: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-xl);
+  padding-block-start: var(--web-app-size-4xl);
   background-color: var(--web-app-color-background-light);
 }
 
