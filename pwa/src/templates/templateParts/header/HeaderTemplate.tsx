@@ -3,16 +3,14 @@ import * as styles from "./HeaderTemplate.module.css";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, Breadcrumbs } from "@conduction/components";
+import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
-import { isLoggedIn } from "../../../services/auth";
 import _ from "lodash";
-import { PrimaryTopNav } from "../../../components/primaryTopNav/PrimaryTopNav";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -150,11 +148,19 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div>
         <div className={styles.headerMiddleBar}>
           <Container layoutClassName={styles.primaryNavContainer}>
-            <div className={styles.logoContainer}>
+            <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
               <div onClick={() => navigate("/")} className={styles.organizationLogo} />
             </div>
 
-            <PrimaryTopNav layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)} items={topNavItems} />
+            <PrimaryTopNav
+              mobileLogo={
+                <div className={clsx(styles.logoContainer, styles.logoMobile)}>
+                  <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+                </div>
+              }
+              layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)}
+              items={topNavItems}
+            />
           </Container>
         </div>
       </div>

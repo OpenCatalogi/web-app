@@ -34,12 +34,19 @@
 }
 
 .logoContainer {
-  display: none;
   width: fit-content;
   height: var(--web-app-header-logo-container-height);
   border-radius: var(--web-app-header-logo-container-border-radius);
   padding: var(--web-app-header-logo-container-padding);
   background-color: var(--web-app-header-logo-container-background-color);
+}
+
+.logoDesktop {
+  display: none;
+}
+
+.logoMobile {
+  padding: var(--web-app-size-md);
 }
 
 .logoContainer > * {
@@ -110,6 +117,14 @@
 @media only screen and (min-width: 992px) {
   .logoContainer {
     display: flex;
+  }
+
+  .logoDesktop {
+    display: block;
+  }
+
+  .logoMobile {
+    display: none;
   }
 
   .headerContainer {
