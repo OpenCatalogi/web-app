@@ -21,7 +21,7 @@ export const TEMPORARY_DOMAINS = [
   },
   {
     id: "08db196a-14ae-468b-bdd2-d87041e91cfb",
-    title: "Performance",
+    title: "Execution",
   },
   {
     id: "4afff163-9170-4154-a09a-d2e21957da2b",

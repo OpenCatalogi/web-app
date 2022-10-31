@@ -90,16 +90,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("/documentation/installation");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                Installatie
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
                 navigate("/documentation/usage");
               }}
             >
@@ -110,27 +100,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                open("https://redocly.github.io/redoc/?nocors&url=https://opencatalogi.nl/openapi.json");
-              }}
-            >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                API
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
-                navigate("/documentation/standards");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                Standaarden
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
-                navigate("#");
+                navigate("/documentation/contact");
               }}
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">

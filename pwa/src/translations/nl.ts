@@ -16,7 +16,7 @@ export const nl = {
   "All Open Catalog components": "Alle OpenCatalogi componenten",
   "View all components": "Bekijk alle componenten",
   "One central place for reuse of information technology within the government":
-    "Één centrale plek voor hergebruik van informatie technologie binnen de overheid",
+    "Eén centrale plek voor hergebruik van informatie technologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
   "Back to components": "Terug naar componenten",
   "View component on GitHub": "Bekijk dit component op GitHub",
@@ -61,7 +61,7 @@ export const nl = {
   Private: "Privé",
   Public: "Openbaar",
   Unknown: "Onbekend",
-  Relations: "Verbanden",
+  Relations: "Relaties",
   About: "Over",
   Documentation: "Documentatie",
   Warning: "Waarschuwing",
@@ -96,5 +96,5 @@ export const nl = {
   Surveillance: "Bewaking",
   Directing: "Regievoering",
   "Customer and chain interaction": "Klant en keteninteractie",
-  Performance: "Uitvoering",
+  Execution: "Uitvoering",
 };

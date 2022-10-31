@@ -102,13 +102,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           handleClick: () => navigate("/documentation/about"),
         },
         {
-          label: t("Installation"),
-          current: pathname === "/documentation/installation",
-          handleClick: () => {
-            navigate("/documentation/installation");
-          },
-        },
-        {
           label: t("Usage"),
           current: pathname === "/documentation/usage",
           handleClick: () => {
@@ -116,23 +109,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           },
         },
         {
-          label: t("API"),
-          handleClick: () => {
-            open("https://redocly.github.io/redoc/?nocors&url=https://opencatalogi.nl/openapi.json");
-          },
-        },
-        {
-          label: t("Standards"),
-          current: pathname === "/documentation/standards",
-          handleClick: () => {
-            navigate("/documentation/standards");
-          },
-        },
-        {
           label: t("Contact"),
           current: pathname === "/documentation/contact",
           handleClick: () => {
-            navigate("#");
+            navigate("/documentation/contact");
           },
         },
       ],

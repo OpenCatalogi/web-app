@@ -41,7 +41,7 @@ export const LandingTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Heading3>(Direct naar) veelbezochte pagina's</Heading3>
+        <Heading3 className={styles.textColor}>Veelbezochte pagina's</Heading3>
 
         <div className={styles.cards}>
           <ImageAndDetailsCard

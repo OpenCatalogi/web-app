@@ -95,5 +95,5 @@ export const en = {
   Surveillance: "Surveillance",
   Directing: "Directing",
   "Customer and chain interaction": "Customer and chain interaction",
-  Performance: "Performance",
+  Execution: "Execution",
 };

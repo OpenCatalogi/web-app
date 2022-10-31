@@ -70,8 +70,6 @@
 }
 
 .breadcrumbsContainer {
-  padding-inline-start: var(--web-app-size-sm);
-  padding-inline-end: var(--web-app-size-sm);
   padding-block-start: var(--web-app-size-sm);
   padding-block-end: var(--web-app-size-sm);
   --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
