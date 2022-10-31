@@ -1,7 +1,7 @@
 .ComponentsGrid {
   display: grid;
   grid-gap: var(--web-app-size-lg);
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .title {
@@ -16,4 +16,16 @@
   width: 100%;
   max-width: 800px;
   margin-block-end: var(--web-app-size-2xl);
+}
+
+@media only screen and (min-width: 576px) {
+  .ComponentsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .ComponentsGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
