@@ -36,4 +36,4 @@ description:
 dependsOn:
   open:
     - name: common-gateway
-      versionMin: 1.0.0
+    - versionMin: 1.0.0
