@@ -3,6 +3,7 @@
 }
 
 .container > .backButton {
+  display: none;
   margin-block-start: var(--web-app-size-2xl);
   margin-block-end: var(--web-app-size-sm);
 }
@@ -184,6 +185,10 @@
 
   .logoContainer {
     display: flex;
+  }
+
+  .container > .backButton {
+    display: block;
   }
 }
 

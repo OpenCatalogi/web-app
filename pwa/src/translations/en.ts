@@ -96,4 +96,5 @@ export const en = {
   Directing: "Directing",
   "Customer and chain interaction": "Customer and chain interaction",
   Execution: "Execution",
+  "Components overview": "Components overview",
 };
