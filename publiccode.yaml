@@ -1,78 +1,39 @@
 ---
 name: "OpenCatalogi application"
-applicationSuite:
-  name: Conduction
-url:
-  organisation: 
-    name: Conduction
-    description: Conduction is een open-source IT bedrijf 
-    logo: https://conduction.nl/wp-content/uploads/2021/07/cropped-conductionlogo-1.png
-    supports: ['OpenCatalgi API', 'OpenCatalogiBundle']
-    owns: ['OpenCatalgi API', 'OpenCatalogiBundle']
-    uses: ['OpenCatalgi API', 'OpenCatalogiBundle']
-    github: https://github.com/ConductionNL
-    website: https://conduction.nl
-    type: public
-  source: 'github'
-  name: 'OpenCatalogi application'
-  url: 'https://github.com/OpenCatalogi/web-app'
-  last_change: '31/04/2022'
-  stars: 1
-  fork_count: 1
-  issue_open_count: 0
-  merge_request_open_count: 4
-  programming_languages: 
-    - 'TypeScript'
-    - 'CSS'
-  topics:
-    - 'front-end'
-    - 'open-source'
-    - 'type-script'
-    - 'css'
-  publiccode_url: 'https://github.com/OpenCatalogi/web-app/publiccode.yaml'
-  default_owner: Conduction
-landingUrl: 'https://opencatalogi.nl'
+
+publiccodeYmlVersion: 1.0
+softwareType: "standalone/web"
+developmentStatus: 'stable'
 releaseDate: '31/10/2022'
+
+inputTypes: 
+  - application/json
+  - application/ld+json
+  - application/hal+json
+
+outputTypes:
+  - application/json
+  - application/ld+json
+  - application/hal+json
+
 platforms: 
   - "web"
-categories: "application-development"
-usedBy: 
-  name: Conduction
-roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
-developmentStatus: 'stable'
-softwareType: "standalone/web"
-intendedAudience:
-  countries:
-    - "NL"
-  scope: 
-    - "government"
+categories: 
+  - "application-development"
+
 description: 
-  localisedName: "OpenCatalogi applicatie"
-  short-description: "Front-end applicatie voor de federatieve catalogus"
-  long-description: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."    
-  documentation: "https://conduction.stoplight.io/docs/publiccode/x7yg9vhm1mt4z-public-code"
-maintenance: 
-  type: "internal"
-  contractors: 
-    - organization: 'Conduction'
-      until: '2024-10-31'
-dependsOn: 
-  open: 
-    - 'https://github.com/OpenCatalogi/OpenCatalogiBundle'
-    - 'https://github.com/OpenCatalogi/api'
-nl:
-  commonground: 
-    layerType: "interface"
-    intendedOrganizations:
-      - 'Conduction'
-    installationType: 'helm'
-    
-    
-    
-    
-    
-  
+  nl:
+    localisedName: "OpenCatalogi applicatie"
+    shortDescription: "Front-end applicatie voor de federatieve catalogus"
+    longDescription: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."    
+    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
+  en:
+    localisedName: "OpenCatalogi application"
+    shortDescription: "Front-end application for the federative catalogues"
+    longDescription: "Een federative catalogues ‘OpenCatalogi’, fitting to the new information landscape of Common Ground. The OpenCatalogi concept offers an overview per chosen (individual) municipality and aggregated information from participating municipalities. Each participating municipality installs the OpenCatalogi software for filling the individual part. Municipalities use the publishing function of the individual part to publish reusable and exchangeable parts so that this becomes transparent for other participants of OpenCatalogi."    
+    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
 
-
-
-
+dependsOn:
+  open:
+    - name: common-gateway
+      versionMin: 1.0.0
