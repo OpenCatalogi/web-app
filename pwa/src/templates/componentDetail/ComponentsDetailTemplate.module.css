@@ -8,7 +8,8 @@
 }
 
 .container > .headingContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-2xl);
 }
@@ -47,7 +48,7 @@
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  max-width: var(--web-app-component-detail-logo-width);
 }
 
 .logoContainer {
@@ -55,7 +56,7 @@
   width: var(--web-app-component-detail-logo-width);
   max-height: 255px;
   max-width: 300px;
-  display: flex;
+  display: none;
   justify-content: center;
 }
 
@@ -174,6 +175,16 @@
   display: grid;
   gap: var(--web-app-size-lg);
   grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (min-width: 576px) {
+  .container > .headingContainer {
+    grid-template-columns: 2fr var(--web-app-component-detail-logo-width);
+  }
+
+  .logoContainer {
+    display: flex;
+  }
 }
 
 /* Colors of the 5 layers */
