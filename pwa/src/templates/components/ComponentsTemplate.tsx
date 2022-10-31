@@ -65,7 +65,9 @@ export const ComponentsTemplate: React.FC = () => {
 
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
-              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+              <div className={styles.componentResult}>
+                <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+              </div>
 
               <SubmitComponentTemplate />
 
