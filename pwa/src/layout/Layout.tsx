@@ -4,7 +4,7 @@ import * as styles from "./Layout.module.css";
 import "./../translations/i18n";
 import APIContext, { APIProvider } from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
-import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
+import { GatsbyProvider, IGatsbyContext, TScreenSize } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
@@ -23,10 +23,12 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
+  const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
+  const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
   const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
     ...{ pageContext, location, screenSize: "mobile" },
   });
-  const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
+
   const { t } = useTranslation();
 
   React.useEffect(() => {
@@ -39,11 +41,11 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
     const JWT = sessionStorage.getItem("JWT");
 
     API && !API.authenticated && JWT && API.setAuthentication(JWT);
-  }, [pageContext, location]);
+  }, [pageContext, location, screenSize]);
 
   React.useEffect(() => {
     const handleWindowResize = () => {
-      setGatsbyContext({ ...gatsbyContext, screenSize: getScreenSize(window.innerWidth) });
+      setScreenSize(getScreenSize(window.innerWidth));
     };
 
     window.addEventListener("resize", handleWindowResize);

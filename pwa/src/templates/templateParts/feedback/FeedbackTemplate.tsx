@@ -18,7 +18,6 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
       </span>
       <div className={styles.buttons}>
         <Button
-          className={styles.button}
           variant="secondary-action"
           onClick={() =>
             open(
@@ -30,7 +29,6 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
           Wens of opmerking indienen op GitHub
         </Button>
         <Button
-          className={styles.button}
           variant="secondary-action"
           onClick={() => open("https://github.com/orgs/OpenCatalogi/projects/1")}
           icon={<ExternalLinkIcon />}
