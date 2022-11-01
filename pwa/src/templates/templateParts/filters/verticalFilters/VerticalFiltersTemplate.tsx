@@ -37,14 +37,9 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const [windowWidth, setWindowWidth] = React.useState<number>(0);
   const [open, setOpen] = React.useState<boolean>(false);
 
   const { screenSize } = React.useContext(GatsbyContext);
-
-  React.useEffect(() => {
-    console.log({ screenSize }); // bevat nu altijd "mobile" | "tablet" | "desktop";
-  }, [screenSize]);
 
   React.useEffect(() => setOpen(screenSize === "desktop"), [screenSize]);
 

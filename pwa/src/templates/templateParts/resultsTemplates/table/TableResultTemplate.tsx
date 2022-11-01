@@ -22,10 +22,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
 
-  React.useEffect(() => {
-    console.log({ screenSize }); // bevat nu altijd "mobile" | "tablet" | "desktop";
-  }, [screenSize]);
-
   return (
     <Table>
       {!hideTableHead && (
