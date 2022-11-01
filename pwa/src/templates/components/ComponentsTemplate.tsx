@@ -61,16 +61,12 @@ export const ComponentsTemplate: React.FC = () => {
         <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
-          <div className={styles.tableResult}>
-            <HorizontalFiltersTemplate />
-
-            {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
-              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
-            )}
-          </div>
+          <HorizontalFiltersTemplate />
 
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
+              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+
               <SubmitComponentTemplate />
 
               {getComponents.data.results.length && (
