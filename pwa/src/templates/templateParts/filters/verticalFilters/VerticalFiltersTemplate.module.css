@@ -20,6 +20,11 @@
   margin-inline-end: var(--web-app-size-md);
 }
 
+.trigger {
+  display: flex;
+  align-items: center;
+}
+
 .title {
   display: block;
   font-weight: var(--web-app-font-weight-bold);
@@ -28,11 +33,11 @@
 }
 
 .toggleIcon {
-  font-size: var(--web-app-font-size-lg);
+  font-size: var(--web-app-font-size-md);
   transition: transform 200ms ease-in-out;
 }
 
-.toggleIcon.active {
+.toggleIcon.isOpen {
   transform: rotate(90deg);
 }
 
