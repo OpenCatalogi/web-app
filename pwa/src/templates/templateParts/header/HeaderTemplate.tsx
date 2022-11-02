@@ -57,6 +57,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     {
       label: t("Components"),
       current: pathname.includes("/components"),
+      handleClick: () => {
+        navigate("/components");
+      },
       subItems: [
         {
           label: t("Processes"),
