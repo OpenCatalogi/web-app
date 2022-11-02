@@ -1,64 +1,70 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
-import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Container, Pagination } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
 import { QueryClient } from "react-query";
-import { useComponent } from "../../hooks/components";
+import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
-import { ComponentCard } from "../../components/componentCard/ComponentCard";
+import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();
-  const _useComponent = useComponent(queryClient);
-  const getComponents = _useComponent.getAll({
+  const _useApplications = useApplications(queryClient);
+  const getApplications = _useApplications.getAll({
     ...filters,
-    "nl.commonground.layerType": ["interface"],
   });
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2>{t("Applications")}</Heading2>
-          <LeadParagraph>
-            Deeloplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt voor
-            een bepaald onderdeel.
+          <Heading2 className={styles.title}>{t("Applications")}</Heading2>
+          <LeadParagraph className={styles.description}>
+            Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
+            voor een bepaalde{" "}
+            <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                bedrijfsfunctie
+              </Link>
+            </span>
+            .
           </LeadParagraph>
         </div>
       </div>
 
-      {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
-        <div className={styles.ComponentsGrid}>
-          {getComponents.data?.results.map((component: any) => (
-            <ComponentCard
-              key={component.id}
-              title={{ label: component.name, href: `/components/${component.id}` }}
-              description={component.embedded?.description?.shortDescription}
-              layer={component.embedded?.nl.embedded?.commonground.layerType}
-              category={{ label: "functie autorisatie", icon: <FontAwesomeIcon icon={faLock} /> }}
-              tags={{
-                status: component.developmentStatus,
-                installations: component.usedBy?.length.toString() ?? "0",
-                organization: component.embedded?.url?.embedded?.organisation?.name,
-                licence: component.embedded?.legal?.license,
-                githubLink: component.embedded?.url?.url,
-              }}
-            />
-          ))}
-        </div>
+      {getApplications.isSuccess && (
+        <>
+          <div className={styles.ComponentsGrid}>
+            {getApplications.data?.results?.map((application: any) => (
+              <ApplicationCard
+                key={application.id}
+                title={{ label: application.name, href: `/applications/${application.id}` }}
+                description={application.shortDescription}
+                tags={{
+                  organization: application?.embedded?.owner.fullName,
+                  githubLink: application?.demoUrl,
+                }}
+              />
+            ))}
+          </div>
+          <Pagination
+            setPage={(page) => setFilters({ ...filters, currentPage: page })}
+            pages={getApplications.data.pages}
+            currentPage={getApplications.data.page}
+          />
+        </>
       )}
 
-      {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
+      {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"}
 
-      {getComponents.isLoading && <Skeleton height="200px" />}
+      {getApplications.isLoading && <Skeleton height="200px" />}
     </Container>
   );
 };

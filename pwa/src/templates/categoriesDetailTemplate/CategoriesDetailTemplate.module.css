@@ -1,0 +1,43 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.container > .backButton {
+  margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.header {
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.description {
+  margin-block-start: var(--web-app-size-sm) !important;
+  margin-block-end: var(--web-app-size-md) !important;
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.title:not(:last-child) {
+  display: flex;
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.solutions {
+  margin-block-start: var(--web-app-size-xl);
+}
+
+.solutionsHeader {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.solutionsContent {
+  max-width: 500px;
+}
+
+.maxNumber {
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}

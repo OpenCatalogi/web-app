@@ -4,7 +4,7 @@ import * as styles from "./Layout.module.css";
 import "./../translations/i18n";
 import APIContext, { APIProvider } from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
-import { GatsbyProvider, IGatsbyContext } from "../context/gatsby";
+import { GatsbyProvider, IGatsbyContext, TScreenSize } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
@@ -12,6 +12,7 @@ import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { Head } from "./Head";
+import { getScreenSize } from "../services/getScreenSize";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,8 +23,12 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
-  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({ ...{ pageContext, location } });
   const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
+  const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
+  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
+    ...{ pageContext, location, screenSize: "mobile" },
+  });
+
   const { t } = useTranslation();
 
   React.useEffect(() => {
@@ -31,12 +36,22 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   }, []);
 
   React.useEffect(() => {
-    setGatsbyContext({ ...{ pageContext, location } });
+    setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
 
     const JWT = sessionStorage.getItem("JWT");
 
     API && !API.authenticated && JWT && API.setAuthentication(JWT);
-  }, [pageContext, location]);
+  }, [pageContext, location, screenSize]);
+
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setScreenSize(getScreenSize(window.innerWidth));
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
 
   React.useEffect(() => {
     if (!gatsbyContext) return;

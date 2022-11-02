@@ -93,6 +93,17 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 {t("API's")}
               </Link>
             </li>
+
+            <li
+              onClick={() => {
+                setFilters({ ...filters, developmentStatus: "concept" });
+                navigate("/components");
+              }}
+            >
+              <Link icon={<ArrowRightIcon />} iconAlign="start">
+                {t("Initiatives")}
+              </Link>
+            </li>
           </ul>
 
           <ul className={styles.list}>
@@ -104,17 +115,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("About Open Catalogi")}
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
-                navigate("/documentation/installation");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                Installatie
+                {t("About OpenCatalogi")}
               </Link>
             </li>
 
@@ -130,21 +131,11 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("#");
+                navigate("/documentation/contact");
               }}
             >
               <Link icon={<ArrowRightIcon />} iconAlign="start">
-                API
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
-                navigate("/documentation/standards");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                Standaarden
+                Contact
               </Link>
             </li>
 

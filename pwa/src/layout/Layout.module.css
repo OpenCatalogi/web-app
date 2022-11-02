@@ -8,7 +8,7 @@
   min-height: 100vh;
   z-index: 1;
   padding-inline-start: var(--web-app-size-sm);
-  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .footer {

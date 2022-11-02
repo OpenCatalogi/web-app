@@ -42,11 +42,13 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <>
           <div className={styles.headerContainer}>
             <div className={styles.headerContent}>
-              <Heading1>{_getOrganization.data.name}</Heading1>
+              <Heading1 className={styles.title}>{_getOrganization.data.name}</Heading1>
 
-              {_getOrganization.data.description && <LeadParagraph>{_getOrganization.data.description}</LeadParagraph>}
+              {_getOrganization.data.description && (
+                <LeadParagraph className={styles.description}>{_getOrganization.data.description}</LeadParagraph>
+              )}
               {!_getOrganization.data.description && (
-                <LeadParagraph>{t("There is no description available")}</LeadParagraph>
+                <LeadParagraph className={styles.description}>{t("There is no description available")}</LeadParagraph>
               )}
             </div>
 
@@ -110,29 +112,26 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
               <Divider />
 
-              <div className={styles.tagsContainer}>
-                <ToolTip tooltip={"ISO-9001"}>
-                  <Tag
-                    label={"ISO-9001"}
-                    icon={<FontAwesomeIcon icon={faCertificate} />}
-                    onClick={() => open("https://www.iso.org/iso-9001-quality-management.html")}
-                  />
-                </ToolTip>
-                <ToolTip tooltip={"ISO-27001"}>
-                  <Tag
-                    label={"ISO-27001"}
-                    icon={<FontAwesomeIcon icon={faCertificate} />}
-                    onClick={() => open("https://www.iso.org/isoiec-27001-information-security.html")}
-                  />
-                </ToolTip>
-              </div>
+              {_getOrganization.data.certificate && (
+                <div className={styles.tagsContainer}>
+                  {_getOrganization.data.certificate.map((certificate: any) => (
+                    <ToolTip tooltip={certificate.name}>
+                      <Tag
+                        label={certificate.name}
+                        icon={<FontAwesomeIcon icon={faCertificate} />}
+                        onClick={() => open(certificate.href)}
+                      />
+                    </ToolTip>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
           <Divider />
 
           <div className={styles.section}>
-            <Heading2>Componenten</Heading2>
+            <Heading2 className={styles.title}>Componenten</Heading2>
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}

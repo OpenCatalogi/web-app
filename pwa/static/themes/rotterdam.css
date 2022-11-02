@@ -83,7 +83,9 @@
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
+  --web-app-color-text-grey: #404b4f;
   --web-app-color-grey: var(--skeleton-color-grey-1);
+  --web-app-color-top-nav-grey: #586265;
 
   --web-app-color-link: var(--rotterdam-color-green);
   --web-app-color-link-active: var(--rotterdam-color-green);
@@ -192,14 +194,14 @@
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
-  --web-app-secondary-top-nav-color: var(--rotterdam-color-green);
+  --web-app-secondary-top-nav-color: var(--web-app-color-top-nav-grey);
   --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-light);
 
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-primary-top-nav-color: var(--rotterdam-color-green);
+  --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);

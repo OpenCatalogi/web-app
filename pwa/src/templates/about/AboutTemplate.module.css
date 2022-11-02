@@ -4,6 +4,7 @@
 
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .buttonsContainer {
@@ -25,11 +26,25 @@
 }
 
 .author {
-  font-size: var(--web-app-font-size-md);
+  font-size: var(--web-app-font-size-sm);
   display: block;
   margin-block-start: var(--web-app-size-sm);
 }
 
 .layersVisual {
   width: 100%;
+}
+
+.paragraphButtons > *:not(:last-child) {
+  margin-right: var(--web-app-size-sm);
+}
+
+.description {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--web-app-size-2xl);
 }
