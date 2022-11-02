@@ -32,7 +32,6 @@
 
 .filtersAndResultsContainer {
   display: flex;
-  flex-direction: column;
   gap: var(--web-app-size-lg);
 }
 
