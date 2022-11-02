@@ -13,6 +13,8 @@ import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { Head } from "./Head";
 import { getScreenSize } from "../services/getScreenSize";
+import Favicon from "react-favicon";
+import Logo from "../assets/images/logo_OpenCatalogi.png";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -78,6 +80,8 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
+              <Favicon url={Logo} />
+
               <HeaderTemplate layoutClassName={styles.header} />
 
               <div className={styles.pageContent}>{children}</div>
