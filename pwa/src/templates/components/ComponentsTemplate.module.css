@@ -55,7 +55,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-	.filtersAndResultsContainer {
-		flex-direction: row;
-	  }
+  .filtersAndResultsContainer {
+    flex-direction: row;
   }
+}
