@@ -6,10 +6,8 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-block-start: var(--web-app-size-3xl) !important;
+.header > :not(:last-child) {
+  margin-block-end: var(--web-app-size-lg);
 }
 
 .resultsDisplaySwitchButtons {
@@ -32,7 +30,6 @@
 
 .filtersAndResultsContainer {
   display: flex;
-  flex-direction: column;
   gap: var(--web-app-size-lg);
 }
 
@@ -55,7 +52,9 @@
 }
 
 @media only screen and (min-width: 992px) {
-  .filtersAndResultsContainer {
-    flex-direction: row;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: var(--web-app-size-3xl) !important;
   }
 }
