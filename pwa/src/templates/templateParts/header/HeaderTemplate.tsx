@@ -3,14 +3,13 @@ import * as styles from "./HeaderTemplate.module.css";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, PrimaryTopNav, Breadcrumbs } from "@conduction/components";
+import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
-import { isLoggedIn } from "../../../services/auth";
 import _ from "lodash";
 
 interface HeaderTemplateProps {
@@ -20,14 +19,14 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
   const {
     pageContext: {
       breadcrumb: { crumbs },
     },
-  } = React.useContext(GatsbyContext);
-  const {
     location: { pathname },
+    screenSize,
   } = React.useContext(GatsbyContext);
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
@@ -57,6 +56,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     {
       label: t("Components"),
       current: pathname.includes("/components"),
+      handleClick: () => {
+        navigate("/components");
+      },
       subItems: [
         {
           label: t("Processes"),
@@ -119,24 +121,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
-  const authenticatedSecondaryTopNavItems = [
-    {
-      label: "Dashboard",
-      current: pathname.includes("/admin"),
-      handleClick: () => {
-        navigate("/admin");
-      },
-    },
-    {
-      label: t("Logout"),
-      handleClick: () => {
-        navigate("/logout");
-      },
-      icon: <FontAwesomeIcon icon={faCircleUser} />,
-    },
-  ];
-
-  const unauthenticatedSecondaryTopNavItems = [
+  const secondaryTopNavItems = [
     {
       label: t("Login"),
       current: pathname === "/login",
@@ -147,24 +132,37 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
+  React.useEffect(() => {
+    if (screenSize === "desktop") {
+      setTopNavItems(primaryTopNavItems);
+      return;
+    }
+
+    setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
+  }, [screenSize, pathname, crumbs]);
+
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav
-            items={isLoggedIn() ? authenticatedSecondaryTopNavItems : unauthenticatedSecondaryTopNavItems}
-          />
+          <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
       <div>
         <div className={styles.headerMiddleBar}>
           <Container layoutClassName={styles.primaryNavContainer}>
-            <div className={styles.logoContainer}>
-              <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
+            <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
+              <div onClick={() => navigate("/")} className={styles.organizationLogo} />
             </div>
+
             <PrimaryTopNav
-              layoutClassName={clsx(styles.textColor, styles.primaryNavDropdown)}
-              items={primaryTopNavItems}
+              mobileLogo={
+                <div className={clsx(styles.logoContainer, styles.logoMobile)}>
+                  <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+                </div>
+              }
+              layoutClassName={styles.textColor}
+              items={topNavItems}
             />
           </Container>
         </div>

@@ -4,7 +4,9 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -14,7 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@conduction/components": "2.0.14",
+    "@conduction/components": "2.0.18",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -37,6 +39,7 @@
     "react": "^17.0.1",
     "react-collapsible": "^2.10.0",
     "react-dom": "^17.0.1",
+    "react-favicon": "^1.0.1",
     "react-helmet": "^6.1.0",
     "react-hook-form": "7.29.0",
     "react-i18next": "^11.16.6",
