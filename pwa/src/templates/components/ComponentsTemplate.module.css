@@ -32,6 +32,7 @@
 
 .filtersAndResultsContainer {
   display: flex;
+  flex-direction: column;
   gap: var(--web-app-size-lg);
 }
 
@@ -51,4 +52,10 @@
 
 .title {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .filtersAndResultsContainer {
+    flex-direction: row;
+  }
 }
