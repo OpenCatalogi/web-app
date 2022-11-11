@@ -85,6 +85,8 @@
   --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
   --web-app-color-grey: var(--skeleton-color-grey-1);
+  --web-app-color-table-grey: #f9f9f9;
+  --web-app-color-table-hover-grey: #eff4f6;
   --web-app-color-top-nav-grey: #586265;
 
   --web-app-color-link: var(--rotterdam-color-green);
