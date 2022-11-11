@@ -1,11 +1,16 @@
 .container {
+  white-space: nowrap;
   display: flex;
+  flex-flow: wrap;
 }
 
 .container > * {
-  display: flex;
   align-items: center;
   user-select: none;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+  padding-block-start: 10px;
+  padding-block-end: 10px;
 }
 
 .container > *.active {
@@ -22,10 +27,6 @@
 
 .container .disabled {
   opacity: var(--web-app-layer-accordion-disabled-opacity);
-}
-
-.container > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-md);
 }
 
 :not(.disabled).filter:not(.active) {
