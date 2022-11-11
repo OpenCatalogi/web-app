@@ -33,6 +33,11 @@
 }
 
 .toggleIcon {
+  font-size: var(--web-app-font-size-lg);
+  transition: transform 200ms ease-in-out;
+}
+
+.toggleIcon.active {
   font-size: var(--web-app-font-size-md);
   transition: transform 200ms ease-in-out;
 }
