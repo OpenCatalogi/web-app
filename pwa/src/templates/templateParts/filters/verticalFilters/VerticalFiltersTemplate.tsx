@@ -37,11 +37,11 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const [open, setOpen] = React.useState<boolean>(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const { screenSize } = React.useContext(GatsbyContext);
 
-  React.useEffect(() => setOpen(screenSize === "desktop"), [screenSize]);
+  React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
   const {
     register,
@@ -122,13 +122,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         trigger={
           <div className={styles.trigger}>
             <span>Filters</span>
-            <FontAwesomeIcon className={clsx(styles.toggleIcon, open && styles.active)} icon={faChevronRight} />
+            <FontAwesomeIcon className={clsx(styles.toggleIcon, isOpen && styles.isOpen)} icon={faChevronRight} />
           </div>
         }
-        {...{ open }}
+        open={isOpen}
         transitionTime={200}
-        onOpening={() => setOpen(true)}
-        onClosing={() => setOpen(false)}
+        onOpening={() => setIsOpen(true)}
+        onClosing={() => setIsOpen(false)}
       >
         <Divider className={styles.divider} />
 
