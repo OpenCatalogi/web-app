@@ -7,6 +7,13 @@
   cursor: pointer;
 }
 
+.tableRow:nth-of-type(even) > td {
+  background-color: var(--web-app-color-table-grey);
+}
+.tableRow:nth-of-type(even):hover > td {
+  background-color: var(--web-app-color-table-hover-grey);
+}
+
 .name {
   display: block;
   width: 180px;
