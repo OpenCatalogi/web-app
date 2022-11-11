@@ -113,6 +113,25 @@
   color: var(--web-app-color-text-grey) !important;
 }
 
+.denhaag-link__icon {
+  align-items: center;
+  display: inline-flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  vertical-align: text-top;
+  width: var(--web-app-size-md);
+}
+
+.denhaag-link--with-icon-start {
+  padding-inline-start: calc(var(--web-app-size-md) + var(--web-app-size-xs));
+}
+
+li .denhaag-link__icon {
+  left: 0;
+}
+
 @media only screen and (min-width: 992px) {
   .logoContainer {
     display: flex;
