@@ -1,6 +1,4 @@
 .headerContainer {
-  padding-inline: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-4xl);
   background-color: var(--web-app-color-background-light);
 }
 
@@ -21,9 +19,7 @@
 
 .primaryNavContainer {
   position: fixed;
-  top: var(--web-app-size-md);
-  left: var(--web-app-size-md);
-  width: calc(100% - (var(--web-app-size-md) * 2)) !important;
+  width: 100%;
   background-color: var(--web-app-color-background-page-top-bar);
   box-shadow: 0px 10px 13px -14px #000000;
   z-index: 1;
@@ -72,8 +68,11 @@
 }
 
 .headerContent {
-  padding-block-start: var(--web-app-size-3xl);
+  padding-block-start: var(--web-app-size-4xl);
   padding-block-end: var(--web-app-size-3xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+  width: auto !important;
 }
 
 .headerSearchForm {
@@ -144,5 +143,15 @@
     background-color: unset;
     box-shadow: unset;
     z-index: unset;
+  }
+
+  .headerContainer {
+    padding-inline: var(--web-app-size-md);
+    background-color: var(--web-app-color-background-light);
+  }
+
+  .headerContent {
+    padding-block-start: var(--web-app-size-3xl);
+    padding-block-end: var(--web-app-size-3xl);
   }
 }
