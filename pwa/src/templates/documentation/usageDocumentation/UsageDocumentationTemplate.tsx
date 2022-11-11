@@ -232,7 +232,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           <CodeBlock
             codeBlock={
-              <div>
+              <div className={styles.codeBlockContent}>
                 $ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
                 <br />
                 $ helm install my-opencatalogi opencatalogi/opencatalogi <br />
