@@ -92,7 +92,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1 className={styles.title}>{_getComponent.data.name}</Heading1>
+              <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
                 {_getComponent.data.embedded.description.longDescription}
