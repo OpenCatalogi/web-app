@@ -70,13 +70,11 @@ export const ComponentsTemplate: React.FC = () => {
               <SubmitComponentTemplate />
 
               {getComponents.data.results.length && (
-                <div className={styles.test}>
                   <Pagination
                     setPage={(page) => setFilters({ ...filters, currentPage: page })}
                     pages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
                   />
-                </div>
               )}
             </>
           )}
