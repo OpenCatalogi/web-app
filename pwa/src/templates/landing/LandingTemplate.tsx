@@ -64,6 +64,21 @@ export const LandingTemplate: React.FC = () => {
             />
           </div>
         )}
+        {screenSize === "tablet" && (
+          <div className={styles.cards}>
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Over OpenCatalogi"
+              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+            />
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Aan de slag met OpenCatalogi"
+              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+            />
+          </div>
+        )}
+
         {screenSize === "mobile" && (
           <div className={styles.cards}>
             <DetailsCard
