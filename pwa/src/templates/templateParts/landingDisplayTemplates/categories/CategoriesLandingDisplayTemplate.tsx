@@ -15,6 +15,7 @@ interface CategoriesLandingDisplayTemplateProps {}
 
 export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
   const { t } = useTranslation();
+  const [showMore, setShowMore] = React.useState(false);
 
   const domains = TEMPORARY_DOMAINS;
   const categories = TEMPORARY_PORTFOLIOS;
@@ -31,25 +32,62 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
 
       <div className={styles.ComponentsGrid}>
         {domains.map((domain) => (
-          <CategoryCard
-            title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
-            description={
-              <div>
-                {categories.map(
-                  (categorie) =>
-                    categorie.domain === domain.title && (
-                      <div onClick={() => navigate(`/categories/${categorie.id}`)}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {categorie.title}
-                        </Link>
-                      </div>
-                    ),
-                )}
-              </div>
-            }
-            icon={<FontAwesomeIcon icon={faTags} />}
-            domain={true}
-          />
+          <>
+            {showMore && (
+              <CategoryCard
+                title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
+                description={
+                  <div>
+                    {categories
+                      .filter((category) => category.domain === domain.title)
+                      .map((_category) => (
+                        <div>
+                          <div onClick={() => navigate(`/categories/${_category.id}`)}>
+                            <Link icon={<ArrowRightIcon />} iconAlign="start">
+                              {_category.title}
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+
+                    <button className="btn" onClick={() => setShowMore(!showMore)}>
+                      {showMore ? "Show less" : "Show more"}
+                    </button>
+                  </div>
+                }
+                icon={<FontAwesomeIcon icon={faTags} />}
+                domain={true}
+              />
+            )}
+
+            {!showMore && (
+              <CategoryCard
+                title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
+                description={
+                  <div>
+                    {categories
+                      .filter((category) => category.domain === domain.title)
+                      .slice(0, 5)
+                      .map((_category) => (
+                        <div>
+                          <div onClick={() => navigate(`/categories/${_category.id}`)}>
+                            <Link icon={<ArrowRightIcon />} iconAlign="start">
+                              {_category.title}
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+
+                    <button className="btn" onClick={() => setShowMore(!showMore)}>
+                      {showMore ? "Show less" : "Show more"}
+                    </button>
+                  </div>
+                }
+                icon={<FontAwesomeIcon icon={faTags} />}
+                domain={true}
+              />
+            )}
+          </>
         ))}
       </div>
 
