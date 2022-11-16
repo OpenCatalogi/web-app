@@ -180,6 +180,7 @@
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-box-shadow-active: unset;
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 
   /* @gemeent-denhaag: SideNav */
