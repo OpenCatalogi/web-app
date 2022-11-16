@@ -26,6 +26,10 @@ import {
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
 import { layers } from "../../../../data/filters";
+import Collapsible from "react-collapsible";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../../context/gatsby";
 
 interface VerticalFiltersTemplateProps {
   layoutClassName?: string;
@@ -33,6 +37,11 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+
+  const { screenSize } = React.useContext(GatsbyContext);
+
+  React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
   const {
     register,
@@ -105,176 +114,191 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
-      <span className={styles.title}>Filters</span>
+      <Collapsible
+        className={styles.collapsible}
+        openedClassName={styles.collapsible}
+        triggerClassName={styles.title}
+        triggerOpenedClassName={styles.title}
+        trigger={
+          <div className={styles.trigger}>
+            <span>Filters</span>
+            <FontAwesomeIcon className={clsx(styles.toggleIcon, isOpen && styles.isOpen)} icon={faChevronRight} />
+          </div>
+        }
+        open={isOpen}
+        transitionTime={200}
+        onOpening={() => setIsOpen(true)}
+        onClosing={() => setIsOpen(false)}
+      >
+        <Divider className={styles.divider} />
 
-      <Divider />
-
-      <form className={styles.form}>
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Laag</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
+        <form className={styles.form}>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Laag</span>
+              </FormFieldLabel>
               <div className={styles.selectBorder}>
-                <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />{" "}
+                <div className={styles.selectBorder}>
+                  <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />{" "}
+                </div>
               </div>
-            </div>
-          </FormFieldInput>
-        </FormField>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>UPL</span>
-            </FormFieldLabel>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>UPL</span>
+              </FormFieldLabel>
 
-            <div className={styles.selectBorder}>
-              <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+              <div className={styles.selectBorder}>
+                <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Organisatie</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle isClearable name="organization" options={organizations} {...{ errors, control, register }} />
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Organisatie</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle isClearable name="organization" options={organizations} {...{ errors, control, register }} />
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Categorie</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Categorie</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Platforms</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Platforms</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Status</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Status</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Onderhoudstypes</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle
-                isClearable
-                name="maintenanceType"
-                options={maintenanceTypes}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Onderhoudstypes</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle
+                  isClearable
+                  name="maintenanceType"
+                  options={maintenanceTypes}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Softwaretypes</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle
-                isClearable
-                name="softwareType"
-                options={softwareTypes}
-                {...{ errors, control, register }}
-              />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Softwaretypes</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle
+                  isClearable
+                  name="softwareType"
+                  options={softwareTypes}
+                  {...{ errors, control, register }}
+                />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Licentie</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Licentie</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Bedrijfsfuncties</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Bedrijfsfuncties</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Bedrijfsservices</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Bedrijfsservices</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Referentie componenten</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple
-                name="referentieComponenten"
-                options={referentieComponenten}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormFieldInput>
-        </FormField>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Referentie componenten</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple
+                  name="referentieComponenten"
+                  options={referentieComponenten}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormFieldInput>
+          </FormField>
 
-        <FormField>
-          <FormFieldInput>
-            <FormFieldLabel>
-              <span className={styles.label}>Applicatiefunctie</span>
-            </FormFieldLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle
-                isClearable
-                name="applicatiefunctie"
-                options={applicatiefuncties}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormFieldInput>
-        </FormField>
-      </form>
+          <FormField>
+            <FormFieldInput>
+              <FormFieldLabel>
+                <span className={styles.label}>Applicatiefunctie</span>
+              </FormFieldLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle
+                  isClearable
+                  name="applicatiefunctie"
+                  options={applicatiefuncties}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormFieldInput>
+          </FormField>
+        </form>
+      </Collapsible>
     </div>
   );
 };

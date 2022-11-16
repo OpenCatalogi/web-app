@@ -76,6 +76,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     {
       label: t("Components"),
       current: pathname.includes("/components"),
+      handleClick: () => {
+        navigate("/components");
+      },
       subItems: [
         {
           label: t("Processes"),
@@ -165,24 +168,22 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
-      <div>
-        <div className={styles.headerMiddleBar}>
-          <Container layoutClassName={styles.primaryNavContainer}>
-            <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-              <div onClick={() => navigate("/")} className={styles.organizationLogo} />
-            </div>
+      <div className={styles.headerMiddleBar}>
+        <Container layoutClassName={styles.primaryNavContainer}>
+          <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
+            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+          </div>
 
-            <PrimaryTopNav
-              mobileLogo={
-                <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                  <div onClick={() => navigate("/")} className={styles.organizationLogo} />
-                </div>
-              }
-              layoutClassName={styles.textColor}
-              items={topNavItems}
-            />
-          </Container>
-        </div>
+          <PrimaryTopNav
+            mobileLogo={
+              <div className={clsx(styles.logoContainer, styles.logoMobile)}>
+                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+              </div>
+            }
+            layoutClassName={styles.textColor}
+            items={topNavItems}
+          />
+        </Container>
       </div>
 
       {pathname === "/" && (

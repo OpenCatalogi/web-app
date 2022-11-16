@@ -19,6 +19,10 @@
   flex: 5;
 }
 
+.componentName {
+  color: var(--web-app-color-text-grey) !important;
+  word-break: break-word;
+}
 .title {
   color: var(--web-app-color-text-grey) !important;
 }
@@ -67,11 +71,6 @@
   object-fit: contain;
 }
 
-.cardsContainer {
-  display: flex;
-  gap: var(--web-app-size-xl);
-}
-
 .organizationCardContainer {
   flex: 5;
 }
@@ -82,6 +81,10 @@
   align-items: center;
   flex: 5;
   background-color: var(--web-app-color-grey);
+  padding-block-end: 50px;
+  padding-block-start: 50px;
+  padding-inline-end: 50px;
+  padding-inline-start: 50px;
 }
 
 .infoCard {
@@ -178,6 +181,14 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.cardsContainer {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cardsContainer > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
 @media only screen and (min-width: 576px) {
   .container > .headingContainer {
     grid-template-columns: 2fr var(--web-app-component-detail-logo-width);
@@ -189,6 +200,22 @@
 
   .container > .backButton {
     display: block;
+  }
+
+  .cardsContainer {
+    display: flex;
+    gap: var(--web-app-size-xl);
+  }
+
+  .cardsContainer > :not(:last-child) {
+    margin-block-end: 0;
+  }
+
+  .noOrganizationCardAvailable {
+    padding-block-end: unset;
+    padding-block-start: unset;
+    padding-inline-end: unset;
+    padding-inline-start: unset;
   }
 }
 

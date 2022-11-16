@@ -16,10 +16,39 @@
   font-size: var(--web-app-size-md);
 }
 
+.trigger > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+}
+
 .title {
   display: block;
   font-weight: var(--web-app-font-weight-bold);
   font-size: var(--web-app-size-md);
+  cursor: pointer;
+}
+
+.toggleIcon {
+  font-size: var(--web-app-font-size-lg);
+  transition: transform 200ms ease-in-out;
+}
+
+.toggleIcon.active {
+  font-size: var(--web-app-font-size-md);
+  transition: transform 200ms ease-in-out;
+}
+
+.toggleIcon.isOpen {
+  transform: rotate(90deg);
+}
+
+.collapsible .divider {
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-md);
 }
 
 .form > *:not(:last-child) {

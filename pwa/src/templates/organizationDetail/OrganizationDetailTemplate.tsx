@@ -110,20 +110,22 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 </div>
               </div>
 
-              <Divider />
-
               {_getOrganization.data.certificate && (
-                <div className={styles.tagsContainer}>
-                  {_getOrganization.data.certificate.map((certificate: any) => (
-                    <ToolTip tooltip={certificate.name}>
-                      <Tag
-                        label={certificate.name}
-                        icon={<FontAwesomeIcon icon={faCertificate} />}
-                        onClick={() => open(certificate.href)}
-                      />
-                    </ToolTip>
-                  ))}
-                </div>
+                <>
+                  <Divider />
+
+                  <div className={styles.tagsContainer}>
+                    {_getOrganization.data.certificate.map((certificate: any) => (
+                      <ToolTip tooltip={certificate.name}>
+                        <Tag
+                          label={certificate.name}
+                          icon={<FontAwesomeIcon icon={faCertificate} />}
+                          onClick={() => open(certificate.href)}
+                        />
+                      </ToolTip>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           </div>

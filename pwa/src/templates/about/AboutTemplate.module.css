@@ -36,7 +36,10 @@
 }
 
 .paragraphButtons > *:not(:last-child) {
-  margin-right: var(--web-app-size-sm);
+  margin-inline-end: var(--web-app-size-sm);
+}
+.paragraphButtons {
+  display: flex;
 }
 
 .description {
@@ -47,4 +50,13 @@
   display: flex;
   justify-content: space-between;
   gap: var(--web-app-size-2xl);
+}
+
+.standardsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tableRow > td {
+  min-width: 250px;
 }

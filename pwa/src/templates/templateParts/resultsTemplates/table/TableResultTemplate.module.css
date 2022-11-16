@@ -1,5 +1,17 @@
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .tableRow {
   cursor: pointer;
+}
+
+.tableRow:nth-of-type(even) > td {
+  background-color: var(--web-app-color-table-grey);
+}
+.tableRow:nth-of-type(even):hover > td {
+  background-color: var(--web-app-color-table-hover-grey);
 }
 
 .name {

@@ -6,10 +6,8 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-block-start: var(--web-app-size-3xl) !important;
+.header > :not(:last-child) {
+  margin-block-end: var(--web-app-size-lg);
 }
 
 .resultsDisplaySwitchButtons {
@@ -32,12 +30,14 @@
 
 .filtersAndResultsContainer {
   display: flex;
+  flex-direction: column;
   gap: var(--web-app-size-lg);
 }
 
 .verticalFilters {
   flex: 1;
   min-width: 280px;
+  height: min-content;
 }
 
 .results {
@@ -50,4 +50,18 @@
 
 .title {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 992px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: var(--web-app-size-3xl) !important;
+  }
+  .header > :not(:last-child) {
+    margin-block-end: 0px;
+  }
+  .filtersAndResultsContainer {
+    flex-direction: row;
+  }
 }
