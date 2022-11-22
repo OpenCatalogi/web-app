@@ -1,5 +1,6 @@
 ---
 name: "OpenCatalogi application"
+url: "https://github.com/OpenCatalogi/web-app"
 
 publiccodeYmlVersion: 1.0
 softwareType: "standalone/web"
