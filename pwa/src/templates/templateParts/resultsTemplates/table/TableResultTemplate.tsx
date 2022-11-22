@@ -53,13 +53,13 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <TableCell>
                 <div
                   className={clsx(
-                    styles[_.camelCase(t(`${component.embedded?.nl.embedded.commonground.layerType} layer`))],
+                    styles[_.camelCase(t(`${component.embedded?.nl?.embedded.commonground.layerType} layer`))],
                   )}
                 >
                   <ToolTip tooltip="Laag">
                     <Tag
                       layoutClassName={styles.tagWidth}
-                      label={t(_.upperFirst(component.embedded?.nl.embedded.commonground.layerType ?? "Onbekend"))}
+                      label={t(_.upperFirst(component.embedded?.nl?.embedded.commonground.layerType ?? "Onbekend"))}
                       icon={<FontAwesomeIcon icon={faLayerGroup} />}
                     />
                   </ToolTip>
