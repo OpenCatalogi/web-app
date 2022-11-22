@@ -38,7 +38,7 @@ dependsOn:
     - name: common-gateway
     - versionMin: 1.0.0
     
- nl:
+nl:
   gemma:
     bedrijfsfuncties:
       - Algemene content publicatie
