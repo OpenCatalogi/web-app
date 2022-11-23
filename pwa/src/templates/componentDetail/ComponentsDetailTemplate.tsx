@@ -104,7 +104,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     layoutClassName={
                       styles[_.camelCase(t(`${_getComponent.data.embedded?.nl?.embedded.commonground.layerType} layer`))]
                     }
-                    label={t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded.commonground.layerType))}
+                    label={t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded.commonground.layerType ?? "Onbekend"))}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
