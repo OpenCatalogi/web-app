@@ -59,7 +59,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
-          {__categories !== 0 &&
+          {!!__categories &&
             __categories.map(
               (category: any) =>
                 category && (

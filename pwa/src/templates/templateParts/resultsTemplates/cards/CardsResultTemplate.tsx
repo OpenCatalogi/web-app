@@ -15,7 +15,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
           key={component.id}
           title={{ label: component.name, href: `/components/${component.id}` }}
           description={component.embedded?.description?.shortDescription}
-          layer={component.embedded?.nl.embedded?.commonground.layerType}
+          layer={component.embedded?.nl?.embedded?.commonground.layerType}
           categories={component.categories}
           tags={{
             status: component.developmentStatus,
