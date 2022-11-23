@@ -67,7 +67,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
           <div className={styles.solutionsContent}>
             <ComponentCard
               key={component.id}
-              title={{ label: component.name, href: `/components/${component.id}` }}
+              title={{ label: component.name, href: `#` }}
               description={component.embedded?.description?.shortDescription}
               layer={component.embedded?.nl.embedded?.commonground.layerType}
               categories={component.categories}
