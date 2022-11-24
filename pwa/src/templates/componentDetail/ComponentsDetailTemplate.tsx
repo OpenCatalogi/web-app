@@ -73,7 +73,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _categories =
     layer &&
     _getComponent.data?.categories.map((category: any) => {
-      return categories[layer].find((_category) => {
+      return categories[layer]?.find((_category) => {
         return _category.value === category;
       });
     });
