@@ -14,6 +14,9 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
+import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import { TEMPORARY_APPLICATIONS } from "../../data/applications";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -21,7 +24,13 @@ export const ComponentsTemplate: React.FC = () => {
 
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
-  const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
+  // const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
+
+  const TempComponents = TEMPORARY_COMPONENTS;
+  const TempOrganizations = TEMPORARY_ORGANIZATIONS;
+  const TempApplications = TEMPORARY_APPLICATIONS;
+
+  const getComponents = [...TempOrganizations, ...TempComponents, ...TempApplications];
 
   return (
     <Container layoutClassName={styles.container}>
@@ -63,29 +72,29 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
 
-          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
+          {getComponents && getComponents.length > 0 && (
             <>
-              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+              <ComponentResultTemplate components={getComponents} type={filters.resultDisplayLayout} />
 
               <SubmitComponentTemplate />
 
-              {getComponents.data.results.length && (
-                  <Pagination
-                    setPage={(page) => setFilters({ ...filters, currentPage: page })}
-                    pages={getComponents.data.pages}
-                    currentPage={getComponents.data.page}
-                  />
-              )}
+              {/* {getComponents.length && (
+                <Pagination
+                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
+                  pages={getComponents.pages}
+                  currentPage={getComponents.page}
+                />
+              )} */}
             </>
           )}
 
-          {getComponents.data?.results?.length === 0 &&
+          {/* {getComponents.length === 0 &&
             !getComponents.isLoading &&
             t("No components found with active filters")}
 
-          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
+          {!getComponents && !getComponents.isLoading && "Geen componenten gevonden"}
 
-          {getComponents.isLoading && <Skeleton height="200px" />}
+          {getComponents.isLoading && <Skeleton height="200px" />} */}
         </div>
       </div>
     </Container>
