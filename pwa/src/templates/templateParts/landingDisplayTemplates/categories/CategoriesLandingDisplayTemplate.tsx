@@ -89,6 +89,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                         </Collapsible>
 
                         <Button
+                          className={styles.showMoreButton}
                           variant="secondary-action"
                           onClick={() =>
                             setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))
