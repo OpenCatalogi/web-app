@@ -1,6 +1,7 @@
 export const TEMPORARY_COMPONENTS = [
   {
     id: "94541350-e796-4335-a866-4747e4c0a8ca",
+    objectType: "component",
     applicationId: null,
     applicationSuite: null,
     categories: [],
