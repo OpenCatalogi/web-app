@@ -38,14 +38,28 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
 
       <div className={styles.ComponentsGrid}>
         {domains.map((domain, index) => (
-          <>
-            <CategoryCard
-              title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
-              description={
-                <div>
-                  {categories
+          <CategoryCard
+            title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
+            description={
+              <div>
+                {categories
+                  .filter((category) => category.domain === domain.title)
+                  .slice(0, 5)
+                  .map((_category) => (
+                    <div>
+                      <div onClick={() => navigate(`/categories/${_category.id}`)}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          {_category.title}
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+
+                {screenSize !== "mobile" &&
+                  categories.filter((category) => category.domain === domain.title).slice(5).length > 0 &&
+                  categories
                     .filter((category) => category.domain === domain.title)
-                    .slice(0, 5)
+                    .slice(5)
                     .map((_category) => (
                       <div>
                         <div onClick={() => navigate(`/categories/${_category.id}`)}>
@@ -55,62 +69,44 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                         </div>
                       </div>
                     ))}
-
-                  {screenSize !== "mobile" &&
-                    categories.filter((category) => category.domain === domain.title).slice(5).length > 0 &&
-                    categories
-                      .filter((category) => category.domain === domain.title)
-                      .slice(5)
-                      .map((_category) => (
-                        <div>
-                          <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                            <Link icon={<ArrowRightIcon />} iconAlign="start">
-                              {_category.title}
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
-                  {screenSize === "mobile" &&
-                    categories.filter((category) => category.domain === domain.title).slice(5).length > 0 && (
-                      <>
-                        <Collapsible trigger={<></>} open={showMore[index]} transitionTime={200}>
-                          {categories
-                            .filter((category) => category.domain === domain.title)
-                            .slice(5)
-                            .map((_category) => (
-                              <div>
-                                <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                                  <Link icon={<ArrowRightIcon />} iconAlign="start">
-                                    {_category.title}
-                                  </Link>
-                                </div>
+                {screenSize === "mobile" &&
+                  categories.filter((category) => category.domain === domain.title).slice(5).length > 0 && (
+                    <>
+                      <Collapsible trigger={<></>} open={showMore[index]} transitionTime={200}>
+                        {categories
+                          .filter((category) => category.domain === domain.title)
+                          .slice(5)
+                          .map((_category) => (
+                            <div>
+                              <div onClick={() => navigate(`/categories/${_category.id}`)}>
+                                <Link icon={<ArrowRightIcon />} iconAlign="start">
+                                  {_category.title}
+                                </Link>
                               </div>
-                            ))}
-                        </Collapsible>
+                            </div>
+                          ))}
+                      </Collapsible>
 
-                        <Button
-                          className={styles.showMoreButton}
-                          variant="secondary-action"
-                          onClick={() =>
-                            setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))
-                          }
-                          icon={
-                            <FontAwesomeIcon
-                              className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
-                              icon={faChevronRight}
-                            />
-                          }
-                        >
-                          {showMore[index] ? "show less" : "show more"}
-                        </Button>
-                      </>
-                    )}
-                </div>
-              }
-              icon={<FontAwesomeIcon icon={faTags} />}
-              domain={true}
-            />
-          </>
+                      <Button
+                        className={styles.showMoreButton}
+                        variant="secondary-action"
+                        onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
+                        icon={
+                          <FontAwesomeIcon
+                            className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
+                            icon={faChevronRight}
+                          />
+                        }
+                      >
+                        {showMore[index] ? "show less" : "show more"}
+                      </Button>
+                    </>
+                  )}
+              </div>
+            }
+            icon={<FontAwesomeIcon icon={faTags} />}
+            domain={true}
+          />
         ))}
       </div>
 
