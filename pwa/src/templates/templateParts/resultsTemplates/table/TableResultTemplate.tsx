@@ -1,11 +1,11 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
+import _ from "lodash";
 import { Link } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import _ from "lodash";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
@@ -28,13 +28,11 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
         {!hideTableHead && (
           <TableHead>
             <TableRow>
-              <TableHeader>Type</TableHeader>
               <TableHeader>{t("Name")}</TableHeader>
+              <TableHeader>Type</TableHeader>
               <TableHeader>{t("Layer")}</TableHeader>
-              {screenSize !== "mobile" && <TableHeader>{t("Status")}</TableHeader>}
-              {screenSize === "desktop" && <TableHeader>{t("ComponentType")}</TableHeader>}
-              {screenSize === "desktop" && <TableHeader>{t("Organization")}</TableHeader>}
-              {screenSize === "desktop" && <TableHeader>{t("Installations")}</TableHeader>}
+              {screenSize !== "mobile" && <TableHeader>{t("ComponentType")}</TableHeader>}
+              {screenSize === "desktop" && <TableHeader>{t("Status")}</TableHeader>}
               <TableHeader />
             </TableRow>
           </TableHead>
@@ -53,12 +51,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 }
               >
                 <TableCell>
-                  {component.catalogusAPI !== undefined ? <span>Organisatie</span> : <span>Component</span>}
-                </TableCell>
-                <TableCell>
                   <span className={styles.name}>{component.name}</span>
                 </TableCell>
-
+                <TableCell>{t(_.upperFirst(component.objectType))}</TableCell>
                 <TableCell>
                   <div
                     className={clsx(
@@ -68,8 +63,14 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     <ToolTip tooltip="Laag">
                       <Tag
                         layoutClassName={styles.tagWidth}
-                        label={t(_.upperFirst(component.embedded?.nl?.embedded.commonground.layerType ?? "Onbekend"))}
-                        icon={<FontAwesomeIcon icon={faLayerGroup} />}
+                        label={t(
+                          _.upperFirst(
+                            component.objectType === "component"
+                              ? component.embedded?.nl?.embedded.commonground.layerType ?? "Onbekend"
+                              : "N.V.T.",
+                          ),
+                        )}
+                        icon={component.objectType === "component" ? <FontAwesomeIcon icon={faLayerGroup} /> : <></>}
                       />
                     </ToolTip>
                   </div>
@@ -77,41 +78,27 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
                 {screenSize !== "mobile" && (
                   <TableCell>
+                    <ToolTip tooltip="Component Type">
+                      <Tag
+                        label={_.upperFirst(
+                          component.objectType === "component" ? component.softwareType ?? "Onbekend" : "N.V.T.",
+                        )}
+                      />
+                    </ToolTip>
+                  </TableCell>
+                )}
+
+                {screenSize === "desktop" && (
+                  <TableCell>
                     <ToolTip tooltip="Status">
                       <Tag
                         layoutClassName={styles.tagWidth}
-                        label={t(_.upperFirst(component.developmentStatus ?? "Onbekend"))}
-                        icon={<FontAwesomeIcon icon={faInfoCircle} />}
-                      />
-                    </ToolTip>
-                  </TableCell>
-                )}
-
-                {screenSize === "desktop" && (
-                  <TableCell>
-                    <ToolTip tooltip="Type">
-                      <Tag label={_.upperFirst(component.softwareType ?? "Onbekend")} />
-                    </ToolTip>
-                  </TableCell>
-                )}
-
-                {screenSize === "desktop" && (
-                  <TableCell>
-                    <ToolTip tooltip="Organisatie">
-                      <Tag
-                        label={_.upperFirst(component.embedded?.url?.embedded?.organisation?.name ?? "Onbekend")}
-                        icon={<FontAwesomeIcon icon={faHouse} />}
-                      />
-                    </ToolTip>
-                  </TableCell>
-                )}
-
-                {screenSize === "desktop" && (
-                  <TableCell>
-                    <ToolTip tooltip="Installaties">
-                      <Tag
-                        label={_.upperFirst(component.usedBy?.length ?? 0)}
-                        icon={<FontAwesomeIcon icon={faRepeat} />}
+                        label={t(
+                          _.upperFirst(
+                            component.objectType === "component" ? component.developmentStatus ?? "Onbekend" : "N.V.T.",
+                          ),
+                        )}
+                        icon={component.objectType === "component" ? <FontAwesomeIcon icon={faInfoCircle} /> : <></>}
                       />
                     </ToolTip>
                   </TableCell>
