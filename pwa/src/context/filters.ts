@@ -24,6 +24,9 @@ export interface IFilters {
   "maintenance.type"?: string;
   "legal.license"?: string;
   "legal.mainCopyrightOwner"?: string;
+
+  showMoreControl?: boolean;
+  showMoreSupport?: boolean;
 }
 
 export const filters = {
