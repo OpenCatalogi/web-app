@@ -1,6 +1,7 @@
 export const TEMPORARY_APPLICATIONS = [
   {
     id: "1629b91c-5da2-4aea-969b-90930b2617bf",
+    objectType: "application",
     bpmnProcessUrl: null,
     components: [
       "/apiComponentUrl/f5bcb695-b111-41f4-accb-3b805af9b92a",

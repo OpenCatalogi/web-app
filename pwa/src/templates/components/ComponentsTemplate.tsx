@@ -30,7 +30,21 @@ export const ComponentsTemplate: React.FC = () => {
   const TempOrganizations = TEMPORARY_ORGANIZATIONS;
   const TempApplications = TEMPORARY_APPLICATIONS;
 
+  function shuffle(array: any) {
+    let currentIndex = array.length,
+      randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
+
   const getComponents = [...TempOrganizations, ...TempComponents, ...TempApplications];
+
+  shuffle(getComponents);
 
   return (
     <Container layoutClassName={styles.container}>
