@@ -31,7 +31,6 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               gitHub={component.github}
               gitLab={component.gitlab}
               type={component.type}
-              layoutClassName={styles.organizationCardContainer}
             />
           )}
           {component.objectType === "component" && (
