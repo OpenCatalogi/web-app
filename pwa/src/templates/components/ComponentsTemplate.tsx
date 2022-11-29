@@ -42,7 +42,7 @@ export const ComponentsTemplate: React.FC = () => {
     return array;
   }
 
-  const getComponents = [...TempOrganizations, ...TempComponents, ...TempApplications];
+  const getComponents = [...TempOrganizations, ...TempApplications, ...TempComponents];
 
   shuffle(getComponents);
 

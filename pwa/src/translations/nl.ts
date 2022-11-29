@@ -98,4 +98,5 @@ export const nl = {
   "Customer and chain interaction": "Klant en keteninteractie",
   Execution: "Uitvoering",
   "Components overview": "Componenten overzicht",
+  Application: "Applicatie",
 };
