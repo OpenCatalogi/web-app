@@ -2,10 +2,16 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
 import { Button, Heading2 } from "@gemeente-denhaag/components-react";
-import { Container, Pagination } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faGripVertical,
+  faLayerGroup,
+  faTable,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
@@ -14,10 +20,14 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
+import ReactPaginate from "react-paginate";
+import { GatsbyContext } from "../../context/gatsby";
+import { PaginatedItems } from "../../components/pagination/pagination";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
+  const { screenSize } = React.useContext(GatsbyContext);
 
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
@@ -70,11 +80,20 @@ export const ComponentsTemplate: React.FC = () => {
               <SubmitComponentTemplate />
 
               {getComponents.data.results.length && (
-                  <Pagination
-                    setPage={(page) => setFilters({ ...filters, currentPage: page })}
-                    pages={getComponents.data.pages}
-                    currentPage={getComponents.data.page}
-                  />
+                <PaginatedItems
+                  pages={getComponents.data.pages}
+                  currentPage={getComponents.data.page}
+                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
+                  pageRangeDisplayed={2}
+                  marginPagesDisplayed={screenSize === "mobile" ? 2 : 3}
+                  containerClassName={styles.paginationContainer}
+                  pageClassName={styles.paginationLink}
+                  previousClassName={styles.paginationLink}
+                  nextClassName={styles.paginationLink}
+                  activeClassName={styles.paginationActivePage}
+                  disabledClassName={styles.paginationDisabled}
+                  breakClassName={styles.breakLink}
+                />
               )}
             </>
           )}
