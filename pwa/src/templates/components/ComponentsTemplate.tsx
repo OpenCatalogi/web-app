@@ -5,24 +5,17 @@ import { Button, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faGripVertical,
-  faLayerGroup,
-  faTable,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
-import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
-import ReactPaginate from "react-paginate";
 import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
+import { useSearch } from "../../hooks/search";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -30,8 +23,8 @@ export const ComponentsTemplate: React.FC = () => {
   const { screenSize } = React.useContext(GatsbyContext);
 
   const queryClient = new QueryClient();
-  const _useComponent = useComponent(queryClient);
-  const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
+  const _useSearch = useSearch(queryClient);
+  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
 
   return (
     <Container layoutClassName={styles.container}>
@@ -73,12 +66,17 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
 
-          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
+          {getComponents.data?.results?.length === 0 &&
+            !getComponents.isLoading &&
+            t("No components found with active filters")}
+
+          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
+
+          {getComponents.isSuccess && getComponents.data.results.length > 0 && (
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 
               <SubmitComponentTemplate />
-
               {getComponents.data.results.length && (
                 <PaginatedItems
                   pages={getComponents.data.pages}
@@ -97,13 +95,6 @@ export const ComponentsTemplate: React.FC = () => {
               )}
             </>
           )}
-
-          {getComponents.data?.results?.length === 0 &&
-            !getComponents.isLoading &&
-            t("No components found with active filters")}
-
-          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
-
           {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
       </div>
