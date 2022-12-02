@@ -1,4 +1,28 @@
-import { faCoins } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAddressBook,
+  faBellConcierge,
+  faBoxArchive,
+  faBuildingCircleExclamation,
+  faCity,
+  faCoins,
+  faComments,
+  faDatabase,
+  faDiagramProject,
+  faHelmetSafety,
+  faHouseChimneyUser,
+  faIcons,
+  faPeopleArrows,
+  faPersonChalkboard,
+  faPersonCircleExclamation,
+  faRightLeft,
+  faScaleBalanced,
+  faShop,
+  faSitemap,
+  faSquareCheck,
+  faTowerCell,
+  faTreeCity,
+  faUsersGear,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const TEMPORARY_PORTFOLIOS = [
@@ -9,7 +33,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
     longDescription:
       "Het verlenen van vastgoedgerelateerde diensten, parkeerdiensten en nutsdiensten (gas, water en licht), de planning daarvan en het onderhoud daarop.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faHouseChimneyUser} />,
     domain: "Support",
   },
   {
@@ -25,7 +49,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Veiligheidsmanagement",
     shortDescription: "Het bewaken dat de organisatie voldoet aan alle aspecten van veiligheid en beveiliging.",
     longDescription: "Het bewaken dat de organisatie voldoet aan alle aspecten van veiligheid en beveiliging.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faHelmetSafety} />,
     domain: "Support",
   },
   {
@@ -43,7 +67,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
     longDescription:
       "Het ervoor zorgdragen dat gegevens beschikbaar blijven zodat het handelen van gemeenten publiek verantwoord kan worden.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faBoxArchive} />,
     domain: "Support",
   },
   {
@@ -51,7 +75,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Juridische ondersteuning",
     shortDescription: "Het bieden van advies en ondersteuning op het gebied van wet- en regelgeving.",
     longDescription: "Het bieden van advies en ondersteuning op het gebied van wet- en regelgeving.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faScaleBalanced} />,
     domain: "Support",
   },
   {
@@ -61,7 +85,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
     longDescription:
       "Het ervoor zorgdragen dat er competente medewerkers beschikbaar zijn voor de uitvoering van bedrijfsprocessen.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faUsersGear} />,
     domain: "Support",
   },
   {
@@ -91,7 +115,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
     longDescription:
       "Het ervoor zorgdragen dat de organisatie zich op de juiste wijze uit naar interne en externe partijen.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faTowerCell} />,
     domain: "Support",
   },
   {
@@ -107,7 +131,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Inkoop en contractmanagement",
     shortDescription: "Het verwerven van middelen en het bewaken van de afspraken hierover met de leverancier.",
     longDescription: "Het verwerven van middelen en het bewaken van de afspraken hierover met de leverancier.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faShop} />,
     domain: "Support",
   },
   {
@@ -117,7 +141,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
     longDescription:
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faDatabase} />,
     domain: "Execution",
   },
   {
@@ -127,7 +151,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
     longDescription:
       "Het leveren van gemeentelijke producten en diensten die tot het domein openbare orde en veiligheid worden gerekend.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faScaleBalanced} />,
     domain: "Execution",
   },
   {
@@ -155,7 +179,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Sociaal Domein",
     shortDescription: "Het leveren van gemeentelijke producten en diensten die tot het sociaal domein worden gerekend.",
     longDescription: "Het leveren van gemeentelijke producten en diensten die tot het sociaal domein worden gerekend.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faIcons} />,
     domain: "Execution",
   },
   {
@@ -215,7 +239,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Contactbeheer",
     shortDescription: "Het onderhouden van de relatie met klanten en ketenpartners.",
     longDescription: "Het onderhouden van de relatie met klanten en ketenpartners.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faAddressBook} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -233,7 +257,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
     longDescription:
       "Het inhoudelijke en procesmatig afstemmen met een partij met wie wordt samengewerkt of waarvan diensten worden betrokken, zodat beiden over de juiste informatie beschikken.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faComments} />,
     domain: "Directing",
   },
   {
@@ -267,7 +291,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Samenwerkingsbewaking",
     shortDescription: "Het bewaken of een samenwerkingsverband verloopt conform verwachtingen en afspraken.",
     longDescription: "Het bewaken of een samenwerkingsverband verloopt conform verwachtingen en afspraken.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faPeopleArrows} />,
     domain: "Surveillance",
   },
   {
@@ -275,7 +299,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Compliance management",
     shortDescription: "Het bewaken of processen worden uitgevoerd in lijn met wet- en regelgeving.",
     longDescription: "Het bewaken of processen worden uitgevoerd in lijn met wet- en regelgeving.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faScaleBalanced} />,
     domain: "Surveillance",
   },
   {
@@ -283,7 +307,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Risicomanagement",
     shortDescription: "Het bepalen en bewaken van de risico's waaraan de organisatie wordt blootgesteld.",
     longDescription: "Het bepalen en bewaken van de risico's waaraan de organisatie wordt blootgesteld.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faBuildingCircleExclamation} />,
     domain: "Surveillance",
   },
   {
@@ -291,7 +315,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Kaderbewaking",
     shortDescription: "Het bewaken of processen binnen de zelf opgestelde beperkingen worden uitgevoerd.",
     longDescription: "Het bewaken of processen binnen de zelf opgestelde beperkingen worden uitgevoerd.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faSquareCheck} />,
     domain: "Surveillance",
   },
   {
@@ -301,7 +325,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
     longDescription:
       "Het bepalen en managen van grotere veranderingen zodat maximaal wordt bijgedragen aan de doelstellingen.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faRightLeft} />,
     domain: "Surveillance",
   },
   {
@@ -311,7 +335,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
     longDescription:
       "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faDiagramProject} />,
     domain: "Surveillance",
   },
   {
@@ -319,7 +343,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Organisatieontwikkeling",
     shortDescription: "Het operationaliseren en implementeren van veranderingen in de organisatie.",
     longDescription: "Het operationaliseren en implementeren van veranderingen in de organisatie.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faSitemap} />,
     domain: "Development",
   },
   {
@@ -327,7 +351,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Leefomgeving ontwikkeling",
     shortDescription: "Ontwikkeling en implementatie op het gebied van de leefomgeving binnen een gemeente.",
     longDescription: "Ontwikkeling en implementatie op het gebied van de leefomgeving binnen een gemeente.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faTreeCity} />,
     domain: "Development",
   },
   {
@@ -335,7 +359,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Sociale ontwikkeling",
     shortDescription: "Het ontwikkelen en implementeren van beleid dat betrekking heeft op sociale aspecten.",
     longDescription: "Het ontwikkelen en implementeren van beleid dat betrekking heeft op sociale aspecten.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faIcons} />,
     domain: "Development",
   },
   {
@@ -353,7 +377,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
     longDescription:
       "Het ontwikkelen en invoeren van beleid dat betrekking heeft op openbare orde en veiligheidsaspecten.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faScaleBalanced} />,
     domain: "Development",
   },
   {
@@ -363,7 +387,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
     longDescription:
       "Het bepalen welke producten en diensten worden geleverd, onder welke voorwaarden dit gebeurt en het doorvoeren hiervan",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faBellConcierge} />,
     domain: "Development",
   },
   {
@@ -373,7 +397,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
     longDescription:
       "Het vormen van een samenwerkingsverband met andere organisaties en het maken van de daarbij behorende afspraken.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faPeopleArrows} />,
     domain: "Control",
   },
   {
@@ -383,17 +407,17 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
     longDescription:
       "Het rapporteren naar belanghebbenden binnen en buiten de organisatie over de mate waarin wordt voldaan aan verplichtingen en afspraken",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faPersonCircleExclamation} />,
     domain: "Control",
   },
   {
     id: "f729c0d6-0d6f-47f4-b279-816079863a6d",
-    title: "Stratagie",
+    title: "Strategie",
     shortDescription:
       "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
     longDescription:
       "Het bepalen welke veranderingen zouden moeten worden doorgevoerd en de doelstellingen die daaraan ten grondslag liggen.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faPersonChalkboard} />,
     domain: "Control",
   },
   {
@@ -403,7 +427,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
     longDescription:
       "Het inrichten en uitvoeren van de besluitvormingsprocessen en -structuren en het nemen van strategische besluiten.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faCity} />,
     domain: "Control",
   },
 ];
