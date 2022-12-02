@@ -10,41 +10,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
-import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
-import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
-import { TEMPORARY_APPLICATIONS } from "../../data/applications";
+import { useSearch } from "../../hooks/search";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();
-  const _useComponent = useComponent(queryClient);
-  // const getComponents = _useComponent.getAll({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
-
-  const TempComponents = TEMPORARY_COMPONENTS;
-  const TempOrganizations = TEMPORARY_ORGANIZATIONS;
-  const TempApplications = TEMPORARY_APPLICATIONS;
-
-  function shuffle(array: any) {
-    let currentIndex = array.length,
-      randomIndex;
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-  }
-
-  const getComponents = [...TempOrganizations, ...TempApplications, ...TempComponents];
-
-  shuffle(getComponents);
+  const _useSearch = useSearch(queryClient);
+  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
 
   return (
     <Container layoutClassName={styles.container}>
@@ -86,9 +63,15 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
 
-          {getComponents && getComponents.length > 0 && (
+          {getComponents.data?.results?.length === 0 &&
+            !getComponents.isLoading &&
+            t("No components found with active filters")}
+
+          {!getComponents.data && !getComponents.isLoading && "Geen componenten gevonden"}
+
+          {getComponents.isSuccess && getComponents.data.length > 0 && (
             <>
-              <ComponentResultTemplate components={getComponents} type={filters.resultDisplayLayout} />
+              <ComponentResultTemplate components={getComponents.data} type={filters.resultDisplayLayout} />
 
               <SubmitComponentTemplate />
 
@@ -101,14 +84,7 @@ export const ComponentsTemplate: React.FC = () => {
               )} */}
             </>
           )}
-
-          {/* {getComponents.length === 0 &&
-            !getComponents.isLoading &&
-            t("No components found with active filters")}
-
-          {!getComponents && !getComponents.isLoading && "Geen componenten gevonden"}
-
-          {getComponents.isLoading && <Skeleton height="200px" />} */}
+          {getComponents.isLoading && <Skeleton height="200px" />}
         </div>
       </div>
     </Container>

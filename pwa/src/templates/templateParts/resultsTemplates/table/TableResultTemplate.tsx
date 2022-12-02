@@ -8,10 +8,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { Tag } from "@conduction/components";
 import { GatsbyContext } from "../../../../context/gatsby";
+import { getResultsUrl } from "../../../../services/getResultsUrl";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -21,6 +22,8 @@ interface LayersResultTemplateProps {
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
+
+  const _components = components.splice(200, 230);
 
   return (
     <div className={styles.tableWrapper}>
@@ -39,38 +42,30 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
         )}
 
         <TableBody>
-          {components.map((component) => (
+          {_components.map((component) => (
             <>
               <TableRow
                 className={styles.tableRow}
                 key={component.id}
-                onClick={() =>
-                  component.catalogusAPI !== undefined
-                    ? navigate(`/organizations/${component.id}`)
-                    : navigate(`/components/${component.id}`)
-                }
+                onClick={() => navigate(`/${getResultsUrl(component._schema.title)}/${component.id}`)}
               >
                 <TableCell>
                   <span className={styles.name}>{component.name}</span>
                 </TableCell>
-                <TableCell>{t(_.upperFirst(component.objectType))}</TableCell>
+                <TableCell>{t(_.upperFirst(component._schema.title))}</TableCell>
                 <TableCell>
-                  <div
-                    className={clsx(
-                      styles[_.camelCase(t(`${component.embedded?.nl?.embedded.commonground.layerType} layer`))],
-                    )}
-                  >
+                  <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
                     <ToolTip tooltip="Laag">
                       <Tag
                         layoutClassName={styles.tagWidth}
                         label={t(
                           _.upperFirst(
-                            component.objectType === "component"
-                              ? component.embedded?.nl?.embedded.commonground.layerType ?? "Onbekend"
+                            component._schema.title === "Component"
+                              ? component.nl?.commonground.layerType ?? "Onbekend"
                               : "N.V.T.",
                           ),
                         )}
-                        icon={component.objectType === "component" ? <FontAwesomeIcon icon={faLayerGroup} /> : <></>}
+                        icon={component._schema.title === "Component" ? <FontAwesomeIcon icon={faLayerGroup} /> : <></>}
                       />
                     </ToolTip>
                   </div>
@@ -81,7 +76,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     <ToolTip tooltip="Component Type">
                       <Tag
                         label={_.upperFirst(
-                          component.objectType === "component" ? component.softwareType ?? "Onbekend" : "N.V.T.",
+                          component._schema.title === "Component" ? component.softwareType ?? "Onbekend" : "N.V.T.",
                         )}
                       />
                     </ToolTip>
@@ -95,16 +90,18 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                         layoutClassName={styles.tagWidth}
                         label={t(
                           _.upperFirst(
-                            component.objectType === "component" ? component.developmentStatus ?? "Onbekend" : "N.V.T.",
+                            component._schema.title === "Component"
+                              ? component.developmentStatus ?? "Onbekend"
+                              : "N.V.T.",
                           ),
                         )}
-                        icon={component.objectType === "component" ? <FontAwesomeIcon icon={faInfoCircle} /> : <></>}
+                        icon={component._schema.title === "Component" ? <FontAwesomeIcon icon={faInfoCircle} /> : <></>}
                       />
                     </ToolTip>
                   </TableCell>
                 )}
 
-                <TableCell onClick={() => navigate(`/components/${component.id}`)}>
+                <TableCell onClick={() => navigate(`/${getResultsUrl(component._schema.title)}/${component.id}`)}>
                   <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
                     {t("Details")}
                   </Link>

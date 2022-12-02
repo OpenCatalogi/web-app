@@ -10,11 +10,13 @@ interface CardsResultTemplateProps {
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
+  const _components = components.splice(200, 230);
+
   return (
     <div className={styles.ComponentsGrid}>
-      {components.map((component) => (
+      {_components.map((component) => (
         <>
-          {component.objectType === "organization" && (
+          {component._schema.title === "Organisation" && (
             <OrganizationCard
               title={{
                 label: component.name,
@@ -33,23 +35,26 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               type={component.type}
             />
           )}
-          {component.objectType === "component" && (
+          {component._schema.title === "Component" && (
             <ComponentCard
               key={component.id}
               title={{ label: component.name, href: `/components/${component.id}` }}
-              description={component.embedded?.description?.shortDescription}
-              layer={component.embedded?.nl?.embedded?.commonground.layerType ?? "Onbekend"}
+              description={component.description?.shortDescription}
+              layer={component.nl?.commonground.layerType ?? "Onbekend"}
               categories={component.categories}
               tags={{
                 status: component.developmentStatus,
                 installations: component.usedBy?.length.toString() ?? "0",
-                organization: component.organisation?.name,
-                licence: component.embedded?.legal?.license,
-                githubLink: component.embedded?.url?.url,
+                organization: {
+                  name: component.url?.organisation?.name,
+                  website: component.url?.organisation?.website,
+                },
+                licence: component.legal?.license,
+                githubLink: component.url?.url,
               }}
             />
           )}
-          {component.objectType === "application" && (
+          {component._schema.title === "Application" && (
             <ApplicationCard
               key={component.id}
               title={{ label: component.name, href: `/applications/${component.id}` }}

@@ -9,10 +9,12 @@ interface LayersResultTemplateProps {
 }
 
 export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
+  const _components = components.splice(10, 30);
+
   return (
     <>
       <LeadParagraph>Let Op! Op deze pagina staan alleen de componenten met een Laag.</LeadParagraph>
-      <ComponentCardsAccordionTemplate components={components} />
+      <ComponentCardsAccordionTemplate components={_components} />
     </>
   );
 };
