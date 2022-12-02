@@ -5,13 +5,7 @@ import { Button, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faGripVertical,
-  faLayerGroup,
-  faTable,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
@@ -19,7 +13,6 @@ import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilter
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
-import ReactPaginate from "react-paginate";
 import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
@@ -84,8 +77,7 @@ export const ComponentsTemplate: React.FC = () => {
               <ComponentResultTemplate components={getComponents.data} type={filters.resultDisplayLayout} />
 
               <SubmitComponentTemplate />
-
-              {getComponents.data.results.length && (
+              {/* {getComponents.data.results.length && (
                 <PaginatedItems
                   pages={getComponents.data.pages}
                   currentPage={getComponents.data.page}
@@ -100,7 +92,7 @@ export const ComponentsTemplate: React.FC = () => {
                   disabledClassName={styles.paginationDisabled}
                   breakClassName={styles.breakLink}
                 />
-              )}
+              )} */}
             </>
           )}
           {getComponents.isLoading && <Skeleton height="200px" />}
