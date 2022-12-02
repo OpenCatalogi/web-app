@@ -23,7 +23,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
 
-  const _components = components.splice(200, 230);
+  const _components = components.filter((component) => {
+    return component._schema;
+  });
 
   return (
     <div className={styles.tableWrapper}>

@@ -86,11 +86,16 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
         {tags.organization.name && (
           <ToolTip tooltip="Organisatie">
-            <Tag
-              label={tags.organization.name}
-              icon={<FontAwesomeIcon icon={faHouse} />}
-              onClick={() => open(tags?.organization?.website)}
-            />
+            {!tags.organization.website && (
+              <Tag label={tags.organization.name} icon={<FontAwesomeIcon icon={faHouse} />} />
+            )}
+            {tags.organization.website && (
+              <Tag
+                label={tags.organization.name}
+                icon={<FontAwesomeIcon icon={faHouse} />}
+                onClick={() => open(tags?.organization?.website)}
+              />
+            )}
           </ToolTip>
         )}
         {tags.licence && (

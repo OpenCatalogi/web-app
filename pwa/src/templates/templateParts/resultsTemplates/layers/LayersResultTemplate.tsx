@@ -9,7 +9,9 @@ interface LayersResultTemplateProps {
 }
 
 export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
-  const _components = components.splice(10, 30);
+  const _components = components.filter((component) => {
+    return component._schema;
+  });
 
   return (
     <>

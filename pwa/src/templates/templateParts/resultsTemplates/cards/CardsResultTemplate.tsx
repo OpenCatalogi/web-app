@@ -4,13 +4,29 @@ import _ from "lodash";
 import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
 import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 import { ApplicationCard } from "../../../../components/applicationCard/ApplicationCard";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
-  const _components = components.splice(200, 230);
+  const _components = components.filter((component) => {
+    return component._schema;
+  });
+
+  const { length } = _components;
+  const id = length + 1;
+  const _com = _components.every((el) => el._schema.title !== "Component");
+  if (_com) {
+    const _org = _components.every((el) => el._schema.title !== "Organisation");
+    if (_org) {
+      const _app = _components.every((el) => el._schema.title !== "Application");
+      if (_app) {
+        return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
+      }
+    }
+  }
 
   return (
     <div className={styles.ComponentsGrid}>

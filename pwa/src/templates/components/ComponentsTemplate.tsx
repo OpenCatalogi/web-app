@@ -70,14 +70,14 @@ export const ComponentsTemplate: React.FC = () => {
             !getComponents.isLoading &&
             t("No components found with active filters")}
 
-          {!getComponents.data && !getComponents.isLoading && "Geen componenten gevonden"}
+          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
 
-          {getComponents.isSuccess && getComponents.data.length > 0 && (
+          {getComponents.isSuccess && getComponents.data.results.length > 0 && (
             <>
-              <ComponentResultTemplate components={getComponents.data} type={filters.resultDisplayLayout} />
+              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 
               <SubmitComponentTemplate />
-              {/* {getComponents.data.results.length && (
+              {getComponents.data.results.length && (
                 <PaginatedItems
                   pages={getComponents.data.pages}
                   currentPage={getComponents.data.page}
@@ -92,7 +92,7 @@ export const ComponentsTemplate: React.FC = () => {
                   disabledClassName={styles.paginationDisabled}
                   breakClassName={styles.breakLink}
                 />
-              )} */}
+              )}
             </>
           )}
           {getComponents.isLoading && <Skeleton height="200px" />}
