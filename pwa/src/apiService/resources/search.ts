@@ -14,7 +14,7 @@ export default class Search {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/search?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+      `/search/?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
     );
 
     return data;
