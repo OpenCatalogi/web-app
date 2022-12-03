@@ -23,7 +23,10 @@ export interface ComponentCardProps {
   tags: {
     status?: string;
     installations: string;
-    organization?: string;
+    organization: {
+      name: string;
+      website?: string;
+    };
     licence?: string;
     githubLink?: string;
   };
@@ -81,9 +84,18 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
         </ToolTip>
 
-        {tags.organization && (
+        {tags.organization.name && (
           <ToolTip tooltip="Organisatie">
-            <Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
+            {!tags.organization.website && (
+              <Tag label={tags.organization.name} icon={<FontAwesomeIcon icon={faHouse} />} />
+            )}
+            {tags.organization.website && (
+              <Tag
+                label={tags.organization.name}
+                icon={<FontAwesomeIcon icon={faHouse} />}
+                onClick={() => open(tags?.organization?.website)}
+              />
+            )}
           </ToolTip>
         )}
         {tags.licence && (
