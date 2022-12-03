@@ -21,10 +21,23 @@ export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
+  const [marginPagesDisplayed, setMarginPageDisplayed] = React.useState<number>(3);
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
   const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
+
+  React.useEffect(() => {
+    if (getComponents.isSuccess && screenSize === "mobile") {
+      setMarginPageDisplayed(2);
+    }
+    if (getComponents.isSuccess && screenSize === "mobile" && getComponents.data.pages > 100) {
+      setMarginPageDisplayed(1);
+    }
+    if (getComponents.isSuccess && screenSize !== "mobile") {
+      setMarginPageDisplayed(3);
+    }
+  }, [getComponents]);
 
   return (
     <Container layoutClassName={styles.container}>
@@ -83,12 +96,16 @@ export const ComponentsTemplate: React.FC = () => {
                   currentPage={getComponents.data.page}
                   setPage={(page) => setFilters({ ...filters, currentPage: page })}
                   pageRangeDisplayed={2}
-                  marginPagesDisplayed={screenSize === "mobile" ? 2 : 3}
+                  marginPagesDisplayed={marginPagesDisplayed}
                   containerClassName={styles.paginationContainer}
-                  pageClassName={styles.paginationLink}
-                  previousClassName={styles.paginationLink}
-                  nextClassName={styles.paginationLink}
-                  activeClassName={styles.paginationActivePage}
+                  pageClassName={getComponents.data.pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+                  previousClassName={
+                    getComponents.data.pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink
+                  }
+                  nextClassName={getComponents.data.pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+                  activeClassName={
+                    getComponents.data.pages > 1000 ? styles.paginationActivePageSmall : styles.paginationActivePage
+                  }
                   disabledClassName={styles.paginationDisabled}
                   breakClassName={styles.breakLink}
                 />

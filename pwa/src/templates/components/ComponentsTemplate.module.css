@@ -67,6 +67,10 @@
   font-size: var(--web-app-font-size-lg);
 }
 
+.paginationLinkSmall {
+  font-size: var(--web-app-font-size-md);
+}
+
 .paginationLink :hover {
   cursor: pointer;
   color: var(--web-app-color-link-active);
@@ -76,6 +80,12 @@
   color: var(--web-app-color-link-active);
   font-weight: var(--web-app-font-weight-bold);
   font-size: var(--web-app-font-size-lg);
+}
+
+.paginationActivePageSmall {
+  color: var(--web-app-color-link-active);
+  font-weight: var(--web-app-font-weight-bold);
+  font-size: var(--web-app-font-size-md);
 }
 
 .paginationActivePage :hover {
@@ -117,5 +127,15 @@
 
   .paginationContainer > *:not(:last-child) {
     flex: unset !important;
+  }
+
+  .paginationLink {
+    font-size: var(--web-app-font-size-lg);
+  }
+
+  .paginationActivePage {
+    color: var(--web-app-color-link-active);
+    font-weight: var(--web-app-font-weight-bold);
+    font-size: var(--web-app-font-size-lg);
   }
 }
