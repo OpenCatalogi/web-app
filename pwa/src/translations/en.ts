@@ -98,4 +98,5 @@ export const en = {
   Execution: "Execution",
   "Components overview": "Components overview",
   Application: "Application",
+  Sources: "Sources",
 };
