@@ -99,4 +99,5 @@ export const nl = {
   Execution: "Uitvoering",
   "Components overview": "Componenten overzicht",
   Application: "Applicatie",
+  Sources: "Bronnen",
 };

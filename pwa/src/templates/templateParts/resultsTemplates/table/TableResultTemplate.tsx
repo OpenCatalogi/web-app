@@ -13,6 +13,8 @@ import clsx from "clsx";
 import { Tag } from "@conduction/components";
 import { GatsbyContext } from "../../../../context/gatsby";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
+import { GitHubLogo } from "../../../../assets/svgs/GitHub";
+import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -23,10 +25,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
 
-  const _components = components.filter((component) => {
-    return component._schema;
-  });
-
   return (
     <div className={styles.tableWrapper}>
       <Table>
@@ -36,6 +34,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <TableHeader>{t("Name")}</TableHeader>
               <TableHeader>Type</TableHeader>
               <TableHeader>{t("Layer")}</TableHeader>
+              <TableHeader>{t("Sources")}</TableHeader>
               {screenSize !== "mobile" && <TableHeader>{t("ComponentType")}</TableHeader>}
               {screenSize === "desktop" && <TableHeader>{t("Status")}</TableHeader>}
               <TableHeader />
@@ -44,33 +43,67 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
         )}
 
         <TableBody>
-          {_components.map((component) => (
+          {components.map((component) => (
             <>
               <TableRow
                 className={styles.tableRow}
                 key={component.id}
-                onClick={() => navigate(`/${getResultsUrl(component._schema.title)}/${component.id}`)}
+                onClick={() =>
+                  navigate(`/${getResultsUrl(component._schema?.title ?? component.url._schema.title)}/${component.id}`)
+                }
               >
                 <TableCell>
                   <span className={styles.name}>{component.name}</span>
                 </TableCell>
-                <TableCell>{t(_.upperFirst(component._schema.title))}</TableCell>
+                <TableCell>{t(_.upperFirst(component._schema?.title ?? component.url._schema.title))}</TableCell>
                 <TableCell>
                   <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
-                    <ToolTip tooltip="Laag">
+                    <ToolTip tooltip={t("Layer")}>
                       <Tag
                         layoutClassName={styles.tagWidth}
                         label={t(
                           _.upperFirst(
-                            component._schema.title === "Component"
+                            component.url?._schema?.title ?? component._schema?.title === "Component"
                               ? component.nl?.commonground.layerType ?? "Onbekend"
                               : "N.V.T.",
                           ),
                         )}
-                        icon={component._schema.title === "Component" ? <FontAwesomeIcon icon={faLayerGroup} /> : <></>}
+                        icon={
+                          component.url?._schema?.title ?? component._schema?.title === "Component" ? (
+                            <FontAwesomeIcon icon={faLayerGroup} />
+                          ) : (
+                            <></>
+                          )
+                        }
                       />
                     </ToolTip>
                   </div>
+                </TableCell>
+
+                <TableCell>
+                  <ToolTip tooltip={t("Sources")}>
+                    <Tag
+                      layoutClassName={styles.tagWidth}
+                      label={_.upperFirst(
+                        component.url?._schema?.properties?.source
+                          ? component.url?._schema?.properties?.source?.value !== null
+                            ? component.url?._schema?.properties?.source?.value
+                            : "Onbekend"
+                          : "N.V.T.",
+                      )}
+                      icon={
+                        component.url?._schema?.properties?.source?.value ? (
+                          component.url?._schema?.properties?.source?.value === "github" ? (
+                            <GitHubLogo />
+                          ) : (
+                            <GitLabLogo />
+                          )
+                        ) : (
+                          <></>
+                        )
+                      }
+                    />
+                  </ToolTip>
                 </TableCell>
 
                 {screenSize !== "mobile" && (
@@ -78,7 +111,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     <ToolTip tooltip="Component Type">
                       <Tag
                         label={_.upperFirst(
-                          component._schema.title === "Component" ? component.softwareType ?? "Onbekend" : "N.V.T.",
+                          component.url?._schema?.title ?? component._schema?.title === "Component"
+                            ? component.softwareType ?? "Onbekend"
+                            : "N.V.T.",
                         )}
                       />
                     </ToolTip>
@@ -92,18 +127,30 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                         layoutClassName={styles.tagWidth}
                         label={t(
                           _.upperFirst(
-                            component._schema.title === "Component"
+                            component.url?._schema?.title ?? component._schema?.title === "Component"
                               ? component.developmentStatus ?? "Onbekend"
                               : "N.V.T.",
                           ),
                         )}
-                        icon={component._schema.title === "Component" ? <FontAwesomeIcon icon={faInfoCircle} /> : <></>}
+                        icon={
+                          component.url?._schema?.title ?? component._schema?.title === "Component" ? (
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                          ) : (
+                            <></>
+                          )
+                        }
                       />
                     </ToolTip>
                   </TableCell>
                 )}
 
-                <TableCell onClick={() => navigate(`/${getResultsUrl(component._schema.title)}/${component.id}`)}>
+                <TableCell
+                  onClick={() =>
+                    navigate(
+                      `/${getResultsUrl(component._schema?.title ?? component.url._schema.title)}/${component.id}`,
+                    )
+                  }
+                >
                   <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
                     {t("Details")}
                   </Link>
