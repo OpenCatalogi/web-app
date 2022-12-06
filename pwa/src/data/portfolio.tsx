@@ -2,25 +2,44 @@ import {
   faAddressBook,
   faBellConcierge,
   faBoxArchive,
-  faBuildingCircleExclamation,
+  faBuilding,
+  faBurger,
+  faCircleExclamation,
+  faCircleInfo,
   faCity,
   faCoins,
   faComments,
-  faDatabase,
   faDiagramProject,
+  faFolderTree,
+  faGaugeSimpleHigh,
+  faGears,
+  faHandFist,
+  faHandHolding,
+  faHandshake,
+  faHandshakeAngle,
   faHelmetSafety,
   faHouseChimneyUser,
   faIcons,
+  faInfo,
+  faLifeRing,
+  faListCheck,
+  faMoneyBillTransfer,
+  faMoneyBillTrendUp,
   faPeopleArrows,
   faPersonChalkboard,
   faPersonCircleExclamation,
+  faPersonCircleQuestion,
+  faPersonMilitaryPointing,
+  faQuestionCircle,
   faRightLeft,
   faScaleBalanced,
   faShop,
-  faSitemap,
-  faSquareCheck,
+  faSignal,
+  faThList,
+  faTicket,
   faTowerCell,
   faTreeCity,
+  faUserCheck,
   faUsersGear,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,7 +60,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Projectmanagement",
     shortDescription: "Het plannen, beheren en rapporteren van en over projecten.",
     longDescription: "Het plannen, beheren en rapporteren van en over projecten.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faDiagramProject} />,
     domain: "Support",
   },
   {
@@ -57,7 +76,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Administratieve ondersteuning",
     shortDescription: "Het bieden van ondersteuning bij administratieve taken.",
     longDescription: "Het bieden van ondersteuning bij administratieve taken.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faTicket} />,
     domain: "Support",
   },
   {
@@ -95,7 +114,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
     longDescription:
       "Het ervoor zorgen dat IT-systemen beschikbaar zijn voor de ondersteuning van de informatievoorziening.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faGears} />,
     domain: "Support",
   },
   {
@@ -105,7 +124,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
     longDescription:
       "Het ervoor zorgen dat informatiebehoeften bekend zijn en zijn vertaald naar gewenste functionaliteiten van de informatievoorziening.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faInfo} />,
     domain: "Support",
   },
   {
@@ -123,7 +142,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Financieël management",
     shortDescription: "Het zorgdragen voor alle inkomende en uitgaande financiële stromen.",
     longDescription: "Het zorgdragen voor alle inkomende en uitgaande financiële stromen.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faMoneyBillTransfer} />,
     domain: "Support",
   },
   {
@@ -141,7 +160,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
     longDescription:
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
-    icon: <FontAwesomeIcon icon={faDatabase} />,
+    icon: <FontAwesomeIcon icon={faFolderTree} />,
     domain: "Execution",
   },
   {
@@ -161,7 +180,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
     longDescription:
       "Het leveren van gemeentelijke producten en diensten die tot het domein publieksdiensten worden gerekend.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faUserCheck} />,
     domain: "Execution",
   },
   {
@@ -187,7 +206,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Verstrekking",
     shortDescription: "Het leveren van een product of dienst",
     longDescription: "Het leveren van een product of dienst",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faHandFist} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -197,7 +216,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
     longDescription:
       "Het actief benutten van ideeën en denkkracht van partners bij het plannen, ontwikkelen, uitvoeren en/of evalueren van gemeentelijk beleid",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faHandshakeAngle} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -205,7 +224,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Klantenservice",
     shortDescription: "Het verlenen van service aan dienstenafnemers",
     longDescription: "Het verlenen van service aan dienstenafnemers",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faCircleInfo} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -213,7 +232,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Signaalverwerking",
     shortDescription: "Het verwerken van signalen ten aanzien van het betreffende onderwerp",
     longDescription: "Het verwerken van signalen ten aanzien van het betreffende onderwerp",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faSignal} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -223,7 +242,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
     longDescription:
       "Het ontvangen van signalen, gegevens of een verzoek of een melding die aanleiding geeft om een proces te starten of die anderszins bijdraagt aan de uitvoering van het proces.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faHandHolding} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -231,7 +250,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Zelfredzaamheidstimulering",
     shortDescription: "Het ondersteunen van de zelfredzaamheidsontwikkeling van burgers",
     longDescription: "Het ondersteunen van de zelfredzaamheidsontwikkeling van burgers",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faBurger} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -247,7 +266,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Informering",
     shortDescription: "Het geven van algemene of persoonlijke informatie of advies.",
     longDescription: "Het geven van algemene of persoonlijke informatie of advies.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faQuestionCircle} />,
     domain: "Customer and chain interaction",
   },
   {
@@ -265,7 +284,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Opdrachtbewaking",
     shortDescription: "Het bewaken of de door een aanbieder geleverde dienst conform afspraken is.",
     longDescription: "Het bewaken of de door een aanbieder geleverde dienst conform afspraken is.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faListCheck} />,
     domain: "Directing",
   },
   {
@@ -273,7 +292,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Opdrachtsverstrekking",
     shortDescription: "Het verstrekken van een opdracht aan een aanbieder voor het leveren van een dienst.",
     longDescription: "Het verstrekken van een opdracht aan een aanbieder voor het leveren van een dienst.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faThList} />,
     domain: "Directing",
   },
   {
@@ -283,7 +302,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
     longDescription:
       "Het kiezen van een aanbieder voor een bepaalde in te kopen dienst of in het geval van een samenwerking het bepalen van de keuze van een organisatie om mee te gaan samenwerken als gevolg van de strategie van Samenwerkingsvorming",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faPersonCircleQuestion} />,
     domain: "Directing",
   },
   {
@@ -291,7 +310,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Samenwerkingsbewaking",
     shortDescription: "Het bewaken of een samenwerkingsverband verloopt conform verwachtingen en afspraken.",
     longDescription: "Het bewaken of een samenwerkingsverband verloopt conform verwachtingen en afspraken.",
-    icon: <FontAwesomeIcon icon={faPeopleArrows} />,
+    icon: <FontAwesomeIcon icon={faPersonMilitaryPointing} />,
     domain: "Surveillance",
   },
   {
@@ -299,7 +318,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Compliance management",
     shortDescription: "Het bewaken of processen worden uitgevoerd in lijn met wet- en regelgeving.",
     longDescription: "Het bewaken of processen worden uitgevoerd in lijn met wet- en regelgeving.",
-    icon: <FontAwesomeIcon icon={faScaleBalanced} />,
+    icon: <FontAwesomeIcon icon={faHandshake} />,
     domain: "Surveillance",
   },
   {
@@ -307,7 +326,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Risicomanagement",
     shortDescription: "Het bepalen en bewaken van de risico's waaraan de organisatie wordt blootgesteld.",
     longDescription: "Het bepalen en bewaken van de risico's waaraan de organisatie wordt blootgesteld.",
-    icon: <FontAwesomeIcon icon={faBuildingCircleExclamation} />,
+    icon: <FontAwesomeIcon icon={faCircleExclamation} />,
     domain: "Surveillance",
   },
   {
@@ -315,7 +334,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Kaderbewaking",
     shortDescription: "Het bewaken of processen binnen de zelf opgestelde beperkingen worden uitgevoerd.",
     longDescription: "Het bewaken of processen binnen de zelf opgestelde beperkingen worden uitgevoerd.",
-    icon: <FontAwesomeIcon icon={faSquareCheck} />,
+    icon: <FontAwesomeIcon icon={faLifeRing} />,
     domain: "Surveillance",
   },
   {
@@ -335,7 +354,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
     longDescription:
       "Het bewaken of processen worden uitgevoerd in lijn met de opgestelde doelstellingen (inhoud en proces).",
-    icon: <FontAwesomeIcon icon={faDiagramProject} />,
+    icon: <FontAwesomeIcon icon={faGaugeSimpleHigh} />,
     domain: "Surveillance",
   },
   {
@@ -343,7 +362,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Organisatieontwikkeling",
     shortDescription: "Het operationaliseren en implementeren van veranderingen in de organisatie.",
     longDescription: "Het operationaliseren en implementeren van veranderingen in de organisatie.",
-    icon: <FontAwesomeIcon icon={faSitemap} />,
+    icon: <FontAwesomeIcon icon={faBuilding} />,
     domain: "Development",
   },
   {
@@ -367,7 +386,7 @@ export const TEMPORARY_PORTFOLIOS = [
     title: "Economische ontwikkeling",
     shortDescription: "Het ontwikkelen en implementeren van beleid dat betrekking heeft op economische aspecten.",
     longDescription: "Het ontwikkelen en implementeren van beleid dat betrekking heeft op economische aspecten.",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faMoneyBillTrendUp} />,
     domain: "Development",
   },
   {
