@@ -7,10 +7,10 @@ import {
   faCircleExclamation,
   faCircleInfo,
   faCity,
-  faCoins,
+  faCloud,
   faComments,
   faDiagramProject,
-  faFolderTree,
+  faFileZipper,
   faGaugeSimpleHigh,
   faGears,
   faHandFist,
@@ -160,7 +160,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
     longDescription:
       "Het geheel van activiteiten om in de gemeente op het juiste moment over de juiste gegevens van de juiste kwaliteit te beschikken.",
-    icon: <FontAwesomeIcon icon={faFolderTree} />,
+    icon: <FontAwesomeIcon icon={faFileZipper} />,
     domain: "Execution",
   },
   {
@@ -190,7 +190,7 @@ export const TEMPORARY_PORTFOLIOS = [
       "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
     longDescription:
       "Het leveren van gemeentelijke producten en diensten die tot het ruimtelijk domein worden gerekend",
-    icon: <FontAwesomeIcon icon={faCoins} />,
+    icon: <FontAwesomeIcon icon={faCloud} />,
     domain: "Execution",
   },
   {
