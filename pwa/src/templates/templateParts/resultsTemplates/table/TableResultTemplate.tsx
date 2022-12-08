@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { Tag } from "@conduction/components";
-import { GatsbyContext } from "../../../../context/gatsby";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
@@ -24,7 +23,6 @@ interface LayersResultTemplateProps {
 
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
     <TableWrapper>
@@ -33,11 +31,11 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
           <TableHead>
             <TableRow>
               <TableHeader>{t("Name")}</TableHeader>
-              <TableHeader>Type</TableHeader>
+              <TableHeader>{t("Type")}</TableHeader>
               <TableHeader>{t("Layer")}</TableHeader>
               <TableHeader>{t("Sources")}</TableHeader>
-              {screenSize !== "mobile" && <TableHeader>{t("ComponentType")}</TableHeader>}
-              {screenSize === "desktop" && <TableHeader>{t("Status")}</TableHeader>}
+              <TableHeader>{t("ComponentType")}</TableHeader>
+              <TableHeader>{t("Status")}</TableHeader>
               <TableHeader />
             </TableRow>
           </TableHead>
@@ -56,7 +54,9 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 <TableCell>
                   <span className={styles.name}>{component.name}</span>
                 </TableCell>
+
                 <TableCell>{t(_.upperFirst(component._schema?.title ?? component.url._schema.title))}</TableCell>
+
                 <TableCell>
                   <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
                     <ToolTip tooltip={t("Layer")}>
@@ -107,43 +107,39 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   </ToolTip>
                 </TableCell>
 
-                {screenSize !== "mobile" && (
-                  <TableCell>
-                    <ToolTip tooltip="Component Type">
-                      <Tag
-                        label={_.upperFirst(
-                          component.url?._schema?.title ?? component._schema?.title === "Component"
-                            ? component.softwareType ?? "Onbekend"
-                            : "N.V.T.",
-                        )}
-                      />
-                    </ToolTip>
-                  </TableCell>
-                )}
+                <TableCell>
+                  <ToolTip tooltip="Component Type">
+                    <Tag
+                      label={_.upperFirst(
+                        component.url?._schema?.title ?? component._schema?.title === "Component"
+                          ? component.softwareType ?? "Onbekend"
+                          : "N.V.T.",
+                      )}
+                    />
+                  </ToolTip>
+                </TableCell>
 
-                {screenSize === "desktop" && (
-                  <TableCell>
-                    <ToolTip tooltip="Status">
-                      <Tag
-                        layoutClassName={styles.tagWidth}
-                        label={t(
-                          _.upperFirst(
-                            component.url?._schema?.title ?? component._schema?.title === "Component"
-                              ? component.developmentStatus ?? "Onbekend"
-                              : "N.V.T.",
-                          ),
-                        )}
-                        icon={
-                          component.url?._schema?.title ?? component._schema?.title === "Component" ? (
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                          ) : (
-                            <></>
-                          )
-                        }
-                      />
-                    </ToolTip>
-                  </TableCell>
-                )}
+                <TableCell>
+                  <ToolTip tooltip="Status">
+                    <Tag
+                      layoutClassName={styles.tagWidth}
+                      label={t(
+                        _.upperFirst(
+                          component.url?._schema?.title ?? component._schema?.title === "Component"
+                            ? component.developmentStatus ?? "Onbekend"
+                            : "N.V.T.",
+                        ),
+                      )}
+                      icon={
+                        component.url?._schema?.title ?? component._schema?.title === "Component" ? (
+                          <FontAwesomeIcon icon={faInfoCircle} />
+                        ) : (
+                          <></>
+                        )
+                      }
+                    />
+                  </ToolTip>
+                </TableCell>
 
                 <TableCell
                   onClick={() =>
