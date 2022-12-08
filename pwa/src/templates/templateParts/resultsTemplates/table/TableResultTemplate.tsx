@@ -15,6 +15,7 @@ import { GatsbyContext } from "../../../../context/gatsby";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
+import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -26,7 +27,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
   const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <div className={styles.tableWrapper}>
+    <TableWrapper>
       <Table>
         {!hideTableHead && (
           <TableHead>
@@ -160,6 +161,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
           ))}
         </TableBody>
       </Table>
-    </div>
+    </TableWrapper>
   );
 };
