@@ -10,7 +10,7 @@ export interface IFilters {
   landingDisplayLayout: TLandingDisplayLayout;
   currentPage: number;
 
-  search?: string;
+  _search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];

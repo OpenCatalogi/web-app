@@ -24,7 +24,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
 
   const onSubmit = (data: any): void => {
     setFilters({
-      search: data.name,
+      _search: data.name,
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,

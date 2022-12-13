@@ -10,7 +10,7 @@ interface LayersResultTemplateProps {
 
 export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
   const _components = components.filter((component) => {
-    return component._schema;
+    return component._self;
   });
 
   return (
