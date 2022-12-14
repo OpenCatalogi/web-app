@@ -31,8 +31,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
-  console.log(filters["nl.commonground.layerType"]?.includes("process"));
-
   const primaryTopNavItems = [
     {
       label: "Home",
