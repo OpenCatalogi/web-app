@@ -31,6 +31,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
+  console.log(filters["nl.commonground.layerType"]?.includes("process"));
+
   const primaryTopNavItems = [
     {
       label: "Home",
@@ -62,25 +64,25 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       subItems: [
         {
           label: t("Processes"),
-          current: pathname === "/components" && filters.softwareType === "process",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("process"),
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "process" });
+            setFilters({ ...filters, "nl.commonground.layerType": ["process"] });
             navigate("/components");
           },
         },
         {
           label: t("Data models"),
-          current: pathname === "/components" && filters.softwareType === "schema",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("data"),
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "schema" });
+            setFilters({ ...filters, "nl.commonground.layerType": ["data"] });
             navigate("/components");
           },
         },
         {
           label: t("API's"),
-          current: pathname === "/components" && filters.softwareType === "api",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("service"),
           handleClick: () => {
-            setFilters({ ...filters, softwareType: "api" });
+            setFilters({ ...filters, "nl.commonground.layerType": ["service"] });
             navigate("/components");
           },
         },
