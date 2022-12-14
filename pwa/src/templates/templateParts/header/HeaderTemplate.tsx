@@ -41,14 +41,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Categories"),
-      current: pathname === "/categories",
+      current: pathname.includes("/categories"),
       handleClick: () => {
         navigate("/categories");
       },
     },
     {
       label: t("Applications"),
-      current: pathname === "/applications",
+      current: pathname.includes("/applications"),
       handleClick: () => {
         navigate("/applications");
       },
