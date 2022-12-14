@@ -99,4 +99,5 @@ export const en = {
   "Components overview": "Components overview",
   Application: "Application",
   Sources: "Sources",
+  "No description available": "No description available",
 };

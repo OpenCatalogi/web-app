@@ -100,4 +100,5 @@ export const nl = {
   "Components overview": "Componenten overzicht",
   Application: "Applicatie",
   Sources: "Bronnen",
+  "No description available": "Geen beschrijving beschikbaar",
 };
