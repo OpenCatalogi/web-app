@@ -70,7 +70,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               }}
             />
           )}
-          {component._self.title === "https://opencatalogi.nl/application.schema.json" && (
+          {component._self.schema.ref === "https://opencatalogi.nl/application.schema.json" && (
             <ApplicationCard
               key={component.id}
               title={{ label: component.name, href: `/applications/${component.id}` }}
