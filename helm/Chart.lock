@@ -1,6 +1,6 @@
 dependencies:
 - name: commonground-gateway
   repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-  version: 1.0.3
-digest: sha256:f7bcc3bd4a655d71d666bfbc64ad3dff365c709179eb93cfbf17eb42d4a68f1c
-generated: "2022-12-13T16:24:56.967971242+01:00"
+  version: 1.0.4
+digest: sha256:6ab245fe20e3d722b2a179793e3ea8d298ba30017b6f950e7647e8ec5ee6245e
+generated: "2022-12-15T10:15:18.324207987+01:00"
