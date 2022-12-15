@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: "2.2"
-    created: "2022-12-15T10:26:43.314006714+01:00"
+    created: "2022-12-15T10:33:14.576958296+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -21,24 +21,24 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 13.4.4
     description: A Helm chart for Kubernetes
-    digest: 2abc125c901d3bf7a782f78d66b5140842103f603afb4724105edba8a0581a3d
+    digest: 74205a133c093e633e4044eaef9dd047de2c4b187f5527217080c114ea859d4d
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-1.0.5.tgz
-    version: 1.0.5
+    - charts/commonground-gateway-1.0.6.tgz
+    version: 1.0.6
   opencatalogi:
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2022-12-15T10:26:43.283403427+01:00"
+    created: "2022-12-15T10:33:14.555822474+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
       name: commonground-gateway
       repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-      version: 1.0.5
+      version: 1.0.6
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: ff4f36febc887290ed6677b7d606e7ed623e20af75433f9e9e9a969cdf213b50
+    digest: b8344a6e374acccf23757594b8b944c7dea3d15e823eb2e965f7d5099bc4a9f2
     name: opencatalogi
     type: application
     urls:
@@ -46,7 +46,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-15T10:26:43.262582634+01:00"
+    created: "2022-12-15T10:33:14.53631257+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -62,7 +62,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-15T10:26:43.24876279+01:00"
+    created: "2022-12-15T10:33:14.519612557+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -76,4 +76,4 @@ entries:
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-15T10:26:43.233444646+01:00"
+generated: "2022-12-15T10:33:14.50397974+01:00"
