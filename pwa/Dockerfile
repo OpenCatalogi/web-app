@@ -7,5 +7,15 @@ COPY . .
 RUN yarn install && yarn build
 
 FROM nginx
-EXPOSE 80
 COPY --from=builder /app/public /usr/share/nginx/html
+
+RUN chown -R nginx:nginx /usr/share/nginx && chmod -R 755 /usr/share/nginx && \
+        chown -R nginx:nginx /var/cache/nginx && \
+        chown -R nginx:nginx /var/log/nginx && \
+        chown -R nginx:nginx /etc/nginx/conf.d
+RUN touch /var/run/nginx.pid && \
+        chown -R nginx:nginx /var/run/nginx.pid
+
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+USER nginx
+EXPOSE 8080
