@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: "2.2"
-    created: "2022-12-15T16:39:07.712859369+01:00"
+    created: "2022-12-16T13:27:06.369959211+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -30,15 +30,15 @@ entries:
   opencatalogi:
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2022-12-15T16:39:07.677422673+01:00"
+    created: "2022-12-16T13:27:06.331027828+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
       name: commonground-gateway
       repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-      version: 1.1.0
+      version: 1.1.1
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: 8446b2dca5afdda368fb0053dc6a7a119243e3b8d52bc7db2d9d63430e363bdb
+    digest: 0f81fbba6907bef450752601a5c6d7a3e1b324b51d1d49fcc132700d33af42ef
     name: opencatalogi
     type: application
     urls:
@@ -46,7 +46,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-15T16:39:07.654551811+01:00"
+    created: "2022-12-16T13:27:06.300446737+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -62,7 +62,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-15T16:39:07.637948684+01:00"
+    created: "2022-12-16T13:27:06.278075772+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -76,4 +76,4 @@ entries:
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-15T16:39:07.532637031+01:00"
+generated: "2022-12-16T13:27:06.248468802+01:00"
