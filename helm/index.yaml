@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: "2.2"
-    created: "2022-12-19T16:16:00.403134599+01:00"
+    created: "2022-12-19T16:21:06.574383424+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -21,16 +21,16 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 13.4.4
     description: A Helm chart for Kubernetes
-    digest: c088c0ff558e5a7d4c581da96be75a5394ba15f076f3d8f5eb80ab9f597cc568
+    digest: 913c29d54faec52526b0c6b704324543494c750a97da5172ae037c3986fc362c
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-1.1.2.tgz
-    version: 1.1.2
+    - charts/commonground-gateway-1.1.3.tgz
+    version: 1.1.3
   opencatalogi:
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2022-12-19T16:16:00.341883884+01:00"
+    created: "2022-12-19T16:21:06.535865979+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -38,7 +38,7 @@ entries:
       repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
       version: 1.1.3
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: 991ed73aeba458618976b5ead53d9202109bb66da2d4d08cd23a868915cec31d
+    digest: c64b30d4c5b23290b1b4456ec814181ba8a0ff11cd87d405bb4e664d9e53eba9
     name: opencatalogi
     type: application
     urls:
@@ -46,7 +46,7 @@ entries:
     version: 0.9.3
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2022-12-19T16:16:00.285595652+01:00"
+    created: "2022-12-19T16:21:06.504609991+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -62,7 +62,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-19T16:16:00.237112007+01:00"
+    created: "2022-12-19T16:21:06.469879625+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -78,7 +78,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-12-19T16:16:00.20293017+01:00"
+    created: "2022-12-19T16:21:06.449490028+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -92,4 +92,4 @@ entries:
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-19T16:16:00.173943661+01:00"
+generated: "2022-12-19T16:21:06.429566405+01:00"
