@@ -32,6 +32,8 @@ spec:
       volumes:
           - name: tmpfs
             emptyDir: {}
+          - name: tmpfs2
+            emptyDir: {}
           - name: env
             configMap:
                 name: {{ include "api-platform.fullname" . }}
@@ -51,6 +53,8 @@ spec:
                   subPath: "env.js"
               -   mountPath: /var/cache/nginx/client_temp
                   name: tmpfs
+              -   mountPath: /var/run
+                  name: tmpfs2
           ports:
             - name: http
               containerPort: 8080
