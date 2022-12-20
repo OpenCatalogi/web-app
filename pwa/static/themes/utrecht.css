@@ -54,7 +54,13 @@
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
+  --web-app-color-text-grey: #404b4f;
+  --web-app-color-footer-text: var(--web-app-color-white);
+
   --web-app-color-grey: var(--skeleton-color-grey-1);
+  --web-app-color-table-grey: #f9f9f9;
+  --web-app-color-table-hover-grey: #eff4f6;
+  --web-app-color-top-nav-grey: #586265;
 
   --web-app-color-link: hsl(211 60% 35%);
   --web-app-color-link-active: hsl(211 60% 35%);
@@ -165,6 +171,7 @@
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
   --web-app-secondary-top-nav-color: var(--web-app-color-link);
   --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
+  --web-app-secondary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-normal);
 
   /* @condcution: Primary Top Navigation */
@@ -172,6 +179,8 @@
   --web-app-primary-top-nav-color: var(--web-app-color-link);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-box-shadow-active: unset;
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 
   /* @gemeent-denhaag: SideNav */

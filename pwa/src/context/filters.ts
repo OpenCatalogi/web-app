@@ -10,7 +10,7 @@ export interface IFilters {
   landingDisplayLayout: TLandingDisplayLayout;
   currentPage: number;
 
-  search?: string;
+  _search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];
@@ -24,6 +24,9 @@ export interface IFilters {
   "maintenance.type"?: string;
   "legal.license"?: string;
   "legal.mainCopyrightOwner"?: string;
+
+  showMoreControl?: boolean;
+  showMoreSupport?: boolean;
 }
 
 export const filters = {

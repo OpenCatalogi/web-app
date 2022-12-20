@@ -69,11 +69,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
-  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
+  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground.layerType));
   const _categories =
     layer &&
     _getComponent.data?.categories.map((category: any) => {
-      return categories[layer].find((_category) => {
+      return categories[layer]?.find((_category) => {
         return _category.value === category;
       });
     });
@@ -92,19 +92,23 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1 className={styles.title}>{_getComponent.data.name}</Heading1>
+              <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
-                {_getComponent.data.embedded.description.longDescription}
+                {_getComponent.data.embedded?.description.longDescription ?? t("No description available")}
               </LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={
-                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} layer`))]
+                      styles[
+                        _.camelCase(t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType} layer`))
+                      ]
                     }
-                    label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
+                    label={t(
+                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Onbekend"),
+                    )}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
@@ -119,7 +123,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             layoutClassName={
                               styles[
                                 _.camelCase(
-                                  `${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`,
+                                  `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
                                 )
                               ]
                             }
@@ -166,7 +170,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </ToolTip>
                 )}
 
-                {_getComponent.data.embedded?.legal.license && (
+                {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
                     <Tag
                       label={_getComponent.data.embedded?.legal.license}
@@ -339,7 +343,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     mainComponent={{
                       id: componentId,
                       name: _getComponent.data.name,
-                      layer: _getComponent.data.embedded?.nl.embedded.commonground.layerType,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
                     }}
                   />
                 </div>
@@ -482,8 +486,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <TableRow>
                   <TableHeader className={styles.title}>{t("Products")}</TableHeader>
                   <TableCell>
-                    {_getComponent.data.embedded.nl.upl &&
-                      _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
+                    {_getComponent.data.embedded?.nl?.upl &&
+                      _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
                         <span
                           key={idx}
                           onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
@@ -493,8 +497,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           </Link>
                         </span>
                       ))}
-                    {!_getComponent.data.embedded.nl.upl ||
-                      (!_getComponent.data.embedded.nl.upl.length && (
+                    {!_getComponent.data.embedded?.nl?.upl ||
+                      (!_getComponent.data.embedded?.nl?.upl.length && (
                         <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
                       ))}
                   </TableCell>

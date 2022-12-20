@@ -84,7 +84,10 @@
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
+  --web-app-color-footer-text: var(--web-app-color-text-grey);
   --web-app-color-grey: var(--skeleton-color-grey-1);
+  --web-app-color-table-grey: #f9f9f9;
+  --web-app-color-table-hover-grey: #eff4f6;
   --web-app-color-top-nav-grey: #586265;
 
   --web-app-color-link: var(--rotterdam-color-green);
@@ -204,7 +207,8 @@
   --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
-  --web-app-primary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-background-color-active: unset;
+  --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 
   /* @gemeent-denhaag: SideNav */

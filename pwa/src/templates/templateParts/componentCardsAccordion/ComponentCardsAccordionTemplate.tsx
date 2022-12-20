@@ -24,19 +24,19 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
   const { open: openData, setOpen: setOpenData } = AccordionCardsController();
 
   const interaction = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Interaction");
+    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Interaction");
   });
   const process = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Process");
+    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Process");
   });
   const integration = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Integration");
+    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Integration");
   });
   const services = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Service");
+    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Service");
   });
   const data = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Data");
+    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Data");
   });
 
   return (
@@ -138,20 +138,25 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
   return (
     <div className={styles.ComponentsGrid}>
       {components.map((component, idx) => (
-        <ComponentCard
-          key={idx}
-          title={{ label: component.name, href: `/components/${component.id}` }}
-          description={component.embedded?.description?.shortDescription}
-          layer={component.embedded?.nl.embedded?.commonground.layerType}
-          categories={component.categories}
-          tags={{
-            status: component.developmentStatus,
-            installations: component.usedBy?.length.toString() ?? "0",
-            organization: component.embedded?.url?.embedded?.organisation?.name,
-            licence: component?.embedded?.legal?.license,
-            githubLink: component?.embedded?.url?.url,
-          }}
-        />
+        <>
+          <ComponentCard
+            key={idx}
+            title={{ label: component.name, href: `/components/${component.id}` }}
+            description={component.description?.shortDescription}
+            layer={component.nl?.commonground.layerType ?? "Onbekend"}
+            categories={component.categories}
+            tags={{
+              status: component.developmentStatus,
+              installations: component.usedBy?.length.toString() ?? "0",
+              organization: {
+                name: component.url?.organisation?.name,
+                website: component.url?.organisation?.website,
+              },
+              licence: component.legal?.license,
+              githubLink: component.url?.url,
+            }}
+          />
+        </>
       ))}
     </div>
   );

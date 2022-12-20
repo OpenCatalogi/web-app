@@ -15,6 +15,7 @@ import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -198,23 +199,23 @@ export const AboutTemplate: React.FC = () => {
         </Paragraph>
 
         <div className={styles.paragraphButtons}>
-          <span onClick={() => open("https://forumstandaardisatie.nl/")}>
+          <div onClick={() => open("https://forumstandaardisatie.nl/")}>
             <Button icon={<ExternalLinkIcon />} iconAlign="start">
               Forum Standaardisatie
             </Button>
-          </span>
-          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
+          </div>
+          <div onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
             <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
               Verplichte Standaarden
             </Button>
-          </span>
+          </div>
         </div>
       </section>
-      <section className={styles.section}>
+      <section className={clsx(styles.section, styles.standardsTableWrapper)}>
         <div className={styles.content}>
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow className={styles.tableRow}>
                 <TableHeader>{t("Standard")}</TableHeader>
                 <TableHeader>{t("Type")}</TableHeader>
                 <TableHeader>{t("Version")}</TableHeader>
@@ -223,7 +224,7 @@ export const AboutTemplate: React.FC = () => {
             </TableHead>
             <TableBody>
               {TEMPORARY_STANDARDS.map((standard, idx) => (
-                <TableRow key={idx}>
+                <TableRow className={styles.tableRow} key={idx}>
                   <TableCell>{standard.name}</TableCell>
                   <TableCell>{standard.type}</TableCell>
                   <TableCell>{standard.versions.join(", ")}</TableCell>
