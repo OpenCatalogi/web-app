@@ -96,7 +96,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         applicatiefunctie,
         organization,
       }) => {
-        console.log(organization);
         setFilters({
           ...filters,
           currentPage: 1,
