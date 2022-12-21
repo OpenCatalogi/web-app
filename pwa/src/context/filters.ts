@@ -25,6 +25,7 @@ export interface IFilters {
   "maintenance.type"?: string;
   "legal.license"?: string;
   "legal.mainCopyrightOwner"?: string;
+  "url.organisation.name"?: string;
 
   showMoreControl?: boolean;
   showMoreSupport?: boolean;

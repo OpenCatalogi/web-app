@@ -30,6 +30,9 @@ import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../../context/gatsby";
+import { useOrganization } from "../../../../hooks/organization";
+import { QueryClient } from "react-query";
+import Skeleton from "react-loading-skeleton";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -41,6 +44,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const { screenSize } = React.useContext(GatsbyContext);
+
+  const queryClient = new QueryClient();
+  const _useOrganisation = useOrganization(queryClient);
+  const getOrganisations = _useOrganisation.filtersGetAll();
 
   React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
@@ -69,7 +76,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organization: getSelectedItemFromFilters(organizations, filters["legal.mainCopyrightOwner"]),
+      organization: getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
     });
   }, [filters]);
 
@@ -104,7 +111,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
-          "legal.mainCopyrightOwner": organization?.value,
+          "url.organisation.name": organization?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
@@ -165,12 +172,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.label}>Organisatie</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle
-                  isClearable
-                  name="organisation"
-                  options={organizations}
-                  {...{ errors, control, register }}
-                />{" "}
+                {getOrganisations.isLoading && <Skeleton height="50px" />}
+
+                {getOrganisations.isSuccess && (
+                  <SelectSingle
+                    options={getOrganisations.data?.results?.map((organisation: any) => ({
+                      label: organisation.name,
+                      value: organisation.name,
+                    }))}
+                    name="organization"
+                    {...{ errors, control, register }}
+                  />
+                )}
               </div>
             </FormFieldInput>
           </FormField>

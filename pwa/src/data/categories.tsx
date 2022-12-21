@@ -41,13 +41,13 @@ export const categories = {
   ],
   Proces: [
     {
-      title: "Procesinrichting en uitvoering",
+      title: "Procesinrichting-uitvoering",
       icon: <FontAwesomeIcon icon={faMicrochip} />,
       value: "process design and execution",
     },
     { title: "Bedrijfsregels", icon: <FontAwesomeIcon icon={faGavel} />, value: "business rules" },
     {
-      title: "Data analyse ondersteuning",
+      title: "Data-analyse ondersteuning",
       icon: <FontAwesomeIcon icon={faMagnifyingGlassChart} />,
       value: "data analysis support",
     },
