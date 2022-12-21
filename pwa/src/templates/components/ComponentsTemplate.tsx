@@ -73,9 +73,14 @@ export const ComponentsTemplate: React.FC = () => {
     return applicatiefunctie.value === filters["nl.gemma.applicatiefunctie"];
   });
 
-  const _referentieComponenten = referentieComponenten.find((referentieComponent) => {
-    return referentieComponent.value === filters["nl.gemma.applicatiefunctie"];
+  const _referentieComponenten = filters["nl.gemma.referentieComponenten"]?.map((filter) => {
+    console.log({ filter });
+    return referentieComponenten.find((referentieComponent) => {
+      return referentieComponent.value === filter;
+    });
   });
+
+  console.log(_referentieComponenten);
 
   const clearFilters = () => {
     setFilters({
@@ -143,6 +148,13 @@ export const ComponentsTemplate: React.FC = () => {
               <Tag layoutClassName={styles.removeActiveFiltersButton} label="Alles wissen" onClick={clearFilters} />
             </div>
             <div className={styles.activeFilters}>
+              {filters._search && (
+                <Tag
+                  label={`${t("Search term")}: ${filters._search}`}
+                  remove={{ onClick: () => setFilters({ ...filters, _search: "" }) }}
+                />
+              )}
+
               {filters["nl.commonground.layerType"]?.map((layer, idx) => (
                 <Tag
                   key={idx}
@@ -253,17 +265,17 @@ export const ComponentsTemplate: React.FC = () => {
                   }}
                 />
               ))}
-              {filters["nl.gemma.referentieComponenten"]?.map((layer, idx) => (
+              {_referentieComponenten?.map((layer, idx) => (
                 <Tag
                   key={idx}
-                  label={t(_.upperFirst(layer))}
+                  label={layer?.label ?? ""}
                   remove={{
                     onClick: () =>
                       setFilters({
                         ...filters,
                         "nl.gemma.referentieComponenten":
                           filters["nl.gemma.referentieComponenten"] &&
-                          filters["nl.gemma.referentieComponenten"].filter((e) => e !== layer),
+                          filters["nl.gemma.referentieComponenten"].filter((e) => e !== layer?.value),
                       }),
                   }}
                 />

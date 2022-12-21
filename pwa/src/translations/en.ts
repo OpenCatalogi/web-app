@@ -100,4 +100,5 @@ export const en = {
   Application: "Application",
   Sources: "Sources",
   "No description available": "No description available",
+  "Search term": "Search term",
 };
