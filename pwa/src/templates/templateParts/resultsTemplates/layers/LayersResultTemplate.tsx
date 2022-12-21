@@ -15,7 +15,7 @@ export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ comp
 
   return (
     <>
-      <Alert title="Let op!" text="Op deze pagina staan alleen de componenten met een Laag." variant="info" />
+      <Alert title="Let op!" text="Op deze pagina staan alleen componenten. en als componenten een laag hebben" variant="info" />
       <ComponentCardsAccordionTemplate components={_components} />
     </>
   );
