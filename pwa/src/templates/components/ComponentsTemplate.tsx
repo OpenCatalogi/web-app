@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
 import { Button, Heading2, Heading4 } from "@gemeente-denhaag/components-react";
-import { Container, Pagination, Tag } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +16,16 @@ import { SubmitComponentTemplate } from "../templateParts/submitComponent/Submit
 import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
+import { Tag } from "../../components/tag/Tag";
+import {
+  maintenanceTypes,
+  softwareTypes,
+  licenses,
+  statuses,
+  applicatiefuncties,
+  referentieComponenten,
+  categories,
+} from "./../../data/filters";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -38,6 +48,54 @@ export const ComponentsTemplate: React.FC = () => {
       setMarginPageDisplayed(3);
     }
   }, [getComponents]);
+
+  const category = categories.find((category) => {
+    return category.value === filters?.category;
+  });
+
+  const status = statuses.find((status) => {
+    return status.value === filters?.developmentStatus;
+  });
+
+  const maintenanceType = maintenanceTypes.find((maintenanceType) => {
+    return maintenanceType.value === filters["maintenance.type"];
+  });
+
+  const softwareType = softwareTypes.find((softwareType) => {
+    return softwareType.value === filters.softwareType;
+  });
+
+  const licence = licenses.find((licence) => {
+    return licence.value === filters["legal.license"];
+  });
+
+  const applicatiefunctie = applicatiefuncties.find((applicatiefunctie) => {
+    return applicatiefunctie.value === filters["nl.gemma.applicatiefunctie"];
+  });
+
+  const _referentieComponenten = referentieComponenten.find((referentieComponent) => {
+    return referentieComponent.value === filters["nl.gemma.applicatiefunctie"];
+  });
+
+  const clearFilters = () => {
+    setFilters({
+      ...filters,
+      _search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+    });
+  };
 
   return (
     <Container layoutClassName={styles.container}>
@@ -74,27 +132,154 @@ export const ComponentsTemplate: React.FC = () => {
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
-        <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
+        <VerticalFiltersTemplate filterSet={[filters]} layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
 
-          {getComponents.data?.results?.length === 0 &&
-            !getComponents.isLoading &&
-            t("No components found with active filters")}
-
-          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
-
-          {getComponents.isSuccess && getComponents.data.results.length > 0 && (
-            <div>
-              <Heading4>Active Filters</Heading4>
-              <div>
-                {console.log(filters["nl.commonground.layerType"])}
-                {filters["nl.commonground.layerType"]?.map((layer, idx) => (
-                  <Tag label={layer} />
-                ))}
-              </div>
+          <div>
+            <div className={styles.activeFiltersHeader}>
+              <Heading4>Actieve Filters</Heading4>
+              <Tag layoutClassName={styles.removeActiveFiltersButton} label="Alles wissen" onClick={clearFilters} />
             </div>
+            <div className={styles.activeFilters}>
+              {filters["nl.commonground.layerType"]?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={t(_.upperFirst(layer))}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        "nl.commonground.layerType":
+                          filters["nl.commonground.layerType"] &&
+                          filters["nl.commonground.layerType"].filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+
+              {filters["nl.upl"]?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={_.upperFirst(layer)}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        "nl.upl": filters["nl.upl"] && filters["nl.upl"].filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+
+              {filters.category && (
+                <Tag
+                  label={category?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, category: undefined }) }}
+                />
+              )}
+
+              {filters.platforms?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={t(_.upperFirst(layer))}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        platforms: filters.platforms && filters.platforms.filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+
+              {filters.developmentStatus && (
+                <Tag
+                  label={status?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, developmentStatus: undefined }) }}
+                />
+              )}
+
+              {filters["maintenance.type"] && (
+                <Tag
+                  label={maintenanceType?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, "maintenance.type": undefined }) }}
+                />
+              )}
+
+              {filters.softwareType && (
+                <Tag
+                  label={softwareType?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, softwareType: undefined }) }}
+                />
+              )}
+
+              {filters["legal.license"] && (
+                <Tag
+                  label={licence?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, "legal.license": undefined }) }}
+                />
+              )}
+
+              {filters["nl.gemma.bedrijfsfuncties"]?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={t(_.upperFirst(layer))}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        "nl.gemma.bedrijfsfuncties":
+                          filters["nl.gemma.bedrijfsfuncties"] &&
+                          filters["nl.gemma.bedrijfsfuncties"].filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+
+              {filters["nl.gemma.bedrijfsservices"]?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={t(_.upperFirst(layer))}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        "nl.gemma.bedrijfsservices":
+                          filters["nl.gemma.bedrijfsservices"] &&
+                          filters["nl.gemma.bedrijfsservices"].filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+              {filters["nl.gemma.referentieComponenten"]?.map((layer, idx) => (
+                <Tag
+                  key={idx}
+                  label={t(_.upperFirst(layer))}
+                  remove={{
+                    onClick: () =>
+                      setFilters({
+                        ...filters,
+                        "nl.gemma.referentieComponenten":
+                          filters["nl.gemma.referentieComponenten"] &&
+                          filters["nl.gemma.referentieComponenten"].filter((e) => e !== layer),
+                      }),
+                  }}
+                />
+              ))}
+
+              {filters["nl.gemma.applicatiefunctie"] && (
+                <Tag
+                  label={applicatiefunctie?.label ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, "nl.gemma.applicatiefunctie": "" }) }}
+                />
+              )}
+            </div>
+          </div>
+
+          {getComponents.data?.results?.length === 0 && !getComponents.isLoading && (
+            <span>{t("No components found with active filters")}</span>
           )}
 
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (

@@ -20,22 +20,23 @@ import {
   referentieComponenten,
   organizations,
   categories,
+  layers,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
-import { layers } from "../../../../data/filters";
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../../context/gatsby";
 
 interface VerticalFiltersTemplateProps {
+  filterSet: any[];
   layoutClassName?: string;
 }
 
-export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
+export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -110,7 +111,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     return () => subscription.unsubscribe();
-  });
+  }, [filterSet]);
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
