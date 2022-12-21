@@ -15,7 +15,6 @@ interface ComponentCardsAccordionProps {
 export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionProps> = ({ components }) => {
   const Accordion = LayerAccordion.accordion;
   const AccordionCardsController = LayerAccordion.controller;
-  const { t } = useTranslation();
 
   const { open: openInteraction, setOpen: setOpenInteraction } = AccordionCardsController();
   const { open: openProcess, setOpen: setOpenProcess } = AccordionCardsController();
@@ -25,22 +24,22 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
   const { open: openUnknown, setOpen: setOpenUnknown } = AccordionCardsController();
 
   const interaction = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Interaction");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Interaction";
   });
   const process = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Process");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Process";
   });
   const integration = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Integration");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Integration";
   });
   const services = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Service");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Services";
   });
   const data = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType)) === t("Data");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Data";
   });
   const unknown = components.filter((component) => {
-    return t(_.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown")) === t("Unknown");
+    return component?.embedded?.nl?.embedded?.commonground?.layerType === null;
   });
 
   return (
