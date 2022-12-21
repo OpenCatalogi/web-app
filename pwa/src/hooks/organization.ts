@@ -24,6 +24,13 @@ export const useOrganization = (queryClient: QueryClient) => {
       },
     });
 
+  const filtersGetAll = () =>
+    useQuery<any, Error>(["organizations"], () => API?.Organization.filtersGetAll(), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+    });
+
   const getCount = (filters: IFilters) =>
     useQuery<any, Error>(["organizations_count", filters], () => API?.Organization.getCount(filters), {
       onError: (error) => {
@@ -35,5 +42,5 @@ export const useOrganization = (queryClient: QueryClient) => {
       staleTime: 60 * 10 * 1000, // 10 minutes
     });
 
-  return { getOne, getAll, getCount };
+  return { getOne, getAll, getCount, filtersGetAll };
 };
