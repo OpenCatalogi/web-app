@@ -75,7 +75,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organization: getSelectedItemFromFilters(organizations, filters["_search"]),
+      organization: getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
     });
   }, [filters]);
 
@@ -96,6 +96,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         applicatiefunctie,
         organization,
       }) => {
+        console.log(organization);
         setFilters({
           ...filters,
           currentPage: 1,
@@ -110,7 +111,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
-          _search: organization?.value,
+          "url.organisation.name": organization?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
@@ -175,7 +176,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
                 {getOrganisations.isSuccess && (
                   <SelectSingle
-                    isClearable
                     options={getOrganisations.data?.results?.map((organisation: any) => ({
                       label: organisation.name,
                       value: organisation.name,
