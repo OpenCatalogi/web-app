@@ -63,7 +63,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                         label={t(
                           _.upperFirst(
                             component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                              ? component.nl?.commonground.layerType ?? "Onbekend"
+                              ? component.nl?.commonground.layerType ?? t("Unknown")
                               : "N.V.T.",
                           ),
                         )}

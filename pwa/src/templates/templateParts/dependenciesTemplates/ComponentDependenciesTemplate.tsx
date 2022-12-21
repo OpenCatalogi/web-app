@@ -36,27 +36,28 @@ interface RelationsDependenciesProps {
 }
 
 const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ components, mainComponent }) => {
-  const { t } = useTranslation();
-
   const mappedComponents = components.map((component) => ({
     ...component,
-    layerType: component?.embedded?.nl?.embedded?.commonground?.layerType,
+    layerType: component?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown",
   }));
 
   const interaction = mappedComponents.filter((component) => {
-    return t(_.upperFirst(component?.layerType)) === t("Interaction");
+    return _.upperFirst(component?.layerType) === "Interaction";
   });
   const process = mappedComponents.filter((component) => {
-    return t(_.upperFirst(component?.layerType)) === t("Process");
+    return _.upperFirst(component?.layerType) === "Process";
   });
   const integration = mappedComponents.filter((component) => {
-    return t(_.upperFirst(component?.layerType)) === t("Integration");
+    return _.upperFirst(component?.layerType) === "Integration";
   });
   const services = mappedComponents.filter((component) => {
-    return t(_.upperFirst(component?.layerType)) === t("Service");
+    return _.upperFirst(component?.layerType) === "Services";
   });
   const data = mappedComponents.filter((component) => {
-    return t(_.upperFirst(component?.layerType)) === t("Data");
+    return _.upperFirst(component?.layerType) === "Data";
+  });
+  const unknown = mappedComponents.filter((component) => {
+    return _.upperFirst(component?.layerType) === "Unknown";
   });
 
   const { active: activeInteraction, setActive: setActiveInteraction } = FilterController();
@@ -64,6 +65,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
   const { active: activeIntegration, setActive: setActiveIntegration } = FilterController();
   const { active: activeServices, setActive: setActiveServices } = FilterController();
   const { active: activeData, setActive: setActiveData } = FilterController();
+  const { active: activeUnknown, setActive: setActiveUnknown } = FilterController();
 
   const filteredComponents = [
     ...(activeInteraction ? interaction : []),
@@ -71,6 +73,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
     ...(activeIntegration ? integration : []),
     ...(activeServices ? services : []),
     ...(activeData ? data : []),
+    ...(activeUnknown ? unknown : []),
   ];
   return (
     <>
@@ -91,12 +94,10 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
           },
           { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: !services.length },
           { label: "Data", handleClick: setActiveData, active: activeData, disabled: !data.length },
+          { label: "Unknown", handleClick: setActiveUnknown, active: activeUnknown, disabled: !unknown.length },
         ]}
       />
-      <RelationsDependenciesTemplate
-        mainComponent={{ id: mainComponent.id, name: mainComponent.name, layer: mainComponent.layer }}
-        components={filteredComponents}
-      />
+      <RelationsDependenciesTemplate mainComponent={{ ...mainComponent }} components={filteredComponents} />
     </>
   );
 };
