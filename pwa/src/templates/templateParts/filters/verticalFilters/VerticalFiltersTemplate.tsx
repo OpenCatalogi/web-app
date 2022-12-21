@@ -176,6 +176,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
                 {getOrganisations.isSuccess && (
                   <SelectSingle
+                    isClearable
                     options={getOrganisations.data?.results?.map((organisation: any) => ({
                       label: organisation.name,
                       value: organisation.name,

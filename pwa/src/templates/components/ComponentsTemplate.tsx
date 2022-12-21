@@ -74,13 +74,10 @@ export const ComponentsTemplate: React.FC = () => {
   });
 
   const _referentieComponenten = filters["nl.gemma.referentieComponenten"]?.map((filter) => {
-    console.log({ filter });
     return referentieComponenten.find((referentieComponent) => {
       return referentieComponent.value === filter;
     });
   });
-
-  console.log(_referentieComponenten);
 
   const clearFilters = () => {
     setFilters({
@@ -99,6 +96,7 @@ export const ComponentsTemplate: React.FC = () => {
       "maintenance.type": "",
       "legal.license": "",
       "legal.mainCopyrightOwner": "",
+      "url.organisation.name": "",
     });
   };
 
@@ -184,6 +182,13 @@ export const ComponentsTemplate: React.FC = () => {
                   }}
                 />
               ))}
+
+              {filters["url.organisation.name"] && (
+                <Tag
+                  label={filters["url.organisation.name"] ?? ""}
+                  remove={{ onClick: () => setFilters({ ...filters, "url.organisation.name": undefined }) }}
+                />
+              )}
 
               {filters.category && (
                 <Tag
