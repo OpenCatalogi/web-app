@@ -40,7 +40,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
 
   const mappedComponents = components.map((component) => ({
     ...component,
-    layerType: component?.embedded?.nl?.embedded?.commonground?.layerType,
+    layerType: component?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown",
   }));
 
   const interaction = mappedComponents.filter((component) => {
@@ -58,12 +58,16 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
   const data = mappedComponents.filter((component) => {
     return t(_.upperFirst(component?.layerType)) === t("Data");
   });
+  const unknown = mappedComponents.filter((component) => {
+    return t(_.upperFirst(component?.layerType)) === t("Unknown");
+  });
 
   const { active: activeInteraction, setActive: setActiveInteraction } = FilterController();
   const { active: activeProcess, setActive: setActiveProcess } = FilterController();
   const { active: activeIntegration, setActive: setActiveIntegration } = FilterController();
   const { active: activeServices, setActive: setActiveServices } = FilterController();
   const { active: activeData, setActive: setActiveData } = FilterController();
+  const { active: activeUnknown, setActive: setActiveUnknown } = FilterController();
 
   const filteredComponents = [
     ...(activeInteraction ? interaction : []),
@@ -71,6 +75,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
     ...(activeIntegration ? integration : []),
     ...(activeServices ? services : []),
     ...(activeData ? data : []),
+    ...(activeUnknown ? unknown : []),
   ];
   return (
     <>
@@ -91,12 +96,10 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
           },
           { label: "Service", handleClick: setActiveServices, active: activeServices, disabled: !services.length },
           { label: "Data", handleClick: setActiveData, active: activeData, disabled: !data.length },
+          { label: "Unknown", handleClick: setActiveUnknown, active: activeUnknown, disabled: !unknown.length },
         ]}
       />
-      <RelationsDependenciesTemplate
-        mainComponent={{ id: mainComponent.id, name: mainComponent.name, layer: mainComponent.layer }}
-        components={filteredComponents}
-      />
+      <RelationsDependenciesTemplate mainComponent={{ ...mainComponent }} components={filteredComponents} />
     </>
   );
 };

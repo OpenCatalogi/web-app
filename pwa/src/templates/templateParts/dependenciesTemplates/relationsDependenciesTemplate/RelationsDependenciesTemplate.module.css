@@ -4,6 +4,7 @@
   layerColorIntegratie: --web-app-layer-color-integration;
   layerColorService: --web-app-layer-color-services;
   layerColorData: --web-app-layer-color-data;
+  layerColorOnbekend: --web-app-color-top-nav-grey;
 }
 
 .relationsContainer {

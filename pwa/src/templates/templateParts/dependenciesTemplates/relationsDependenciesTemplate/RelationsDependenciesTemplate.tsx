@@ -39,7 +39,13 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     layer: component.embedded?.nl?.embedded?.commonground?.layerType,
     color: {
       background: getTokenValue(
-        styles[_.camelCase(`layerColor ${t(_.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType))}`)],
+        styles[
+          _.camelCase(
+            `layerColor ${t(
+              _.upperFirst(component.embedded?.nl?.embedded?.commonground?.layerType ?? component.layerType),
+            )}`,
+          )
+        ],
       ),
     },
     font: {
@@ -63,7 +69,7 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
     label: addNewLineToString(mainComponent.name),
     layer: mainComponent.layer,
     color: {
-      background: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer))}`)]),
+      background: getTokenValue(styles[_.camelCase(`layerColor ${t(_.upperFirst(mainComponent.layer ?? "Unknown"))}`)]),
     },
     font: { color: "white", size: 20 },
   };

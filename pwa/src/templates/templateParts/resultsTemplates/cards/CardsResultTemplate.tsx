@@ -5,12 +5,15 @@ import { ComponentCard } from "../../../../components/componentCard/ComponentCar
 import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 import { ApplicationCard } from "../../../../components/applicationCard/ApplicationCard";
 import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { useTranslation } from "react-i18next";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
+  const { t } = useTranslation();
+
   const _components = components.filter((component) => {
     return component._self;
   });
@@ -56,7 +59,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               key={component.id}
               title={{ label: component.name, href: `/components/${component.id}` }}
               description={component.description?.shortDescription}
-              layer={component.nl?.commonground.layerType ?? "Onbekend"}
+              layer={component.nl?.commonground.layerType ?? t("Unknown")}
               categories={component.categories}
               tags={{
                 status: component.developmentStatus,

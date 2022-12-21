@@ -73,3 +73,10 @@
 .container > :not(.disabled).data:not(.active)::before {
   background-color: var(--web-app-layer-color-data);
 }
+
+.container > .unknown.active::before {
+  background-color: var(--web-app-color-top-nav-grey);
+}
+.container > :not(.disabled).unknown:not(.active)::before {
+  background-color: var(--web-app-color-top-nav-grey);
+}
