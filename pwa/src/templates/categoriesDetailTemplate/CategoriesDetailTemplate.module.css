@@ -26,6 +26,16 @@
   margin-block-start: var(--web-app-size-xl);
 }
 
+.solutions > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.viewButtons {
+  display: flex;
+  justify-content: end;
+  gap: var(--web-app-size-md);
+}
+
 .solutionsHeader {
   margin-block-end: var(--web-app-size-md);
 }

@@ -1,4 +1,4 @@
-export const TEMPORARY_COMPONENTS = [
+export const TEMPORARY_COMPONENTS: any[] = [
   {
     id: "94541350-e796-4335-a866-4747e4c0a8ca",
     objectType: "component",
