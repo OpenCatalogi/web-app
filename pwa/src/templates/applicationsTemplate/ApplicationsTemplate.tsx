@@ -55,7 +55,7 @@ export const ApplicationsTemplate: React.FC = () => {
             ))}
           </div>
           <Pagination
-            setPage={(page) => setFilters({ ...filters, currentPage: page })}
+            setPage={(page) => setFilters({ ...filters, applicationsCurrentPage: page })}
             pages={getApplications.data.pages}
             currentPage={getApplications.data.page}
           />
