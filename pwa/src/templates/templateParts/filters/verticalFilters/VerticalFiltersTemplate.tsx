@@ -49,6 +49,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const _useOrganisation = useOrganization(queryClient);
   const getOrganisations = _useOrganisation.filtersGetAll();
 
+  const organizations = getOrganisations.data?.results?.map((organisation: any) => ({
+    label: organisation.name,
+    value: organisation.name,
+  }));
+
   React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
   const {
@@ -76,7 +81,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organization: getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
+      organization: organizations && getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
     });
   }, [filters]);
 
@@ -177,10 +182,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 {getOrganisations.isSuccess && (
                   <SelectSingle
                     isClearable
-                    options={getOrganisations.data?.results?.map((organisation: any) => ({
-                      label: organisation.name,
-                      value: organisation.name,
-                    }))}
+                    options={organizations}
                     name="organization"
                     {...{ errors, control, register }}
                   />
