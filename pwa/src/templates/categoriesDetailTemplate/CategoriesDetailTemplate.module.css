@@ -31,7 +31,9 @@
 }
 
 .solutionsContent {
-  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--web-app-size-md);
 }
 
 .maxNumber {
@@ -40,4 +42,10 @@
 
 .title {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .solutionsContent {
+    grid-template-columns: 1fr 1fr;
+  }
 }

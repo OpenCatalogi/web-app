@@ -30,11 +30,8 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
     TEMPORARY_DOMAINS.find((domain) => {
       return domain.title === portfolio.domain;
     });
-  const component =
-    portfolio &&
-    TEMPORARY_COMPONENTS.find((component) => {
-      return component.id === "aa78c93b-d57d-4d9a-b255-e8cfe26bde48";
-    });
+  const components = portfolio && TEMPORARY_COMPONENTS;
+
   const badgeNumber = 1;
   const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
   const maxItems = badgeNumber > 100;
@@ -54,7 +51,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
           <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
         </div>
       )}
-      {component && (
+      {components && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={maxItems && styles.maxNumber}>
@@ -65,20 +62,22 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
           </div>
 
           <div className={styles.solutionsContent}>
-            <ComponentCard
-              key={component.id}
-              title={{ label: component.name, href: `#` }}
-              description={component.embedded?.description?.shortDescription}
-              layer={component.embedded?.nl.embedded?.commonground.layerType}
-              categories={component.categories}
-              tags={{
-                status: component.developmentStatus,
-                installations: component.usedBy?.length.toString() ?? "0",
-                organization: component.embedded?.url?.embedded?.organisation?.name,
-                licence: component.embedded?.legal?.license,
-                githubLink: component.embedded?.url?.url,
-              }}
-            />
+            {components.map((component) => (
+              <ComponentCard
+                key={component.id}
+                title={{ label: component.name, href: `#` }}
+                description={component.embedded?.description?.shortDescription}
+                layer={component.embedded?.nl.embedded?.commonground.layerType}
+                categories={component.categories}
+                tags={{
+                  status: component.developmentStatus,
+                  installations: component.usedBy?.length.toString() ?? "0",
+                  organization: component.embedded?.url?.embedded?.organisation?.name,
+                  licence: component.embedded?.legal?.license,
+                  githubLink: component.embedded?.url?.url,
+                }}
+              />
+            ))}
           </div>
         </div>
       )}
