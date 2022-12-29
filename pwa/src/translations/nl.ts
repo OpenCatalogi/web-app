@@ -99,4 +99,5 @@ export const nl = {
   Application: "Applicatie",
   Sources: "Bronnen",
   "No description available": "Geen beschrijving beschikbaar",
+  "Search term": "Zoekterm",
 };

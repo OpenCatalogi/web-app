@@ -16,6 +16,7 @@ import { SubmitComponentTemplate } from "../templateParts/submitComponent/Submit
 import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
+import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -74,18 +75,17 @@ export const ComponentsTemplate: React.FC = () => {
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
-        <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
+        <VerticalFiltersTemplate filterSet={[filters]} layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
+          <ActiveFiltersTemplate />
 
-          {getComponents.data?.results?.length === 0 &&
-            !getComponents.isLoading &&
-            t("No components found with active filters")}
+          {getComponents.data?.results?.length === 0 && !getComponents.isLoading && (
+            <span>{t("No components found with active filters")}</span>
+          )}
 
-          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
-
-          {getComponents.isSuccess && getComponents.data.results.length > 0 && (
+          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 

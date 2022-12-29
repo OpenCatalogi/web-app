@@ -29,6 +29,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
       currentPage: filters.currentPage,
+      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFilters);
 
     navigate("/components");
@@ -40,6 +41,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
       currentPage: filters.currentPage,
+      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFilters);
     navigate("/components");
   };
