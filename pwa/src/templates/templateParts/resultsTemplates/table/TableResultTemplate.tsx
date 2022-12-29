@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Alert, Link } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -28,6 +28,8 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
   return (
     <div className={styles.tableWrapper}>
+      <Alert title="Let op!" text="Op deze pagina worden alle resultaten weergegeven." variant="info" />
+
       <Table>
         {!hideTableHead && (
           <TableHead>
