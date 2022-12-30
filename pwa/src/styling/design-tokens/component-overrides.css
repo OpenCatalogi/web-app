@@ -254,6 +254,13 @@
   --denhaag-sidenav-item-font-weight: var(--web-app-sidenav-item-font-weight);
   --denhaag-sidenav-item-font-size: var(--web-app-sidenav-item-font-size);
 
+  --utrecht-custom-checkbox-checked-background-color: var(--web-app-color-primary-action);
+  --utrecht-custom-checkbox-checked-border-color: var(--web-app-color-primary-action);
+
+  --denhaag-checkbox-hover-checked-background-color: var(--web-app-color-primary-action-hover);
+
+  --denhaag-checkbox-hover-checked-border-color: var(--web-app-color-primary-action-hover);
+
   --denhaag-alert-padding-block-start: var(--web-app-size-lg);
   --denhaag-alert-padding-block-end: var(--web-app-size-lg);
   --denhaag-alert-padding-inline-start: var(--web-app-size-lg);

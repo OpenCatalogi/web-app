@@ -150,7 +150,12 @@
   --web-app-layer-category-color-services: #d1e7dd;
   --web-app-layer-category-color-data: #e2d9f3;
 
+  --web-app-filter-badge-color: hsl(0deg 0% 85%);
+
   --web-app-breadcrumb-color: var(--rotterdam-color-green);
+
+  --web-app-checkbox-color: var(--rotterdam-color-green);
+  --web-app-radio-button-color: var(--rotterdam-color-green);
 
   --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
 
