@@ -58,3 +58,25 @@
 .selectBorder > div > div {
   border-radius: 0;
 }
+
+.filterTitle:not(:last-child) {
+  display: flex;
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.trigger {
+  margin-block-end: 10px;
+}
+
+.test {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.test > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.checkColor {
+  accent-color: var(--web-app-checkbox-color);
+}

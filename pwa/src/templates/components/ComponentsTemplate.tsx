@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Alert, Button, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
@@ -79,6 +79,24 @@ export const ComponentsTemplate: React.FC = () => {
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
+          {filters.resultDisplayLayout === "table" && (
+            <Alert title="Let op!" text="Op deze pagina worden alle resultaten weergegeven." variant="info" />
+          )}
+          {filters.resultDisplayLayout === "cards" && (
+            <Alert
+              title="Let op!"
+              text="Op deze pagina staan alleen Applicaties, Organisaties en Componenten."
+              variant="info"
+            />
+          )}
+          {filters.resultDisplayLayout === "layer" && (
+            <Alert
+              title="Let op!"
+              text="Op deze pagina staan alleen componenten. en als componenten een laag hebben"
+              variant="info"
+            />
+          )}
+
           <ActiveFiltersTemplate />
 
           {getComponents.data?.results?.length === 0 && !getComponents.isLoading && (
