@@ -18,7 +18,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
 
   React.useEffect(() => {
     reset({
-      name: filters.search,
+      name: filters._search,
     });
   }, [filters]);
 
@@ -27,7 +27,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       setFilters({
         ...filters,
         currentPage: 1,
-        search: name,
+        _search: name,
       });
     });
 

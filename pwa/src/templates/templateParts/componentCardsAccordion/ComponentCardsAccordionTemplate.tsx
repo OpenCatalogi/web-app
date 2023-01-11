@@ -15,28 +15,31 @@ interface ComponentCardsAccordionProps {
 export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionProps> = ({ components }) => {
   const Accordion = LayerAccordion.accordion;
   const AccordionCardsController = LayerAccordion.controller;
-  const { t } = useTranslation();
 
   const { open: openInteraction, setOpen: setOpenInteraction } = AccordionCardsController();
   const { open: openProcess, setOpen: setOpenProcess } = AccordionCardsController();
   const { open: openIntegration, setOpen: setOpenIntegration } = AccordionCardsController();
   const { open: openServices, setOpen: setOpenServices } = AccordionCardsController();
   const { open: openData, setOpen: setOpenData } = AccordionCardsController();
+  const { open: openUnknown, setOpen: setOpenUnknown } = AccordionCardsController();
 
   const interaction = components.filter((component) => {
-    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Interaction");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Interaction";
   });
   const process = components.filter((component) => {
-    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Process");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Process";
   });
   const integration = components.filter((component) => {
-    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Integration");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Integration";
   });
   const services = components.filter((component) => {
-    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Service");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Services";
   });
   const data = components.filter((component) => {
-    return t(_.upperFirst(component?.nl?.commonground?.layerType)) === t("Data");
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Data";
+  });
+  const unknown = components.filter((component) => {
+    return component?.embedded?.nl?.embedded?.commonground?.layerType === null;
   });
 
   return (
@@ -58,6 +61,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           },
           { label: "Service", handleClick: setOpenServices, active: openServices, disabled: !services.length },
           { label: "Data", handleClick: setOpenData, active: openData, disabled: !data.length },
+          { label: "Unknown", handleClick: setOpenUnknown, active: openUnknown, disabled: !unknown.length },
         ]}
       />
 
@@ -126,6 +130,18 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       >
         <Components components={data} />
       </Accordion>
+
+      <Accordion
+        open={openUnknown}
+        setOpen={setOpenUnknown}
+        color={getTokenValue(styles.layerColorUnknown)}
+        disabled={!unknown.length}
+        header={
+          <ComponentCardsAccordionHeaderTemplate title="Unknown" active={openUnknown} badgeNumber={unknown.length} />
+        }
+      >
+        <Components components={unknown} />
+      </Accordion>
     </>
   );
 };
@@ -135,6 +151,8 @@ interface ComponentsProps {
 }
 
 const Components: React.FC<ComponentsProps> = ({ components }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.ComponentsGrid}>
       {components.map((component, idx) => (
@@ -143,7 +161,7 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
             key={idx}
             title={{ label: component.name, href: `/components/${component.id}` }}
             description={component.description?.shortDescription}
-            layer={component.nl?.commonground.layerType ?? "Onbekend"}
+            layer={component?.embedded?.nl?.embedded?.commonground?.layerType ?? t("Unknown")}
             categories={component.categories}
             tags={{
               status: component.developmentStatus,

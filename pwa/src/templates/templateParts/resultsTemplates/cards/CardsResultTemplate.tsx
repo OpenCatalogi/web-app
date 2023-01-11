@@ -5,23 +5,26 @@ import { ComponentCard } from "../../../../components/componentCard/ComponentCar
 import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 import { ApplicationCard } from "../../../../components/applicationCard/ApplicationCard";
 import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { useTranslation } from "react-i18next";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
+  const { t } = useTranslation();
+
   const _components = components.filter((component) => {
-    return component._schema;
+    return component._self;
   });
 
   const { length } = _components;
   const id = length + 1;
-  const _com = _components.every((el) => el._schema.title !== "Component");
+  const _com = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/component.schema.json");
   if (_com) {
-    const _org = _components.every((el) => el._schema.title !== "Organisation");
+    const _org = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/organisation.schema.json");
     if (_org) {
-      const _app = _components.every((el) => el._schema.title !== "Application");
+      const _app = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/application.schema.json");
       if (_app) {
         return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
       }
@@ -32,7 +35,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     <div className={styles.ComponentsGrid}>
       {_components.map((component) => (
         <>
-          {component._schema.title === "Organisation" && (
+          {component._self.schema.ref === "https://opencatalogi.nl/organisation.schema.json" && (
             <OrganizationCard
               title={{
                 label: component.name,
@@ -51,12 +54,12 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               type={component.type}
             />
           )}
-          {component._schema.title === "Component" && (
+          {component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" && (
             <ComponentCard
               key={component.id}
               title={{ label: component.name, href: `/components/${component.id}` }}
               description={component.description?.shortDescription}
-              layer={component.nl?.commonground.layerType ?? "Onbekend"}
+              layer={component.nl?.commonground.layerType ?? t("Unknown")}
               categories={component.categories}
               tags={{
                 status: component.developmentStatus,
@@ -70,7 +73,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               }}
             />
           )}
-          {component._schema.title === "Application" && (
+          {component._self.schema.ref === "https://opencatalogi.nl/application.schema.json" && (
             <ApplicationCard
               key={component.id}
               title={{ label: component.name, href: `/applications/${component.id}` }}

@@ -122,7 +122,12 @@
   --web-app-layer-category-color-services: #d1e7dd;
   --web-app-layer-category-color-data: #e2d9f3;
 
+  --web-app-filter-badge-color: hsl(0deg 0% 85%);
+
   --web-app-breadcrumb-color: hsl(211 60% 35%);
+
+  --web-app-checkbox-color: hsl(211 60% 35%);
+  --web-app-radio-button-color: hsl(211 60% 35%);
 
   --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
 
@@ -191,4 +196,10 @@
   --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
   --web-app-sidenav-item-font-weight: var(--web-app-font-weight-normal);
   --web-app-sidenav-item-font-size: var(--web-app-size-md);
+
+  /* @gemeent-denhaag: Alert */
+  --web-app-alert-info-background-color: #dbecfa;
+  --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
+  --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
+  --web-app-alert-info-icon-color: hsl(207 80% 35%);
 }

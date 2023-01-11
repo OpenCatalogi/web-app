@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Alert, Button, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
@@ -16,6 +16,7 @@ import { SubmitComponentTemplate } from "../templateParts/submitComponent/Submit
 import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
+import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -74,18 +75,35 @@ export const ComponentsTemplate: React.FC = () => {
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
-        <VerticalFiltersTemplate layoutClassName={styles.verticalFilters} />
+        <VerticalFiltersTemplate filterSet={[filters]} layoutClassName={styles.verticalFilters} />
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
+          {filters.resultDisplayLayout === "table" && (
+            <Alert title="Let op!" text="Op deze pagina worden alle resultaten weergegeven." variant="info" />
+          )}
+          {filters.resultDisplayLayout === "cards" && (
+            <Alert
+              title="Let op!"
+              text="Op deze pagina staan alleen Applicaties, Organisaties en Componenten."
+              variant="info"
+            />
+          )}
+          {filters.resultDisplayLayout === "layer" && (
+            <Alert
+              title="Let op!"
+              text="Op deze pagina staan alleen componenten. en als componenten een laag hebben"
+              variant="info"
+            />
+          )}
 
-          {getComponents.data?.results?.length === 0 &&
-            !getComponents.isLoading &&
-            t("No components found with active filters")}
+          <ActiveFiltersTemplate />
 
-          {!getComponents.data?.results && !getComponents.isLoading && "Geen componenten gevonden"}
+          {getComponents.data?.results?.length === 0 && !getComponents.isLoading && (
+            <span>{t("No components found with active filters")}</span>
+          )}
 
-          {getComponents.isSuccess && getComponents.data.results.length > 0 && (
+          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
               <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
 

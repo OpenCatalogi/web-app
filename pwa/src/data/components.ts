@@ -147,7 +147,7 @@ export const TEMPORARY_COMPONENTS = [
             id: "408a31be-a9f3-424e-9dd6-8da5e01048ed",
             installationType: "self",
             intendedOrganisations: [],
-            layerType: "interface",
+            layerType: null,
           },
         },
       },
