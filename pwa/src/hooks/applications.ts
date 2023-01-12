@@ -24,16 +24,5 @@ export const useApplications = (queryClient: QueryClient) => {
       enabled: !!applicationId,
     });
 
-  const getCount = (filters: IFilters) =>
-    useQuery<any, Error>(["applications_count", filters], () => API?.Applications.getCount(filters), {
-      onError: (error) => {
-        throw new Error(error.message);
-      },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: false,
-      staleTime: 60 * 10 * 1000, // 10 minutes
-    });
-
-  return { getOne, getAll, getCount };
+  return { getOne, getAll };
 };
