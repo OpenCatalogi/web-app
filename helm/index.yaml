@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: "2.2"
-    created: "2023-01-16T14:59:44.860377533+01:00"
+    created: "2023-01-16T15:43:58.879948263+01:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -30,7 +30,7 @@ entries:
   opencatalogi:
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-01-16T14:59:44.833747966+01:00"
+    created: "2023-01-16T15:43:58.844862197+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -42,7 +42,7 @@ entries:
       repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/demo/helm/
       version: 0.1.1
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: 956490491ec3b717ffac9dccb42156bb70cb5079ac46fe8c5d8066abd6f96f03
+    digest: 6e45554479770f2cb738a6811a71cc24a90634b68f1301e59c3cbf4b45c1a9a2
     name: opencatalogi
     type: application
     urls:
@@ -50,7 +50,7 @@ entries:
     version: 0.9.4
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-01-16T14:59:44.7881355+01:00"
+    created: "2023-01-16T15:43:58.78781255+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -66,7 +66,7 @@ entries:
     version: 0.9.3
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-01-16T14:59:44.763295708+01:00"
+    created: "2023-01-16T15:43:58.757775577+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -82,7 +82,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-01-16T14:59:44.739704512+01:00"
+    created: "2023-01-16T15:43:58.726773167+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -98,7 +98,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-01-16T14:59:44.720359253+01:00"
+    created: "2023-01-16T15:43:58.703770836+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -115,7 +115,7 @@ entries:
   skeleton-app:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-01-16T14:59:44.883106029+01:00"
+    created: "2023-01-16T15:43:58.904783066+01:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -129,4 +129,4 @@ entries:
     urls:
     - charts/skeleton-app-0.1.1.tgz
     version: 0.1.1
-generated: "2023-01-16T14:59:44.699691086+01:00"
+generated: "2023-01-16T15:43:58.682265388+01:00"
