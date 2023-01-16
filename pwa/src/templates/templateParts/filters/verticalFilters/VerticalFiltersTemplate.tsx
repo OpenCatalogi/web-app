@@ -18,7 +18,6 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organizations,
   categories,
   layers,
 } from "./../../../../data/filters";
@@ -77,6 +76,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     control,
     formState: { errors },
   } = useForm();
+
+  React.useEffect(() => {
+    console.log({ layers: filters["nl.commonground.layerType"] });
+  }, [filters["nl.commonground.layerType"]]);
 
   const addToLayerArray = (value: { label: string; value: string }) => {
     !layersArray.some((item) => item.label === value.label) ? layersArray.push(value) : removeLayer(layersArray, value);
@@ -312,6 +315,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     <div
                       className={styles.checkColor}
                       onChange={() => addToLayerArray({ label: layer.label, value: layer.value })}
+                      key={layer.value}
                     >
                       <InputCheckbox label={layer.label} name={layer.label} {...{ errors, control, register }} />
                     </div>
@@ -389,6 +393,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div
                     className={styles.checkColor}
                     onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
+                    key={platform.value}
                   >
                     <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
                   </div>
@@ -419,7 +424,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenStatus(false)}
               >
                 {statuses.map((status) => (
-                  <div className={styles.checkColor} onChange={() => setStatusRadioFilter(status.value)}>
+                  <div
+                    className={styles.checkColor}
+                    onChange={() => setStatusRadioFilter(status.value)}
+                    key={status.value}
+                  >
                     <input id={`checkbox${status.label}`} type="radio" value={status.value} name="status" />{" "}
                     {status.label}
                   </div>
@@ -453,6 +462,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div
                     className={styles.checkColor}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    key={maintenanceType.value}
                   >
                     <input
                       id={`checkbox${maintenanceType.label}`}
@@ -511,7 +521,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenSoftwareTypes(false)}
               >
                 {softwareTypes.map((softwareType) => (
-                  <div className={styles.checkColor} onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                  <div
+                    className={styles.checkColor}
+                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                    key={softwareType.value}
+                  >
                     <input
                       id={`checkbox${softwareType.label}`}
                       type="radio"
