@@ -2,5 +2,8 @@ dependencies:
 - name: commonground-gateway
   repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
   version: 1.1.4
-digest: sha256:28169427163c38f8812e24a79084cbcc9a8b8dc02a0626254f47b19d3d501fc8
-generated: "2022-12-20T14:01:21.17001954+01:00"
+- name: skeleton-app
+  repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/demo/helm/
+  version: 0.1.1
+digest: sha256:bb71dfa8733458f0498fdc300fe18069c457f2fd6a19cb10ec2e56005355c2d6
+generated: "2023-01-16T14:59:28.044386964+01:00"

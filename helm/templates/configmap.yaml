@@ -18,3 +18,4 @@ data:
     window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "{{ .Values.pwa.frontendUrl }}");
     window.sessionStorage.setItem("GATSBY_ORGANIZATION", "{{ .Values.pwa.organization }}");
     window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "{{ .Values.pwa.redirectUrl }}");
+    window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "{{ .Values.gatewayui.ingress.hostname }}");
