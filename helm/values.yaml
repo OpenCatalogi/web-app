@@ -15,6 +15,23 @@ pwa:
   redirectUrl: "vault"
   adminUrl: "https://opencatalogi.nl/admin"
 
+gatewayui:
+  ingress:
+    annotations: {}
+    hostname: admin.chart-example.local
+    tls: []
+  pwa:
+    adminUrl: https://opencatalogi.nl/admin
+    apiUrl: https://opencatalogi.nl/api
+    baseUrl: https://opencatalogi.nl
+    frontendUrl: https://opencatalogi.nl
+    meUrl: https://opencatalogi.nl/api/users/me
+    image:
+      image: ghcr.io/conductionnl/gateway-ui
+      tag: stag
+    organization: https://example.com
+    redirectUrl: vault
+
 replicacount: 1
 
 gateway:

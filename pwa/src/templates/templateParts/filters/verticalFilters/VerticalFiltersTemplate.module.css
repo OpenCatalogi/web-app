@@ -5,6 +5,8 @@
   padding-inline-end: var(--web-app-size-lg);
   padding-block-start: var(--web-app-size-lg);
   padding-block-end: var(--web-app-size-lg);
+
+  --denhaag-form-control-label-margin-block-end: var(--web-app-size-2xs);
 }
 
 .container > *:not(:last-child) {
@@ -32,14 +34,21 @@
   cursor: pointer;
 }
 
+.filterCountIndicator {
+  font-weight: var(--web-app-font-weight-normal);
+}
+
 .toggleIcon {
-  font-size: var(--web-app-font-size-lg);
-  transition: transform 200ms ease-in-out;
+  position: relative;
+  top: calc(var(--web-app-size-2xs) * -1);
+  font-size: var(--web-app-font-size-md);
+  transition: transform 100ms ease-in-out;
+  margin-inline-start: var(--web-app-size-xs);
 }
 
 .toggleIcon.active {
   font-size: var(--web-app-font-size-md);
-  transition: transform 200ms ease-in-out;
+  transition: transform 100ms ease-in-out;
 }
 
 .toggleIcon.isOpen {
@@ -59,24 +68,21 @@
   border-radius: 0;
 }
 
+.filterTitle {
+  display: block;
+  font-size: var(--web-app-font-size-md);
+  font-weight: var(--web-app-font-weight-bold);
+  margin-block-end: var(--web-app-size-xs);
+}
+
 .filterTitle:not(:last-child) {
-  display: flex;
   margin-inline-end: var(--web-app-size-2xs);
-}
-
-.trigger {
-  margin-block-end: 10px;
-}
-
-.test {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.test > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .checkColor {
   accent-color: var(--web-app-checkbox-color);
+}
+
+.radio {
+  margin-block-end: var(--web-app-size-2xs);
 }

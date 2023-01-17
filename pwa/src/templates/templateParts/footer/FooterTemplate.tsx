@@ -174,7 +174,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                open("https://admin.opencatalogi.nl/");
+                open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
               }}
             >
               <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
