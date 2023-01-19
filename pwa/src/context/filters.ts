@@ -3,11 +3,13 @@ import * as React from "react";
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TLandingDisplayLayout = "layer" | "categories";
 export type TComponentDependenciesLayout = "layer" | "relations";
+export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
+  catagoryDisplayLayout: TCatagoryDisplayLayout;
   currentPage: number;
   applicationsCurrentPage: number;
 
@@ -35,6 +37,7 @@ export const filters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "categories",
+  catagoryDisplayLayout: "table",
   currentPage: 1,
   applicationsCurrentPage: 1,
 } as IFilters;

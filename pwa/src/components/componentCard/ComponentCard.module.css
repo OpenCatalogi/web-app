@@ -60,7 +60,9 @@
 }
 .interactionCategory,
 .interfaceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
+  --conduction-tag-background-color: var(
+    --web-app-layer-category-color-interaction
+  );
 }
 
 .processLayer,
@@ -69,7 +71,9 @@
   --conduction-tag-color: var(--web-app-color-white);
 }
 .processCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-process);
+  --conduction-tag-background-color: var(
+    --web-app-layer-category-color-process
+  );
 }
 
 .integrationLayer {
@@ -77,7 +81,9 @@
   --conduction-tag-color: var(--web-app-color-white);
 }
 .integrationCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
+  --conduction-tag-background-color: var(
+    --web-app-layer-category-color-integration
+  );
 }
 
 .servicesLayer,
@@ -88,7 +94,9 @@
 
 .servicesCategory,
 .serviceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-services);
+  --conduction-tag-background-color: var(
+    --web-app-layer-category-color-services
+  );
 }
 
 .dataLayer {
@@ -97,4 +105,9 @@
 }
 .dataCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-data);
+}
+
+.unknownLayer {
+  --conduction-tag-background-color: var(--web-app-color-top-nav-grey);
+  --conduction-tag-color: var(--web-app-color-white);
 }

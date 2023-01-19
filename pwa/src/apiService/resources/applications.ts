@@ -30,4 +30,5 @@ const deletes = [
   { name: "resultDisplayLayout" },
   { name: "dependenciesDisplayLayout" },
   { name: "landingDisplayLayout" },
+  { name: "catagoryDisplayLayout" },
 ];
