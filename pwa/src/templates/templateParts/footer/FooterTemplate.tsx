@@ -23,6 +23,27 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
+  const setNewFilters = (newFilter: object) =>
+    setFilters({
+      ...filters,
+      _search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+      "url.organisation.name": "",
+      ...newFilter,
+    });
+
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
@@ -32,7 +53,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, softwareType: "process" });
+                setNewFilters({ softwareType: "process" });
                 navigate("/components");
               }}
             >
@@ -43,7 +64,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, softwareType: "schema" });
+                setNewFilters({ softwareType: "schema" });
                 navigate("/components");
               }}
             >
@@ -54,7 +75,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, softwareType: "api" });
+                setNewFilters({ softwareType: "api" });
                 navigate("/components");
               }}
             >
@@ -65,7 +86,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, developmentStatus: "concept" });
+                setNewFilters({ developmentStatus: "concept" });
                 navigate("/components");
               }}
             >
