@@ -16,6 +16,14 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
   const AccordionCardsController = CategoriesAccordion.controller;
   const { t } = useTranslation();
 
+  const controlRef: any = React.useRef();
+  const developmentRef: any = React.useRef();
+  const surveillanceRef: any = React.useRef();
+  const directingRef: any = React.useRef();
+  const customerAndChainInteractionRef: any = React.useRef();
+  const executionRef: any = React.useRef();
+  const supportRef: any = React.useRef();
+
   const { open: openControl, setOpen: setOpenControl } = AccordionCardsController();
   const { open: openDevelopment, setOpen: setOpenDevelopment } = AccordionCardsController();
   const { open: openSurveillance, setOpen: setOpenSurveillance } = AccordionCardsController();
@@ -24,6 +32,14 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
     AccordionCardsController();
   const { open: openExecution, setOpen: setOpenExecution } = AccordionCardsController();
   const { open: openSupport, setOpen: setOpenSupport } = AccordionCardsController();
+
+  const viewControl = () => controlRef.current.scrollIntoView();
+  const viewDevelopment = () => developmentRef.current.scrollIntoView();
+  const viewSurveillance = () => surveillanceRef.current.scrollIntoView();
+  const viewDirecting = () => directingRef.current.scrollIntoView();
+  const viewCustomerAndChainInteraction = () => customerAndChainInteractionRef.current.scrollIntoView();
+  const viewExecution = () => executionRef.current.scrollIntoView();
+  const viewSupport = () => supportRef.current.scrollIntoView();
 
   const Control = categories.filter((category) => {
     return t(_.upperFirst(category.domain)) === t("Control");
@@ -51,41 +67,41 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
     <>
       <CategoriesAccordionFiltersTemplate
         items={[
-          { label: t("Control"), handleClick: setOpenControl, active: openControl, disabled: !Control.length },
+          { label: t("Control"), handleClick: viewControl, active: openControl, disabled: !Control.length },
           {
             label: t("Development"),
-            handleClick: setOpenDevelopment,
+            handleClick: viewDevelopment,
             active: openDevelopment,
             disabled: !Development.length,
           },
           {
             label: t("Surveillance"),
-            handleClick: setOpenSurveillance,
+            handleClick: viewSurveillance,
             active: openSurveillance,
             disabled: !Surveillance.length,
           },
           {
             label: t("Directing"),
-            handleClick: setOpenDirecting,
+            handleClick: viewDirecting,
             active: openDirecting,
             disabled: !Directing.length,
           },
           {
             label: t("Customer and chain interaction"),
-            handleClick: setOpenCustomerAndChainInteraction,
+            handleClick: viewCustomerAndChainInteraction,
             active: openCustomerAndChainInteraction,
             disabled: !CustomerAndChainInteraction.length,
           },
           {
             label: t("Execution"),
-            handleClick: setOpenExecution,
+            handleClick: viewExecution,
             active: openExecution,
             disabled: !Execution.length,
           },
-          { label: t("Support"), handleClick: setOpenSupport, active: openSupport, disabled: !support.length },
+          { label: t("Support"), handleClick: viewSupport, active: openSupport, disabled: !support.length },
         ]}
       />
-      <div id="Control">
+      <div id="Control" ref={controlRef}>
         <Accordion
           open={openControl}
           setOpen={setOpenControl}
@@ -101,7 +117,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Development">
+      <div id="Development" ref={developmentRef}>
         <Accordion
           open={openDevelopment}
           setOpen={setOpenDevelopment}
@@ -117,7 +133,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Surveillance">
+      <div id="Surveillance" ref={surveillanceRef}>
         <Accordion
           open={openSurveillance}
           setOpen={setOpenSurveillance}
@@ -133,7 +149,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Directing">
+      <div id="Directing" ref={directingRef}>
         <Accordion
           open={openDirecting}
           setOpen={setOpenDirecting}
@@ -149,7 +165,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Customer and chain interaction">
+      <div id="Customer and chain interaction" ref={customerAndChainInteractionRef}>
         <Accordion
           open={openCustomerAndChainInteraction}
           setOpen={setOpenCustomerAndChainInteraction}
@@ -165,7 +181,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Execution">
+      <div id="Execution" ref={executionRef}>
         <Accordion
           open={openExecution}
           setOpen={setOpenExecution}
@@ -181,7 +197,7 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
         </Accordion>
       </div>
 
-      <div id="Support">
+      <div id="Support" ref={supportRef}>
         <Accordion
           open={openSupport}
           setOpen={setOpenSupport}
