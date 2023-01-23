@@ -13,7 +13,7 @@ import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { ComponentCard } from "../../components/componentCard/ComponentCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup, faTags } from "@fortawesome/free-solid-svg-icons";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 
 interface CategoriesDetailTemplateProps {
@@ -58,15 +58,19 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
         <div className={styles.solutions}>
           <div className={styles.viewButtons}>
             <Button
+              className={styles.buttonIcon}
               variant={viewType === "cards" ? "primary-action" : "secondary-action"}
               onClick={() => setViewType("cards")}
             >
+              <FontAwesomeIcon icon={faGripVertical} />
               {t("Cards")}
             </Button>
             <Button
+              className={styles.buttonIcon}
               variant={viewType === "layers" ? "primary-action" : "secondary-action"}
               onClick={() => setViewType("layers")}
             >
+              <FontAwesomeIcon icon={faLayerGroup} />
               {t("Layers")}
             </Button>
           </div>
