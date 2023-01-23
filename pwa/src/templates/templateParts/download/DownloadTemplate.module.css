@@ -20,3 +20,7 @@
   z-index: 500;
   display: block;
 }
+
+.downloadName > div :not(:last-child) :not(:first-child) {
+  max-width: 150px;
+}

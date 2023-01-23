@@ -4,4 +4,13 @@
 
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.description {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.codeBlockContent {
+  word-break: break-word;
 }

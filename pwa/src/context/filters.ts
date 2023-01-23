@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
-export type TLandingDisplayLayout = "layer" | "cards";
+export type TLandingDisplayLayout = "layer" | "categories";
 export type TComponentDependenciesLayout = "layer" | "relations";
 
 export interface IFilters {
@@ -9,8 +9,9 @@ export interface IFilters {
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
   currentPage: number;
+  applicationsCurrentPage: number;
 
-  search?: string;
+  _search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];
@@ -24,13 +25,18 @@ export interface IFilters {
   "maintenance.type"?: string;
   "legal.license"?: string;
   "legal.mainCopyrightOwner"?: string;
+  "url.organisation.name"?: string;
+
+  showMoreControl?: boolean;
+  showMoreSupport?: boolean;
 }
 
 export const filters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
-  landingDisplayLayout: "layer",
+  landingDisplayLayout: "categories",
   currentPage: 1,
+  applicationsCurrentPage: 1,
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);

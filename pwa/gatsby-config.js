@@ -23,8 +23,12 @@ module.exports = {
         excludeOptions: {
           separator: ".",
         },
-        autoGenHomeLabel: "Open Catalogi",
+        autoGenHomeLabel: "OpenCatalogi",
         crumbLabelUpdates: [
+          {
+            pathname: "/components",
+            crumbLabel: "Components overview",
+          },
           {
             pathname: "/components/[componentId]",
             crumbLabel: "Component",
@@ -32,6 +36,18 @@ module.exports = {
           {
             pathname: "/organizations/[organizationId]",
             crumbLabel: "Organization",
+          },
+          {
+            pathname: "/categories/[categoryId]",
+            crumbLabel: "Category",
+          },
+          {
+            pathname: "/documentation/about",
+            crumbLabel: "Over OpenCatalogi",
+          },
+          {
+            pathname: "/applications/[applicationId]",
+            crumbLabel: "Application",
           },
         ],
       },

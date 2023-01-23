@@ -1,0 +1,34 @@
+.container {
+  white-space: nowrap;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.container > * {
+  align-items: center;
+  user-select: none;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+  padding-block-start: 10px;
+  padding-block-end: 10px;
+}
+
+.container > *.active {
+  font-weight: var(--web-app-font-weight-bold);
+}
+
+.container > *:hover {
+  cursor: pointer;
+}
+
+.container > .disabled:hover {
+  cursor: no-drop;
+}
+
+.container .disabled {
+  opacity: var(--web-app-layer-accordion-disabled-opacity);
+}
+
+:not(.disabled).filter:not(.active) {
+  opacity: var(--web-app-layer-accordion-inactive-opacity);
+}

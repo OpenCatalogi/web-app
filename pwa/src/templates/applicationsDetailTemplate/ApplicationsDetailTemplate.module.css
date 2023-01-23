@@ -1,0 +1,61 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.container > .backButton {
+  margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.header {
+  display: flex;
+}
+
+.description {
+  margin-inline-end: var(--web-app-size-md);
+  flex-direction: column;
+  flex: 5;
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.layerAndCategoryContainer {
+  display: flex;
+  justify-self: end;
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.screenshotContainer {
+  max-height: 500px;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.screenshot {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.dependenciesDisplaySwitchButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}

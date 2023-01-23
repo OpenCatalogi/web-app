@@ -11,38 +11,22 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import { Container, Tag, BadgeCounter } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { QueryClient } from "react-query";
-import { useComponent } from "../../../hooks/components";
-import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_COMPONENTS } from "../../../data/components";
-import { RatingIndicatorTemplate } from "../../templateParts/ratingIndicator/RatingIndicatorTemplate";
-import { Tag } from "../../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleNodes,
-  faDatabase,
-  faHouse,
-  faInfoCircle,
-  faLayerGroup,
-  faRepeat,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleNodes, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../../components/toolTip/ToolTip";
-import { categories, TCategories } from "../../../data/categories";
+import { TCategories } from "../../../data/categories";
 import { categories as _categories } from "../../../data/filters";
-import { OrganizationCard } from "../../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { DownloadTemplate } from "../../templateParts/download/DownloadTemplate";
 
 interface AdminSourcesDetailTemplateProps {
   sourcesId: string;

@@ -11,7 +11,13 @@ import {
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
-import { Container, InfoCard, BadgeCounter } from "@conduction/components";
+import {
+  Container,
+  InfoCard,
+  BadgeCounter,
+  Tag,
+  NotificationPopUp as _NotificationPopUp,
+} from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -20,9 +26,7 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-de
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
-import { Tag } from "../../components/tag/Tag";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleNodes,
@@ -43,7 +47,7 @@ import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/Com
 import { FiltersContext } from "../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
-import { TEMPORARY_ORGANIZATIONS } from "../../data/organizations";
+import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 
 interface ComponentsDetailTemplateProps {
@@ -56,21 +60,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters, setFilters] = React.useContext(FiltersContext);
 
-  const TempComponentsDependencies = TEMPORARY_COMPONENTS.slice(1, 9);
-  const TempComponentsSchema = TEMPORARY_COMPONENTS.slice(0, 1);
-  const TempComponentsProcesses = TEMPORARY_COMPONENTS.slice(11, 15);
+  const NotificationPopUpController = _NotificationPopUp.controller;
+  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
+
+  const { isVisible, show, hide } = NotificationPopUpController();
 
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
-  const tempOrganization = TEMPORARY_ORGANIZATIONS;
-
-  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl.embedded.commonground.layerType));
-  const category =
+  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground.layerType));
+  const _categories =
     layer &&
-    categories[layer].find((category) => {
-      return category.value === _getComponent.data?.categories;
+    _getComponent.data?.categories.map((category: any) => {
+      return categories[layer]?.find((_category) => {
+        return _category.value === category;
+      });
     });
 
   if (_getComponent.isError) return <>Something went wrong...</>;
@@ -87,36 +92,47 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1>{_getComponent.data.name}</Heading1>
+              <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
-                {_getComponent.data.embedded.description.longDescription}
+                {_getComponent.data.embedded?.description.longDescription ?? t("No description available")}
               </LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
                   <Tag
                     layoutClassName={
-                      styles[_.camelCase(t(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} layer`))]
+                      styles[
+                        _.camelCase(t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType} layer`))
+                      ]
                     }
-                    label={t(_.upperFirst(_getComponent.data.embedded?.nl.embedded.commonground.layerType))}
+                    label={t(
+                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Onbekend"),
+                    )}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />
                 </ToolTip>
 
-                {_getComponent.data?.categories && category && (
-                  <ToolTip tooltip="Categorie">
-                    <Tag
-                      layoutClassName={
-                        styles[
-                          _.camelCase(`${_getComponent.data.embedded?.nl.embedded.commonground.layerType} category`)
-                        ]
-                      }
-                      label={_.upperFirst(category?.title)}
-                      icon={category?.icon}
-                    />
-                  </ToolTip>
-                )}
+                {_getComponent.data?.categories &&
+                  _categories &&
+                  _categories.map(
+                    (category: any) =>
+                      category && (
+                        <ToolTip tooltip="Categorie">
+                          <Tag
+                            layoutClassName={
+                              styles[
+                                _.camelCase(
+                                  `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
+                                )
+                              ]
+                            }
+                            label={_.upperFirst(category?.title)}
+                            icon={category?.icon}
+                          />
+                        </ToolTip>
+                      ),
+                  )}
               </div>
 
               <div className={styles.tags}>
@@ -135,7 +151,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </ToolTip>
 
-                {_getComponent.data.embedded?.legal.embedded?.repoOwner.name && (
+                {_getComponent.data?.embedded?.url?.embedded?.organisation?.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag
                       label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
@@ -154,7 +170,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </ToolTip>
                 )}
 
-                {_getComponent.data.embedded?.legal.license && (
+                {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
                     <Tag
                       label={_getComponent.data.embedded?.legal.license}
@@ -204,64 +220,52 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <InfoCard
               title=""
               content={
-                <RatingIndicatorTemplate
-                  layoutClassName={styles.ratingIndicatorContainer}
-                  component={_getComponent.data}
-                />
+                <>
+                  {_getComponent.data.embedded?.rating && (
+                    <>
+                      <RatingIndicatorTemplate
+                        layoutClassName={styles.ratingIndicatorContainer}
+                        maxRating={_getComponent.data.embedded?.rating?.maxRating}
+                        rating={_getComponent.data.embedded?.rating?.rating}
+                      />
+                      <span onClick={show} className={styles.link}>
+                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          Rating
+                        </Link>
+                      </span>
+                    </>
+                  )}
+                  {!_getComponent.data.embedded?.rating && (
+                    <div className={styles.noRatingStyle}>{t("No rating available")}</div>
+                  )}
+                </>
               }
               layoutClassName={styles.infoCard}
             />
+            {isVisible && (
+              <div className={styles.overlay}>
+                <NotificationPopUp
+                  {...{ hide, isVisible }}
+                  title="Rating"
+                  description={<RatingOverview getComponent={_getComponent} />}
+                  primaryButton={{
+                    label: t("Score calculation"),
+                    handleClick: () => {
+                      navigate("/documentation/about#score-calculation");
+                    },
+                  }}
+                  secondaryButton={{
+                    label: t("Close"),
+                    icon: <ArrowLeftIcon />,
+                    handleClick: () => {},
+                  }}
+                  layoutClassName={styles.popup}
+                />
+              </div>
+            )}
           </div>
 
-          <DownloadTemplate
-            label={_getComponent.data.name}
-            icon={<FontAwesomeIcon icon={faDatabase} />}
-            {...{ sizeKb }}
-          />
-
           <div>
-            <h2>Technische gegevens</h2>
-
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableHeader>Gemma</TableHeader>
-                  <TableCell>Op dit moment is er geen gemma data beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>{t("Products")}</TableHeader>
-                  <TableCell>
-                    {_getComponent.data.embedded.nl.upl &&
-                      _getComponent.data.embedded.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                            {product},
-                          </Link>
-                        </span>
-                      ))}
-                    {!_getComponent.data.embedded.nl.upl ||
-                      (!_getComponent.data.embedded.nl.upl.length && (
-                        <span>Op dit moment zijn er geen producten beschikbaar.</span>
-                      ))}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>Standaarden</TableHeader>
-                  <TableCell>Op dit moment zijn er geen standaarden beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableHeader>Wet en regelgeving</TableHeader>
-                  <TableCell>Op dit moment zijn er geen wetten en regelgevingen beschikbaar.</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-          <div>
-            <Heading2>Tabbladen</Heading2>
-
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
@@ -275,7 +279,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={_.toString(TempComponentsDependencies.length)}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
                     >
                       Componenten & Afhankelijkheden
                     </BadgeCounter>
@@ -287,7 +291,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter layoutClassName={styles.badgeLayout} number={_.toString(TempComponentsSchema.length)}>
+                    <BadgeCounter
+                      layoutClassName={styles.badgeLayout}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
+                    >
                       {t("Schema's")}
                     </BadgeCounter>
                   }
@@ -298,7 +305,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   label={
                     <BadgeCounter
                       layoutClassName={styles.badgeLayout}
-                      number={_.toString(TempComponentsProcesses.length)}
+                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
                     >
                       {t("Processes")}
                     </BadgeCounter>
@@ -332,11 +339,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                   <DependenciesTemplate
                     type={filters.dependenciesDisplayLayout}
-                    components={TempComponentsDependencies}
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                     mainComponent={{
                       id: componentId,
                       name: _getComponent.data.name,
-                      layer: _getComponent.data.embedded?.nl.embedded.commonground.layerType,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
                     }}
                   />
                 </div>
@@ -368,7 +375,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
                 {_getComponent.data?.usedBy[0] &&
-                  tempOrganization.map((organization) => (
+                  _getComponent.data?.usedBy.map((organization: any) => (
                     <OrganizationCard
                       key={organization.id}
                       title={{
@@ -395,15 +402,70 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="3">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsSchema} />
+                  <ComponentCardsAccordionTemplate
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                  />
                 </div>
               </TabPanel>
               <TabPanel className={styles.tabPanel} value="4">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={TempComponentsProcesses} />
+                  <ComponentCardsAccordionTemplate
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                  />
                 </div>
               </TabPanel>
             </TabContext>
+          </div>
+
+          <DownloadTemplate
+            label={_getComponent.data.name}
+            icon={<FontAwesomeIcon icon={faDatabase} />}
+            {...{ sizeKb }}
+          />
+
+          <div>
+            <h2 className={styles.title}>Meer informatie</h2>
+
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableHeader className={styles.title}>Gemma</TableHeader>
+                  <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
+                  <TableCell>
+                    {_getComponent.data.embedded?.nl?.upl &&
+                      _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
+                        <span
+                          key={idx}
+                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
+                        >
+                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                            {product},{" "}
+                          </Link>
+                        </span>
+                      ))}
+                    {!_getComponent.data.embedded?.nl?.upl ||
+                      (!_getComponent.data.embedded?.nl?.upl.length && (
+                        <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
+                      ))}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>Standaarden</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen standaarden beschikbaar.
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
+                  <TableCell className={styles.description}>
+                    Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </div>
         </>
       )}

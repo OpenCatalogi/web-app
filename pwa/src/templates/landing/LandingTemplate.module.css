@@ -7,12 +7,9 @@
 }
 
 .cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--web-app-size-lg);
-}
-
-.cards > * {
-  flex: 1;
 }
 
 .feedback {
@@ -42,4 +39,14 @@
 .filtersAndResultsContainer {
   display: flex;
   gap: var(--web-app-size-lg);
+}
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
 }

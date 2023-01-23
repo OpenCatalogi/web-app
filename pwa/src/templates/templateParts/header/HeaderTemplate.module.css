@@ -3,36 +3,46 @@
 }
 
 .headerTopBar {
+  display: none;
   background-color: var(--web-app-color-background-light);
 }
 .headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
-  box-shadow: 0px 10px 13px -14px #000000, 0px -10px 13px -14px #000000;
+  box-shadow: 0px 10px 13px -14px #000000;
 }
 
 .secondaryNavContainer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
 }
 
 .primaryNavContainer {
+  position: fixed;
+  width: 100%;
+  background-color: var(--web-app-color-background-page-top-bar);
+  box-shadow: 0px 10px 13px -14px #000000;
+  z-index: 1;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
 }
 
 .logoContainer {
-  display: flex;
   width: fit-content;
   height: var(--web-app-header-logo-container-height);
   border-radius: var(--web-app-header-logo-container-border-radius);
   padding: var(--web-app-header-logo-container-padding);
   background-color: var(--web-app-header-logo-container-background-color);
+}
+
+.logoDesktop {
+  display: none;
+}
+
+.logoMobile {
+  padding: var(--web-app-size-md);
 }
 
 .logoContainer > * {
@@ -58,10 +68,11 @@
 }
 
 .headerContent {
-  padding-block-start: var(--web-app-size-3xl);
+  padding-block-start: var(--web-app-size-4xl);
   padding-block-end: var(--web-app-size-3xl);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
+  width: auto !important;
 }
 
 .headerSearchForm {
@@ -70,8 +81,6 @@
 }
 
 .breadcrumbsContainer {
-  padding-inline-start: var(--web-app-size-sm);
-  padding-inline-end: var(--web-app-size-sm);
   padding-block-start: var(--web-app-size-sm);
   padding-block-end: var(--web-app-size-sm);
   --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
@@ -88,14 +97,80 @@
 }
 
 .title {
-  color: var(--web-app-color-black);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .subTitle {
-  color: var(--web-app-color-black);
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .searchFormContainer {
   width: 100%;
   max-width: 650px;
+}
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.denhaag-link__icon {
+  align-items: center;
+  display: inline-flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  vertical-align: text-top;
+  width: var(--web-app-size-md);
+}
+
+.denhaag-link--with-icon-start {
+  padding-inline-start: calc(var(--web-app-size-md) + var(--web-app-size-xs));
+}
+
+li .denhaag-link__icon {
+  left: 0;
+}
+
+@media only screen and (min-width: 992px) {
+  .logoContainer {
+    display: flex;
+  }
+
+  .logoDesktop {
+    display: block;
+  }
+
+  .logoMobile {
+    display: none;
+  }
+
+  .headerContainer {
+    padding-inline: 0;
+    padding-block-start: 0;
+  }
+
+  .headerTopBar {
+    display: block;
+  }
+
+  .primaryNavContainer {
+    position: unset;
+    top: unset;
+    left: unset;
+    width: auto;
+    background-color: unset;
+    box-shadow: unset;
+    z-index: unset;
+  }
+
+  .headerContainer {
+    padding-inline: var(--web-app-size-md);
+    background-color: var(--web-app-color-background-light);
+  }
+
+  .headerContent {
+    padding-block-start: var(--web-app-size-3xl);
+    padding-block-end: var(--web-app-size-3xl);
+  }
 }

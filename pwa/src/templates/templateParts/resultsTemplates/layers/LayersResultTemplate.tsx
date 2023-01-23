@@ -1,6 +1,4 @@
 import * as React from "react";
-import * as styles from "./LayersResultTemplate.module.css";
-
 import _ from "lodash";
 import { ComponentCardsAccordionTemplate } from "../../componentCardsAccordion/ComponentCardsAccordionTemplate";
 
@@ -9,5 +7,9 @@ interface LayersResultTemplateProps {
 }
 
 export const LayersResultTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
-  return <ComponentCardsAccordionTemplate components={components} />;
+  const _components = components.filter((component) => {
+    return component._self;
+  });
+
+  return <ComponentCardsAccordionTemplate components={_components} />;
 };

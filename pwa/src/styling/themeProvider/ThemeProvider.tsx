@@ -65,12 +65,14 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
           <FormFieldLabel>
             <span className={styles.label}>Thema aanpasssen:</span>
           </FormFieldLabel>
-          <SelectSingle
-            name="themeSwitcher"
-            defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
-            options={themes}
-            {...{ errors, control, register }}
-          />
+          <div className={styles.selectBorder}>
+            <SelectSingle
+              name="themeSwitcher"
+              defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
+              options={themes}
+              {...{ errors, control, register }}
+            />
+          </div>
         </FormFieldInput>
       </FormField>
     </div>

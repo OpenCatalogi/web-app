@@ -2,15 +2,15 @@ import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Link, Paragraph } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
-import { Tag } from "../tag/Tag";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ToolTip } from "../toolTip/ToolTip";
-import { categories, TCategories } from "../../data/categories";
+import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
+import { Tag } from "@conduction/components";
 
 export interface ComponentCardProps {
   title: {
@@ -19,22 +19,32 @@ export interface ComponentCardProps {
   };
   description: string;
   layer: TCategories;
-  category: {
-    label: string;
-    icon: JSX.Element;
-  };
+  categories: string[];
   tags: {
     status?: string;
     installations: string;
-    organization?: string;
+    organization: {
+      name: string;
+      website?: string;
+    };
     licence?: string;
     githubLink?: string;
   };
 }
 
-export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, category, description, tags }) => {
+export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, categories, description, tags }) => {
   const { t } = useTranslation();
-  const _category = _.sample(categories[layer]);
+
+  const _layer: TCategories = t(_.upperFirst(layer));
+
+  const __categories =
+    layer &&
+    categories.length &&
+    categories.map((category: any) => {
+      return _categories[_layer]?.find((_category: any) => {
+        return _category.value === category;
+      });
+    });
 
   return (
     <div className={styles.container}>
@@ -52,11 +62,15 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </ToolTip>
         </div>
         <div className={styles[_.camelCase(`${layer} category`)]}>
-          {_category && (
-            <ToolTip tooltip="Categorie">
-              <Tag label={_.upperFirst(_category?.title)} icon={_category?.icon} />
-            </ToolTip>
-          )}
+          {!!__categories &&
+            __categories.map(
+              (category: any) =>
+                category && (
+                  <ToolTip tooltip="Categorie">
+                    <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
+                  </ToolTip>
+                ),
+            )}
         </div>
       </div>
 
@@ -70,9 +84,18 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
         </ToolTip>
 
-        {tags.organization && (
+        {tags.organization.name && (
           <ToolTip tooltip="Organisatie">
-            <Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
+            {!tags.organization.website && (
+              <Tag label={tags.organization.name} icon={<FontAwesomeIcon icon={faHouse} />} />
+            )}
+            {tags.organization.website && (
+              <Tag
+                label={tags.organization.name}
+                icon={<FontAwesomeIcon icon={faHouse} />}
+                onClick={() => open(tags?.organization?.website)}
+              />
+            )}
           </ToolTip>
         )}
         {tags.licence && (

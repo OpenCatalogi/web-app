@@ -4,6 +4,8 @@ import Case from "./resources/case";
 import Component from "./resources/components";
 import Message from "./resources/message";
 import Organization from "./resources/organization";
+import Applications from "./resources/applications";
+import Search from "./resources/search";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -31,6 +33,20 @@ export default class APIService {
     return axios.create({
       //@ts-ignore
       baseURL: window.sessionStorage.getItem("GATSBY_API_URL"),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      ...authorization,
+    });
+  }
+
+  public get searchClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
+    return axios.create({
+      //@ts-ignore
+      baseURL: window.sessionStorage.getItem("GATSBY_SEARCH_URL"),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -77,6 +93,14 @@ export default class APIService {
 
   public get Organization(): Organization {
     return new Organization(this.apiClient);
+  }
+
+  public get Applications(): Applications {
+    return new Applications(this.apiClient);
+  }
+
+  public get Search(): Search {
+    return new Search(this.searchClient);
   }
 
   // Services

@@ -3,14 +3,14 @@ import * as styles from "./HeaderTemplate.module.css";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, PrimaryTopNav, Breadcrumbs } from "@conduction/components";
+import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
 import { FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
-import { isLoggedIn } from "../../../services/auth";
+import _ from "lodash";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -19,15 +19,17 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
   const {
     pageContext: {
       breadcrumb: { crumbs },
     },
-  } = React.useContext(GatsbyContext);
-  const {
     location: { pathname },
+    screenSize,
   } = React.useContext(GatsbyContext);
+
+  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
   const primaryTopNavItems = [
     {
@@ -38,45 +40,57 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       },
     },
     {
-      label: t("Software"),
-      current: pathname === "/components" && filters.softwareType === "standalone/desktop",
+      label: t("Categories"),
+      current: pathname.includes("/categories"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "standalone/desktop" });
-        navigate("/components");
+        navigate("/categories");
       },
     },
     {
-      label: t("Processes"),
-      current: pathname === "/components" && filters.softwareType === "process",
+      label: t("Applications"),
+      current: pathname.includes("/applications"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "process" });
-        navigate("/components");
+        navigate("/applications");
       },
     },
     {
-      label: t("Data models"),
-      current: pathname === "/components" && filters.softwareType === "schema",
+      label: t("Components"),
+      current: pathname.includes("/components"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "schema" });
         navigate("/components");
       },
-    },
-    {
-      label: t("API's"),
-      current: pathname === "/components" && filters.softwareType === "api",
-      handleClick: () => {
-        setFilters({ ...filters, softwareType: "api" });
-        navigate("/components");
-      },
+      subItems: [
+        {
+          label: t("Processes"),
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("process"),
+          handleClick: () => {
+            setFilters({ ...filters, "nl.commonground.layerType": ["process"] });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("Data models"),
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("data"),
+          handleClick: () => {
+            setFilters({ ...filters, "nl.commonground.layerType": ["data"] });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("API's"),
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("service"),
+          handleClick: () => {
+            setFilters({ ...filters, "nl.commonground.layerType": ["service"] });
+            navigate("/components");
+          },
+        },
+      ],
     },
     {
       label: t("Initiatives"),
-      current:
-        pathname === "/components" &&
-        filters.developmentStatus === "concept" &&
-        filters.softwareType === "standalone/web",
+      current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setFilters({ ...filters, developmentStatus: "concept", softwareType: "standalone/web" });
+        setFilters({ ...filters, developmentStatus: "concept" });
         navigate("/components");
       },
     },
@@ -85,16 +99,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       current: pathname.includes("/documentation"),
       subItems: [
         {
-          label: t("About Open Catalogi"),
+          label: t("About OpenCatalogi"),
           current: pathname === "/documentation/about",
           handleClick: () => navigate("/documentation/about"),
-        },
-        {
-          label: t("Installation"),
-          current: pathname === "/documentation/installation",
-          handleClick: () => {
-            navigate("/documentation/installation");
-          },
         },
         {
           label: t("Usage"),
@@ -104,69 +111,59 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           },
         },
         {
-          label: t("API"),
-          current: pathname === "/documentation/api",
+          label: t("Contact"),
+          current: pathname === "/documentation/contact",
           handleClick: () => {
-            navigate("#");
-          },
-        },
-        {
-          label: t("Standards"),
-          current: pathname === "/documentation/standards",
-          handleClick: () => {
-            navigate("/documentation/standards");
+            navigate("/documentation/contact");
           },
         },
       ],
     },
   ];
 
-  const authenticatedSecondaryTopNavItems = [
+  const secondaryTopNavItems = [
     {
-      label: "Dashboard",
-      current: pathname.includes("/admin"),
+      label: t("Login"),
+      current: pathname === "/login",
       handleClick: () => {
-        navigate("/admin");
-      },
-    },
-    {
-      label: t("Logout"),
-      handleClick: () => {
-        navigate("/logout");
+        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
 
-  const unauthenticatedSecondaryTopNavItems = [
-    {
-      label: t("Login"),
-      current: pathname === "/login",
-      handleClick: () => {
-        open("https://admin.opencatalogi.nl/");
-      },
-      icon: <FontAwesomeIcon icon={faCircleUser} />,
-    },
-  ];
+  React.useEffect(() => {
+    if (screenSize === "desktop") {
+      setTopNavItems(primaryTopNavItems);
+      return;
+    }
+
+    setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
+  }, [screenSize, pathname, crumbs]);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav
-            items={isLoggedIn() ? authenticatedSecondaryTopNavItems : unauthenticatedSecondaryTopNavItems}
-          />
+          <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
-      <div>
-        <div className={styles.headerMiddleBar}>
-          <Container layoutClassName={styles.primaryNavContainer}>
-            <div className={styles.logoContainer}>
-              <div onClick={() => navigate("/")} className={styles.organizationLogo}></div>
-            </div>
-            <PrimaryTopNav items={primaryTopNavItems} />
-          </Container>
-        </div>
+      <div className={styles.headerMiddleBar}>
+        <Container layoutClassName={styles.primaryNavContainer}>
+          <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
+            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+          </div>
+
+          <PrimaryTopNav
+            mobileLogo={
+              <div className={clsx(styles.logoContainer, styles.logoMobile)}>
+                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+              </div>
+            }
+            layoutClassName={styles.textColor}
+            items={topNavItems}
+          />
+        </Container>
       </div>
 
       {pathname === "/" && (
@@ -185,7 +182,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          <Breadcrumbs crumbs={crumbs} />
+          <Breadcrumbs crumbs={translatedCrumbs} />
         </Container>
       )}
     </header>

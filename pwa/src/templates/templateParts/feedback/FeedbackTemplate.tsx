@@ -13,10 +13,11 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <span className={styles.heading}>Wensen of feedback?</span>
 
-      <span>Iedereen die geïnteresseerd is in dit product kan de roadmap bekijken of zelf ideën aandragen.</span>
+      <span className={styles.description}>
+        Iedereen die geïnteresseerd is in dit product kan de roadmap bekijken of zelf ideën aandragen.
+      </span>
       <div className={styles.buttons}>
         <Button
-          className={styles.button}
           variant="secondary-action"
           onClick={() =>
             open(
@@ -28,7 +29,6 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
           Wens of opmerking indienen op GitHub
         </Button>
         <Button
-          className={styles.button}
           variant="secondary-action"
           onClick={() => open("https://github.com/orgs/OpenCatalogi/projects/1")}
           icon={<ExternalLinkIcon />}

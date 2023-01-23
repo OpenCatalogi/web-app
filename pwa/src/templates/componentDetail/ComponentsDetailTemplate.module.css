@@ -3,12 +3,14 @@
 }
 
 .container > .backButton {
+  display: none;
   margin-block-start: var(--web-app-size-2xl);
   margin-block-end: var(--web-app-size-sm);
 }
 
 .container > .headingContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-2xl);
 }
@@ -17,9 +19,18 @@
   flex: 5;
 }
 
+.componentName {
+  color: var(--web-app-color-text-grey) !important;
+  word-break: break-word;
+}
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
 .description {
   margin-block-start: var(--web-app-size-sm) !important;
   margin-block-end: var(--web-app-size-md) !important;
+  color: var(--web-app-color-text-grey) !important;
 }
 
 .layerAndCategoryContainer {
@@ -42,7 +53,7 @@
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  max-width: var(--web-app-component-detail-logo-width);
 }
 
 .logoContainer {
@@ -50,7 +61,7 @@
   width: var(--web-app-component-detail-logo-width);
   max-height: 255px;
   max-width: 300px;
-  display: flex;
+  display: none;
   justify-content: center;
 }
 
@@ -58,11 +69,6 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-}
-
-.cardsContainer {
-  display: flex;
-  gap: var(--web-app-size-xl);
 }
 
 .organizationCardContainer {
@@ -75,13 +81,17 @@
   align-items: center;
   flex: 5;
   background-color: var(--web-app-color-grey);
+  padding-block-end: 50px;
+  padding-block-start: 50px;
+  padding-inline-end: 50px;
+  padding-inline-start: 50px;
 }
 
 .infoCard {
   flex: 2;
 }
 .ratingIndicatorContainer {
-  max-height: var(--web-app-component-rating-indicator-max-height);
+  height: var(--web-app-component-rating-indicator-height);
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
@@ -130,56 +140,129 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.noRatingStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--web-app-component-rating-indicator-height);
+}
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--web-app-overlay-background);
+  z-index: 500;
+  display: block;
+}
+
+.popup {
+  position: fixed;
+  max-width: var(--web-app-download-popup-width);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  outline: 0;
+}
+
 .organizations {
   display: grid;
   gap: var(--web-app-size-lg);
   grid-template-columns: 1fr 1fr;
 }
 
+.cardsContainer {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cardsContainer > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+@media only screen and (min-width: 576px) {
+  .container > .headingContainer {
+    grid-template-columns: 2fr var(--web-app-component-detail-logo-width);
+  }
+
+  .logoContainer {
+    display: flex;
+  }
+
+  .container > .backButton {
+    display: block;
+  }
+
+  .cardsContainer {
+    display: flex;
+    gap: var(--web-app-size-xl);
+  }
+
+  .cardsContainer > :not(:last-child) {
+    margin-block-end: 0;
+  }
+
+  .noOrganizationCardAvailable {
+    padding-block-end: unset;
+    padding-block-start: unset;
+    padding-inline-end: unset;
+    padding-inline-start: unset;
+  }
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-interaction);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .interactionCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-interaction);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .processLayer,
 .processsLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-process);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-process);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .processCategory,
 .processsCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-process);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-process);
 }
 
 .integrationLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-integration);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-integration);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .integrationCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-integration);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .servicesLayer,
 .serviceLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-services);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-services);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-services);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-services);
 }
 
 .dataLayer {
-  --web-app-tag-background-color: var(--web-app-layer-color-data);
-  --web-app-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--web-app-layer-color-data);
+  --conduction-tag-color: var(--web-app-color-white);
 }
 .dataCategory {
-  --web-app-tag-background-color: var(--web-app-layer-category-color-data);
+  --conduction-tag-background-color: var(--web-app-layer-category-color-data);
 }

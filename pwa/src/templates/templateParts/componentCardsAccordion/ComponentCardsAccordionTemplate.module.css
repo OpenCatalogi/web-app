@@ -4,10 +4,25 @@
   layerColorIntegration: --web-app-layer-color-integration;
   layerColorServices: --web-app-layer-color-services;
   layerColorData: --web-app-layer-color-data;
+  layerColorUnknown: --web-app-color-top-nav-grey;
 }
 
 .ComponentsGrid {
-  display: grid;
-  grid-gap: var(--web-app-size-lg);
   grid-template-columns: 1fr 1fr;
+}
+
+.ComponentsGrid > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+@media only screen and (min-width: 576px) {
+  .ComponentsGrid {
+    display: grid;
+    grid-gap: var(--web-app-size-lg);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ComponentsGrid > :not(:last-child) {
+    margin-block-end: 0;
+  }
 }

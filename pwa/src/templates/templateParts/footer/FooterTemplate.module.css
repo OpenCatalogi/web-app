@@ -9,16 +9,13 @@
 }
 
 .navigation {
-  display: flex;
-}
-
-.navigation > * {
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .heading {
   font-weight: bold;
-  color: var(--web-app-color-footer-headings);
+  color: var(--web-app-color-footer-text) !important;
   margin-block-end: var(--web-app-size-lg);
   font-size: var(--web-app-font-size-lg);
 }
@@ -40,7 +37,7 @@
   width: fit-content;
   display: flex;
   justify-content: flex-start;
-  color: var(--web-app-color-footer-links);
+  color: var(--web-app-color-footer-text) !important;
 }
 
 .logosContainer {
@@ -72,4 +69,10 @@
   background-image: var(--web-app-footer-organization-logo-src);
   background-color: var(--web-app-footer-organization-logo-background-color);
   background-origin: content-box;
+}
+
+@media only screen and (min-width: 576px) {
+  .navigation {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

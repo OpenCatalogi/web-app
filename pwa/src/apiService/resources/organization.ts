@@ -26,6 +26,12 @@ export default class Organization {
     return data;
   };
 
+  public filtersGetAll = async (): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/organizations?extend[]=all&limit=24`);
+
+    return data;
+  };
+
   public getCount = async (filters: IFilters): Promise<any> => {
     const { data } = await Send(
       this._instance,
@@ -37,4 +43,8 @@ export default class Organization {
   };
 }
 
-const deletes = [{ name: "resultDisplayLayout" }];
+const deletes = [
+  { name: "resultDisplayLayout" },
+  { name: "dependenciesDisplayLayout" },
+  { name: "landingDisplayLayout" },
+];
