@@ -26,12 +26,28 @@
   margin-block-start: var(--web-app-size-xl);
 }
 
+.solutions > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.viewButtons {
+  display: flex;
+  justify-content: end;
+  gap: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
 .solutionsHeader {
   margin-block-end: var(--web-app-size-md);
 }
 
 .solutionsContent {
-  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--web-app-size-md);
 }
 
 .maxNumber {
@@ -40,4 +56,10 @@
 
 .title {
   color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .solutionsContent {
+    grid-template-columns: 1fr 1fr;
+  }
 }
