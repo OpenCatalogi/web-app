@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import { HavenLogo } from "../../../assets/svgs/Haven";
 import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
@@ -23,26 +23,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
-  const setNewFilters = (newFilters: any) => {
-    const resets = {
-      search: undefined,
-      softwareType: undefined,
-      developmentStatus: undefined,
-      platforms: [],
-      category: undefined,
-      "nl.commonground.layerType": [],
-      "nl.gemma.bedrijfsfuncties": [],
-      "nl.gemma.bedrijfsservices": [],
-      "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": undefined,
-      "nl.upl": [],
-      "maintenance.type": undefined,
-      "legal.license": undefined,
-      "legal.mainCopyrightOwner": undefined,
-    };
-    setFilters({ ...filters, ...resets, ...newFilters });
-  };
-
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
@@ -52,7 +32,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setNewFilters({ softwareType: "standalone/desktop" });
+                setFilters({ ...baseFilters, softwareType: "standalone/desktop" });
                 navigate("/components");
               }}
             >
@@ -63,7 +43,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setNewFilters({ softwareType: "process" });
+                setFilters({ ...baseFilters, softwareType: "process" });
                 navigate("/components");
               }}
             >
@@ -74,7 +54,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setNewFilters({ softwareType: "schema" });
+                setFilters({ ...baseFilters, softwareType: "schema" });
                 navigate("/components");
               }}
             >
@@ -85,7 +65,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setNewFilters({ softwareType: "api" });
+                setFilters({ ...baseFilters, softwareType: "api" });
                 navigate("/components");
               }}
             >
@@ -96,7 +76,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                setFilters({ ...filters, developmentStatus: "concept" });
+                setFilters({ ...baseFilters, developmentStatus: "concept" });
                 navigate("/components");
               }}
             >

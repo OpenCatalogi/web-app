@@ -26,13 +26,13 @@ export interface IFilters {
   "legal.mainCopyrightOwner"?: string;
 }
 
-export const filters = {
+export const baseFilters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "categories",
   currentPage: 1,
 } as IFilters;
 
-export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
+export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);
 
 export const FiltersProvider = FiltersContext.Provider;

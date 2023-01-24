@@ -4,7 +4,7 @@ import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
-import { FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
@@ -20,26 +20,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
-
-  const setNewFilters = (newFilters: any) => {
-    const resets = {
-      search: undefined,
-      softwareType: undefined,
-      developmentStatus: undefined,
-      platforms: [],
-      category: undefined,
-      "nl.commonground.layerType": [],
-      "nl.gemma.bedrijfsfuncties": [],
-      "nl.gemma.bedrijfsservices": [],
-      "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": undefined,
-      "nl.upl": [],
-      "maintenance.type": undefined,
-      "legal.license": undefined,
-      "legal.mainCopyrightOwner": undefined,
-    };
-    setFilters({ ...filters, ...resets, ...newFilters });
-  };
 
   const {
     pageContext: {
@@ -84,7 +64,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Processes"),
           current: pathname === "/components" && filters.softwareType === "process",
           handleClick: () => {
-            setNewFilters({ softwareType: "process" });
+            setFilters({ ...baseFilters, softwareType: "process" });
             navigate("/components");
           },
         },
@@ -92,7 +72,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Data models"),
           current: pathname === "/components" && filters.softwareType === "schema",
           handleClick: () => {
-            setNewFilters({ softwareType: "schema" });
+            setFilters({ ...baseFilters, softwareType: "schema" });
             navigate("/components");
           },
         },
@@ -100,7 +80,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("API's"),
           current: pathname === "/components" && filters.softwareType === "api",
           handleClick: () => {
-            setNewFilters({ softwareType: "api" });
+            setFilters({ ...baseFilters, softwareType: "api" });
             navigate("/components");
           },
         },
@@ -110,7 +90,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Initiatives"),
       current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setNewFilters({ developmentStatus: "concept" });
+        setFilters({ ...baseFilters, developmentStatus: "concept" });
         navigate("/components");
       },
     },
