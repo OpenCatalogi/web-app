@@ -103,53 +103,52 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 </ToolTip>
               </TableCell>
 
-                <TableCell>
-                  <ToolTip tooltip="Component Type">
-                    <Tag
-                      label={_.upperFirst(
+              <TableCell>
+                <ToolTip tooltip="Component Type">
+                  <Tag
+                    label={_.upperFirst(
+                      component.url?._self?.title ??
+                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
+                        ? component.softwareType ?? "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  />
+                </ToolTip>
+              </TableCell>
+
+              <TableCell>
+                <ToolTip tooltip="Status">
+                  <Tag
+                    layoutClassName={styles.tagWidth}
+                    label={t(
+                      _.upperFirst(
                         component.url?._self?.title ??
                           component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                          ? component.softwareType ?? "Onbekend"
+                          ? component.developmentStatus ?? "Onbekend"
                           : "N.V.T.",
-                      )}
-                    />
-                  </ToolTip>
-                </TableCell>
+                      ),
+                    )}
+                    icon={
+                      component.url?._self?.title ??
+                      component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                      ) : (
+                        <></>
+                      )
+                    }
+                  />
+                </ToolTip>
+              </TableCell>
 
-                <TableCell>
-                  <ToolTip tooltip="Status">
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={t(
-                        _.upperFirst(
-                          component.url?._self?.title ??
-                            component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                            ? component.developmentStatus ?? "Onbekend"
-                            : "N.V.T.",
-                        ),
-                      )}
-                      icon={
-                        component.url?._self?.title ??
-                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
-                          <FontAwesomeIcon icon={faInfoCircle} />
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
-                  </ToolTip>
-                </TableCell>
-
-                <TableCell
-                  onClick={() =>
-                    navigate(`/${getResultsUrl(component._self?.title ?? component.url._self.title)}/${component.id}`)
-                  }
-                >
-                  <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
-                    {t("Details")}
-                  </Link>
-                </TableCell>
-              )}
+              <TableCell
+                onClick={() =>
+                  navigate(`/${getResultsUrl(component._self?.title ?? component.url._self.title)}/${component.id}`)
+                }
+              >
+                <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
+                  {t("Details")}
+                </Link>
+              </TableCell>
 
               <TableCell
                 onClick={() =>
