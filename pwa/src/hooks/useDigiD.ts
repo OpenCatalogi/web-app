@@ -3,7 +3,7 @@ import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
 
 export const useDigiD = () => {
-  const API: APIService = React.useContext(APIContext);
+  const API: APIService | null = React.useContext(APIContext);
 
   const authenticate = () => {
     const params = new URLSearchParams(location.search);
@@ -13,7 +13,7 @@ export const useDigiD = () => {
 
     const JWT: string = window.atob(undecodedToken);
 
-    API.setAuthentication(JWT);
+    API?.setAuthentication(JWT);
     return true;
   };
 

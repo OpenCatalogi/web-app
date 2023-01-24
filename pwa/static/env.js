@@ -18,3 +18,7 @@ window.sessionStorage.setItem(
 window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "https://opencatalogi.nl");
 window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
 window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
+window.sessionStorage.setItem(
+  "ADMIN_DASHBOARD_URL",
+  "https://admin.opencatalogi.nl"
+);

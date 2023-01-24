@@ -18,7 +18,6 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organizations,
   categories,
   layers,
 } from "./../../../../data/filters";
@@ -41,7 +40,6 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const [layersArray, setLayersArray] = React.useState<any[]>([]);
   const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
@@ -78,18 +76,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     formState: { errors },
   } = useForm();
 
-  const addToLayerArray = (value: { label: string; value: string }) => {
-    !layersArray.some((item) => item.label === value.label) ? layersArray.push(value) : removeLayer(layersArray, value);
+  const handleLayerChange = (layer: any, e: any) => {
+    const currentFilters = filters["nl.commonground.layerType"] ?? [];
 
-    function removeLayer(newLayerArray: any[], value: any) {
-      const index = newLayerArray.findIndex((item) => item.label === value.label);
-      if (index > -1) {
-        newLayerArray.splice(index, 1);
-        setLayersArray(newLayerArray);
-      }
-      return newLayerArray;
+    if (e.target.checked) {
+      setFilters({ ...filters, "nl.commonground.layerType": [...currentFilters, layer.value] });
+
+      return; // added the layer to filters, no need to also remove an entry
     }
-    setLayerFilter();
+
+    setFilters({
+      ...filters,
+      "nl.commonground.layerType": currentFilters.filter((l) => l !== layer.value),
+    });
   };
 
   const addToPlatformsArray = (value: { label: string; value: string }) => {
@@ -106,13 +105,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       return newPlatformArray;
     }
     setPlatformFilter();
-  };
-
-  const setLayerFilter = () => {
-    setFilters({
-      ...filters,
-      "nl.commonground.layerType": layersArray?.map((l: any) => l.value),
-    });
   };
 
   const setPlatformFilter = () => {
@@ -161,6 +153,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
       organization: organizations && getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
+      interface: filters["nl.commonground.layerType"]?.includes("interface"),
+      process: filters["nl.commonground.layerType"]?.includes("process"),
+      integration: filters["nl.commonground.layerType"]?.includes("integration"),
+      service: filters["nl.commonground.layerType"]?.includes("service"),
+      data: filters["nl.commonground.layerType"]?.includes("data"),
     });
   }, [filters]);
 
@@ -279,7 +276,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           </div>
         }
         open={isOpen}
-        transitionTime={200}
+        transitionTime={100}
         onOpening={() => setIsOpen(true)}
         onClosing={() => setIsOpen(false)}
       >
@@ -295,7 +292,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>Laag ({layers.length}) </span>
+                    <span className={styles.filterTitle}>
+                      Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
+                    </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
                       icon={faChevronRight}
@@ -303,17 +302,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   </div>
                 }
                 open={isOpenLayer}
-                transitionTime={200}
+                transitionTime={100}
                 onOpening={() => setIsOpenLayer(true)}
                 onClosing={() => setIsOpenLayer(false)}
               >
                 <div>
                   {layers.map((layer) => (
-                    <div
-                      className={styles.checkColor}
-                      onChange={() => addToLayerArray({ label: layer.label, value: layer.value })}
-                    >
-                      <InputCheckbox label={layer.label} name={layer.label} {...{ errors, control, register }} />
+                    <div className={styles.checkColor} onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                      <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
                     </div>
                   ))}
                 </div>
@@ -324,7 +320,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>UPL ({upls.length})</span>
+                <span className={styles.filterTitle}>
+                  UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+                </span>
               </FormFieldLabel>
 
               <div className={styles.selectBorder}>
@@ -336,7 +334,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Organisatie ({organizations.length ?? "-"})</span>
+                <span className={styles.filterTitle}>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 {getOrganisations.isLoading && <Skeleton height="50px" />}
@@ -356,7 +356,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Categorie ({categories.length})</span>
+                <span className={styles.filterTitle}>
+                  Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
@@ -373,7 +375,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>Platforms ({platforms.length}) </span>
+                    <span className={styles.filterTitle}>
+                      Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                    </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
                       icon={faChevronRight}
@@ -381,7 +385,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   </div>
                 }
                 open={isOpenPlatforms}
-                transitionTime={200}
+                transitionTime={100}
                 onOpening={() => setIsOpenPlatforms(true)}
                 onClosing={() => setIsOpenPlatforms(false)}
               >
@@ -389,6 +393,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div
                     className={styles.checkColor}
                     onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
+                    key={platform.value}
                   >
                     <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
                   </div>
@@ -406,7 +411,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>Status ({statuses.length})</span>
+                    <span className={styles.filterTitle}>
+                      Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
+                    </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
                       icon={faChevronRight}
@@ -414,12 +421,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   </div>
                 }
                 open={isOpenStatus}
-                transitionTime={200}
+                transitionTime={100}
                 onOpening={() => setIsOpenStatus(true)}
                 onClosing={() => setIsOpenStatus(false)}
               >
                 {statuses.map((status) => (
-                  <div className={styles.checkColor} onChange={() => setStatusRadioFilter(status.value)}>
+                  <div
+                    className={clsx(styles.radio, styles.checkColor)}
+                    onChange={() => setStatusRadioFilter(status.value)}
+                    key={status.value}
+                  >
                     <input id={`checkbox${status.label}`} type="radio" value={status.value} name="status" />{" "}
                     {status.label}
                   </div>
@@ -437,7 +448,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>Onderhoudstypes ({maintenanceTypes.length})</span>
+                    <span className={styles.filterTitle}>
+                      Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
+                    </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
                       icon={faChevronRight}
@@ -445,14 +458,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   </div>
                 }
                 open={isOpenMaintenanceType}
-                transitionTime={200}
+                transitionTime={100}
                 onOpening={() => setIsOpenMaintenanceType(true)}
                 onClosing={() => setIsOpenMaintenanceType(false)}
               >
                 {maintenanceTypes.map((maintenanceType) => (
                   <div
-                    className={styles.checkColor}
+                    className={clsx(styles.radio, styles.checkColor)}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    key={maintenanceType.value}
                   >
                     <input
                       id={`checkbox${maintenanceType.label}`}
@@ -470,7 +484,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Licentie ({licenses.length})</span>
+                <span className={styles.filterTitle}>
+                  Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
@@ -481,7 +497,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Bedrijfsfuncties ({bedrijfsfuncties.length})</span>
+                <span className={styles.filterTitle}>
+                  Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
@@ -498,7 +516,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>Softwaretypes ({softwareTypes.length})</span>
+                    <span className={styles.filterTitle}>
+                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                    </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
                       icon={faChevronRight}
@@ -506,12 +526,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   </div>
                 }
                 open={isOpenSoftwareTypes}
-                transitionTime={200}
+                transitionTime={100}
                 onOpening={() => setIsOpenSoftwareTypes(true)}
                 onClosing={() => setIsOpenSoftwareTypes(false)}
               >
                 {softwareTypes.map((softwareType) => (
-                  <div className={styles.checkColor} onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                  <div
+                    className={clsx(styles.radio, styles.checkColor)}
+                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                    key={softwareType.value}
+                  >
                     <input
                       id={`checkbox${softwareType.label}`}
                       type="radio"
@@ -528,7 +552,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Bedrijfsservices ({bedrijfsservices.length})</span>
+                <span className={styles.filterTitle}>
+                  Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
@@ -539,7 +565,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>Referentie componenten ({referentieComponenten.length})</span>
+                <span className={styles.filterTitle}>
+                  Referentie componenten{" "}
+                  <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple

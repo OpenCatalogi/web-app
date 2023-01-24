@@ -42,6 +42,11 @@
 
 .results {
   flex: 3;
+
+  --utrecht-heading-4-font-weight: normal;
+  --utrecht-heading-4-font-size: var(--web-app-font-size-md);
+  --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
+  --utrecht-heading-4-distanced-margin-block-start: var(--web-app-size-2xs);
 }
 
 .results > *:not(:last-child) {

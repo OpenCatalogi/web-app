@@ -80,21 +80,18 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
           {filters.resultDisplayLayout === "table" && (
-            <Alert title="Let op!" text="Op deze pagina worden alle resultaten weergegeven." variant="info" />
+            <Alert title="Op deze pagina worden alle resultaten weergegeven" text="" variant="info" />
           )}
+
           {filters.resultDisplayLayout === "cards" && (
             <Alert
-              title="Let op!"
-              text="Op deze pagina staan alleen Applicaties, Organisaties en Componenten."
+              title="Op deze pagina staan alleen applicaties, organisaties en componenten"
+              text=""
               variant="info"
             />
           )}
           {filters.resultDisplayLayout === "layer" && (
-            <Alert
-              title="Let op!"
-              text="Op deze pagina staan alleen componenten. en als componenten een laag hebben"
-              variant="info"
-            />
+            <Alert title="Op deze pagina staan alleen componenten met een laag" text="" variant="info" />
           )}
 
           <ActiveFiltersTemplate />

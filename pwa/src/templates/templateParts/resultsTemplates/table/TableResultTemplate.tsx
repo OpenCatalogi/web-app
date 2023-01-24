@@ -44,65 +44,64 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
         <TableBody>
           {components.map((component) => (
-            <>
-              <TableRow
-                className={styles.tableRow}
-                key={component.id}
-                onClick={() => navigate(`/${getResultsUrl(component._self?.schema.ref)}/${component.id}`)}
-              >
-                <TableCell>
-                  <span className={styles.name}>{component.name}</span>
-                </TableCell>
-                <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
-                <TableCell>
-                  <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
-                    <ToolTip tooltip={t("Layer")}>
-                      <Tag
-                        layoutClassName={styles.tagWidth}
-                        label={t(
-                          _.upperFirst(
-                            component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                              ? component.nl?.commonground.layerType ?? t("Unknown")
-                              : "N.V.T.",
-                          ),
-                        )}
-                        icon={
-                          component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
-                            <FontAwesomeIcon icon={faLayerGroup} />
-                          ) : (
-                            <></>
-                          )
-                        }
-                      />
-                    </ToolTip>
-                  </div>
-                </TableCell>
-
-                <TableCell>
-                  <ToolTip tooltip={t("Sources")}>
+            <TableRow
+              className={styles.tableRow}
+              key={component.id}
+              onClick={() => navigate(`/${getResultsUrl(component._self?.schema.ref)}/${component.id}`)}
+            >
+              <TableCell>
+                <span className={styles.name}>{component.name}</span>
+              </TableCell>
+              <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
+              <TableCell>
+                <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
+                  <ToolTip tooltip={t("Layer")}>
                     <Tag
                       layoutClassName={styles.tagWidth}
-                      label={_.upperFirst(
-                        component.url?._self?.properties?.source
-                          ? component.url?._self?.properties?.source?.value !== null
-                            ? component.url?._self?.properties?.source?.value
-                            : "Onbekend"
-                          : "N.V.T.",
+                      label={t(
+                        _.upperFirst(
+                          component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
+                            ? component.nl?.commonground.layerType ?? t("Unknown")
+                            : "N.V.T.",
+                        ),
                       )}
                       icon={
-                        component.url?._self?.properties?.source?.value ? (
-                          component.url?._self?.properties?.source?.value === "github" ? (
-                            <GitHubLogo />
-                          ) : (
-                            <GitLabLogo />
-                          )
+                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
+                          <FontAwesomeIcon icon={faLayerGroup} />
                         ) : (
                           <></>
                         )
                       }
                     />
                   </ToolTip>
-                </TableCell>
+                </div>
+              </TableCell>
+
+              <TableCell>
+                <ToolTip tooltip={t("Sources")}>
+                  <Tag
+                    layoutClassName={styles.tagWidth}
+                    label={_.upperFirst(
+                      component.url?._self?.properties?.source
+                        ? component.url?._self?.properties?.source?.value !== null
+                          ? component.url?._self?.properties?.source?.value
+                          : "Onbekend"
+                        : "N.V.T.",
+                    )}
+                    icon={
+                      component.url?._self?.properties?.source?.value ? (
+                        component.url?._self?.properties?.source?.value === "github" ? (
+                          <GitHubLogo />
+                        ) : (
+                          <GitLabLogo />
+                        )
+                      ) : (
+                        <></>
+                      )
+                    }
+                  />
+                </ToolTip>
+              </TableCell>
 
                 <TableCell>
                   <ToolTip tooltip="Component Type">
@@ -150,8 +149,18 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     {t("Details")}
                   </Link>
                 </TableCell>
-              </TableRow>
-            </>
+              )}
+
+              <TableCell
+                onClick={() =>
+                  navigate(`/${getResultsUrl(component._self?.title ?? component.url._self.title)}/${component.id}`)
+                }
+              >
+                <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
+                  {t("Details")}
+                </Link>
+              </TableCell>
+            </TableRow>
           ))}
         </TableBody>
       </Table>

@@ -98,3 +98,11 @@
 .dataCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-data);
 }
+
+.unknownLayer {
+  --conduction-tag-background-color: var(--web-app-color-top-nav-grey);
+  --conduction-tag-color: var(--web-app-color-white);
+}
+.unknownCategory {
+  --conduction-tag-background-color: var(--web-app-color-top-nav-grey);
+}
