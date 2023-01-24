@@ -20,7 +20,7 @@ export default class Organization {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/organizations?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+      `/organizations?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
     );
 
     return data;
@@ -33,19 +33,8 @@ export default class Organization {
   };
 
   public getCount = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(
-      this._instance,
-      "GET",
-      `/organizations?limit=1${filtersToQueryParams(filters, deletes)}`,
-    );
+    const { data } = await Send(this._instance, "GET", `/organizations?limit=1${filtersToQueryParams(filters)}`);
 
     return data.total;
   };
 }
-
-const deletes = [
-  { name: "resultDisplayLayout" },
-  { name: "dependenciesDisplayLayout" },
-  { name: "landingDisplayLayout" },
-  { name: "catagoryDisplayLayout" },
-];

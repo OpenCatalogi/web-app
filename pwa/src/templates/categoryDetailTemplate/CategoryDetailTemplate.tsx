@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./CategoriesDetailTemplate.module.css";
+import * as styles from "./CategoryDetailTemplate.module.css";
 import { Button, Heading1, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
 import { BadgeCounter, Container, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
@@ -16,11 +16,11 @@ import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 
-interface CategoriesDetailTemplateProps {
+interface CategoryDetailTemplateProps {
   categoryId: string;
 }
 
-export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> = ({ categoryId }) => {
+export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
@@ -33,9 +33,8 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
       return domain.title === portfolio.domain;
     });
   const components = TEMPORARY_COMPONENTS;
-  const badgeNumber = components.results.length;
-  const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
-  const maxItems = badgeNumber > 100;
+  const componentCount = components.results.length;
+  const badgeLabel = componentCount < 100 ? _.toString(componentCount) : "99+";
 
   return (
     <Container layoutClassName={styles.container}>
@@ -83,7 +82,7 @@ export const CategoriesDetailTemplate: React.FC<CategoriesDetailTemplateProps> =
       {components && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            <span className={maxItems && styles.maxNumber}>
+            <span className={componentCount >= 100 && styles.maxNumber}>
               <BadgeCounter number={badgeLabel}>
                 <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
               </BadgeCounter>

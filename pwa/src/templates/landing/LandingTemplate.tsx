@@ -24,11 +24,11 @@ export const LandingTemplate: React.FC = () => {
         <div className={styles.landingDisplaySwitchButtons}>
           <Button
             className={styles.buttonIcon}
-            variant={filters.landingDisplayLayout === "categories" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, landingDisplayLayout: "categories" })}
+            variant={filters.landingDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
+            onClick={() => setFilters({ ...filters, landingDisplayLayout: "cards" })}
           >
             <FontAwesomeIcon icon={faTags} />
-            {t("Categories")}
+            {t("Cards")}
           </Button>
           <Button
             className={styles.buttonIcon}
