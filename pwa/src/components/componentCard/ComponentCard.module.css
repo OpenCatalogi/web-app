@@ -103,3 +103,6 @@
   --conduction-tag-background-color: var(--web-app-layer-color-unknown);
   --conduction-tag-color: var(--web-app-color-white);
 }
+.unknownCategory {
+  --conduction-tag-background-color: var(--web-app-layer-color-unknown);
+}

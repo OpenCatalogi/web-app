@@ -52,11 +52,13 @@
   gap: var(--web-app-size-2xl);
 }
 
-.standardsTableWrapper {
-  width: 100%;
-  overflow-x: auto;
-}
-
 .tableRow > td {
   min-width: 250px;
+}
+
+@media screen and (max-width: 1060px) {
+  .standardsTableWrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
 }

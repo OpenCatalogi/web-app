@@ -61,7 +61,8 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
             <Tag label={t(_.upperFirst(layer ?? "unknown"))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
           </ToolTip>
         </div>
-        <div className={styles[_.camelCase(`${layer} category`)]}>
+
+        <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
           {!!__categories &&
             __categories.map(
               (category: any) =>
@@ -84,7 +85,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
         </ToolTip>
 
-        {tags.organization.name && (
+        {tags.organization?.name && (
           <ToolTip tooltip="Organisatie">
             {!tags.organization.website && (
               <Tag label={tags.organization.name} icon={<FontAwesomeIcon icon={faHouse} />} />
