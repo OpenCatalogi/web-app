@@ -184,4 +184,10 @@
   --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
   --web-app-sidenav-item-font-weight: var(--web-app-font-weight-normal);
   --web-app-sidenav-item-font-size: var(--web-app-size-md);
+
+  /* @gemeent-denhaag: Alert */
+  --web-app-alert-info-background-color: #dbecfa;
+  --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
+  --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
+  --web-app-alert-info-icon-color: hsl(207 80% 35%);
 }

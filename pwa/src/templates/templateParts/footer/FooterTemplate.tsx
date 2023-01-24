@@ -23,23 +23,33 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
 
+  const setNewFilters = (newFilter: object) =>
+    setFilters({
+      ...filters,
+      _search: "",
+      softwareType: "",
+      developmentStatus: "",
+      platforms: [],
+      category: "",
+      "nl.commonground.layerType": [],
+      "nl.gemma.bedrijfsfuncties": [],
+      "nl.gemma.bedrijfsservices": [],
+      "nl.gemma.referentieComponenten": [],
+      "nl.gemma.applicatiefunctie": "",
+      "nl.upl": [],
+      "maintenance.type": "",
+      "legal.license": "",
+      "legal.mainCopyrightOwner": "",
+      "url.organisation.name": "",
+      ...newFilter,
+    });
+
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <ul className={styles.list}>
             <div className={styles.heading}>Componenten</div>
-
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "standalone/desktop" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("Software")}
-              </Link>
-            </li>
 
             <li
               onClick={() => {
@@ -185,7 +195,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                open("https://admin.opencatalogi.nl/");
+                open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
               }}
             >
               <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">

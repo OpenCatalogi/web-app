@@ -30,12 +30,17 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       volumes:
+          - name: tmpfs
+            emptyDir: {}
+          - name: tmpfs2
+            emptyDir: {}
           - name: env
             configMap:
                 name: {{ include "api-platform.fullname" . }}
                 items:
                     - key: "properties"
                       path: "env.js"
+
       containers:
         - name: {{ .Chart.Name }}-pwa
           securityContext:
@@ -46,9 +51,13 @@ spec:
               -   name: env
                   mountPath: "/usr/share/nginx/html/env.js"
                   subPath: "env.js"
+              -   mountPath: /var/cache/nginx/client_temp
+                  name: tmpfs
+              -   mountPath: /var/run
+                  name: tmpfs2
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:

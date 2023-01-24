@@ -2,8 +2,6 @@ export const nl = {
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
-  "A central place for re-use of information technology within government":
-    "Een centrale plek voor hergerbuik van informatie teschnologie binnen de overheid",
   "An initiative of": "Een initiatief van",
   "Privacy declaration": "Privacyverklaring",
   Interaction: "Interactie",
@@ -16,7 +14,7 @@ export const nl = {
   "All Open Catalog components": "Alle OpenCatalogi componenten",
   "View all components": "Bekijk alle componenten",
   "One central place for reuse of information technology within the government":
-    "Eén centrale plek voor hergebruik van informatie technologie binnen de overheid",
+    "Eén centrale plek voor hergebruik van informatietechnologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",
   "Back to components": "Terug naar componenten",
   "View component on GitHub": "Bekijk dit component op GitHub",
@@ -66,7 +64,7 @@ export const nl = {
   Documentation: "Documentatie",
   Warning: "Waarschuwing",
   "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
-    "Dit bestand is afkomstig van een 3de partij en kan mogelijk schadelijk zijn voor je pc. Weet je zeker dat je dit wilt downloaden?",
+    "Dit bestand is afkomstig van een derde partij en kan schadelijk zijn voor uw computer. Weet u zeker dat u dit wilt downloaden",
   "Go back": "Ga terug",
   Version: "Versie",
   "Management organization": "Beheerorganisatie",
@@ -98,4 +96,8 @@ export const nl = {
   "Customer and chain interaction": "Klant en keteninteractie",
   Execution: "Uitvoering",
   "Components overview": "Componenten overzicht",
+  Application: "Applicatie",
+  Sources: "Bronnen",
+  "No description available": "Geen beschrijving beschikbaar",
+  "Search term": "Zoekterm",
 };

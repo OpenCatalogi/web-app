@@ -1,0 +1,30 @@
+.activeFiltersHeader {
+  display: flex;
+}
+
+.activeFiltersHeader {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.activeFiltersHeader > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.removeActiveFiltersButton:hover {
+  cursor: pointer;
+
+  --conduction-tag-background-color: #ffbdad;
+}
+
+.activeFilters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activeFilters > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.activeFilters > div {
+  margin-block-end: var(--web-app-size-xs);
+}

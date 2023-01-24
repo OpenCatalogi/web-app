@@ -9,8 +9,9 @@ export interface IFilters {
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
   currentPage: number;
+  applicationsCurrentPage: number;
 
-  search?: string;
+  _search?: string;
   softwareType?: string;
   developmentStatus?: string;
   platforms?: string[];
@@ -24,6 +25,10 @@ export interface IFilters {
   "maintenance.type"?: string;
   "legal.license"?: string;
   "legal.mainCopyrightOwner"?: string;
+  "url.organisation.name"?: string;
+
+  showMoreControl?: boolean;
+  showMoreSupport?: boolean;
 }
 
 export const baseFilters = {
@@ -31,6 +36,7 @@ export const baseFilters = {
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "categories",
   currentPage: 1,
+  applicationsCurrentPage: 1,
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);

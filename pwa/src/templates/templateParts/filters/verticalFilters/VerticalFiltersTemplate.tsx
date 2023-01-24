@@ -3,7 +3,7 @@ import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { SelectMultiple, SelectSingle } from "@conduction/components";
+import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
@@ -18,28 +18,53 @@ import {
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
-  organizations,
   categories,
+  layers,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
 } from "../../../../services/getSelectedItemsFromFilters";
-import { layers } from "../../../../data/filters";
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../../context/gatsby";
+import { useOrganization } from "../../../../hooks/organization";
+import { QueryClient } from "react-query";
+import Skeleton from "react-loading-skeleton";
 
 interface VerticalFiltersTemplateProps {
+  filterSet: any[];
   layoutClassName?: string;
 }
 
-export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ layoutClassName }) => {
+export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
+  const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
+  const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
+  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
+
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+  const [isOpenLayer, setIsOpenLayer] = React.useState<boolean>(true);
+  const [isOpenStatus, setIsOpenStatus] = React.useState<boolean>(true);
+  const [isOpenMaintenanceType, setIsOpenMaintenanceType] = React.useState<boolean>(true);
+  const [isOpenPlatforms, setIsOpenPlatforms] = React.useState<boolean>(true);
+  const [isOpenSoftwareTypes, setIsOpenSoftwareTypes] = React.useState<boolean>(true);
+
   const { screenSize } = React.useContext(GatsbyContext);
+
+  const queryClient = new QueryClient();
+  const _useOrganisation = useOrganization(queryClient);
+  const getOrganisations = _useOrganisation.filtersGetAll();
+
+  const organizations =
+    getOrganisations.isSuccess &&
+    getOrganisations.data?.results?.map((organisation: any) => ({
+      label: organisation.name,
+      value: organisation.name,
+    }));
 
   React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
@@ -50,6 +75,65 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     control,
     formState: { errors },
   } = useForm();
+
+  const handleLayerChange = (layer: any, e: any) => {
+    const currentFilters = filters["nl.commonground.layerType"] ?? [];
+
+    if (e.target.checked) {
+      setFilters({ ...filters, "nl.commonground.layerType": [...currentFilters, layer.value] });
+
+      return; // added the layer to filters, no need to also remove an entry
+    }
+
+    setFilters({
+      ...filters,
+      "nl.commonground.layerType": currentFilters.filter((l) => l !== layer.value),
+    });
+  };
+
+  const addToPlatformsArray = (value: { label: string; value: string }) => {
+    !platformsArray.some((item) => item.label === value.label)
+      ? platformsArray.push(value)
+      : removePlatform(platformsArray, value);
+
+    function removePlatform(newPlatformArray: any[], value: any) {
+      const index = newPlatformArray.findIndex((item) => item.label === value.label);
+      if (index > -1) {
+        newPlatformArray.splice(index, 1);
+        setPlatformsArray(newPlatformArray);
+      }
+      return newPlatformArray;
+    }
+    setPlatformFilter();
+  };
+
+  const setPlatformFilter = () => {
+    setFilters({
+      ...filters,
+      platforms: platformsArray?.map((l: any) => l.value),
+    });
+  };
+
+  React.useEffect(() => {
+    setFilters({
+      ...filters,
+      developmentStatus: statusRadioFilter,
+    });
+  }, [statusRadioFilter]);
+
+  React.useEffect(() => {
+    setFilters({
+      ...filters,
+      "maintenance.type": maintenanceTypeRadioFilter,
+    });
+  }, [maintenanceTypeRadioFilter]);
+
+  React.useEffect(() => {
+    setFilters({
+      ...filters,
+      softwareType: softwareTypeRadioFilter,
+    });
+  }, [softwareTypeRadioFilter]);
 
   React.useEffect(() => {
     reset({
@@ -68,14 +152,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organization: getSelectedItemFromFilters(organizations, filters["legal.mainCopyrightOwner"]),
+      organization: organizations && getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
+      interface: filters["nl.commonground.layerType"]?.includes("interface"),
+      process: filters["nl.commonground.layerType"]?.includes("process"),
+      integration: filters["nl.commonground.layerType"]?.includes("integration"),
+      service: filters["nl.commonground.layerType"]?.includes("service"),
+      data: filters["nl.commonground.layerType"]?.includes("data"),
     });
   }, [filters]);
 
   React.useEffect(() => {
     const subscription = watch(
       ({
-        layerType,
         upl,
         platforms,
         category,
@@ -92,7 +180,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         setFilters({
           ...filters,
           currentPage: 1,
-          "nl.commonground.layerType": layerType?.map((l: any) => l.value),
           platforms: platforms?.map((p: any) => p.value),
           category: category?.value,
           "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
@@ -103,14 +190,77 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           developmentStatus: status?.value,
           "maintenance.type": maintenanceType?.value,
           "legal.license": license?.value,
-          "legal.mainCopyrightOwner": organization?.value,
+          "url.organisation.name": organization?.value,
           "nl.upl": upl?.map((u: any) => u.value),
         });
       },
     );
 
     return () => subscription.unsubscribe();
-  });
+  }, [filterSet]);
+
+  //useEffects to uncheck checkboxes and radio
+
+  React.useEffect(() => {
+    const unsetLayerFilter = layers.filter(
+      (layer) => filters["nl.commonground.layerType"] && !filters["nl.commonground.layerType"].includes(layer.value),
+    );
+
+    unsetLayerFilter.map((layer: any) => {
+      var checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked === true) {
+        checkBox.click();
+      }
+    });
+  }, [filters["nl.commonground.layerType"]]);
+
+  React.useEffect(() => {
+    const unsetPlatformFilter = platforms.filter(
+      (platform) => filters.platforms && !filters.platforms.includes(platform.value),
+    );
+
+    unsetPlatformFilter.map((platform: any) => {
+      var checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked === true) {
+        checkBox.click();
+      }
+    });
+  }, [filters.platforms]);
+
+  React.useEffect(() => {
+    const unsetStatusFilter = statuses.filter((status) => filters.developmentStatus !== status.value);
+
+    unsetStatusFilter.map((status: any) => {
+      var checkBox = document.getElementById(`checkbox${status.label}`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked == true) {
+        checkBox.checked = false;
+      }
+    });
+  }, [filters.developmentStatus]);
+
+  React.useEffect(() => {
+    const unsetMaintenenceTypeFilter = maintenanceTypes.filter(
+      (maintenenceType) => filters["maintenance.type"] !== maintenenceType.value,
+    );
+
+    unsetMaintenenceTypeFilter.map((MaintenenceType: any) => {
+      var checkBox = document.getElementById(`checkbox${MaintenenceType.label}`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked == true) {
+        checkBox.checked = false;
+      }
+    });
+  }, [filters["maintenance.type"]]);
+
+  React.useEffect(() => {
+    const unsetSoftwareTypeFilter = softwareTypes.filter((softwareType) => filters.softwareType !== softwareType.value);
+
+    unsetSoftwareTypeFilter.map((SoftwareType: any) => {
+      var checkBox = document.getElementById(`checkbox${SoftwareType.label}`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked == true) {
+        checkBox.checked = false;
+      }
+    });
+  }, [filters.softwareType]);
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
@@ -126,7 +276,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           </div>
         }
         open={isOpen}
-        transitionTime={200}
+        transitionTime={100}
         onOpening={() => setIsOpen(true)}
         onClosing={() => setIsOpen(false)}
       >
@@ -135,21 +285,44 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         <form className={styles.form}>
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Laag</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <div className={styles.selectBorder}>
-                  <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />{" "}
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenLayer}
+                transitionTime={100}
+                onOpening={() => setIsOpenLayer(true)}
+                onClosing={() => setIsOpenLayer(false)}
+              >
+                <div>
+                  {layers.map((layer) => (
+                    <div className={styles.checkColor} onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                      <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                    </div>
+                  ))}
                 </div>
-              </div>
+              </Collapsible>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>UPL</span>
+                <span className={styles.filterTitle}>
+                  UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+                </span>
               </FormFieldLabel>
 
               <div className={styles.selectBorder}>
@@ -161,10 +334,21 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Organisatie</span>
+                <span className={styles.filterTitle}>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="organization" options={organizations} {...{ errors, control, register }} />
+                {getOrganisations.isLoading && <Skeleton height="50px" />}
+
+                {getOrganisations.isSuccess && (
+                  <SelectSingle
+                    isClearable
+                    options={organizations}
+                    name="organization"
+                    {...{ errors, control, register }}
+                  />
+                )}
               </div>
             </FormFieldInput>
           </FormField>
@@ -172,7 +356,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Categorie</span>
+                <span className={styles.filterTitle}>
+                  Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
@@ -182,62 +368,125 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Platforms</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <SelectMultiple name="platforms" options={platforms} {...{ errors, control, register }} />{" "}
-              </div>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenPlatforms}
+                transitionTime={100}
+                onOpening={() => setIsOpenPlatforms(true)}
+                onClosing={() => setIsOpenPlatforms(false)}
+              >
+                {platforms.map((platform) => (
+                  <div
+                    className={styles.checkColor}
+                    onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
+                    key={platform.value}
+                  >
+                    <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
+                  </div>
+                ))}
+              </Collapsible>
+            </FormFieldInput>
+          </FormField>
+
+          <FormField>
+            <FormFieldInput>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenStatus}
+                transitionTime={100}
+                onOpening={() => setIsOpenStatus(true)}
+                onClosing={() => setIsOpenStatus(false)}
+              >
+                {statuses.map((status) => (
+                  <div
+                    className={clsx(styles.radio, styles.checkColor)}
+                    onChange={() => setStatusRadioFilter(status.value)}
+                    key={status.value}
+                  >
+                    <input id={`checkbox${status.label}`} type="radio" value={status.value} name="status" />{" "}
+                    {status.label}
+                  </div>
+                ))}
+              </Collapsible>
+            </FormFieldInput>
+          </FormField>
+
+          <FormField>
+            <FormFieldInput>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenMaintenanceType}
+                transitionTime={100}
+                onOpening={() => setIsOpenMaintenanceType(true)}
+                onClosing={() => setIsOpenMaintenanceType(false)}
+              >
+                {maintenanceTypes.map((maintenanceType) => (
+                  <div
+                    className={clsx(styles.radio, styles.checkColor)}
+                    onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    key={maintenanceType.value}
+                  >
+                    <input
+                      id={`checkbox${maintenanceType.label}`}
+                      type="radio"
+                      value={maintenanceType.value}
+                      name="maintenanceType"
+                    />
+                    {maintenanceType.label}
+                  </div>
+                ))}
+              </Collapsible>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Status</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="status" options={statuses} {...{ errors, control, register }} />{" "}
-              </div>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Onderhoudstypes</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <SelectSingle
-                  isClearable
-                  name="maintenanceType"
-                  options={maintenanceTypes}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Softwaretypes</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <SelectSingle
-                  isClearable
-                  name="softwareType"
-                  options={softwareTypes}
-                  {...{ errors, control, register }}
-                />{" "}
-              </div>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Licentie</span>
+                <span className={styles.filterTitle}>
+                  Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
@@ -248,7 +497,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Bedrijfsfuncties</span>
+                <span className={styles.filterTitle}>
+                  Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
@@ -258,8 +509,52 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenSoftwareTypes}
+                transitionTime={100}
+                onOpening={() => setIsOpenSoftwareTypes(true)}
+                onClosing={() => setIsOpenSoftwareTypes(false)}
+              >
+                {softwareTypes.map((softwareType) => (
+                  <div
+                    className={clsx(styles.radio, styles.checkColor)}
+                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                    key={softwareType.value}
+                  >
+                    <input
+                      id={`checkbox${softwareType.label}`}
+                      type="radio"
+                      value={softwareType.value}
+                      name="softwareTypes"
+                    />{" "}
+                    {softwareType.label}
+                  </div>
+                ))}
+              </Collapsible>
+            </FormFieldInput>
+          </FormField>
+
+          <FormField>
+            <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Bedrijfsservices</span>
+                <span className={styles.filterTitle}>
+                  Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
@@ -270,28 +565,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.label}>Referentie componenten</span>
+                <span className={styles.filterTitle}>
+                  Referentie componenten{" "}
+                  <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
+                </span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple
                   name="referentieComponenten"
                   options={referentieComponenten}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormFieldLabel>
-                <span className={styles.label}>Applicatiefunctie</span>
-              </FormFieldLabel>
-              <div className={styles.selectBorder}>
-                <SelectSingle
-                  isClearable
-                  name="applicatiefunctie"
-                  options={applicatiefuncties}
                   {...{ errors, control, register }}
                 />
               </div>

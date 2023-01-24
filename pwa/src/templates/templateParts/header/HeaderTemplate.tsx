@@ -41,14 +41,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     {
       label: t("Categories"),
-      current: pathname === "/categories",
+      current: pathname.includes("/categories"),
       handleClick: () => {
         navigate("/categories");
       },
     },
     {
       label: t("Applications"),
-      current: pathname === "/applications",
+      current: pathname.includes("/applications"),
       handleClick: () => {
         navigate("/applications");
       },
@@ -62,25 +62,25 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       subItems: [
         {
           label: t("Processes"),
-          current: pathname === "/components" && filters.softwareType === "process",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("process"),
           handleClick: () => {
-            setFilters({ ...baseFilters, softwareType: "process" });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["process"] });
             navigate("/components");
           },
         },
         {
           label: t("Data models"),
-          current: pathname === "/components" && filters.softwareType === "schema",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("data"),
           handleClick: () => {
-            setFilters({ ...baseFilters, softwareType: "schema" });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["data"] });
             navigate("/components");
           },
         },
         {
           label: t("API's"),
-          current: pathname === "/components" && filters.softwareType === "api",
+          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("service"),
           handleClick: () => {
-            setFilters({ ...baseFilters, softwareType: "api" });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["service"] });
             navigate("/components");
           },
         },
@@ -126,7 +126,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        open("https://admin.opencatalogi.nl/");
+        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },

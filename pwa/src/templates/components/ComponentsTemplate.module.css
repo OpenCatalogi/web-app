@@ -42,6 +42,11 @@
 
 .results {
   flex: 3;
+
+  --utrecht-heading-4-font-weight: normal;
+  --utrecht-heading-4-font-size: var(--web-app-font-size-md);
+  --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
+  --utrecht-heading-4-distanced-margin-block-start: var(--web-app-size-2xs);
 }
 
 .results > *:not(:last-child) {
@@ -50,6 +55,62 @@
 
 .title {
   color: var(--web-app-color-text-grey) !important;
+}
+
+.paginationContainer {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.paginationContainer > *:not(:last-child) {
+  flex: 1;
+}
+
+.paginationLink {
+  font-size: var(--web-app-font-size-lg);
+}
+
+.paginationLinkSmall {
+  font-size: var(--web-app-font-size-md);
+}
+
+.paginationLink :hover {
+  cursor: pointer;
+  color: var(--web-app-color-link-active);
+}
+
+.paginationActivePage {
+  color: var(--web-app-color-link-active);
+  font-weight: var(--web-app-font-weight-bold);
+  font-size: var(--web-app-font-size-lg);
+}
+
+.paginationActivePageSmall {
+  color: var(--web-app-color-link-active);
+  font-weight: var(--web-app-font-weight-bold);
+  font-size: var(--web-app-font-size-md);
+}
+
+.paginationActivePage :hover {
+  cursor: default;
+}
+
+.paginationDisabled :hover {
+  cursor: unset !important;
+  color: var(--web-app-color-disabled);
+}
+
+.paginationDisabled {
+  color: var(--web-app-color-disabled);
+}
+
+.breakLink {
+  font-size: var(--web-app-font-size-lg);
+}
+.breakLink :hover {
+  cursor: default !important;
 }
 
 @media only screen and (min-width: 992px) {
@@ -63,5 +124,23 @@
   }
   .filtersAndResultsContainer {
     flex-direction: row;
+  }
+
+  .paginationContainer > *:not(:first-child) {
+    margin-inline-start: var(--web-app-size-xl);
+  }
+
+  .paginationContainer > *:not(:last-child) {
+    flex: unset !important;
+  }
+
+  .paginationLink {
+    font-size: var(--web-app-font-size-lg);
+  }
+
+  .paginationActivePage {
+    color: var(--web-app-color-link-active);
+    font-weight: var(--web-app-font-weight-bold);
+    font-size: var(--web-app-font-size-lg);
   }
 }
