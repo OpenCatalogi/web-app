@@ -17,6 +17,7 @@ import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -46,32 +47,7 @@ export const ComponentsTemplate: React.FC = () => {
         <div>
           <Heading2 className={styles.title}>Componenten</Heading2>
         </div>
-        <div className={styles.resultsDisplaySwitchButtons}>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "table" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "table" })}
-          >
-            <FontAwesomeIcon icon={faTable} />
-            {t("Table")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "cards" })}
-          >
-            <FontAwesomeIcon icon={faGripVertical} />
-            {t("Cards")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "layer" })}
-          >
-            <FontAwesomeIcon icon={faLayerGroup} />
-            {t("Layers")}
-          </Button>
-        </div>
+        <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
