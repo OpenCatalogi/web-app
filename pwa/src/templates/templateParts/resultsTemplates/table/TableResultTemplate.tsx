@@ -11,10 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { Tag } from "@conduction/components";
-import { GatsbyContext } from "../../../../context/gatsby";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
+import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 
 interface LayersResultTemplateProps {
@@ -24,20 +24,19 @@ interface LayersResultTemplateProps {
 
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <div className={styles.tableWrapper}>
+    <TableWrapper>
       <Table>
         {!hideTableHead && (
           <TableHead>
             <TableRow>
               <TableHeader>{t("Name")}</TableHeader>
-              <TableHeader>Type</TableHeader>
+              <TableHeader>{t("Type")}</TableHeader>
               <TableHeader>{t("Layer")}</TableHeader>
               <TableHeader>{t("Sources")}</TableHeader>
-              {screenSize !== "mobile" && <TableHeader>{t("ComponentType")}</TableHeader>}
-              {screenSize === "desktop" && <TableHeader>{t("Status")}</TableHeader>}
+              <TableHeader>{t("ComponentType")}</TableHeader>
+              <TableHeader>{t("Status")}</TableHeader>
               <TableHeader />
             </TableRow>
           </TableHead>
@@ -108,46 +107,42 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 </ToolTip>
               </TableCell>
 
-              {screenSize !== "mobile" && (
-                <TableCell>
-                  <ToolTip tooltip="Component Type">
-                    <Tag
-                      label={_.upperFirst(
+              <TableCell>
+                <ToolTip tooltip="Component Type">
+                  <Tag
+                    label={_.upperFirst(
+                      component.url?._self?.title ??
+                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
+                        ? component.softwareType ?? "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  />
+                </ToolTip>
+              </TableCell>
+
+              <TableCell>
+                <ToolTip tooltip="Status">
+                  <Tag
+                    layoutClassName={styles.tagWidth}
+                    label={t(
+                      _.upperFirst(
                         component.url?._self?.title ??
                           component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                          ? component.softwareType ?? "Onbekend"
+                          ? component.developmentStatus ?? "Onbekend"
                           : "N.V.T.",
-                      )}
-                    />
-                  </ToolTip>
-                </TableCell>
-              )}
-
-              {screenSize === "desktop" && (
-                <TableCell>
-                  <ToolTip tooltip="Status">
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={t(
-                        _.upperFirst(
-                          component.url?._self?.title ??
-                            component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                            ? component.developmentStatus ?? "Onbekend"
-                            : "N.V.T.",
-                        ),
-                      )}
-                      icon={
-                        component.url?._self?.title ??
-                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
-                          <FontAwesomeIcon icon={faInfoCircle} />
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
-                  </ToolTip>
-                </TableCell>
-              )}
+                      ),
+                    )}
+                    icon={
+                      component.url?._self?.title ??
+                      component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                      ) : (
+                        <></>
+                      )
+                    }
+                  />
+                </ToolTip>
+              </TableCell>
 
               <TableCell
                 onClick={() =>
@@ -162,6 +157,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
           ))}
         </TableBody>
       </Table>
-    </div>
+    </TableWrapper>
   );
 };
