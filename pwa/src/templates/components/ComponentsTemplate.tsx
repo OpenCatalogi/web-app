@@ -1,12 +1,10 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Alert, Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Alert, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -47,6 +45,7 @@ export const ComponentsTemplate: React.FC = () => {
         <div>
           <Heading2 className={styles.title}>Componenten</Heading2>
         </div>
+
         <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />
       </div>
 
