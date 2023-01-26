@@ -100,7 +100,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
             <DependenciesTemplate
               type={layerType}
-              components={components ?? []}
+              components={components.results ?? []}
               mainComponent={{
                 id: getApplications.data.id,
                 name: getApplications.data.name,
