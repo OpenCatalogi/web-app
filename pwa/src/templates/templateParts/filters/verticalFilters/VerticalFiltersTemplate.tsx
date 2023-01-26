@@ -251,17 +251,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   }, [filters["maintenance.type"]]);
 
-  React.useEffect(() => {
-    const unsetSoftwareTypeFilter = softwareTypes.filter((softwareType) => filters.softwareType !== softwareType.value);
-
-    unsetSoftwareTypeFilter.map((SoftwareType: any) => {
-      var checkBox = document.getElementById(`checkbox${SoftwareType.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters.softwareType]);
-
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <Collapsible
@@ -537,11 +526,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={softwareType.value}
                   >
                     <input
-                      id={`checkbox${softwareType.label}`}
                       type="radio"
                       value={softwareType.value}
-                      name="softwareTypes"
-                    />{" "}
+                      {...register("softwareTypes")}
+                      checked={filters.softwareType === softwareType.value}
+                    />
                     {softwareType.label}
                   </div>
                 ))}
