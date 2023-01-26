@@ -227,41 +227,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   }, [filters.platforms]);
 
-  React.useEffect(() => {
-    const unsetStatusFilter = statuses.filter((status) => filters.developmentStatus !== status.value);
-
-    unsetStatusFilter.map((status: any) => {
-      var checkBox = document.getElementById(`checkbox${status.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters.developmentStatus]);
-
-  React.useEffect(() => {
-    const unsetMaintenenceTypeFilter = maintenanceTypes.filter(
-      (maintenenceType) => filters["maintenance.type"] !== maintenenceType.value,
-    );
-
-    unsetMaintenenceTypeFilter.map((MaintenenceType: any) => {
-      var checkBox = document.getElementById(`checkbox${MaintenenceType.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters["maintenance.type"]]);
-
-  React.useEffect(() => {
-    const unsetSoftwareTypeFilter = softwareTypes.filter((softwareType) => filters.softwareType !== softwareType.value);
-
-    unsetSoftwareTypeFilter.map((SoftwareType: any) => {
-      var checkBox = document.getElementById(`checkbox${SoftwareType.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters.softwareType]);
-
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <Collapsible
@@ -431,7 +396,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <input id={`checkbox${status.label}`} type="radio" value={status.value} name="status" />{" "}
+                    <input
+                      type="radio"
+                      value={status.value}
+                      {...register("status")}
+                      checked={filters.developmentStatus === status.value}
+                    />
                     {status.label}
                   </div>
                 ))}
@@ -469,10 +439,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={maintenanceType.value}
                   >
                     <input
-                      id={`checkbox${maintenanceType.label}`}
                       type="radio"
                       value={maintenanceType.value}
-                      name="maintenanceType"
+                      {...register("maintenanceType")}
+                      checked={filters["maintenance.type"] === maintenanceType.value}
                     />
                     {maintenanceType.label}
                   </div>
@@ -537,11 +507,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={softwareType.value}
                   >
                     <input
-                      id={`checkbox${softwareType.label}`}
                       type="radio"
                       value={softwareType.value}
-                      name="softwareTypes"
-                    />{" "}
+                      {...register("softwareTypes")}
+                      checked={filters.softwareType === softwareType.value}
+                    />
                     {softwareType.label}
                   </div>
                 ))}

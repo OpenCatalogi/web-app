@@ -31,8 +31,7 @@ export default class APIService {
     const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
 
     return axios.create({
-      //@ts-ignore
-      baseURL: window.sessionStorage.getItem("GATSBY_API_URL"),
+      baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -45,8 +44,7 @@ export default class APIService {
     const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
 
     return axios.create({
-      //@ts-ignore
-      baseURL: window.sessionStorage.getItem("GATSBY_SEARCH_URL"),
+      baseURL: window.sessionStorage.getItem("GATSBY_SEARCH_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -57,8 +55,7 @@ export default class APIService {
 
   public get LoginClient(): AxiosInstance {
     return axios.create({
-      //@ts-ignore
-      baseURL: window.sessionStorage.getItem("GATSBY_API_URL"),
+      baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -68,8 +65,7 @@ export default class APIService {
 
   public get BaseClient(): AxiosInstance {
     return axios.create({
-      //@ts-ignore
-      baseURL: window.sessionStorage.getItem("GATSBY_BASE_URL"),
+      baseURL: window.sessionStorage.getItem("GATSBY_BASE_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
-export type TLandingDisplayLayout = "layer" | "cards";
 export type TComponentDependenciesLayout = "layer" | "relations";
+export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 
 export interface IFilters {
@@ -33,7 +33,7 @@ export interface IFilters {
   showMoreSupport?: boolean;
 }
 
-export const filters = {
+export const baseFilters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
@@ -42,6 +42,6 @@ export const filters = {
   applicationsCurrentPage: 1,
 } as IFilters;
 
-export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
+export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);
 
 export const FiltersProvider = FiltersContext.Provider;

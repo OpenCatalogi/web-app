@@ -1,44 +1,23 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Button, Divider, Heading3 } from "@gemeente-denhaag/components-react";
+import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
 import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
 import { FiltersContext } from "../../context/filters";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup, faTags } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 import { GatsbyContext } from "../../context/gatsby";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 
 export const LandingTemplate: React.FC = () => {
-  const { t } = useTranslation();
-
   const [filters, setFilters] = React.useContext(FiltersContext);
   const { screenSize } = React.useContext(GatsbyContext);
 
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <div className={styles.landingDisplaySwitchButtons}>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.landingDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, landingDisplayLayout: "cards" })}
-          >
-            <FontAwesomeIcon icon={faTags} />
-            {t("Cards")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.landingDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, landingDisplayLayout: "layer" })}
-          >
-            <FontAwesomeIcon icon={faLayerGroup} />
-            {t("Layers")}
-          </Button>
-        </div>
+        <ResultsDisplaySwitch resultsDisplayType="landingDisplayLayout" layoutClassName={styles.landingDisplaySwitchButtons} />
 
         <LandingDisplayTemplate type={filters.landingDisplayLayout} />
       </section>

@@ -7,7 +7,7 @@ import APIService from "../apiService/apiService";
 import { GatsbyProvider, IGatsbyContext, TScreenSize } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
-import { FiltersProvider, IFilters, filters as _filters } from "../context/filters";
+import { FiltersProvider, IFilters, baseFilters as _filters } from "../context/filters";
 import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";

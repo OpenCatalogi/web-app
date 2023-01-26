@@ -49,6 +49,7 @@ import { ComponentCardsAccordionTemplate } from "../templateParts/componentCards
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -316,26 +317,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <div className={styles.dependenciesDisplaySwitchButtons}>
-                    <Button
-                      className={styles.buttonIcon}
-                      variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
-                    >
-                      <FontAwesomeIcon icon={faLayerGroup} />
-                      {t("Layers")}
-                    </Button>
-                    <Button
-                      className={styles.buttonIcon}
-                      variant={
-                        filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"
-                      }
-                      onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
-                    >
-                      <FontAwesomeIcon icon={faCircleNodes} />
-                      {t("Relations")}
-                    </Button>
-                  </div>
+                  <ResultsDisplaySwitch
+                    resultsDisplayType="dependenciesDisplayLayout"
+                    layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                  />
 
                   <DependenciesTemplate
                     type={filters.dependenciesDisplayLayout}

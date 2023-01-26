@@ -4,7 +4,7 @@ import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
-import { FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
@@ -64,7 +64,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Processes"),
           current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("process"),
           handleClick: () => {
-            setFilters({ ...filters, "nl.commonground.layerType": ["process"] });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["process"] });
             navigate("/components");
           },
         },
@@ -72,7 +72,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("Data models"),
           current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("data"),
           handleClick: () => {
-            setFilters({ ...filters, "nl.commonground.layerType": ["data"] });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["data"] });
             navigate("/components");
           },
         },
@@ -80,7 +80,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           label: t("API's"),
           current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("service"),
           handleClick: () => {
-            setFilters({ ...filters, "nl.commonground.layerType": ["service"] });
+            setFilters({ ...baseFilters, "nl.commonground.layerType": ["service"] });
             navigate("/components");
           },
         },
@@ -90,7 +90,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Initiatives"),
       current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setFilters({ ...filters, developmentStatus: "concept" });
+        setFilters({ ...baseFilters, developmentStatus: "concept" });
         navigate("/components");
       },
     },
