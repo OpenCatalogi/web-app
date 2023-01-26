@@ -6,9 +6,9 @@ import clsx from "clsx";
 const TableWrapper: React.FC = ({ children }) => {
   const [tableIsScrollable, setTableIsScrollable] = React.useState<Boolean>(false);
   const [tableScrollPosition, setTableScrollPosition] = React.useState<"left" | "middle" | "right">("left");
-  const TableScrollWrapper = React.useRef();
+  const TableScrollWrapper = React.useRef<HTMLElement>() as React.MutableRefObject<HTMLElement>;
 
-  const isTableScrollable = () => TableScrollWrapper?.current?.scrollWidth > TableScrollWrapper?.current?.clientWidth;
+  const isTableScrollable = () => TableScrollWrapper.current.scrollWidth > TableScrollWrapper.current.clientWidth;
 
   React.useEffect(() => {
     TableScrollWrapper.current && setTableIsScrollable(isTableScrollable());
