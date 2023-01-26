@@ -11,7 +11,7 @@ import _ from "lodash";
 interface AcceptedFilters {
   resultDisplayLayout: ["table", "cards", "layer"];
   dependenciesDisplayLayout: ["layer", "relations"];
-  landingDisplayLayout: ["categories", "layer"];
+  landingDisplayLayout: ["layer", "cards"];
 }
 
 interface ResultsDisplaySwitchProps {
@@ -26,7 +26,7 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
   const acceptedFilters: AcceptedFilters = {
     resultDisplayLayout: ["table", "cards", "layer"],
     dependenciesDisplayLayout: ["layer", "relations"],
-    landingDisplayLayout: ["categories", "layer"],
+    landingDisplayLayout: ["layer", "cards"],
   };
 
   return (
@@ -38,7 +38,6 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         if (displayType === "cards") icon = faGripVertical;
         if (displayType === "layer") icon = faLayerGroup;
         if (displayType === "relations") icon = faCircleNodes;
-        if (displayType === "categories") icon = faCircleNodes;
 
         return (
           <Button
