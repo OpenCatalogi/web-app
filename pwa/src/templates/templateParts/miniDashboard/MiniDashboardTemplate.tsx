@@ -4,7 +4,7 @@ import { Link } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
-import { filters, FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useComponent } from "../../../hooks/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { navigate } from "gatsby";
@@ -16,9 +16,9 @@ interface MiniDashboardTemplateProps {
 export const MiniDashboardTemplate: React.FC<MiniDashboardTemplateProps> = ({ layoutClassName }) => {
   const _useComponent = useComponent(new QueryClient());
 
-  const _getSoftwareCount = _useComponent.getCount({ ...filters, softwareType: "standalone/desktop" });
-  const _getDataModelsCount = _useComponent.getCount({ ...filters, softwareType: "schema" });
-  const _getApiCount = _useComponent.getCount({ ...filters, softwareType: "api" });
+  const _getSoftwareCount = _useComponent.getCount({ ...baseFilters, softwareType: "standalone/desktop" });
+  const _getDataModelsCount = _useComponent.getCount({ ...baseFilters, softwareType: "schema" });
+  const _getApiCount = _useComponent.getCount({ ...baseFilters, softwareType: "api" });
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
@@ -43,7 +43,7 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
     <div
       className={styles.cardContainer}
       onClick={() => {
-        setFilters({ ...filters, softwareType: softwareType });
+        setFilters({ ...baseFilters, softwareType: softwareType });
         navigate("/components");
       }}
     >

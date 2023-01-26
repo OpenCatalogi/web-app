@@ -31,7 +31,7 @@ export interface IFilters {
   showMoreSupport?: boolean;
 }
 
-export const filters = {
+export const baseFilters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "categories",
@@ -39,6 +39,6 @@ export const filters = {
   applicationsCurrentPage: 1,
 } as IFilters;
 
-export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([filters, () => null]);
+export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);
 
 export const FiltersProvider = FiltersContext.Provider;

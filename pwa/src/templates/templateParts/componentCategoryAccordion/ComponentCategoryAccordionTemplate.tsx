@@ -4,7 +4,7 @@ import { categories, TCategories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { Button } from "@gemeente-denhaag/components-react";
-import { FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { navigate } from "gatsby";
 import _ from "lodash";
@@ -96,7 +96,7 @@ const Categories: React.FC<CategoriesProps> = ({ layer }) => {
           variant="secondary-action"
           icon={category.icon}
           onClick={() => {
-            setFilters({ ...filters, category: _.lowerCase(category?.value) });
+            setFilters({ ...baseFilters, category: _.lowerCase(category?.value) });
             navigate("/components");
           }}
         >
