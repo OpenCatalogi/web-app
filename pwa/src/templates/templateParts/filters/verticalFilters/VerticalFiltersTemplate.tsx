@@ -227,19 +227,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   }, [filters.platforms]);
 
-  React.useEffect(() => {
-    const unsetMaintenenceTypeFilter = maintenanceTypes.filter(
-      (maintenenceType) => filters["maintenance.type"] !== maintenenceType.value,
-    );
-
-    unsetMaintenenceTypeFilter.map((MaintenenceType: any) => {
-      var checkBox = document.getElementById(`checkbox${MaintenenceType.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters["maintenance.type"]]);
-
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <Collapsible
@@ -452,10 +439,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={maintenanceType.value}
                   >
                     <input
-                      id={`checkbox${maintenanceType.label}`}
                       type="radio"
                       value={maintenanceType.value}
-                      name="maintenanceType"
+                      {...register("maintenanceType")}
+                      checked={filters["maintenance.type"] === maintenanceType.value}
                     />
                     {maintenanceType.label}
                   </div>
