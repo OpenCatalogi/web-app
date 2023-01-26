@@ -228,17 +228,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.platforms]);
 
   React.useEffect(() => {
-    const unsetStatusFilter = statuses.filter((status) => filters.developmentStatus !== status.value);
-
-    unsetStatusFilter.map((status: any) => {
-      var checkBox = document.getElementById(`checkbox${status.label}`) as HTMLInputElement | null;
-      if (checkBox && checkBox.checked == true) {
-        checkBox.checked = false;
-      }
-    });
-  }, [filters.developmentStatus]);
-
-  React.useEffect(() => {
     const unsetMaintenenceTypeFilter = maintenanceTypes.filter(
       (maintenenceType) => filters["maintenance.type"] !== maintenenceType.value,
     );
@@ -420,7 +409,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <input id={`checkbox${status.label}`} type="radio" value={status.value} name="status" />{" "}
+                    <input
+                      type="radio"
+                      value={status.value}
+                      {...register("status")}
+                      checked={filters.developmentStatus === status.value}
+                    />
                     {status.label}
                   </div>
                 ))}
