@@ -1,12 +1,10 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Alert, Button, Heading2 } from "@gemeente-denhaag/components-react";
+import { Alert, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
-import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -17,6 +15,7 @@ import { GatsbyContext } from "../../context/gatsby";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -46,32 +45,8 @@ export const ComponentsTemplate: React.FC = () => {
         <div>
           <Heading2 className={styles.title}>Componenten</Heading2>
         </div>
-        <div className={styles.resultsDisplaySwitchButtons}>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "table" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "table" })}
-          >
-            <FontAwesomeIcon icon={faTable} />
-            {t("Table")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "cards" })}
-          >
-            <FontAwesomeIcon icon={faGripVertical} />
-            {t("Cards")}
-          </Button>
-          <Button
-            className={styles.buttonIcon}
-            variant={filters.resultDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-            onClick={() => setFilters({ ...filters, resultDisplayLayout: "layer" })}
-          >
-            <FontAwesomeIcon icon={faLayerGroup} />
-            {t("Layers")}
-          </Button>
-        </div>
+
+        <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />
       </div>
 
       <div className={styles.filtersAndResultsContainer}>

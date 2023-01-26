@@ -27,6 +27,7 @@ import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { FiltersContext } from "../../../context/filters";
 import { ComponentCardsAccordionTemplate } from "../../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import ResultsDisplaySwitch from "../../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 
 interface AdminSourcesDetailTemplateProps {
   sourcesId: string;
@@ -283,24 +284,7 @@ export const AdminSourcesDetailTemplate: React.FC<AdminSourcesDetailTemplateProp
 
             <TabPanel className={styles.tabPanel} value="0">
               <div className={styles.components}>
-                <div className={styles.dependenciesDisplaySwitchButtons}>
-                  <Button
-                    className={styles.buttonIcon}
-                    variant={filters.dependenciesDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-                    onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "layer" })}
-                  >
-                    <FontAwesomeIcon icon={faLayerGroup} />
-                    {t("Layers")}
-                  </Button>
-                  <Button
-                    className={styles.buttonIcon}
-                    variant={filters.dependenciesDisplayLayout === "relations" ? "primary-action" : "secondary-action"}
-                    onClick={() => setFilters({ ...filters, dependenciesDisplayLayout: "relations" })}
-                  >
-                    <FontAwesomeIcon icon={faCircleNodes} />
-                    {t("Relations")}
-                  </Button>
-                </div>
+                <ResultsDisplaySwitch resultsDisplayType="dependenciesDisplayLayout" />
 
                 <DependenciesTemplate
                   type={filters.dependenciesDisplayLayout}

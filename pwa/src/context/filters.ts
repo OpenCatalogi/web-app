@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
-export type TLandingDisplayLayout = "layer" | "categories";
 export type TComponentDependenciesLayout = "layer" | "relations";
+export type TLandingDisplayLayout = "layer" | "categories";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
