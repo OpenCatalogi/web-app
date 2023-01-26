@@ -25,9 +25,3 @@ export default class Applications {
     return data;
   };
 }
-
-const deletes = [
-  { name: "resultDisplayLayout" },
-  { name: "dependenciesDisplayLayout" },
-  { name: "landingDisplayLayout" },
-];

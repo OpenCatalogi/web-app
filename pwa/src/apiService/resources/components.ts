@@ -20,21 +20,15 @@ export default class Component {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters, deletes)}`,
+      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
     );
 
     return data;
   };
 
   public getCount = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters, deletes)}`);
+    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters)}`);
 
     return data.total;
   };
 }
-
-const deletes = [
-  { name: "resultDisplayLayout" },
-  { name: "dependenciesDisplayLayout" },
-  { name: "landingDisplayLayout" },
-];

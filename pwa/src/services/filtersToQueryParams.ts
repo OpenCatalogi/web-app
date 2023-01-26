@@ -1,8 +1,9 @@
-export const filtersToQueryParams = (filters: any, deletes: { name: string }[]): string => {
-  deletes.map((test) => {
-    let name = test.name;
-    delete filters[name];
-  });
+export const filtersToQueryParams = (filters: any): string => {
+  Object.keys(filters)
+    .filter((key) => filterKeysToRemove.includes(key))
+    .forEach((key) => {
+      delete filters[key];
+    });
 
   let params: string = "";
 
@@ -26,3 +27,10 @@ export const filtersToQueryParams = (filters: any, deletes: { name: string }[]):
 
   return params;
 };
+
+const filterKeysToRemove: string[] = [
+  "resultDisplayLayout",
+  "dependenciesDisplayLayout",
+  "landingDisplayLayout",
+  "catagoryDisplayLayout",
+];

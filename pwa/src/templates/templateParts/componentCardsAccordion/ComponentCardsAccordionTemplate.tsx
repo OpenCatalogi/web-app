@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentCardsAccordionTemplate.module.css";
-import { getTokenValue } from "../../../services/getTokenValue";
 import _ from "lodash";
+import { getTokenValue } from "../../../services/getTokenValue";
 import { useTranslation } from "react-i18next";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
@@ -24,7 +24,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
   const { open: openUnknown, setOpen: setOpenUnknown } = AccordionCardsController();
 
   const interaction = components.filter((component) => {
-    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Interaction";
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Interface";
   });
   const process = components.filter((component) => {
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Process";
@@ -33,7 +33,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Integration";
   });
   const services = components.filter((component) => {
-    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Services";
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Service";
   });
   const data = components.filter((component) => {
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Data";

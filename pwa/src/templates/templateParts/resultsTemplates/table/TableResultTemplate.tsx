@@ -55,7 +55,11 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               </TableCell>
               <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
               <TableCell>
-                <div className={clsx(styles[_.camelCase(t(`${component.nl?.commonground.layerType} layer`))])}>
+                <div
+                  className={clsx(
+                    styles[_.camelCase(t(`${component.nl?.commonground?.layerType ?? "Unknown"} layer`))],
+                  )}
+                >
                   <ToolTip tooltip={t("Layer")}>
                     <Tag
                       layoutClassName={styles.tagWidth}

@@ -2,12 +2,14 @@ import * as React from "react";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TComponentDependenciesLayout = "layer" | "relations";
-export type TLandingDisplayLayout = "layer" | "categories";
+export type TLandingDisplayLayout = "layer" | "cards";
+export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
+  catagoryDisplayLayout: TCatagoryDisplayLayout;
   currentPage: number;
   applicationsCurrentPage: number;
 
@@ -34,7 +36,8 @@ export interface IFilters {
 export const baseFilters = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
-  landingDisplayLayout: "categories",
+  landingDisplayLayout: "cards",
+  catagoryDisplayLayout: "table",
   currentPage: 1,
   applicationsCurrentPage: 1,
 } as IFilters;

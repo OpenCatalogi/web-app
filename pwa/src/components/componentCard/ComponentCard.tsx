@@ -58,7 +58,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
           <ToolTip tooltip="Laag">
-            <Tag label={t(_.upperFirst(layer ?? t("unknown")))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
+            <Tag label={t(_.upperFirst(layer ?? "unknown"))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
           </ToolTip>
         </div>
 

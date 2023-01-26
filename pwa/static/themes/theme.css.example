@@ -111,6 +111,7 @@
   --web-app-layer-color-integration: #efc025;
   --web-app-layer-color-services: #69b090;
   --web-app-layer-color-data: #7a51c8;
+  --web-app-layer-color-unknown: #586265;
 
   --web-app-layer-category-color-interaction: #cfe2ff;
   --web-app-layer-category-color-process: #f8d7da;

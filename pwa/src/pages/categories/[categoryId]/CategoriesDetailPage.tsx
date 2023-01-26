@@ -1,8 +1,8 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import { CategoriesDetailTemplate } from "../../../templates/categoriesDetailTemplate/CategoriesDetailTemplate";
+import { CategoryDetailTemplate } from "../../../templates/categoryDetailTemplate/CategoryDetailTemplate";
 
 const CategoriesDetailPage: React.FC<PageProps> = (props: PageProps) => {
-  return <CategoriesDetailTemplate categoryId={props.params.categoryId} />;
+  return <CategoryDetailTemplate categoryId={props.params.categoryId} />;
 };
 export default CategoriesDetailPage;
