@@ -57,7 +57,15 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 <div
                   className={clsx(
                     styles[
-                      _.camelCase(t(`${component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`))
+                      _.camelCase(
+                        t(
+                          `${
+                            (component._self.schema.ref.includes("component.schema.json") &&
+                              component.embedded?.nl?.embedded?.commonground?.layerType) ??
+                            "Unknown"
+                          } layer`,
+                        ),
+                      )
                     ],
                   )}
                 >
