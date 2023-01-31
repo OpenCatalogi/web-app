@@ -18,13 +18,11 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     return component._self;
   });
 
-  const { length } = _components;
-  const id = length + 1;
-  const _com = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/component.schema.json");
+  const _com = _components.every((el) => !el._self.schema.ref.includes("component.schema.json"));
   if (_com) {
-    const _org = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/organisation.schema.json");
+    const _org = _components.every((el) => !el._self.schema.ref.includes("organisation.schema.json"));
     if (_org) {
-      const _app = _components.every((el) => el._self.schema.ref !== "https://opencatalogi.nl/application.schema.json");
+      const _app = _components.every((el) => !el._self.schema.ref.includes("application.schema.json"));
       if (_app) {
         return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
       }
@@ -35,7 +33,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     <div className={styles.ComponentsGrid}>
       {_components.map((component) => (
         <>
-          {component._self.schema.ref === "https://opencatalogi.nl/organisation.schema.json" && (
+          {component._self.schema.ref.includes("organisation.schema.json") && (
             <OrganizationCard
               title={{
                 label: component.name,
@@ -54,26 +52,26 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               type={component.type}
             />
           )}
-          {component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" && (
+          {component._self.schema.ref.includes("component.schema.json") && (
             <ComponentCard
               key={component.id}
               title={{ label: component.name, href: `/components/${component.id}` }}
-              description={component.description?.shortDescription}
-              layer={component.nl?.commonground.layerType ?? t("Unknown")}
+              description={component.embedded.description?.shortDescription}
+              layer={component.embedded.nl?.embedded?.commonground?.layerType ?? t("Unknown")}
               categories={component.categories}
               tags={{
                 status: component.developmentStatus,
                 installations: component.usedBy?.length.toString() ?? "0",
                 organization: {
-                  name: component.url?.organisation?.name,
-                  website: component.url?.organisation?.website,
+                  name: component.embedded?.url?.embedded?.organisation?.name,
+                  website: component.embedded?.url?.embedded?.organisation?.website,
                 },
-                licence: component.legal?.license,
-                githubLink: component.url?.url,
+                licence: component.embedded?.legal?.license,
+                githubLink: component.embedded?.url?.url,
               }}
             />
           )}
-          {component._self.schema.ref === "https://opencatalogi.nl/application.schema.json" && (
+          {component._self.schema.ref.includes("application.schema.json") && (
             <ApplicationCard
               key={component.id}
               title={{ label: component.name, href: `/applications/${component.id}` }}
