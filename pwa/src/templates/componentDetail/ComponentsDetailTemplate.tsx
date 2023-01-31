@@ -410,7 +410,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
-                {_getComponent.data?.usedBy[0] &&
+                {_getComponent.data?.usedBy?.length &&
                   _getComponent.data?.usedBy.map((organization: any) => (
                     <OrganizationCard
                       key={organization.id}
@@ -433,7 +433,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     />
                   ))}
 
-                {!_getComponent.data?.usedBy.length && <>Er zijn geen hergebruikers van dit component.</>}
+                {!_getComponent.data?.usedBy?.length && <>Er zijn geen hergebruikers van dit component.</>}
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="3">

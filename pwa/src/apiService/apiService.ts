@@ -40,19 +40,6 @@ export default class APIService {
     });
   }
 
-  public get searchClient(): AxiosInstance {
-    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
-
-    return axios.create({
-      baseURL: window.sessionStorage.getItem("GATSBY_SEARCH_URL") ?? undefined,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      ...authorization,
-    });
-  }
-
   public get LoginClient(): AxiosInstance {
     return axios.create({
       baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
@@ -96,7 +83,7 @@ export default class APIService {
   }
 
   public get Search(): Search {
-    return new Search(this.searchClient);
+    return new Search(this.apiClient);
   }
 
   // Services
