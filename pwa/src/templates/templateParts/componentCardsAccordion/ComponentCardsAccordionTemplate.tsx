@@ -33,13 +33,13 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Integration";
   });
   const services = components.filter((component) => {
-    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Service";
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Services";
   });
   const data = components.filter((component) => {
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Data";
   });
   const unknown = components.filter((component) => {
-    return component?.embedded?.nl?.embedded?.commonground?.layerType === null;
+    return component?.embedded?.nl?.embedded?.commonground?.layerType === (null || undefined);
   });
 
   return (
@@ -155,26 +155,24 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
 
   return (
     <div className={styles.ComponentsGrid}>
-      {components.map((component, idx) => (
-        <>
-          <ComponentCard
-            key={idx}
-            title={{ label: component.name, href: `/components/${component.id}` }}
-            description={component.description?.shortDescription}
-            layer={component?.embedded?.nl?.embedded?.commonground?.layerType ?? t("Unknown")}
-            categories={component.categories}
-            tags={{
-              status: component.developmentStatus,
-              installations: component.usedBy?.length.toString() ?? "0",
-              organization: {
-                name: component.url?.organisation?.name,
-                website: component.url?.organisation?.website,
-              },
-              licence: component.legal?.license,
-              githubLink: component.url?.url,
-            }}
-          />
-        </>
+      {components.map((component) => (
+        <ComponentCard
+          key={component.id}
+          title={{ label: component.name, href: `/components/${component.id}` }}
+          description={component.embedded.description?.shortDescription}
+          layer={component.embedded.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+          categories={component.categories}
+          tags={{
+            status: component.developmentStatus,
+            installations: component.usedBy?.length.toString() ?? "0",
+            organization: {
+              name: component.embedded?.url?.embedded?.organisation?.name,
+              website: component.embedded?.url?.embedded?.organisation?.website,
+            },
+            licence: component.embedded?.legal?.license,
+            githubLink: component.embedded?.url?.url,
+          }}
+        />
       ))}
     </div>
   );

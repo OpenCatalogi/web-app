@@ -79,3 +79,7 @@
   --conduction-badge-counter-background-color: var(--web-app-layer-color-data);
   --conduction-badge-counter-color: var(--web-app-color-white);
 }
+.unknownBadge {
+  --conduction-badge-counter-background-color: var(--web-app-layer-color-unknown);
+  --conduction-badge-counter-color: var(--web-app-color-white);
+}
