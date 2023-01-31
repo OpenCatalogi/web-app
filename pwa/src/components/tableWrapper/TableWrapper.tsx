@@ -6,15 +6,22 @@ import clsx from "clsx";
 const TableWrapper: React.FC = ({ children }) => {
   const [tableIsScrollable, setTableIsScrollable] = React.useState<Boolean>(false);
   const [tableScrollPosition, setTableScrollPosition] = React.useState<"left" | "middle" | "right">("left");
-  const TableScrollWrapper = React.useRef<HTMLElement>() as React.MutableRefObject<HTMLElement>;
 
-  const isTableScrollable = () => TableScrollWrapper.current.scrollWidth > TableScrollWrapper.current.clientWidth;
+  const tableWrapperRef = React.useRef<HTMLElement>() as React.MutableRefObject<HTMLElement>;
+
+  const isTableScrollable = () => {
+    if (!tableWrapperRef.current) return false;
+
+    return tableWrapperRef.current.scrollWidth > tableWrapperRef.current.clientWidth;
+  };
 
   React.useEffect(() => {
-    TableScrollWrapper.current && setTableIsScrollable(isTableScrollable());
-  }, [TableScrollWrapper]);
+    tableWrapperRef.current && setTableIsScrollable(isTableScrollable());
+  }, [tableWrapperRef]);
 
   React.useEffect(() => {
+    if (!tableWrapperRef.current) return;
+
     const handleWindowResize = _.debounce(() => {
       setTableIsScrollable(isTableScrollable());
       setScrollPosition();
@@ -26,10 +33,10 @@ const TableWrapper: React.FC = ({ children }) => {
   }, []);
 
   const setScrollPosition = () => {
-    const maxScrollLeft = TableScrollWrapper?.current?.scrollWidth - TableScrollWrapper?.current?.clientWidth;
+    const maxScrollLeft = tableWrapperRef?.current?.scrollWidth - tableWrapperRef?.current?.clientWidth;
 
-    if (TableScrollWrapper?.current?.scrollLeft === 0) setTableScrollPosition("left");
-    else if (TableScrollWrapper?.current?.scrollLeft === maxScrollLeft) setTableScrollPosition("right");
+    if (tableWrapperRef?.current?.scrollLeft === 0) setTableScrollPosition("left");
+    else if (tableWrapperRef?.current?.scrollLeft === maxScrollLeft) setTableScrollPosition("right");
     else setTableScrollPosition("middle");
   };
 
@@ -44,7 +51,8 @@ const TableWrapper: React.FC = ({ children }) => {
         ],
       )}
     >
-      <div className={styles.table} ref={TableScrollWrapper} onScroll={setScrollPosition}>
+      {/* @ts-ignore */}
+      <div className={styles.table} ref={tableWrapperRef} onScroll={setScrollPosition}>
         {children}
       </div>
     </div>
