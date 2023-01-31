@@ -1,20 +1,9 @@
 export const getResultsUrl = (value: any): any => {
-  switch (value) {
-    case "https://opencatalogi.nl/organisation.schema.json":
-      return "organizations";
+  if (value.includes("organisation.schema.json")) return "organizations";
+  if (value.includes("component.schema.json")) return "components";
+  if (value.includes("application.schema.json")) return "applications";
+  if (value.includes("contacts.schema.json")) return "contacts";
+  if (value.includes("componentlegalentity.schema.json")) return "componentlegalentities";
 
-    case "https://opencatalogi.nl/component.schema.json":
-      return "components";
-
-    case "https://opencatalogi.nl/application.schema.json":
-      return "applications";
-
-    case "https://opencatalogi.nl/contactz.schema.json":
-      return "contacts";
-
-    case "https://opencatalogi.nl/componentlegalentity.schema.json":
-      return "componentlegalentities";
-
-    //TODO add more values if we make more detail pages
-  }
+  //TODO add more values if we make more detail pages
 };
