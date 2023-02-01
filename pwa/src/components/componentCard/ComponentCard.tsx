@@ -39,7 +39,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
   const __categories =
     layer &&
-    categories.length &&
+    categories?.length &&
     categories.map((category: any) => {
       return _categories[_layer]?.find((_category: any) => {
         return _category.value === category;

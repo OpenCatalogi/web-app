@@ -2,7 +2,6 @@ import * as React from "react";
 import * as styles from "./ComponentCardsAccordionTemplate.module.css";
 import _ from "lodash";
 import { getTokenValue } from "../../../services/getTokenValue";
-import { useTranslation } from "react-i18next";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
@@ -33,7 +32,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Integration";
   });
   const services = components.filter((component) => {
-    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Services";
+    return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Service";
   });
   const data = components.filter((component) => {
     return _.upperFirst(component?.embedded?.nl?.embedded?.commonground?.layerType) === "Data";
@@ -151,16 +150,14 @@ interface ComponentsProps {
 }
 
 const Components: React.FC<ComponentsProps> = ({ components }) => {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.ComponentsGrid}>
       {components.map((component) => (
         <ComponentCard
           key={component.id}
           title={{ label: component.name, href: `/components/${component.id}` }}
-          description={component.embedded.description?.shortDescription}
-          layer={component.embedded.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+          description={component.embedded?.description?.shortDescription}
+          layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
           categories={component.categories}
           tags={{
             status: component.developmentStatus,
