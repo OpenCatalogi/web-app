@@ -42,7 +42,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
   }));
 
   const interaction = mappedComponents.filter((component) => {
-    return _.upperFirst(component?.layerType) === "Interaction";
+    return _.upperFirst(component?.layerType) === "Interface";
   });
   const process = mappedComponents.filter((component) => {
     return _.upperFirst(component?.layerType) === "Process";
@@ -51,7 +51,7 @@ const RelationsDependencies: React.FC<RelationsDependenciesProps> = ({ component
     return _.upperFirst(component?.layerType) === "Integration";
   });
   const services = mappedComponents.filter((component) => {
-    return _.upperFirst(component?.layerType) === "Services";
+    return _.upperFirst(component?.layerType) === "Service";
   });
   const data = mappedComponents.filter((component) => {
     return _.upperFirst(component?.layerType) === "Data";
