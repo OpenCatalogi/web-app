@@ -56,17 +56,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           voor andere catalogussen.
           <br />
           <br />
-          Meer informatie over het zelf inrichten van een OpenCatalogi vind je{" "}
-          <span
-            onClick={() => {
-              navigate("/documentation/installation");
-            }}
-          >
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
-              hier
-            </Link>
-          </span>
-          .
+          Meer informatie over het zelf inrichten van een OpenCatalogi vind je hier onder.
         </Paragraph>
         <Heading2>3. Via andere catalogussen</Heading2>
         <Paragraph className={styles.description}>
@@ -107,7 +97,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
       </section>
       <section className={styles.section}>
-        <Heading1>Installeren met de skeleton application</Heading1>
+        <Heading1 id="intsallation">Installeren met de skeleton application</Heading1>
         <Paragraph className={styles.description}>
           De skeleton application is een makkelijke manier om de componenten te installeren en te gebruiken. De skeleton
           application is namelijk ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
