@@ -18,16 +18,15 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     return component._self;
   });
 
-  const _com = _components.every((el) => !el._self.schema.ref.includes("component.schema.json"));
-  if (_com) {
-    const _org = _components.every((el) => !el._self.schema.ref.includes("organisation.schema.json"));
-    if (_org) {
-      const _app = _components.every((el) => !el._self.schema.ref.includes("application.schema.json"));
-      if (_app) {
-        return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
-      }
-    }
-  }
+  const noResultFound = _components.every((component) => {
+    return (
+      !component._self.schema.ref.includes("component.schema.json") &&
+      !component._self.schema.ref.includes("organisation.schema.json") &&
+      !component._self.schema.ref.includes("application.schema.json")
+    );
+  });
+
+  if (noResultFound) return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
 
   return (
     <div className={styles.ComponentsGrid}>
