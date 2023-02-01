@@ -36,6 +36,10 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
   const componentCount = components.results.length;
   const badgeLabel = componentCount < 100 ? _.toString(componentCount) : "99+";
 
+  React.useEffect(() => {
+    setFilters({ ...filters, catagoryDisplayLayout: "table" });
+  }, []);
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/categories")}>
@@ -79,7 +83,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </Button>
       </div>
 
-      {components && (
+      {components && filters.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={componentCount >= 100 && styles.maxNumber}>
@@ -90,7 +94,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           </div>
 
           <div className={styles.results}>
-            <ComponentResultTemplate components={components.results} type={filters.catagoryDisplayLayout} />
+            <ComponentResultTemplate components={components.results ?? []} type={filters.catagoryDisplayLayout} />
           </div>
         </div>
       )}
