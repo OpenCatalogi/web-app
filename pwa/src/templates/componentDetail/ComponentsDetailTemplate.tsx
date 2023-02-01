@@ -81,7 +81,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
-  const organisation = _getComponent.isSuccess && _getComponent?.data?.embedded?.url?.embedded?.organisation;
+  const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
+  console.log(organisation);
 
   return (
     <Container layoutClassName={styles.container}>
@@ -154,7 +155,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </ToolTip>
 
-                {organisation.name && (
+                {organisation?.name && (
                   <ToolTip tooltip="Organisatie">
                     <Tag label={organisation.name} icon={<FontAwesomeIcon icon={faHouse} />} />
                   </ToolTip>
@@ -193,6 +194,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
+            {console.log({ organisation })}
             {organisation && (
               <OrganizationCard
                 title={{
