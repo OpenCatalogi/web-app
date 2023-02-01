@@ -82,7 +82,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   if (_getComponent.isError) return <>Something went wrong...</>;
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
-  console.log(organisation);
 
   return (
     <Container layoutClassName={styles.container}>
@@ -194,7 +193,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {console.log({ organisation })}
             {organisation && (
               <OrganizationCard
                 title={{
