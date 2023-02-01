@@ -182,19 +182,19 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data.owns} />
+                  <ComponentCardsAccordionTemplate components={[]} />
                 </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data.supports} />
+                  <ComponentCardsAccordionTemplate components={[]} />
                 </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data.uses} />
+                  <ComponentCardsAccordionTemplate components={[]} />
                 </div>
               </TabPanel>
             </TabContext>

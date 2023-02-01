@@ -1,8 +1,8 @@
 :export {
-  layerColorInteraction: --web-app-layer-color-interaction;
+  layerColorInterface: --web-app-layer-color-interaction;
   layerColorProcess: --web-app-layer-color-process;
   layerColorIntegration: --web-app-layer-color-integration;
-  layerColorServices: --web-app-layer-color-services;
+  layerColorService: --web-app-layer-color-services;
   layerColorData: --web-app-layer-color-data;
   layerColorUnknown: --web-app-color-top-nav-grey;
 }

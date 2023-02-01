@@ -81,6 +81,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
+  const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/components")}>
@@ -152,12 +154,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </ToolTip>
 
-                {_getComponent.data?.embedded?.url?.embedded?.organisation?.name && (
+                {organisation?.name && (
                   <ToolTip tooltip="Organisatie">
-                    <Tag
-                      label={_getComponent.data?.embedded?.url?.embedded?.organisation?.name}
-                      icon={<FontAwesomeIcon icon={faHouse} />}
-                    />
+                    <Tag label={organisation.name} icon={<FontAwesomeIcon icon={faHouse} />} />
                   </ToolTip>
                 )}
 
@@ -194,24 +193,23 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {_getComponent?.data?.embedded?.url?.embedded?.organisation && (
+            {organisation && (
               <OrganizationCard
                 title={{
-                  label: _getComponent?.data?.embedded?.url?.embedded?.organisation?.name,
-                  href: `/organizations/${_getComponent?.data?.embedded?.url?.embedded?.organisation?.id}`,
+                  label: organisation.name,
+                  href: `/organizations/${organisation._self.id}`,
                 }}
-                description={_getComponent?.data?.embedded?.url?.embedded?.organisation?.description}
-                website={_getComponent?.data?.embedded?.url?.embedded?.organisation?.website}
-                logo={_getComponent?.data?.embedded?.url?.embedded?.organisation?.logo}
+                description={organisation.description}
+                website={organisation.website}
+                logo={organisation.logo}
                 components={{
-                  owned: _getComponent?.data?.embedded?.url?.embedded?.organisation?.owns?.length.toString() ?? "0",
-                  supported:
-                    _getComponent?.data?.embedded?.url?.embedded?.organisation?.supports?.length.toString() ?? "0",
-                  used: _getComponent?.data?.embedded?.url?.embedded?.organisation?.uses?.length.toString() ?? "0",
+                  owned: organisation.owns?.length.toString() ?? "0",
+                  supported: organisation.supports?.length.toString() ?? "0",
+                  used: organisation.uses?.length.toString() ?? "0",
                 }}
-                gitHub={_getComponent?.data?.embedded?.url?.embedded?.organisation?.github}
-                gitLab={_getComponent?.data?.embedded?.url?.embedded?.organisation?.gitlab}
-                type={_getComponent?.data?.embedded?.url?.embedded?.organisation?.type}
+                gitHub={organisation.github}
+                gitLab={organisation.gitlab}
+                type={organisation.type}
                 layoutClassName={styles.organizationCardContainer}
               />
             )}
