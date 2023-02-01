@@ -56,7 +56,17 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <TableCell>
                 <div
                   className={clsx(
-                    styles[_.camelCase(t(`${component.nl?.commonground?.layerType ?? "Unknown"} layer`))],
+                    styles[
+                      _.camelCase(
+                        t(
+                          `${
+                            (component._self.schema.ref.includes("component.schema.json") &&
+                              component.embedded?.nl?.embedded?.commonground?.layerType) ??
+                            "Unknown"
+                          } layer`,
+                        ),
+                      )
+                    ],
                   )}
                 >
                   <ToolTip tooltip={t("Layer")}>
@@ -64,13 +74,13 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                       layoutClassName={styles.tagWidth}
                       label={t(
                         _.upperFirst(
-                          component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
-                            ? component.nl?.commonground.layerType ?? t("Unknown")
+                          component._self.schema.ref.includes("component.schema.json")
+                            ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
                             : "N.V.T.",
                         ),
                       )}
                       icon={
-                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
+                        component._self.schema.ref.includes("component.schema.json") ? (
                           <FontAwesomeIcon icon={faLayerGroup} />
                         ) : (
                           <></>
@@ -86,18 +96,20 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   <Tag
                     layoutClassName={styles.tagWidth}
                     label={_.upperFirst(
-                      component.url?._self?.properties?.source
-                        ? component.url?._self?.properties?.source?.value !== null
-                          ? component.url?._self?.properties?.source?.value
+                      component._self?.synchronizations
+                        ? component._self?.synchronizations?.length
+                          ? component._self?.synchronizations?.at(-1)?.gateway.name
                           : "Onbekend"
                         : "N.V.T.",
                     )}
                     icon={
-                      component.url?._self?.properties?.source?.value ? (
-                        component.url?._self?.properties?.source?.value === "github" ? (
+                      component._self?.synchronizations?.length ? (
+                        component._self?.synchronizations?.at(-1)?.gateway.name === "github" ? (
                           <GitHubLogo />
-                        ) : (
+                        ) : component._self?.synchronizations?.at(-1)?.gateway.name === "gitlab" ? (
                           <GitLabLogo />
+                        ) : (
+                          <></>
                         )
                       ) : (
                         <></>
@@ -111,8 +123,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 <ToolTip tooltip="Component Type">
                   <Tag
                     label={_.upperFirst(
-                      component.url?._self?.title ??
-                        component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
+                      component._self.schema.ref.includes("component.schema.json")
                         ? component.softwareType ?? "Onbekend"
                         : "N.V.T.",
                     )}
@@ -126,15 +137,13 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     layoutClassName={styles.tagWidth}
                     label={t(
                       _.upperFirst(
-                        component.url?._self?.title ??
-                          component._self.schema.ref === "https://opencatalogi.nl/component.schema.json"
+                        component._self.schema.ref.includes("component.schema.json")
                           ? component.developmentStatus ?? "Onbekend"
                           : "N.V.T.",
                       ),
                     )}
                     icon={
-                      component.url?._self?.title ??
-                      component._self.schema.ref === "https://opencatalogi.nl/component.schema.json" ? (
+                      component._self.schema.ref.includes("component.schema.json") ? (
                         <FontAwesomeIcon icon={faInfoCircle} />
                       ) : (
                         <></>
@@ -144,11 +153,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 </ToolTip>
               </TableCell>
 
-              <TableCell
-                onClick={() =>
-                  navigate(`/${getResultsUrl(component._self?.title ?? component.url._self.title)}/${component.id}`)
-                }
-              >
+              <TableCell onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}>
                 <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
                   {t("Details")}
                 </Link>
