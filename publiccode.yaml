@@ -1,11 +1,14 @@
 ---
 name: "OpenCatalogi web-app"
 url: "https://github.com/OpenCatalogi/web-app"
+landingURL: "https://github.com/OpenCatalogi/web-app"
 
 publiccodeYmlVersion: 1.0
 softwareType: "standalone/web"
+softwareVersion: 1.0
 developmentStatus: 'stable'
 releaseDate: '31/10/2022'
+applicationSuite: "opencatalogi"
 
 inputTypes: 
   - application/json
