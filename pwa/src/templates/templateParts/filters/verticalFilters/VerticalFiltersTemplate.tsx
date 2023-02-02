@@ -77,17 +77,17 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   } = useForm();
 
   const handleLayerChange = (layer: any, e: any) => {
-    const currentFilters = filters["nl.commonground.layerType"] ?? [];
+    const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
 
     if (e.target.checked) {
-      setFilters({ ...filters, "nl.commonground.layerType": [...currentFilters, layer.value] });
+      setFilters({ ...filters, "embedded.nl.embedded.commonground.layerType": [...currentFilters, layer.value] });
 
       return; // added the layer to filters, no need to also remove an entry
     }
 
     setFilters({
       ...filters,
-      "nl.commonground.layerType": currentFilters.filter((l) => l !== layer.value),
+      "embedded.nl.embedded.commonground.layerType": currentFilters.filter((l) => l !== layer.value),
     });
   };
 
@@ -124,7 +124,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     setFilters({
       ...filters,
-      "maintenance.type": maintenanceTypeRadioFilter,
+      "embedded.maintenance.type": maintenanceTypeRadioFilter,
     });
   }, [maintenanceTypeRadioFilter]);
 
@@ -137,27 +137,37 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     reset({
-      layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
-      upl: getSelectedItemsFromFilters(upls, filters["nl.upl"]),
+      layerType: getSelectedItemsFromFilters(layers, filters["embedded.nl.embedded.commonground.layerType"]),
+      upl: getSelectedItemsFromFilters(upls, filters["embedded.nl.embedded.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
       category: getSelectedItemFromFilters(categories, filters.category),
-      bedrijfsfuncties: getSelectedItemsFromFilters(bedrijfsfuncties, filters["nl.gemma.bedrijfsfuncties"]),
-      bedrijfsservices: getSelectedItemsFromFilters(bedrijfsservices, filters["nl.gemma.bedrijfsservices"]),
+      bedrijfsfuncties: getSelectedItemsFromFilters(
+        bedrijfsfuncties,
+        filters["embedded.nl.embedded.gemma.bedrijfsfuncties"],
+      ),
+      bedrijfsservices: getSelectedItemsFromFilters(
+        bedrijfsservices,
+        filters["embedded.nl.embedded.gemma.bedrijfsservices"],
+      ),
       referentieComponenten: getSelectedItemsFromFilters(
         referentieComponenten,
-        filters["nl.gemma.referentieComponenten"],
+        filters["embedded.nl.embedded.gemma.referentieComponenten"],
       ),
-      applicatiefunctie: getSelectedItemFromFilters(applicatiefuncties, filters["nl.gemma.applicatiefunctie"]),
+      applicatiefunctie: getSelectedItemFromFilters(
+        applicatiefuncties,
+        filters["embedded.nl.embedded.gemma.applicatiefunctie"],
+      ),
       softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
-      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["maintenance.type"]),
-      license: getSelectedItemFromFilters(licenses, filters["legal.license"]),
-      organization: organizations && getSelectedItemFromFilters(organizations, filters["url.organisation.name"]),
-      interface: filters["nl.commonground.layerType"]?.includes("interface"),
-      process: filters["nl.commonground.layerType"]?.includes("process"),
-      integration: filters["nl.commonground.layerType"]?.includes("integration"),
-      service: filters["nl.commonground.layerType"]?.includes("service"),
-      data: filters["nl.commonground.layerType"]?.includes("data"),
+      maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["embedded.maintenance.type"]),
+      license: getSelectedItemFromFilters(licenses, filters["embedded.legal.license"]),
+      organization:
+        organizations && getSelectedItemFromFilters(organizations, filters["embedded.url.embedded.organisation.name"]),
+      interface: filters["embedded.nl.embedded.commonground.layerType"]?.includes("interface"),
+      process: filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
+      integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
+      service: filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
+      data: filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
     });
   }, [filters]);
 
@@ -182,16 +192,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           currentPage: 1,
           platforms: platforms?.map((p: any) => p.value),
           category: category?.value,
-          "nl.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
-          "nl.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
-          "nl.gemma.referentieComponenten": referentieComponenten?.map((rC: any) => rC.value),
-          "nl.gemma.applicatiefunctie": applicatiefunctie?.value,
+          "embedded.nl.embedded.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
+          "embedded.nl.embedded.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
+          "embedded.nl.embedded.gemma.referentieComponenten": referentieComponenten?.map((rC: any) => rC.value),
+          "embedded.nl.embedded.gemma.applicatiefunctie": applicatiefunctie?.value,
           softwareType: softwareType?.value,
           developmentStatus: status?.value,
-          "maintenance.type": maintenanceType?.value,
-          "legal.license": license?.value,
-          "url.organisation.name": organization?.value,
-          "nl.upl": upl?.map((u: any) => u.value),
+          "embedded.maintenance.type": maintenanceType?.value,
+          "embedded.legal.license": license?.value,
+          "embedded.url.embedded.organisation.name": organization?.value,
+          "embedded.nl.embedded.upl": upl?.map((u: any) => u.value),
         });
       },
     );
@@ -203,7 +213,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     const unsetLayerFilter = layers.filter(
-      (layer) => filters["nl.commonground.layerType"] && !filters["nl.commonground.layerType"].includes(layer.value),
+      (layer) =>
+        filters["embedded.nl.embedded.commonground.layerType"] &&
+        !filters["embedded.nl.embedded.commonground.layerType"].includes(layer.value),
     );
 
     unsetLayerFilter.map((layer: any) => {
@@ -212,7 +224,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         checkBox.click();
       }
     });
-  }, [filters["nl.commonground.layerType"]]);
+  }, [filters["embedded.nl.embedded.commonground.layerType"]]);
 
   React.useEffect(() => {
     const unsetPlatformFilter = platforms.filter(
@@ -442,7 +454,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                       type="radio"
                       value={maintenanceType.value}
                       {...register("maintenanceType")}
-                      checked={filters["maintenance.type"] === maintenanceType.value}
+                      checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                     />
                     {maintenanceType.label}
                   </div>
