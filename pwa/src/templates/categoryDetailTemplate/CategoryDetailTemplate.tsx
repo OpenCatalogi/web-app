@@ -10,7 +10,6 @@ import { categories as _categories } from "../../data/filters";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
 import { FiltersContext } from "../../context/filters";
@@ -32,9 +31,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
     TEMPORARY_DOMAINS.find((domain) => {
       return domain.title === portfolio.domain;
     });
-  const components = TEMPORARY_COMPONENTS;
-  const componentCount = components.results.length;
-  const badgeLabel = componentCount < 100 ? _.toString(componentCount) : "99+";
 
   React.useEffect(() => {
     setFilters({ ...filters, catagoryDisplayLayout: "table" });
@@ -83,18 +79,18 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </Button>
       </div>
 
-      {components && filters.catagoryDisplayLayout && (
+      {filters.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            <span className={componentCount >= 100 && styles.maxNumber}>
-              <BadgeCounter number={badgeLabel}>
+            <span className={0 >= 100 && styles.maxNumber}>
+              <BadgeCounter number={"0"}>
                 <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
               </BadgeCounter>
             </span>
           </div>
 
           <div className={styles.results}>
-            <ComponentResultTemplate components={components.results ?? []} type={filters.catagoryDisplayLayout} />
+            <ComponentResultTemplate components={[]} type={filters.catagoryDisplayLayout} />
           </div>
         </div>
       )}

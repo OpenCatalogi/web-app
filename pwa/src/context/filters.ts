@@ -18,16 +18,16 @@ export interface IFilters {
   developmentStatus?: string;
   platforms?: string[];
   category?: string;
-  "nl.commonground.layerType"?: string[];
-  "nl.gemma.bedrijfsfuncties"?: string[];
-  "nl.gemma.bedrijfsservices"?: string[];
-  "nl.gemma.referentieComponenten"?: string[];
-  "nl.gemma.applicatiefunctie": string;
-  "nl.upl"?: string[];
-  "maintenance.type"?: string;
-  "legal.license"?: string;
-  "legal.mainCopyrightOwner"?: string;
-  "url.organisation.name"?: string;
+  "embedded.nl.embedded.commonground.layerType"?: string[];
+  "embedded.nl.embedded.gemma.bedrijfsfuncties"?: string[];
+  "embedded.nl.embedded.gemma.bedrijfsservices"?: string[];
+  "embedded.nl.embedded.gemma.referentieComponenten"?: string[];
+  "embedded.nl.embedded.gemma.applicatiefunctie": string;
+  "embedded.nl.embedded.upl"?: string[];
+  "embedded.maintenance.type"?: string;
+  "embedded.legal.license"?: string;
+  "embedded.legal.mainCopyrightOwner"?: string;
+  "embedded.url.embedded.organisation.name"?: string;
 
   showMoreControl?: boolean;
   showMoreSupport?: boolean;

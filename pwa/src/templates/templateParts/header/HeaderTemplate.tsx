@@ -62,25 +62,28 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       subItems: [
         {
           label: t("Processes"),
-          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("process"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "nl.commonground.layerType": ["process"] });
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["process"] });
             navigate("/components");
           },
         },
         {
           label: t("Data models"),
-          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("data"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "nl.commonground.layerType": ["data"] });
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["data"] });
             navigate("/components");
           },
         },
         {
           label: t("API's"),
-          current: pathname === "/components" && filters["nl.commonground.layerType"]?.includes("service"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "nl.commonground.layerType": ["service"] });
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["service"] });
             navigate("/components");
           },
         },

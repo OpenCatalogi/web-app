@@ -28,7 +28,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
   });
 
   const maintenanceType = maintenanceTypes.find((maintenanceType) => {
-    return maintenanceType.value === filters["maintenance.type"];
+    return maintenanceType.value === filters["embedded.maintenance.type"];
   });
 
   const softwareType = softwareTypes.find((softwareType) => {
@@ -36,14 +36,14 @@ export const ActiveFiltersTemplate: React.FC = () => {
   });
 
   const licence = licenses.find((licence) => {
-    return licence.value === filters["legal.license"];
+    return licence.value === filters["embedded.legal.license"];
   });
 
   const applicatiefunctie = applicatiefuncties.find((applicatiefunctie) => {
-    return applicatiefunctie.value === filters["nl.gemma.applicatiefunctie"];
+    return applicatiefunctie.value === filters["embedded.nl.embedded.gemma.applicatiefunctie"];
   });
 
-  const _referentieComponenten = filters["nl.gemma.referentieComponenten"]?.map((filter) => {
+  const _referentieComponenten = filters["embedded.nl.embedded.gemma.referentieComponenten"]?.map((filter) => {
     return referentieComponenten.find((referentieComponent) => {
       return referentieComponent.value === filter;
     });
@@ -57,16 +57,16 @@ export const ActiveFiltersTemplate: React.FC = () => {
       developmentStatus: "",
       platforms: [],
       category: "",
-      "nl.commonground.layerType": [],
-      "nl.gemma.bedrijfsfuncties": [],
-      "nl.gemma.bedrijfsservices": [],
-      "nl.gemma.referentieComponenten": [],
-      "nl.gemma.applicatiefunctie": "",
-      "nl.upl": [],
-      "maintenance.type": "",
-      "legal.license": "",
-      "legal.mainCopyrightOwner": "",
-      "url.organisation.name": "",
+      "embedded.nl.embedded.commonground.layerType": [],
+      "embedded.nl.embedded.gemma.bedrijfsfuncties": [],
+      "embedded.nl.embedded.gemma.bedrijfsservices": [],
+      "embedded.nl.embedded.gemma.referentieComponenten": [],
+      "embedded.nl.embedded.gemma.applicatiefunctie": "",
+      "embedded.nl.embedded.upl": [],
+      "embedded.maintenance.type": "",
+      "embedded.legal.license": "",
+      "embedded.legal.mainCopyrightOwner": "",
+      "embedded.url.embedded.organisation.name": "",
     });
   };
 
@@ -84,38 +84,39 @@ export const ActiveFiltersTemplate: React.FC = () => {
           />
         )}
 
-        {filters["nl.commonground.layerType"]?.map((layer, idx) => (
+        {filters["embedded.nl.embedded.commonground.layerType"]?.map((layer, idx) => (
           <Tag
             key={idx}
             label={t(_.upperFirst(layer))}
             remove={() =>
               setFilters({
                 ...filters,
-                "nl.commonground.layerType":
-                  filters["nl.commonground.layerType"] &&
-                  filters["nl.commonground.layerType"].filter((e) => e !== layer),
+                "embedded.nl.embedded.commonground.layerType":
+                  filters["embedded.nl.embedded.commonground.layerType"] &&
+                  filters["embedded.nl.embedded.commonground.layerType"].filter((e) => e !== layer),
               })
             }
           />
         ))}
 
-        {filters["nl.upl"]?.map((layer, idx) => (
+        {filters["embedded.nl.embedded.upl"]?.map((layer, idx) => (
           <Tag
             key={idx}
             label={_.upperFirst(layer)}
             remove={() =>
               setFilters({
                 ...filters,
-                "nl.upl": filters["nl.upl"] && filters["nl.upl"].filter((e) => e !== layer),
+                "embedded.nl.embedded.upl":
+                  filters["embedded.nl.embedded.upl"] && filters["embedded.nl.embedded.upl"].filter((e) => e !== layer),
               })
             }
           />
         ))}
 
-        {filters["url.organisation.name"] && (
+        {filters["embedded.url.embedded.organisation.name"] && (
           <Tag
-            label={filters["url.organisation.name"] ?? ""}
-            remove={() => setFilters({ ...filters, "url.organisation.name": undefined })}
+            label={filters["embedded.url.embedded.organisation.name"] ?? ""}
+            remove={() => setFilters({ ...filters, "embedded.url.embedded.organisation.name": undefined })}
           />
         )}
 
@@ -140,10 +141,10 @@ export const ActiveFiltersTemplate: React.FC = () => {
           <Tag label={status?.label ?? ""} remove={() => setFilters({ ...filters, developmentStatus: undefined })} />
         )}
 
-        {filters["maintenance.type"] && (
+        {filters["embedded.maintenance.type"] && (
           <Tag
             label={maintenanceType?.label ?? ""}
-            remove={() => setFilters({ ...filters, "maintenance.type": undefined })}
+            remove={() => setFilters({ ...filters, "embedded.maintenance.type": undefined })}
           />
         )}
 
@@ -151,35 +152,38 @@ export const ActiveFiltersTemplate: React.FC = () => {
           <Tag label={softwareType?.label ?? ""} remove={() => setFilters({ ...filters, softwareType: undefined })} />
         )}
 
-        {filters["legal.license"] && (
-          <Tag label={licence?.label ?? ""} remove={() => setFilters({ ...filters, "legal.license": undefined })} />
+        {filters["embedded.legal.license"] && (
+          <Tag
+            label={licence?.label ?? ""}
+            remove={() => setFilters({ ...filters, "embedded.legal.license": undefined })}
+          />
         )}
 
-        {filters["nl.gemma.bedrijfsfuncties"]?.map((layer, idx) => (
+        {filters["embedded.nl.embedded.gemma.bedrijfsfuncties"]?.map((layer, idx) => (
           <Tag
             key={idx}
             label={t(_.upperFirst(layer))}
             remove={() =>
               setFilters({
                 ...filters,
-                "nl.gemma.bedrijfsfuncties":
-                  filters["nl.gemma.bedrijfsfuncties"] &&
-                  filters["nl.gemma.bedrijfsfuncties"].filter((e) => e !== layer),
+                "embedded.nl.embedded.gemma.bedrijfsfuncties":
+                  filters["embedded.nl.embedded.gemma.bedrijfsfuncties"] &&
+                  filters["embedded.nl.embedded.gemma.bedrijfsfuncties"].filter((e) => e !== layer),
               })
             }
           />
         ))}
 
-        {filters["nl.gemma.bedrijfsservices"]?.map((layer, idx) => (
+        {filters["embedded.nl.embedded.gemma.bedrijfsservices"]?.map((layer, idx) => (
           <Tag
             key={idx}
             label={t(_.upperFirst(layer))}
             remove={() =>
               setFilters({
                 ...filters,
-                "nl.gemma.bedrijfsservices":
-                  filters["nl.gemma.bedrijfsservices"] &&
-                  filters["nl.gemma.bedrijfsservices"].filter((e) => e !== layer),
+                "embedded.nl.embedded.gemma.bedrijfsservices":
+                  filters["embedded.nl.embedded.gemma.bedrijfsservices"] &&
+                  filters["embedded.nl.embedded.gemma.bedrijfsservices"].filter((e) => e !== layer),
               })
             }
           />
@@ -191,18 +195,18 @@ export const ActiveFiltersTemplate: React.FC = () => {
             remove={() =>
               setFilters({
                 ...filters,
-                "nl.gemma.referentieComponenten":
-                  filters["nl.gemma.referentieComponenten"] &&
-                  filters["nl.gemma.referentieComponenten"].filter((e) => e !== layer?.value),
+                "embedded.nl.embedded.gemma.referentieComponenten":
+                  filters["embedded.nl.embedded.gemma.referentieComponenten"] &&
+                  filters["embedded.nl.embedded.gemma.referentieComponenten"].filter((e) => e !== layer?.value),
               })
             }
           />
         ))}
 
-        {filters["nl.gemma.applicatiefunctie"] && (
+        {filters["embedded.nl.embedded.gemma.applicatiefunctie"] && (
           <Tag
             label={applicatiefunctie?.label ?? ""}
-            remove={() => setFilters({ ...filters, "nl.gemma.applicatiefunctie": "" })}
+            remove={() => setFilters({ ...filters, "embedded.nl.embedded.gemma.applicatiefunctie": "" })}
           />
         )}
       </div>
