@@ -98,7 +98,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
 
               <LeadParagraph className={styles.description}>
-                {_getComponent.data.embedded?.description.longDescription ?? t("No description available")}
+                {_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
               </LeadParagraph>
 
               <div className={styles.layerAndCategoryContainer}>
@@ -106,11 +106,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <Tag
                     layoutClassName={
                       styles[
-                        _.camelCase(t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType} layer`))
+                        _.camelCase(
+                          t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
+                        )
                       ]
                     }
                     label={t(
-                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Onbekend"),
+                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"),
                     )}
                     icon={<FontAwesomeIcon icon={faLayerGroup} />}
                   />

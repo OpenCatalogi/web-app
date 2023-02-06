@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -26,8 +25,6 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
   const queryClient = new QueryClient();
   const _useApplications = useApplications(queryClient);
   const getApplications = _useApplications.getOne(applicationId);
-
-  const components = TEMPORARY_COMPONENTS;
 
   return (
     <Container layoutClassName={styles.container}>
@@ -100,7 +97,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
             <DependenciesTemplate
               type={layerType}
-              components={components.results ?? []}
+              components={getApplications.data?.embedded?.components ?? []}
               mainComponent={{
                 id: getApplications.data.id,
                 name: getApplications.data.name,

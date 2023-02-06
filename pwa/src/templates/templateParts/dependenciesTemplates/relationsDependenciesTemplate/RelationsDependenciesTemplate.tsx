@@ -33,7 +33,7 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
   ToolTip.innerHTML = `${staticToolTipElement}`;
 
   const componentNodes = components.map((component) => ({
-    id: component.id,
+    id: component.id ?? component._self?.id,
     label: addNewLineToString(component.name),
     title: ToolTip,
     layer: component.embedded?.nl?.embedded?.commonground?.layerType,
