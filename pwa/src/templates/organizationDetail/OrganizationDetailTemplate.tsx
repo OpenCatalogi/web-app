@@ -147,7 +147,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   label={
                     <BadgeCounter
                       layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data.owns?.length ?? 0)}
+                      number={_.toString(_getOrganization.data?.owns?.length ?? 0)}
                     >
                       Eigen componenten
                     </BadgeCounter>
@@ -159,7 +159,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   label={
                     <BadgeCounter
                       layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data.supports?.length ?? 0)}
+                      number={_.toString(_getOrganization.data?.supports?.length ?? 0)}
                     >
                       Ondersteunde componenten
                     </BadgeCounter>
@@ -171,7 +171,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   label={
                     <BadgeCounter
                       layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data.uses?.length ?? 0)}
+                      number={_.toString(_getOrganization.data?.uses?.length ?? 0)}
                     >
                       Gebruikte componenten
                     </BadgeCounter>
@@ -182,19 +182,19 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={[]} />
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
                 </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={[]} />
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
                 </div>
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="2">
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={[]} />
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
                 </div>
               </TabPanel>
             </TabContext>
