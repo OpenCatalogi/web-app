@@ -16,6 +16,8 @@ pwa:
   adminUrl: "https://opencatalogi.nl/admin"
 
 gatewayui:
+  gateway:
+    enabled: false
   ingress:
     annotations: {}
     hostname: admin.chart-example.local
