@@ -27,7 +27,7 @@ export default class Organization {
   };
 
   public filtersGetAll = async (): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/organizations?extend[]=all&limit=24`);
+    const { data } = await Send(this._instance, "GET", `/organizations?extend[]=all&limit=1000`);
 
     return data;
   };
