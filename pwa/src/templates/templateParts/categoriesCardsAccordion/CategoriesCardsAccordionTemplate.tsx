@@ -33,13 +33,14 @@ export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionPr
   const { open: openExecution, setOpen: setOpenExecution } = AccordionCardsController();
   const { open: openSupport, setOpen: setOpenSupport } = AccordionCardsController();
 
-  const viewControl = () => controlRef.current.scrollIntoView();
-  const viewDevelopment = () => developmentRef.current.scrollIntoView();
-  const viewSurveillance = () => surveillanceRef.current.scrollIntoView();
-  const viewDirecting = () => directingRef.current.scrollIntoView();
-  const viewCustomerAndChainInteraction = () => customerAndChainInteractionRef.current.scrollIntoView();
-  const viewExecution = () => executionRef.current.scrollIntoView();
-  const viewSupport = () => supportRef.current.scrollIntoView();
+  const viewControl = () => controlRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewDevelopment = () => developmentRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewSurveillance = () => surveillanceRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewDirecting = () => directingRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewCustomerAndChainInteraction = () =>
+    customerAndChainInteractionRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewExecution = () => executionRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  const viewSupport = () => supportRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
 
   const Control = categories.filter((category) => {
     return t(_.upperFirst(category.domain)) === t("Control");
