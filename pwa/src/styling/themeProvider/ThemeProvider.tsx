@@ -23,9 +23,10 @@ export const ThemeProvider: React.FC = ({ children }) => {
       document.head.removeChild(link);
     };
   }, [theme]);
+  const themeData = themes.find(({ value }) => value === theme);
 
   return (
-    <>
+    <div className={themeData?.className}>
       {children}
 
       <div className={styles.container}>
@@ -33,7 +34,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
           <ThemeSwitcher {...{ setTheme }} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -68,7 +69,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
           <div className={styles.selectBorder}>
             <SelectSingle
               name="themeSwitcher"
-              defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
+              defaultValue={themes[0]}
               options={themes}
               {...{ errors, control, register }}
             />
