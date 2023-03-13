@@ -6,6 +6,7 @@ import { themes } from "../../data/themes";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { Heading2 } from "@gemeente-denhaag/components-react";
 import { SelectSingle } from "@conduction/components";
+import { Document } from "@utrecht/component-library-react/dist/css-module";
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
@@ -26,7 +27,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
   const themeData = themes.find(({ value }) => value === theme);
 
   return (
-    <div className={themeData?.className}>
+    <Document className={themeData?.className}>
       {children}
 
       <div className={styles.container}>
@@ -34,7 +35,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
           <ThemeSwitcher {...{ setTheme }} />
         </div>
       </div>
-    </div>
+    </Document>
   );
 };
 
