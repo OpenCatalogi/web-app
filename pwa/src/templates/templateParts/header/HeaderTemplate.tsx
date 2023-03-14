@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Heading1 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
