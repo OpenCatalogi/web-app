@@ -3,7 +3,7 @@ import * as styles from "./ComponentCategoryAccordionTemplate.module.css";
 import { categories, TCategories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { navigate } from "gatsby";
