@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { handleLogin } from "../../../services/auth";
-import { Alert, Button, FormField, FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/components-react";
+import { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/components-react";
+import { Alert, Button, FormField } from "@utrecht/component-library-react/dist/css-module";
 import * as styles from "./LoginFormTemplate.module.css";
 import { useTranslation } from "react-i18next";
 import { InputPassword, InputText } from "@conduction/components";

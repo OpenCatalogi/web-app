@@ -2,7 +2,8 @@ import * as React from "react";
 import * as styles from "./CardsLandingDisplayTemplate.module.css";
 import _ from "lodash";
 import { InfoCard } from "@conduction/components";
-import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Heading2 } from "@utrecht/component-library-react/dist/css-module";
 
 interface CardsLandingDisplayTemplateProps {}
 

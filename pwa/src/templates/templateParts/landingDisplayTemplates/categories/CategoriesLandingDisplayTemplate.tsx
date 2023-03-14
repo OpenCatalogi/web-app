@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import _ from "lodash";
-import { Button, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Button, Heading2, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
