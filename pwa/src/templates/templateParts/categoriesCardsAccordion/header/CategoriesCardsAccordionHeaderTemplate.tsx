@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoriesCardsAccordionHeaderTemplate.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider, Heading3 } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/components-react";
+import { Heading3 } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
