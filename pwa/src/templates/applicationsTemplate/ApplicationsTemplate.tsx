@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
-import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Document, Heading2, Link } from "@utrecht/component-library-react/dist/css-module";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
@@ -38,7 +38,7 @@ export const ApplicationsTemplate: React.FC = () => {
   }, [getApplications]);
 
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading2 className={styles.title}>{t("Applications")}</Heading2>
@@ -92,6 +92,6 @@ export const ApplicationsTemplate: React.FC = () => {
       {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"}
 
       {getApplications.isLoading && <Skeleton height="200px" />}
-    </Container>
+    </Document>
   );
 };
