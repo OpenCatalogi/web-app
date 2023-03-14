@@ -1,15 +1,16 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
-import { Container, QuoteWrapper } from "@conduction/components";
+import { QuoteWrapper } from "@conduction/components";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
 import {
+  Document,
   Button,
   Heading1,
   Heading2,
   Heading3,
-  LeadParagraph,
-  Link,
   Paragraph,
-} from "@gemeente-denhaag/components-react";
+  Link,
+} from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -20,7 +21,7 @@ import clsx from "clsx";
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1>Over OpenCatalogi</Heading1>
 
@@ -235,6 +236,6 @@ export const AboutTemplate: React.FC = () => {
           </Table>
         </div>
       </section>
-    </Container>
+    </Document>
   );
 };
