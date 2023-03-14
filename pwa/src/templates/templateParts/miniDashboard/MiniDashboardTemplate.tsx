@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Link } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
