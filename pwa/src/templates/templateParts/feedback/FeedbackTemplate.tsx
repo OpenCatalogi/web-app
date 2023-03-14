@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./FeedbackTemplate.module.css";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 
 interface FeedbackTemplateProps {
