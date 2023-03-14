@@ -3,7 +3,7 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Link, UnorderedList, UnorderedListItem } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
@@ -27,10 +27,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
-          <ul className={styles.list}>
+          <UnorderedList className={styles.list}>
             <div className={styles.heading}>Componenten</div>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 setFilters({ ...baseFilters, softwareType: "process" });
                 navigate("/components");
@@ -39,9 +39,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Processes")}
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 setFilters({ ...baseFilters, softwareType: "schema" });
                 navigate("/components");
@@ -50,9 +50,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Data models")}
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 setFilters({ ...baseFilters, softwareType: "api" });
                 navigate("/components");
@@ -61,9 +61,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("API's")}
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 setFilters({ ...baseFilters, developmentStatus: "concept" });
                 navigate("/components");
@@ -72,13 +72,13 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("Initiatives")}
               </Link>
-            </li>
-          </ul>
+            </UnorderedListItem>
+          </UnorderedList>
 
-          <ul className={styles.list}>
+          <UnorderedList className={styles.list}>
             <div className={styles.heading}>Documentatie</div>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 navigate("/documentation/about");
               }}
@@ -86,9 +86,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 {t("About OpenCatalogi")}
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 navigate("/documentation/usage");
               }}
@@ -96,9 +96,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 Gebruik
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 navigate("/documentation/contact");
               }}
@@ -106,9 +106,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ArrowRightIcon />} iconAlign="start">
                 Contact
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open("https://github.com/OpenCatalogi");
               }}
@@ -116,13 +116,13 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<GitHubLogo />} iconAlign="start">
                 GitHub
               </Link>
-            </li>
-          </ul>
+            </UnorderedListItem>
+          </UnorderedList>
 
-          <ul className={styles.list}>
+          <UnorderedList className={styles.list}>
             <div className={styles.heading}>Links</div>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open("https://commonground.nl/");
               }}
@@ -130,9 +130,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<CommongroundLogo />} iconAlign="start">
                 Common ground
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open("https://haven.commonground.nl/");
               }}
@@ -140,9 +140,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<HavenLogo />} iconAlign="start">
                 Haven
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open("https://designsystem.gebruikercentraal.nl/");
               }}
@@ -150,9 +150,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ExternalLinkIcon />} iconAlign="start">
                 NL design
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open("https://forumstandaardisatie.nl/");
               }}
@@ -160,9 +160,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
                 Forum standaardisatie
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 navigate("#");
               }}
@@ -170,9 +170,9 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<ExternalLinkIcon />} iconAlign="start">
                 {t("Privacy declaration")}
               </Link>
-            </li>
+            </UnorderedListItem>
 
-            <li
+            <UnorderedListItem
               onClick={() => {
                 open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
               }}
@@ -180,8 +180,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
                 {t("Login")}
               </Link>
-            </li>
-          </ul>
+            </UnorderedListItem>
+          </UnorderedList>
         </div>
 
         <div>
