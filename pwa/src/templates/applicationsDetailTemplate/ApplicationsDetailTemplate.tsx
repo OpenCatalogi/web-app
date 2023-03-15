@@ -1,7 +1,14 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Divider, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Button, Document, Heading1, Heading2, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Divider } from "@gemeente-denhaag/components-react";
+import {
+  Button,
+  Document,
+  Heading1,
+  Heading2,
+  Link,
+  Paragraph,
+} from "@utrecht/component-library-react/dist/css-module";
 import { Tag, ToolTip } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -28,7 +35,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
   const getApplications = _useApplications.getOne(applicationId);
 
   return (
-    <Document layoutClassName={styles.container}>
+    <Document className={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/applications")}>
         <Link icon={<ArrowLeftIcon />} iconAlign="start">
           {t("Back to applications")}
@@ -40,7 +47,9 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <div className={styles.header}>
             <div className={styles.description}>
               <Heading1 className={styles.title}>{getApplications.data.name}</Heading1>
-              <LeadParagraph className={styles.description}>{getApplications.data.description}</LeadParagraph>
+              <Paragraph lead className={styles.description}>
+                {getApplications.data.description}
+              </Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (

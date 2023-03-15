@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
-import { LeadParagraph } from "@gemeente-denhaag/components-react";
 import {
   Document,
   Button,
@@ -21,14 +20,14 @@ import clsx from "clsx";
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Document layoutClassName={styles.container}>
+    <Document className={styles.container}>
       <section className={styles.section}>
         <Heading1>Over OpenCatalogi</Heading1>
 
-        <LeadParagraph>
+        <Paragraph lead>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
           Gegevenslandschap.
-        </LeadParagraph>
+        </Paragraph>
 
         <div className={styles.buttonsContainer}>
           <Button

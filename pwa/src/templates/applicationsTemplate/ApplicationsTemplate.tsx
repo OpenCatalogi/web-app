@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
-import { LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Document, Heading2, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Document, Heading2, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
@@ -38,11 +37,11 @@ export const ApplicationsTemplate: React.FC = () => {
   }, [getApplications]);
 
   return (
-    <Document layoutClassName={styles.container}>
+    <Document className={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading2 className={styles.title}>{t("Applications")}</Heading2>
-          <LeadParagraph className={styles.description}>
+          <Paragraph lead className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
@@ -51,7 +50,7 @@ export const ApplicationsTemplate: React.FC = () => {
               </Link>
             </span>
             .
-          </LeadParagraph>
+          </Paragraph>
         </div>
       </div>
 
