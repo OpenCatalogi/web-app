@@ -1,20 +1,21 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { CodeBlock, Container } from "@conduction/components";
-import { Heading1, Heading2, LeadParagraph, Link, Paragraph } from "@gemeente-denhaag/components-react";
+import {} from "@gemeente-denhaag/components-react";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { navigate } from "gatsby";
 import clsx from "clsx";
+import { Document, Heading1, Heading2, Paragraph, Link } from "@utrecht/component-library-react";
 
 export const UsageDocumentationTemplate: React.FC = () => {
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1>Componenten op OpenCatalogi plaatsen en Componenten installeren</Heading1>
 
-        <LeadParagraph className={styles.description}>
+        <Paragraph lead className={styles.description}>
           Er zijn vier manieren om een component zichtbaar te maken op OpenCatalogi.
-        </LeadParagraph>
+        </Paragraph>
       </section>
 
       <section className={styles.section}>
@@ -271,6 +272,6 @@ export const UsageDocumentationTemplate: React.FC = () => {
           .
         </Paragraph>
       </section>
-    </Container>
+    </Document>
   );
 };

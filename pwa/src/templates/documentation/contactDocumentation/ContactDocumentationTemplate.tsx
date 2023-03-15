@@ -1,19 +1,19 @@
 import * as React from "react";
 import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
 import { navigate } from "gatsby";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Document, Heading1, Paragraph, Link } from "@utrecht/component-library-react";
 
 export const ContactDocumentationTemplate: React.FC = () => {
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <section className={styles.section}>
         <Heading1 className={styles.title}>Contact</Heading1>
 
-        <LeadParagraph className={styles.description}>
+        <Paragraph lead className={styles.description}>
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
           <span
@@ -53,8 +53,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
               Conduction
             </Link>
           </span>
-        </LeadParagraph>
+        </Paragraph>
       </section>
-    </Container>
+    </Document>
   );
 };
