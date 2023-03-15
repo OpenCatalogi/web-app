@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Heading1 } from "@gemeente-denhaag/components-react";
+import { Heading1, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
@@ -176,9 +175,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             <div>
               <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
 
-              <LeadParagraph className={styles.subTitle}>
+              <Paragraph lead className={styles.subTitle}>
                 {t("One central place for reuse of information technology within the government")}
-              </LeadParagraph>
+              </Paragraph>
             </div>
             <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
           </section>
