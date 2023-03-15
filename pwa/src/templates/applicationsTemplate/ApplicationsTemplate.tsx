@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
-import { Document, Heading2, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { Heading2, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
@@ -11,6 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { GatsbyContext } from "../../context/gatsby";
+import { Container } from "@conduction/components";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -37,7 +38,7 @@ export const ApplicationsTemplate: React.FC = () => {
   }, [getApplications]);
 
   return (
-    <Document className={styles.container}>
+    <Container LayoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading2 className={styles.title}>{t("Applications")}</Heading2>
@@ -91,6 +92,6 @@ export const ApplicationsTemplate: React.FC = () => {
       {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"}
 
       {getApplications.isLoading && <Skeleton height="200px" />}
-    </Document>
+    </Container>
   );
 };

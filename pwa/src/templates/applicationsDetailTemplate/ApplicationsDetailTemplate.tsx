@@ -9,7 +9,7 @@ import {
   Link,
   Paragraph,
 } from "@utrecht/component-library-react/dist/css-module";
-import { Tag, ToolTip } from "@conduction/components";
+import { Container, Tag, ToolTip } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -35,7 +35,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
   const getApplications = _useApplications.getOne(applicationId);
 
   return (
-    <Document className={styles.container}>
+    <Container LayoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/applications")}>
         <Link icon={<ArrowLeftIcon />} iconAlign="start">
           {t("Back to applications")}
@@ -119,6 +119,6 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
       )}
 
       {getApplications.isLoading && <Skeleton height="200px" />}
-    </Document>
+    </Container>
   );
 };
