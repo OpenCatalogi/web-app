@@ -14,22 +14,18 @@ import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-
 interface FooterTemplateProps {
   layoutClassName?: string;
 }
-
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
-
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <UnorderedList className={styles.list}>
             <div className={styles.heading}>Componenten</div>
-
             <UnorderedListItem
               onClick={() => {
                 setFilters({ ...baseFilters, softwareType: "process" });
@@ -151,7 +147,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 NL design
               </Link>
             </UnorderedListItem>
-
             <UnorderedListItem
               onClick={() => {
                 open("https://forumstandaardisatie.nl/");
@@ -161,7 +156,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 Forum standaardisatie
               </Link>
             </UnorderedListItem>
-
             <UnorderedListItem
               onClick={() => {
                 navigate("#");
@@ -171,7 +165,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 {t("Privacy declaration")}
               </Link>
             </UnorderedListItem>
-
             <UnorderedListItem
               onClick={() => {
                 open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
@@ -183,10 +176,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </UnorderedListItem>
           </UnorderedList>
         </div>
-
         <div>
           <div className={styles.heading}>{t("An initiative of")}</div>
-
           <div className={styles.logosContainer}>
             <div className={styles.organizationLogo}></div>
             <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />

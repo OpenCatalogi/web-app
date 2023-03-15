@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./DownloadTemplate.module.css";
-
 import { DownloadCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
