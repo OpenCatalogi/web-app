@@ -3,13 +3,10 @@ import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, BadgeCounter, Tag } from "@conduction/components";
 import {
   Divider,
-  Heading1,
-  Heading2,
-  LeadParagraph,
   Tab,
   TabContext,
   TabPanel,
-  Tabs,
+  Tabs
 } from "@gemeente-denhaag/components-react";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
@@ -23,6 +20,7 @@ import _ from "lodash";
 import { QueryClient } from "react-query";
 import { useOrganization } from "../../hooks/organization";
 import Skeleton from "react-loading-skeleton";
+import { Heading1, Heading2, Paragraph, Document } from "@utrecht/component-library-react";
 import organizationPlaceholderImage from "../../assets/images/grey.png";
 
 interface OrganizationDetailTemplateProps {
@@ -37,7 +35,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
   const _getOrganization = _useOrganization.getOne(organizationId);
 
   return (
-    <Container layoutClassName={styles.container}>
+    <Document className={styles.container}>
       {_getOrganization.isSuccess && (
         <>
           <div className={styles.headerContainer}>
@@ -45,10 +43,10 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               <Heading1 className={styles.title}>{_getOrganization.data.name}</Heading1>
 
               {_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{_getOrganization.data.description}</LeadParagraph>
+                <Paragraph lead className={styles.description}>{_getOrganization.data.description}</Paragraph>
               )}
               {!_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{t("There is no description available")}</LeadParagraph>
+                <Paragraph lead className={styles.description}>{t("There is no description available")}</Paragraph>
               )}
             </div>
 
@@ -202,6 +200,6 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         </>
       )}
       {_getOrganization.isLoading && <Skeleton height="200px" />}
-    </Container>
+    </Document>
   );
 };
