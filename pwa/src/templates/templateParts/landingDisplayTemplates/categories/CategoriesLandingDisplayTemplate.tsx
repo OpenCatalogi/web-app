@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import _ from "lodash";
-import { Button, Heading2, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Button, Heading2, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
@@ -31,9 +32,9 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
       <div className={styles.subHeading}>
         <Heading2 className={styles.title}>{t("Categories")}</Heading2>
 
-        <Paragraph lead className={styles.description}>
+        <LeadParagraph className={styles.description}>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
-        </Paragraph>
+        </LeadParagraph>
       </div>
 
       <div className={styles.ComponentsGrid}>
