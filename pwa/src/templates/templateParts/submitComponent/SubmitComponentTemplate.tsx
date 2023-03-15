@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as styles from "./SubmitComponentTemplate.module.css";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { Button } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { navigate } from "gatsby";
+import { Document, Button } from "@utrecht/component-library-react";
 
 interface SubmitComponentTemplateProps {
   layoutClassName?: string;
@@ -11,7 +11,7 @@ interface SubmitComponentTemplateProps {
 
 export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = ({ layoutClassName }) => {
   return (
-    <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
+    <Document className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <div className={styles.header}>
         <div className={styles.title}>Aan de slag met OpenCatalogi</div>
 
@@ -30,6 +30,6 @@ export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = (
           Component toevoegen
         </Button>
       </div>
-    </div>
+    </Document>
   );
 };
