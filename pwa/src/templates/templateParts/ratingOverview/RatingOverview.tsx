@@ -2,7 +2,13 @@ import * as React from "react";
 import * as styles from "./RatingOverview.module.css";
 import { QueryObserverSuccessResult } from "react-query";
 import { t } from "i18next";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeaderCell,
+  TableRow,
+} from "@utrecht/component-library-react/dist/css-module";
 
 interface RatingOverviewProps {
   getComponent: QueryObserverSuccessResult<any, Error>;
@@ -22,7 +28,7 @@ export const RatingOverview: React.FC<RatingOverviewProps> = ({ getComponent }) 
             {getComponent.data.embedded?.rating?.rating >= 1 && (
               <>
                 <TableRow>
-                  <TableHeader>Behaalde punten</TableHeader>
+                  <TableHeaderCell>Behaalde punten</TableHeaderCell>
                 </TableRow>
                 {getComponent.data.embedded?.rating?.results
                   .filter((result: string) => !/^Cannot rate the/.test(result))
@@ -36,7 +42,7 @@ export const RatingOverview: React.FC<RatingOverviewProps> = ({ getComponent }) 
             {getComponent.data.embedded?.rating?.rating !== getComponent.data.embedded?.rating?.maxRating && (
               <>
                 <TableRow>
-                  <TableHeader>Onbehaalde punten</TableHeader>
+                  <TableHeaderCell>Onbehaalde punten</TableHeaderCell>
                 </TableRow>
                 {getComponent.data.embedded?.rating?.results
                   .filter((result: string) => /^Cannot rate the/.test(result))
