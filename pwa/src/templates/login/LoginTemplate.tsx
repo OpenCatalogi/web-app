@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./LoginTemplate.module.css";
-import { Heading1 } from "@utrecht/component-library-react";
+import { Heading1 } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { LoginForm } from "../templateParts/loginForm/LoginFormTemplate";
 
