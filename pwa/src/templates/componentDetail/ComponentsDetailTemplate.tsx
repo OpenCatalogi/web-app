@@ -1,16 +1,6 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import {
-  Button,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import {
   Container,
   InfoCard,
@@ -50,6 +40,7 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Button, Document, Link, Heading1, Paragraph } from "@utrecht/component-library-react";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -84,7 +75,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
 
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/components")}>
         <Link icon={<ArrowLeftIcon />} iconAlign="start">
           {t("Back to components")}
@@ -97,9 +88,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <div className={styles.headingContent}>
               <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
 
-              <LeadParagraph className={styles.description}>
+              <Paragraph lead className={styles.description}>
                 {_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
-              </LeadParagraph>
+              </Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
@@ -506,6 +497,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         </>
       )}
       {_getComponent.isLoading && <Skeleton height="200px" />}
-    </Container>
+    </Document>
   );
 };

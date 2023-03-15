@@ -1,13 +1,12 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import * as _ from "lodash";
-import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { navigate } from "gatsby";
+import { Document, Heading2, Paragraph, Link } from "@utrecht/component-library-react";
 
 export const CategoriesTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -15,12 +14,12 @@ export const CategoriesTemplate: React.FC = () => {
   const categories = TEMPORARY_PORTFOLIOS;
 
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <div className={styles.header}>
         <Heading2 className={styles.title}>{t("Categories")}</Heading2>
 
         <div className={styles.subHeading}>
-          <LeadParagraph className={styles.description}>
+          <Paragraph lead className={styles.description}>
             We verdelen{" "}
             <span onClick={() => navigate("/applications")}>
               <Link icon={<ArrowRightIcon />} iconAlign="start">
@@ -41,11 +40,11 @@ export const CategoriesTemplate: React.FC = () => {
               </Link>
             </span>
             .
-          </LeadParagraph>
+          </Paragraph>
         </div>
       </div>
 
       <CategoriesardsAccordionTemplate {...{ categories }} />
-    </Container>
+    </Document>
   );
 };

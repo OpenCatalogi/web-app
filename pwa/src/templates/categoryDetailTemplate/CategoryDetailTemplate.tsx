@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button, Heading1, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Container, Tag } from "@conduction/components";
+import { BadgeCounter, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -14,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
+import { Button, Document, Heading1, Heading3, Paragraph, Link } from "@utrecht/component-library-react";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
@@ -37,7 +37,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
   }, []);
 
   return (
-    <Container layoutClassName={styles.container}>
+    <Document layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/categories")}>
         <Link icon={<ArrowLeftIcon />} iconAlign="start">
           {t("Back to categories")}
@@ -48,7 +48,9 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         <div className={styles.header}>
           <Heading1 className={styles.title}>{portfolio.title}</Heading1>
           <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
-          <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
+          <Paragraph lead className={styles.description}>
+            {portfolio.longDescription}
+          </Paragraph>
         </div>
       )}
 
@@ -96,6 +98,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       )}
 
       {!portfolio && <Skeleton height="200px" />}
-    </Container>
+    </Document>
   );
 };
