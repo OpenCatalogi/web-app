@@ -1,10 +1,16 @@
 FROM node:18 AS builder
 # Set working directory
 WORKDIR /app
+
+COPY package.json package-lock.json .
+
 # Copy all files from current directory to working dir in image
-COPY . .
 # install node modules and build assets
-RUN npm install && npm run-script build
+RUN npm install
+
+COPY . .
+
+RUN npm run build
 
 FROM nginx
 COPY --from=builder /app/public /usr/share/nginx/html
