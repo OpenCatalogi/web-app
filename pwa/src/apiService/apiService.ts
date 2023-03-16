@@ -28,7 +28,8 @@ export default class APIService {
   }
 
   public get apiClient(): AxiosInstance {
-    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+    const authorizationHeader = window.sessionStorage.getItem("GATSBY_AUTHORIZATION_HEADER");
+    const authorization = authorizationHeader ? { Authorization: "Bearer " + authorizationHeader } : {};
 
     return axios.create({
       baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
