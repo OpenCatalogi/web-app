@@ -2,7 +2,7 @@ FROM node:18 AS builder
 # Set working directory
 WORKDIR /app
 
-COPY package.json package-lock.json .
+COPY package.json package-lock.json ./
 
 # Copy all files from current directory to working dir in image
 # install node modules and build assets
