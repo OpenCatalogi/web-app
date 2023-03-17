@@ -28,16 +28,19 @@ export default class APIService {
   }
 
   public get apiClient(): AxiosInstance {
+    let headers: any = {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    };
+
     const authorizationHeader = window.sessionStorage.getItem("GATSBY_AUTHORIZATION_HEADER");
-    const authorization = authorizationHeader ? { Authorization: "Bearer " + authorizationHeader } : {};
+    if (authorizationHeader) {
+      headers.Authorization = `Bearer ${authorizationHeader}`;
+    }
 
     return axios.create({
       baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      ...authorization,
+      headers,
     });
   }
 
