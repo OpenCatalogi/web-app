@@ -3,7 +3,8 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Link } from "@gemeente-denhaag/components-react";
+
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
@@ -36,7 +37,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Processes")}
               </Link>
             </li>
@@ -47,7 +51,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Data models")}
               </Link>
             </li>
@@ -58,7 +65,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 {t("API's")}
               </Link>
             </li>
@@ -69,7 +79,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Initiatives")}
               </Link>
             </li>
@@ -83,7 +96,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/documentation/about");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 {t("About OpenCatalogi")}
               </Link>
             </li>
@@ -93,7 +109,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/documentation/usage");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 Gebruik
               </Link>
             </li>
@@ -103,7 +122,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/documentation/contact");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 Contact
               </Link>
             </li>
@@ -113,8 +135,11 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://github.com/OpenCatalogi");
               }}
             >
-              <Link icon={<GitHubLogo />} iconAlign="start">
-                GitHub
+              <Link>
+                <Icon>
+                  <GitHubLogo />
+                </Icon>
+                Github
               </Link>
             </li>
           </ul>
@@ -127,7 +152,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://commonground.nl/");
               }}
             >
-              <Link icon={<CommongroundLogo />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <CommongroundLogo />
+                </Icon>
                 Common ground
               </Link>
             </li>
@@ -137,7 +165,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://haven.commonground.nl/");
               }}
             >
-              <Link icon={<HavenLogo />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <HavenLogo />
+                </Icon>
                 Haven
               </Link>
             </li>
@@ -147,7 +178,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://designsystem.gebruikercentraal.nl/");
               }}
             >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ExternalLinkIcon />
+                </Icon>
                 NL design
               </Link>
             </li>
@@ -157,7 +191,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open("https://forumstandaardisatie.nl/");
               }}
             >
-              <Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ForumStandaardisatieLogo />
+                </Icon>
                 Forum standaardisatie
               </Link>
             </li>
@@ -167,7 +204,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("#");
               }}
             >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ExternalLinkIcon />
+                </Icon>
                 {t("Privacy declaration")}
               </Link>
             </li>
@@ -177,7 +217,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
               }}
             >
-              <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <FontAwesomeIcon icon={faCircleUser} />
+                </Icon>
                 {t("Login")}
               </Link>
             </li>
