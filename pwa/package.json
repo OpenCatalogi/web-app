@@ -19,7 +19,8 @@
     "lint-fix": "npm-run-all lint-fix:**",
     "lint-fix:eslint": "eslint --fix .",
     "lint-fix:prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\" .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepare": "cd .. && husky install"
   },
   "dependencies": {
     "@conduction/components": "file:../../conduction-components",
@@ -71,6 +72,8 @@
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.5",
     "typescript": "^4.6.3"
@@ -103,6 +106,10 @@
     "@gemeente-denhaag/textarea": {
       "react": "^16 || ^17 || ^18",
       "react-dom": "^16 || ^17 || ^18"
-    }
+    },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
+}
 }
