@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import _ from "lodash";
-import { Button, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
@@ -48,7 +49,10 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                   .map((_category) => (
                     <div>
                       <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                        <Link>
+                          <Icon>
+                            <ArrowRightIcon />
+                          </Icon>
                           {_category.title}
                         </Link>
                       </div>
@@ -63,7 +67,10 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                     .map((_category) => (
                       <div>
                         <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                          <Link>
+                            <Icon>
+                              <ArrowRightIcon />
+                            </Icon>
                             {_category.title}
                           </Link>
                         </div>
@@ -79,7 +86,10 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                           .map((_category) => (
                             <div>
                               <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                                <Link icon={<ArrowRightIcon />} iconAlign="start">
+                                <Link>
+                                  <Icon>
+                                    <ArrowRightIcon />
+                                  </Icon>
                                   {_category.title}
                                 </Link>
                               </div>
