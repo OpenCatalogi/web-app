@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button, Heading1, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button, Heading1, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Link, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { BadgeCounter, Container, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -39,7 +40,10 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/categories")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+        <Link>
+          <Icon>
+            <ArrowLeftIcon />
+          </Icon>
           {t("Back to categories")}
         </Link>
       </div>
