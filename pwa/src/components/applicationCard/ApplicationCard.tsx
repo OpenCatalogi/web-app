@@ -43,7 +43,11 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
         )}
         {tags.githubLink && (
           <ToolTip tooltip="Demo">
-            <Tag label={t("Demo")} icon={<FontAwesomeIcon icon={faLaptopCode} />} onClick={() => open(tags.githubLink)} />
+            <Tag
+              label={t("Demo")}
+              icon={<FontAwesomeIcon icon={faLaptopCode} />}
+              onClick={() => open(tags.githubLink)}
+            />
           </ToolTip>
         )}
       </div>

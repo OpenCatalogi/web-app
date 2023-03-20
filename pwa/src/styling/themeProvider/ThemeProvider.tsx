@@ -8,7 +8,7 @@ import { Heading2 } from "@gemeente-denhaag/components-react";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 
-export const ThemeProvider: React.FC = ({ children }) => {
+export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
 
   React.useEffect(() => {
