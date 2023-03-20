@@ -7,9 +7,9 @@ import {
   Heading2,
   Heading3,
   LeadParagraph,
-  Link,
   Paragraph,
 } from "@gemeente-denhaag/components-react";
+import {Link, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -59,9 +59,7 @@ export const AboutTemplate: React.FC = () => {
               )
             }
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
-              GEMMA gegevenslandschap informatiearchitectuurprincipes
-            </Link>
+            <Link><Icon><ExternalLinkIcon/></Icon> GEMMA gegevenslandschap informatiearchitectuurprincipes</Link>
           </span>
           .
         </Paragraph>
@@ -191,9 +189,7 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
-              verplichte standaarden
-            </Link>
+            <Link><Icon><ExternalLinkIcon/></Icon> verplichte standaarden</Link>
           </span>{" "}
           die aangewezen zijn door de Nederlandse overheid.
         </Paragraph>
