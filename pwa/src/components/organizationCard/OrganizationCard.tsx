@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
-import { Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
@@ -50,7 +51,10 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ArrowRightIcon />
+              </Icon>
               {title.label}
             </Link>
           </div>
