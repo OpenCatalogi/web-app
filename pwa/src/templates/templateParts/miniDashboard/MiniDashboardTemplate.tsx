@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
@@ -51,7 +51,10 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
       {!count && <Skeleton className={styles.cardCount} />}
 
       <div className={styles.cardLinkContainer}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
+        <Link>
+          <Icon>
+            <ArrowRightIcon />
+          </Icon>{" "}
           {label}
         </Link>
       </div>
