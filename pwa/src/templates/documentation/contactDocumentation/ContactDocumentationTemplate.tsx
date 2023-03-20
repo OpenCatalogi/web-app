@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +22,10 @@ export const ContactDocumentationTemplate: React.FC = () => {
               open("https://www.rotterdam.nl");
             }}
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               De Gemeente Rotterdam
             </Link>
           </span>{" "}
@@ -31,25 +35,37 @@ export const ContactDocumentationTemplate: React.FC = () => {
               open("https://www.conduction.nl");
             }}
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Conduction
             </Link>
           </span>
           . Dit kan je doen door te mailen naar{" "}
           <span onClick={() => navigate(`mailto:info@conduction.nl`)}>
-            <Link icon={<FontAwesomeIcon icon={faEnvelope} />} iconAlign="start">
+            <Link>
+              <Icon>
+                <FontAwesomeIcon icon={faEnvelope} />
+              </Icon>
               Conduction
             </Link>
           </span>{" "}
           of te bellen naar{" "}
           <span onClick={() => navigate(`tel:14010`)}>
-            <Link icon={<FontAwesomeIcon icon={faPhone} />} iconAlign="start">
+            <Link>
+              <Icon>
+                <FontAwesomeIcon icon={faPhone} />
+              </Icon>
               De Gemeente Rotterdam
             </Link>
           </span>{" "}
           of naar{" "}
           <span onClick={() => navigate(`tel:+31853036840`)}>
-            <Link icon={<FontAwesomeIcon icon={faPhone} />} iconAlign="start">
+            <Link>
+              <Icon>
+                <FontAwesomeIcon icon={faPhone} />
+              </Icon>
               Conduction
             </Link>
           </span>
