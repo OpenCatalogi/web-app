@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Divider, Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { Divider, Paragraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
   return (
     <div className={styles.container}>
       <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={icon} iconAlign="start">
+        <Link>
+          <Icon></Icon>
           {title.label}
         </Link>
       </div>
