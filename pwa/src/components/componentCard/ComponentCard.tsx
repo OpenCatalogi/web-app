@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
-import { Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
@@ -49,7 +50,10 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
   return (
     <div className={styles.container}>
       <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
+        <Link>
+          <Icon>
+            <ArrowRightIcon />
+          </Icon>
           {title.label}
         </Link>
       </div>
