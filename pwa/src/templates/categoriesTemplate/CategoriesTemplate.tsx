@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import * as _ from "lodash";
-import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
@@ -23,20 +24,29 @@ export const CategoriesTemplate: React.FC = () => {
           <LeadParagraph className={styles.description}>
             We verdelen{" "}
             <span onClick={() => navigate("/applications")}>
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 applicaties
               </Link>
             </span>{" "}
             en{" "}
             <span onClick={() => navigate("/components")}>
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ArrowRightIcon />
+                </Icon>
                 componenten
               </Link>
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
             <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+              <Link>
+                <Icon>
+                  <ExternalLinkIcon />
+                </Icon>
                 Gemma bedrijfsfuncties
               </Link>
             </span>
