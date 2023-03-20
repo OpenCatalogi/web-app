@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import * as _ from "lodash";
-import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -46,9 +47,7 @@ export const ApplicationsTemplate: React.FC = () => {
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                bedrijfsfunctie
-              </Link>
+              <Link><Icon><ExternalLinkIcon/></Icon> bedrijfsfunctie</Link>
             </span>
             .
           </LeadParagraph>
