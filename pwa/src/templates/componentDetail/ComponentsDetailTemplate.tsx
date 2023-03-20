@@ -5,12 +5,12 @@ import {
   Heading1,
   Heading2,
   LeadParagraph,
-  Link,
   Tab,
   TabContext,
   TabPanel,
   Tabs,
 } from "@gemeente-denhaag/components-react";
+import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -86,7 +86,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/components")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+        <Link>
+          <Icon>
+            <ArrowLeftIcon />
+          </Icon>
           {t("Back to components")}
         </Link>
       </div>
@@ -230,7 +233,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         rating={_getComponent.data.embedded?.rating?.rating}
                       />
                       <span onClick={show} className={styles.link}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                        <Link>
+                          <Icon>
+                            <ArrowRightIcon />
+                          </Icon>
                           Rating
                         </Link>
                       </span>
