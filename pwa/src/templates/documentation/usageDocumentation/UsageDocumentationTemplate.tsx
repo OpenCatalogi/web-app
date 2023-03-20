@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, Heading2, LeadParagraph, Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { Heading1, Heading2, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
+import { CodeBlock, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { CodeBlock } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import dedent from "dedent";
 
@@ -34,7 +34,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
               open("https://yml.publiccode.tools/schema.core.html#top-level-keys-and-sections");
             }}
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>{" "}
               hier
             </Link>
           </span>{" "}
@@ -44,7 +47,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
               open("https://publiccode-editor.developers.italia.it/");
             }}
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               hier
             </Link>
           </span>{" "}
@@ -63,19 +69,28 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           OpenCatalogi synchroniseert onder andere met{" "}
           <span onClick={() => open("https://componentencatalogus.commonground.nl/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Common Ground Componenten­catalogus
             </Link>
           </span>
           ,{" "}
           <span onClick={() => open("https://developer.overheid.nl/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Developer Overheid
             </Link>
           </span>{" "}
           en <br />
           <span onClick={() => open("https://www.softwarecatalogus.nl/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               GEMMA Softwarecatalogus
             </Link>
           </span>
@@ -89,7 +104,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
               navigate("/documentation/contact");
             }}
           >
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ArrowRightIcon />
+              </Icon>
               dit formulier
             </Link>
           </span>{" "}
@@ -111,7 +129,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Om een eigen project op te zetten heb je een GitHub-account nodig en daar mee ingelogd zijn. Klik op de groene
           "Use this template" knop op de <br />
           <span onClick={() => open("https://github.com/ConductionNL/skeleton-app")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               GitHub-pagina
             </Link>
           </span>
@@ -154,7 +175,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph>
           Na het succesvol instellen van de ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               http://localhost:81/
             </Link>
           </span>{" "}
@@ -163,7 +187,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Om de werking van de common-gateway die samen met de applicatie gaat draaien, te veranderen verwijzen we
           vriendelijk naar de technische documentatie van de{" "}
           <span onClick={() => open("https://docs.conductor-gateway.app/en/latest/installation/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               common-gateway
             </Link>
           </span>
@@ -173,20 +200,29 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Om de applicatie te installeren op je eigen cloud omgeving ondersteunen we installaties in{" "}
           <span onClick={() => open("https://kubernetes.io/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
-              Kubernetes
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
+              kubernetes
             </Link>
           </span>{" "}
           met het gebruik van de bijgeleverde{" "}
           <span onClick={() => open("https://helm.sh/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Helm
             </Link>
           </span>{" "}
           grafiek. Kubernetes is een Container Orkestratie dat een standaard is geworden voor Nederlandse gemeenten
           onder de{" "}
           <span onClick={() => open("https://haven.commonground.nl/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Haven
             </Link>
           </span>{" "}
@@ -195,13 +231,19 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           De Helm grafiek kan geïnstalleerd worden met de hulp van Kubernetes beheertools zoals{" "}
           <span onClick={() => open("https://dashkube.com/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Dashkube
             </Link>
           </span>{" "}
           of{" "}
           <span onClick={() => open("https://rancher.com/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Rancher
             </Link>
           </span>
@@ -211,13 +253,19 @@ export const UsageDocumentationTemplate: React.FC = () => {
           De Helm grafiek kan ook geïnstalleerd worden door Helm te draaien van je lokale machine (zie de instructies
           over hoe je Helm installeert op <br />
           <span onClick={() => open("https://helm.sh/docs/intro/install/#through-package-managers/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               helm.sh
             </Link>
           </span>
           , hiervoor is het vereist om{" "}
           <span onClick={() => open("https://kubernetes.io/docs/tasks/tools/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               kubectl
             </Link>
           </span>{" "}
@@ -237,7 +285,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
               )
             }
           >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               hier
             </Link>
           </span>
@@ -247,13 +298,19 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           De volledige technische documentatie is te vinden op{" "}
           <span onClick={() => open("https://skeleton-app.readthedocs.io/en/latest/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               Read the Docs
             </Link>
           </span>{" "}
           en is gebaseerd op{" "}
           <span onClick={() => open("https://www.mkdocs.org/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               MKDocs
             </Link>
           </span>
@@ -267,7 +324,10 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Ga naar de repository en voer het commando uit om de documentatie beschikbaar te stellen op poort:8000. <br />
           Zorg er voor dat je eerst{" "}
           <span onClick={() => open("https://www.mkdocs.org/user-guide/installation/")}>
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <Link>
+              <Icon>
+                <ExternalLinkIcon />
+              </Icon>
               MKDocs installeert
             </Link>
           </span>
