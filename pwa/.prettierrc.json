@@ -5,7 +5,8 @@
       "options": {
         "parser": "json",
         "printWidth": 120,
-        "tabWidth": 2
+        "tabWidth": 4,
+        "useTabs": true
       }
     },
     {
@@ -14,7 +15,8 @@
         "parser": "typescript",
         "printWidth": 120,
         "trailingComma": "all",
-        "tabWidth": 2,
+        "tabWidth": 4,
+        "useTabs": true,
         "singleQuote": false
       }
     },
@@ -22,7 +24,8 @@
       "files": ["*.css", "*.scss"],
       "options": {
         "parser": "css",
-        "tabWidth": 2,
+        "tabWidth": 4,
+        "useTabs": true,
         "printWidth": 180
       }
     }
