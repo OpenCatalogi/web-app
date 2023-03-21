@@ -106,10 +106,6 @@
     "@gemeente-denhaag/textarea": {
       "react": "^16 || ^17 || ^18",
       "react-dom": "^16 || ^17 || ^18"
-    },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    }
   }
-}
 }
