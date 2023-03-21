@@ -1,0 +1,4 @@
+{
+    "*.{js,jsx,mdx,ts,tsx}": ["eslint --no-error-on-unmatched-pattern", "prettier --check"],
+    "*.{css,scss}": ["prettier --check"]
+}
