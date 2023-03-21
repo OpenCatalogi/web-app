@@ -8,5 +8,5 @@ interface LayersResultTemplateProps {
 }
 
 export const LayerDependenciesTemplate: React.FC<LayersResultTemplateProps> = ({ components }) => {
-  return <ComponentCardsAccordionTemplate {...{ components }} />;
+	return <ComponentCardsAccordionTemplate {...{ components }} />;
 };

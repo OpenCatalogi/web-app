@@ -5,14 +5,14 @@ import APIContext from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
 
 const Logout: React.FC = () => {
-  const API: APIService | null = React.useContext(APIContext);
+	const API: APIService | null = React.useContext(APIContext);
 
-  React.useEffect(() => {
-    API && handleLogout(API);
-    navigate("/");
-  });
+	React.useEffect(() => {
+		API && handleLogout(API);
+		navigate("/");
+	});
 
-  return <></>;
+	return <></>;
 };
 
 export default Logout;

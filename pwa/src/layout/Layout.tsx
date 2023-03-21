@@ -23,78 +23,78 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
-  const [filters, setFilters] = React.useState<IFilters>(_filters);
-  const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
-  const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
-  const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
-  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
-    ...{ pageContext, location, screenSize: "mobile" },
-  });
+	const [filters, setFilters] = React.useState<IFilters>(_filters);
+	const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
+	const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
+	const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
+	const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
+		...{ pageContext, location, screenSize: "mobile" },
+	});
 
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  React.useEffect(() => {
-    setAPI(new APIService());
-  }, []);
+	React.useEffect(() => {
+		setAPI(new APIService());
+	}, []);
 
-  React.useEffect(() => {
-    setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
+	React.useEffect(() => {
+		setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
 
-    const JWT = sessionStorage.getItem("JWT");
+		const JWT = sessionStorage.getItem("JWT");
 
-    API && !API.authenticated && JWT && API.setAuthentication(JWT);
-  }, [pageContext, location, screenSize]);
+		API && !API.authenticated && JWT && API.setAuthentication(JWT);
+	}, [pageContext, location, screenSize]);
 
-  React.useEffect(() => {
-    const handleWindowResize = () => {
-      setScreenSize(getScreenSize(window.innerWidth));
-    };
+	React.useEffect(() => {
+		const handleWindowResize = () => {
+			setScreenSize(getScreenSize(window.innerWidth));
+		};
 
-    window.addEventListener("resize", handleWindowResize);
+		window.addEventListener("resize", handleWindowResize);
 
-    () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
+		() => window.removeEventListener("resize", handleWindowResize);
+	}, []);
 
-  React.useEffect(() => {
-    if (!gatsbyContext) return;
+	React.useEffect(() => {
+		if (!gatsbyContext) return;
 
-    const {
-      pageContext: {
-        breadcrumb: { crumbs },
-      },
-    } = gatsbyContext;
+		const {
+			pageContext: {
+				breadcrumb: { crumbs },
+			},
+		} = gatsbyContext;
 
-    setBreadcrumbs(
-      crumbs.map((crumb: any) => ({
-        ...crumb,
-        crumbLabel: t(_.upperFirst(crumb.crumbLabel)),
-      })),
-    );
-  }, [gatsbyContext]);
+		setBreadcrumbs(
+			crumbs.map((crumb: any) => ({
+				...crumb,
+				crumbLabel: t(_.upperFirst(crumb.crumbLabel)),
+			})),
+		);
+	}, [gatsbyContext]);
 
-  if (!API) return <></>;
+	if (!API) return <></>;
 
-  return (
-    <>
-      <Head />
+	return (
+		<>
+			<Head />
 
-      <GatsbyProvider value={gatsbyContext}>
-        <APIProvider value={API}>
-          <FiltersProvider value={[filters, setFilters]}>
-            <ThemeProvider>
-              <Favicon url={Logo} />
+			<GatsbyProvider value={gatsbyContext}>
+				<APIProvider value={API}>
+					<FiltersProvider value={[filters, setFilters]}>
+						<ThemeProvider>
+							<Favicon url={Logo} />
 
-              <HeaderTemplate layoutClassName={styles.header} />
+							<HeaderTemplate layoutClassName={styles.header} />
 
-              <div className={styles.pageContent}>{children}</div>
+							<div className={styles.pageContent}>{children}</div>
 
-              <FooterTemplate layoutClassName={styles.footer} />
-            </ThemeProvider>
-          </FiltersProvider>
-        </APIProvider>
-      </GatsbyProvider>
-    </>
-  );
+							<FooterTemplate layoutClassName={styles.footer} />
+						</ThemeProvider>
+					</FiltersProvider>
+				</APIProvider>
+			</GatsbyProvider>
+		</>
+	);
 };
 
 export default Layout;

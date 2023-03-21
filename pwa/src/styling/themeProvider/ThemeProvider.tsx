@@ -9,34 +9,34 @@ import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
-  const [theme, setTheme] = React.useState<string>("rotterdam");
+	const [theme, setTheme] = React.useState<string>("rotterdam");
 
-  React.useEffect(() => {
-    const link = document.createElement("link");
+	React.useEffect(() => {
+		const link = document.createElement("link");
 
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.href = `/themes/${theme}.css`;
+		link.type = "text/css";
+		link.rel = "stylesheet";
+		link.href = `/themes/${theme}.css`;
 
-    document.head.appendChild(link);
+		document.head.appendChild(link);
 
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, [theme]);
-  const themeData = themes.find(({ value }) => value === theme);
+		return () => {
+			document.head.removeChild(link);
+		};
+	}, [theme]);
+	const themeData = themes.find(({ value }) => value === theme);
 
-  return (
-    <Document className={themeData?.className}>
-      {children}
+	return (
+		<Document className={themeData?.className}>
+			{children}
 
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <ThemeSwitcher {...{ setTheme }} />
-        </div>
-      </div>
-    </Document>
-  );
+			<div className={styles.container}>
+				<div className={styles.content}>
+					<ThemeSwitcher {...{ setTheme }} />
+				</div>
+			</div>
+		</Document>
+	);
 };
 
 // This component is TEMPORARY and only for DEV & DEMO purposes
@@ -45,38 +45,38 @@ interface ThemeSwitcherProps {
 }
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
-  const {
-    register,
-    watch,
-    control,
-    formState: { errors },
-  } = useForm();
+	const {
+		register,
+		watch,
+		control,
+		formState: { errors },
+	} = useForm();
 
-  React.useEffect(() => {
-    const subscription = watch(({ themeSwitcher }) => {
-      setTheme(themeSwitcher?.value);
-    });
+	React.useEffect(() => {
+		const subscription = watch(({ themeSwitcher }) => {
+			setTheme(themeSwitcher?.value);
+		});
 
-    return () => subscription.unsubscribe();
-  });
+		return () => subscription.unsubscribe();
+	});
 
-  return (
-    <div className={styles.themeSwitcherContainer}>
-      <FormField>
-        <FormFieldInput>
-          <FormFieldLabel>
-            <span className={styles.label}>Thema aanpasssen:</span>
-          </FormFieldLabel>
-          <div className={styles.selectBorder}>
-            <SelectSingle
-              name="themeSwitcher"
-              defaultValue={themes[0]}
-              options={themes}
-              {...{ errors, control, register }}
-            />
-          </div>
-        </FormFieldInput>
-      </FormField>
-    </div>
-  );
+	return (
+		<div className={styles.themeSwitcherContainer}>
+			<FormField>
+				<FormFieldInput>
+					<FormFieldLabel>
+						<span className={styles.label}>Thema aanpasssen:</span>
+					</FormFieldLabel>
+					<div className={styles.selectBorder}>
+						<SelectSingle
+							name="themeSwitcher"
+							defaultValue={themes[0]}
+							options={themes}
+							{...{ errors, control, register }}
+						/>
+					</div>
+				</FormFieldInput>
+			</FormField>
+		</div>
+	);
 };

@@ -14,19 +14,19 @@ interface MiniDashboardTemplateProps {
 }
 
 export const MiniDashboardTemplate: React.FC<MiniDashboardTemplateProps> = ({ layoutClassName }) => {
-  const _useComponent = useComponent(new QueryClient());
+	const _useComponent = useComponent(new QueryClient());
 
-  const _getSoftwareCount = _useComponent.getCount({ ...baseFilters, softwareType: "standalone/desktop" });
-  const _getDataModelsCount = _useComponent.getCount({ ...baseFilters, softwareType: "schema" });
-  const _getApiCount = _useComponent.getCount({ ...baseFilters, softwareType: "api" });
+	const _getSoftwareCount = _useComponent.getCount({ ...baseFilters, softwareType: "standalone/desktop" });
+	const _getDataModelsCount = _useComponent.getCount({ ...baseFilters, softwareType: "schema" });
+	const _getApiCount = _useComponent.getCount({ ...baseFilters, softwareType: "api" });
 
-  return (
-    <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
-      <MiniDashboardCard label="Software" softwareType="standalone/desktop" count={_getSoftwareCount.data} />
-      <MiniDashboardCard label="Datamodellen" softwareType="schema" count={_getDataModelsCount.data} />
-      <MiniDashboardCard label="API's" softwareType="api" count={_getApiCount.data} />
-    </div>
-  );
+	return (
+		<div className={clsx(styles.container, layoutClassName && layoutClassName)}>
+			<MiniDashboardCard label="Software" softwareType="standalone/desktop" count={_getSoftwareCount.data} />
+			<MiniDashboardCard label="Datamodellen" softwareType="schema" count={_getDataModelsCount.data} />
+			<MiniDashboardCard label="API's" softwareType="api" count={_getApiCount.data} />
+		</div>
+	);
 };
 
 // Mini dashboard card
@@ -37,24 +37,24 @@ interface MiniDashboardCardProps {
 }
 
 const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareType, count }) => {
-  const [_, setFilters] = React.useContext(FiltersContext);
+	const [_, setFilters] = React.useContext(FiltersContext);
 
-  return (
-    <div
-      className={styles.cardContainer}
-      onClick={() => {
-        setFilters({ ...baseFilters, softwareType: softwareType });
-        navigate("/components");
-      }}
-    >
-      {count && <div className={styles.cardCount}>{count}</div>}
-      {!count && <Skeleton className={styles.cardCount} />}
+	return (
+		<div
+			className={styles.cardContainer}
+			onClick={() => {
+				setFilters({ ...baseFilters, softwareType: softwareType });
+				navigate("/components");
+			}}
+		>
+			{count && <div className={styles.cardCount}>{count}</div>}
+			{!count && <Skeleton className={styles.cardCount} />}
 
-      <div className={styles.cardLinkContainer}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
-          {label}
-        </Link>
-      </div>
-    </div>
-  );
+			<div className={styles.cardLinkContainer}>
+				<Link icon={<ArrowRightIcon />} iconAlign="start">
+					{label}
+				</Link>
+			</div>
+		</div>
+	);
 };

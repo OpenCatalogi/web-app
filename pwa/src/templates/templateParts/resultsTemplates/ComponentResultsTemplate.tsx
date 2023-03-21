@@ -11,14 +11,14 @@ interface ComponentResultsTemplateProps {
 }
 
 export const ComponentResultTemplate: React.FC<ComponentResultsTemplateProps> = ({ components, type }) => {
-  switch (type) {
-    case "table":
-      return <TableResultTemplate {...{ components }} />;
+	switch (type) {
+	case "table":
+		return <TableResultTemplate {...{ components }} />;
 
-    case "cards":
-      return <CardsResultTemplate {...{ components }} />;
+	case "cards":
+		return <CardsResultTemplate {...{ components }} />;
 
-    case "layer":
-      return <LayersResultTemplate {...{ components }} />;
-  }
+	case "layer":
+		return <LayersResultTemplate {...{ components }} />;
+	}
 };

@@ -16,17 +16,17 @@ export interface CategoryCardProps {
 }
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={icon} iconAlign="start">
-          {title.label}
-        </Link>
-      </div>
-      <Divider />
-      <Paragraph className={domain ?? styles.description}>{description}</Paragraph>
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			<div className={styles.titleLink} onClick={() => navigate(title.href)}>
+				<Link icon={icon} iconAlign="start">
+					{title.label}
+				</Link>
+			</div>
+			<Divider />
+			<Paragraph className={domain ?? styles.description}>{description}</Paragraph>
+		</div>
+	);
 };

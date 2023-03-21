@@ -1,36 +1,36 @@
 export const filtersToQueryParams = (filters: any): string => {
-  Object.keys(filters)
-    .filter((key) => filterKeysToRemove.includes(key))
-    .forEach((key) => {
-      delete filters[key];
-    });
+	Object.keys(filters)
+		.filter((key) => filterKeysToRemove.includes(key))
+		.forEach((key) => {
+			delete filters[key];
+		});
 
-  let params: string = "";
+	let params = "";
 
-  for (const [key, value] of Object.entries(filters)) {
-    if (!value) continue;
+	for (const [key, value] of Object.entries(filters)) {
+		if (!value) continue;
 
-    if (typeof value === "string") {
-      params += `&${key}=${value}`;
-    }
+		if (typeof value === "string") {
+			params += `&${key}=${value}`;
+		}
 
-    if (Array.isArray(value)) {
-      let arrayParams = "";
+		if (Array.isArray(value)) {
+			let arrayParams = "";
 
-      value.forEach((value) => {
-        arrayParams += `&${key}[]=${value}`;
-      });
+			value.forEach((value) => {
+				arrayParams += `&${key}[]=${value}`;
+			});
 
-      params += arrayParams;
-    }
-  }
+			params += arrayParams;
+		}
+	}
 
-  return params;
+	return params;
 };
 
 const filterKeysToRemove: string[] = [
-  "resultDisplayLayout",
-  "dependenciesDisplayLayout",
-  "landingDisplayLayout",
-  "catagoryDisplayLayout",
+	"resultDisplayLayout",
+	"dependenciesDisplayLayout",
+	"landingDisplayLayout",
+	"catagoryDisplayLayout",
 ];

@@ -13,35 +13,35 @@ interface LayerAccordionTemplateProps {
 }
 
 const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
-  open,
-  setOpen,
-  color,
-  children,
-  header,
-  disabled,
+	open,
+	setOpen,
+	color,
+	children,
+	header,
+	disabled,
 }) => {
-  return (
-    <div className={!open ? styles.containerInactive : ""}>
-      <QuoteWrapper borderColor={!disabled ? color : ""}>
-        <Collapsible
-          triggerDisabled={disabled}
-          trigger={header}
-          {...{ open }}
-          transitionTime={200}
-          onOpening={() => setOpen(true)}
-          onClosing={() => setOpen(false)}
-        >
-          {children}
-        </Collapsible>
-      </QuoteWrapper>
-    </div>
-  );
+	return (
+		<div className={!open ? styles.containerInactive : ""}>
+			<QuoteWrapper borderColor={!disabled ? color : ""}>
+				<Collapsible
+					triggerDisabled={disabled}
+					trigger={header}
+					{...{ open }}
+					transitionTime={200}
+					onOpening={() => setOpen(true)}
+					onClosing={() => setOpen(false)}
+				>
+					{children}
+				</Collapsible>
+			</QuoteWrapper>
+		</div>
+	);
 };
 
 const LayerAccordionController = () => {
-  const [open, setOpen] = React.useState<boolean>(true);
+	const [open, setOpen] = React.useState<boolean>(true);
 
-  return { open, setOpen };
+	return { open, setOpen };
 };
 
 const LayerAccordion = { accordion: LayerAccordionTemplate, controller: LayerAccordionController };

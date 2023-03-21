@@ -33,89 +33,89 @@ export interface OrganizationCardProps {
 }
 
 export const OrganizationCard: React.FC<OrganizationCardProps> = ({
-  title,
-  description,
-  website,
-  logo,
-  type,
-  components,
-  gitHub,
-  gitLab,
-  layoutClassName,
+	title,
+	description,
+	website,
+	logo,
+	type,
+	components,
+	gitHub,
+	gitLab,
+	layoutClassName,
 }) => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
-      <div className={styles.header}>
-        <div className={styles.headerContent}>
-          <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
-              {title.label}
-            </Link>
-          </div>
+	return (
+		<div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
+			<div className={styles.header}>
+				<div className={styles.headerContent}>
+					<div className={styles.titleLink} onClick={() => navigate(title.href)}>
+						<Link icon={<ArrowRightIcon />} iconAlign="start">
+							{title.label}
+						</Link>
+					</div>
 
-          <Paragraph className={styles.description}>{description}</Paragraph>
-        </div>
+					<Paragraph className={styles.description}>{description}</Paragraph>
+				</div>
 
-        {logo && (
-          <div className={styles.logoContainer}>
-            <img className={styles.logo} onClick={() => navigate(title.href)} src={logo} />
-          </div>
-        )}
-      </div>
+				{logo && (
+					<div className={styles.logoContainer}>
+						<img className={styles.logo} onClick={() => navigate(title.href)} src={logo} />
+					</div>
+				)}
+			</div>
 
-      <div className={styles.tagsContainer}>
-        <ToolTip tooltip="Organisatie type">
-          <Tag
-            label={t(_.upperFirst(type ? type : "Unknown"))}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faBuilding} />}
-          />
-        </ToolTip>
+			<div className={styles.tagsContainer}>
+				<ToolTip tooltip="Organisatie type">
+					<Tag
+						label={t(_.upperFirst(type ? type : "Unknown"))}
+						onClick={() => navigate(title.href)}
+						icon={<FontAwesomeIcon icon={faBuilding} />}
+					/>
+				</ToolTip>
 
-        <ToolTip tooltip="Aantal eigen componenten">
-          <Tag
-            label={components.owned}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faHouseLaptop} />}
-          />
-        </ToolTip>
+				<ToolTip tooltip="Aantal eigen componenten">
+					<Tag
+						label={components.owned}
+						onClick={() => navigate(title.href)}
+						icon={<FontAwesomeIcon icon={faHouseLaptop} />}
+					/>
+				</ToolTip>
 
-        <ToolTip tooltip="Aantal ondersteunde componenten">
-          <Tag
-            label={components.supported}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faUserCog} />}
-          />
-        </ToolTip>
+				<ToolTip tooltip="Aantal ondersteunde componenten">
+					<Tag
+						label={components.supported}
+						onClick={() => navigate(title.href)}
+						icon={<FontAwesomeIcon icon={faUserCog} />}
+					/>
+				</ToolTip>
 
-        <ToolTip tooltip="Aantal gebruikte componenten">
-          <Tag
-            label={components.used}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faRepeat} />}
-          />
-        </ToolTip>
+				<ToolTip tooltip="Aantal gebruikte componenten">
+					<Tag
+						label={components.used}
+						onClick={() => navigate(title.href)}
+						icon={<FontAwesomeIcon icon={faRepeat} />}
+					/>
+				</ToolTip>
 
-        {website && (
-          <ToolTip tooltip={website}>
-            <Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
-          </ToolTip>
-        )}
+				{website && (
+					<ToolTip tooltip={website}>
+						<Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
+					</ToolTip>
+				)}
 
-        {gitHub && (
-          <ToolTip tooltip="GitHub">
-            <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(gitHub)} />
-          </ToolTip>
-        )}
+				{gitHub && (
+					<ToolTip tooltip="GitHub">
+						<Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(gitHub)} />
+					</ToolTip>
+				)}
 
-        {gitLab && (
-          <ToolTip tooltip="GitLab">
-            <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(gitLab)} />
-          </ToolTip>
-        )}
-      </div>
-    </div>
-  );
+				{gitLab && (
+					<ToolTip tooltip="GitLab">
+						<Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(gitLab)} />
+					</ToolTip>
+				)}
+			</div>
+		</div>
+	);
 };

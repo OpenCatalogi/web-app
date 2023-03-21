@@ -10,30 +10,30 @@ interface CategoriesAccordionTemplateProps {
 }
 
 const CategoriesAccordionTemplate: React.FC<CategoriesAccordionTemplateProps> = ({
-  open,
-  setOpen,
-  children,
-  header,
+	open,
+	setOpen,
+	children,
+	header,
 }) => {
-  return (
-    <div className={!open ? styles.containerInactive : ""}>
-      <Collapsible
-        trigger={header}
-        {...{ open }}
-        transitionTime={200}
-        onOpening={() => setOpen(true)}
-        onClosing={() => setOpen(false)}
-      >
-        {children}
-      </Collapsible>
-    </div>
-  );
+	return (
+		<div className={!open ? styles.containerInactive : ""}>
+			<Collapsible
+				trigger={header}
+				{...{ open }}
+				transitionTime={200}
+				onOpening={() => setOpen(true)}
+				onClosing={() => setOpen(false)}
+			>
+				{children}
+			</Collapsible>
+		</div>
+	);
 };
 
 const CategoriesAccordionController = () => {
-  const [open, setOpen] = React.useState<boolean>(true);
+	const [open, setOpen] = React.useState<boolean>(true);
 
-  return { open, setOpen };
+	return { open, setOpen };
 };
 
 const CategoriesAccordion = { accordion: CategoriesAccordionTemplate, controller: CategoriesAccordionController };

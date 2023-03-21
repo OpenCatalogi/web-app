@@ -8,16 +8,16 @@ import { useTranslation } from "react-i18next";
 interface LayersLandingDisplayTemplateProps {}
 
 export const LayersLandingDisplayTemplate: React.FC<LayersLandingDisplayTemplateProps> = ({}) => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <>
-      <div className={styles.subHeading}>
-        <Heading2>{t("Layers")}</Heading2>
+	return (
+		<>
+			<div className={styles.subHeading}>
+				<Heading2>{t("Layers")}</Heading2>
 
-        <LeadParagraph>Hier kunnen de components gezocht worden per laag.</LeadParagraph>
-      </div>
-      <ComponentCategoryAccordionTemplate />
-    </>
-  );
+				<LeadParagraph>Hier kunnen de components gezocht worden per laag.</LeadParagraph>
+			</div>
+			<ComponentCategoryAccordionTemplate />
+		</>
+	);
 };

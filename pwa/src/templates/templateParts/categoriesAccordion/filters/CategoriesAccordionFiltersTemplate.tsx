@@ -13,24 +13,24 @@ interface CategoriesAccordionFiltersTemplateProps {
 }
 
 export const CategoriesAccordionFiltersTemplate: React.FC<CategoriesAccordionFiltersTemplateProps> = ({ items }) => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <div className={styles.container}>
-      {items.map(({ label, active, handleClick, disabled }, idx) => (
-        <span
-          key={idx}
-          onClick={() => !disabled && handleClick((o) => !o)}
-          className={clsx(
-            styles[label.toLowerCase()],
-            active && !disabled && styles.active,
-            styles.filter,
-            disabled && styles.disabled,
-          )}
-        >
-          {t(label)}
-        </span>
-      ))}
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			{items.map(({ label, active, handleClick, disabled }, idx) => (
+				<span
+					key={idx}
+					onClick={() => !disabled && handleClick((o) => !o)}
+					className={clsx(
+						styles[label.toLowerCase()],
+						active && !disabled && styles.active,
+						styles.filter,
+						disabled && styles.disabled,
+					)}
+				>
+					{t(label)}
+				</span>
+			))}
+		</div>
+	);
 };

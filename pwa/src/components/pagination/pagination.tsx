@@ -20,41 +20,41 @@ interface PaginatedItemsProps {
 }
 
 export const PaginatedItems: React.FC<PaginatedItemsProps> = ({
-  pages,
-  currentPage,
-  setPage,
-  pageRangeDisplayed,
-  marginPagesDisplayed,
-  containerClassName,
-  pageClassName,
-  previousClassName,
-  nextClassName,
-  activeClassName,
-  disabledClassName,
-  breakClassName,
+	pages,
+	currentPage,
+	setPage,
+	pageRangeDisplayed,
+	marginPagesDisplayed,
+	containerClassName,
+	pageClassName,
+	previousClassName,
+	nextClassName,
+	activeClassName,
+	disabledClassName,
+	breakClassName,
 }) => {
-  const handlePageClick = (event: any) => {
-    setPage(event.selected + 1);
-  };
+	const handlePageClick = (event: any) => {
+		setPage(event.selected + 1);
+	};
 
-  return (
-    <ReactPaginate
-      containerClassName={containerClassName}
-      pageCount={pages}
-      onPageChange={handlePageClick}
-      forcePage={currentPage - 1}
-      pageRangeDisplayed={pageRangeDisplayed}
-      marginPagesDisplayed={marginPagesDisplayed}
-      pageClassName={pageClassName}
-      previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-      previousClassName={previousClassName}
-      nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-      nextClassName={nextClassName}
-      activeClassName={activeClassName}
-      disableInitialCallback={true}
-      disabledClassName={disabledClassName}
-      breakLabel="..."
-      breakClassName={breakClassName}
-    />
-  );
+	return (
+		<ReactPaginate
+			containerClassName={containerClassName}
+			pageCount={pages}
+			onPageChange={handlePageClick}
+			forcePage={currentPage - 1}
+			pageRangeDisplayed={pageRangeDisplayed}
+			marginPagesDisplayed={marginPagesDisplayed}
+			pageClassName={pageClassName}
+			previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+			previousClassName={previousClassName}
+			nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+			nextClassName={nextClassName}
+			activeClassName={activeClassName}
+			disableInitialCallback={true}
+			disabledClassName={disabledClassName}
+			breakLabel="..."
+			breakClassName={breakClassName}
+		/>
+	);
 };

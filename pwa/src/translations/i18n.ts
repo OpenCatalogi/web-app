@@ -4,21 +4,21 @@ import { nl } from "./nl";
 import { en } from "./en";
 
 const resources = {
-  en: {
-    translation: en,
-  },
-  nl: {
-    translation: nl,
-  },
+	en: {
+		translation: en,
+	},
+	nl: {
+		translation: nl,
+	},
 };
 
 i18n.use(initReactI18next).init({
-  resources,
-  lng: "nl",
+	resources,
+	lng: "nl",
 
-  interpolation: {
-    escapeValue: false,
-  },
+	interpolation: {
+		escapeValue: false,
+	},
 });
 
 export default i18n;

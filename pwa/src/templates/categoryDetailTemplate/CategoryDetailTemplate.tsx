@@ -20,82 +20,82 @@ interface CategoryDetailTemplateProps {
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
-  const { t } = useTranslation();
+	const [filters, setFilters] = React.useContext(FiltersContext);
+	const { t } = useTranslation();
 
-  const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
-    return category.id === categoryId;
-  });
-  const domain =
+	const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
+		return category.id === categoryId;
+	});
+	const domain =
     portfolio &&
     TEMPORARY_DOMAINS.find((domain) => {
-      return domain.title === portfolio.domain;
+    	return domain.title === portfolio.domain;
     });
 
-  React.useEffect(() => {
-    setFilters({ ...filters, catagoryDisplayLayout: "table" });
-  }, []);
+	React.useEffect(() => {
+		setFilters({ ...filters, catagoryDisplayLayout: "table" });
+	}, []);
 
-  return (
-    <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/categories")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
-          {t("Back to categories")}
-        </Link>
-      </div>
+	return (
+		<Container layoutClassName={styles.container}>
+			<div className={styles.backButton} onClick={() => navigate("/categories")}>
+				<Link icon={<ArrowLeftIcon />} iconAlign="start">
+					{t("Back to categories")}
+				</Link>
+			</div>
 
-      {portfolio && domain && (
-        <div className={styles.header}>
-          <Heading1 className={styles.title}>{portfolio.title}</Heading1>
-          <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
-          <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
-        </div>
-      )}
+			{portfolio && domain && (
+				<div className={styles.header}>
+					<Heading1 className={styles.title}>{portfolio.title}</Heading1>
+					<Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
+					<LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
+				</div>
+			)}
 
-      <div className={styles.resultsDisplaySwitchButtons}>
-        <Button
-          className={styles.buttonIcon}
-          variant={filters.catagoryDisplayLayout === "table" ? "primary-action" : "secondary-action"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
-        >
-          <FontAwesomeIcon icon={faTable} />
-          {t("Table")}
-        </Button>
-        <Button
-          className={styles.buttonIcon}
-          variant={filters.catagoryDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
-        >
-          <FontAwesomeIcon icon={faGripVertical} />
-          {t("Cards")}
-        </Button>
-        <Button
-          className={styles.buttonIcon}
-          variant={filters.catagoryDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
-        >
-          <FontAwesomeIcon icon={faLayerGroup} />
-          {t("Layers")}
-        </Button>
-      </div>
+			<div className={styles.resultsDisplaySwitchButtons}>
+				<Button
+					className={styles.buttonIcon}
+					variant={filters.catagoryDisplayLayout === "table" ? "primary-action" : "secondary-action"}
+					onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
+				>
+					<FontAwesomeIcon icon={faTable} />
+					{t("Table")}
+				</Button>
+				<Button
+					className={styles.buttonIcon}
+					variant={filters.catagoryDisplayLayout === "cards" ? "primary-action" : "secondary-action"}
+					onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
+				>
+					<FontAwesomeIcon icon={faGripVertical} />
+					{t("Cards")}
+				</Button>
+				<Button
+					className={styles.buttonIcon}
+					variant={filters.catagoryDisplayLayout === "layer" ? "primary-action" : "secondary-action"}
+					onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
+				>
+					<FontAwesomeIcon icon={faLayerGroup} />
+					{t("Layers")}
+				</Button>
+			</div>
 
-      {filters.catagoryDisplayLayout && (
-        <div className={styles.solutions}>
-          <div className={styles.solutionsHeader}>
-            <span className={0 >= 100 && styles.maxNumber}>
-              <BadgeCounter number={"0"}>
-                <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
-              </BadgeCounter>
-            </span>
-          </div>
+			{filters.catagoryDisplayLayout && (
+				<div className={styles.solutions}>
+					<div className={styles.solutionsHeader}>
+						<span className={0 >= 100 && styles.maxNumber}>
+							<BadgeCounter number={"0"}>
+								<Heading3 className={styles.title}>{t("Solutions")}</Heading3>
+							</BadgeCounter>
+						</span>
+					</div>
 
-          <div className={styles.results}>
-            <ComponentResultTemplate components={[]} type={filters.catagoryDisplayLayout} />
-          </div>
-        </div>
-      )}
+					<div className={styles.results}>
+						<ComponentResultTemplate components={[]} type={filters.catagoryDisplayLayout} />
+					</div>
+				</div>
+			)}
 
-      {!portfolio && <Skeleton height="200px" />}
-    </Container>
-  );
+			{!portfolio && <Skeleton height="200px" />}
+		</Container>
+	);
 };

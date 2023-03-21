@@ -17,48 +17,48 @@ interface DownloadTemplateProps {
 }
 
 export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ layoutClassName, icon, label, sizeKb }) => {
-  const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
+	const { t } = useTranslation();
+	const { screenSize } = React.useContext(GatsbyContext);
 
-  const NotificationPopUpController = _NotificationPopUp.controller;
-  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
+	const NotificationPopUpController = _NotificationPopUp.controller;
+	const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
-  const { isVisible, show, hide } = NotificationPopUpController();
+	const { isVisible, show, hide } = NotificationPopUpController();
 
-  return (
-    <div className={clsx([layoutClassName && layoutClassName], screenSize === "mobile" && styles.downloadName)}>
-      <DownloadCard
-        label={label}
-        sizeKb={sizeKb}
-        downloadLabel="Download"
-        icon={icon}
-        handleClick={() => {
-          show();
-        }}
-      />
+	return (
+		<div className={clsx([layoutClassName && layoutClassName], screenSize === "mobile" && styles.downloadName)}>
+			<DownloadCard
+				label={label}
+				sizeKb={sizeKb}
+				downloadLabel="Download"
+				icon={icon}
+				handleClick={() => {
+					show();
+				}}
+			/>
 
-      {isVisible && (
-        <div className={styles.overlay}>
-          <NotificationPopUp
-            {...{ hide, isVisible }}
-            title={`${t("Warning")}!`}
-            description={t(
-              "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
-            )}
-            primaryButton={{
-              label: "Download",
-              icon: <FontAwesomeIcon icon={faDownload} />,
-              handleClick: () => {},
-            }}
-            secondaryButton={{
-              label: t("Go back"),
-              icon: <ArrowLeftIcon />,
-              handleClick: () => {},
-            }}
-            layoutClassName={styles.popup}
-          />
-        </div>
-      )}
-    </div>
-  );
+			{isVisible && (
+				<div className={styles.overlay}>
+					<NotificationPopUp
+						{...{ hide, isVisible }}
+						title={`${t("Warning")}!`}
+						description={t(
+							"This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
+						)}
+						primaryButton={{
+							label: "Download",
+							icon: <FontAwesomeIcon icon={faDownload} />,
+							handleClick: () => {},
+						}}
+						secondaryButton={{
+							label: t("Go back"),
+							icon: <ArrowLeftIcon />,
+							handleClick: () => {},
+						}}
+						layoutClassName={styles.popup}
+					/>
+				</div>
+			)}
+		</div>
+	);
 };

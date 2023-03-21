@@ -20,179 +20,179 @@ interface FooterTemplateProps {
 }
 
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
-  const { t } = useTranslation();
-  const [filters, setFilters] = React.useContext(FiltersContext);
+	const { t } = useTranslation();
+	const [filters, setFilters] = React.useContext(FiltersContext);
 
-  return (
-    <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
-      <Container layoutClassName={styles.footerContainer}>
-        <div className={styles.navigation}>
-          <ul className={styles.list}>
-            <div className={styles.heading}>Componenten</div>
+	return (
+		<footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+			<Container layoutClassName={styles.footerContainer}>
+				<div className={styles.navigation}>
+					<ul className={styles.list}>
+						<div className={styles.heading}>Componenten</div>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "process" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("Processes")}
-              </Link>
-            </li>
+						<li
+							onClick={() => {
+								setFilters({ ...baseFilters, softwareType: "process" });
+								navigate("/components");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
+								{t("Processes")}
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "schema" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("Data models")}
-              </Link>
-            </li>
+						<li
+							onClick={() => {
+								setFilters({ ...baseFilters, softwareType: "schema" });
+								navigate("/components");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
+								{t("Data models")}
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "api" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("API's")}
-              </Link>
-            </li>
+						<li
+							onClick={() => {
+								setFilters({ ...baseFilters, softwareType: "api" });
+								navigate("/components");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
+								{t("API's")}
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, developmentStatus: "concept" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("Initiatives")}
-              </Link>
-            </li>
-          </ul>
+						<li
+							onClick={() => {
+								setFilters({ ...baseFilters, developmentStatus: "concept" });
+								navigate("/components");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
+								{t("Initiatives")}
+							</Link>
+						</li>
+					</ul>
 
-          <ul className={styles.list}>
-            <div className={styles.heading}>Documentatie</div>
+					<ul className={styles.list}>
+						<div className={styles.heading}>Documentatie</div>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/about");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                {t("About OpenCatalogi")}
-              </Link>
-            </li>
+						<li
+							onClick={() => {
+								navigate("/documentation/about");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
+								{t("About OpenCatalogi")}
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/usage");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+						<li
+							onClick={() => {
+								navigate("/documentation/usage");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
                 Gebruik
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/contact");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+						<li
+							onClick={() => {
+								navigate("/documentation/contact");
+							}}
+						>
+							<Link icon={<ArrowRightIcon />} iconAlign="start">
                 Contact
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                open("https://github.com/OpenCatalogi");
-              }}
-            >
-              <Link icon={<GitHubLogo />} iconAlign="start">
+						<li
+							onClick={() => {
+								open("https://github.com/OpenCatalogi");
+							}}
+						>
+							<Link icon={<GitHubLogo />} iconAlign="start">
                 GitHub
-              </Link>
-            </li>
-          </ul>
+							</Link>
+						</li>
+					</ul>
 
-          <ul className={styles.list}>
-            <div className={styles.heading}>Links</div>
+					<ul className={styles.list}>
+						<div className={styles.heading}>Links</div>
 
-            <li
-              onClick={() => {
-                open("https://commonground.nl/");
-              }}
-            >
-              <Link icon={<CommongroundLogo />} iconAlign="start">
+						<li
+							onClick={() => {
+								open("https://commonground.nl/");
+							}}
+						>
+							<Link icon={<CommongroundLogo />} iconAlign="start">
                 Common ground
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                open("https://haven.commonground.nl/");
-              }}
-            >
-              <Link icon={<HavenLogo />} iconAlign="start">
+						<li
+							onClick={() => {
+								open("https://haven.commonground.nl/");
+							}}
+						>
+							<Link icon={<HavenLogo />} iconAlign="start">
                 Haven
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                open("https://designsystem.gebruikercentraal.nl/");
-              }}
-            >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+						<li
+							onClick={() => {
+								open("https://designsystem.gebruikercentraal.nl/");
+							}}
+						>
+							<Link icon={<ExternalLinkIcon />} iconAlign="start">
                 NL design
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                open("https://forumstandaardisatie.nl/");
-              }}
-            >
-              <Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
+						<li
+							onClick={() => {
+								open("https://forumstandaardisatie.nl/");
+							}}
+						>
+							<Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
                 Forum standaardisatie
-              </Link>
-            </li>
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                navigate("#");
-              }}
-            >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                {t("Privacy declaration")}
-              </Link>
-            </li>
+						<li
+							onClick={() => {
+								navigate("#");
+							}}
+						>
+							<Link icon={<ExternalLinkIcon />} iconAlign="start">
+								{t("Privacy declaration")}
+							</Link>
+						</li>
 
-            <li
-              onClick={() => {
-                open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
-              }}
-            >
-              <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
-                {t("Login")}
-              </Link>
-            </li>
-          </ul>
-        </div>
+						<li
+							onClick={() => {
+								open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
+							}}
+						>
+							<Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
+								{t("Login")}
+							</Link>
+						</li>
+					</ul>
+				</div>
 
-        <div>
-          <div className={styles.heading}>{t("An initiative of")}</div>
+				<div>
+					<div className={styles.heading}>{t("An initiative of")}</div>
 
-          <div className={styles.logosContainer}>
-            <div className={styles.organizationLogo}></div>
-            <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
-          </div>
-        </div>
-      </Container>
-    </footer>
-  );
+					<div className={styles.logosContainer}>
+						<div className={styles.organizationLogo}></div>
+						<img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+					</div>
+				</div>
+			</Container>
+		</footer>
+	);
 };

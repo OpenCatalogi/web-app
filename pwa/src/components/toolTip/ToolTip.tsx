@@ -9,14 +9,14 @@ interface ToolTipProps {
 }
 
 export const ToolTip: React.FC<ToolTipProps> = ({ children, tooltip }) => {
-  const [active, setActive] = React.useState(false);
+	const [active, setActive] = React.useState(false);
 
-  return (
-    <div className={styles.wrapper} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
-      {children}
-      {active && <div className={clsx(styles.content, styles.top)}>{tooltip}</div>}
-    </div>
-  );
+	return (
+		<div className={styles.wrapper} onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+			{children}
+			{active && <div className={clsx(styles.content, styles.top)}>{tooltip}</div>}
+		</div>
+	);
 };
 
 interface NodeToolTipProps {
@@ -24,9 +24,9 @@ interface NodeToolTipProps {
 }
 
 export const NodeToolTip: React.FC<NodeToolTipProps> = ({ tooltip }) => {
-  return (
-    <div className={styles.wrapper}>
-      <div className={clsx(styles.content, styles.top)}>{tooltip}</div>
-    </div>
-  );
+	return (
+		<div className={styles.wrapper}>
+			<div className={clsx(styles.content, styles.top)}>{tooltip}</div>
+		</div>
+	);
 };

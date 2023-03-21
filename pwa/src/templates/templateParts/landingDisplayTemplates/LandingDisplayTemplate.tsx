@@ -9,11 +9,11 @@ interface LandingDisplayTemplateProps {
 }
 
 export const LandingDisplayTemplate: React.FC<LandingDisplayTemplateProps> = ({ type }) => {
-  switch (type) {
-    case "cards":
-      return <CategoriesLandingDisplayTemplate />;
+	switch (type) {
+	case "cards":
+		return <CategoriesLandingDisplayTemplate />;
 
-    case "layer":
-      return <LayersLandingDisplayTemplate />;
-  }
+	case "layer":
+		return <LayersLandingDisplayTemplate />;
+	}
 };

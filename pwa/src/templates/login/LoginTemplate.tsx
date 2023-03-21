@@ -5,14 +5,14 @@ import { useTranslation } from "react-i18next";
 import { LoginForm } from "../templateParts/loginForm/LoginFormTemplate";
 
 export const LoginTemplate: React.FC = () => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Heading1 className={styles.header}>{t("Login")}</Heading1>
-        <LoginForm />
-      </div>
-    </div>
-  );
+	return (
+		<div className={styles.container}>
+			<div className={styles.content}>
+				<Heading1 className={styles.header}>{t("Login")}</Heading1>
+				<LoginForm />
+			</div>
+		</div>
+	);
 };

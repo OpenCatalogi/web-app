@@ -20,4 +20,4 @@ export const TEMPORARY_USERS = [
 		telephone: "+31 06 987422312",
 		email: "w.white@gmail.com",
 	},
-]
+];

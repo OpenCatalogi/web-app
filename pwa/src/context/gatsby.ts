@@ -9,9 +9,9 @@ export interface IGatsbyContext {
 }
 
 export const GatsbyContext = React.createContext<IGatsbyContext>({
-  pageContext: null,
-  location: null,
-  screenSize: "mobile",
+	pageContext: null,
+	location: null,
+	screenSize: "mobile",
 });
 
 export const GatsbyProvider = GatsbyContext.Provider;

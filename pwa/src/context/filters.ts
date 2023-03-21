@@ -34,12 +34,12 @@ export interface IFilters {
 }
 
 export const baseFilters = {
-  resultDisplayLayout: "table",
-  dependenciesDisplayLayout: "layer",
-  landingDisplayLayout: "cards",
-  catagoryDisplayLayout: "table",
-  currentPage: 1,
-  applicationsCurrentPage: 1,
+	resultDisplayLayout: "table",
+	dependenciesDisplayLayout: "layer",
+	landingDisplayLayout: "cards",
+	catagoryDisplayLayout: "table",
+	currentPage: 1,
+	applicationsCurrentPage: 1,
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);

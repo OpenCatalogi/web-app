@@ -23,34 +23,34 @@ export interface ApplicationCardProps {
 }
 
 export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, description, tags }) => {
-  const { t } = useTranslation();
+	const { t } = useTranslation();
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
-          {title.label}
-        </Link>
-      </div>
+	return (
+		<div className={styles.container}>
+			<div className={styles.titleLink} onClick={() => navigate(title.href)}>
+				<Link icon={<ArrowRightIcon />} iconAlign="start">
+					{title.label}
+				</Link>
+			</div>
 
-      <Paragraph className={styles.description}>{description}</Paragraph>
+			<Paragraph className={styles.description}>{description}</Paragraph>
 
-      <div className={styles.tags}>
-        {tags.organization && (
-          <ToolTip tooltip="Organisatie">
-            <Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
-          </ToolTip>
-        )}
-        {tags.githubLink && (
-          <ToolTip tooltip="Demo">
-            <Tag
-              label={t("Demo")}
-              icon={<FontAwesomeIcon icon={faLaptopCode} />}
-              onClick={() => open(tags.githubLink)}
-            />
-          </ToolTip>
-        )}
-      </div>
-    </div>
-  );
+			<div className={styles.tags}>
+				{tags.organization && (
+					<ToolTip tooltip="Organisatie">
+						<Tag label={tags.organization} icon={<FontAwesomeIcon icon={faHouse} />} />
+					</ToolTip>
+				)}
+				{tags.githubLink && (
+					<ToolTip tooltip="Demo">
+						<Tag
+							label={t("Demo")}
+							icon={<FontAwesomeIcon icon={faLaptopCode} />}
+							onClick={() => open(tags.githubLink)}
+						/>
+					</ToolTip>
+				)}
+			</div>
+		</div>
+	);
 };

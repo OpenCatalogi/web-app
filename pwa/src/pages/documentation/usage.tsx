@@ -2,7 +2,7 @@ import * as React from "react";
 import { UsageDocumentationTemplate } from "../../templates/documentation/usageDocumentation/UsageDocumentationTemplate";
 
 const IndexPage: React.FC = () => {
-  return <UsageDocumentationTemplate />;
+	return <UsageDocumentationTemplate />;
 };
 
 export default IndexPage;

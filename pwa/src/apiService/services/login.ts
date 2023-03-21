@@ -6,13 +6,13 @@ type IUser = {
 };
 
 export default class Login {
-  private _instance: AxiosInstance;
+	private _instance: AxiosInstance;
 
-  constructor(_instance: AxiosInstance) {
-    this._instance = _instance;
-  }
+	constructor(_instance: AxiosInstance) {
+		this._instance = _instance;
+	}
 
-  public login = (data: IUser): Promise<AxiosResponse> => {
-    return this._instance.post("/users/login", JSON.stringify(data));
-  };
+	public login = (data: IUser): Promise<AxiosResponse> => {
+		return this._instance.post("/users/login", JSON.stringify(data));
+	};
 }
