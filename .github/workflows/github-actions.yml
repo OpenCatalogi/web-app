@@ -18,13 +18,16 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: ./pwa
         run: |
           npm ci
 
       - name: lint check
+        working-directory: ./pwa
         run: |
           npm run lint
 
       - name: Build
+        working-directory: ./pwa
         run: |
           npm run build
