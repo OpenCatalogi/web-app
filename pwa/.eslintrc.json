@@ -15,6 +15,7 @@
 	},
 	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
+		"react/jsx-key": ["warn"],
 		"@typescript-eslint/no-explicit-any": "off",
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
