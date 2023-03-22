@@ -1,4 +1,5 @@
 :root {
+  --conduction-icon-gap: 0.5em;
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding);
   --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size);
   --conduction-secondary-top-nav-color: var(--web-app-color-text-grey);
@@ -279,4 +280,51 @@
 
 .denhaag-button:hover {
   cursor: pointer;
+}
+
+.denhaag-icon {
+  /* Den Haag has `font-size: 1.5rem` as hardcoded value, we can't work with that */
+  font-size: inherit !important;
+  /* Use the width and height from the parent `.utrecht-icon` class name */
+  width: var(--utrecht-icon-size, auto) !important;
+  height: var(--utrecht-icon-size, auto) !important;
+}
+
+.utrecht-icon svg {
+  /* Override the width of SVGs when they are hardcoded.
+   * For example:
+   * <svg width="128px" height="128px">
+   */
+  height: 100%;
+  width: 100%;
+}
+
+/*
+ * For icons that are placed at start, before a text label.
+ * Example: previous arrow
+ */
+.utrecht-icon--conduction-start {
+  margin-inline-end: var(--conduction-icon-gap);
+}
+
+/*
+ * For icons that are placed at the end, after a text label.
+ * Example: next arrow
+ */
+.utrecht-icon--conduction-end {
+  margin-inline-start: var(--conduction-icon-gap);
+}
+
+/*
+ * For icons that are placed at the left side, regardless of the text direction (left-to-right or right-to-left).
+ */
+.utrecht-icon--conduction-left {
+  margin-right: var(--conduction-icon-gap);
+}
+
+/*
+ * For icons that are placed at the right side, regardless of the text direction (left-to-right or right-to-left).
+ */
+.utrecht-icon--conduction-right {
+  margin-left: var(--conduction-icon-gap);
 }

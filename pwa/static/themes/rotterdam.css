@@ -239,4 +239,7 @@
   --utrecht-code-block-padding-block-end: var(--web-app-size-lg);
   --utrecht-code-block-padding-block-start: var(--web-app-size-lg);
   --utrecht-code-block-padding-inline-start: var(--web-app-size-lg);
+
+  /* Utrecht: Icon */
+  --utrecht-icon-inset-block-start: 0.1em;
 }
