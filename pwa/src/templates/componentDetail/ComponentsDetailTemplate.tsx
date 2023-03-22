@@ -87,7 +87,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton} onClick={() => navigate("/components")}>
         <Link>
-          <Icon>
+          <Icon className="utrecht-icon--conduction-start">
             <ArrowLeftIcon />
           </Icon>
           {t("Back to components")}
@@ -234,7 +234,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       />
                       <span onClick={show} className={styles.link}>
                         <Link>
-                          <Icon>
+                          <Icon className="utrecht-icon--conduction-start">
                             <ArrowRightIcon />
                           </Icon>
                           Rating

@@ -52,7 +52,7 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
 
       <div className={styles.cardLinkContainer}>
         <Link>
-          <Icon>
+          <Icon className="utrecht-icon--conduction-start">
             <ArrowRightIcon />
           </Icon>{" "}
           {label}

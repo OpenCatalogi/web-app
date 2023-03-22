@@ -21,7 +21,7 @@ export const ApiDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Lees meer.

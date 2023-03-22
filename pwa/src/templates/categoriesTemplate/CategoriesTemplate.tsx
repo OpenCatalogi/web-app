@@ -25,7 +25,7 @@ export const CategoriesTemplate: React.FC = () => {
             We verdelen{" "}
             <span onClick={() => navigate("/applications")}>
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 applicaties
@@ -34,7 +34,7 @@ export const CategoriesTemplate: React.FC = () => {
             en{" "}
             <span onClick={() => navigate("/components")}>
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 componenten
@@ -44,7 +44,7 @@ export const CategoriesTemplate: React.FC = () => {
             <br />
             <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
                 Gemma bedrijfsfuncties

@@ -59,7 +59,7 @@ export const AboutTemplate: React.FC = () => {
               )
             }
           >
-            <Link><Icon><ExternalLinkIcon/></Icon> GEMMA gegevenslandschap informatiearchitectuurprincipes</Link>
+            <Link><Icon className="utrecht-icon--conduction-start"><ExternalLinkIcon/></Icon> GEMMA gegevenslandschap informatiearchitectuurprincipes</Link>
           </span>
           .
         </Paragraph>
@@ -189,7 +189,7 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Link><Icon><ExternalLinkIcon/></Icon> verplichte standaarden</Link>
+            <Link><Icon className="utrecht-icon--conduction-start"><ExternalLinkIcon/></Icon> verplichte standaarden</Link>
           </span>{" "}
           die aangewezen zijn door de Nederlandse overheid.
         </Paragraph>

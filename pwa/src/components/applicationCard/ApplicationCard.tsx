@@ -30,7 +30,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
     <div className={styles.container}>
       <div className={styles.titleLink} onClick={() => navigate(title.href)}>
         <Link>
-          <Icon>
+          <Icon className="utrecht-icon--conduction-start">
             <ArrowRightIcon />
           </Icon>
           {title.label}

@@ -23,7 +23,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               De Gemeente Rotterdam
@@ -36,7 +36,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Conduction
@@ -45,7 +45,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           . Dit kan je doen door te mailen naar{" "}
           <span onClick={() => navigate(`mailto:info@conduction.nl`)}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faEnvelope} />
               </Icon>
               Conduction
@@ -54,7 +54,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           of te bellen naar{" "}
           <span onClick={() => navigate(`tel:14010`)}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>
               De Gemeente Rotterdam
@@ -63,7 +63,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           of naar{" "}
           <span onClick={() => navigate(`tel:+31853036840`)}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>
               Conduction

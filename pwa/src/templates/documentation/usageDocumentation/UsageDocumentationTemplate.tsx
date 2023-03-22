@@ -35,7 +35,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}
               hier
@@ -48,7 +48,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               hier
@@ -70,7 +70,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           OpenCatalogi synchroniseert onder andere met{" "}
           <span onClick={() => open("https://componentencatalogus.commonground.nl/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Common Ground Componenten­catalogus
@@ -79,7 +79,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           ,{" "}
           <span onClick={() => open("https://developer.overheid.nl/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Developer Overheid
@@ -88,7 +88,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           en <br />
           <span onClick={() => open("https://www.softwarecatalogus.nl/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               GEMMA Softwarecatalogus
@@ -105,7 +105,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
             }}
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ArrowRightIcon />
               </Icon>
               dit formulier
@@ -130,7 +130,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           "Use this template" knop op de <br />
           <span onClick={() => open("https://github.com/ConductionNL/skeleton-app")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               GitHub-pagina
@@ -176,7 +176,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Na het succesvol instellen van de ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               http://localhost:81/
@@ -188,7 +188,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           vriendelijk naar de technische documentatie van de{" "}
           <span onClick={() => open("https://docs.conductor-gateway.app/en/latest/installation/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               common-gateway
@@ -201,7 +201,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Om de applicatie te installeren op je eigen cloud omgeving ondersteunen we installaties in{" "}
           <span onClick={() => open("https://kubernetes.io/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               kubernetes
@@ -210,7 +210,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           met het gebruik van de bijgeleverde{" "}
           <span onClick={() => open("https://helm.sh/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Helm
@@ -220,7 +220,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           onder de{" "}
           <span onClick={() => open("https://haven.commonground.nl/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Haven
@@ -232,7 +232,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           De Helm grafiek kan geïnstalleerd worden met de hulp van Kubernetes beheertools zoals{" "}
           <span onClick={() => open("https://dashkube.com/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Dashkube
@@ -241,7 +241,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           of{" "}
           <span onClick={() => open("https://rancher.com/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Rancher
@@ -254,7 +254,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           over hoe je Helm installeert op <br />
           <span onClick={() => open("https://helm.sh/docs/intro/install/#through-package-managers/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               helm.sh
@@ -263,7 +263,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           , hiervoor is het vereist om{" "}
           <span onClick={() => open("https://kubernetes.io/docs/tasks/tools/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               kubectl
@@ -286,7 +286,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
             }
           >
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               hier
@@ -299,7 +299,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           De volledige technische documentatie is te vinden op{" "}
           <span onClick={() => open("https://skeleton-app.readthedocs.io/en/latest/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               Read the Docs
@@ -308,7 +308,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           en is gebaseerd op{" "}
           <span onClick={() => open("https://www.mkdocs.org/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               MKDocs
@@ -325,7 +325,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Zorg er voor dat je eerst{" "}
           <span onClick={() => open("https://www.mkdocs.org/user-guide/installation/")}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
               MKDocs installeert

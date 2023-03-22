@@ -38,7 +38,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("Processes")}
@@ -52,7 +52,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("Data models")}
@@ -66,7 +66,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("API's")}
@@ -80,7 +80,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("Initiatives")}
@@ -97,7 +97,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("About OpenCatalogi")}
@@ -110,7 +110,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Gebruik
@@ -123,7 +123,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Contact
@@ -136,7 +136,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <GitHubLogo />
                 </Icon>
                 Github
@@ -153,7 +153,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <CommongroundLogo />
                 </Icon>
                 Common ground
@@ -166,7 +166,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <HavenLogo />
                 </Icon>
                 Haven
@@ -179,7 +179,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
                 NL design
@@ -192,7 +192,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ForumStandaardisatieLogo />
                 </Icon>
                 Forum standaardisatie
@@ -205,7 +205,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
                 {t("Privacy declaration")}
@@ -218,7 +218,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               }}
             >
               <Link>
-                <Icon>
+                <Icon className="utrecht-icon--conduction-start">
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>
                 {t("Login")}

@@ -52,7 +52,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
         <div className={styles.headerContent}>
           <div className={styles.titleLink} onClick={() => navigate(title.href)}>
             <Link>
-              <Icon>
+              <Icon className="utrecht-icon--conduction-start">
                 <ArrowRightIcon />
               </Icon>
               {title.label}

@@ -50,7 +50,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                     <div>
                       <div onClick={() => navigate(`/categories/${_category.id}`)}>
                         <Link>
-                          <Icon>
+                          <Icon className="utrecht-icon--conduction-start">
                             <ArrowRightIcon />
                           </Icon>
                           {_category.title}
@@ -68,7 +68,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                       <div>
                         <div onClick={() => navigate(`/categories/${_category.id}`)}>
                           <Link>
-                            <Icon>
+                            <Icon className="utrecht-icon--conduction-start">
                               <ArrowRightIcon />
                             </Icon>
                             {_category.title}
@@ -87,7 +87,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                             <div>
                               <div onClick={() => navigate(`/categories/${_category.id}`)}>
                                 <Link>
-                                  <Icon>
+                                  <Icon className="utrecht-icon--conduction-start">
                                     <ArrowRightIcon />
                                   </Icon>
                                   {_category.title}

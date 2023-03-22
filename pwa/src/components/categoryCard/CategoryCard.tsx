@@ -23,7 +23,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
     <div className={styles.container}>
       <div className={styles.titleLink} onClick={() => navigate(title.href)}>
         <Link>
-          <Icon></Icon>
+          <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
           {title.label}
         </Link>
       </div>
