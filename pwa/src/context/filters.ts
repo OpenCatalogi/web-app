@@ -42,6 +42,6 @@ export const baseFilters = {
   applicationsCurrentPage: 1,
 } as IFilters;
 
-export const FiltersContext = React.createContext<[IFilters, (data: IFilters) => void]>([baseFilters, () => null]);
+export const FiltersContext = React.createContext<[IFilters, (_: IFilters) => void]>([baseFilters, () => null]);
 
 export const FiltersProvider = FiltersContext.Provider;
