@@ -17,7 +17,7 @@
   "rules": {
     "react/jsx-key": ["warn"],
     "@typescript-eslint/no-explicit-any": "off",
-    "indent": ["warn", "tab"],
+    "indent": ["error", "tab"],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"]
