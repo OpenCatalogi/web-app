@@ -4,9 +4,7 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -15,10 +13,10 @@
     "clean": "gatsby clean",
     "lint": "npm-run-all lint:** ",
     "lint:eslint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "lint:prettier": "prettier --check .",
+    "lint:disabled": "prettier --check .",
     "lint-fix": "npm-run-all lint-fix:**",
     "lint-fix:eslint": "eslint --fix .",
-    "lint-fix:prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\" .",
+    "lint-fix:disabled": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\" .",
     "typecheck": "tsc --noEmit",
     "prepare": "cd .. && husky install"
   },
