@@ -108,6 +108,18 @@
     "@gemeente-denhaag/textarea": {
       "react": "^16 || ^17 || ^18",
       "react-dom": "^16 || ^17 || ^18"
+    },
+    "@material-ui/core": {
+      "react": "^16 || ^17 || ^18",
+      "react-dom": "^16 || ^17 || ^18",
+      "@types/react": "^16 || ^17 || ^18",
+      "@types/react-dom": "^16 || ^17 || ^18"
+    },
+    "@material-ui/lab": {
+      "react": "^16 || ^17 || ^18",
+      "react-dom": "^16 || ^17 || ^18",
+      "@types/react": "^16 || ^17 || ^18",
+      "@types/react-dom": "^16 || ^17 || ^18"
     }
   }
 }
