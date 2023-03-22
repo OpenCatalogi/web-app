@@ -4,11 +4,10 @@ import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { Heading2 } from "@gemeente-denhaag/components-react";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 
-export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
+export const ThemeProvider = ({ children }: React.PropsWithChildren<unknown>): JSX.Element => {
 	const [theme, setTheme] = React.useState<string>("rotterdam");
 
 	React.useEffect(() => {
@@ -41,7 +40,7 @@ export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.El
 
 // This component is TEMPORARY and only for DEV & DEMO purposes
 interface ThemeSwitcherProps {
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
+	setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
