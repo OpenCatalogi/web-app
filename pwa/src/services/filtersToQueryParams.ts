@@ -5,7 +5,7 @@ export const filtersToQueryParams = (filters: any): string => {
       delete filters[key];
     });
 
-  let params: string = "";
+  let params = "";
 
   for (const [key, value] of Object.entries(filters)) {
     if (!value) continue;

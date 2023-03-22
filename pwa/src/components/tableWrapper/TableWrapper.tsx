@@ -3,7 +3,7 @@ import * as styles from "./TableWrapper.module.css";
 import _ from "lodash";
 import clsx from "clsx";
 
-const TableWrapper: React.FC = ({ children }) => {
+const TableWrapper = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
   const [tableIsScrollable, setTableIsScrollable] = React.useState<Boolean>(false);
   const [tableScrollPosition, setTableScrollPosition] = React.useState<"left" | "middle" | "right">("left");
 
