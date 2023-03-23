@@ -11,6 +11,16 @@
   color: var(--web-app-color-text-grey) !important;
 }
 
+.codeblock {
+  --utrecht-code-block-background-color: var(--skeleton-color-grey-1);
+  --utrecht-code-block-padding-block-end: var(--skeleton-size-lg);
+  --utrecht-code-block-padding-block-start: var(--skeleton-size-lg);
+  --utrecht-code-block-padding-inline-end: var(--skeleton-size-lg);
+  --utrecht-code-block-padding-inline-start: var(--skeleton-size-lg);
+  border-radius: var(--skeleton-size-2xs);
+  overflow: auto;
+}
+
 .codeBlockContent {
   word-break: break-word;
 }
