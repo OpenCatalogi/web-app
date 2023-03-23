@@ -1,15 +1,8 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import {
-  Button,
-  Heading1,
-  Heading2,
-  Heading3,
-  LeadParagraph,
-  Paragraph,
-} from "@gemeente-denhaag/components-react";
-import {Link, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Button, Heading1, Heading2, Heading3, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
+import { Link, Icon, ButtonLink } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -30,19 +23,35 @@ export const AboutTemplate: React.FC = () => {
         </LeadParagraph>
 
         <div className={styles.buttonsContainer}>
-          <Button
-            onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
-            icon={<ExternalLinkIcon />}
+          <ButtonLink
+            appearance="secondary-action-button"
+            href="https://www.gemmaonline.nl/index.php/Gegevenslandschap"
           >
+            <Icon className="utrecht-icon--conduction-start">
+              <ExternalLinkIcon />
+            </Icon>
             Gegevenslandschap
-          </Button>
+          </ButtonLink>
 
-          <Button
-            onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
-            icon={<ExternalLinkIcon />}
+          <ButtonLink
+            appearance="secondary-action-button"
+            href="https://www.gemmaonline.nl/index.php/Gegevenslandschap"
           >
+            <Icon className="utrecht-icon--conduction-start">
+              <ExternalLinkIcon />
+            </Icon>
+            Gegevenslandschap
+          </ButtonLink>
+
+          <ButtonLink
+            appearance="secondary-action-button"
+            href="https://componentencatalogus.commonground.nl/5-lagen-model"
+          >
+            <Icon className="utrecht-icon--conduction-start">
+              <ExternalLinkIcon />
+            </Icon>
             5 lagen model
-          </Button>
+          </ButtonLink>
         </div>
       </section>
 
@@ -59,7 +68,12 @@ export const AboutTemplate: React.FC = () => {
               )
             }
           >
-            <Link><Icon className="utrecht-icon--conduction-start"><ExternalLinkIcon/></Icon> GEMMA gegevenslandschap informatiearchitectuurprincipes</Link>
+            <Link>
+              <Icon className="utrecht-icon--conduction-start">
+                <ExternalLinkIcon />
+              </Icon>{" "}
+              GEMMA gegevenslandschap informatiearchitectuurprincipes
+            </Link>
           </span>
           .
         </Paragraph>
@@ -71,7 +85,7 @@ export const AboutTemplate: React.FC = () => {
           leveren.
         </Paragraph>
 
-        <div className={styles.quoteWrapperContainer}>
+        <div className={styles.quoteWrappeopenrContainer}>
           <QuoteWrapper>
             <Paragraph className={styles.description}>
               We werken met componenten die afgebakende functionaliteit kennen, zoveel mogelijk ontkoppeld zijn en met
@@ -189,7 +203,12 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Link><Icon className="utrecht-icon--conduction-start"><ExternalLinkIcon/></Icon> verplichte standaarden</Link>
+            <Link>
+              <Icon className="utrecht-icon--conduction-start">
+                <ExternalLinkIcon />
+              </Icon>{" "}
+              verplichte standaarden
+            </Link>
           </span>{" "}
           die aangewezen zijn door de Nederlandse overheid.
         </Paragraph>
