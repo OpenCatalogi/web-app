@@ -129,22 +129,22 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
-          <CodeBlock className={styles.codeblock}>
-            {`$ cd /pwa
-$ npm install
-$ npm run develop`}
-          </CodeBlock>
         </Paragraph>
+        <CodeBlock className={styles.codeBlock}>
+          <span>$ cd /pwa</span>
+          <span>$ npm install</span>
+          <span>$ npm run develop</span>
+        </CodeBlock>
         <Heading2>Docker</Heading2>
         <Paragraph className={styles.description}>
           Je moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
           zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
-          <CodeBlock className={styles.codeblock}>{`$ docker-compose pull`}</CodeBlock>
+          <CodeBlock className={styles.codeBlock}>{`$ docker-compose pull`}</CodeBlock>
           De eerste keer dat je Docker containers of wanneer je grote veranderingen hebt gemaakt aan de werking van de
           applicatie, voert je het volgende commando uit:
-          <CodeBlock className={styles.codeblock}>{`$ docker-compose up --build`}</CodeBlock>
+          <CodeBlock className={styles.codeBlock}>{`$ docker-compose up --build`}</CodeBlock>
           Als je dit niet doet dan draai je de containers zonder de applicatie container te herbouwen.
-          <CodeBlock className={styles.codeblock}>{`$ docker-compose up`}</CodeBlock>
+          <CodeBlock className={styles.codeBlock}>{`$ docker-compose up`}</CodeBlock>
           Na het succesvol instellen van de ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -217,7 +217,7 @@ $ npm run develop`}
           te hebben geïnstalleerd).
           <br />
           <br />
-          <CodeBlock className={styles.codeblock}>
+          <CodeBlock className={styles.codeBlock}>
             {`$ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
 $ helm install my-opencatalogi opencatalogi/opencatalogi`}
           </CodeBlock>
@@ -252,8 +252,8 @@ $ helm install my-opencatalogi opencatalogi/opencatalogi`}
           .
           <br /> <br />
           Als je de technische documentatie lokaal wilt draaien, kan je dit doen door middel van de MKDocs server en het
-          &quot;serve&quot; commando.<CodeBlock className={styles.codeblock}>{`$ mkdocs serve`}</CodeBlock>Ga naar de
-          lokale repository en voer het commando uit om de documentatie beschikbaar te stellen op poort:8000. <br />
+          &quot;serve&quot; commando.<CodeBlock className={styles.codeBlock}>{`$ mkdocs serve`}</CodeBlock>Ga naar de
+          repository en voer het commando uit om de documentatie beschikbaar te stellen op poort:8000. <br />
           Zorg er voor dat je eerst{" "}
           <span onClick={() => open("https://www.mkdocs.org/user-guide/installation/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
