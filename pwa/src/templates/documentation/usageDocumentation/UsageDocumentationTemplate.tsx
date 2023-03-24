@@ -108,14 +108,13 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Heading2>Aan de slag </Heading2>
         <Paragraph className={styles.description}>
           Om een eigen project op te zetten heb je een GitHub-account nodig en daar mee ingelogd zijn. Klik op de groene
-          &quot; Use this template&quot; knop op de <br />
+          "Use this template" knop op de <br />
           <span onClick={() => open("https://github.com/ConductionNL/skeleton-app")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
               GitHub-pagina
             </Link>
           </span>
-          . Vertel GitHub waar je je prototype wilt hebben draaien en klik op &quot;Create a repository from
-          template&quot;.
+          . Vertel GitHub waar je je prototype wilt hebben draaien en klik op "reate a repository from template"
           <br />
           <br />
         </Paragraph>
@@ -131,20 +130,26 @@ export const UsageDocumentationTemplate: React.FC = () => {
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
-          <span>$ cd /pwa</span>
-          <span>$ npm install</span>
-          <span>$ npm run develop</span>
+          {`$ cd /pwa
+          $ npm install
+          $ npm run develop`}
         </CodeBlock>
         <Heading2>Docker</Heading2>
         <Paragraph className={styles.description}>
           Je moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
           zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
-          <CodeBlock className={styles.codeBlock}>{`$ docker-compose pull`}</CodeBlock>
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>{`$ docker-compose pull`}</CodeBlock>
+        <Paragraph>
           De eerste keer dat je Docker containers of wanneer je grote veranderingen hebt gemaakt aan de werking van de
           applicatie, voert je het volgende commando uit:
-          <CodeBlock className={styles.codeBlock}>{`$ docker-compose up --build`}</CodeBlock>
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>{`$ docker-compose up --build`}</CodeBlock>
+        <Paragraph>
           Als je dit niet doet dan draai je de containers zonder de applicatie container te herbouwen.
-          <CodeBlock className={styles.codeBlock}>{`$ docker-compose up`}</CodeBlock>
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>{`$ docker-compose up`}</CodeBlock>
+        <Paragraph>
           Na het succesvol instellen van de ontwikkelomgeving, navigeer naar{" "}
           <span onClick={() => open("http://localhost:81/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
@@ -215,12 +220,12 @@ export const UsageDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           te hebben geïnstalleerd).
-          <br />
-          <br />
-          <CodeBlock className={styles.codeBlock}>
-            {`$ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>
+          {`$ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
 $ helm install my-opencatalogi opencatalogi/opencatalogi`}
-          </CodeBlock>
+        </CodeBlock>
+        <Paragraph>
           Voor overige configuratie verwijzen we vriendelijk naar de documentatie van de helm grafiek die vind je{" "}
           <span
             onClick={() =>
@@ -252,8 +257,11 @@ $ helm install my-opencatalogi opencatalogi/opencatalogi`}
           .
           <br /> <br />
           Als je de technische documentatie lokaal wilt draaien, kan je dit doen door middel van de MKDocs server en het
-          &quot;serve&quot; commando.<CodeBlock className={styles.codeBlock}>{`$ mkdocs serve`}</CodeBlock>Ga naar de
-          repository en voer het commando uit om de documentatie beschikbaar te stellen op poort:8000. <br />
+          "erve" commando.
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>{`$ mkdocs serve`}</CodeBlock>
+        <Paragraph>
+          Ga naar de repository en voer het commando uit om de documentatie beschikbaar te stellen op poort:8000. <br />
           Zorg er voor dat je eerst{" "}
           <span onClick={() => open("https://www.mkdocs.org/user-guide/installation/")}>
             <Link icon={<ExternalLinkIcon />} iconAlign="start">
