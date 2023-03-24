@@ -5,6 +5,7 @@ import { Heading1, Heading2, LeadParagraph, Link, Paragraph } from "@gemeente-de
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { CodeBlock } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
+import dedent from "dedent";
 
 export const UsageDocumentationTemplate: React.FC = () => {
   return (
@@ -130,7 +131,8 @@ export const UsageDocumentationTemplate: React.FC = () => {
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
-          {`$ cd /pwa
+          {dedent`
+          $ cd /pwa
           $ npm install
           $ npm run develop`}
         </CodeBlock>
@@ -222,8 +224,9 @@ export const UsageDocumentationTemplate: React.FC = () => {
           te hebben geïnstalleerd).
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
-          {`$ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
-$ helm install my-opencatalogi opencatalogi/opencatalogi`}
+          {dedent`
+          $ helm repo add opencatalogi https://raw.githubusercontent.com/opencatalogi/web-app/development/helm/
+          $ helm install my-opencatalogi opencatalogi/opencatalogi`}
         </CodeBlock>
         <Paragraph>
           Voor overige configuratie verwijzen we vriendelijk naar de documentatie van de helm grafiek die vind je{" "}
