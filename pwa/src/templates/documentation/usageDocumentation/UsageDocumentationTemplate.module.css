@@ -16,6 +16,12 @@
   overflow-x: scroll;
 }
 
+.codeBlock > :first-child {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
 .codeBlockContent {
   word-break: break-word;
 }
