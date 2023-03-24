@@ -58,3 +58,6 @@
 .maxNumber {
   --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }
+.categoriesCardsTitle {
+  display: flex;
+}

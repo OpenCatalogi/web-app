@@ -1,14 +1,9 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import {
-  Container,
-  InfoCard,
-  BadgeCounter,
-  Tag,
-  NotificationPopUp as _NotificationPopUp,
-} from "@conduction/components";
+import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
@@ -269,12 +264,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      Componenten & Afhankelijkheden
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>Componenten & Afhankelijkheden</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={0}
                 />
@@ -283,24 +280,28 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      {t("Schema's")}
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>{t("Schema's")}</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={3}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      {t("Processes")}
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>{t("Processes")}</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={4}
                 />

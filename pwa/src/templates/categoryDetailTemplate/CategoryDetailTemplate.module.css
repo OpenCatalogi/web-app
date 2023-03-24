@@ -59,3 +59,6 @@
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
+.categoryTitle {
+  display: flex;
+}

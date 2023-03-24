@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, BadgeCounter, Tag } from "@conduction/components";
+import { Container, Tag } from "@conduction/components";
 import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
@@ -11,7 +11,6 @@ import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-s
 import { useTranslation } from "react-i18next";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
-import _ from "lodash";
 import { QueryClient } from "react-query";
 import { useOrganization } from "../../hooks/organization";
 import Skeleton from "react-loading-skeleton";
@@ -145,36 +144,42 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.owns?.length ?? 0)}
-                    >
-                      Eigen componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Eigen componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.owns?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={0}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.supports?.length ?? 0)}
-                    >
-                      Ondersteunde componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Ondersteunde componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.supports?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={1}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.uses?.length ?? 0)}
-                    >
-                      Gebruikte componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Gebruikte componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.uses?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={2}
                 />

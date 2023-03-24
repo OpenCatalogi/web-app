@@ -258,4 +258,9 @@
   --utrecht-focus-outline-width: 2px;
 
   --denhaag-link-focus-outline: var(--utrecht-focus-outline-width) var(--utrecht-focus-outline-style) var(--utrecht-focus-outline-color);
+  /* @gemeente-utrecht: BadgeCounter */
+  --utrecht-badge-counter-border-radius: 2em;
+  --utrecht-badge-counter-padding-block: var(--web-app-font-size-4xs);
+  --utrecht-badge-counter-padding-inline: var(--web-app-font-size-4xs);
+  --utrecht-badge-counter-font-weight: normal;
 }
