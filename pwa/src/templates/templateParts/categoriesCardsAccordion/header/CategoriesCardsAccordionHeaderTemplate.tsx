@@ -2,12 +2,11 @@ import * as React from "react";
 import * as styles from "./CategoriesCardsAccordionHeaderTemplate.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@gemeente-denhaag/components-react";
+import { BadgeCounter, Heading } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
-import { BadgeCounter } from "@conduction/components";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
 
 interface CategoriesCardsAccordionHeaderTemplateProps {
   title: string;
@@ -29,16 +28,15 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
       <div className={styles.content}>
         <FontAwesomeIcon className={styles.categoryIcon} icon={faTags} />
         <span className={clsx(styles.badge, maxItems && styles.maxNumber)}>
-          <BadgeCounter number={badgeLabel}>
+          <div className={styles.categoriesCardsTitle}>
             <Heading level={3} className={styles.title}>
               {t(title)}
             </Heading>
-          </BadgeCounter>
+            <BadgeCounter>{badgeLabel}</BadgeCounter>
+          </div>
         </span>
-
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
       </div>
-
       <Divider />
     </div>
   );

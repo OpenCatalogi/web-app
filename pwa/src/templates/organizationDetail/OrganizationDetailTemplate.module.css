@@ -85,7 +85,6 @@
 
 .tabAmountBadge {
   margin-inline-start: var(--web-app-size-xs);
-  align-items: inherit !important;
 }
 
 @media only screen and (min-width: 576px) {
