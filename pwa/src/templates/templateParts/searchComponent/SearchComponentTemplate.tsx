@@ -1,12 +1,13 @@
 import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
-import { FormField, FormFieldInput, Button } from "@gemeente-denhaag/components-react";
+import { FormField, FormFieldInput } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
+import { ButtonLink, Button } from "@utrecht/component-library-react";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -59,12 +60,21 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
-        <Button type="submit" icon={<SearchIcon />} variant="secondary-action">
+        {/* <Button type="submit" icon={<SearchIcon />} variant="secondary-action"> */}
+        <Button type="submit" appearance="primary-action-button">
+          <SearchIcon />
           {t("Search")}
         </Button>
-        <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={clearFilters} variant="secondary-action">
+        {/* <ButtonLink icon={<ArrowRightIcon />} iconAlign="start" onClick={clearFilters} variant="secondary-action"> */}
+        <ButtonLink
+          onClick={clearFilters}
+          appearance="secondary-action-button"
+          href="/components"
+          // className={styles.groeneButton}
+        >
+          <ArrowRightIcon />
           {t("View all components")}
-        </Button>
+        </ButtonLink>
       </div>
     </form>
   );
