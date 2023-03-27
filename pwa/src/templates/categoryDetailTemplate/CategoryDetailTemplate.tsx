@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
 import { Button, Heading1, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Container, Tag } from "@conduction/components";
+import { Container, Tag } from "@conduction/components";
+import { BadgeCounter } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -81,9 +82,8 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={0 >= 100 && styles.maxNumber}>
-              <BadgeCounter number={"0"}>
-                <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
-              </BadgeCounter>
+              <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
+              <BadgeCounter>{0}</BadgeCounter>
             </span>
           </div>
 
