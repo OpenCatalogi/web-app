@@ -239,4 +239,11 @@
   --utrecht-code-block-padding-block-end: var(--web-app-size-lg);
   --utrecht-code-block-padding-block-start: var(--web-app-size-lg);
   --utrecht-code-block-padding-inline-start: var(--web-app-size-lg);
+
+  /* @gemeente-utrecht: BadgeCounter */
+  --utrecht-badge-counter-background-color: var(--conduction-badge-counter-background-color);
+  --utrecht-badge-counter-border-radius: 50%;
+  --utrecht-badge-counter-padding-block: 5px;
+  --utrecht-badge-counter-color: var(--web-app-color-black);
+  --utrecht-badge-counter-font-weight: normal;
 }
