@@ -6,8 +6,3 @@
 .buttons > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-sm);
 }
-
-.groeneButton {
-  --utrecht-button-secondary-action-background-color: var(--rotterdam-color-base-green);
-  --utrecht-button-secondary-action-color: var(--rotterdam-color-base-white);
-}

@@ -60,18 +60,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
-        {/* <Button type="submit" icon={<SearchIcon />} variant="secondary-action"> */}
         <Button type="submit" appearance="primary-action-button">
           <SearchIcon />
           {t("Search")}
         </Button>
-        {/* <ButtonLink icon={<ArrowRightIcon />} iconAlign="start" onClick={clearFilters} variant="secondary-action"> */}
-        <ButtonLink
-          onClick={clearFilters}
-          appearance="secondary-action-button"
-          href="/components"
-          // className={styles.groeneButton}
-        >
+
+        <ButtonLink onClick={clearFilters} appearance="secondary-action-button" href="/components">
           <ArrowRightIcon />
           {t("View all components")}
         </ButtonLink>
