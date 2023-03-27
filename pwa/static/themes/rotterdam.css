@@ -242,4 +242,10 @@
 
   /* Utrecht: Icon */
   --utrecht-icon-inset-block-start: 0.1em;
+
+  --utrecht-focus-background-color: transparent;
+  --utrecht-focus-inverse-outline-color: var(--rotterdam-color-base-white);
+  --utrecht-focus-outline-color: var(--rotterdam-color-base-black);
+  --utrecht-focus-outline-style: dotted;
+  --utrecht-focus-outline-width: 2px;
 }
