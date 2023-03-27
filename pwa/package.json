@@ -4,9 +4,7 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -71,7 +69,7 @@
     "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "@utrecht/component-library-react": "^1.0.0-alpha.261",
+    "@utrecht/component-library-react": "^1.0.0-alpha.274",
     "@utrecht/design-tokens": "1.0.0-alpha.441",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
