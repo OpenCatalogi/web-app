@@ -48,8 +48,8 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                   .slice(0, 5)
                   .map((_category) => (
                     <div>
-                      <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                        <Link>
+                      <div>
+                        <Link href={`/categories/${_category.id}`}>
                           <Icon className="utrecht-icon--conduction-start">
                             <ArrowRightIcon />
                           </Icon>
@@ -66,8 +66,8 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                     .slice(5)
                     .map((_category) => (
                       <div>
-                        <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                          <Link>
+                        <div>
+                          <Link href={`/categories/${_category.id}`}>
                             <Icon className="utrecht-icon--conduction-start">
                               <ArrowRightIcon />
                             </Icon>
@@ -85,8 +85,8 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                           .slice(5)
                           .map((_category) => (
                             <div>
-                              <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                                <Link>
+                              <div>
+                                <Link href={`/categories/${_category.id}`}>
                                   <Icon className="utrecht-icon--conduction-start">
                                     <ArrowRightIcon />
                                   </Icon>

@@ -50,8 +50,8 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
     <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Link>
+          <div className={styles.titleLink}>
+            <Link href={title.href}>
               <Icon className="utrecht-icon--conduction-start">
                 <ArrowRightIcon />
               </Icon>

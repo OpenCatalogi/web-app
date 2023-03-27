@@ -17,12 +17,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
         <LeadParagraph className={styles.description}>
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
-          <span
-            onClick={() => {
-              open("https://www.rotterdam.nl");
-            }}
-          >
-            <Link>
+          <span>
+            <Link href="https://www.rotterdam.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -30,12 +26,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           en{" "}
-          <span
-            onClick={() => {
-              open("https://www.conduction.nl");
-            }}
-          >
-            <Link>
+          <span>
+            <Link href="https://www.conduction.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -43,8 +35,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
             </Link>
           </span>
           . Dit kan je doen door te mailen naar{" "}
-          <span onClick={() => navigate(`mailto:info@conduction.nl`)}>
-            <Link>
+          <span>
+            <Link href={`mailto:info@conduction.nl`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faEnvelope} />
               </Icon>
@@ -52,8 +44,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           of te bellen naar{" "}
-          <span onClick={() => navigate(`tel:14010`)}>
-            <Link>
+          <span>
+            <Link href={`tel:14010`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>
@@ -61,8 +53,8 @@ export const ContactDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           of naar{" "}
-          <span onClick={() => navigate(`tel:+31853036840`)}>
-            <Link>
+          <span>
+            <Link href={`tel:+31853036840`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>

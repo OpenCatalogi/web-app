@@ -85,8 +85,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/components")}>
-        <Link>
+      <div className={styles.backButton}>
+        <Link href="/components">
           <Icon className="utrecht-icon--conduction-start">
             <ArrowLeftIcon />
           </Icon>
@@ -232,8 +232,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         maxRating={_getComponent.data.embedded?.rating?.maxRating}
                         rating={_getComponent.data.embedded?.rating?.rating}
                       />
-                      <span onClick={show} className={styles.link}>
-                        <Link>
+                      <span className={styles.link}>
+                        <Link href={show}>
                           <Icon className="utrecht-icon--conduction-start">
                             <ArrowRightIcon />
                           </Icon>

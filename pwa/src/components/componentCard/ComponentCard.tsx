@@ -49,8 +49,8 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
   return (
     <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link>
+      <div className={styles.titleLink}>
+        <Link href={title.href}>
           <Icon className="utrecht-icon--conduction-start">
             <ArrowRightIcon />
           </Icon>

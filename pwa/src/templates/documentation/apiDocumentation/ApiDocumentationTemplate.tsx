@@ -15,12 +15,8 @@ export const ApiDocumentationTemplate: React.FC = () => {
         <LeadParagraph>
           Quisque id mi. Vivamus in erat ut urna cursus vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus
           et ultrices posuere cubilia Curae Sed aliquam.{" "}
-          <span
-            onClick={() => {
-              navigate("#");
-            }}
-          >
-            <Link>
+          <span>
+            <Link href="#">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>

@@ -46,8 +46,13 @@ export const ApplicationsTemplate: React.FC = () => {
           <LeadParagraph className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
-            <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
-              <Link><Icon className="utrecht-icon--conduction-start"><ExternalLinkIcon/></Icon> bedrijfsfunctie</Link>
+            <span>
+              <Link href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ExternalLinkIcon />
+                </Icon>{" "}
+                bedrijfsfunctie
+              </Link>
             </span>
             .
           </LeadParagraph>

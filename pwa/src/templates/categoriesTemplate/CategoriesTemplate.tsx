@@ -23,8 +23,8 @@ export const CategoriesTemplate: React.FC = () => {
         <div className={styles.subHeading}>
           <LeadParagraph className={styles.description}>
             We verdelen{" "}
-            <span onClick={() => navigate("/applications")}>
-              <Link>
+            <span>
+              <Link href="/applications">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -32,8 +32,8 @@ export const CategoriesTemplate: React.FC = () => {
               </Link>
             </span>{" "}
             en{" "}
-            <span onClick={() => navigate("/components")}>
-              <Link>
+            <span>
+              <Link href="/components">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -42,8 +42,8 @@ export const CategoriesTemplate: React.FC = () => {
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
-            <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
-              <Link>
+            <span>
+              <Link href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>

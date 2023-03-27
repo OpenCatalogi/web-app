@@ -29,8 +29,8 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/applications")}>
-        <Link>
+      <div className={styles.backButton}>
+        <Link href="/applications">
           <Icon className="utrecht-icon--conduction-start">
             <ArrowLeftIcon />
           </Icon>

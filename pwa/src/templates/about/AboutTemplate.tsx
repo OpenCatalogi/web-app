@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
 import { Button, Heading1, Heading2, Heading3, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
-import { Link, Icon, ButtonLink } from "@utrecht/component-library-react/dist/css-module";
+import { Link, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -23,35 +23,19 @@ export const AboutTemplate: React.FC = () => {
         </LeadParagraph>
 
         <div className={styles.buttonsContainer}>
-          <ButtonLink
-            appearance="secondary-action-button"
-            href="https://www.gemmaonline.nl/index.php/Gegevenslandschap"
-          >
+          <Link href="https://www.gemmaonline.nl/index.php/Gegevenslandschap">
             <Icon className="utrecht-icon--conduction-start">
               <ExternalLinkIcon />
             </Icon>
             Gegevenslandschap
-          </ButtonLink>
+          </Link>
 
-          <ButtonLink
-            appearance="secondary-action-button"
-            href="https://www.gemmaonline.nl/index.php/Gegevenslandschap"
+          <Button
+            onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
+            icon={<ExternalLinkIcon />}
           >
-            <Icon className="utrecht-icon--conduction-start">
-              <ExternalLinkIcon />
-            </Icon>
-            Gegevenslandschap
-          </ButtonLink>
-
-          <ButtonLink
-            appearance="secondary-action-button"
-            href="https://componentencatalogus.commonground.nl/5-lagen-model"
-          >
-            <Icon className="utrecht-icon--conduction-start">
-              <ExternalLinkIcon />
-            </Icon>
             5 lagen model
-          </ButtonLink>
+          </Button>
         </div>
       </section>
 
@@ -61,14 +45,8 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Voor OpenCatalogi hanteren we de archimate definitie met de aanscherpingen die vanuit de VNG worden meegegeven
           in hoofdstuk 2.1 van{" "}
-          <span
-            onClick={() =>
-              open(
-                "https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf",
-              )
-            }
-          >
-            <Link>
+          <span>
+            <Link href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}
@@ -202,8 +180,8 @@ export const AboutTemplate: React.FC = () => {
         <Heading2>Gebruikte standaarden</Heading2>
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
-          <span onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Link>
+          <span>
+            <Link href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}

@@ -40,18 +40,17 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
   const [_, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <div
-      className={styles.cardContainer}
-      onClick={() => {
-        setFilters({ ...baseFilters, softwareType: softwareType });
-        navigate("/components");
-      }}
-    >
+    <div className={styles.cardContainer}>
       {count && <div className={styles.cardCount}>{count}</div>}
       {!count && <Skeleton className={styles.cardCount} />}
 
       <div className={styles.cardLinkContainer}>
-        <Link>
+        <Link
+          href="/components"
+          onClick={() => {
+            setFilters({ ...baseFilters, softwareType: softwareType });
+          }}
+        >
           <Icon className="utrecht-icon--conduction-start">
             <ArrowRightIcon />
           </Icon>{" "}

@@ -154,8 +154,11 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   </ToolTip>
                 </TableCell>
 
-                <TableCell onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}>
-                  <Link className={styles.detailsLink}>
+                <TableCell>
+                  <Link
+                    className={styles.detailsLink}
+                    href={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
+                  >
                     <Icon className="utrecht-icon--conduction-start">
                       <ArrowRightIcon />
                     </Icon>

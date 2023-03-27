@@ -31,13 +31,13 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Componenten</div>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "process" });
-                navigate("/components");
-              }}
-            >
-              <Link>
+            <li>
+              <Link
+                href="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "process" });
+                }}
+              >
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -51,7 +51,12 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link>
+              <Link
+                href="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "schema" });
+                }}
+              >
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -65,7 +70,12 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link>
+              <Link
+                href="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "api" });
+                }}
+              >
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -79,7 +89,12 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link>
+              <Link
+                href="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, developmentStatus: "concept" });
+                }}
+              >
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -91,12 +106,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Documentatie</div>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/about");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="/documentation/about">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -104,12 +115,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/usage");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="/documentation/usage">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -117,12 +124,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/contact");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="/documentation/contact">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
@@ -130,12 +133,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://github.com/OpenCatalogi");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
                   <GitHubLogo />
                 </Icon>
@@ -147,12 +146,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Links</div>
 
-            <li
-              onClick={() => {
-                open("https://commonground.nl/");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="https://commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <CommongroundLogo />
                 </Icon>
@@ -160,12 +155,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://haven.commonground.nl/");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="https://haven.commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <HavenLogo />
                 </Icon>
@@ -173,12 +164,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://designsystem.gebruikercentraal.nl/");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="https://designsystem.gebruikercentraal.nl">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
@@ -186,12 +173,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://forumstandaardisatie.nl/");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="https://forumstandaardisatie.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <ForumStandaardisatieLogo />
                 </Icon>
@@ -199,12 +182,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("#");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href="#">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
@@ -212,12 +191,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
-              }}
-            >
-              <Link>
+            <li>
+              <Link href={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
                 <Icon className="utrecht-icon--conduction-start">
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>
