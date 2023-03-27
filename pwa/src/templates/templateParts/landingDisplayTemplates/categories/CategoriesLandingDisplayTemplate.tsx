@@ -14,6 +14,7 @@ import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
 import { Link } from "../../../../components";
+import { ButtonLink } from "@utrecht/component-library-react";
 
 export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
@@ -120,9 +121,9 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         ))}
       </div>
 
-      <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={() => navigate("/categories")}>
-        Bekijk alle categorieën
-      </Button>
+      <ButtonLink onClick={() => navigate("/categories")} appearance="secondary-action-button">
+        <ArrowRightIcon /> Bekijk alle categorieën
+      </ButtonLink>
     </>
   );
 };
