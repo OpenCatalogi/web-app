@@ -23,12 +23,12 @@ export const AboutTemplate: React.FC = () => {
         </LeadParagraph>
 
         <div className={styles.buttonsContainer}>
-          <Link href="https://www.gemmaonline.nl/index.php/Gegevenslandschap">
-            <Icon className="utrecht-icon--conduction-start">
-              <ExternalLinkIcon />
-            </Icon>
+          <Button
+            onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
+            icon={<ExternalLinkIcon />}
+          >
             Gegevenslandschap
-          </Link>
+          </Button>
 
           <Button
             onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
