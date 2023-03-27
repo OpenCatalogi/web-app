@@ -233,7 +233,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         rating={_getComponent.data.embedded?.rating?.rating}
                       />
                       <span className={styles.link}>
-                        <Link href={show}>
+                        <Link onClick={show}>
                           <Icon className="utrecht-icon--conduction-start">
                             <ArrowRightIcon />
                           </Icon>
@@ -346,21 +346,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Gemeente Rotterdam</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           010 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link href="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -369,21 +375,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Conduction</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           020 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link href="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -392,21 +404,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Gemeente Utrecht</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           030 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link href="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -479,11 +497,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <TableCell>
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                        <span key={idx}>
+                          <Link href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland">
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ExternalLinkIcon />
+                            </Icon>
                             {product},{" "}
                           </Link>
                         </span>
