@@ -5,8 +5,6 @@ import { BadgeCounter, Container, Tag } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
-import { categories as _categories } from "../../data/filters";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
