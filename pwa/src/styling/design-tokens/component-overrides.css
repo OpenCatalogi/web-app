@@ -1,5 +1,6 @@
 :root {
   --web-app-link-icon-gap: 0.3em;
+  --utrecht-button-secondary-action-background-color: blue !important;
 
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding);
   --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size);
