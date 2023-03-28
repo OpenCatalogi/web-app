@@ -82,8 +82,10 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={0 >= 100 && styles.maxNumber}>
-              <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
-              <BadgeCounter>{0}</BadgeCounter>
+              <div className={styles.categoryTitle}>
+                <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
+                <BadgeCounter className={styles.categoryDetailBadge}>{0}</BadgeCounter>
+              </div>
             </span>
           </div>
 
