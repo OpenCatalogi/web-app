@@ -46,7 +46,10 @@ export const AboutTemplate: React.FC = () => {
           Voor OpenCatalogi hanteren we de archimate definitie met de aanscherpingen die vanuit de VNG worden meegegeven
           in hoofdstuk 2.1 van{" "}
           <span>
-            <Link href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf">
+            <Link
+              target="_new"
+              href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf"
+            >
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}
@@ -181,7 +184,7 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span>
-            <Link href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
+            <Link target="_new" href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}

@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-key */
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
-import { navigate } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,12 +51,14 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
   return (
     <div className={styles.container}>
       <div className={styles.titleLink}>
-        <Link href={title.href}>
-          <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
-          </Icon>
-          {title.label}
-        </Link>
+        <GatsbyLink to={title.href}>
+          <Link>
+            <Icon className="utrecht-icon--conduction-start">
+              <ArrowRightIcon />
+            </Icon>
+            {title.label}
+          </Link>
+        </GatsbyLink>
       </div>
 
       <Paragraph className={styles.description}>{description}</Paragraph>

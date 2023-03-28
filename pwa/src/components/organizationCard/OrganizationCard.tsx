@@ -3,6 +3,7 @@ import * as styles from "./OrganizationCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,12 +52,14 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       <div className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.titleLink}>
-            <Link href={title.href}>
-              <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightIcon />
-              </Icon>
-              {title.label}
-            </Link>
+            <GatsbyLink to={title.href}>
+              <Link>
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
+                {title.label}
+              </Link>
+            </GatsbyLink>
           </div>
 
           <Paragraph className={styles.description}>{description}</Paragraph>

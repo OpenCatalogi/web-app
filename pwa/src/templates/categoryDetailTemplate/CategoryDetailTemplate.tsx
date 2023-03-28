@@ -3,11 +3,9 @@ import * as styles from "./CategoryDetailTemplate.module.css";
 import { Button, Heading1, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Link, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { BadgeCounter, Container, Tag } from "@conduction/components";
-import { navigate } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
-import { categories as _categories } from "../../data/filters";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
@@ -21,7 +19,7 @@ interface CategoryDetailTemplateProps {
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [filters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
@@ -40,12 +38,14 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
-        <Link href="/categories">
-          <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
-          </Icon>
-          {t("Back to categories")}
-        </Link>
+        <GatsbyLink to="/categories">
+          <Link>
+            <Icon className="utrecht-icon--conduction-start">
+              <ArrowLeftIcon />
+            </Icon>
+            {t("Back to categories")}
+          </Link>
+        </GatsbyLink>
       </div>
 
       {portfolio && domain && (

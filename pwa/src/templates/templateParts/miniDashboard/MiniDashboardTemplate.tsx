@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
@@ -7,7 +9,7 @@ import { QueryClient } from "react-query";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useComponent } from "../../../hooks/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { navigate } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 
 interface MiniDashboardTemplateProps {
   layoutClassName?: string;
@@ -45,17 +47,19 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
       {!count && <Skeleton className={styles.cardCount} />}
 
       <div className={styles.cardLinkContainer}>
-        <Link
-          href="/components"
+        <GatsbyLink
+          to="/components"
           onClick={() => {
             setFilters({ ...baseFilters, softwareType: softwareType });
           }}
         >
-          <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
-          </Icon>{" "}
-          {label}
-        </Link>
+          <Link>
+            <Icon className="utrecht-icon--conduction-start">
+              <ArrowRightIcon />
+            </Icon>{" "}
+            {label}
+          </Link>
+        </GatsbyLink>
       </div>
     </div>
   );

@@ -2,13 +2,11 @@ import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
 import { Button, Divider, Heading1, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { navigate } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-import { categories as _categories } from "../../data/filters";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
@@ -30,12 +28,14 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
-        <Link href="/applications">
-          <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
-          </Icon>
-          {t("Back to applications")}
-        </Link>
+        <GatsbyLink to="/applications">
+          <Link>
+            <Icon className="utrecht-icon--conduction-start">
+              <ArrowLeftIcon />
+            </Icon>
+            {t("Back to applications")}
+          </Link>
+        </GatsbyLink>
       </div>
 
       {getApplications.isSuccess && (

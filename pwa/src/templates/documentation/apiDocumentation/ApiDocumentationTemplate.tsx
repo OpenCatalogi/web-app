@@ -3,7 +3,6 @@ import * as styles from "./ApiDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Link, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { navigate } from "gatsby";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 
 export const ApiDocumentationTemplate: React.FC = () => {

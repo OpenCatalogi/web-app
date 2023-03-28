@@ -1,11 +1,13 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable react/jsx-key */
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import _ from "lodash";
 import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { navigate } from "gatsby";
+import { navigate, Link as GatsbyLink } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +25,7 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
   const domains = TEMPORARY_DOMAINS;
   const categories = TEMPORARY_PORTFOLIOS;
 
-  const [showMore, setShowMore] = React.useState(domains.map((item) => false));
+  const [showMore, setShowMore] = React.useState(domains.map(() => false));
 
   const { screenSize } = React.useContext(GatsbyContext);
 
@@ -49,12 +51,14 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                   .map((_category) => (
                     <div>
                       <div>
-                        <Link href={`/categories/${_category.id}`}>
-                          <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
-                          </Icon>
-                          {_category.title}
-                        </Link>
+                        <GatsbyLink to={`/categories/${_category.id}`}>
+                          <Link>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ArrowRightIcon />
+                            </Icon>
+                            {_category.title}
+                          </Link>
+                        </GatsbyLink>
                       </div>
                     </div>
                   ))}
@@ -67,12 +71,14 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                     .map((_category) => (
                       <div>
                         <div>
-                          <Link href={`/categories/${_category.id}`}>
-                            <Icon className="utrecht-icon--conduction-start">
-                              <ArrowRightIcon />
-                            </Icon>
-                            {_category.title}
-                          </Link>
+                          <GatsbyLink to={`/categories/${_category.id}`}>
+                            <Link>
+                              <Icon className="utrecht-icon--conduction-start">
+                                <ArrowRightIcon />
+                              </Icon>
+                              {_category.title}
+                            </Link>
+                          </GatsbyLink>
                         </div>
                       </div>
                     ))}
@@ -86,12 +92,14 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                           .map((_category) => (
                             <div>
                               <div>
-                                <Link href={`/categories/${_category.id}`}>
-                                  <Icon className="utrecht-icon--conduction-start">
-                                    <ArrowRightIcon />
-                                  </Icon>
-                                  {_category.title}
-                                </Link>
+                                <GatsbyLink to={`/categories/${_category.id}`}>
+                                  <Link>
+                                    <Icon className="utrecht-icon--conduction-start">
+                                      <ArrowRightIcon />
+                                    </Icon>
+                                    {_category.title}
+                                  </Link>
+                                </GatsbyLink>
                               </div>
                             </div>
                           ))}

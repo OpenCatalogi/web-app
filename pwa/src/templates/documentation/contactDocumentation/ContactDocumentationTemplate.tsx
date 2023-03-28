@@ -3,7 +3,6 @@ import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
-import { navigate } from "gatsby";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +17,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
           <span>
-            <Link href="https://www.rotterdam.nl">
+            <Link target="_new" href="https://www.rotterdam.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -27,7 +26,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>{" "}
           en{" "}
           <span>
-            <Link href="https://www.conduction.nl">
+            <Link target="_new" href="https://www.conduction.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>

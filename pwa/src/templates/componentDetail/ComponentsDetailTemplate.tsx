@@ -1,15 +1,8 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable react/jsx-key */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import {
-  Button,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
+import { Button, Heading1, LeadParagraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
@@ -18,7 +11,7 @@ import {
   Tag,
   NotificationPopUp as _NotificationPopUp,
 } from "@conduction/components";
-import { navigate } from "gatsby";
+import { navigate, Link as GatsbyLink } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
@@ -28,19 +21,10 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleNodes,
-  faDatabase,
-  faHouse,
-  faInfoCircle,
-  faLayerGroup,
-  faRepeat,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
-import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
@@ -59,7 +43,7 @@ interface ComponentsDetailTemplateProps {
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [filters] = React.useContext(FiltersContext);
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -86,12 +70,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
-        <Link href="/components">
-          <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
-          </Icon>
-          {t("Back to components")}
-        </Link>
+        <GatsbyLink to="/components">
+          <Link>
+            <Icon className="utrecht-icon--conduction-start">
+              <ArrowLeftIcon />
+            </Icon>
+            {t("Back to components")}
+          </Link>
+        </GatsbyLink>
       </div>
 
       {_getComponent.isSuccess && (
@@ -392,12 +378,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
 
                       <TableCell className={styles.details}>
-                        <Link href="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                          <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
+                        <GatsbyLink to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Link>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ArrowRightIcon />
+                            </Icon>
+                            {t("Details")}
+                          </Link>
+                        </GatsbyLink>
                       </TableCell>
                     </TableRow>
 
@@ -421,12 +409,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
 
                       <TableCell className={styles.details}>
-                        <Link href="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                          <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
+                        <GatsbyLink to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Link>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ArrowRightIcon />
+                            </Icon>
+                            {t("Details")}
+                          </Link>
+                        </GatsbyLink>
                       </TableCell>
                     </TableRow>
                   </TableBody>
@@ -498,7 +488,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
                         <span key={idx}>
-                          <Link href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland">
+                          <Link
+                            target="_new"
+                            href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                          >
                             <Icon className="utrecht-icon--conduction-start">
                               <ExternalLinkIcon />
                             </Icon>
