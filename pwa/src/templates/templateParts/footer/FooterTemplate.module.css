@@ -34,10 +34,10 @@
 }
 
 .list > li > * {
+  --utrecht-link-color: var(--web-app-color-footer-text);
   width: fit-content;
   display: flex;
   justify-content: flex-start;
-  color: var(--web-app-color-footer-text) !important;
 }
 
 .logosContainer {
