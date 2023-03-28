@@ -31,9 +31,7 @@
 }
 
 .maxNumber {
-  --conduction-badge-counter-font-size: var(
-    --web-app-badge-counter-max-number-font-size
-  );
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }
 
 .title {
@@ -60,4 +58,10 @@
 
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+.categoryTitle {
+  display: flex;
+}
+.categoryDetailBadge {
+  height: fit-content;
 }
