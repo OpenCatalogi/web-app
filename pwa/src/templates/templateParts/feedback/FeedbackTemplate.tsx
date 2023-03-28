@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./FeedbackTemplate.module.css";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { Button } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
+import { ButtonLink } from "@utrecht/component-library-react";
 
 interface FeedbackTemplateProps {
   layoutClassName?: string;
@@ -17,24 +17,24 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
         Iedereen die geïnteresseerd is in dit product kan de roadmap bekijken of zelf ideën aandragen.
       </span>
       <div className={styles.buttons}>
-        <Button
-          variant="secondary-action"
+        <ButtonLink
+          appearance="secondary-action-button"
           onClick={() =>
             open(
               "https://github.com/OpenCatalogi/.github/issues/new?assignees=rubenvdlinde%2CRonaldvCortenberghe&labels=feature-request&template=feature.yml&title=%5Bfeature%5D%3A+Als+gebruiker+wil+ik+",
             )
           }
-          icon={<ExternalLinkIcon />}
         >
+          <ExternalLinkIcon />
           Wens of opmerking indienen op GitHub
-        </Button>
-        <Button
-          variant="secondary-action"
+        </ButtonLink>
+        <ButtonLink
+          appearance="secondary-action-button"
           onClick={() => open("https://github.com/orgs/OpenCatalogi/projects/1")}
-          icon={<ExternalLinkIcon />}
         >
+          <ExternalLinkIcon />
           Roadmap bekijken
-        </Button>
+        </ButtonLink>
       </div>
     </div>
   );
