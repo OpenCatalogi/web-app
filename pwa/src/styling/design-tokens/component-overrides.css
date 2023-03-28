@@ -1,5 +1,6 @@
 :root {
-  --conduction-icon-gap: 0.5em;
+  --web-app-link-icon-gap: 0.3em;
+
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding);
   --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size);
   --conduction-secondary-top-nav-color: var(--web-app-color-text-grey);
@@ -304,27 +305,5 @@
  * Example: previous arrow
  */
 .utrecht-icon--conduction-start {
-  margin-inline-end: var(--conduction-icon-gap);
-}
-
-/*
- * For icons that are placed at the end, after a text label.
- * Example: next arrow
- */
-.utrecht-icon--conduction-end {
-  margin-inline-start: var(--conduction-icon-gap);
-}
-
-/*
- * For icons that are placed at the left side, regardless of the text direction (left-to-right or right-to-left).
- */
-.utrecht-icon--conduction-left {
-  margin-right: var(--conduction-icon-gap);
-}
-
-/*
- * For icons that are placed at the right side, regardless of the text direction (left-to-right or right-to-left).
- */
-.utrecht-icon--conduction-right {
-  margin-left: var(--conduction-icon-gap);
+  margin-inline-end: var(--web-app-link-icon-gap);
 }
