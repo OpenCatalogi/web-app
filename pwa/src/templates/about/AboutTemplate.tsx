@@ -1,8 +1,18 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Heading, Icon, Button, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+  TableHeaderCell,
+  Heading,
+  Icon,
+  Button,
+  Paragraph,
+} from "@utrecht/component-library-react/dist/css-module";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
@@ -85,19 +95,19 @@ export const AboutTemplate: React.FC = () => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableHeader>Autonomie</TableHeader>
+              <TableHeaderCell>Autonomie</TableHeaderCell>
               <TableCell>Componenten zijn zelfstandig inzetbaar, schaalbaar en vervangbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Losse koppeling</TableHeader>
+              <TableHeaderCell>Losse koppeling</TableHeaderCell>
               <TableCell>
                 Componenten zijn onderling onafhankelijk en zelfstandig door te ontwikkelen en gebruiken
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Herbruikbaar</TableHeader>
+              <TableHeaderCell>Herbruikbaar</TableHeaderCell>
               <TableCell>
                 Componenten zijn vaker in te zetten door ze in verschillende omgevingen te gebruiken of door een
                 component vaker te instantiëren binnen één omgeving
@@ -105,12 +115,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeader>Samenstelbaar</TableHeader>
+              <TableHeaderCell>Samenstelbaar</TableHeaderCell>
               <TableCell>Componenten kunnen worden gecombineerd tot nieuwe componenten</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Abstractie</TableHeader>
+              <TableHeaderCell>Abstractie</TableHeaderCell>
               <TableCell>
                 Afnemers hoeven alleen de functionaliteit van een component te kennen en niet de interne werking ervan.
                 Service-contract - Een component kent duidelijke voorwaarden en leveringsafspraken over de kwaliteit en
@@ -119,12 +129,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeader>Vindbaar</TableHeader>
+              <TableHeaderCell>Vindbaar</TableHeaderCell>
               <TableCell>Services zijn voorzien van metadata en zijn goed vindbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Toestandsloos</TableHeader>
+              <TableHeaderCell>Toestandsloos</TableHeaderCell>
               <TableCell>
                 Componenten die diensten leveren bewaren geen statusinformatie (maar laten dit over aan afnemers of
                 gespecialiseerde componenten)
@@ -216,14 +226,14 @@ export const AboutTemplate: React.FC = () => {
       <section className={clsx(styles.section, styles.standardsTableWrapper)}>
         <div className={styles.content}>
           <Table>
-            <TableHead>
+            <TableHeader>
               <TableRow className={styles.tableRow}>
-                <TableHeader>{t("Standard")}</TableHeader>
-                <TableHeader>{t("Type")}</TableHeader>
-                <TableHeader>{t("Version")}</TableHeader>
-                <TableHeader>{t("Management organization")}</TableHeader>
+                <TableHeaderCell>{t("Standard")}</TableHeaderCell>
+                <TableHeaderCell>{t("Type")}</TableHeaderCell>
+                <TableHeaderCell>{t("Version")}</TableHeaderCell>
+                <TableHeaderCell>{t("Management organization")}</TableHeaderCell>
               </TableRow>
-            </TableHead>
+            </TableHeader>
             <TableBody>
               {TEMPORARY_STANDARDS.map((standard, idx) => (
                 <TableRow className={styles.tableRow} key={idx}>
