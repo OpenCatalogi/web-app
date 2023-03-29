@@ -22,7 +22,7 @@ interface FooterTemplateProps {
 
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
-  const [setFilters] = React.useContext(FiltersContext);
+  const [, setFilters] = React.useContext(FiltersContext);
 
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
