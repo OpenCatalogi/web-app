@@ -43,7 +43,7 @@ export const CategoriesTemplate: React.FC = () => {
             in categorieën gebaseerd op de
             <br />
             <span>
-              <Link href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
