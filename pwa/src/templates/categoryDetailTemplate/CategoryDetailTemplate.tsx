@@ -19,7 +19,7 @@ interface CategoryDetailTemplateProps {
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const [filters] = React.useContext(FiltersContext);
+  const [filters,setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {

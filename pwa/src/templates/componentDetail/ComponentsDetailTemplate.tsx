@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable react/jsx-key */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Button, Heading1, LeadParagraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
@@ -250,6 +248,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   secondaryButton={{
                     label: t("Close"),
                     icon: <ArrowLeftIcon />,
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}
                   layoutClassName={styles.popup}

@@ -1,6 +1,3 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable react/jsx-key */
-/* eslint-disable @typescript-eslint/no-empty-interface */
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
@@ -17,9 +14,7 @@ import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
 
-interface CategoriesLandingDisplayTemplateProps {}
-
-export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
+export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
 
   const domains = TEMPORARY_DOMAINS;

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";

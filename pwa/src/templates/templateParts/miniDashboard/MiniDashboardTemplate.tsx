@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
@@ -39,7 +37,7 @@ interface MiniDashboardCardProps {
 }
 
 const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareType, count }) => {
-  const [_, setFilters] = React.useContext(FiltersContext);
+  const [, setFilters] = React.useContext(FiltersContext);
 
   return (
     <div className={styles.cardContainer}>
