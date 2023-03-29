@@ -307,6 +307,9 @@
 
   --utrecht-color-sample-border-radius: 4px;
   --utrecht-button-icon-gap: var(--rotterdam-space-scale-1);
+
+  /* @gemeente-utrecht: table */
+  --utrecht-table-border-width: 0;
 }
 
 @media (prefers-contrast: more) {
