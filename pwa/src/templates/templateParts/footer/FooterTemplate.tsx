@@ -3,7 +3,7 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-
+import { Link as GatsbyLink } from "gatsby";
 import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -32,8 +32,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Componenten</div>
 
             <li>
+              <GatsbyLink to="/components">
               <Link
-                href="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "process" });
                 }}
@@ -43,6 +43,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Processes")}
               </Link>
+              </GatsbyLink>
             </li>
 
             <li
@@ -51,8 +52,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
+              <GatsbyLink to="/components">
               <Link
-                href="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "schema" });
                 }}
@@ -62,6 +63,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Data models")}
               </Link>
+              </GatsbyLink>
             </li>
 
             <li
@@ -70,8 +72,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
+              <GatsbyLink to="/components">
               <Link
-                href="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "api" });
                 }}
@@ -81,6 +83,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("API's")}
               </Link>
+              </GatsbyLink>
             </li>
 
             <li
@@ -89,8 +92,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
+              <GatsbyLink to="/components">
               <Link
-                href="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, developmentStatus: "concept" });
                 }}
@@ -100,6 +103,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Initiatives")}
               </Link>
+              </GatsbyLink>
             </li>
           </ul>
 
@@ -107,30 +111,36 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Documentatie</div>
 
             <li>
-              <Link href="/documentation/about">
+              <GatsbyLink to="/documentation/about">
+              <Link>
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("About OpenCatalogi")}
               </Link>
+              </GatsbyLink>
             </li>
 
             <li>
-              <Link href="/documentation/usage">
+              <GatsbyLink to="/documentation/usage">
+              <Link>
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Gebruik
               </Link>
+              </GatsbyLink>
             </li>
 
             <li>
-              <Link href="/documentation/contact">
+              <GatsbyLink to="/documentation/contact">
+              <Link>
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Contact
               </Link>
+              </GatsbyLink>
             </li>
 
             <li>
