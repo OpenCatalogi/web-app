@@ -3,12 +3,12 @@ import * as styles from "./ThemeProvider.module.css";
 import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
-import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { Heading2 } from "@gemeente-denhaag/components-react";
+import  { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
+import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 
-export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
+export const ThemeProvider = ({ children }: React.PropsWithChildren<object>): JSX.Element => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
 
   React.useEffect(() => {
@@ -64,9 +64,9 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
     <div className={styles.themeSwitcherContainer}>
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>
+          <FormLabel htmlFor={""}>
             <span className={styles.label}>Thema aanpasssen:</span>
-          </FormFieldLabel>
+            </FormLabel>
           <div className={styles.selectBorder}>
             <SelectSingle
               name="themeSwitcher"
