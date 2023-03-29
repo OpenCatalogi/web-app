@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { handleLogin } from "../../../services/auth";
-import { Alert, Button, FormField, FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/components-react";
+import { Alert, Button, FormFieldInput } from "@gemeente-denhaag/components-react";
+import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 import * as styles from "./LoginFormTemplate.module.css";
 import { useTranslation } from "react-i18next";
 import { InputPassword, InputText } from "@conduction/components";
@@ -40,12 +41,12 @@ export const LoginForm: React.FC = () => {
 
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>{t("Username")}</FormFieldLabel>
+          <FormLabel htmlFor={""}>{t("Username")}</FormLabel>
           <InputText {...{ register, errors }} name="username" validation={{ required: true }} disabled={loading} />
         </FormFieldInput>
       </FormField>
       <FormField>
-        <FormFieldLabel>{t("Password")}</FormFieldLabel>
+        <FormLabel htmlFor={""}>{t("Password")}</FormLabel>
         <FormFieldInput>
           <InputPassword {...{ register, errors }} name="password" validation={{ required: true }} disabled={loading} />
         </FormFieldInput>
