@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
-import { FormField, FormFieldInput } from "@gemeente-denhaag/components-react";
+import { FormFieldInput } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
@@ -9,6 +9,7 @@ import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
+import { FormField } from "@utrecht/component-library-react/dist/css-module";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
