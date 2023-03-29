@@ -66,7 +66,7 @@ export const AboutTemplate: React.FC = () => {
           leveren.
         </Paragraph>
 
-        <div className={styles.quoteWrappeopenrContainer}>
+        <div className={styles.quoteWrapperContainer}>
           <QuoteWrapper>
             <Paragraph className={styles.description}>
               We werken met componenten die afgebakende functionaliteit kennen, zoveel mogelijk ontkoppeld zijn en met
