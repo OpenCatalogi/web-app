@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { Link as GatsbyLink } from "gatsby";
+import { Link } from "../../components";
 
 export const CategoriesTemplate: React.FC = () => {
   const categories = TEMPORARY_PORTFOLIOS;
@@ -20,30 +20,26 @@ export const CategoriesTemplate: React.FC = () => {
           <LeadParagraph className={styles.description}>
             We verdelen{" "}
             <span>
-              <GatsbyLink to="/applications">
-                <Link>
-                  <Icon className="utrecht-icon--conduction-start">
-                    <ArrowRightIcon />
-                  </Icon>
-                  applicaties
-                </Link>
-              </GatsbyLink>
+              <Link to="/applications">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
+                applicaties
+              </Link>
             </span>{" "}
             en{" "}
             <span>
-              <GatsbyLink to="/components">
-                <Link>
-                  <Icon className="utrecht-icon--conduction-start">
-                    <ArrowRightIcon />
-                  </Icon>
-                  componenten
-                </Link>
-              </GatsbyLink>
+              <Link to="/components">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
+                componenten
+              </Link>
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
             <span>
-              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+              <Link target="_new" to="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>

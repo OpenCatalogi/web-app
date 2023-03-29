@@ -2,10 +2,11 @@ import * as React from "react";
 import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "../../../components";
 
 export const ContactDocumentationTemplate: React.FC = () => {
   return (
@@ -17,7 +18,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
           <span>
-            <Link target="_new" href="https://www.rotterdam.nl">
+            <Link target="_new" to="https://www.rotterdam.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -26,7 +27,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>{" "}
           en{" "}
           <span>
-            <Link target="_new" href="https://www.conduction.nl">
+            <Link target="_new" to="https://www.conduction.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -35,7 +36,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>
           . Dit kan je doen door te mailen naar{" "}
           <span>
-            <Link href={`mailto:info@conduction.nl`}>
+            <Link to={`mailto:info@conduction.nl`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faEnvelope} />
               </Icon>
@@ -44,7 +45,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>{" "}
           of te bellen naar{" "}
           <span>
-            <Link href={`tel:14010`}>
+            <Link to={`tel:14010`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>
@@ -53,7 +54,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>{" "}
           of naar{" "}
           <span>
-            <Link href={`tel:+31853036840`}>
+            <Link to={`tel:+31853036840`}>
               <Icon className="utrecht-icon--conduction-start">
                 <FontAwesomeIcon icon={faPhone} />
               </Icon>

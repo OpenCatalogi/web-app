@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
 import { Divider, Paragraph } from "@gemeente-denhaag/components-react";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
-import { Link as GatsbyLink } from "gatsby";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Link } from "../link/Link";
 
 export interface CategoryCardProps {
   title: {
@@ -18,12 +18,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
   return (
     <div className={styles.container}>
       <div className={styles.titleLink}>
-        <GatsbyLink to={title.href}>
-          <Link>
-            <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
-            {title.label}
-          </Link>
-        </GatsbyLink>
+        <Link to={title.href}>
+          <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
+          {title.label}
+        </Link>
       </div>
       <Divider />
       <Paragraph className={domain ?? styles.description}>{description}</Paragraph>

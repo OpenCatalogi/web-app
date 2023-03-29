@@ -3,8 +3,7 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Link as GatsbyLink } from "gatsby";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
@@ -15,6 +14,7 @@ import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "../../../components";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -32,8 +32,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Componenten</div>
 
             <li>
-              <GatsbyLink to="/components">
               <Link
+                to="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "process" });
                 }}
@@ -43,7 +43,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Processes")}
               </Link>
-              </GatsbyLink>
             </li>
 
             <li
@@ -52,8 +51,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <GatsbyLink to="/components">
               <Link
+                to="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "schema" });
                 }}
@@ -63,7 +62,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Data models")}
               </Link>
-              </GatsbyLink>
             </li>
 
             <li
@@ -72,8 +70,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <GatsbyLink to="/components">
               <Link
+                to="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, softwareType: "api" });
                 }}
@@ -83,7 +81,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("API's")}
               </Link>
-              </GatsbyLink>
             </li>
 
             <li
@@ -92,8 +89,8 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <GatsbyLink to="/components">
               <Link
+                to="/components"
                 onClick={() => {
                   setFilters({ ...baseFilters, developmentStatus: "concept" });
                 }}
@@ -103,7 +100,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 </Icon>
                 {t("Initiatives")}
               </Link>
-              </GatsbyLink>
             </li>
           </ul>
 
@@ -111,40 +107,34 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Documentatie</div>
 
             <li>
-              <GatsbyLink to="/documentation/about">
-              <Link>
+              <Link to="/documentation/usage">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 {t("About OpenCatalogi")}
               </Link>
-              </GatsbyLink>
             </li>
 
             <li>
-              <GatsbyLink to="/documentation/usage">
-              <Link>
+              <Link to="/documentation/usage">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Gebruik
               </Link>
-              </GatsbyLink>
             </li>
 
             <li>
-              <GatsbyLink to="/documentation/contact">
-              <Link>
+              <Link to="/components">
                 <Icon className="utrecht-icon--conduction-start">
                   <ArrowRightIcon />
                 </Icon>
                 Contact
               </Link>
-              </GatsbyLink>
             </li>
 
             <li>
-              <Link target="_new" href="https://github.com/OpenCatalogi">
+              <Link target="_new" to="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
                   <GitHubLogo />
                 </Icon>
@@ -157,7 +147,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Links</div>
 
             <li>
-              <Link target="_new" href="https://commonground.nl/">
+              <Link target="_new" to="https://commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <CommongroundLogo />
                 </Icon>
@@ -166,7 +156,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" href="https://haven.commonground.nl/">
+              <Link target="_new" to="https://haven.commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <HavenLogo />
                 </Icon>
@@ -175,7 +165,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
+              <Link target="_new" to="https://designsystem.gebruikercentraal.nl">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
@@ -184,7 +174,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" href="https://forumstandaardisatie.nl/">
+              <Link target="_new" to="https://forumstandaardisatie.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <ForumStandaardisatieLogo />
                 </Icon>
@@ -193,7 +183,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link href="#">
+              <Link to="#">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
@@ -202,7 +192,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" href={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
+              <Link target="_new" to={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
                 <Icon className="utrecht-icon--conduction-start">
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>

@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
 import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { navigate, Link as GatsbyLink } from "gatsby";
+import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,7 @@ import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
+import { Link } from "../../../../components";
 
 export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
@@ -46,14 +47,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                   .map((_category) => (
                     <div>
                       <div>
-                        <GatsbyLink to={`/categories/${_category.id}`}>
-                          <Link>
-                            <Icon className="utrecht-icon--conduction-start">
-                              <ArrowRightIcon />
-                            </Icon>
-                            {_category.title}
-                          </Link>
-                        </GatsbyLink>
+                        <Link to={`/categories/${_category.id}`}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
+                          {_category.title}
+                        </Link>
                       </div>
                     </div>
                   ))}
@@ -66,14 +65,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                     .map((_category) => (
                       <div>
                         <div>
-                          <GatsbyLink to={`/categories/${_category.id}`}>
-                            <Link>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <ArrowRightIcon />
-                              </Icon>
-                              {_category.title}
-                            </Link>
-                          </GatsbyLink>
+                          <Link to={`/categories/${_category.id}`}>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ArrowRightIcon />
+                            </Icon>
+                            {_category.title}
+                          </Link>
                         </div>
                       </div>
                     ))}
@@ -87,14 +84,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                           .map((_category) => (
                             <div>
                               <div>
-                                <GatsbyLink to={`/categories/${_category.id}`}>
-                                  <Link>
-                                    <Icon className="utrecht-icon--conduction-start">
-                                      <ArrowRightIcon />
-                                    </Icon>
-                                    {_category.title}
-                                  </Link>
-                                </GatsbyLink>
+                                <Link to={`/categories/${_category.id}`}>
+                                  <Icon className="utrecht-icon--conduction-start">
+                                    <ArrowRightIcon />
+                                  </Icon>
+                                  {_category.title}
+                                </Link>
                               </div>
                             </div>
                           ))}

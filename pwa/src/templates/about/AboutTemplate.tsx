@@ -2,13 +2,14 @@ import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
 import { Button, Heading1, Heading2, Heading3, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
-import { Link, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { Link } from "../../components";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -48,7 +49,7 @@ export const AboutTemplate: React.FC = () => {
           <span>
             <Link
               target="_new"
-              href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf"
+              to="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf"
             >
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
@@ -184,7 +185,7 @@ export const AboutTemplate: React.FC = () => {
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span>
-            <Link target="_new" href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
+            <Link target="_new" to="https://forumstandaardisatie.nl/open-standaarden/verplicht">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>{" "}

@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useComponent } from "../../../hooks/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { Link as GatsbyLink } from "gatsby";
+import { Link } from "../../../components";
 
 interface MiniDashboardTemplateProps {
   layoutClassName?: string;
@@ -45,19 +45,17 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
       {!count && <Skeleton className={styles.cardCount} />}
 
       <div className={styles.cardLinkContainer}>
-        <GatsbyLink
+        <Link
           to="/components"
           onClick={() => {
             setFilters({ ...baseFilters, softwareType: softwareType });
           }}
         >
-          <Link>
-            <Icon className="utrecht-icon--conduction-start">
-              <ArrowRightIcon />
-            </Icon>{" "}
-            {label}
-          </Link>
-        </GatsbyLink>
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowRightIcon />
+          </Icon>{" "}
+          {label}
+        </Link>
       </div>
     </div>
   );

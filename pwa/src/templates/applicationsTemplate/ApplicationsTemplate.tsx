@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -12,6 +12,7 @@ import Skeleton from "react-loading-skeleton";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { GatsbyContext } from "../../context/gatsby";
+import { Link } from "../../components";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -46,7 +47,7 @@ export const ApplicationsTemplate: React.FC = () => {
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span>
-              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+              <Link target="_new" to="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>{" "}
