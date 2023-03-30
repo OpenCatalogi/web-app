@@ -1,12 +1,11 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button, Heading1, Heading3, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button, Heading1, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { BadgeCounter, Container, Tag } from "@conduction/components";
-import { navigate } from "gatsby";
+import { Link } from "../../components";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
-import { categories as _categories } from "../../data/filters";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
@@ -38,8 +37,11 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/categories")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+      <div className={styles.backButton}>
+        <Link to="/categories">
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowLeftIcon />
+          </Icon>
           {t("Back to categories")}
         </Link>
       </div>

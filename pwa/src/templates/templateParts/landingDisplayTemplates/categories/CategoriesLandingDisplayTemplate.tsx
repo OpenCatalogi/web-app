@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import _ from "lodash";
-import { Button, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { navigate } from "gatsby";
@@ -13,16 +13,15 @@ import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
+import { Link } from "../../../../components";
 
-interface CategoriesLandingDisplayTemplateProps {}
-
-export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
+export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
 
   const domains = TEMPORARY_DOMAINS;
   const categories = TEMPORARY_PORTFOLIOS;
 
-  const [showMore, setShowMore] = React.useState(domains.map((item) => false));
+  const [showMore, setShowMore] = React.useState(domains.map(() => false));
 
   const { screenSize } = React.useContext(GatsbyContext);
 
@@ -47,8 +46,11 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                   .slice(0, 5)
                   .map((_category) => (
                     <div>
-                      <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <div>
+                        <Link to={`/categories/${_category.id}`}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {_category.title}
                         </Link>
                       </div>
@@ -62,8 +64,11 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                     .slice(5)
                     .map((_category) => (
                       <div>
-                        <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                          <Link icon={<ArrowRightIcon />} iconAlign="start">
+                        <div>
+                          <Link to={`/categories/${_category.id}`}>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ArrowRightIcon />
+                            </Icon>
                             {_category.title}
                           </Link>
                         </div>
@@ -78,8 +83,11 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                           .slice(5)
                           .map((_category) => (
                             <div>
-                              <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                                <Link icon={<ArrowRightIcon />} iconAlign="start">
+                              <div>
+                                <Link to={`/categories/${_category.id}`}>
+                                  <Icon className="utrecht-icon--conduction-start">
+                                    <ArrowRightIcon />
+                                  </Icon>
                                   {_category.title}
                                 </Link>
                               </div>

@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as styles from "./MiniDashboardTemplate.module.css";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useComponent } from "../../../hooks/components";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { navigate } from "gatsby";
+import { Link } from "../../../components";
 
 interface MiniDashboardTemplateProps {
   layoutClassName?: string;
@@ -37,21 +37,23 @@ interface MiniDashboardCardProps {
 }
 
 const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareType, count }) => {
-  const [_, setFilters] = React.useContext(FiltersContext);
+  const [, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <div
-      className={styles.cardContainer}
-      onClick={() => {
-        setFilters({ ...baseFilters, softwareType: softwareType });
-        navigate("/components");
-      }}
-    >
+    <div className={styles.cardContainer}>
       {count && <div className={styles.cardCount}>{count}</div>}
       {!count && <Skeleton className={styles.cardCount} />}
 
       <div className={styles.cardLinkContainer}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
+        <Link
+          to="/components"
+          onClick={() => {
+            setFilters({ ...baseFilters, softwareType: softwareType });
+          }}
+        >
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowRightIcon />
+          </Icon>{" "}
           {label}
         </Link>
       </div>

@@ -1,18 +1,17 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider, Heading1, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button, Divider, Heading1, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { navigate } from "gatsby";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-import { categories as _categories } from "../../data/filters";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
+import { Link } from "../../components";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -28,8 +27,11 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/applications")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+      <div className={styles.backButton}>
+        <Link to="/applications">
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowLeftIcon />
+          </Icon>
           {t("Back to applications")}
         </Link>
       </div>

@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
-import { Link, Paragraph } from "@gemeente-denhaag/components-react";
-import { navigate } from "gatsby";
-import _ from "lodash";
+import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
+import { Link } from "../../components";
 
 export interface ApplicationCardProps {
   title: {
@@ -27,8 +27,11 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
 
   return (
     <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
+      <div className={styles.titleLink}>
+        <Link to={title.href}>
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowRightIcon />
+          </Icon>
           {title.label}
         </Link>
       </div>
