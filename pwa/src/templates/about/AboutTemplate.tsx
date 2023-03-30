@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Button, Heading1, Heading2, Heading3, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Button, Paragraph } from "@gemeente-denhaag/components-react";
+import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -16,12 +16,12 @@ export const AboutTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Over OpenCatalogi</Heading1>
+        <Heading level={1}>Over OpenCatalogi</Heading>
 
-        <LeadParagraph>
+        <Paragraph lead>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
           Gegevenslandschap.
-        </LeadParagraph>
+        </Paragraph>
 
         <div className={styles.buttonsContainer}>
           <Button
@@ -41,7 +41,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Heading2>Component</Heading2>
+        <Heading level={2}>Component</Heading>
 
         <Paragraph className={styles.description}>
           Voor OpenCatalogi hanteren we de archimate definitie met de aanscherpingen die vanuit de VNG worden meegegeven
@@ -81,7 +81,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section} id="score-calculation">
-        <Heading2>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading2>
+        <Heading level={2}>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading>
 
         <Table>
           <TableBody>
@@ -136,7 +136,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Heading3>Componenten conformeren zich aan het vijf-lagenmodel</Heading3>
+        <Heading level={3}>Componenten conformeren zich aan het vijf-lagenmodel</Heading>
 
         <Table>
           <TableBody>
@@ -167,7 +167,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Heading2>Applicatie</Heading2>
+        <Heading level={3}>Applicatie</Heading>
 
         <Paragraph className={styles.description}>
           Samenstelling (toepassing) van componenten met minimaal één component op laag 5 ten behoeve van eindgebruik in
@@ -181,7 +181,7 @@ export const AboutTemplate: React.FC = () => {
       </section>
 
       <section className={styles.section}>
-        <Heading2>Gebruikte standaarden</Heading2>
+        <Heading level={2}>Gebruikte standaarden</Heading>
         <Paragraph className={styles.description}>
           Dit zijn de standaarden die gebruikt worden door OpenCatalogi. Deze standaarden zijn in lijn met de{" "}
           <span>

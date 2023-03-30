@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
-import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -42,8 +41,10 @@ export const ApplicationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2 className={styles.title}>{t("Applications")}</Heading2>
-          <LeadParagraph className={styles.description}>
+          <Heading level={2} className={styles.title}>
+            {t("Applications")}
+          </Heading>
+          <Paragraph lead className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span>
@@ -55,7 +56,7 @@ export const ApplicationsTemplate: React.FC = () => {
               </Link>
             </span>
             .
-          </LeadParagraph>
+          </Paragraph>
         </div>
       </div>
 

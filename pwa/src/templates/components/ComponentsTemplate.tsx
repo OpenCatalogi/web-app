@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Alert, Heading2 } from "@gemeente-denhaag/components-react";
+import { Alert } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
@@ -16,6 +16,7 @@ import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Heading } from "@utrecht/component-library-react/dist/css-module";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -43,7 +44,7 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2 className={styles.title}>Componenten</Heading2>
+          <Heading level={2} className={styles.title}>Componenten</Heading>
         </div>
 
         <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />

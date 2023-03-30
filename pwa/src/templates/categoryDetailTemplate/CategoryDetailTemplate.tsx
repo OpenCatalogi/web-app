@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button, Heading1, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Button } from "@gemeente-denhaag/components-react";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { BadgeCounter, Container, Tag } from "@conduction/components";
 import { Link } from "../../components";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -48,9 +48,13 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
 
       {portfolio && domain && (
         <div className={styles.header}>
-          <Heading1 className={styles.title}>{portfolio.title}</Heading1>
+          <Heading level={1} className={styles.title}>
+            {portfolio.title}
+          </Heading>
           <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
-          <LeadParagraph className={styles.description}>{portfolio.longDescription}</LeadParagraph>
+          <Paragraph lead className={styles.description}>
+            {portfolio.longDescription}
+          </Paragraph>
         </div>
       )}
 
@@ -86,7 +90,9 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           <div className={styles.solutionsHeader}>
             <span className={0 >= 100 && styles.maxNumber}>
               <BadgeCounter number={"0"}>
-                <Heading3 className={styles.title}>{t("Solutions")}</Heading3>
+                <Heading level={3} className={styles.title}>
+                  {t("Solutions")}
+                </Heading>
               </BadgeCounter>
             </span>
           </div>

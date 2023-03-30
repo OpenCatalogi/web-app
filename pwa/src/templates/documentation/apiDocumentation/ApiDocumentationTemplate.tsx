@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApiDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { Link } from "../../../components";
 
@@ -10,9 +9,9 @@ export const ApiDocumentationTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>API Documentatie</Heading1>
+        <Heading level={1}>API Documentatie</Heading>
 
-        <LeadParagraph>
+        <Paragraph lead>
           Quisque id mi. Vivamus in erat ut urna cursus vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus
           et ultrices posuere cubilia Curae Sed aliquam.{" "}
           <span>
@@ -24,7 +23,7 @@ export const ApiDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           Nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.
-        </LeadParagraph>
+        </Paragraph>
       </section>
     </Container>
   );
