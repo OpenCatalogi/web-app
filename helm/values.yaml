@@ -7,39 +7,23 @@ pwa:
     pullPolicy: Always
     tag: "dev"
     # Overrides the image tag whose default is the chart appVersion.
-  apiUrl: "https://opencatalogi.nl/api"
-  meUrl: "https://opencatalogi.nl/api/users/me"
-  baseUrl: "https://opencatalogi.nl"
-  frontendUrl: "https://admin-bisc-dev.commonground.nu"
+  apiUrl: "useDomain"
+  meUrl: "useDomain"
+  baseUrl: "useDomain"
+  frontendUrl: "useDomain"
   organization: ""
   redirectUrl: "vault"
-  adminUrl: "https://opencatalogi.nl/admin"
+  adminUrl: "useDomain"
+  dashboardUrl: "useDomain"
 
-gatewayui:
-  gateway:
-    enabled: false
-  ingress:
-    annotations: {}
-    hostname: admin.chart-example.local
-    tls: []
-  pwa:
-    adminUrl: https://opencatalogi.nl/admin
-    apiUrl: https://opencatalogi.nl/api
-    baseUrl: https://opencatalogi.nl
-    frontendUrl: https://opencatalogi.nl
-    meUrl: https://opencatalogi.nl/api/users/me
-    image:
-      image: ghcr.io/conductionnl/gateway-ui
-      tag: stag
-    organization: https://example.com
-    redirectUrl: vault
+replicacount: 2
 
-replicacount: 1
+global:
+  domain: opencatalogi.nl
+  tls: true
 
 gateway:
-  enabled: false
-  fixtures: {}
-  location: "example"
+  enabled: true
 
 imagePullSecrets: []
 nameOverride: ""
@@ -74,7 +58,6 @@ service:
 
 ingress:
   enabled: true
-  hostname: admin-bisc-dev.commonground.nu
   path: ""
   pathType: ImplementationSpecific
   className: nginx
