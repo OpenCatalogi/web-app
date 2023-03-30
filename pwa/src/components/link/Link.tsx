@@ -7,7 +7,7 @@ import { Link as DesignSystemLink } from "@utrecht/component-library-react/dist/
 
 type GatsbyLinkSubset<T> = Pick<GatsbyLinkProps<T>, "onClick" | "state" | "to">;
 
-export interface LinkProps<T> extends GatsbyLinkSubset<T>, DesignSystemLinkProps {
+export interface LinkProps<T> extends Partial<GatsbyLinkSubset<T>>, DesignSystemLinkProps {
   href?: string;
 }
 
