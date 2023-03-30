@@ -481,7 +481,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
                         <span key={idx}>
-                          <Link target="_new" to="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland">
+                          <Link
+                            target="_new"
+                            href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                          >
                             <Icon className="utrecht-icon--conduction-start">
                               <ExternalLinkIcon />
                             </Icon>

@@ -18,7 +18,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
           <span>
-            <Link target="_new" to="https://www.rotterdam.nl">
+            <Link target="_new" href="https://www.rotterdam.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>
@@ -27,7 +27,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           </span>{" "}
           en{" "}
           <span>
-            <Link target="_new" to="https://www.conduction.nl">
+            <Link target="_new" href="https://www.conduction.nl">
               <Icon className="utrecht-icon--conduction-start">
                 <ExternalLinkIcon />
               </Icon>

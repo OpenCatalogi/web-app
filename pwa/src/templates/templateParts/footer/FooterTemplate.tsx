@@ -134,7 +134,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to="https://github.com/OpenCatalogi">
+              <Link target="_new" href="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
                   <GitHubLogo />
                 </Icon>
@@ -147,7 +147,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Links</div>
 
             <li>
-              <Link target="_new" to="https://commonground.nl/">
+              <Link target="_new" href="https://commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <CommongroundLogo />
                 </Icon>
@@ -156,7 +156,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to="https://haven.commonground.nl/">
+              <Link target="_new" href="https://haven.commonground.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <HavenLogo />
                 </Icon>
@@ -165,7 +165,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to="https://designsystem.gebruikercentraal.nl">
+              <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
                 </Icon>
@@ -174,7 +174,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to="https://forumstandaardisatie.nl/">
+              <Link target="_new" href="https://forumstandaardisatie.nl/">
                 <Icon className="utrecht-icon--conduction-start">
                   <ForumStandaardisatieLogo />
                 </Icon>
