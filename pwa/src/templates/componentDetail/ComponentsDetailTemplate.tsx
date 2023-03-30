@@ -7,7 +7,13 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeaderCell,
+  TableRow,
+} from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
@@ -335,7 +341,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Table>
                   <TableBody>
                     <TableRow>
-                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableHeaderCell>Gemeente Rotterdam</TableHeaderCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -364,7 +370,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </TableRow>
 
                     <TableRow>
-                      <TableHeader>Conduction</TableHeader>
+                      <TableHeaderCell>Conduction</TableHeaderCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -393,7 +399,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </TableRow>
 
                     <TableRow>
-                      <TableHeader>Gemeente Utrecht</TableHeader>
+                      <TableHeaderCell>Gemeente Utrecht</TableHeaderCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -480,11 +486,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableHeader className={styles.title}>Gemma</TableHeader>
+                  <TableHeaderCell className={styles.title}>Gemma</TableHeaderCell>
                   <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
+                  <TableHeaderCell className={styles.title}>{t("Products")}</TableHeaderCell>
                   <TableCell>
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
@@ -507,13 +513,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>Standaarden</TableHeader>
+                  <TableHeaderCell className={styles.title}>Standaarden</TableHeaderCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen standaarden beschikbaar.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
+                  <TableHeaderCell className={styles.title}>Wet en regelgeving</TableHeaderCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
                   </TableCell>

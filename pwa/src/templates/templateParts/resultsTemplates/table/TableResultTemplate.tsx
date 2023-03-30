@@ -4,8 +4,15 @@ import _ from "lodash";
 import { Icon, StatusBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
-import { TableHead, TableHeader } from "@gemeente-denhaag/table";
-import { Table, TableRow, TableBody, TableCell } from "@utrecht/component-library-react/dist/css-module";
+import {} from "@gemeente-denhaag/table";
+import {
+  Table,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+} from "@utrecht/component-library-react/dist/css-module";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,17 +76,17 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
     <TableWrapper>
       <Table>
         {!hideTableHead && (
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>{t("Name")}</TableHeader>
-              <TableHeader>{t("Type")}</TableHeader>
-              <TableHeader>{t("Layer")}</TableHeader>
-              <TableHeader>{t("Sources")}</TableHeader>
-              <TableHeader>{t("ComponentType")}</TableHeader>
-              <TableHeader>{t("Status")}</TableHeader>
+              <TableHeaderCell>{t("Name")}</TableHeaderCell>
+              <TableHeaderCell>{t("Type")}</TableHeaderCell>
+              <TableHeaderCell>{t("Layer")}</TableHeaderCell>
+              <TableHeaderCell>{t("Sources")}</TableHeaderCell>
+              <TableHeaderCell>{t("ComponentType")}</TableHeaderCell>
+              <TableHeaderCell>{t("Status")}</TableHeaderCell>
               <TableHeader />
             </TableRow>
-          </TableHead>
+          </TableHeader>
         )}
 
         <TableBody>
