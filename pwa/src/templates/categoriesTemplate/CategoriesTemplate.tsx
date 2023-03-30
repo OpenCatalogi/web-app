@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
-import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
@@ -14,10 +13,12 @@ export const CategoriesTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
-        <Heading2 className={styles.title}>{"Categories"}</Heading2>
+        <Heading level={2} className={styles.title}>
+          {t("Categories")}
+        </Heading>
 
         <div className={styles.subHeading}>
-          <LeadParagraph className={styles.description}>
+          <Paragraph lead className={styles.description}>
             We verdelen{" "}
             <span>
               <Link to="/applications">
@@ -47,7 +48,7 @@ export const CategoriesTemplate: React.FC = () => {
               </Link>
             </span>
             .
-          </LeadParagraph>
+          </Paragraph>
         </div>
       </div>
 

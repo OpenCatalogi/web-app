@@ -1,16 +1,8 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, BadgeCounter, Tag } from "@conduction/components";
-import {
-  Divider,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
+import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
@@ -42,13 +34,17 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <>
           <div className={styles.headerContainer}>
             <div className={styles.headerContent}>
-              <Heading1 className={styles.title}>{_getOrganization.data.name}</Heading1>
+              <Heading level={1} className={styles.title}>{_getOrganization.data.name}</Heading>
 
               {_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{_getOrganization.data.description}</LeadParagraph>
+                <Paragraph lead className={styles.description}>
+                  {_getOrganization.data.description}
+                </Paragraph>
               )}
               {!_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{t("There is no description available")}</LeadParagraph>
+                <Paragraph lead className={styles.description}>
+                  {t("There is no description available")}
+                </Paragraph>
               )}
             </div>
 
@@ -133,7 +129,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Divider />
 
           <div className={styles.section}>
-            <Heading2 className={styles.title}>Componenten</Heading2>
+            <Heading level={2} className={styles.title}>Componenten</Heading>
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
