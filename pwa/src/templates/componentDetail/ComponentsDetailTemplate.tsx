@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Heading1, LeadParagraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -80,11 +80,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
+              <Heading level={1} className={styles.componentName}>
+                {_getComponent.data.name}
+              </Heading>
 
-              <LeadParagraph className={styles.description}>
+              <Paragraph lead className={styles.description}>
                 {_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
-              </LeadParagraph>
+              </Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">

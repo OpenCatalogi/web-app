@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider, Heading1, Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Button, Divider } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -40,8 +40,12 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
         <>
           <div className={styles.header}>
             <div className={styles.description}>
-              <Heading1 className={styles.title}>{getApplications.data.name}</Heading1>
-              <LeadParagraph className={styles.description}>{getApplications.data.description}</LeadParagraph>
+              <Heading level={1} className={styles.title}>
+                {getApplications.data.name}
+              </Heading>
+              <Paragraph lead className={styles.description}>
+                {getApplications.data.description}
+              </Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (
@@ -69,7 +73,9 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div>
-            <Heading2 className={styles.title}>Screenshot</Heading2>
+            <Heading level={2} className={styles.title}>
+              Screenshot
+            </Heading>
             <div className={styles.screenshotContainer}>
               <img src={getApplications.data.detailPageImageUrl} className={styles.screenshot} />
             </div>

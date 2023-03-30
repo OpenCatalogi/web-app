@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -12,9 +11,11 @@ export const ContactDocumentationTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1 className={styles.title}>Contact</Heading1>
+        <Heading level={1} className={styles.title}>
+          Contact
+        </Heading>
 
-        <LeadParagraph className={styles.description}>
+        <Paragraph lead className={styles.description}>
           Wil je meer weten of heb je vragen dan kun je terecht bij de initiatiefnemers van dit project:
           <br />
           <span>
@@ -61,7 +62,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
               Conduction
             </Link>
           </span>
-        </LeadParagraph>
+        </Paragraph>
       </section>
     </Container>
   );

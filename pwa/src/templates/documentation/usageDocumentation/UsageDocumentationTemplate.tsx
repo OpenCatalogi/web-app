@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, Heading2, LeadParagraph, Paragraph } from "@gemeente-denhaag/components-react";
-import { CodeBlock, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import dedent from "dedent";
 import { Link } from "../../../components";
@@ -11,15 +10,15 @@ export const UsageDocumentationTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <Heading1>Componenten op OpenCatalogi plaatsen en Componenten installeren</Heading1>
+        <Heading level={1}>Componenten op OpenCatalogi plaatsen en Componenten installeren</Heading>
 
-        <LeadParagraph className={styles.description}>
+        <Paragraph lead className={styles.description}>
           Er zijn vier manieren om een component zichtbaar te maken op OpenCatalogi.
-        </LeadParagraph>
+        </Paragraph>
       </section>
 
       <section className={styles.section}>
-        <Heading2>1. Een publiccode.yaml opnemen in je repository</Heading2>
+        <Heading level={2}>1. Een publiccode.yaml opnemen in je repository</Heading>
         <Paragraph className={styles.description}>
           OpenCatalogi is gebouwd op het Europese public code framework. Uitgangspunt hierbij is dat open source,
           betekent dat de source code in een git repository staat (bijvoorbeeld Github, Gitlab of SourceTree) die
@@ -48,7 +47,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           </span>{" "}
           terug vinden.
         </Paragraph>
-        <Heading2>2. Start een eigen OpenCatalogi installatie</Heading2>
+        <Heading level={2}>2. Start een eigen OpenCatalogi installatie</Heading>
         <Paragraph className={styles.description}>
           OpenCatalogi is een federatief ecosysteem dat betekent dat iedere organisatie zijn eigen componenten catalogus
           kan starten. Vanuit de eigen catalogus kunnen zowel componenten worden geïmporteerd als beschikbaar gesteld
@@ -57,7 +56,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           Meer informatie over het zelf inrichten van een OpenCatalogi vind je hier onder.
         </Paragraph>
-        <Heading2>3. Via andere catalogussen</Heading2>
+        <Heading level={2}>3. Via andere catalogussen</Heading>
         <Paragraph className={styles.description}>
           OpenCatalogi synchroniseert onder andere met{" "}
           <span>
@@ -88,7 +87,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           </span>
           , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in OpenCatalogi.
         </Paragraph>
-        <Heading2>4. Via het aanmaken van een account</Heading2>
+        <Heading level={2}>4. Via het aanmaken van een account</Heading>
         <Paragraph className={styles.description}>
           U kunt via{" "}
           <span>
@@ -104,7 +103,9 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
       </section>
       <section className={styles.section}>
-        <Heading1 id="intsallation">Installeren met de skeleton application</Heading1>
+        <Heading level={1} id="intsallation">
+          Installeren met de skeleton application
+        </Heading>
         <Paragraph className={styles.description}>
           De skeleton application is een makkelijke manier om de componenten te installeren en te gebruiken. De skeleton
           application is namelijk ontworpen voor snelle applicatietesten en prototypeontwikkeling op het NL Design
@@ -112,7 +113,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
       </section>
       <section className={styles.section}>
-        <Heading2>Aan de slag </Heading2>
+        <Heading level={2}>Aan de slag </Heading>
         <Paragraph className={styles.description}>
           Om een eigen project op te zetten heb je een GitHub-account nodig en daar mee ingelogd zijn. Klik op de groene
           "Use this template" knop op de <br />
@@ -128,13 +129,13 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           <br />
         </Paragraph>
-        <Heading2>Lokaal je omgeving laten draaien</Heading2>
+        <Heading level={2}>Lokaal je omgeving laten draaien</Heading>
         <Paragraph className={styles.description}>
           Om lokaal te ontwikkelen, moet je de nieuwe repository klonen naar je eigen lokale machine. Open een terminal,
           navigeer naar de folder die de repository bevat, en maak een keuze tussen Node.js/npm of Docker om de app te
           laten draaien.
         </Paragraph>
-        <Heading2>Node.js / NPM</Heading2>
+        <Heading level={2}>Node.js / NPM</Heading>
         <Paragraph className={styles.description}>
           Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
           gebruiken, dus zorg er voor dit poort niet al in gebruik is.
@@ -145,7 +146,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           $ npm install
           $ npm run develop`}
         </CodeBlock>
-        <Heading2>Docker</Heading2>
+        <Heading level={2}>Docker</Heading>
         <Paragraph className={styles.description}>
           Je moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
           zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
@@ -184,7 +185,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           </span>
           .
         </Paragraph>
-        <Heading2>Installeren op Kubernetes omgevingen</Heading2>
+        <Heading level={2}>Installeren op Kubernetes omgevingen</Heading>
         <Paragraph className={styles.description}>
           Om de applicatie te installeren op je eigen cloud omgeving ondersteunen we installaties in{" "}
           <span>
@@ -279,7 +280,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           </span>
           .
         </Paragraph>
-        <Heading2>Technische Documentatie</Heading2>
+        <Heading level={2}>Technische Documentatie</Heading>
         <Paragraph className={styles.description}>
           De volledige technische documentatie is te vinden op{" "}
           <span>
