@@ -3,7 +3,7 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
@@ -14,6 +14,7 @@ import { CommongroundLogo } from "../../../assets/svgs/Commonground";
 import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "../../../components";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -21,7 +22,7 @@ interface FooterTemplateProps {
 
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [, setFilters] = React.useContext(FiltersContext);
 
   return (
     <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
@@ -30,13 +31,16 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Componenten</div>
 
-            <li
-              onClick={() => {
-                setFilters({ ...baseFilters, softwareType: "process" });
-                navigate("/components");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <li>
+              <Link
+                to="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "process" });
+                }}
+              >
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Processes")}
               </Link>
             </li>
@@ -47,7 +51,15 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link
+                to="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "schema" });
+                }}
+              >
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Data models")}
               </Link>
             </li>
@@ -58,7 +70,15 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link
+                to="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, softwareType: "api" });
+                }}
+              >
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 {t("API's")}
               </Link>
             </li>
@@ -69,7 +89,15 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 navigate("/components");
               }}
             >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+              <Link
+                to="/components"
+                onClick={() => {
+                  setFilters({ ...baseFilters, developmentStatus: "concept" });
+                }}
+              >
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 {t("Initiatives")}
               </Link>
             </li>
@@ -78,43 +106,39 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Documentatie</div>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/about");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <li>
+              <Link to="/documentation/usage">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 {t("About OpenCatalogi")}
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/usage");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <li>
+              <Link to="/documentation/usage">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 Gebruik
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("/documentation/contact");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
+            <li>
+              <Link to="/components">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ArrowRightIcon />
+                </Icon>
                 Contact
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://github.com/OpenCatalogi");
-              }}
-            >
-              <Link icon={<GitHubLogo />} iconAlign="start">
-                GitHub
+            <li>
+              <Link target="_new" href="https://github.com/OpenCatalogi">
+                <Icon className="utrecht-icon--conduction-start">
+                  <GitHubLogo />
+                </Icon>
+                Github
               </Link>
             </li>
           </ul>
@@ -122,62 +146,56 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <ul className={styles.list}>
             <div className={styles.heading}>Links</div>
 
-            <li
-              onClick={() => {
-                open("https://commonground.nl/");
-              }}
-            >
-              <Link icon={<CommongroundLogo />} iconAlign="start">
+            <li>
+              <Link target="_new" href="https://commonground.nl/">
+                <Icon className="utrecht-icon--conduction-start">
+                  <CommongroundLogo />
+                </Icon>
                 Common ground
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://haven.commonground.nl/");
-              }}
-            >
-              <Link icon={<HavenLogo />} iconAlign="start">
+            <li>
+              <Link target="_new" href="https://haven.commonground.nl/">
+                <Icon className="utrecht-icon--conduction-start">
+                  <HavenLogo />
+                </Icon>
                 Haven
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://designsystem.gebruikercentraal.nl/");
-              }}
-            >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <li>
+              <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ExternalLinkIcon />
+                </Icon>
                 NL design
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open("https://forumstandaardisatie.nl/");
-              }}
-            >
-              <Link icon={<ForumStandaardisatieLogo />} iconAlign="start">
+            <li>
+              <Link target="_new" href="https://forumstandaardisatie.nl/">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ForumStandaardisatieLogo />
+                </Icon>
                 Forum standaardisatie
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                navigate("#");
-              }}
-            >
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <li>
+              <Link to="#">
+                <Icon className="utrecht-icon--conduction-start">
+                  <ExternalLinkIcon />
+                </Icon>
                 {t("Privacy declaration")}
               </Link>
             </li>
 
-            <li
-              onClick={() => {
-                open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
-              }}
-            >
-              <Link icon={<FontAwesomeIcon icon={faCircleUser} />} iconAlign="start">
+            <li>
+              <Link target="_new" to={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
+                <Icon className="utrecht-icon--conduction-start">
+                  <FontAwesomeIcon icon={faCircleUser} />
+                </Icon>
                 {t("Login")}
               </Link>
             </li>

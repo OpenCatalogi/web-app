@@ -1,16 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import {
-  Button,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
+import { Button, Heading1, LeadParagraph, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -18,7 +9,6 @@ import {
   Tag,
   NotificationPopUp as _NotificationPopUp,
 } from "@conduction/components";
-import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
@@ -28,19 +18,10 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleNodes,
-  faDatabase,
-  faHouse,
-  faInfoCircle,
-  faLayerGroup,
-  faRepeat,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
-import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
@@ -50,6 +31,7 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Link } from "../../components";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -59,7 +41,7 @@ interface ComponentsDetailTemplateProps {
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [filters] = React.useContext(FiltersContext);
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -85,8 +67,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/components")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+      <div className={styles.backButton}>
+        <Link to="/components">
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowLeftIcon />
+          </Icon>
           {t("Back to components")}
         </Link>
       </div>
@@ -229,8 +214,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         maxRating={_getComponent.data.embedded?.rating?.maxRating}
                         rating={_getComponent.data.embedded?.rating?.rating}
                       />
-                      <span onClick={show} className={styles.link}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <span className={styles.link}>
+                        <Link onClick={show}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           Rating
                         </Link>
                       </span>
@@ -258,6 +246,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   secondaryButton={{
                     label: t("Close"),
                     icon: <ArrowLeftIcon />,
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}
                   layoutClassName={styles.popup}
@@ -340,21 +329,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Gemeente Rotterdam</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           010 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -363,21 +358,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Conduction</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           020 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -386,21 +387,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableHeader>Gemeente Utrecht</TableHeader>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <CallIcon />
+                          </Icon>
                           030 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <ArrowRightIcon />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -473,11 +480,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <TableCell>
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                        <span key={idx}>
+                          <Link
+                            target="_new"
+                            href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                          >
+                            <Icon className="utrecht-icon--conduction-start">
+                              <ExternalLinkIcon />
+                            </Icon>
                             {product},{" "}
                           </Link>
                         </span>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -16,6 +16,7 @@ import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
+import { Link } from "../../../../components";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -154,8 +155,14 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   </ToolTip>
                 </TableCell>
 
-                <TableCell onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}>
-                  <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
+                <TableCell>
+                  <Link
+                    to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
+                    className={styles.detailsLink}
+                  >
+                    <Icon className="utrecht-icon--conduction-start">
+                      <ArrowRightIcon />
+                    </Icon>
                     {t("Details")}
                   </Link>
                 </TableCell>

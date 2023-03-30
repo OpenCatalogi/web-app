@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as styles from "./ApiDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Heading1, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { navigate } from "gatsby";
+import { Heading1, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Link } from "../../../components";
 
 export const ApiDocumentationTemplate: React.FC = () => {
   return (
@@ -14,12 +15,11 @@ export const ApiDocumentationTemplate: React.FC = () => {
         <LeadParagraph>
           Quisque id mi. Vivamus in erat ut urna cursus vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus
           et ultrices posuere cubilia Curae Sed aliquam.{" "}
-          <span
-            onClick={() => {
-              navigate("#");
-            }}
-          >
-            <Link icon={<ExternalLinkIcon />} iconAlign="start">
+          <span>
+            <Link to="#">
+              <Icon className="utrecht-icon--conduction-start">
+                <ExternalLinkIcon />
+              </Icon>
               Lees meer.
             </Link>
           </span>{" "}

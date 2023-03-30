@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
-import { Link, Paragraph } from "@gemeente-denhaag/components-react";
-import { navigate } from "gatsby";
+import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ import { ToolTip } from "../toolTip/ToolTip";
 import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
+import { Link } from "../../components";
 
 export interface ComponentCardProps {
   title: {
@@ -48,8 +49,11 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
 
   return (
     <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={<ArrowRightIcon />} iconAlign="start">
+      <div className={styles.titleLink}>
+        <Link to={title.href}>
+          <Icon className="utrecht-icon--conduction-start">
+            <ArrowRightIcon />
+          </Icon>
           {title.label}
         </Link>
       </div>
