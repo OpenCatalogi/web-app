@@ -250,4 +250,6 @@
   --utrecht-focus-outline-color: var(--rotterdam-color-base-black);
   --utrecht-focus-outline-style: dotted;
   --utrecht-focus-outline-width: 2px;
+
+  --denhaag-link-focus-outline: var(--utrecht-focus-outline-width) var(--utrecht-focus-outline-style) var(--utrecht-focus-outline-color);
 }
