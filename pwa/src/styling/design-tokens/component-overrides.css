@@ -100,7 +100,7 @@
   --utrecht-button-padding-inline-start: var(--web-app-size-md);
   --utrecht-button-border-width: 0;
 
-  --denhaag-link-focus-outline: var(--web-app-focus-border);
+  /* --denhaag-link-focus-outline: var(--web-app-focus-border); */
   --denhaag-link-disabled-color: var(--web-app-color-disabled);
   --denhaag-link-hover-color: var(--web-app-color-link-active);
   --denhaag-link-focus-color: var(--web-app-color-link-active);
