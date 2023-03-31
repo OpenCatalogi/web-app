@@ -231,7 +231,9 @@
   --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
   --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
   --web-app-alert-info-icon-color: hsl(207 80% 35%);
+}
 
+.rotterdam-theme {
   /* @gemeente-utrecht: Code block */
   --utrecht-code-block-background-color: var(--web-app-color-grey);
   --utrecht-code-block-margin-block-start: var(--web-app-size-lg);
