@@ -7,7 +7,8 @@ import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
-import { ButtonLink, Button } from "@utrecht/component-library-react";
+import { Button } from "@utrecht/component-library-react";
+import { ButtonLink } from "../../../components";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -44,7 +45,6 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       currentPage: filters.currentPage,
       applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFilters);
-    navigate("/components");
   };
 
   return (
@@ -65,7 +65,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
           {t("Search")}
         </Button>
 
-        <ButtonLink onClick={clearFilters} appearance="secondary-action-button">
+        <ButtonLink to="/components" onClick={clearFilters} appearance="secondary-action-button">
           <ArrowRightIcon />
           {t("View all components")}
         </ButtonLink>

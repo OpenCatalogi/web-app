@@ -4,7 +4,6 @@ import { Button } from "@gemeente-denhaag/components-react";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { navigate } from "gatsby";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,8 +12,7 @@ import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
-import { Link } from "../../../../components";
-import { ButtonLink } from "@utrecht/component-library-react";
+import { ButtonLink, Link } from "../../../../components";
 
 export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
@@ -121,7 +119,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         ))}
       </div>
 
-      <ButtonLink onClick={() => navigate("/categories")} appearance="secondary-action-button">
+      <ButtonLink to="/categories" appearance="secondary-action-button">
         <ArrowRightIcon /> Bekijk alle categorieën
       </ButtonLink>
     </>
