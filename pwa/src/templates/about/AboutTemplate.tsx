@@ -93,21 +93,21 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={2}>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading>
 
         <Table>
-          <TableBody>
+          <TableBody className={styles.customTable}>
             <TableRow>
-              <TableHeaderCell>Autonomie</TableHeaderCell>
+              <TableCell>Autonomie</TableCell>
               <TableCell>Componenten zijn zelfstandig inzetbaar, schaalbaar en vervangbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Losse koppeling</TableHeaderCell>
+              <TableCell>Losse koppeling</TableCell>
               <TableCell>
                 Componenten zijn onderling onafhankelijk en zelfstandig door te ontwikkelen en gebruiken
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Herbruikbaar</TableHeaderCell>
+              <TableCell>Herbruikbaar</TableCell>
               <TableCell>
                 Componenten zijn vaker in te zetten door ze in verschillende omgevingen te gebruiken of door een
                 component vaker te instantiëren binnen één omgeving
@@ -115,12 +115,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Samenstelbaar</TableHeaderCell>
+              <TableCell>Samenstelbaar</TableCell>
               <TableCell>Componenten kunnen worden gecombineerd tot nieuwe componenten</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Abstractie</TableHeaderCell>
+              <TableCell>Abstractie</TableCell>
               <TableCell>
                 Afnemers hoeven alleen de functionaliteit van een component te kennen en niet de interne werking ervan.
                 Service-contract - Een component kent duidelijke voorwaarden en leveringsafspraken over de kwaliteit en
@@ -129,12 +129,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Vindbaar</TableHeaderCell>
+              <TableCell>Vindbaar</TableCell>
               <TableCell>Services zijn voorzien van metadata en zijn goed vindbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeaderCell>Toestandsloos</TableHeaderCell>
+              <TableCell>Toestandsloos</TableCell>
               <TableCell>
                 Componenten die diensten leveren bewaren geen statusinformatie (maar laten dit over aan afnemers of
                 gespecialiseerde componenten)
@@ -148,7 +148,7 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={3}>Componenten conformeren zich aan het vijf-lagenmodel</Heading>
 
         <Table>
-          <TableBody>
+          <TableBody className={styles.customTable}>
             <TableRow>
               <TableCell>Componenten beperken zich tot functionaliteit binnen de laag waartoe ze behoren</TableCell>
             </TableRow>
@@ -226,7 +226,7 @@ export const AboutTemplate: React.FC = () => {
       <section className={clsx(styles.section, styles.standardsTableWrapper)}>
         <div className={styles.content}>
           <Table>
-            <TableHeader>
+            <TableHeader className={styles.customTable}>
               <TableRow className={styles.tableRow}>
                 <TableHeaderCell>{t("Standard")}</TableHeaderCell>
                 <TableHeaderCell>{t("Type")}</TableHeaderCell>
@@ -234,7 +234,7 @@ export const AboutTemplate: React.FC = () => {
                 <TableHeaderCell>{t("Management organization")}</TableHeaderCell>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody className={styles.customTable}>
               {TEMPORARY_STANDARDS.map((standard, idx) => (
                 <TableRow className={styles.tableRow} key={idx}>
                   <TableCell>{standard.name}</TableCell>
