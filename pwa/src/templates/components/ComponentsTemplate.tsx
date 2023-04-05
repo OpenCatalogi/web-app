@@ -44,7 +44,9 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={styles.title}>Componenten</Heading>
+          <Heading level={2} className={styles.title}>
+            Componenten
+          </Heading>
         </div>
 
         <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />

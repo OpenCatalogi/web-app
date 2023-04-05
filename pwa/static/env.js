@@ -2,10 +2,7 @@ window.sessionStorage.setItem(
   "GATSBY_ME_URL",
   "https://opencatalogi.nl/api/users/me"
 );
-window.sessionStorage.setItem(
-  "GATSBY_API_URL",
-  "https://opencatalogi.nl/api"
-);
+window.sessionStorage.setItem("GATSBY_API_URL", "https://opencatalogi.nl/api");
 window.sessionStorage.setItem(
   "GATSBY_ADMIN_URL",
   "https://opencatalogi.nl/admin"

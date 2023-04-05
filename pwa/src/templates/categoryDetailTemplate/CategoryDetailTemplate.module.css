@@ -31,9 +31,7 @@
 }
 
 .maxNumber {
-  --conduction-badge-counter-font-size: var(
-    --web-app-badge-counter-max-number-font-size
-  );
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }
 
 .title {
