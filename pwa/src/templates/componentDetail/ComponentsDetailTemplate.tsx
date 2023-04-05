@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
@@ -7,13 +8,7 @@ import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHeaderCell,
-  TableRow,
-} from "@utrecht/component-library-react/dist/css-module";
+import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
@@ -338,10 +333,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table>
+                <Table className={styles.customTable}>
                   <TableBody>
                     <TableRow>
-                      <TableHeaderCell>Gemeente Rotterdam</TableHeaderCell>
+                      <TableCell>Gemeente Rotterdam</TableCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -370,7 +365,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </TableRow>
 
                     <TableRow>
-                      <TableHeaderCell>Conduction</TableHeaderCell>
+                      <TableCell>Conduction</TableCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -399,7 +394,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </TableRow>
 
                     <TableRow>
-                      <TableHeaderCell>Gemeente Utrecht</TableHeaderCell>
+                      <TableCell>Gemeente Utrecht</TableCell>
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
@@ -486,11 +481,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableHeaderCell className={styles.title}>Gemma</TableHeaderCell>
+                  <TableCell className={styles.title}>Gemma</TableCell>
                   <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeaderCell className={styles.title}>{t("Products")}</TableHeaderCell>
+                  <TableCell className={styles.title}>{t("Products")}</TableCell>
                   <TableCell>
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
@@ -513,13 +508,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeaderCell className={styles.title}>Standaarden</TableHeaderCell>
+                  <TableCell className={styles.title}>Standaarden</TableCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen standaarden beschikbaar.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeaderCell className={styles.title}>Wet en regelgeving</TableHeaderCell>
+                  <TableCell className={styles.title}>Wet en regelgeving</TableCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
                   </TableCell>
