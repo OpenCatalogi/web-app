@@ -2,12 +2,15 @@ import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
+import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { Link } from "../../components";
 
 export const CategoriesTemplate: React.FC = () => {
+  const { t } = useTranslation();
+
   const categories = TEMPORARY_PORTFOLIOS;
 
   return (
