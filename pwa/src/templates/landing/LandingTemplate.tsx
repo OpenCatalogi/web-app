@@ -18,13 +18,18 @@ export const LandingTemplate: React.FC = () => {
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
-        <ResultsDisplaySwitch resultsDisplayType="landingDisplayLayout" layoutClassName={styles.landingDisplaySwitchButtons} />
+        <ResultsDisplaySwitch
+          resultsDisplayType="landingDisplayLayout"
+          layoutClassName={styles.landingDisplaySwitchButtons}
+        />
 
         <LandingDisplayTemplate type={filters.landingDisplayLayout} />
       </section>
 
       <section className={styles.section}>
-        <Heading level={3} className={styles.textColor}>Veelbezochte pagina's</Heading>
+        <Heading level={3} className={styles.textColor}>
+          Veelbezochte pagina's
+        </Heading>
         {screenSize === "desktop" && (
           <div className={styles.cards}>
             <ImageAndDetailsCard

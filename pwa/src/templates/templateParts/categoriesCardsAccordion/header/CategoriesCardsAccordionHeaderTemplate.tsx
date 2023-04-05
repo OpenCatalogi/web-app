@@ -30,7 +30,9 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
         <FontAwesomeIcon className={styles.categoryIcon} icon={faTags} />
         <span className={clsx(styles.badge, maxItems && styles.maxNumber)}>
           <BadgeCounter number={badgeLabel}>
-            <Heading level={3} className={styles.title}>{t(title)}</Heading>
+            <Heading level={3} className={styles.title}>
+              {t(title)}
+            </Heading>
           </BadgeCounter>
         </span>
 

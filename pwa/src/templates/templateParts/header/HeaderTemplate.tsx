@@ -173,7 +173,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         <Container layoutClassName={styles.headerContent}>
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
-              <Heading level={1} className={styles.title}>{t("Open Catalogs")}</Heading>
+              <Heading level={1} className={styles.title}>
+                {t("Open Catalogs")}
+              </Heading>
 
               <Paragraph lead className={styles.subTitle}>
                 {t("One central place for reuse of information technology within the government")}

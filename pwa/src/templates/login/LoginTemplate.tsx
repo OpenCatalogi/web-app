@@ -10,7 +10,9 @@ export const LoginTemplate: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <Heading level={1} className={styles.header}>{t("Login")}</Heading>
+        <Heading level={1} className={styles.header}>
+          {t("Login")}
+        </Heading>
         <LoginForm />
       </div>
     </div>

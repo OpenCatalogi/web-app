@@ -34,7 +34,9 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <>
           <div className={styles.headerContainer}>
             <div className={styles.headerContent}>
-              <Heading level={1} className={styles.title}>{_getOrganization.data.name}</Heading>
+              <Heading level={1} className={styles.title}>
+                {_getOrganization.data.name}
+              </Heading>
 
               {_getOrganization.data.description && (
                 <Paragraph lead className={styles.description}>
@@ -129,7 +131,9 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Divider />
 
           <div className={styles.section}>
-            <Heading level={2} className={styles.title}>Componenten</Heading>
+            <Heading level={2} className={styles.title}>
+              Componenten
+            </Heading>
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
