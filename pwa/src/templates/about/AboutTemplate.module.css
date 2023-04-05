@@ -59,7 +59,6 @@
 /*Todo:   */
 .customTable {
   vertical-align: middle !important;
-  --utrecht-table-row-border-block-end-color: #eff4f6;
   --utrecht-table-cell-padding-inline-start: 0px;
 }
 
