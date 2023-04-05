@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import  { FormFieldInput} from "@gemeente-denhaag/form-field";
-import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
-import { InputText } from "@conduction/components";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
+import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -14,7 +13,6 @@ export const HorizontalFiltersTemplate: React.FC = () => {
     reset,
     formState: { errors },
   } = useForm();
-
   React.useEffect(() => {
     reset({
       name: filters._search,
@@ -42,7 +40,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       <FormField>
         <FormFieldInput>
           <FormLabel htmlFor={""}>Zoek op naam</FormLabel>
-          <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
+          <Textbox {...register("name", { required: true })} invalid={errors["name"]} />
         </FormFieldInput>
       </FormField>
     </form>
