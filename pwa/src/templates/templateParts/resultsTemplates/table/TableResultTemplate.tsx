@@ -4,7 +4,6 @@ import _ from "lodash";
 import { Icon, StatusBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
-import {} from "@gemeente-denhaag/table";
 import {
   Table,
   TableRow,
