@@ -15,10 +15,10 @@
     "clean": "gatsby clean",
     "lint": "npm-run-all lint:** ",
     "lint:eslint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "lint-disabled:prettier": "prettier --check .",
+    "lint:prettier": "prettier --check .",
     "lint-fix": "npm-run-all lint-fix:**",
     "lint-fix:eslint": "eslint --fix .",
-    "lint-fix-disabled:prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\" .",
+    "lint-fix:prettier": "prettier --write \"**/*.+(css|js|json|jsx|scss|ts|tsx)\" .",
     "typecheck": "tsc --noEmit",
     "prepare": "cd .. && husky install"
   },
