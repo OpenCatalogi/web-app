@@ -212,7 +212,7 @@
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
-  --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
+  --web-app-primary-top-nav-background-color-hover: transparent;
   --web-app-primary-top-nav-background-color-active: unset;
   --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
