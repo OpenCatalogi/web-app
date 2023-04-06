@@ -3,7 +3,7 @@ import * as styles from "./ThemeProvider.module.css";
 import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
-import  { FormFieldInput } from "@gemeente-denhaag/form-field";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
@@ -66,7 +66,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
         <FormFieldInput>
           <FormLabel htmlFor={""}>
             <span className={styles.label}>Thema aanpasssen:</span>
-            </FormLabel>
+          </FormLabel>
           <div className={styles.selectBorder}>
             <SelectSingle
               name="themeSwitcher"

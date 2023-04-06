@@ -2,11 +2,11 @@ import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import { FormFieldInput} from "@gemeente-denhaag/form-field";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { FormField,FormLabel } from "@utrecht/component-library-react/dist/css-module";
+import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 import {
   upls,
   platforms,
@@ -300,7 +300,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
 
               <div className={styles.selectBorder}>
                 <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
@@ -314,7 +314,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 {getOrganisations.isLoading && <Skeleton height="50px" />}
 
@@ -336,7 +336,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
               </div>
@@ -469,7 +469,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
               </div>
@@ -482,7 +482,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
               </div>
@@ -537,7 +537,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <span className={styles.filterTitle}>
                   Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
               </div>
@@ -551,7 +551,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   Referentie componenten{" "}
                   <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
                 </span>
-              </FormLabel >
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple
                   name="referentieComponenten"
