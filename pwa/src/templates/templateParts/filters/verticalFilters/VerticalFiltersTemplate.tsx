@@ -269,9 +269,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
-                    </span>
+                    <span className={styles.filterTitle}>Laag</span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
                       icon={faChevronRight}
@@ -297,9 +295,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
-                </span>
+                <span className={styles.filterTitle}>UPL</span>
               </FormFieldLabel>
 
               <div className={styles.selectBorder}>
@@ -311,9 +307,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
-                </span>
+                <span className={styles.filterTitle}>Organisatie</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 {getOrganisations.isLoading && <Skeleton height="50px" />}
@@ -333,9 +327,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
-                </span>
+                <span className={styles.filterTitle}>Categorie</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
@@ -352,9 +344,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
-                    </span>
+                    <span className={styles.filterTitle}>Platforms</span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
                       icon={faChevronRight}
@@ -388,9 +378,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
-                    </span>
+                    <span className={styles.filterTitle}>Status</span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
                       icon={faChevronRight}
@@ -430,9 +418,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
-                    </span>
+                    <span className={styles.filterTitle}>Onderhoudstypes</span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
                       icon={faChevronRight}
@@ -466,9 +452,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
-                </span>
+                <span className={styles.filterTitle}>Licentie</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
@@ -479,9 +463,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
-                </span>
+                <span className={styles.filterTitle}>Bedrijfsfuncties</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
@@ -498,9 +480,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 triggerOpenedClassName={styles.title}
                 trigger={
                   <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
-                    </span>
+                    <span className={styles.filterTitle}>Softwaretypes</span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
                       icon={faChevronRight}
@@ -534,9 +514,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
-                </span>
+                <span className={styles.filterTitle}>Bedrijfsservices</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
@@ -547,10 +525,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           <FormField>
             <FormFieldInput>
               <FormFieldLabel>
-                <span className={styles.filterTitle}>
-                  Referentie componenten{" "}
-                  <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
-                </span>
+                <span className={styles.filterTitle}>Referentie componenten</span>
               </FormFieldLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple
