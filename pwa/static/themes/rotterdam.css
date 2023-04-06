@@ -84,7 +84,7 @@
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
-  --web-app-color-footer-text: var(--web-app-color-text-grey);
+  --web-app-color-footer-text: var(--web-app-color-white);
   --web-app-color-grey: var(--skeleton-color-grey-1);
   --web-app-color-table-grey: #f9f9f9;
   --web-app-color-table-hover-grey: #eff4f6;
@@ -117,9 +117,9 @@
 
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
 
-  --web-app-color-background-footer: #eff4f6;
-  --web-app-color-footer-headings: auto;
-  --web-app-color-footer-links: var(--web-app-color-black);
+  --web-app-color-background-footer: #00811f;
+  --web-app-color-footer-headings: var(--web-app-color-white);
+  --web-app-color-footer-links: var(--web-app-color-white);
 
   --web-app-header-logo-container-background-color: unset;
   --web-app-header-logo-container-padding: unset;
