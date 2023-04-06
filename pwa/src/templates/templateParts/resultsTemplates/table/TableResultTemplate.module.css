@@ -2,9 +2,9 @@
   cursor: pointer;
 }
 
-.tableRow:nth-of-type(even) > td {
+/* .tableRow:nth-of-type(even) > td {
   background-color: var(--web-app-color-table-grey);
-}
+} */
 
 .name {
   display: block;

@@ -319,11 +319,10 @@
   inline-size: max-content;
 }
 
-.utrecht-table__row:focus-within > td,
-.utrecht-table__row:hover > td {
-  box-shadow: var(--_utrecht-focus-ring-box-shadow);
-  outline-color: var(--utrecht-focus-outline-color, revert);
-  outline-offset: var(--utrecht-focus-outline-offset, revert);
-  outline-style: var(--utrecht-focus-outline-style, revert);
-  outline-width: var(--utrecht-focus-outline-width, revert);
+.utrecht-table__row:has(a[rel~="activate-row"]:not(:disabled):not([aria-disabled="true"]):focus) {
+  background-color: #eff4f6;
+}
+
+.utrecht-table__row:has(a[rel~="activate-row"]:not(:disabled):not([aria-disabled="true"])):hover {
+  background-color: #eff4f6;
 }

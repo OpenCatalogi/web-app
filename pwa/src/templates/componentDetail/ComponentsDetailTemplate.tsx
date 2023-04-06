@@ -333,7 +333,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table>
+                <Table className={styles.customTable}>
                   <TableBody>
                     <TableRow>
                       <TableCell>Gemeente Rotterdam</TableCell>

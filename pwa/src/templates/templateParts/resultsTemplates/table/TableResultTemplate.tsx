@@ -194,6 +194,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   <Link
                     to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
                     className={styles.detailsLink}
+                    rel="activate-row"
                   >
                     <Icon className="utrecht-icon--conduction-start">
                       <ArrowRightIcon />
