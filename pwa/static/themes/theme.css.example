@@ -1,7 +1,7 @@
 /*
  * Generics global
 */
-:root {
+.example-theme {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
   --web-app-size-3xs: var(--skeleton-size-3xs);

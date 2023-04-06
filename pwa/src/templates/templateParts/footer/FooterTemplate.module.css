@@ -62,13 +62,16 @@
 }
 
 .organizationLogo {
-  background-size: contain;
-  background-repeat: no-repeat;
   padding: var(--web-app-footer-organization-logo-padding);
   width: var(--web-app-footer-organization-logo-width);
-  background-image: var(--web-app-footer-organization-logo-src);
-  background-color: var(--web-app-footer-organization-logo-background-color);
-  background-origin: content-box;
+}
+
+.organizationLogo svg {
+  width: 100%;
+  height: auto;
+}
+.organizationLogo svg * {
+  fill: currentColor;
 }
 
 @media only screen and (min-width: 576px) {

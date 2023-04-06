@@ -1,7 +1,7 @@
 /*
  * Generics global
 */
-:root {
+.utrecht-theme {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
   --web-app-size-3xs: var(--skeleton-size-3xs);
@@ -100,11 +100,11 @@
   --web-app-header-organization-logo-width: 115px;
   --web-app-header-organization-logo-src: url("images/LogoUtrecht.svg");
 
-  --web-app-footer-logo-container-background-color: var(--web-app-color-white);
-  --web-app-footer-logo-container-padding: var(--web-app-size-md);
+  --web-app-footer-logo-container-background-color: unset;
+  --web-app-footer-logo-container-padding: 0;
   --web-app-footer-logo-container-border-radius: unset;
-  --web-app-footer-logo-container-height: 67px;
-  --web-app-footer-organization-logo-width: 126px;
+  --web-app-footer-logo-container-height: 50px;
+  --web-app-footer-organization-logo-width: 230px;
   --web-app-footer-organization-logo-src: url("images/LogoUtrecht.svg");
 
   --web-app-rating-active-color: hsl(211 60% 35%);

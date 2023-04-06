@@ -1,13 +1,11 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
-import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, PageFooter } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { HavenLogo } from "../../../assets/svgs/Haven";
 import { CommongroundLogo } from "../../../assets/svgs/Commonground";
@@ -15,6 +13,8 @@ import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "../../../components";
+import { LogoRotterdam } from "./LogoRotterdam";
+import { LogoConduction } from "./LogoConduction";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -25,7 +25,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const [, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+    <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <ul className={styles.list}>
@@ -136,7 +136,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link target="_new" href="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
-                  <GitHubLogo />
+                  <ArrowRightIcon />
                 </Icon>
                 Github
               </Link>
@@ -206,11 +206,16 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           <div className={styles.heading}>{t("An initiative of")}</div>
 
           <div className={styles.logosContainer}>
-            <div className={styles.organizationLogo}></div>
-            <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+            <div className={styles.organizationLogo}>
+              <LogoRotterdam />
+            </div>
+
+            <Link target="_new" to="https://www.conduction.nl/">
+              <LogoConduction />
+            </Link>
           </div>
         </div>
       </Container>
-    </footer>
+    </PageFooter>
   );
 };
