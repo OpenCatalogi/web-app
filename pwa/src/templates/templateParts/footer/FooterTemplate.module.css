@@ -66,7 +66,7 @@
   background-repeat: no-repeat;
   padding: var(--web-app-footer-organization-logo-padding);
   width: var(--web-app-footer-organization-logo-width);
-  background-image: var(--web-app-footer-organization-logo-src);
+  background-image: var(--web-app-footer-organization-logo-wit-src);
   background-color: var(--web-app-footer-organization-logo-background-color);
   background-origin: content-box;
 }
