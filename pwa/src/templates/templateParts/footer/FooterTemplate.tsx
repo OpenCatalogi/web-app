@@ -7,7 +7,6 @@ import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { HavenLogo } from "../../../assets/svgs/Haven";
 import { CommongroundLogo } from "../../../assets/svgs/Commonground";
@@ -136,7 +135,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link target="_new" href="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
-                  <GitHubLogo />
+                  <ArrowRightIcon />
                 </Icon>
                 Github
               </Link>
