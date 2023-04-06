@@ -6,10 +6,9 @@ import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
-import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
-import { FormField } from "@utrecht/component-library-react/dist/css-module";
+import { FormField, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -52,12 +51,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
     <form onSubmit={handleSubmit(onSubmit)} className={layoutClassName}>
       <FormField>
         <FormFieldInput>
-          <InputText
-            name="name"
-            {...{ errors, register }}
-            placeholder={t("Search all components")}
-            icon={<SearchIcon />}
-          />
+          <Textbox {...register("name")} invalid={errors["name"]} placeholder={t("Search all components")} />
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
