@@ -8,7 +8,6 @@
 }
 .headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
-  box-shadow: 0px 10px 13px -14px #000000;
 }
 
 .secondaryNavContainer {
@@ -16,14 +15,12 @@
   justify-content: flex-end;
   align-items: center;
 }
-
 .primaryNavContainer {
   position: fixed;
   width: 100%;
   background-color: var(--web-app-color-background-page-top-bar);
   box-shadow: 0px 10px 13px -14px #000000;
   z-index: 1;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -165,7 +162,6 @@ li .denhaag-link__icon {
   }
 
   .headerContainer {
-    padding-inline: var(--web-app-size-md);
     background-color: var(--web-app-color-background-light);
   }
 
