@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Paragraph, Heading, Image } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
@@ -154,13 +154,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+            <Image alt="Logo van de Gemeente Rotterdam" height={100} src="images/LogoRotterdam.svg" width={192} />
           </div>
 
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+                <Image alt="Logo van de Gemeente Rotterdam" src="images/LogoRotterdam.svg" />
               </div>
             }
             layoutClassName={styles.textColor}

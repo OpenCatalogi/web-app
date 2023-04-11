@@ -59,9 +59,6 @@
   background-repeat: no-repeat;
   padding: var(--web-app-header-organization-logo-padding);
   width: var(--web-app-header-organization-logo-width);
-  background-image: var(--web-app-header-organization-logo-src);
-  background-color: var(--web-app-header-organization-logo-background-color);
-  background-origin: content-box;
 }
 
 .headerContent {
