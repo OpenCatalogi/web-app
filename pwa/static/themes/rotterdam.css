@@ -211,6 +211,7 @@
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
+  --web-app-primary-top-nav-color-hover: var(--rotterdam-color-green);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: transparent;
   --web-app-primary-top-nav-background-color-active: unset;

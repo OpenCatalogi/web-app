@@ -11,12 +11,16 @@
 
   --conduction-primary-top-nav-item-padding: var(--web-app-primary-top-nav-item-padding);
   --conduction-primary-top-nav-color: var(--web-app-color-text-grey);
+  --conduction-primary-top-nav-color-hover: var(--web-app-primary-top-nav-color-hover);
   --conduction-primary-top-nav-background-color: var(--web-app-primary-top-nav-background-color);
   --conduction-primary-top-nav-background-color-hover: var(--web-app-primary-top-nav-background-color-hover);
   --conduction-primary-top-nav-dropdown-border-radius: var(--web-app-primary-top-nav-dropdown-border-radius);
   --conduction-primary-top-nav-background-color-active: var(--web-app-primary-top-nav-background-color-active);
   --conduction-primary-top-nav-box-shadow-active: var(--web-app-primary-top-nav-box-shadow-active);
   --conduction-primary-top-nav-item-icon-margin: var(--web-app-size-2xs);
+  --conduction-primary-top-nav-dropdown-background-color: var(--web-app-primary-top-nav-color-hover);
+  --conduction-primary-top-nav-dropdown-background-color-hover: var(--web-app-color-black);
+  --conduction-primary-top-nav-dropdown-color: var(--web-app-color-white);
 
   --denhaag-focus-border: var(--web-app-focus-border);
   --denhaag-heading-line-height: var(--web-app-line-height-md);
