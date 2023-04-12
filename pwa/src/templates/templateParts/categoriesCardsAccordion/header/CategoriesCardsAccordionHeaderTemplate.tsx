@@ -2,11 +2,10 @@ import * as React from "react";
 import * as styles from "./CategoriesCardsAccordionHeaderTemplate.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
 
 interface CategoriesCardsAccordionHeaderTemplateProps {
   title: string;
@@ -21,7 +20,6 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
 }) => {
   const { t } = useTranslation();
   const hasItems = badgeNumber > 0;
-  const badgeLabel = badgeNumber < 100 ? _.toString(badgeNumber) : "99+";
   const maxItems = badgeNumber > 100;
   return (
     <div className={clsx(styles.container, active && styles.active, !hasItems && styles.disabled)}>
@@ -32,7 +30,6 @@ export const CategoriesCardsAccordionHeaderTemplate: React.FC<CategoriesCardsAcc
             <Heading level={3} className={styles.title}>
               {t(title)}
             </Heading>
-            <BadgeCounter>{badgeLabel}</BadgeCounter>
           </div>
         </span>
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
