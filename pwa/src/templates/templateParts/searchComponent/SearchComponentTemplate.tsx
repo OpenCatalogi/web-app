@@ -49,7 +49,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={layoutClassName}>
-      <FormField id="searchComponentFormField">
+      <FormField>
         <FormFieldInput>
           <Textbox
             id="searchComponentFormTextBox"
