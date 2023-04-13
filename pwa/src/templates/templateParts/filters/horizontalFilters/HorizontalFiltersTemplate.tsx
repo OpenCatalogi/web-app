@@ -37,10 +37,10 @@ export const HorizontalFiltersTemplate: React.FC = () => {
         e.preventDefault();
       }}
     >
-      <FormField>
+      <FormField id="componentSearchForm">
         <FormFieldInput>
-          <FormLabel htmlFor={""}>Zoek op naam</FormLabel>
-          <Textbox {...register("name", { required: true })} invalid={errors["name"]} />
+          <FormLabel htmlFor={"componentSearchFormInput"}>Zoek op naam</FormLabel>
+          <Textbox id="componentSearchFormInput" {...register("name", { required: true })} invalid={errors["name"]} />
         </FormFieldInput>
       </FormField>
     </form>
