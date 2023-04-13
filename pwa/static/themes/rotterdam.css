@@ -30,7 +30,7 @@
 /*
  * Generics global
 */
-:root {
+.rotterdam-theme {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
   --web-app-size-3xs: var(--skeleton-size-3xs);
@@ -117,7 +117,7 @@
 
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
 
-  --web-app-color-background-footer: #00811f;
+  --web-app-color-background-footer: var(--rotterdam-color-base-green);
   --web-app-color-footer-headings: var(--web-app-color-white);
   --web-app-color-footer-links: var(--web-app-color-white);
 
@@ -238,9 +238,7 @@
   */
   --web-app-button-secondary-action-background-color: var(--rotterdam-color-base-green);
   --web-app-button-secondary-action-color: var(--rotterdam-color-base-white);
-}
 
-.rotterdam-theme {
   /* @gemeente-utrecht: Code block */
   --utrecht-code-block-background-color: var(--web-app-color-grey);
   --utrecht-code-block-margin-block-start: var(--web-app-size-lg);
