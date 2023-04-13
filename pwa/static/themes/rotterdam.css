@@ -84,7 +84,7 @@
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
-  --web-app-color-footer-text: var(--web-app-color-white);
+  --web-app-color-footer-text: var(--rotterdam-color-base-white);
   --web-app-color-grey: var(--skeleton-color-grey-1);
   --web-app-color-table-grey: #f9f9f9;
   --web-app-color-table-hover-grey: #eff4f6;
@@ -93,9 +93,9 @@
   --web-app-color-link: var(--rotterdam-color-green);
   --web-app-color-link-active: var(--rotterdam-color-green);
 
-  --web-app-color-heading: var(--web-app-color-black);
+  --web-app-color-heading: var(--rotterdam-color-base-black);
 
-  --web-app-color-primary-text: var(--web-app-color-black);
+  --web-app-color-primary-text: var(--rotterdam-color-base-black);
 
   --web-app-color-disabled: #eff4f6;
 
@@ -110,16 +110,16 @@
   --web-app-color-invalid: hsl(6 93% 42%);
 
   --web-app-color-background-light: #eff4f6;
-  --web-app-color-body-background: var(--web-app-color-white);
+  --web-app-color-body-background: var(--rotterdam-color-base-white);
 
   --web-app-color-background-page-header: var(--rotterdam-color-green);
-  --web-app-color-page-header: var(--web-app-color-white);
+  --web-app-color-page-header: var(--rotterdam-color-base-white);
 
-  --web-app-color-background-page-top-bar: var(--web-app-color-white);
+  --web-app-color-background-page-top-bar: var(--rotterdam-color-base-white);
 
   --web-app-color-background-footer: var(--rotterdam-color-base-green);
-  --web-app-color-footer-headings: var(--web-app-color-white);
-  --web-app-color-footer-links: var(--web-app-color-white);
+  --web-app-color-footer-headings: var(--rotterdam-color-base-white);
+  --web-app-color-footer-links: var(--rotterdam-color-base-white);
 
   --web-app-header-logo-container-background-color: unset;
   --web-app-header-logo-container-padding: unset;
@@ -162,7 +162,7 @@
   --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
 
   /* Components */
-  --web-app-tag-color: var(--web-app-color-black);
+  --web-app-tag-color: var(--rotterdam-color-base-black);
   --web-app-tag-background-color: var(--skeleton-color-grey-1);
 
   --web-app-card-border-color: 1px solid var(--skeleton-color-grey-2);
@@ -212,7 +212,7 @@
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
-  --web-app-primary-top-nav-background-color: var(--web-app-color-white);
+  --web-app-primary-top-nav-background-color: var(--rotterdam-color-base-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: unset;
   --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
