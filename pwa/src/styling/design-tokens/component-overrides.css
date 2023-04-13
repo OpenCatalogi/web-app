@@ -278,7 +278,6 @@
   --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
   --denhaag-alert-action-padding-block-start: var(--web-app-size-md);
   --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
-  --denhaag-breadcrumb-current-color: #65757b;
 }
 
 .utrecht-button-link--secondary-action {
