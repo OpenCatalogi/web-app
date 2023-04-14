@@ -38,14 +38,10 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               </Heading>
 
               {_getOrganization.data.description && (
-                <Paragraph lead className={styles.description}>
-                  {_getOrganization.data.description}
-                </Paragraph>
+                <Paragraph className={styles.description}>{_getOrganization.data.description}</Paragraph>
               )}
               {!_getOrganization.data.description && (
-                <Paragraph lead className={styles.description}>
-                  {t("There is no description available")}
-                </Paragraph>
+                <Paragraph className={styles.description}>{t("There is no description available")}</Paragraph>
               )}
             </div>
 

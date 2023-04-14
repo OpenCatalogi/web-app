@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Paragraph } from "@gemeente-denhaag/components-react";
-import { Heading, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Icon, Button, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -18,7 +17,7 @@ export const AboutTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading level={1}>Over OpenCatalogi</Heading>
 
-        <Paragraph lead>
+        <Paragraph>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
           Gegevenslandschap.
         </Paragraph>
