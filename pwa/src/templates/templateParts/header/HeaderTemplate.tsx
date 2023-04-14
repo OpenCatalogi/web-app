@@ -154,7 +154,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <Image alt="Logo van de Gemeente Rotterdam" height={100} src="images/LogoRotterdam.svg" width={192} />
+            <Image
+              alt="Logo van de Gemeente Rotterdam"
+              height={100}
+              src="images/LogoRotterdam.svg"
+              width={100}
+              className="utrecht-img--scale-down"
+            />
           </div>
 
           <PrimaryTopNav
