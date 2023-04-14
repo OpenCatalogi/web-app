@@ -21,7 +21,7 @@ export const CategoriesTemplate: React.FC = () => {
         </Heading>
 
         <div className={styles.subHeading}>
-          <Paragraph lead className={styles.description}>
+          <Paragraph className={styles.description}>
             We verdelen{" "}
             <span>
               <Link to="/applications">

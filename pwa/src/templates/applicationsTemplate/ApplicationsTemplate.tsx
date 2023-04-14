@@ -44,7 +44,7 @@ export const ApplicationsTemplate: React.FC = () => {
           <Heading level={2} className={styles.title}>
             {t("Applications")}
           </Heading>
-          <Paragraph lead className={styles.description}>
+          <Paragraph className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span>

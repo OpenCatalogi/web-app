@@ -43,9 +43,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               <Heading level={1} className={styles.title}>
                 {getApplications.data.name}
               </Heading>
-              <Paragraph lead className={styles.description}>
-                {getApplications.data.description}
-              </Paragraph>
+              <Paragraph className={styles.description}>{getApplications.data.description}</Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (

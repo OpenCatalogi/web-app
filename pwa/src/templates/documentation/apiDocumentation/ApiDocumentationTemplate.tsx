@@ -11,7 +11,7 @@ export const ApiDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading level={1}>API Documentatie</Heading>
 
-        <Paragraph lead>
+        <Paragraph>
           Quisque id mi. Vivamus in erat ut urna cursus vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus
           et ultrices posuere cubilia Curae Sed aliquam.{" "}
           <span>

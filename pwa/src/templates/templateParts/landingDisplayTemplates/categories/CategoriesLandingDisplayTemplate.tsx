@@ -31,7 +31,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
           {t("Categories")}
         </Heading>
 
-        <Paragraph lead className={styles.description}>
+        <Paragraph className={styles.description}>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
         </Paragraph>
       </div>

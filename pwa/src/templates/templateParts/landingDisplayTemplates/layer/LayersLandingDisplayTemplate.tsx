@@ -15,7 +15,7 @@ export const LayersLandingDisplayTemplate: React.FC<LayersLandingDisplayTemplate
       <div className={styles.subHeading}>
         <Heading level={2}>{t("Layers")}</Heading>
 
-        <Paragraph lead>Hier kunnen de components gezocht worden per laag.</Paragraph>
+        <Paragraph>Hier kunnen de components gezocht worden per laag.</Paragraph>
       </div>
       <ComponentCategoryAccordionTemplate />
     </>
