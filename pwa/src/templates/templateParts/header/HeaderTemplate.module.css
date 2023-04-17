@@ -149,6 +149,7 @@ li .denhaag-link__icon {
   }
 
   .primaryNavContainer {
+    padding-block: 1em;
     position: unset;
     top: unset;
     left: unset;
