@@ -263,4 +263,7 @@
   --utrecht-badge-counter-padding-block: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-padding-inline: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-font-weight: normal;
+
+  /* @gemeente-utrecht: Databadge */
+  --utrecht-badge-padding-block: 4px;
 }

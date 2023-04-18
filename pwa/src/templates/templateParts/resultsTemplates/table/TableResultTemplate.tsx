@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { Tag } from "@conduction/components";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
@@ -72,23 +72,15 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     )}
                   >
                     <ToolTip tooltip={t("Layer")}>
-                      <Tag
-                        layoutClassName={styles.tagWidth}
-                        label={t(
+                      <DataBadge className={styles.tagWidth}>
+                        {t(
                           _.upperFirst(
                             component._self.schema.ref.includes("component.schema.json")
                               ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
                               : "N.V.T.",
                           ),
                         )}
-                        icon={
-                          component._self.schema.ref.includes("component.schema.json") ? (
-                            <FontAwesomeIcon icon={faLayerGroup} />
-                          ) : (
-                            <></>
-                          )
-                        }
-                      />
+                      </DataBadge>
                     </ToolTip>
                   </div>
                 </TableCell>

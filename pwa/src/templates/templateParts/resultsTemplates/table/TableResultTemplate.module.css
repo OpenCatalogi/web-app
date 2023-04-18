@@ -28,8 +28,8 @@
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .interactionCategory,
 .interfaceCategory {
@@ -38,8 +38,8 @@
 
 .processLayer,
 .processsLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .procesCategory,
 .processCategory {
@@ -47,8 +47,8 @@
 }
 
 .integrationLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .integrationCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
@@ -56,8 +56,8 @@
 
 .servicesLayer,
 .serviceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 
 .servicesCategory,
@@ -66,16 +66,16 @@
 }
 
 .dataLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .dataCategory {
   --conduction-tag-background-color: var(--web-app-layer-category-color-data);
 }
 
 .unknownLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-unknown);
-  --conduction-tag-color: var(--web-app-color-white);
+  --conduction-tag-background-color: var(--rotterdam-color-base-green);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .unknownCategory {
   --conduction-tag-background-color: var(--web-app-layer-color-unknown);
