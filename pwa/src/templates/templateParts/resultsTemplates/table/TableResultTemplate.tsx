@@ -60,6 +60,8 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     return "warning";
                   case "Beta":
                     return "warning";
+                  case "Bruikbaar":
+                    return "safe";
                   case "Stable":
                     return "safe";
                   case "Obsolete":
