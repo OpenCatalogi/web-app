@@ -16,8 +16,9 @@ import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Alert, Heading, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { faCircleExclamation, faCircleInfo, faExclamation, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation, faExclamation, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CircleInformationIcon } from "@gemeente-denhaag/icons";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -59,21 +60,23 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
           {filters.resultDisplayLayout === "table" && (
-            // <Alert title="Op deze pagina worden alle resultaten weergegeven" text="" variant="info" />
-            <Alert type="info" icon={<FontAwesomeIcon icon={faCircleExclamation} />}>
-              <Paragraph>Op deze pagina worden alle resultaten weergegeven</Paragraph>
+            <Alert type="info">
+              <CircleInformationIcon />
+              <span>Op deze pagina worden alle resultaten weergegeven</span>
             </Alert>
           )}
 
           {filters.resultDisplayLayout === "cards" && (
-            <Alert type="info" icon={<FontAwesomeIcon icon={faCircleInfo} />}>
-            <Paragraph>Op deze pagina staan alleen applicaties, organisaties en componenten</Paragraph>
-          </Alert>
+            <Alert type="info">
+              <CircleInformationIcon />
+              <span>Op deze pagina staan alleen applicaties, organisaties en componenten</span>
+            </Alert>
           )}
           {filters.resultDisplayLayout === "layer" && (
-            <Alert type="info" icon={<FontAwesomeIcon icon={faCircleInfo} />}>
-            <Paragraph>Op deze pagina staan alleen componenten met een laag</Paragraph>
-          </Alert>
+            <Alert type="info">
+              <CircleInformationIcon />
+              <span>Op deze pagina staan alleen componenten met een laag</span>
+            </Alert>
           )}
 
           <ActiveFiltersTemplate />
