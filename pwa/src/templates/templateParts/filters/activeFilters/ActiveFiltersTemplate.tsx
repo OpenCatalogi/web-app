@@ -13,7 +13,7 @@ import {
 } from "../../../../data/filters";
 import { Tag } from "@conduction/components";
 import { useTranslation } from "react-i18next";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-module";
 
 export const ActiveFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -74,7 +74,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
     <div>
       <div className={styles.activeFiltersHeader}>
         <Heading level={4}>Actieve Filters</Heading>
-        <Tag layoutClassName={styles.removeActiveFiltersButton} label="Alles wissen" onClick={clearFilters} />
+        <DataBadge onClick={clearFilters}>{styles.removeActiveFiltersButton}</DataBadge>
       </div>
       <div className={styles.activeFilters}>
         {filters._search && (

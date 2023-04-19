@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
@@ -72,52 +72,36 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
       <div className={styles.tagsContainer}>
         <ToolTip tooltip="Organisatie type">
-          <Tag
-            label={t(_.upperFirst(type ? type : "Unknown"))}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faBuilding} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>{t(_.upperFirst(type ? type : "Unknown"))}</DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal eigen componenten">
-          <Tag
-            label={components.owned}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faHouseLaptop} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>{components.owned}</DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal ondersteunde componenten">
-          <Tag
-            label={components.supported}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faUserCog} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>{components.supported}</DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal gebruikte componenten">
-          <Tag
-            label={components.used}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faRepeat} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>{components.used}</DataBadge>
         </ToolTip>
 
         {website && (
           <ToolTip tooltip={website}>
-            <Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
+            <DataBadge onClick={() => open(website)}>{"Website"}</DataBadge>
           </ToolTip>
         )}
 
         {gitHub && (
           <ToolTip tooltip="GitHub">
-            <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(gitHub)} />
+            <DataBadge onClick={() => open(gitHub)}>{t("GitHub")}</DataBadge>
           </ToolTip>
         )}
 
         {gitLab && (
           <ToolTip tooltip="GitLab">
-            <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(gitLab)} />
+            <DataBadge onClick={() => open(gitLab)}>{t("GitLab")}</DataBadge>
           </ToolTip>
         )}
       </div>

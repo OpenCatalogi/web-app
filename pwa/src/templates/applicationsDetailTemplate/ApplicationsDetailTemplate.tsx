@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
 import { Button, Divider } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -50,20 +50,13 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (
                   <ToolTip tooltip="Organisatie">
-                    <Tag
-                      label={getApplications.data.embedded?.owner.fullName}
-                      icon={<FontAwesomeIcon icon={faHouse} />}
-                    />
+                    <DataBadge>{getApplications.data.embedded?.owner.fullName}</DataBadge>
                   </ToolTip>
                 )}
 
                 {getApplications.data.demoUrl && (
                   <ToolTip tooltip="Demo">
-                    <Tag
-                      label={t("Demo")}
-                      icon={<FontAwesomeIcon icon={faLaptopCode} />}
-                      onClick={() => open(getApplications.data.demoUrl)}
-                    />
+                    <DataBadge onClick={() => open(getApplications.data.demoUrl)}>{t("Demo")}</DataBadge>
                   </ToolTip>
                 )}
               </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon } from "@utrecht/component-library-react/dist/css-module";
 import _ from "lodash";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,7 +62,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
           <ToolTip tooltip="Laag">
-            <Tag label={t(_.upperFirst(layer ?? "unknown"))} icon={<FontAwesomeIcon icon={faLayerGroup} />} />
+            <DataBadge>{t(_.upperFirst(layer ?? "unknown"))}</DataBadge>
           </ToolTip>
         </div>
 
@@ -72,7 +72,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
               (category: any) =>
                 category && (
                   <ToolTip tooltip="Categorie">
-                    <Tag label={_.upperFirst(category?.title)} icon={category?.icon} />
+                    <DataBadge>{_.upperFirst(category?.title)}</DataBadge>
                   </ToolTip>
                 ),
             )}
@@ -82,35 +82,29 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.tags}>
         {tags.status && (
           <ToolTip tooltip="Status">
-            <Tag label={t(_.upperFirst(tags.status))} icon={<FontAwesomeIcon icon={faInfoCircle} />} />
+            <DataBadge>{t(_.upperFirst(tags.status))}</DataBadge>
           </ToolTip>
         )}
         <ToolTip tooltip="Aantal installaties">
-          <Tag label={tags.installations} icon={<FontAwesomeIcon icon={faRepeat} />} />
+          <DataBadge>{tags.installations}</DataBadge>
         </ToolTip>
 
         {tags.organization?.name && (
           <ToolTip tooltip="Organisatie">
-            {!tags.organization.website && (
-              <Tag label={tags.organization.name} icon={<FontAwesomeIcon icon={faHouse} />} />
-            )}
+            {!tags.organization.website && <DataBadge>{tags.organization.name} </DataBadge>}
             {tags.organization.website && (
-              <Tag
-                label={tags.organization.name}
-                icon={<FontAwesomeIcon icon={faHouse} />}
-                onClick={() => open(tags?.organization?.website)}
-              />
+              <DataBadge onClick={() => open(tags?.organization?.website)}>{tags.organization.name}</DataBadge>
             )}
           </ToolTip>
         )}
         {tags.licence && (
           <ToolTip tooltip="Licentie">
-            <Tag label={tags.licence} icon={<FontAwesomeIcon icon={faScroll} />} />
+            <DataBadge>{tags.licence}</DataBadge>
           </ToolTip>
         )}
         {tags.githubLink && (
           <ToolTip tooltip="GitHub">
-            <Tag label={t("Repository")} icon={<GitHubLogo />} onClick={() => open(tags.githubLink)} />
+            <DataBadge onClick={() => open(tags.githubLink)}>{t("Repository")}</DataBadge>
           </ToolTip>
         )}
       </div>

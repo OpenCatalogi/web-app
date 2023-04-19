@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Heading, Paragraph, Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
@@ -85,19 +85,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
-                  <Tag
-                    layoutClassName={
+                  <DataBadge
+                    className={
                       styles[
                         _.camelCase(
                           t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
                         )
                       ]
                     }
-                    label={t(
-                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"),
-                    )}
-                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                  />
+                  >
+                    {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                  </DataBadge>
                 </ToolTip>
 
                 {_getComponent.data?.categories &&
@@ -106,17 +104,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     (category: any) =>
                       category && (
                         <ToolTip tooltip="Categorie">
-                          <Tag
-                            layoutClassName={
+                          <DataBadge
+                            className={
                               styles[
                                 _.camelCase(
                                   `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
                                 )
                               ]
                             }
-                            label={_.upperFirst(category?.title)}
-                            icon={category?.icon}
-                          />
+                          >
+                            {_.upperFirst(category?.title)}
+                          </DataBadge>
                         </ToolTip>
                       ),
                   )}
@@ -125,41 +123,28 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
                   <ToolTip tooltip="Status">
-                    <Tag
-                      label={t(_.upperFirst(_getComponent.data.developmentStatus))}
-                      icon={<FontAwesomeIcon icon={faInfoCircle} />}
-                    />
+                    <DataBadge>{t(_.upperFirst(_getComponent.data.developmentStatus))}</DataBadge>
                   </ToolTip>
                 )}
                 <ToolTip tooltip="Installaties">
-                  <Tag
-                    label={_.toString(_getComponent.data.usedBy?.length ?? "0")}
-                    icon={<FontAwesomeIcon icon={faRepeat} />}
-                  />
+                  <DataBadge>{_.toString(_getComponent.data.usedBy?.length ?? "0")}</DataBadge>
                 </ToolTip>
 
                 {organisation?.name && (
                   <ToolTip tooltip="Organisatie">
-                    <Tag label={organisation.name} icon={<FontAwesomeIcon icon={faHouse} />} />
+                    <DataBadge>{organisation.name}</DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.url?.url && (
                   <ToolTip tooltip="GitHub/GitLab">
-                    <Tag
-                      label={t("Repository")}
-                      icon={<GitHubLogo />}
-                      onClick={() => open(_getComponent.data.embedded?.url?.url)}
-                    />
+                    <DataBadge onClick={() => open(_getComponent.data.embedded?.url?.url)}>{t("Repository")}</DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
-                    <Tag
-                      label={_getComponent.data.embedded?.legal.license}
-                      icon={<FontAwesomeIcon icon={faScroll} />}
-                    />
+                    <DataBadge>{_getComponent.data.embedded?.legal.license}</DataBadge>
                   </ToolTip>
                 )}
               </div>

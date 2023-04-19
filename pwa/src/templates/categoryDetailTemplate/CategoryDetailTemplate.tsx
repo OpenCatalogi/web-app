@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
 import { Button } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Heading, Paragraph, Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Tag } from "@conduction/components";
 import { Link } from "../../components";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -51,7 +51,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           <Heading level={1} className={styles.title}>
             {portfolio.title}
           </Heading>
-          <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
+          <DataBadge>{t(domain.title)}</DataBadge>
           <Paragraph lead className={styles.description}>
             {portfolio.longDescription}
           </Paragraph>

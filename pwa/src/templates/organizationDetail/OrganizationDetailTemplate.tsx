@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, Tag } from "@conduction/components";
 import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Paragraph, Heading, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
@@ -61,47 +61,33 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.tagsContainer}>
                   {_getOrganization.data.github && (
                     <ToolTip tooltip="GitHub">
-                      <Tag
-                        label={t("GitHub")}
-                        icon={<GitHubLogo />}
-                        onClick={() => open(_getOrganization.data.github)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.github)}>{t("GitHub")} </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.gitlab && (
                     <ToolTip tooltip="GitLab">
-                      <Tag
-                        label={t("GitLab")}
-                        icon={<GitLabLogo />}
-                        onClick={() => open(_getOrganization.data.gitlab)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.gitlab)}>{t("GitLab")}</DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.website && (
                     <ToolTip tooltip={"Website"}>
-                      <Tag
-                        label={_getOrganization.data.website}
-                        icon={<FontAwesomeIcon icon={faGlobe} />}
-                        onClick={() => open(_getOrganization.data.website)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.website)}>
+                        {_getOrganization.data.website}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.phone && (
                     <ToolTip tooltip={"Telefoonnummer"}>
-                      <Tag
-                        label={_getOrganization.data.phone}
-                        icon={<FontAwesomeIcon icon={faPhone} />}
-                        onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}
-                      />
+                      <DataBadge onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}>
+                        {_getOrganization.data.phone}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.email && (
                     <ToolTip tooltip={"EmailAddress"}>
-                      <Tag
-                        label={_getOrganization.data.email}
-                        icon={<FontAwesomeIcon icon={faEnvelope} />}
-                        onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}
-                      />
+                      <DataBadge onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}>
+                        {_getOrganization.data.email}
+                      </DataBadge>
                     </ToolTip>
                   )}
                 </div>
@@ -114,11 +100,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   <div className={styles.tagsContainer}>
                     {_getOrganization.data.certificate.map((certificate: any) => (
                       <ToolTip tooltip={certificate.name}>
-                        <Tag
-                          label={certificate.name}
-                          icon={<FontAwesomeIcon icon={faCertificate} />}
-                          onClick={() => open(certificate.href)}
-                        />
+                        <DataBadge onClick={() => open(certificate.href)}>{certificate.name}</DataBadge>
                       </ToolTip>
                     ))}
                   </div>
