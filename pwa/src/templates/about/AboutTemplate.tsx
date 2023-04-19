@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Button, Paragraph } from "@gemeente-denhaag/components-react";
-import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Heading, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
@@ -24,17 +24,17 @@ export const AboutTemplate: React.FC = () => {
         </Paragraph>
 
         <div className={styles.buttonsContainer}>
-          <Button
-            onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
-            icon={<ExternalLinkIcon />}
-          >
+          <Button onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}>
+            <Icon className="utrecht-icon--conduction-start">
+              <ExternalLinkIcon />
+            </Icon>
             Gegevenslandschap
           </Button>
 
-          <Button
-            onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
-            icon={<ExternalLinkIcon />}
-          >
+          <Button onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}>
+            <Icon className="utrecht-icon--conduction-start">
+              <ExternalLinkIcon />
+            </Icon>
             5 lagen model
           </Button>
         </div>
@@ -197,12 +197,18 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.paragraphButtons}>
           <div onClick={() => open("https://forumstandaardisatie.nl/")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+            <Button>
+              <Icon className="utrecht-icon--conduction-start">
+                <ExternalLinkIcon />
+              </Icon>
               Forum Standaardisatie
             </Button>
           </div>
           <div onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+            <Button appearance="secondary-action-button">
+              <Icon className="utrecht-icon--conduction-start">
+                <ExternalLinkIcon />
+              </Icon>
               Verplichte Standaarden
             </Button>
           </div>

@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -87,7 +87,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
             <div className={styles.dependenciesDisplaySwitchButtons}>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "layer" ? "primary-action" : "secondary-action"}
+                appearance={layerType === "layer" ? "primary-action-button" : "secondary-action-button"}
                 onClick={() => setlayerType("layer")}
               >
                 <FontAwesomeIcon icon={faLayerGroup} />
@@ -95,7 +95,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               </Button>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "relations" ? "primary-action" : "secondary-action"}
+                appearance={layerType === "layer" ? "primary-action-button" : "secondary-action-button"}
                 onClick={() => setlayerType("relations")}
               >
                 <FontAwesomeIcon icon={faCircleNodes} />
