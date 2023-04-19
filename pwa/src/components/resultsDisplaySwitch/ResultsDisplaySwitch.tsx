@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ResultsDisplaySwitch.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { FiltersContext } from "../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +42,9 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         return (
           <Button
             className={styles.buttonIcon}
-            variant={filters[resultsDisplayType] === displayType ? "primary-action" : "secondary-action"}
+            appearance={
+              filters[resultsDisplayType] === displayType ? "primary-action-button" : "secondary-action-button"
+            }
             onClick={() => setFilters({ ...filters, [resultsDisplayType]: displayType })}
           >
             <FontAwesomeIcon icon={icon} />

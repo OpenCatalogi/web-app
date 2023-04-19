@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { BadgeCounter, Heading, Paragraph, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
@@ -172,7 +172,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={styles.logo}
                 />
               </div>
-              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+              <Button>
+                <Icon className="utrecht-icon--conduction-start">
+                  <ExternalLinkIcon />
+                </Icon>
+                Toevoegen aan catalogus
+              </Button>
             </div>
           </div>
 

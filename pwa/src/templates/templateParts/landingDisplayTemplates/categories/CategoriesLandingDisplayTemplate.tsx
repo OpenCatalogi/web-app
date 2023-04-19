@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
@@ -98,15 +98,15 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
 
                       <Button
                         className={styles.showMoreButton}
-                        variant="secondary-action"
+                        appearance="secondary-action-button"
                         onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
-                        icon={
+                      >
+                        <Icon>
                           <FontAwesomeIcon
                             className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
                             icon={faChevronRight}
                           />
-                        }
-                      >
+                        </Icon>
                         {showMore[index] ? "show less" : "show more"}
                       </Button>
                     </>

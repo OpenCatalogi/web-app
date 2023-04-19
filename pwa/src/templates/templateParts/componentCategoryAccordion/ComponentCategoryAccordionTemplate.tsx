@@ -3,7 +3,7 @@ import * as styles from "./ComponentCategoryAccordionTemplate.module.css";
 import { categories, TCategories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { navigate } from "gatsby";
@@ -93,13 +93,13 @@ const Categories: React.FC<CategoriesProps> = ({ layer }) => {
         <Button
           key={idx}
           className={clsx(styles[_.camelCase(`${layer} category`)], styles.categoryButton)}
-          variant="secondary-action"
-          icon={category.icon}
+          appearance="secondary-action-button"
           onClick={() => {
             setFilters({ ...baseFilters, category: _.lowerCase(category?.value) });
             navigate("/components");
           }}
         >
+          <Icon className="utrecht-icon--conduction-start">{category.icon}</Icon>
           {category.title}
         </Button>
       ))}
