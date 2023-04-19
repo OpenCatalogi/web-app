@@ -263,4 +263,31 @@
   --utrecht-badge-counter-padding-block: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-padding-inline: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-font-weight: normal;
+
+  --utrecht-alert-background-color: var(--web-app-alert-info-background-color);
+  --utrecht-alert-border-color: rgba(0, 104, 158,0.25);
+  --utrecht-alert-border-width: 2px;
+  --utrecht-alert-color: #00689E;
+  --utrecht-alert-padding-block-start: var(--web-app-size-lg);
+  --utrecht-alert-padding-block-end: var(--web-app-size-lg);
+  --utrecht-alert-padding-inline-start: var(--web-app-size-lg);
+  --utrecht-alert-padding-inline-end: var(--web-app-size-lg);
+  --utrecht-alert-content-margin-inline-start: var(--web-app-size-lg);
+  --utrecht-alert-content-margin-inline-end: var(--web-app-size-lg);
+  --utrecht-alert-warning-background-color: rgba(181,51,34,0.10);
+  --utrecht-alert-warning-color: <value>;
+  --utrecht-alert-warning-border-color: <value>;
+  --utrecht-alert-warning-border-width: <value>;
+  --utrecht-alert-error-background-color: <value>;
+  --utrecht-alert-error-color: <value>;
+  --utrecht-alert-error-border-color: <value>;
+  --utrecht-alert-error-border-width: <value>;
+  --utrecht-alert-ok-background-color: <value>;
+  --utrecht-alert-ok-color: <value>;
+  --utrecht-alert-ok-border-color: <value>;
+  --utrecht-alert-ok-border-width: <value>;
+  --utrecht-alert-icon-color:#00689E;
+  --utrecht-alert-icon-error-color: <value>;
+  --utrecht-alert-icon-warning-color: <value>;
+  --utrecht-alert-icon-ok-color: <value>;
 }
