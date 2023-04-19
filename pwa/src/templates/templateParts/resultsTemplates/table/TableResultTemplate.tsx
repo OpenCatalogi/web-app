@@ -53,7 +53,6 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               );
 
               const getStatus = (description: string) => {
-                console.log("description", description);
                 switch (description) {
                   case "Concept":
                     return "warning";
