@@ -294,4 +294,17 @@
 
   /* @denhaag alert icon */
   --utrecht-icon-size: 1.5em;
+
+  --utrecht-feedback-safe-fill-background-color: hsla(139, 81%, 35%, 1);
+  --utrecht-feedback-warning-fill-background-color: hsla(41, 100%, 43%, 1);
+  --utrecht-feedback-danger-fill-background-color: hsla(7, 60%, 52%, 1);
+  --utrecht-feedback-neutral-fill-background-color: hsla(201, 100%, 36%, 1);
+}
+
+@media (prefers-contrast: more) {
+  .rotterdam-theme {
+    --utrecht-feedback-safe-fill-color: black;
+    --utrecht-feedback-warning-fill-color: black;
+    --utrecht-feedback-danger-fill-color: black;
+  }
 }
