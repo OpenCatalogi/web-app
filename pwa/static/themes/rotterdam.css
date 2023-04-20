@@ -227,7 +227,7 @@
   --web-app-sidenav-item-font-size: var(--web-app-size-md);
 
   /* @gemeent-denhaag: Alert */
-  --web-app-alert-info-background-color: #dbecfa;
+  --web-app-alert-info-background-color: #1791d41a;
   --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
   --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
   --web-app-alert-info-icon-color: hsl(207 80% 35%);
@@ -264,10 +264,11 @@
   --utrecht-badge-counter-padding-inline: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-font-weight: normal;
 
+  /* @gemeente-utrecht: Alert */
   --utrecht-alert-background-color: var(--web-app-alert-info-background-color);
-  --utrecht-alert-border-color: rgba(0, 104, 158, 0.25);
+  --utrecht-alert-border-color: #1791d440;
   --utrecht-alert-border-width: 1px;
-  --utrecht-alert-color: #00689e;
+  --utrecht-alert-color: --web-app-color-black;
   --utrecht-alert-padding-block-start: var(--web-app-size-lg);
   --utrecht-alert-padding-block-end: var(--web-app-size-lg);
   --utrecht-alert-padding-inline-start: var(--web-app-size-lg);
@@ -275,19 +276,7 @@
   --utrecht-alert-content-margin-inline-start: var(--web-app-size-lg);
   --utrecht-alert-content-margin-inline-end: var(--web-app-size-lg);
   --utrecht-alert-warning-background-color: rgba(181, 51, 34, 0.1);
-  --utrecht-alert-warning-color: <value>;
-  --utrecht-alert-warning-border-color: <value>;
-  --utrecht-alert-warning-border-width: <value>;
-  --utrecht-alert-error-background-color: <value>;
-  --utrecht-alert-error-color: <value>;
-  --utrecht-alert-error-border-color: <value>;
-  --utrecht-alert-error-border-width: <value>;
-  --utrecht-alert-ok-background-color: <value>;
-  --utrecht-alert-ok-color: <value>;
-  --utrecht-alert-ok-border-color: <value>;
-  --utrecht-alert-ok-border-width: <value>;
-  --utrecht-alert-icon-color: #00689e;
-  --utrecht-alert-icon-error-color: <value>;
-  --utrecht-alert-icon-warning-color: <value>;
-  --utrecht-alert-icon-ok-color: <value>;
+
+  /* @denhaag alert icon */
+  --utrecht-icon-size: 1.5em;
 }
