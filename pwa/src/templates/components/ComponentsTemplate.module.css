@@ -113,6 +113,16 @@
   cursor: default !important;
 }
 
+.componentAlertIcon {
+  color: #00689e;
+  margin-inline-end: 0.5em;
+}
+
+.ComponentAlert > div {
+  display: flex;
+  align-items: center;
+}
+
 @media only screen and (min-width: 992px) {
   .header {
     display: flex;
