@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
-import * as _ from "lodash";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
@@ -15,9 +14,7 @@ import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Alert, Heading, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { faCircleExclamation, faExclamation, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Alert, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { CircleInformationIcon } from "@gemeente-denhaag/icons";
 
 export const ComponentsTemplate: React.FC = () => {
@@ -60,21 +57,21 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
           {filters.resultDisplayLayout === "table" && (
-            <Alert type="info">
-              <CircleInformationIcon />
+            <Alert type="info" className={styles.ComponentAlert}>
+              <CircleInformationIcon className={styles.componentAlertIcon} />
               <span>Op deze pagina worden alle resultaten weergegeven</span>
             </Alert>
           )}
 
           {filters.resultDisplayLayout === "cards" && (
-            <Alert type="info">
-              <CircleInformationIcon />
+            <Alert type="info" className={styles.ComponentAlert}>
+              <CircleInformationIcon className={styles.componentAlertIcon} />
               <span>Op deze pagina staan alleen applicaties, organisaties en componenten</span>
             </Alert>
           )}
           {filters.resultDisplayLayout === "layer" && (
-            <Alert type="info">
-              <CircleInformationIcon />
+            <Alert type="info" className={styles.ComponentAlert}>
+              <CircleInformationIcon className={styles.componentAlertIcon} />
               <span>Op deze pagina staan alleen componenten met een laag</span>
             </Alert>
           )}
