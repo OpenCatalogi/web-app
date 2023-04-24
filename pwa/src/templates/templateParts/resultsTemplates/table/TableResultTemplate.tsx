@@ -7,13 +7,8 @@ import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
-import { Tag } from "@conduction/components";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import { GitHubLogo } from "../../../../assets/svgs/GitHub";
-import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { Link } from "../../../../components";
@@ -87,63 +82,41 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
                 <TableCell>
                   <ToolTip tooltip={t("Sources")}>
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={_.upperFirst(
+                    <DataBadge className={styles.tagWidth}>
+                      {_.upperFirst(
                         component._self?.synchronizations
                           ? component._self?.synchronizations?.length
                             ? component._self?.synchronizations?.at(-1)?.gateway.name
                             : "Onbekend"
                           : "N.V.T.",
                       )}
-                      icon={
-                        component._self?.synchronizations?.length ? (
-                          component._self?.synchronizations?.at(-1)?.gateway.name === "github" ? (
-                            <GitHubLogo />
-                          ) : component._self?.synchronizations?.at(-1)?.gateway.name === "gitlab" ? (
-                            <GitLabLogo />
-                          ) : (
-                            <></>
-                          )
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
+                    </DataBadge>
                   </ToolTip>
                 </TableCell>
 
                 <TableCell>
                   <ToolTip tooltip="Component Type">
-                    <Tag
-                      label={_.upperFirst(
+                    <DataBadge>
+                      {_.upperFirst(
                         component._self.schema.ref.includes("component.schema.json")
                           ? component.softwareType ?? "Onbekend"
                           : "N.V.T.",
                       )}
-                    />
+                    </DataBadge>
                   </ToolTip>
                 </TableCell>
 
                 <TableCell>
                   <ToolTip tooltip="Status">
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={t(
+                    <DataBadge className={styles.tagWidth}>
+                      {t(
                         _.upperFirst(
                           component._self.schema.ref.includes("component.schema.json")
                             ? component.developmentStatus ?? "Onbekend"
                             : "N.V.T.",
                         ),
                       )}
-                      icon={
-                        component._self.schema.ref.includes("component.schema.json") ? (
-                          <FontAwesomeIcon icon={faInfoCircle} />
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
+                    </DataBadge>
                   </ToolTip>
                 </TableCell>
 
