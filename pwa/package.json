@@ -72,7 +72,7 @@
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
     "@utrecht/component-library-react": "1.0.0-alpha.283",
-    "@utrecht/design-tokens": "1.0.0-alpha.467",
+    "@utrecht/design-tokens": "^1.0.0-alpha.467",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
