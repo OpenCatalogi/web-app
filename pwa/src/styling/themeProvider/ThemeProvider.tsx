@@ -3,8 +3,8 @@ import * as styles from "./ThemeProvider.module.css";
 import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
+import "@utrecht/design-tokens/dist/index.css";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { Heading2 } from "@gemeente-denhaag/components-react";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 
