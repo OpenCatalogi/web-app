@@ -3,11 +3,12 @@ import * as styles from "./ThemeProvider.module.css";
 import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import "@utrecht/component-library-css";
-import "@utrecht/design-tokens/dist/index.css";
+// import "@utrecht/design-tokens/dist/index.css";
 import { themes } from "../../data/themes";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
+import clsx from "clsx";
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
@@ -28,7 +29,7 @@ export const ThemeProvider = ({ children }: React.PropsWithChildren<{}>): JSX.El
   const themeData = themes.find(({ value }) => value === theme);
 
   return (
-    <Document className={themeData?.className}>
+    <Document className={clsx("conduction-theme", themeData?.className)}>
       {children}
 
       <div className={styles.container}>

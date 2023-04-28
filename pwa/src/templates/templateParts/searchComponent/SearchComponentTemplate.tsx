@@ -1,12 +1,11 @@
 import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
-import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
+import { Button, FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
-import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
 
 interface SearchComponentTemplateProps {

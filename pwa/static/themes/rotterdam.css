@@ -23,14 +23,14 @@
   src: url("./../../../fonts/Bolder-RegularItalic.woff2") format("woff2");
 }
 
-:root {
+.rotterdam-theme {
   --rotterdam-color-green: #00811f;
 }
 
 /*
  * Generics global
 */
-:root {
+.rotterdam-theme {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
   --web-app-size-3xs: var(--skeleton-size-3xs);
