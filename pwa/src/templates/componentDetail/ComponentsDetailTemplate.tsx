@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/tab";
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";

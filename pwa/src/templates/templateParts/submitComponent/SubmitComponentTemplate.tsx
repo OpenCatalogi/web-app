@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./SubmitComponentTemplate.module.css";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
 import clsx from "clsx";
 import { navigate } from "gatsby";
 

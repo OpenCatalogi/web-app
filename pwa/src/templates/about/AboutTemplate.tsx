@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Button, Paragraph } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
+import { Paragraph } from "@gemeente-denhaag/typography";
 import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";

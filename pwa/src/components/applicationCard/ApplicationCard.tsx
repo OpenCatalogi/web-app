@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
-import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Paragraph } from "@gemeente-denhaag/typography";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

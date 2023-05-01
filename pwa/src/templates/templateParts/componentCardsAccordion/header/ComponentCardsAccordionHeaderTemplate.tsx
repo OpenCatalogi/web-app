@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentCardsAccordionHeaderTemplate.module.css";
 import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";

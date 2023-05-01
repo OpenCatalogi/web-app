@@ -6,7 +6,7 @@ import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/for
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import _ from "lodash";
 import clsx from "clsx";
-import { Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
 import {
   upls,
   platforms,

@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, Tag } from "@conduction/components";
-import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/tab";
 import { BadgeCounter, Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";

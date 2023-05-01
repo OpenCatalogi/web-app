@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Alert } from "@gemeente-denhaag/components-react";
+import { Alert } from "@gemeente-denhaag/alert";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";

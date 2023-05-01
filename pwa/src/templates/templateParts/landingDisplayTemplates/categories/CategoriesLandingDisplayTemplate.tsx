@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";

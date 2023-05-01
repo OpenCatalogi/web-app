@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Tag } from "@conduction/components";
 import { Link } from "../../components";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
 import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";

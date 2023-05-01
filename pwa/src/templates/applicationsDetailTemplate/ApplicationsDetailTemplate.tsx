@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
+import { Divider } from "@gemeente-denhaag/divider";
 import { Container, Tag, ToolTip } from "@conduction/components";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
