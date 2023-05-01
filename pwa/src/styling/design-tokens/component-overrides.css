@@ -1,4 +1,4 @@
-:root {
+.conduction-theme {
   --web-app-link-icon-gap: 0.3em;
 
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding);
@@ -21,7 +21,7 @@
   --denhaag-focus-border: var(--web-app-focus-border);
   --denhaag-heading-line-height: var(--web-app-line-height-md);
   --denhaag-heading-color: var(--web-app-color-heading);
-  --utrecht-heading-font-weight: var(--web-app-font-weight-bold);
+  /* --utrecht-heading-font-weight: var(--web-app-font-weight-bold);
   --utrecht-heading-font-family: var(--web-app-primary-font-family);
   --utrecht-heading-color: var(--web-app-color-primary-text);
   --utrecht-heading-5-font-size: var(--web-app-font-size-md);
@@ -38,14 +38,14 @@
   --utrecht-paragraph-font-weight: var(--web-app-font-weight-normal);
   --utrecht-paragraph-font-size: var(--web-app-font-size-md);
   --utrecht-paragraph-font-family: var(--web-app-content-font-family);
-  --utrecht-paragraph-color: var(--web-app-color-primary-text);
+  --utrecht-paragraph-color: var(--web-app-color-primary-text); */
 
   --denhaag-button-secondary-action-disabled-color: var(--web-app-color-disabled);
   --denhaag-button-secondary-action-disabled-border-color: var(--web-app-color-disabled);
   --denhaag-button-secondary-action-disabled-background-color: var(--web-app-color-white);
-  --utrecht-button-secondary-action-disabled-color: var(--web-app-color-disabled);
+  /* --utrecht-button-secondary-action-disabled-color: var(--web-app-color-disabled);
   --utrecht-button-secondary-action-disabled-border-color: var(--web-app-color-disabled);
-  --utrecht-button-secondary-action-disabled-background-color: var(--web-app-color-white);
+  --utrecht-button-secondary-action-disabled-background-color: var(--web-app-color-white); */
 
   --denhaag-button-secondary-action-hover-color: var(--web-app-color-secondary-action-hover);
   --denhaag-button-secondary-action-hover-border-color: var(--web-app-color-secondary-action-hover);
@@ -53,13 +53,13 @@
   --denhaag-button-secondary-action-border-color: var(--web-app-color-secondary-action);
   --denhaag-button-secondary-action-color: var(--web-app-color-secondary-action);
   --denhaag-button-secondary-action-background-color: var(--web-app-color-white);
-  --utrecht-button-secondary-action-hover-border-color: var(--web-app-color-secondary-action-hover);
+  /* --utrecht-button-secondary-action-hover-border-color: var(--web-app-color-secondary-action-hover);
   --utrecht-button-secondary-action-hover-color: var(--web-app-color-secondary-action-hover);
   --utrecht-button-secondary-action-hover-background-color: var(--web-app-color-white);
   --utrecht-button-secondary-action-border-color: var(--web-app-color-secondary-action);
   --utrecht-button-secondary-action-color: var(--web-app-color-secondary-action);
   --utrecht-button-secondary-action-background-color: var(--web-app-color-white);
-  --utrecht-button-secondary-action-border-width: var(--web-app-border-radius-md);
+  --utrecht-button-secondary-action-border-width: var(--web-app-border-radius-md); */
 
   --denhaag-button-large-size-padding-block: var(--web-app-size-xs);
   --denhaag-button-border-width: var(--web-app-size-4xs);
@@ -79,7 +79,7 @@
   --denhaag-button-medium-size-padding-inline: var(--denhaag-button-padding-inline);
   --denhaag-button-medium-size-padding-block: var(--denhaag-button-padding-block);
   --denhaag-button-focus-border-color: var(--web-app-focus-border-color);
-  --utrecht-button-disabled-color: var(--web-app-color-white);
+  /* --utrecht-button-disabled-color: var(--web-app-color-white);
   --utrecht-button-disabled-background-color: var(--web-app-color-disabled);
   --utrecht-button-focus-border-width: var(--web-app-focus-border-width);
   --utrecht-button-primary-action-hover-color: var(--web-app-color-white);
@@ -98,7 +98,7 @@
   --utrecht-button-padding-block-start: var(--web-app-size-sm);
   --utrecht-button-padding-inline-end: var(--web-app-size-md);
   --utrecht-button-padding-inline-start: var(--web-app-size-md);
-  --utrecht-button-border-width: 0;
+  --utrecht-button-border-width: 0; */
 
   /* --denhaag-link-focus-outline: var(--web-app-focus-border); */
   --denhaag-link-disabled-color: var(--web-app-color-disabled);
@@ -110,10 +110,10 @@
   --denhaag-link-icon-margin-end: var(--web-app-size-xs);
   --denhaag-link-icon-margin-start: var(--web-app-size-xs);
   --denhaag-link-padding: var(--web-app-size-xs);
-  --utrecht-link-hover-color: var(--web-app-color-link-active);
+  /* --utrecht-link-hover-color: var(--web-app-color-link-active);
   --utrecht-link-focus-color: var(--web-app-color-link-active);
   --utrecht-link-color: var(--web-app-color-link);
-  --utrecht-link-text-decoration: underline;
+  --utrecht-link-text-decoration: underline; */
 
   --denhaag-tabs-tab-indicator-border-color: var(--web-app-color-link);
   --denhaag-tabs-tab-padding-inline-end: var(--web-app-size-xs);
@@ -164,7 +164,7 @@
   --denhaag-form-group-helper-text-color: var(--web-app-color-primary-text);
   --denhaag-form-group-label-color: var(--web-app-color-link-active);
 
-  --utrecht-form-input-font-family: var(--web-app-content-font-family);
+  /* --utrecht-form-input-font-family: var(--web-app-content-font-family);
   --utrecht-form-label-radio-color: var(--web-app-color-primary-text);
   --utrecht-form-label-checkbox-color: var(--web-app-color-primary-text);
   --utrecht-form-label-font-size: var(--web-app-font-size-md);
@@ -185,7 +185,7 @@
   --utrecht-form-input-padding-inline-end: var(--web-app-size-md);
   --utrecht-form-input-padding-block-start: var(--web-app-size-sm);
   --utrecht-form-input-padding-block-end: var(--web-app-size-sm);
-  --utrecht-form-input-border-width: var(--web-app-size-4xs);
+  --utrecht-form-input-border-width: var(--web-app-size-4xs); */
 
   --denhaag-divider-border-color: var(--web-app-color-disabled);
   --denhaag-divider-margin-inline-end: var(--web-app-size-md);

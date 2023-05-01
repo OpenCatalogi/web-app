@@ -1,8 +1,15 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/tab";
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
+import { InfoCard } from "@conduction/components/lib/components/card/index";
+import {
+  NotificationPopUp,
+  NotificationPopUpController,
+} from "@conduction/components/lib/components/notificationPopUp/NotificationPopUp";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
@@ -37,9 +44,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
   const [filters] = React.useContext(FiltersContext);
-
-  const NotificationPopUpController = _NotificationPopUp.controller;
-  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
   const { isVisible, show, hide } = NotificationPopUpController();
 

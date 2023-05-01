@@ -2,11 +2,11 @@ import * as React from "react";
 import * as styles from "./ComponentCardsAccordionHeaderTemplate.module.css";
 import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
-import { BadgeCounter } from "@conduction/components";
+import { BadgeCounter } from "@utrecht/component-library-react/dist/css-module";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 
 interface ComponentCardsAccordionHeaderTemplateProps {
@@ -30,7 +30,7 @@ export const ComponentCardsAccordionHeaderTemplate: React.FC<ComponentCardsAccor
       <div className={styles.content}>
         <FontAwesomeIcon className={styles.layerIcon} icon={faLayerGroup} />
         <span className={clsx(styles[_.camelCase(`${title} badge`)], styles.badge, maxItems && styles.maxNumber)}>
-          <BadgeCounter number={badgeLabel}>
+          <BadgeCounter>
             <Heading level={3} className={styles.title}>
               {t(title)}
             </Heading>

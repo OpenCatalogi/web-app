@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Container } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";

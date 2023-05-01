@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
-import { Paragraph } from "@gemeente-denhaag/components-react";
+import { Paragraph } from "@gemeente-denhaag/typography";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
@@ -12,7 +12,7 @@ import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { Tag } from "@conduction/components";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { Link } from "../../components";
 
 export interface OrganizationCardProps {

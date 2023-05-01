@@ -1,7 +1,10 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider } from "@gemeente-denhaag/components-react";
-import { Container, Tag, ToolTip } from "@conduction/components";
+import { Button } from "@gemeente-denhaag/button";
+import { Divider } from "@gemeente-denhaag/divider";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
+import { Tooltip } from "@conduction/components/lib/components/tooltip/Tooltip";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";

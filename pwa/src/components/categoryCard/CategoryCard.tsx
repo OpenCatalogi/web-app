@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Divider, Paragraph } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
+import { Paragraph } from "@gemeente-denhaag/typography";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Link } from "../link/Link";
 

@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@gemeente-denhaag/button";
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Container, Tag } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { Link } from "../../components";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";

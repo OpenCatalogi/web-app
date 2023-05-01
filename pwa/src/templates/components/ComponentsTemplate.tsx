@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import * as _ from "lodash";
-import { Alert } from "@gemeente-denhaag/components-react";
-import { Container } from "@conduction/components";
+import { Alert } from "@gemeente-denhaag/alert";
+import { Container } from "@conduction/components/lib/components/container/Container";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";

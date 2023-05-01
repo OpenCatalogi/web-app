@@ -3,10 +3,11 @@ import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
+import { InputCheckbox } from "@conduction/components/lib/components/formFields/checkbox/checkbox";
+import { SelectMultiple, SelectSingle } from "@conduction/components/lib/components/formFields/select/select";
 import _ from "lodash";
 import clsx from "clsx";
-import { Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/divider";
 import {
   upls,
   platforms,

@@ -1,7 +1,11 @@
 import * as React from "react";
 import * as styles from "./DownloadTemplate.module.css";
 
-import { DownloadCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { DownloadCard } from "@conduction/components/lib/components/card/index";
+import {
+  NotificationPopUp,
+  NotificationPopUpController,
+} from "@conduction/components/lib/components/notificationPopUp/NotificationPopUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -19,9 +23,6 @@ interface DownloadTemplateProps {
 export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ layoutClassName, icon, label, sizeKb }) => {
   const { t } = useTranslation();
   const { screenSize } = React.useContext(GatsbyContext);
-
-  const NotificationPopUpController = _NotificationPopUp.controller;
-  const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
   const { isVisible, show, hide } = NotificationPopUpController();
 
