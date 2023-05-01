@@ -11,7 +11,7 @@ import {
   referentieComponenten,
   categories,
 } from "../../../../data/filters";
-import { Tag } from "@conduction/components";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { useTranslation } from "react-i18next";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 

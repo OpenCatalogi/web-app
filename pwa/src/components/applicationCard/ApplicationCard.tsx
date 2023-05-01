@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
-import { Tag } from "@conduction/components";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { Link } from "../../components";
 
 export interface ApplicationCardProps {

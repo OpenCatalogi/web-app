@@ -7,7 +7,6 @@ import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
 import { navigate } from "gatsby";
 import { NodeToolTip } from "../../../../components/toolTip/ToolTip";
-import { NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import "vis-network/styles/vis-network.css";
 import { renderToStaticMarkup } from "react-dom/server";
 

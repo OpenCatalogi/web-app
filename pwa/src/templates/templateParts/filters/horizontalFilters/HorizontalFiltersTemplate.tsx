@@ -3,7 +3,7 @@ import * as styles from "./HorizontalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { InputText } from "@conduction/components";
+import { InputText } from "@conduction/components/lib/components/formFields/input";
 import _ from "lodash";
 
 export const HorizontalFiltersTemplate: React.FC = () => {

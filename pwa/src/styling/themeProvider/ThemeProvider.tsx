@@ -6,7 +6,7 @@ import "@utrecht/component-library-css";
 // import "@utrecht/design-tokens/dist/index.css";
 import { themes } from "../../data/themes";
 import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { SelectSingle } from "@conduction/components";
+import { SelectSingle } from "@conduction/components/lib/components/formFields/select/select";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 import clsx from "clsx";
 

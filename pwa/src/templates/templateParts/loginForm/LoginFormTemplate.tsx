@@ -6,7 +6,7 @@ import { Button } from "@gemeente-denhaag/button";
 import { FormField, FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
 import * as styles from "./LoginFormTemplate.module.css";
 import { useTranslation } from "react-i18next";
-import { InputPassword, InputText } from "@conduction/components";
+import { InputPassword, InputText } from "@conduction/components/lib/components/formFields/input";
 import APIService from "../../../apiService/apiService";
 import APIContext from "../../../apiService/apiContext";
 

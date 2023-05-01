@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
-import { Container, QuoteWrapper } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { QuoteWrapper } from "@conduction/components/lib/components/quoteWrapper/QuoteWrapper";
 import { Button } from "@gemeente-denhaag/button";
 import { Paragraph } from "@gemeente-denhaag/typography";
 import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";

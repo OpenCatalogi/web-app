@@ -10,7 +10,7 @@ import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
-import { Tag } from "@conduction/components";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";

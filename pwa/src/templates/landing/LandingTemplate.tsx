@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
 import { Divider } from "@gemeente-denhaag/divider";
-import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { DetailsCard, ImageAndDetailsCard } from "@conduction/components/lib/components/card/index";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";

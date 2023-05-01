@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Container } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
 import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
 import dedent from "dedent";

@@ -12,7 +12,7 @@ import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { Tag } from "@conduction/components";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { Link } from "../../components";
 
 export interface OrganizationCardProps {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./LayerAccordionTemplate.module.css";
-import { QuoteWrapper } from "@conduction/components";
+import { QuoteWrapper } from "@conduction/components/lib/components/quoteWrapper/QuoteWrapper";
 import Collapsible from "react-collapsible";
 
 interface LayerAccordionTemplateProps {

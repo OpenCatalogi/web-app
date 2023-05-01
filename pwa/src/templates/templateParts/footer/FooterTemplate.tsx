@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";

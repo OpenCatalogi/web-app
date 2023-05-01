@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, Tag } from "@conduction/components";
+import { Container } from "@conduction/components/lib/components/container/Container";
+import { Tag } from "@conduction/components/lib/components/tag/Tag";
 import { Divider } from "@gemeente-denhaag/divider";
 import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/tab";
 import { BadgeCounter, Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
