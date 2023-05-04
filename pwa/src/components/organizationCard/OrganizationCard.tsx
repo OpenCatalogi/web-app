@@ -4,7 +4,8 @@ import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+
+import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -54,7 +55,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
           <div className={styles.titleLink}>
             <Link to={title.href}>
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightIcon />
+                <ArrowRightRotterdam />
               </Icon>
               {title.label}
             </Link>

@@ -4,7 +4,8 @@ import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/compo
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -214,7 +215,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <span className={styles.link}>
                         <Link onClick={show}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <ArrowRightRotterdam />
                           </Icon>
                           Rating
                         </Link>
@@ -351,7 +352,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <ArrowRightRotterdam />
                           </Icon>
                           {t("Details")}
                         </Link>
@@ -380,7 +381,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <ArrowRightRotterdam />
                           </Icon>
                           {t("Details")}
                         </Link>
@@ -409,7 +410,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <ArrowRightRotterdam />
                           </Icon>
                           {t("Details")}
                         </Link>

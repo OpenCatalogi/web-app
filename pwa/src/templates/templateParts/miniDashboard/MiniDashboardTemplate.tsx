@@ -6,7 +6,8 @@ import Skeleton from "react-loading-skeleton";
 import { QueryClient } from "react-query";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useComponent } from "../../../hooks/components";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+
+import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
 import { Link } from "../../../components";
 
 interface MiniDashboardTemplateProps {
@@ -52,7 +53,7 @@ const MiniDashboardCard: React.FC<MiniDashboardCardProps> = ({ label, softwareTy
           }}
         >
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
+            <ArrowRightRotterdam />
           </Icon>{" "}
           {label}
         </Link>

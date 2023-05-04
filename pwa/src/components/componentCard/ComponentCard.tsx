@@ -3,7 +3,6 @@ import * as styles from "./ComponentCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -12,6 +11,7 @@ import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
 import { Link } from "../../components";
+import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
 
 export interface ComponentCardProps {
   title: {
@@ -52,7 +52,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.titleLink}>
         <Link to={title.href}>
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
+            <ArrowRightRotterdam />
           </Icon>
           {title.label}
         </Link>

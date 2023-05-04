@@ -2,7 +2,8 @@ import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
 import dedent from "dedent";
 import { Link } from "../../../components";
 
@@ -93,7 +94,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link to="/documentation/contact">
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightIcon />
+                <ArrowRightRotterdam />
               </Icon>
               dit formulier
             </Link>

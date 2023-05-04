@@ -5,11 +5,11 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
-import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
-import { SearchRotterdam } from "../../../assets/svgs/rotterdam/search.tsx";
+import { SearchRotterdam } from "../../../assets/svgs/rotterdam/search";
+import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -62,12 +62,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       </FormField>
       <div className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
-          <SearchIcon />
+          <ArrowRightRotterdam />
           {t("Search")}
         </Button>
 
         <ButtonLink to="/components" onClick={clearFilters} appearance="secondary-action-button">
-          <ArrowRightIcon />
+          <ArrowRightRotterdam />
           {t("View all components")}
         </ButtonLink>
       </div>
