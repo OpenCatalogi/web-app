@@ -4,7 +4,6 @@ import { Button } from "@gemeente-denhaag/components-react";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-
 import { ArrowRightRotterdam } from "../../../../assets/svgs/rotterdam/arrowright";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -69,7 +68,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                         <div>
                           <Link to={`/categories/${_category.id}`}>
                             <Icon className="utrecht-icon--conduction-start">
-                              <ArrowRightIcon />
+                              <ArrowRightRotterdam />
                             </Icon>
                             {_category.title}
                           </Link>
@@ -88,7 +87,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                               <div>
                                 <Link to={`/categories/${_category.id}`}>
                                   <Icon className="utrecht-icon--conduction-start">
-                                    <ArrowRightIcon />
+                                    <ArrowRightRotterdam />
                                   </Icon>
                                   {_category.title}
                                 </Link>
@@ -121,7 +120,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
       </div>
 
       <ButtonLink to="/categories" appearance="secondary-action-button">
-        <ArrowRightIcon /> Bekijk alle categorieën
+        <ArrowRightRotterdam /> Bekijk alle categorieën
       </ButtonLink>
     </>
   );
