@@ -9,6 +9,7 @@ import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
+import { SearchRotterdam } from "../../../assets/svgs/rotterdam/search.tsx";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -55,7 +56,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
             name="name"
             {...{ errors, register }}
             placeholder={t("Search all components")}
-            icon={<SearchIcon />}
+            icon={<SearchRotterdam />}
           />
         </FormFieldInput>
       </FormField>
