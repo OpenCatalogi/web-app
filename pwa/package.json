@@ -64,6 +64,7 @@
   "devDependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/lab": "^4.11.3-deprecations.1",
+    "@nl-design-system-unstable/amsterdam-design-tokens": "1.0.0-alpha.95",
     "@nl-design-system-unstable/rotterdam-design-tokens": "1.0.0-alpha.88",
     "@types/dateformat": "^5.0.0",
     "@types/dedent": "^0.7.0",
