@@ -275,7 +275,22 @@
   --utrecht-alert-padding-inline-end: var(--web-app-size-lg);
   --utrecht-alert-content-margin-inline-start: var(--web-app-size-lg);
   --utrecht-alert-content-margin-inline-end: var(--web-app-size-lg);
-  --utrecht-alert-warning-background-color: rgba(181, 51, 34, 0.1);
+  --utrecht-alert-icon-gap: 12px;
+  --utrecht-alert-info-background-color: rgba(23, 145, 212, 0.1);
+  --utrecht-alert-info-border-color: rgba(23, 145, 212, 0.25);
+  --utrecht-alert-icon-info-color: #00689e;
+
+  --utrecht-alert-warning-background-color: rgba(237, 181, 0, 0.1);
+  --utrecht-alert-warning-border-color: rgba(237, 181, 0, 0.25);
+  --utrecht-alert-icon-warning-color: #a65600;
+
+  --utrecht-alert-error-background-color: rgba(227, 97, 77, 0.1);
+  --utrecht-alert-error-border-color: rgba(227, 97, 77, 0.25);
+  --utrecht-alert-icon-error-color: var(--rotterdam-color-red-tint-02);
+
+  --utrecht-alert-ok-background-color: rgba(0, 129, 31, 0.1);
+  --utrecht-alert-ok-border-color: rgba(0, 129, 31, 0.25);
+  --utrecht-alert-icon-ok-color: var(--rotterdam-color-base-green);
 
   /* @denhaag alert icon */
   --utrecht-icon-size: 1.5em;
