@@ -8,7 +8,7 @@ import { navigate } from "gatsby";
 import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
-import { FormField, Textbox } from "@utrecht/component-library-react/dist/css-module";
+import { FormField, Textbox, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -59,7 +59,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
           />
         </FormFieldInput>
       </FormField>
-      <div className={styles.buttons}>
+      <ButtonGroup className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
           <SearchIcon />
           {t("Search")}
@@ -69,7 +69,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
           <ArrowRightIcon />
           {t("View all components")}
         </ButtonLink>
-      </div>
+      </ButtonGroup>
     </form>
   );
 };

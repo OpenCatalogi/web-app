@@ -175,7 +175,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <Button>
                 <Icon className="utrecht-icon--conduction-start">
                   <ExternalLinkIcon />
-                </Icon>
+                </Icon>{" "}
                 Toevoegen aan catalogus
               </Button>
             </div>

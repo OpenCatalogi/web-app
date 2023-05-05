@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
-import { Heading, Paragraph, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon, Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -84,24 +84,30 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div className={styles.components}>
-            <div className={styles.dependenciesDisplaySwitchButtons}>
+            <ButtonGroup className={styles.dependenciesDisplaySwitchButtons}>
               <Button
                 className={styles.buttonIcon}
-                appearance={layerType === "layer" ? "primary-action-button" : "secondary-action-button"}
+                pressed={layerType === "layer"}
+                appearance={layerType === "layer" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("layer")}
               >
-                <FontAwesomeIcon icon={faLayerGroup} />
+                <Icon>
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                </Icon>{" "}
                 {t("Layers")}
               </Button>
               <Button
                 className={styles.buttonIcon}
-                appearance={layerType === "layer" ? "primary-action-button" : "secondary-action-button"}
+                pressed={layerType === "relations"}
+                appearance={layerType === "relations" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("relations")}
               >
-                <FontAwesomeIcon icon={faCircleNodes} />
+                <Icon>
+                  <FontAwesomeIcon icon={faCircleNodes} />
+                </Icon>{" "}
                 {t("Relations")}
               </Button>
-            </div>
+            </ButtonGroup>
 
             <DependenciesTemplate
               type={layerType}
