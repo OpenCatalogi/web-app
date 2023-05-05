@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import { Tag } from "@conduction/components";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
@@ -25,6 +25,44 @@ interface LayersResultTemplateProps {
 
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
+
+  /**
+   * Map component status to `StatusBadge` status
+   */
+  const getStatus = (description: string) => {
+    switch (description) {
+      case "Concept":
+        return "warning";
+      case "Development":
+        return "warning";
+      case "Beta":
+        return "warning";
+      case "Bruikbaar":
+        return "safe";
+      case "Stable":
+        return "safe";
+      case "Obsolete":
+        return "danger";
+      default:
+        return;
+    }
+  };
+
+  const ComponentStatusBadge = ({ status }: { status: string }) => {
+    const s = getStatus(status);
+    return (
+      <StatusBadge status={s} className={styles.tagWidth}>
+        {s ? (
+          <>
+            <FontAwesomeIcon icon={faInfoCircle} />{" "}
+          </>
+        ) : (
+          ""
+        )}
+        {t(status)}
+      </StatusBadge>
+    );
+  };
 
   return (
     <TableWrapper>
@@ -45,159 +83,119 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
         <TableBody>
           {components.length > 0 &&
-            components.map((component) => {
-              const componentStatus = _.upperFirst(
-                component._self.schema.ref.includes("component.schema.json")
-                  ? component.developmentStatus ?? "Onbekend"
-                  : "N.V.T.",
-              );
-
-              const getStatus = (description: string) => {
-                switch (description) {
-                  case "Concept":
-                    return "warning";
-                  case "Development":
-                    return "warning";
-                  case "Beta":
-                    return "warning";
-                  case "Bruikbaar":
-                    return "safe";
-                  case "Stable":
-                    return "safe";
-                  case "Obsolete":
-                    return "danger";
-                  default:
-                    return;
-                }
-              };
-
-              return (
-                <TableRow
-                  className={styles.tableRow}
-                  key={component.id}
-                  onClick={() => navigate(`/${getResultsUrl(component._self?.schema.ref)}/${component.id}`)}
-                >
-                  <TableCell>
-                    <span className={styles.name}>{component.name}</span>
-                  </TableCell>
-                  <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
-                  <TableCell>
-                    <div
-                      className={clsx(
-                        styles[
-                          _.camelCase(
-                            t(
-                              `${
-                                (component._self.schema.ref.includes("component.schema.json") &&
-                                  component.embedded?.nl?.embedded?.commonground?.layerType) ??
-                                "Unknown"
-                              } layer`,
-                            ),
-                          )
-                        ],
-                      )}
-                    >
-                      <ToolTip tooltip={t("Layer")}>
-                        <Tag
-                          layoutClassName={styles.tagWidth}
-                          label={t(
-                            _.upperFirst(
-                              component._self.schema.ref.includes("component.schema.json")
-                                ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
-                                : "N.V.T.",
-                            ),
-                          )}
-                          icon={
-                            component._self.schema.ref.includes("component.schema.json") ? (
-                              <FontAwesomeIcon icon={faLayerGroup} />
-                            ) : (
-                              <></>
-                            )
-                          }
-                        />
-                      </ToolTip>
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <ToolTip tooltip={t("Sources")}>
+            components.map((component) => (
+              <TableRow
+                className={styles.tableRow}
+                key={component.id}
+                onClick={() => navigate(`/${getResultsUrl(component._self?.schema.ref)}/${component.id}`)}
+              >
+                <TableCell>
+                  <span className={styles.name}>{component.name}</span>
+                </TableCell>
+                <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
+                <TableCell>
+                  <div
+                    className={clsx(
+                      styles[
+                        _.camelCase(
+                          t(
+                            `${
+                              (component._self.schema.ref.includes("component.schema.json") &&
+                                component.embedded?.nl?.embedded?.commonground?.layerType) ??
+                              "Unknown"
+                            } layer`,
+                          ),
+                        )
+                      ],
+                    )}
+                  >
+                    <ToolTip tooltip={t("Layer")}>
                       <Tag
                         layoutClassName={styles.tagWidth}
-                        label={_.upperFirst(
-                          component._self?.synchronizations
-                            ? component._self?.synchronizations?.length
-                              ? component._self?.synchronizations?.at(-1)?.gateway.name
-                              : "Onbekend"
-                            : "N.V.T.",
+                        label={t(
+                          _.upperFirst(
+                            component._self.schema.ref.includes("component.schema.json")
+                              ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
+                              : "N.V.T.",
+                          ),
                         )}
                         icon={
-                          component._self?.synchronizations?.length ? (
-                            component._self?.synchronizations?.at(-1)?.gateway.name === "github" ? (
-                              <GitHubLogo />
-                            ) : component._self?.synchronizations?.at(-1)?.gateway.name === "gitlab" ? (
-                              <GitLabLogo />
-                            ) : (
-                              <></>
-                            )
+                          component._self.schema.ref.includes("component.schema.json") ? (
+                            <FontAwesomeIcon icon={faLayerGroup} />
                           ) : (
                             <></>
                           )
                         }
                       />
                     </ToolTip>
-                  </TableCell>
+                  </div>
+                </TableCell>
 
-                  <TableCell>
-                    <ToolTip tooltip="Component Type">
-                      <Tag
-                        label={_.upperFirst(
-                          component._self.schema.ref.includes("component.schema.json")
-                            ? component.softwareType ?? "Onbekend"
-                            : "N.V.T.",
-                        )}
-                      />
-                    </ToolTip>
-                  </TableCell>
-
-                  <TableCell>
-                    <ToolTip tooltip="Status">
-                      <StatusBadge status={getStatus(componentStatus)} className={styles.tagWidth}>
-                        {t(componentStatus)}
-                      </StatusBadge>
-                      {/* <Tag
+                <TableCell>
+                  <ToolTip tooltip={t("Sources")}>
+                    <Tag
                       layoutClassName={styles.tagWidth}
-                      label={t(
-                        _.upperFirst(
-                          component._self.schema.ref.includes("component.schema.json")
-                            ? component.developmentStatus ?? "Onbekend"
-                            : "N.V.T.",
-                        ),
+                      label={_.upperFirst(
+                        component._self?.synchronizations
+                          ? component._self?.synchronizations?.length
+                            ? component._self?.synchronizations?.at(-1)?.gateway.name
+                            : "Onbekend"
+                          : "N.V.T.",
                       )}
                       icon={
-                        component._self.schema.ref.includes("component.schema.json") ? (
-                          <FontAwesomeIcon icon={faInfoCircle} />
+                        component._self?.synchronizations?.length ? (
+                          component._self?.synchronizations?.at(-1)?.gateway.name === "github" ? (
+                            <GitHubLogo />
+                          ) : component._self?.synchronizations?.at(-1)?.gateway.name === "gitlab" ? (
+                            <GitLabLogo />
+                          ) : (
+                            <></>
+                          )
                         ) : (
                           <></>
                         )
                       }
-                    /> */}
-                    </ToolTip>
-                  </TableCell>
+                    />
+                  </ToolTip>
+                </TableCell>
 
-                  <TableCell>
-                    <Link
-                      to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
-                      className={styles.detailsLink}
-                    >
-                      <Icon className="utrecht-icon--conduction-start">
-                        <ArrowRightIcon />
-                      </Icon>
-                      {t("Details")}
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                <TableCell>
+                  <ToolTip tooltip="Component Type">
+                    <Tag
+                      label={_.upperFirst(
+                        component._self.schema.ref.includes("component.schema.json")
+                          ? component.softwareType ?? "Onbekend"
+                          : "N.V.T.",
+                      )}
+                    />
+                  </ToolTip>
+                </TableCell>
+
+                <TableCell>
+                  <ToolTip tooltip="Status">
+                    <ComponentStatusBadge
+                      status={_.upperFirst(
+                        component._self.schema.ref.includes("component.schema.json")
+                          ? component.developmentStatus ?? "Onbekend"
+                          : "N.V.T.",
+                      )}
+                    />
+                  </ToolTip>
+                </TableCell>
+
+                <TableCell>
+                  <Link
+                    to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
+                    className={styles.detailsLink}
+                  >
+                    <Icon className="utrecht-icon--conduction-start">
+                      <ArrowRightIcon />
+                    </Icon>
+                    {t("Details")}
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
 
           {!components.length && (
             <TableRow>
