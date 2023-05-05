@@ -312,7 +312,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldInput>
               <FormLabel htmlFor={"sortFormOrginisation"}>
                 <span className={styles.filterTitle}>
-                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
                 </span>
               </FormLabel>
               <div className={styles.selectBorder}>
