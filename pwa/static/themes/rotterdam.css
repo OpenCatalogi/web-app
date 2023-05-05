@@ -299,6 +299,9 @@
   --utrecht-feedback-warning-fill-background-color: hsla(41, 100%, 43%, 1);
   --utrecht-feedback-danger-fill-background-color: hsla(7, 60%, 52%, 1);
   --utrecht-feedback-neutral-fill-background-color: hsla(201, 100%, 36%, 1);
+
+  --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
+  --utrecht-action-activate-cursor: pointer;
 }
 
 @media (prefers-contrast: more) {

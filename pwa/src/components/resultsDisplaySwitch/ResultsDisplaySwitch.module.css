@@ -1,17 +1,3 @@
 .resultsDisplaySwitchButtons {
-  display: flex;
   align-items: center;
-}
-
-.resultsDisplaySwitchButtons > * {
-  display: flex;
-  align-items: center;
-}
-
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.buttonIcon > span > svg {
-  margin-inline-end: var(--web-app-size-xs);
 }

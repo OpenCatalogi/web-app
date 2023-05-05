@@ -1,6 +1,13 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { BadgeCounter, Heading, Paragraph, Icon, Button } from "@utrecht/component-library-react/dist/css-module";
+import {
+  BadgeCounter,
+  Heading,
+  Paragraph,
+  Icon,
+  Button,
+  ButtonGroup,
+} from "@utrecht/component-library-react/dist/css-module";
 import { Container, Tag } from "@conduction/components";
 import { Link } from "../../components";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -57,32 +64,41 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </div>
       )}
 
-      <div className={styles.resultsDisplaySwitchButtons}>
+      <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
         <Button
           className={styles.buttonIcon}
-          appearance={filters.catagoryDisplayLayout === "table" ? "primary-action-button" : "secondary-action-button"}
+          pressed={filters.catagoryDisplayLayout === "table"}
+          appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
         >
-          <FontAwesomeIcon icon={faTable} />
+          <Icon>
+            <FontAwesomeIcon icon={faTable} />
+          </Icon>{" "}
           {t("Table")}
         </Button>
         <Button
           className={styles.buttonIcon}
-          appearance={filters.catagoryDisplayLayout === "cards" ? "primary-action-button" : "secondary-action-button"}
+          pressed={filters.catagoryDisplayLayout === "cards"}
+          appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
         >
-          <FontAwesomeIcon icon={faGripVertical} />
+          <Icon>
+            <FontAwesomeIcon icon={faGripVertical} />
+          </Icon>{" "}
           {t("Cards")}
         </Button>
         <Button
           className={styles.buttonIcon}
-          appearance={filters.catagoryDisplayLayout === "layer" ? "primary-action-button" : "secondary-action-button"}
+          pressed={filters.catagoryDisplayLayout === "layer"}
+          appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
         >
-          <FontAwesomeIcon icon={faLayerGroup} />
+          <Icon>
+            <FontAwesomeIcon icon={faLayerGroup} />
+          </Icon>{" "}
           {t("Layers")}
         </Button>
-      </div>
+      </ButtonGroup>
 
       {filters.catagoryDisplayLayout && (
         <div className={styles.solutions}>
