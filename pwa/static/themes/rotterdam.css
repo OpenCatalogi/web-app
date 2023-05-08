@@ -302,6 +302,11 @@
 
   --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
   --utrecht-action-activate-cursor: pointer;
+
+  /* @utrecht button */
+  --utrecht-button-primary-action-hover-background-color: #a12b5e;
+  --utrecht-button-secondary-action-hover-background-color: #404b4f;
+  --utrecht-button-secondary-action-hover-color: white;
 }
 
 @media (prefers-contrast: more) {

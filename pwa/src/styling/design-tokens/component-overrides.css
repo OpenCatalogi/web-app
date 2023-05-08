@@ -317,3 +317,7 @@
   block-size: max-content;
   inline-size: max-content;
 }
+
+.utrecht-button-link--secondary-action:hover {
+  --utrecht-button-secondary-action-hover-background-color: #006e32;
+}
