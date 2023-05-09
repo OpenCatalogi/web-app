@@ -16,9 +16,33 @@ import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { SubmitUrlTemplate } from "../templateParts/submitUrl/SubmitUrlTemplate";
+import { useForm } from "react-hook-form";
+import { useQueryClient } from "react-query";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
+
+  const queryClient = useQueryClient();
+
+  // const _useCronjob = useCronjob(queryClient);
+  // const getCronjobs = _useCronjob.getAll();
+
+  const onSubmit = (data: any): void => {
+    const payload = {
+      ...data,
+      listens: data.listens?.map((listener: any) => listener.value),
+      throws: data.throws?.map((_throw: any) => _throw.value),
+      class: data.class.value,
+      conditions: data.conditions ? JSON.parse(data.conditions) : [],
+      configuration: {},
+    };
+
+    // createOrEditAction.mutate({ payload, id: action?.id });
+  };
+
+  const { handleSubmit } = useForm();
+
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
@@ -43,6 +67,28 @@ export const AboutTemplate: React.FC = () => {
           >
             5 lagen model
           </Button>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.formContainer}>
+          <form onSubmit={handleSubmit(onSubmit)} id="componentForm">
+            <SubmitUrlTemplate
+              title={t("Meld uw component")}
+              formId="componentForm"
+              placeholder={t("Geef de url naar uw component op.")}
+            />
+          </form>
+        </div>
+
+        <div className={styles.formContainer}>
+          <form onSubmit={handleSubmit(onSubmit)} id="catalogForm">
+            <SubmitUrlTemplate
+              title={t("Meld uw catalogus")}
+              formId="catalogForm"
+              placeholder={t("Geef de url naar uw catalogus op.")}
+            />
+          </form>
         </div>
       </section>
 
