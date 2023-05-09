@@ -5,7 +5,7 @@ import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Link } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
-import { ArrowRightIcon, ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { ArrowRightIcon, ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";
@@ -184,13 +184,73 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
         </div>
 
-        <div>
-          <div className={styles.heading}>{t("An initiative of")}</div>
+        <div className={styles.navigation}>
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("Conduction")}</div>
 
-          <div className={styles.logosContainer}>
-            <div className={styles.organizationLogo}></div>
-            <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
-          </div>
+            <li
+              onClick={() => {
+                navigate("tel:+31853036840");
+              }}
+            >
+              <Link icon={<CallIcon />} iconAlign="start">
+                Bel Conduction
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                navigate("mailto:info@conduction.nl");
+              }}
+            >
+              <Link icon={<EmailIcon />} iconAlign="start">
+                Mail Conduction
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://conduction.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                Bezoek de website
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("Gemeente Rotterdam")}</div>
+
+            <li
+              onClick={() => {
+                navigate("tel:14010");
+              }}
+            >
+              <Link icon={<CallIcon />} iconAlign="start">
+                Bel Gemeente Rotterdam
+              </Link>
+            </li>
+
+            <li
+              onClick={() => {
+                open("https://rotterdam.nl/");
+              }}
+            >
+              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                Bezoek de website
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("An initiative of")}</div>
+
+            <div className={styles.logosContainer}>
+              <div className={styles.organizationLogo}></div>
+              <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+            </div>
+          </ul>
         </div>
       </Container>
     </footer>
