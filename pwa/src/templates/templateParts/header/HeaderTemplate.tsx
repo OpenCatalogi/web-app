@@ -113,13 +113,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
             navigate("/documentation/usage");
           },
         },
-        {
-          label: t("Contact"),
-          current: pathname === "/documentation/contact",
-          handleClick: () => {
-            navigate("/documentation/contact");
-          },
-        },
       ],
     },
   ];

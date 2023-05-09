@@ -100,16 +100,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li
               onClick={() => {
-                navigate("/documentation/contact");
-              }}
-            >
-              <Link icon={<ArrowRightIcon />} iconAlign="start">
-                Contact
-              </Link>
-            </li>
-
-            <li
-              onClick={() => {
                 open("https://github.com/OpenCatalogi");
               }}
             >
