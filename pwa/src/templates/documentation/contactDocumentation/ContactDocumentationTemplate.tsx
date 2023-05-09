@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ContactDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../../components/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "../../../components";
@@ -21,7 +21,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://www.rotterdam.nl">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               De Gemeente Rotterdam
             </Link>
@@ -30,7 +30,7 @@ export const ContactDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://www.conduction.nl">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Conduction
             </Link>

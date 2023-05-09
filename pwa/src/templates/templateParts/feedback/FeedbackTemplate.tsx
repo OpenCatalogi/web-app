@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./FeedbackTemplate.module.css";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../../components/icons";
 import clsx from "clsx";
 import { ButtonLink } from "../../../components";
 
@@ -21,11 +21,11 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
           appearance="secondary-action-button"
           href="https://github.com/OpenCatalogi/.github/issues/new?assignees=rubenvdlinde%2CRonaldvCortenberghe&labels=feature-request&template=feature.yml&title=%5Bfeature%5D%3A+Als+gebruiker+wil+ik+"
         >
-          <ExternalLinkIcon />
+          <Externallink />
           Wens of opmerking indienen op GitHub
         </ButtonLink>
         <ButtonLink appearance="secondary-action-button" href="https://github.com/orgs/OpenCatalogi/projects/1">
-          <ExternalLinkIcon />
+          <Externallink />
           Roadmap bekijken
         </ButtonLink>
       </div>

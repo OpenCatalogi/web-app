@@ -4,11 +4,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const SvgArrowright = ({
-  title,
-  titleId,
-  ...props
-}: SVGProps<SVGSVGElement> & SVGRProps) => (
+const SvgArrowright = ({ title, titleId, ...props }: SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     fill="none"
     stroke="currentColor"

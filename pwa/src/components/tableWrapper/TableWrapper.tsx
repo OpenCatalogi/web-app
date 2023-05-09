@@ -4,7 +4,7 @@ import _ from "lodash";
 import clsx from "clsx";
 
 const TableWrapper = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {
-  const [tableIsScrollable, setTableIsScrollable] = React.useState<Boolean>(false);
+  const [tableIsScrollable, setTableIsScrollable] = React.useState<boolean>(false);
   const [tableScrollPosition, setTableScrollPosition] = React.useState<"left" | "middle" | "right">("left");
 
   const tableWrapperRef = React.useRef<HTMLElement>() as React.MutableRefObject<HTMLElement>;

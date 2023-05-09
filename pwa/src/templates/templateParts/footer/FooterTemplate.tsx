@@ -5,7 +5,7 @@ import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../../components/icons";
 import { Arrowright } from "../../../components/icons";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
@@ -168,7 +168,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <Externallink />
                 </Icon>
                 NL design
               </Link>
@@ -186,7 +186,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link to="#">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <Externallink />
                 </Icon>
                 {t("Privacy declaration")}
               </Link>

@@ -4,8 +4,8 @@ import { Button, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/compo
 import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
-import { Arrowright } from "../../components/icons";
+import { ArrowLeftIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { Arrowright, Externallink } from "../../components/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
@@ -173,7 +173,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={styles.logo}
                 />
               </div>
-              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+              <Button icon={<Externallink />}>Toevoegen aan catalogus</Button>
             </div>
           </div>
 
@@ -490,7 +490,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
                           >
                             <Icon className="utrecht-icon--conduction-start">
-                              <ExternalLinkIcon />
+                              <Externallink />
                             </Icon>
                             {product},{" "}
                           </Link>

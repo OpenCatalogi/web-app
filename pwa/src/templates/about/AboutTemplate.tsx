@@ -5,7 +5,7 @@ import { Button, Paragraph } from "@gemeente-denhaag/components-react";
 import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../components/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
@@ -26,14 +26,14 @@ export const AboutTemplate: React.FC = () => {
         <div className={styles.buttonsContainer}>
           <Button
             onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
-            icon={<ExternalLinkIcon />}
+            icon={<Externallink />}
           >
             Gegevenslandschap
           </Button>
 
           <Button
             onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
-            icon={<ExternalLinkIcon />}
+            icon={<Externallink />}
           >
             5 lagen model
           </Button>
@@ -52,7 +52,7 @@ export const AboutTemplate: React.FC = () => {
               href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf"
             >
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>{" "}
               GEMMA gegevenslandschap informatiearchitectuurprincipes
             </Link>
@@ -187,7 +187,7 @@ export const AboutTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>{" "}
               verplichte standaarden
             </Link>
@@ -197,12 +197,12 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.paragraphButtons}>
           <div onClick={() => open("https://forumstandaardisatie.nl/")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+            <Button icon={<Externallink />} iconAlign="start">
               Forum Standaardisatie
             </Button>
           </div>
           <div onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+            <Button icon={<Externallink />} iconAlign="start" variant="secondary-action">
               Verplichte Standaarden
             </Button>
           </div>

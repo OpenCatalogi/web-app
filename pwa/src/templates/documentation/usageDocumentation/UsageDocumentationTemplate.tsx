@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../../components/icons";
 import { Arrowright } from "../../../components/icons";
 import dedent from "dedent";
 import { Link } from "../../../components";
@@ -32,7 +32,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://yml.publiccode.tools/schema.core.html#top-level-keys-and-sections">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>{" "}
               hier
             </Link>
@@ -41,7 +41,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://publiccode-editor.developers.italia.it/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               hier
             </Link>
@@ -63,7 +63,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://componentencatalogus.commonground.nl/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Common Ground Componenten­catalogus
             </Link>
@@ -72,7 +72,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://developer.overheid.nl/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Developer Overheid
             </Link>
@@ -81,7 +81,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://www.softwarecatalogus.nl/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               GEMMA Softwarecatalogus
             </Link>
@@ -121,7 +121,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://github.com/ConductionNL/skeleton-app">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               GitHub-pagina
             </Link>
@@ -167,7 +167,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="http://localhost:81/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               http://localhost:81/
             </Link>
@@ -179,7 +179,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://docs.conductor-gateway.app/en/latest/installation/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               common-gateway
             </Link>
@@ -192,7 +192,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://kubernetes.io/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               kubernetes
             </Link>
@@ -201,7 +201,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://helm.sh/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Helm
             </Link>
@@ -211,7 +211,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://haven.commonground.nl/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Haven
             </Link>
@@ -223,7 +223,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://dashkube.com/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Dashkube
             </Link>
@@ -232,7 +232,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://rancher.com/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Rancher
             </Link>
@@ -245,7 +245,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://helm.sh/docs/intro/install/#through-package-managers/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               helm.sh
             </Link>
@@ -254,7 +254,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://kubernetes.io/docs/tasks/tools/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               kubectl
             </Link>
@@ -274,7 +274,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
               href="https://github.com/OpenCatalogi/web-app/blob/e3fdf396cd5fb39266fd77a2af404cb59a881cb7/helm/README.md/"
             >
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               hier
             </Link>
@@ -287,7 +287,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://skeleton-app.readthedocs.io/en/latest/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               Read the Docs
             </Link>
@@ -296,7 +296,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://www.mkdocs.org/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               MKDocs
             </Link>
@@ -313,7 +313,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://www.mkdocs.org/user-guide/installation/">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <Externallink />
               </Icon>
               MKDocs installeert
             </Link>

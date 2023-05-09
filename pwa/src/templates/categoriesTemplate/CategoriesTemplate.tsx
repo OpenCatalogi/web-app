@@ -5,7 +5,7 @@ import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Externallink } from "../../components/icons";
 import { Arrowright } from "../../components/icons";
 import { Link } from "../../components";
 
@@ -46,7 +46,7 @@ export const CategoriesTemplate: React.FC = () => {
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <Externallink />
                 </Icon>
                 Gemma bedrijfsfuncties
               </Link>

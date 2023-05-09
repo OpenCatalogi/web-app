@@ -219,7 +219,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetLayerFilter.map((layer: any) => {
-      var checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
@@ -232,7 +232,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetPlatformFilter.map((platform: any) => {
-      var checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
