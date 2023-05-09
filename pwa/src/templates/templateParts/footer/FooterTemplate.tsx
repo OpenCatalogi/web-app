@@ -6,7 +6,7 @@ import { navigate } from "gatsby";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../../../components/icons/rotterdam";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";
@@ -40,7 +40,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 }}
               >
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 {t("Processes")}
               </Link>
@@ -59,7 +59,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 }}
               >
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 {t("Data models")}
               </Link>
@@ -78,7 +78,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 }}
               >
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 {t("API's")}
               </Link>
@@ -97,7 +97,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                 }}
               >
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 {t("Initiatives")}
               </Link>
@@ -110,7 +110,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link to="/documentation/usage">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 {t("About OpenCatalogi")}
               </Link>
@@ -119,7 +119,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link to="/documentation/usage">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 Gebruik
               </Link>
@@ -128,7 +128,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <li>
               <Link to="/components">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 Contact
               </Link>

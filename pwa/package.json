@@ -4,9 +4,7 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -20,7 +18,11 @@
     "lint-fix:eslint": "eslint --fix .",
     "lint-fix:prettier": "prettier --write \"**/*.+(css|js|json|jsx|scss|ts|tsx)\" .",
     "typecheck": "tsc --noEmit",
-    "prepare": "cd .. && husky install"
+    "prepare": "cd .. && husky install",
+    "prebuild": "npm run svgr:icons-rotterdam",
+    "presvgr:icons-rotterdam": "npm run build:svg",
+    "build:svg": "svgo --recursive --folder ./src/assets/svgs/rotterdam --output ./src/assets/svgs/rotterdam/optimized-svgs --quiet",
+    "svgr:icons-rotterdam": "svgr --typescript --title-prop -d src/components/icons/rotterdam src/assets/svgs/rotterdam/optimized-svgs --icon"
   },
   "dependencies": {
     "@conduction/components": "^2.1.20",
@@ -34,6 +36,7 @@
     "@gemeente-denhaag/sidenav": "^0.1.0-alpha.119",
     "@gemeente-denhaag/table": "^0.1.1-alpha.203",
     "@gemeente-denhaag/textarea": "^0.1.1-alpha.174",
+    "@svgr/cli": "^6.3.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "axios": "^0.25.0",
@@ -80,6 +83,7 @@
     "lint-staged": "^13.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.5",
+    "svgo": "^3.0.2",
     "typescript": "^4.6.3"
   },
   "overrides": {

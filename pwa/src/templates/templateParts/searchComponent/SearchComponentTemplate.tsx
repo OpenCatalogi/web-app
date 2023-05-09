@@ -8,8 +8,7 @@ import { navigate } from "gatsby";
 import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
-import { SearchRotterdam } from "../../../assets/svgs/rotterdam/search";
-import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
+import { Search, Arrowright } from "../../../components/icons/rotterdam";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -52,22 +51,17 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
     <form onSubmit={handleSubmit(onSubmit)} className={layoutClassName}>
       <FormField>
         <FormFieldInput>
-          <InputText
-            name="name"
-            {...{ errors, register }}
-            placeholder={t("Search all components")}
-            icon={<SearchRotterdam />}
-          />
+          <InputText name="name" {...{ errors, register }} placeholder={t("Search all components")} icon={<Search />} />
         </FormFieldInput>
       </FormField>
       <div className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
-          <ArrowRightRotterdam />
+          <Arrowright />
           {t("Search")}
         </Button>
 
         <ButtonLink to="/components" onClick={clearFilters} appearance="secondary-action-button">
-          <ArrowRightRotterdam />
+          <Arrowright />
           {t("View all components")}
         </ButtonLink>
       </div>

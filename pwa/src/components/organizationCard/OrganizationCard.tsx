@@ -5,7 +5,7 @@ import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 
-import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../icons/rotterdam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -55,7 +55,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
           <div className={styles.titleLink}>
             <Link to={title.href}>
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightRotterdam />
+                <Arrowright />
               </Icon>
               {title.label}
             </Link>

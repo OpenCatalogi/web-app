@@ -3,7 +3,7 @@ import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../../../components/icons/rotterdam";
 import dedent from "dedent";
 import { Link } from "../../../components";
 
@@ -94,7 +94,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <span>
             <Link to="/documentation/contact">
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightRotterdam />
+                <Arrowright />
               </Icon>
               dit formulier
             </Link>

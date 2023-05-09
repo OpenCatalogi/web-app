@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../icons/rotterdam";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip } from "../toolTip/ToolTip";
@@ -30,7 +30,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
       <div className={styles.titleLink}>
         <Link to={title.href}>
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightRotterdam />
+            <Arrowright />
           </Icon>
           {title.label}
         </Link>

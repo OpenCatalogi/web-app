@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../../components/icons/rotterdam";
 import { Link } from "../../components";
 
 export const CategoriesTemplate: React.FC = () => {
@@ -27,7 +27,7 @@ export const CategoriesTemplate: React.FC = () => {
             <span>
               <Link to="/applications">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 applicaties
               </Link>
@@ -36,7 +36,7 @@ export const CategoriesTemplate: React.FC = () => {
             <span>
               <Link to="/components">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightRotterdam />
+                  <Arrowright />
                 </Icon>
                 componenten
               </Link>

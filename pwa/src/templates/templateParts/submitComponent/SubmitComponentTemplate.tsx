@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./SubmitComponentTemplate.module.css";
-import { ArrowRightRotterdam } from "../../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../../../components/icons/rotterdam";
 import { Button } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { navigate } from "gatsby";
@@ -25,7 +25,7 @@ export const SubmitComponentTemplate: React.FC<SubmitComponentTemplateProps> = (
           className={styles.button}
           variant="secondary-action"
           onClick={() => navigate("/documentation/usage")}
-          icon={<ArrowRightRotterdam />}
+          icon={<Arrowright />}
         >
           Component toevoegen
         </Button>

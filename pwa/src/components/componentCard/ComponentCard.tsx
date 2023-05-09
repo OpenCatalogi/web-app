@@ -11,7 +11,7 @@ import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
 import { Link } from "../../components";
-import { ArrowRightRotterdam } from "../../assets/svgs/rotterdam/arrowright";
+import { Arrowright } from "../icons/rotterdam";
 
 export interface ComponentCardProps {
   title: {
@@ -52,7 +52,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.titleLink}>
         <Link to={title.href}>
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightRotterdam />
+            <Arrowright />
           </Icon>
           {title.label}
         </Link>
