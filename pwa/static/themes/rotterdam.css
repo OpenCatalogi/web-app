@@ -153,8 +153,6 @@
 
   --web-app-filter-badge-color: hsl(0deg 0% 85%);
 
-  --web-app-breadcrumb-color: var(--rotterdam-color-green);
-
   --web-app-checkbox-color: var(--rotterdam-color-green);
   --web-app-radio-button-color: var(--rotterdam-color-green);
 
@@ -302,6 +300,10 @@
 
   --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
   --utrecht-action-activate-cursor: pointer;
+
+  /* @gemeente-denhaag: Breadcrumb */
+  --denhaag-breadcrumb-color: var(--rotterdam-color-green);
+  --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
 }
 
 @media (prefers-contrast: more) {
