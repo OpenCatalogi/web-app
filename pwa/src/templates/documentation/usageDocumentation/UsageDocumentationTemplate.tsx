@@ -3,7 +3,7 @@ import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { Arrowright } from "../../../components/icons/rotterdam";
+import { Arrowright } from "../../../components/icons";
 import dedent from "dedent";
 import { Link } from "../../../components";
 

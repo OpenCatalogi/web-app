@@ -6,7 +6,7 @@ import { navigate } from "gatsby";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { Arrowright } from "../../../components/icons/rotterdam";
+import { Arrowright } from "../../../components/icons";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";

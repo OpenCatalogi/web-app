@@ -4,7 +4,7 @@ import { Button } from "@gemeente-denhaag/components-react";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { Arrowright } from "../../../../components/icons/rotterdam";
+import { Arrowright } from "../../../../components/icons";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";

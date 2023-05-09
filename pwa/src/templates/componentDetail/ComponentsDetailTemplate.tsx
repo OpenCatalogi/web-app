@@ -5,7 +5,7 @@ import { BadgeCounter, Heading, Paragraph, Icon } from "@utrecht/component-libra
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
-import { Arrowright } from "../../components/icons/rotterdam";
+import { Arrowright } from "../../components/icons";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./SubmitComponentTemplate.module.css";
-import { Arrowright } from "../../../components/icons/rotterdam";
+import { Arrowright } from "../../../components/icons";
 import { Button } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { navigate } from "gatsby";

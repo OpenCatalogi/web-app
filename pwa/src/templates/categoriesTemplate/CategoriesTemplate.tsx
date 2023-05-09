@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
-import { Arrowright } from "../../components/icons/rotterdam";
+import { Arrowright } from "../../components/icons";
 import { Link } from "../../components";
 
 export const CategoriesTemplate: React.FC = () => {

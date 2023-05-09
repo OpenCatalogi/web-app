@@ -5,7 +5,7 @@ import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 
-import { Arrowright } from "../icons/rotterdam";
+import { Arrowright } from "../icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Arrowright } from "../icons/rotterdam";
+import { Arrowright } from "../icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip } from "../toolTip/ToolTip";

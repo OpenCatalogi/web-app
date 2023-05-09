@@ -8,7 +8,7 @@ import { navigate } from "gatsby";
 import { InputText } from "@conduction/components";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
-import { Search, Arrowright } from "../../../components/icons/rotterdam";
+import { Search, Arrowright } from "../../../components/icons";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -56,7 +56,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       </FormField>
       <div className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
-          <Arrowright />
+          <Search />
           {t("Search")}
         </Button>
 

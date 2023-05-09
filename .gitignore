@@ -3,4 +3,4 @@
 pwa/.cache
 pwa/node_modules
 pwa/public
-pwa/src/assets/svg/*/optimized-svgs
+pwa/optimized-svgs

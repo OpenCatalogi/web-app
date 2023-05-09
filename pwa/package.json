@@ -10,7 +10,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "clean": "gatsby clean && rimraf optimized-svgs src/components/icons",
     "lint": "npm-run-all lint:** ",
     "lint:eslint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "lint:prettier": "prettier --check .",
@@ -19,10 +19,10 @@
     "lint-fix:prettier": "prettier --write \"**/*.+(css|js|json|jsx|scss|ts|tsx)\" .",
     "typecheck": "tsc --noEmit",
     "prepare": "cd .. && husky install",
-    "prebuild": "npm run svgr:icons-rotterdam",
-    "presvgr:icons-rotterdam": "npm run build:svg",
-    "build:svg": "svgo --recursive --folder ./src/assets/svgs/rotterdam --output ./src/assets/svgs/rotterdam/optimized-svgs --quiet",
-    "svgr:icons-rotterdam": "svgr --typescript --title-prop -d src/components/icons/rotterdam src/assets/svgs/rotterdam/optimized-svgs --icon"
+    "prebuild": "npm run clean && npm run build:icons",
+    "prebuild:icons": "npm run optimized-svg",
+    "optimized-svg": "svgo --recursive --folder ./src/assets/svgs/iconset --output ./optimized-svgs --quiet",
+    "build:icons": "svgr --typescript --title-prop -d src/components/icons optimized-svgs --icon"
   },
   "dependencies": {
     "@conduction/components": "^2.1.20",
@@ -83,6 +83,7 @@
     "lint-staged": "^13.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.5",
+    "rimraf": "^5.0.0",
     "svgo": "^3.0.2",
     "typescript": "^4.6.3"
   },

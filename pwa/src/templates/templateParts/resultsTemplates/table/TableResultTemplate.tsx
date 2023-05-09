@@ -5,7 +5,7 @@ import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { Arrowright } from "../../../../components/icons/rotterdam";
+import { Arrowright } from "../../../../components/icons";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";

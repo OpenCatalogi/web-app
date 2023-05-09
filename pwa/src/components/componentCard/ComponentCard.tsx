@@ -11,7 +11,7 @@ import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Tag } from "@conduction/components";
 import { Link } from "../../components";
-import { Arrowright } from "../icons/rotterdam";
+import { Arrowright } from "../icons";
 
 export interface ComponentCardProps {
   title: {
