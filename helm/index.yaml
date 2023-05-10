@@ -3,7 +3,7 @@ entries:
   commonground-gateway:
   - apiVersion: v2
     appVersion: "2.2"
-    created: "2023-02-06T12:48:37.896124107+01:00"
+    created: "2023-03-30T10:35:32.679716778+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -15,22 +15,42 @@ entries:
       version: 17.3.11
     - name: rabbitmq
       repository: https://charts.bitnami.com/bitnami
-      version: 9.0.1
+      version: 11.9.1
     - condition: mongodb.enabled
       name: mongodb
       repository: https://charts.bitnami.com/bitnami
       version: 13.4.4
+    - condition: gateway-ui.enabled
+      name: gateway-ui
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/refinement-demo-branch/helm/
+      version: 0.1.7
     description: A Helm chart for Kubernetes
-    digest: 0fa559a361d42019391270b20cd47026e6e85e7cb7cbed6903460d9779510c98
+    digest: ff01f6c9f24d58d03be55ce062ade6e5690abfcc46f4740fb4f0bd576235e723
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-1.2.8.tgz
-    version: 1.2.8
+    - charts/commonground-gateway-1.4.4.tgz
+    version: 1.4.4
   opencatalogi:
   - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-03-30T10:35:32.651941446+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.4.4
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 1a599f26bfbd73c38498195a68313d368eca8d37cac7e73ad763a7ce521d3758
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.871105733+01:00"
+    created: "2023-03-30T10:35:32.617151044+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -51,7 +71,7 @@ entries:
     version: 0.9.7
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.823270361+01:00"
+    created: "2023-03-30T10:35:32.526610482+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -72,7 +92,7 @@ entries:
     version: 0.9.6
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.77064162+01:00"
+    created: "2023-03-30T10:35:32.457831236+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -92,7 +112,7 @@ entries:
     version: 0.9.5
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.703176832+01:00"
+    created: "2023-03-30T10:35:32.391187744+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -112,7 +132,7 @@ entries:
     version: 0.9.4
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.642442228+01:00"
+    created: "2023-03-30T10:35:32.311045841+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -128,7 +148,7 @@ entries:
     version: 0.9.3
   - apiVersion: v2
     appVersion: 0.9.0
-    created: "2023-02-06T12:48:37.605957091+01:00"
+    created: "2023-03-30T10:35:32.269614158+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -144,7 +164,7 @@ entries:
     version: 0.9.2
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-06T12:48:37.565181943+01:00"
+    created: "2023-03-30T10:35:32.233903622+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -160,7 +180,7 @@ entries:
     version: 0.9.0
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-02-06T12:48:37.54308537+01:00"
+    created: "2023-03-30T10:35:32.204609905+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
@@ -174,21 +194,4 @@ entries:
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-  skeleton-app:
-  - apiVersion: v2
-    appVersion: 0.1.0
-    created: "2023-02-06T12:48:37.921528827+01:00"
-    dependencies:
-    - alias: gateway
-      condition: gateway.enabled
-      name: commonground-gateway
-      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-      version: 1.2.0
-    description: A Helm chart for the Skeleton Gatsby Application
-    digest: cb902ec46b3d527f5531a48cf58d533f8578a8d1e694351bc084e2b08a8981de
-    name: skeleton-app
-    type: application
-    urls:
-    - charts/skeleton-app-0.1.4.tgz
-    version: 0.1.4
-generated: "2023-02-06T12:48:37.492975659+01:00"
+generated: "2023-03-30T10:35:32.178005562+02:00"
