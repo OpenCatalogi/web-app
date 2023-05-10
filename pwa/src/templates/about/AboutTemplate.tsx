@@ -16,9 +16,11 @@ import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { SubmitUrlTemplate } from "../templateParts/submitUrl/SubmitUrlTemplate";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
@@ -43,6 +45,16 @@ export const AboutTemplate: React.FC = () => {
           >
             5 lagen model
           </Button>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.formContainer}>
+          <SubmitUrlTemplate
+            title={t("Register your component")}
+            placeholder={t("Repository url of your component")}
+            buttonLabel={t("Submit component")}
+          />
         </div>
       </section>
 
