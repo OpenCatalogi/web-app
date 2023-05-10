@@ -6,37 +6,59 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useQueryClient } from "react-query";
+import { useGithub } from "../../../hooks/github";
 
 interface SubmitUrlTemplateProps {
   title: string;
-  formId: string;
   placeholder: string;
 }
 
-export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, formId, placeholder }) => {
+export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, placeholder }) => {
   const { t } = useTranslation();
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const queryClient = useQueryClient();
+  const _useGithub = useGithub(queryClient);
+  const postRepository = _useGithub.postRepository();
+
+  const onSubmit = (data: any): void => {
+    const payload = {
+      repository: {
+        ...data,
+      },
+    };
+    postRepository.mutate({ payload });
+  };
 
   const {
     register,
     formState: { errors },
+    handleSubmit,
   } = useForm();
+
+  React.useEffect(() => {
+    setLoading(postRepository.isLoading);
+  }, [postRepository.isLoading]);
 
   return (
     <>
       <Heading4>{title}</Heading4>
 
-      <div className={styles.formContent}>
-        <FormField className={styles.formField}>
-          <FormFieldInput className={styles.inputUrl}>
-            <InputURL {...{ register, errors }} name="url" placeholder={placeholder} />
-          </FormFieldInput>
-        </FormField>
-        <div className={styles.sendButton}>
-          <Button form={formId} icon={<FontAwesomeIcon icon={faPaperPlane} />}>
-            {t("Send")}
-          </Button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.formContent}>
+          <FormField className={styles.formField}>
+            <FormFieldInput className={styles.inputUrl}>
+              <InputURL {...{ register, errors }} name="html_url" placeholder={placeholder} disabled={loading} />
+            </FormFieldInput>
+          </FormField>
+          <div className={styles.sendButton}>
+            <Button type="submit" icon={<FontAwesomeIcon icon={faPaperPlane} />} disabled={loading}>
+              {t("Send")}
+            </Button>
+          </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };
