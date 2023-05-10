@@ -50,7 +50,11 @@ export const AboutTemplate: React.FC = () => {
 
       <section className={styles.section}>
         <div className={styles.formContainer}>
-          <SubmitUrlTemplate title={t("Meld uw component")} placeholder={t("Geef de url naar uw component op.")} />
+          <SubmitUrlTemplate
+            title={t("Register your component")}
+            placeholder={t("Repository url of your component")}
+            buttonLabel={t("Submit component")}
+          />
         </div>
       </section>
 

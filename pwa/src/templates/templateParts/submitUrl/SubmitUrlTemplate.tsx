@@ -12,9 +12,10 @@ import { useGithub } from "../../../hooks/github";
 interface SubmitUrlTemplateProps {
   title: string;
   placeholder: string;
+  buttonLabel?: string;
 }
 
-export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, placeholder }) => {
+export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, placeholder, buttonLabel }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -54,7 +55,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
           </FormField>
           <div className={styles.sendButton}>
             <Button type="submit" icon={<FontAwesomeIcon icon={faPaperPlane} />} disabled={loading}>
-              {t("Send")}
+              {buttonLabel ?? t("Send")}
             </Button>
           </div>
         </div>
