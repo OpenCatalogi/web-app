@@ -71,7 +71,7 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
             <SelectSingle
               id="themeChangerForm"
               name="themeSwitcher"
-              defaultValue={themes[0]}
+              defaultValue={themes.find(({ value }) => value === "rotterdam") || themes[0]}
               options={themes}
               {...{ errors, control, register }}
             />
