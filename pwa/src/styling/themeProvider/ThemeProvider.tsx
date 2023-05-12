@@ -4,9 +4,9 @@ import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
 import { FormFieldInput } from "@gemeente-denhaag/form-field";
-import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
+import { Select, SelectOption } from "@utrecht/component-library-react";
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren<object>): JSX.Element => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
@@ -48,17 +48,16 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
   const {
     register,
     watch,
-    control,
     formState: { errors },
   } = useForm();
 
   React.useEffect(() => {
     const subscription = watch(({ themeSwitcher }) => {
-      setTheme(themeSwitcher?.value);
+      setTheme(themeSwitcher);
     });
 
     return () => subscription.unsubscribe();
-  });
+  }, [watch]);
 
   return (
     <div className={styles.themeSwitcherContainer}>
@@ -68,13 +67,18 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
             <span className={styles.label}>Thema aanpasssen:</span>
           </FormLabel>
           <div className={styles.selectBorder}>
-            <SelectSingle
+            <Select
               id="themeChangerForm"
-              name="themeSwitcher"
-              defaultValue={themes[0]}
-              options={themes}
-              {...{ errors, control, register }}
-            />
+              defaultValue={themes[0].value}
+              invalid={errors["themeSwitcher"]}
+              {...register("themeSwitcher")}
+            >
+              {themes.map(({ label, value }) => (
+                <SelectOption value={value} key={label}>
+                  {label}
+                </SelectOption>
+              ))}
+            </Select>
           </div>
         </FormFieldInput>
       </FormField>
