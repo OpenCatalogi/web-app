@@ -6,6 +6,7 @@ import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
+import { Button, ButtonGroup } from "@utrecht/component-library-react";
 
 interface ComponentCardsAccordionProps {
   components: any[];
@@ -43,6 +44,56 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
 
   return (
     <>
+      <ButtonGroup>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenInteraction(!openInteraction);
+          }}
+        >
+          Interaction
+        </Button>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenProcess(!openProcess);
+          }}
+        >
+          Process
+        </Button>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenIntegration(!openIntegration);
+          }}
+        >
+          Intergration
+        </Button>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenServices(!openServices);
+          }}
+        >
+          Service
+        </Button>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenData(!openData);
+          }}
+        >
+          Data
+        </Button>
+        <Button
+          appearance="subtle-button"
+          onClick={() => {
+            setOpenUnknown(!openUnknown);
+          }}
+        >
+          Unkown
+        </Button>
+      </ButtonGroup>
       <LayerAccordionFiltersTemplate
         items={[
           {
