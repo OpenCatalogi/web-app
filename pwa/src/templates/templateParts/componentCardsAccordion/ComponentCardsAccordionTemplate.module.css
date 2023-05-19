@@ -5,6 +5,13 @@
   layerColorServices: --web-app-layer-color-services;
   layerColorData: --web-app-layer-color-data;
   layerColorUnknown: --web-app-color-top-nav-grey;
+  layerColorDisabled: --web-app-color-background-light;
+}
+
+.LayerColorSample {
+  margin-inline-end: 2px;
+  --utrecht-color-sample-inline-size: 0.75em;
+  --utrecht-color-sample-block-size: 0.75em;
 }
 
 .ComponentsGrid {
