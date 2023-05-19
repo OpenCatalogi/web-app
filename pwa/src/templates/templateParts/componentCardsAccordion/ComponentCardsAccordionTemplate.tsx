@@ -47,6 +47,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       <ButtonGroup>
         <Button
           appearance="subtle-button"
+          disabled={interaction.length === 0}
           onClick={() => {
             setOpenInteraction(!openInteraction);
           }}
@@ -55,6 +56,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         </Button>
         <Button
           appearance="subtle-button"
+          disabled={process.length === 0}
           onClick={() => {
             setOpenProcess(!openProcess);
           }}
@@ -63,6 +65,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         </Button>
         <Button
           appearance="subtle-button"
+          disabled={integration.length === 0}
           onClick={() => {
             setOpenIntegration(!openIntegration);
           }}
@@ -71,6 +74,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         </Button>
         <Button
           appearance="subtle-button"
+          disabled={services.length === 0}
           onClick={() => {
             setOpenServices(!openServices);
           }}
@@ -79,6 +83,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         </Button>
         <Button
           appearance="subtle-button"
+          disabled={data.length === 0}
           onClick={() => {
             setOpenData(!openData);
           }}
@@ -87,6 +92,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
         </Button>
         <Button
           appearance="subtle-button"
+          disabled={unknown.length === 0}
           onClick={() => {
             setOpenUnknown(!openUnknown);
           }}
