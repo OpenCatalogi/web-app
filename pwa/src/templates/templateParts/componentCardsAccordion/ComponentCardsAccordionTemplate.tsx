@@ -7,6 +7,7 @@ import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
 import { Button, ButtonGroup, ColorSample } from "@utrecht/component-library-react";
+import clsx from "clsx";
 interface ComponentCardsAccordionProps {
   components: any[];
 }
@@ -46,74 +47,108 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       <ButtonGroup>
         <Button
           appearance="subtle-button"
-          className={styles.LayerFilterInteraction}
+          className={clsx(styles.LayerFilter, styles.LayerFilterInteraction)}
           disabled={interaction.length === 0}
-          pressed={openIntegration}
           onClick={() => {
             setOpenInteraction(!openInteraction);
           }}
+          pressed={!openInteraction}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorInteraction)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={
+              interaction.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorInteraction)
+            }
+          />
           Interaction
         </Button>
         <Button
-          className={styles.LayerFilterProcess}
+          className={clsx(styles.LayerFilter, styles.LayerFilterProcess)}
           appearance="subtle-button"
           disabled={process.length === 0}
-          pressed={openProcess}
           onClick={() => {
             setOpenProcess(!openProcess);
           }}
+          pressed={!openProcess}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorProcess)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={
+              process.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorProcess)
+            }
+          />
           Process
         </Button>
         <Button
-          className={styles.LayerFilterIntegration}
+          className={clsx(styles.LayerFilter, styles.LayerFilterIntegration)}
           appearance="subtle-button"
           disabled={integration.length === 0}
-          pressed={openIntegration}
           onClick={() => {
             setOpenIntegration(!openIntegration);
           }}
+          pressed={!openIntegration}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorIntegration)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={
+              integration.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorIntegration)
+            }
+          />
           Intergration
         </Button>
         <Button
-          className={styles.LayerFilterServices}
+          className={clsx(styles.LayerFilter, styles.LayerFilterServices)}
           appearance="subtle-button"
           disabled={services.length === 0}
-          pressed={openServices}
           onClick={() => {
             setOpenServices(!openServices);
           }}
+          pressed={!openServices}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorServices)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={
+              services.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorServices)
+            }
+          />
           Service
         </Button>
         <Button
-          className={styles.LayerFilterData}
+          className={clsx(styles.LayerFilter, styles.LayerFilterData)}
           appearance="subtle-button"
           disabled={data.length === 0}
-          pressed={openData}
           onClick={() => {
             setOpenData(!openData);
           }}
+          pressed={!openData}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorData)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={data.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorData)}
+          />
           Data
         </Button>
         <Button
-          className={styles.LayerFilterUnkown}
+          className={clsx(styles.LayerFilter, styles.LayerFilterUnkown)}
           appearance="subtle-button"
           disabled={unknown.length === 0}
-          pressed={openUnknown}
           onClick={() => {
             setOpenUnknown(!openUnknown);
           }}
+          pressed={!openUnknown}
         >
-          <ColorSample className={styles.LayerColorSample} color={getTokenValue(styles.layerColorUnknown)} />
+          <ColorSample
+            className={styles.LayerColorSample}
+            color={
+              unknown.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorUnknown)
+            }
+          />
           Unkown
         </Button>
       </ButtonGroup>
