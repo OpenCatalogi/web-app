@@ -8,6 +8,10 @@
   layerColorDisabled: --web-app-color-background-light;
 }
 
+.LayerFilter[aria-pressed="true"] {
+  opacity: 0.65;
+}
+
 .LayerColorSample {
   margin-inline-end: 2px;
   --utrecht-color-sample-inline-size: 0.75em;
