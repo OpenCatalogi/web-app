@@ -6,7 +6,6 @@ import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
-import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 import {
   upls,
   platforms,
@@ -32,6 +31,7 @@ import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
+import { FormField, FormLabel, RadioButton } from "@utrecht/component-library-react";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -415,10 +415,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
                       value={status.value}
-                      {...register("status")}
+                      // {...register("status")}
                       checked={filters.developmentStatus === status.value}
                     />
                     {status.label}
@@ -457,8 +456,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                     key={maintenanceType.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
                       value={maintenanceType.value}
                       {...register("maintenanceType")}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
@@ -536,8 +534,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                     key={softwareType.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
                       value={softwareType.value}
                       {...register("softwareTypes")}
                       checked={filters.softwareType === softwareType.value}
