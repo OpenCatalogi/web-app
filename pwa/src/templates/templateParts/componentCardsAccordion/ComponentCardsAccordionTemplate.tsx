@@ -4,7 +4,6 @@ import _ from "lodash";
 import { getTokenValue } from "../../../services/getTokenValue";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
-import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
 import { Button, ButtonGroup, ColorSample } from "@utrecht/component-library-react";
 import clsx from "clsx";
@@ -152,27 +151,6 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           Unkown
         </Button>
       </ButtonGroup>
-      <LayerAccordionFiltersTemplate
-        items={[
-          {
-            label: "Interaction",
-            handleClick: setOpenInteraction,
-            active: openInteraction,
-            disabled: !interaction.length,
-          },
-          { label: "Process", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
-          {
-            label: "Integration",
-            handleClick: setOpenIntegration,
-            active: openIntegration,
-            disabled: !integration.length,
-          },
-          { label: "Service", handleClick: setOpenServices, active: openServices, disabled: !services.length },
-          { label: "Data", handleClick: setOpenData, active: openData, disabled: !data.length },
-          { label: "Unknown", handleClick: setOpenUnknown, active: openUnknown, disabled: !unknown.length },
-        ]}
-      />
-
       <Accordion
         open={openInteraction}
         setOpen={setOpenInteraction}
