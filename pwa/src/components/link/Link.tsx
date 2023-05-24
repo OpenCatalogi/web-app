@@ -19,6 +19,7 @@ export const Link = <T,>({
   onClick,
   placeholder,
   state,
+  rel,
   to,
   ...restProps
 }: LinkProps<T>): JSX.Element => {
@@ -30,7 +31,7 @@ export const Link = <T,>({
       state={state}
       onClick={onClick}
       className={clsx("utrecht-link", className)}
-      rel={external ? "external noopener noreferrer" : undefined}
+      rel={external ? `external noopener noreferrer ${rel}` : rel}
     />
   ) : (
     <DesignSystemLink
@@ -39,6 +40,7 @@ export const Link = <T,>({
       href={href}
       onClick={onClick}
       placeholder={placeholder}
+      rel={rel}
       {...restProps}
     />
   );

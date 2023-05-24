@@ -318,3 +318,15 @@
   block-size: max-content;
   inline-size: max-content;
 }
+
+.utrecht-table__row--focus,
+.utrecht-table__row:has(a[rel~="activate-row"]:not(:disabled):not([aria-disabled="true"]):focus) {
+  background-color: var(--utrecht-table-row-focus-background-color);
+  color: var(--utrecht-table-row-focus-color);
+}
+
+.utrecht-table__row--hover,
+.utrecht-table__row:has(a[rel~="activate-row"]:not(:disabled):not([aria-disabled="true"])):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
+}
