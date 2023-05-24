@@ -310,6 +310,10 @@
 
   /* @gemeente-utrecht: table */
   --utrecht-table-border-width: 0;
+  --utrecht-table-row-hover-background-color: var(--rotterdam-color-base-gray);
+  --utrecht-table-row-hover-color: var(--rotterdam-color-gray-tint-11);
+  --utrecht-table-row-focus-background-color: var(--rotterdam-color-base-gray);
+  --utrecht-table-row-focus-color: var(--rotterdam-color-gray-tint-11);
 }
 
 @media (prefers-contrast: more) {
