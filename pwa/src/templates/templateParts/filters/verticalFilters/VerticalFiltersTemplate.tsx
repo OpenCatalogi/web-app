@@ -3,7 +3,7 @@ import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
 import { FormFieldInput } from "@gemeente-denhaag/form-field";
-import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
+import { SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
@@ -32,6 +32,7 @@ import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
+import { Checkbox } from "@utrecht/component-library-react";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -286,7 +287,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <div>
                   {layers.map((layer) => (
                     <div className={styles.checkColor} onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
-                      <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                      <Checkbox name={layer.value} {...{ errors, control, register }} />
+                      {layer.label}
                     </div>
                   ))}
                 </div>
@@ -379,7 +381,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
                     key={platform.value}
                   >
-                    <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
+                    <Checkbox name={platform.label} {...{ errors, control, register }} />
+                    {platform.label}
                   </div>
                 ))}
               </Collapsible>
