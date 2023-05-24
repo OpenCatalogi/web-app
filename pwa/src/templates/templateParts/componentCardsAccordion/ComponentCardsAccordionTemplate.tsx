@@ -46,15 +46,14 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       <ButtonGroup>
         <Button
           appearance="subtle-button"
-          className={clsx(styles.LayerFilter, styles.LayerFilterInteraction)}
+          className={clsx(styles.LayerFilter)}
           disabled={interaction.length === 0}
           onClick={() => {
             setOpenInteraction(!openInteraction);
           }}
-          pressed={!openInteraction}
+          pressed={openInteraction}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={
               interaction.length === 0
                 ? getTokenValue(styles.layerColorDisabled)
@@ -64,16 +63,15 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           Interaction
         </Button>
         <Button
-          className={clsx(styles.LayerFilter, styles.LayerFilterProcess)}
+          className={clsx(styles.LayerFilter)}
           appearance="subtle-button"
           disabled={process.length === 0}
           onClick={() => {
             setOpenProcess(!openProcess);
           }}
-          pressed={!openProcess}
+          pressed={openProcess}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={
               process.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorProcess)
             }
@@ -81,16 +79,15 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           Process
         </Button>
         <Button
-          className={clsx(styles.LayerFilter, styles.LayerFilterIntegration)}
+          className={clsx(styles.LayerFilter)}
           appearance="subtle-button"
           disabled={integration.length === 0}
           onClick={() => {
             setOpenIntegration(!openIntegration);
           }}
-          pressed={!openIntegration}
+          pressed={openIntegration}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={
               integration.length === 0
                 ? getTokenValue(styles.layerColorDisabled)
@@ -100,16 +97,15 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           Intergration
         </Button>
         <Button
-          className={clsx(styles.LayerFilter, styles.LayerFilterServices)}
+          className={clsx(styles.LayerFilter)}
           appearance="subtle-button"
           disabled={services.length === 0}
           onClick={() => {
             setOpenServices(!openServices);
           }}
-          pressed={!openServices}
+          pressed={openServices}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={
               services.length === 0
                 ? getTokenValue(styles.layerColorDisabled)
@@ -119,31 +115,29 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           Service
         </Button>
         <Button
-          className={clsx(styles.LayerFilter, styles.LayerFilterData)}
+          className={clsx(styles.LayerFilter)}
           appearance="subtle-button"
           disabled={data.length === 0}
           onClick={() => {
             setOpenData(!openData);
           }}
-          pressed={!openData}
+          pressed={openData}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={data.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorData)}
           />
           Data
         </Button>
         <Button
-          className={clsx(styles.LayerFilter, styles.LayerFilterUnkown)}
+          className={clsx(styles.LayerFilter)}
           appearance="subtle-button"
           disabled={unknown.length === 0}
           onClick={() => {
             setOpenUnknown(!openUnknown);
           }}
-          pressed={!openUnknown}
+          pressed={openUnknown}
         >
           <ColorSample
-            className={styles.LayerColorSample}
             color={
               unknown.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorUnknown)
             }
