@@ -119,7 +119,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         ))}
       </div>
 
-      <ButtonLink to="/categories" appearance="secondary-action-button">
+      <ButtonLink to="/categories">
         <ArrowRightIcon /> Bekijk alle categorieën
       </ButtonLink>
     </>

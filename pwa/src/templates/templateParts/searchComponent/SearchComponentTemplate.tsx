@@ -65,7 +65,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
           {t("Search")}
         </Button>
 
-        <ButtonLink to="/components" onClick={clearFilters} appearance="secondary-action-button">
+        <ButtonLink to="/components" onClick={clearFilters}>
           <ArrowRightIcon />
           {t("View all components")}
         </ButtonLink>
