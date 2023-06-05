@@ -9,6 +9,7 @@
 .headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
   box-shadow: 0px 10px 13px -14px #000000;
+  border-bottom: var(--web-app-header-top-bar-border-bottom);
 }
 
 .secondaryNavContainer {
@@ -95,21 +96,9 @@
   margin-block-end: var(--web-app-size-2xl);
 }
 
-.title {
-  color: var(--web-app-color-text-grey) !important;
-}
-
-.subTitle {
-  color: var(--web-app-color-text-grey) !important;
-}
-
 .searchFormContainer {
   width: 100%;
   max-width: 650px;
-}
-
-.textColor {
-  color: var(--web-app-color-text-grey) !important;
 }
 
 .denhaag-link__icon {
@@ -154,13 +143,13 @@ li .denhaag-link__icon {
   }
 
   .primaryNavContainer {
-    position: unset;
-    top: unset;
-    left: unset;
-    width: auto;
-    background-color: unset;
-    box-shadow: unset;
-    z-index: unset;
+    position: var(--web-app-nav-container-position);
+    top: var(--web-app-nav-container-top);
+    left: var(--web-app-nav-container-left);
+    width: var(--web-app-nav-container-width) !important;
+    background-color: var(--web-app-nav-container-background-color);
+    box-shadow: var(--web-app-nav-container-box-shadow);
+    z-index: var(--web-app-nav-container-z-index);
   }
 
   .headerContainer {
