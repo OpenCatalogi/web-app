@@ -4,7 +4,6 @@
 
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
-  color: var(--web-app-color-text-grey) !important;
 }
 
 .buttonsContainer {
@@ -43,7 +42,7 @@
 }
 
 .description {
-  color: var(--web-app-color-text-grey) !important;
+  /* color: var(--web-app-color-text-grey) !important; */
 }
 
 .content {
