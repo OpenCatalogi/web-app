@@ -10,7 +10,7 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Tag } from "@conduction/components";
 import { Link } from "../../components";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
@@ -46,7 +46,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       <div className={styles.backButton}>
         <Link to="/categories">
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
+            <IconArrowLeft />
           </Icon>
           {t("Back to categories")}
         </Link>

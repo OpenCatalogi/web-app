@@ -3,7 +3,7 @@ import * as styles from "./ApplicationsDetailTemplate.module.css";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, Tag, ToolTip } from "@conduction/components";
 import { Heading, Paragraph, Icon, Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
@@ -30,7 +30,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
       <div className={styles.backButton}>
         <Link to="/applications">
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
+            <IconArrowLeft />
           </Icon>
           {t("Back to applications")}
         </Link>
