@@ -1,7 +1,4 @@
-/*
- * Generics global
-
-*/
+/* Generics global */
 
 @import "../../node_modules/@nl-design-system-unstable/overheidnl-design-tokens/dist/design-tokens.css";
 
@@ -14,6 +11,7 @@
   --overheidnl-color-blue-30: hsl(203, 100%, 39%);
   --overheidnl-color-blue-20: hsl(211, 69%, 27%);
   --overheidnl-color-blue-10: hsl(212, 70%, 21%);
+  --overheidnl-color-white-10: hsl(0, 0%, 100%);
 
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
@@ -110,6 +108,7 @@
   --web-app-nav-container-background-color: var(--web-app-color-white);
   --web-app-nav-container-box-shadow: unset;
   --web-app-nav-container-z-index: unset;
+  --web-app-nav-color-text: var(--overheidnl-color-white-10);
 
   --web-app-header-logo-container-background-color: unset;
   --web-app-header-logo-container-padding: 10px 10px 0px 10px;
@@ -219,16 +218,19 @@
   --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
   --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
   --web-app-alert-info-icon-color: hsl(207 80% 35%);
-
-  /* 
-    * Utrecht component overrides
-    */
+  --conduction-primary-top-nav-dropdown-color-hover: green;
+  /*  Utrecht component overrides */
   --web-app-button-secondary-action-background-color: inherit;
   --web-app-button-secondary-action-color: inherit;
 }
 
 .overheidnl-theme {
   /*  Overheid.nl button tokens */
+  /* --conduction-primary-top-nav-dropdown-background-color: var(--overheidnl-color-blue-60);
+  --conduction-primary-top-nav-dropdown-background-color-hover: var(--overheidnl-color-blue-30);
+  --conduction-primary-top-nav-dropdown-color: white;
+  --conduction-primary-top-nav-dropdown-color-hover: red; */
+
   --overheidnl-button-icon-gap: 4px;
   --overheidnl-button-primary-box-shadow: 0 0 0.75em rgba(21, 66, 115, 0.4);
   --overheidnl-button-secondary-box-shadow: 0 0 0.75em rgba(21, 66, 115, 0.4);
