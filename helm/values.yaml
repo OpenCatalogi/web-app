@@ -20,7 +20,9 @@ replicacount: 2
 
 global:
   domain: opencatalogi.nl
+  # The main domain the application should be run on. The api's will be available at api., the admin ui on admin.
   tls: true
+  # Whether the helm file should take care of creating TLS certificates and adding them to the ingress resource.
 
 gateway:
   enabled: true
