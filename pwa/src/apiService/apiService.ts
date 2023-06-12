@@ -6,7 +6,6 @@ import Message from "./resources/message";
 import Organization from "./resources/organization";
 import Applications from "./resources/applications";
 import Search from "./resources/search";
-import Github from "./resources/github";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -85,10 +84,6 @@ export default class APIService {
 
   public get Search(): Search {
     return new Search(this.apiClient);
-  }
-
-  public get Github(): Github {
-    return new Github(this.apiClient);
   }
 
   // Services
