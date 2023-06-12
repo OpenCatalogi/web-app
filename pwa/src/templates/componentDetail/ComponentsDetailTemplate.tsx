@@ -482,9 +482,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           </Link>
                         </span>
                       ))}
-                    {(!_getComponent.data.embedded?.nl?.upl || !_getComponent.data.embedded?.nl?.upl.length) && (
-                      <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
-                    )}
+                    {!_getComponent.data.embedded?.nl?.upl ||
+                      (!_getComponent.data.embedded?.nl?.upl.length && (
+                        <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
+                      ))}
                   </TableCell>
                 </TableRow>
                 <TableRow>
