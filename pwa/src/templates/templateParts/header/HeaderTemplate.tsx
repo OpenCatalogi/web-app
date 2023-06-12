@@ -102,15 +102,22 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       current: pathname.includes("/documentation"),
       subItems: [
         {
-          label: t("About"),
+          label: t("About OpenCatalogi"),
           current: pathname === "/documentation/about",
           handleClick: () => navigate("/documentation/about"),
         },
         {
-          label: t("Use"),
+          label: t("Usage"),
           current: pathname === "/documentation/usage",
           handleClick: () => {
             navigate("/documentation/usage");
+          },
+        },
+        {
+          label: t("Contact"),
+          current: pathname === "/documentation/contact",
+          handleClick: () => {
+            navigate("/documentation/contact");
           },
         },
       ],

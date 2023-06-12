@@ -1,0 +1,15 @@
+.container > * {
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.title {
+  color: var(--web-app-color-text-grey);
+}
+
+.description {
+  color: var(--web-app-color-text-grey);
+}

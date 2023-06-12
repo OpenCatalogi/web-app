@@ -48,7 +48,7 @@ export const nl = {
   "API's": "API's",
   "About OpenCatalogi": "Over OpenCatalogi",
   Installation: "Installatie",
-  Use: "Gebruiken",
+  Usage: "Gebruik",
   API: "API",
   Reuser: "Hergebruiker",
   interface: "Interactie",
@@ -100,5 +100,4 @@ export const nl = {
   Sources: "Bronnen",
   "No description available": "Geen beschrijving beschikbaar",
   "Search term": "Zoekterm",
-  Contact: "Contact",
 };
