@@ -210,7 +210,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
           </div>
         </div>
-        {/* <ThemeSwitcher /> */}
       </Container>
     </PageFooter>
   );
