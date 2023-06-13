@@ -101,6 +101,7 @@
   --web-app-header-top-bar-border-bottom: 0.5em solid var(--overheidnl-color-blue-60);
 
   /* OpenCatalogi Header Primary Container */
+
   --web-app-nav-container-position: unset;
   --web-app-nav-container-top: unset;
   --web-app-nav-container-left: unset;
@@ -226,11 +227,6 @@
 
 .overheidnl-theme {
   /*  Overheid.nl button tokens */
-  /* --conduction-primary-top-nav-dropdown-background-color: var(--overheidnl-color-blue-60);
-  --conduction-primary-top-nav-dropdown-background-color-hover: var(--overheidnl-color-blue-30);
-  --conduction-primary-top-nav-dropdown-color: white;
-  --conduction-primary-top-nav-dropdown-color-hover: red; */
-
   --overheidnl-button-icon-gap: 4px;
   --overheidnl-button-primary-box-shadow: 0 0 0.75em rgba(21, 66, 115, 0.4);
   --overheidnl-button-secondary-box-shadow: 0 0 0.75em rgba(21, 66, 115, 0.4);
@@ -239,6 +235,11 @@
   --overheidnl-button-link-hover-background-color: var(--overheidnl-color-blue-10);
   --overheidnl-button-subtle-hover-background-color: var(--overheidnl-color-blue-10);
   --utrecht-button-icon-gap: var(--overheidnl-button-icon-gap);
+
+  /* Overheid.nl Specific TopNav design tokens */
+  --conduction-primary-top-nav-dropdown-background-color: var(--overheidnl-color-blue-60);
+  --conduction-primary-top-nav-dropdown-background-color-hover: var(--overheidnl-color-blue-30);
+  --conduction-primary-top-nav-dropdown-color-hover: var(--overheidnl-color-white-10);
 
   .utrecht-button--primary-action:hover {
     box-shadow: var(--overheidnl-button-primary-box-shadow);
