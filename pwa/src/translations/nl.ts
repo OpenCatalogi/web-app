@@ -100,4 +100,5 @@ export const nl = {
   Sources: "Bronnen",
   "No description available": "Geen beschrijving beschikbaar",
   "Search term": "Zoekterm",
+  "Active Filters": "Actieve Filters",
 };
