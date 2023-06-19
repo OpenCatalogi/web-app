@@ -15,7 +15,7 @@ import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Alert, Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { CircleInformationIcon } from "@gemeente-denhaag/icons";
+import { IconInfoCircle } from "@tabler/icons-react";
 import { Paragraph } from "@gemeente-denhaag/components-react";
 
 export const ComponentsTemplate: React.FC = () => {
@@ -62,7 +62,7 @@ export const ComponentsTemplate: React.FC = () => {
               type="info"
               icon={
                 <Icon>
-                  <CircleInformationIcon />
+                  <IconInfoCircle />
                 </Icon>
               }
             >
@@ -75,7 +75,7 @@ export const ComponentsTemplate: React.FC = () => {
               type="info"
               icon={
                 <Icon>
-                  <CircleInformationIcon />
+                  <IconInfoCircle />
                 </Icon>
               }
             >
@@ -87,7 +87,7 @@ export const ComponentsTemplate: React.FC = () => {
               type="info"
               icon={
                 <Icon>
-                  <CircleInformationIcon />
+                  <IconInfoCircle />
                 </Icon>
               }
             >

@@ -6,6 +6,7 @@ import { BadgeCounter, Heading, Paragraph, Icon, Button } from "@utrecht/compone
 import { Container, InfoCard, Tag, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
@@ -66,7 +67,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       <div className={styles.backButton}>
         <Link to="/components">
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
+            <IconArrowLeft />
           </Icon>
           {t("Back to components")}
         </Link>
@@ -175,7 +176,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </div>
               <Button>
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <IconExternalLink />
                 </Icon>{" "}
                 Toevoegen aan catalogus
               </Button>
@@ -220,7 +221,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <span className={styles.link}>
                         <Link onClick={show}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <IconArrowRight />
                           </Icon>
                           Rating
                         </Link>
@@ -348,7 +349,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <CallIcon />
+                            <IconPhone />
                           </Icon>
                           010 - 123 456 7
                         </Link>
@@ -357,7 +358,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <IconArrowRight />
                           </Icon>
                           {t("Details")}
                         </Link>
@@ -377,7 +378,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <CallIcon />
+                            <IconPhone />
                           </Icon>
                           020 - 123 456 7
                         </Link>
@@ -386,7 +387,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <IconArrowRight />
                           </Icon>
                           {t("Details")}
                         </Link>
@@ -406,7 +407,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>
                         <Link to={""}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <CallIcon />
+                            <IconPhone />
                           </Icon>
                           030 - 123 456 7
                         </Link>
@@ -415,7 +416,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell className={styles.details}>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <IconArrowRight />
                           </Icon>
                           {t("Details")}
                         </Link>
@@ -495,7 +496,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
                           >
                             <Icon className="utrecht-icon--conduction-start">
-                              <ExternalLinkIcon />
+                              <IconExternalLink />
                             </Icon>
                             {product},{" "}
                           </Link>
