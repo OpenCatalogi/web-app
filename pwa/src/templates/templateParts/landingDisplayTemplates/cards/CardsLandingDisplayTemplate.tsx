@@ -12,7 +12,7 @@ export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplatePr
       <div className={styles.subHeading}>
         <Heading level={2}>Portfolio</Heading>
 
-        <Paragraph lead>
+        <Paragraph>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
         </Paragraph>
       </div>

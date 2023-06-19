@@ -1,10 +1,10 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
@@ -31,7 +31,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
           {t("Categories")}
         </Heading>
 
-        <Paragraph lead className={styles.description}>
+        <Paragraph className={styles.description}>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
         </Paragraph>
       </div>
@@ -50,7 +50,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                       <div>
                         <Link to={`/categories/${_category.id}`}>
                           <Icon className="utrecht-icon--conduction-start">
-                            <ArrowRightIcon />
+                            <IconArrowRight />
                           </Icon>
                           {_category.title}
                         </Link>
@@ -68,7 +68,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                         <div>
                           <Link to={`/categories/${_category.id}`}>
                             <Icon className="utrecht-icon--conduction-start">
-                              <ArrowRightIcon />
+                              <IconArrowRight />
                             </Icon>
                             {_category.title}
                           </Link>
@@ -87,7 +87,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                               <div>
                                 <Link to={`/categories/${_category.id}`}>
                                   <Icon className="utrecht-icon--conduction-start">
-                                    <ArrowRightIcon />
+                                    <IconArrowRight />
                                   </Icon>
                                   {_category.title}
                                 </Link>
@@ -98,15 +98,15 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
 
                       <Button
                         className={styles.showMoreButton}
-                        variant="secondary-action"
+                        appearance="secondary-action-button"
                         onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
-                        icon={
+                      >
+                        <Icon>
                           <FontAwesomeIcon
                             className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
                             icon={faChevronRight}
                           />
-                        }
-                      >
+                        </Icon>
                         {showMore[index] ? "show less" : "show more"}
                       </Button>
                     </>
@@ -119,8 +119,8 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         ))}
       </div>
 
-      <ButtonLink to="/categories" appearance="secondary-action-button">
-        <ArrowRightIcon /> Bekijk alle categorieën
+      <ButtonLink to="/categories">
+        <IconArrowRight /> Bekijk alle categorieën
       </ButtonLink>
     </>
   );

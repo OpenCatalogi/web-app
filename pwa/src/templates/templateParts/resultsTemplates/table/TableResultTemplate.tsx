@@ -1,17 +1,26 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, StatusBadge, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import {
+  Table,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+} from "@utrecht/component-library-react/dist/css-module";
+import { IconArrowRight } from "@tabler/icons-react";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { Link } from "../../../../components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -21,21 +30,59 @@ interface LayersResultTemplateProps {
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
 
+  /**
+   * Map component status to `StatusBadge` status
+   */
+  const getStatus = (description: string) => {
+    switch (description) {
+      case "Concept":
+        return "warning";
+      case "Development":
+        return "warning";
+      case "Beta":
+        return "warning";
+      case "Bruikbaar":
+        return "safe";
+      case "Stable":
+        return "safe";
+      case "Obsolete":
+        return "danger";
+      default:
+        return;
+    }
+  };
+
+  const ComponentStatusBadge = ({ status }: { status: string }) => {
+    const s = getStatus(status);
+    return (
+      <StatusBadge status={s} className={styles.tagWidth}>
+        {s ? (
+          <>
+            <FontAwesomeIcon icon={faInfoCircle} />{" "}
+          </>
+        ) : (
+          ""
+        )}
+        {t(status)}
+      </StatusBadge>
+    );
+  };
+
   return (
     <TableWrapper>
       <Table>
         {!hideTableHead && (
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>{t("Name")}</TableHeader>
-              <TableHeader>{t("Type")}</TableHeader>
-              <TableHeader>{t("Layer")}</TableHeader>
-              <TableHeader>{t("Sources")}</TableHeader>
-              <TableHeader>{t("ComponentType")}</TableHeader>
-              <TableHeader>{t("Status")}</TableHeader>
+              <TableHeaderCell>{t("Name")}</TableHeaderCell>
+              <TableHeaderCell>{t("Type")}</TableHeaderCell>
+              <TableHeaderCell>{t("Layer")}</TableHeaderCell>
+              <TableHeaderCell>{t("Sources")}</TableHeaderCell>
+              <TableHeaderCell>{t("ComponentType")}</TableHeaderCell>
+              <TableHeaderCell>{t("Status")}</TableHeaderCell>
               <TableHeader />
             </TableRow>
-          </TableHead>
+          </TableHeader>
         )}
 
         <TableBody>
@@ -108,15 +155,13 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
 
                 <TableCell>
                   <ToolTip tooltip="Status">
-                    <DataBadge className={styles.tagWidth}>
-                      {t(
-                        _.upperFirst(
-                          component._self.schema.ref.includes("component.schema.json")
-                            ? component.developmentStatus ?? "Onbekend"
-                            : "N.V.T.",
-                        ),
+                    <ComponentStatusBadge
+                      status={_.upperFirst(
+                        component._self.schema.ref.includes("component.schema.json")
+                          ? component.developmentStatus ?? "Onbekend"
+                          : "N.V.T.",
                       )}
-                    </DataBadge>
+                    />
                   </ToolTip>
                 </TableCell>
 
@@ -124,9 +169,10 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   <Link
                     to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
                     className={styles.detailsLink}
+                    rel="activate-row"
                   >
                     <Icon className="utrecht-icon--conduction-start">
-                      <ArrowRightIcon />
+                      <IconArrowRight />
                     </Icon>
                     {t("Details")}
                   </Link>

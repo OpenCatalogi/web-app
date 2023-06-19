@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Divider, Paragraph } from "@gemeente-denhaag/components-react";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Divider } from "@gemeente-denhaag/components-react";
+import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { Link } from "../link/Link";
 
 export interface CategoryCardProps {

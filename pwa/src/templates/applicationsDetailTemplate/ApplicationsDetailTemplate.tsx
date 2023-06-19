@@ -1,9 +1,16 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider } from "@gemeente-denhaag/components-react";
+import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, ToolTip } from "@conduction/components";
-import { Heading, Paragraph, Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import {
+  Heading,
+  Paragraph,
+  Icon,
+  Button,
+  ButtonGroup,
+  DataBadge,
+} from "@utrecht/component-library-react/dist/css-module";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
@@ -30,7 +37,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
       <div className={styles.backButton}>
         <Link to="/applications">
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowLeftIcon />
+            <IconArrowLeft />
           </Icon>
           {t("Back to applications")}
         </Link>
@@ -43,9 +50,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               <Heading level={1} className={styles.title}>
                 {getApplications.data.name}
               </Heading>
-              <Paragraph lead className={styles.description}>
-                {getApplications.data.description}
-              </Paragraph>
+              <Paragraph className={styles.description}>{getApplications.data.description}</Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (
@@ -77,24 +82,30 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div className={styles.components}>
-            <div className={styles.dependenciesDisplaySwitchButtons}>
+            <ButtonGroup className={styles.dependenciesDisplaySwitchButtons}>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "layer" ? "primary-action" : "secondary-action"}
+                pressed={layerType === "layer"}
+                appearance={layerType === "layer" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("layer")}
               >
-                <FontAwesomeIcon icon={faLayerGroup} />
+                <Icon>
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                </Icon>{" "}
                 {t("Layers")}
               </Button>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "relations" ? "primary-action" : "secondary-action"}
+                pressed={layerType === "relations"}
+                appearance={layerType === "relations" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("relations")}
               >
-                <FontAwesomeIcon icon={faCircleNodes} />
+                <Icon>
+                  <FontAwesomeIcon icon={faCircleNodes} />
+                </Icon>{" "}
                 {t("Relations")}
               </Button>
-            </div>
+            </ButtonGroup>
 
             <DependenciesTemplate
               type={layerType}

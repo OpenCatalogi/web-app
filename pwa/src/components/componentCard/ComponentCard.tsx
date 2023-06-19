@@ -1,13 +1,12 @@
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
-import { Paragraph } from "@gemeente-denhaag/components-react";
-import { DataBadge, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
 import { ToolTip } from "../toolTip/ToolTip";
 import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export interface ComponentCardProps {
   title: {
@@ -48,7 +47,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.titleLink}>
         <Link to={title.href}>
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
+            <IconArrowRight />
           </Icon>
           {title.label}
         </Link>
@@ -65,9 +64,9 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
         <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
           {!!__categories &&
             __categories.map(
-              (category: any) =>
+              (category: any, idx: number) =>
                 category && (
-                  <ToolTip tooltip="Categorie">
+                  <ToolTip key={idx} tooltip="Categorie">
                     <DataBadge>{_.upperFirst(category?.title)}</DataBadge>
                   </ToolTip>
                 ),

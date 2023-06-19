@@ -153,8 +153,6 @@
 
   --web-app-filter-badge-color: hsl(0deg 0% 85%);
 
-  --web-app-breadcrumb-color: var(--rotterdam-color-green);
-
   --web-app-checkbox-color: var(--rotterdam-color-green);
   --web-app-radio-button-color: var(--rotterdam-color-green);
 
@@ -227,7 +225,7 @@
   --web-app-sidenav-item-font-size: var(--web-app-size-md);
 
   /* @gemeent-denhaag: Alert */
-  --web-app-alert-info-background-color: #dbecfa;
+  --web-app-alert-info-background-color: #1791d41a;
   --web-app-alert-info-action-button-background-color: hsl(207 80% 35%);
   --web-app-alert-info-action-button-background-color-hover: hsl(207 80% 30%);
   --web-app-alert-info-icon-color: hsl(207 80% 35%);
@@ -267,4 +265,64 @@
   /* @gemeente-utrecht: Databadge */
   --utrecht-badge-padding-block: 8px;
   --utrecht-badge-background-color: var(--rotterdam-color-base-black);
+  /* @gemeente-utrecht: Alert */
+  --utrecht-alert-background-color: var(--web-app-alert-info-background-color);
+  --utrecht-alert-border-color: #1791d440;
+  --utrecht-alert-border-width: 1px;
+  --utrecht-alert-color: --web-app-color-black;
+  --utrecht-alert-padding-block-start: var(--web-app-size-lg);
+  --utrecht-alert-padding-block-end: var(--web-app-size-lg);
+  --utrecht-alert-padding-inline-start: var(--web-app-size-lg);
+  --utrecht-alert-padding-inline-end: var(--web-app-size-lg);
+  --utrecht-alert-content-margin-inline-start: var(--web-app-size-lg);
+  --utrecht-alert-content-margin-inline-end: var(--web-app-size-lg);
+  --utrecht-alert-icon-gap: 12px;
+  --utrecht-alert-info-background-color: rgba(23, 145, 212, 0.1);
+  --utrecht-alert-info-border-color: rgba(23, 145, 212, 0.25);
+  --utrecht-alert-icon-info-color: #00689e;
+
+  --utrecht-alert-warning-background-color: rgba(237, 181, 0, 0.1);
+  --utrecht-alert-warning-border-color: rgba(237, 181, 0, 0.25);
+  --utrecht-alert-icon-warning-color: #a65600;
+
+  --utrecht-alert-error-background-color: rgba(227, 97, 77, 0.1);
+  --utrecht-alert-error-border-color: rgba(227, 97, 77, 0.25);
+  --utrecht-alert-icon-error-color: var(--rotterdam-color-red-tint-02);
+
+  --utrecht-alert-ok-background-color: rgba(0, 129, 31, 0.1);
+  --utrecht-alert-ok-border-color: rgba(0, 129, 31, 0.25);
+  --utrecht-alert-icon-ok-color: var(--rotterdam-color-base-green);
+
+  /* @denhaag alert icon */
+  --utrecht-icon-size: 1.5em;
+
+  --utrecht-feedback-safe-fill-background-color: hsla(139, 81%, 35%, 1);
+  --utrecht-feedback-warning-fill-background-color: hsla(41, 100%, 43%, 1);
+  --utrecht-feedback-danger-fill-background-color: hsla(7, 60%, 52%, 1);
+  --utrecht-feedback-neutral-fill-background-color: hsla(201, 100%, 36%, 1);
+
+  --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
+  --utrecht-action-activate-cursor: pointer;
+
+  /* @gemeente-denhaag: Breadcrumb */
+  --denhaag-breadcrumb-color: var(--rotterdam-color-green);
+  --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
+
+  --utrecht-color-sample-border-radius: 4px;
+  --utrecht-button-icon-gap: var(--rotterdam-space-scale-1);
+
+  /* @gemeente-utrecht: table */
+  --utrecht-table-border-width: 0;
+  --utrecht-table-row-hover-background-color: var(--rotterdam-color-base-gray);
+  --utrecht-table-row-hover-color: var(--rotterdam-color-gray-tint-11);
+  --utrecht-table-row-focus-background-color: var(--rotterdam-color-base-gray);
+  --utrecht-table-row-focus-color: var(--rotterdam-color-gray-tint-11);
+}
+
+@media (prefers-contrast: more) {
+  .rotterdam-theme {
+    --utrecht-feedback-safe-fill-color: black;
+    --utrecht-feedback-warning-fill-color: black;
+    --utrecht-feedback-danger-fill-color: black;
+  }
 }

@@ -1,15 +1,24 @@
 import * as React from "react";
 import * as styles from "./AboutTemplate.module.css";
 import { Container, QuoteWrapper } from "@conduction/components";
-import { Button, Paragraph } from "@gemeente-denhaag/components-react";
-import { Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+  TableHeaderCell,
+  Heading,
+  Icon,
+  Button,
+  Paragraph,
+} from "@utrecht/component-library-react/dist/css-module";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { Link } from "../../components";
+import { IconExternalLink } from "@tabler/icons-react";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -24,17 +33,17 @@ export const AboutTemplate: React.FC = () => {
         </Paragraph>
 
         <div className={styles.buttonsContainer}>
-          <Button
-            onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}
-            icon={<ExternalLinkIcon />}
-          >
+          <Button onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}>
+            <Icon className="utrecht-icon--conduction-start">
+              <IconExternalLink />
+            </Icon>
             Gegevenslandschap
           </Button>
 
-          <Button
-            onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}
-            icon={<ExternalLinkIcon />}
-          >
+          <Button onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}>
+            <Icon className="utrecht-icon--conduction-start">
+              <IconExternalLink />
+            </Icon>
             5 lagen model
           </Button>
         </div>
@@ -52,7 +61,7 @@ export const AboutTemplate: React.FC = () => {
               href="https://www.gemmaonline.nl/images/gemmaonline/0/09/GEMMA_Gegevenslandschap_-_Informatiearchitectuurprincipes_v1_0.pdf"
             >
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <IconExternalLink />
               </Icon>{" "}
               GEMMA gegevenslandschap informatiearchitectuurprincipes
             </Link>
@@ -84,21 +93,21 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={2}>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading>
 
         <Table>
-          <TableBody>
+          <TableBody className={styles.customTable}>
             <TableRow>
-              <TableHeader>Autonomie</TableHeader>
+              <TableCell>Autonomie</TableCell>
               <TableCell>Componenten zijn zelfstandig inzetbaar, schaalbaar en vervangbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Losse koppeling</TableHeader>
+              <TableCell>Losse koppeling</TableCell>
               <TableCell>
                 Componenten zijn onderling onafhankelijk en zelfstandig door te ontwikkelen en gebruiken
               </TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Herbruikbaar</TableHeader>
+              <TableCell>Herbruikbaar</TableCell>
               <TableCell>
                 Componenten zijn vaker in te zetten door ze in verschillende omgevingen te gebruiken of door een
                 component vaker te instantiëren binnen één omgeving
@@ -106,12 +115,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeader>Samenstelbaar</TableHeader>
+              <TableCell>Samenstelbaar</TableCell>
               <TableCell>Componenten kunnen worden gecombineerd tot nieuwe componenten</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Abstractie</TableHeader>
+              <TableCell>Abstractie</TableCell>
               <TableCell>
                 Afnemers hoeven alleen de functionaliteit van een component te kennen en niet de interne werking ervan.
                 Service-contract - Een component kent duidelijke voorwaarden en leveringsafspraken over de kwaliteit en
@@ -120,12 +129,12 @@ export const AboutTemplate: React.FC = () => {
             </TableRow>
 
             <TableRow>
-              <TableHeader>Vindbaar</TableHeader>
+              <TableCell>Vindbaar</TableCell>
               <TableCell>Services zijn voorzien van metadata en zijn goed vindbaar</TableCell>
             </TableRow>
 
             <TableRow>
-              <TableHeader>Toestandsloos</TableHeader>
+              <TableCell>Toestandsloos</TableCell>
               <TableCell>
                 Componenten die diensten leveren bewaren geen statusinformatie (maar laten dit over aan afnemers of
                 gespecialiseerde componenten)
@@ -139,7 +148,7 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={3}>Componenten conformeren zich aan het vijf-lagenmodel</Heading>
 
         <Table>
-          <TableBody>
+          <TableBody className={styles.customTable}>
             <TableRow>
               <TableCell>Componenten beperken zich tot functionaliteit binnen de laag waartoe ze behoren</TableCell>
             </TableRow>
@@ -187,7 +196,7 @@ export const AboutTemplate: React.FC = () => {
           <span>
             <Link target="_new" href="https://forumstandaardisatie.nl/open-standaarden/verplicht">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <IconExternalLink />
               </Icon>{" "}
               verplichte standaarden
             </Link>
@@ -197,12 +206,18 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.paragraphButtons}>
           <div onClick={() => open("https://forumstandaardisatie.nl/")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start">
+            <Button>
+              <Icon className="utrecht-icon--conduction-start">
+                <IconExternalLink />
+              </Icon>
               Forum Standaardisatie
             </Button>
           </div>
           <div onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
-            <Button icon={<ExternalLinkIcon />} iconAlign="start" variant="secondary-action">
+            <Button appearance="secondary-action-button">
+              <Icon className="utrecht-icon--conduction-start">
+                <IconExternalLink />
+              </Icon>
               Verplichte Standaarden
             </Button>
           </div>
@@ -211,15 +226,15 @@ export const AboutTemplate: React.FC = () => {
       <section className={clsx(styles.section, styles.standardsTableWrapper)}>
         <div className={styles.content}>
           <Table>
-            <TableHead>
+            <TableHeader className={styles.customTable}>
               <TableRow className={styles.tableRow}>
-                <TableHeader>{t("Standard")}</TableHeader>
-                <TableHeader>{t("Type")}</TableHeader>
-                <TableHeader>{t("Version")}</TableHeader>
-                <TableHeader>{t("Management organization")}</TableHeader>
+                <TableHeaderCell>{t("Standard")}</TableHeaderCell>
+                <TableHeaderCell>{t("Type")}</TableHeaderCell>
+                <TableHeaderCell>{t("Version")}</TableHeaderCell>
+                <TableHeaderCell>{t("Management organization")}</TableHeaderCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
+            </TableHeader>
+            <TableBody className={styles.customTable}>
               {TEMPORARY_STANDARDS.map((standard, idx) => (
                 <TableRow className={styles.tableRow} key={idx}>
                   <TableCell>{standard.name}</TableCell>

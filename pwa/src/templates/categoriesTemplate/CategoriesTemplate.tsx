@@ -5,7 +5,7 @@ import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
-import { ExternalLinkIcon, ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import { Link } from "../../components";
 
 export const CategoriesTemplate: React.FC = () => {
@@ -21,12 +21,12 @@ export const CategoriesTemplate: React.FC = () => {
         </Heading>
 
         <div className={styles.subHeading}>
-          <Paragraph lead className={styles.description}>
+          <Paragraph className={styles.description}>
             We verdelen{" "}
             <span>
               <Link to="/applications">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightIcon />
+                  <IconArrowRight />
                 </Icon>
                 applicaties
               </Link>
@@ -35,7 +35,7 @@ export const CategoriesTemplate: React.FC = () => {
             <span>
               <Link to="/components">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ArrowRightIcon />
+                  <IconArrowRight />
                 </Icon>
                 componenten
               </Link>
@@ -45,7 +45,7 @@ export const CategoriesTemplate: React.FC = () => {
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <IconExternalLink />
                 </Icon>
                 Gemma bedrijfsfuncties
               </Link>

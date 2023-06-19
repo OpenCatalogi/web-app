@@ -8,10 +8,6 @@
   margin-block-start: var(--web-app-size-3xl);
 }
 
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 .subHeading {
   width: 100%;
   max-width: 800px;

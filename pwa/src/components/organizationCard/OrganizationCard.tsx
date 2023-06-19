@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
-import { Paragraph } from "@gemeente-denhaag/components-react";
-import { DataBadge, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
@@ -49,7 +48,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
           <div className={styles.titleLink}>
             <Link to={title.href}>
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightIcon />
+                <IconArrowRight />
               </Icon>
               {title.label}
             </Link>

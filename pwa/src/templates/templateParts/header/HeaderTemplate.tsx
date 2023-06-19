@@ -177,7 +177,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                 {t("Open Catalogs")}
               </Heading>
 
-              <Paragraph lead className={styles.subTitle}>
+              <Paragraph className={styles.subTitle}>
                 {t("One central place for reuse of information technology within the government")}
               </Paragraph>
             </div>

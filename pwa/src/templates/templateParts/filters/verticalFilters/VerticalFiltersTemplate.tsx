@@ -2,11 +2,11 @@ import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
-import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
+import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 import {
   upls,
   platforms,
@@ -219,7 +219,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetLayerFilter.map((layer: any) => {
-      var checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
@@ -232,7 +232,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetPlatformFilter.map((platform: any) => {
-      var checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
@@ -296,30 +296,31 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormULP"}>
                 <span className={styles.filterTitle}>
                   UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
 
               <div className={styles.selectBorder}>
-                <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
+                <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />{" "}
               </div>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormOrginisation"}>
                 <span className={styles.filterTitle}>
-                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
                 {getOrganisations.isLoading && <Skeleton height="50px" />}
 
                 {getOrganisations.isSuccess && (
                   <SelectSingle
+                    id="sortFormOrginisation"
                     isClearable
                     options={organizations}
                     name="organization"
@@ -332,13 +333,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormCategory"}>
                 <span className={styles.filterTitle}>
                   Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
+                <SelectSingle
+                  id="sortFormCategory"
+                  isClearable
+                  name="category"
+                  options={categories}
+                  {...{ errors, control, register }}
+                />{" "}
               </div>
             </FormFieldInput>
           </FormField>
@@ -465,26 +472,37 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormLicense"}>
                 <span className={styles.filterTitle}>
                   Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
+                <SelectSingle
+                  id="sortFormLicense"
+                  isClearable
+                  name="license"
+                  options={licenses}
+                  {...{ errors, control, register }}
+                />{" "}
               </div>
             </FormFieldInput>
           </FormField>
 
-          <FormField>
+          <FormField id="sortFormCompanyFunction">
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormCompanyFunction"}>
                 <span className={styles.filterTitle}>
                   Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
+                <SelectMultiple
+                  id="sortFormLicense"
+                  name="bedrijfsfuncties"
+                  options={bedrijfsfuncties}
+                  {...{ errors, control, register }}
+                />{" "}
               </div>
             </FormFieldInput>
           </FormField>
@@ -533,27 +551,33 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormServices"}>
                 <span className={styles.filterTitle}>
                   Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
+                <SelectMultiple
+                  id="sortFormServices"
+                  name="bedrijfsservices"
+                  options={bedrijfsservices}
+                  {...{ errors, control, register }}
+                />{" "}
               </div>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormReference"}>
                 <span className={styles.filterTitle}>
                   Referentie componenten{" "}
                   <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple
+                  id="sortFormReference"
                   name="referentieComponenten"
                   options={referentieComponenten}
                   {...{ errors, control, register }}

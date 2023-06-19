@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
-import { Paragraph } from "@gemeente-denhaag/components-react";
-import { DataBadge, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
+import { IconArrowRight } from "@tabler/icons-react";
 
 export interface ApplicationCardProps {
   title: {
@@ -27,7 +26,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
       <div className={styles.titleLink}>
         <Link to={title.href}>
           <Icon className="utrecht-icon--conduction-start">
-            <ArrowRightIcon />
+            <IconArrowRight />
           </Icon>
           {title.label}
         </Link>

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApiDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink } from "@tabler/icons-react";
 import { Link } from "../../../components";
 
 export const ApiDocumentationTemplate: React.FC = () => {
@@ -11,13 +11,13 @@ export const ApiDocumentationTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading level={1}>API Documentatie</Heading>
 
-        <Paragraph lead>
+        <Paragraph>
           Quisque id mi. Vivamus in erat ut urna cursus vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus
           et ultrices posuere cubilia Curae Sed aliquam.{" "}
           <span>
             <Link to="#">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <IconExternalLink />
               </Icon>
               Lees meer.
             </Link>
