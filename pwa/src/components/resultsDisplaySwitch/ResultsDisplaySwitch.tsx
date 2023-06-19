@@ -31,7 +31,7 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
 
   return (
     <ButtonGroup className={clsx(styles.resultsDisplaySwitchButtons, [layoutClassName] && layoutClassName)}>
-      {acceptedFilters[resultsDisplayType].map((displayType) => {
+      {acceptedFilters[resultsDisplayType].map((displayType, idx: number) => {
         let icon = faTable;
 
         if (displayType === "table") icon = faTable;
@@ -43,6 +43,7 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         // remove the `appereance` switch, and use the same appearance for each button.
         return (
           <Button
+            key={idx}
             className={styles.buttonIcon}
             pressed={filters[resultsDisplayType] === displayType}
             appearance={filters[resultsDisplayType] === displayType ? "secondary-action-button" : "subtle-button"}
