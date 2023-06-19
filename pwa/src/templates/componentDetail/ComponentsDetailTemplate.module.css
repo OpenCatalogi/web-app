@@ -113,11 +113,6 @@
   padding-block-end: var(--web-app-size-lg) !important;
 }
 
-.details {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .tab {
   max-width: unset !important;
 }

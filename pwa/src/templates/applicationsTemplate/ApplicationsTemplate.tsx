@@ -8,7 +8,7 @@ import { ApplicationCard } from "../../components/applicationCard/ApplicationCar
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink } from "@tabler/icons-react";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { GatsbyContext } from "../../context/gatsby";
 import { Link } from "../../components";
@@ -50,7 +50,7 @@ export const ApplicationsTemplate: React.FC = () => {
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
                 <Icon className="utrecht-icon--conduction-start">
-                  <ExternalLinkIcon />
+                  <IconExternalLink />
                 </Icon>{" "}
                 bedrijfsfunctie
               </Link>
