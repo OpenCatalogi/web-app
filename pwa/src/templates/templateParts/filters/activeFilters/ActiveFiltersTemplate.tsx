@@ -74,7 +74,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
       <div className={styles.activeFiltersHeader}>
         <Heading level={4}>Actieve Filters</Heading>
         <DataBadge className={styles.onClickActiveFiltersButton} onClick={clearFilters}>
-          Alles wissen
+          Alle filters wissen
         </DataBadge>
       </div>
       <div className={styles.activeFilters}>

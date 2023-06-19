@@ -20,7 +20,7 @@ import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { Link } from "../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -115,6 +115,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                   >
                     <ToolTip tooltip={t("Layer")}>
                       <DataBadge className={styles.tagWidth}>
+                        <FontAwesomeIcon icon={faLayerGroup} />{" "}
                         {t(
                           _.upperFirst(
                             component._self.schema.ref.includes("component.schema.json")

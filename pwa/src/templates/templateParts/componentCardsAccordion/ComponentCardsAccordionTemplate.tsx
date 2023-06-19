@@ -7,6 +7,7 @@ import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
 import { Button, ButtonGroup, ColorSample } from "@utrecht/component-library-react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 interface ComponentCardsAccordionProps {
   components: any[];
 }
@@ -14,6 +15,8 @@ interface ComponentCardsAccordionProps {
 export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionProps> = ({ components }) => {
   const Accordion = LayerAccordion.accordion;
   const AccordionCardsController = LayerAccordion.controller;
+
+  const { t } = useTranslation();
 
   const { open: openInteraction, setOpen: setOpenInteraction } = AccordionCardsController();
   const { open: openProcess, setOpen: setOpenProcess } = AccordionCardsController();
@@ -60,7 +63,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
                 : getTokenValue(styles.layerColorInteraction)
             }
           />
-          Interaction
+          {t("Interaction")}
         </Button>
         <Button
           className={clsx(styles.LayerFilter)}
@@ -76,7 +79,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
               process.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorProcess)
             }
           />
-          Process
+          {t("Process")}
         </Button>
         <Button
           className={clsx(styles.LayerFilter)}
@@ -94,7 +97,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
                 : getTokenValue(styles.layerColorIntegration)
             }
           />
-          Intergration
+          {t("Integration")}
         </Button>
         <Button
           className={clsx(styles.LayerFilter)}
@@ -112,7 +115,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
                 : getTokenValue(styles.layerColorServices)
             }
           />
-          Service
+          {t("Service")}
         </Button>
         <Button
           className={clsx(styles.LayerFilter)}
@@ -126,7 +129,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           <ColorSample
             color={data.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorData)}
           />
-          Data
+          {t("Data")}
         </Button>
         <Button
           className={clsx(styles.LayerFilter)}
@@ -142,7 +145,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
               unknown.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorUnknown)
             }
           />
-          Unkown
+          {t("Unknown")}
         </Button>
       </ButtonGroup>
       <Accordion

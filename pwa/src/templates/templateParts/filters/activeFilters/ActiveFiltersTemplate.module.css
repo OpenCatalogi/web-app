@@ -1,19 +1,9 @@
 .activeFiltersHeader {
-  display: flex;
-}
-
-.activeFiltersHeader {
   margin-block-end: var(--web-app-size-xs);
 }
 
 .activeFiltersHeader > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
-}
-
-.removeActiveFiltersButton:hover {
-  cursor: pointer;
-
-  --conduction-tag-background-color: #ffbdad;
 }
 
 .activeFilters {
@@ -25,6 +15,11 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
-.activeFilters > div {
+.activeFilters > * {
   margin-block-end: var(--web-app-size-xs);
+}
+
+.activeFilters > *:hover,
+.onClickActiveFiltersButton:hover {
+  cursor: pointer;
 }

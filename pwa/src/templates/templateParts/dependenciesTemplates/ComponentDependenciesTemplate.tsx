@@ -3,7 +3,6 @@ import * as _ from "lodash";
 import { TComponentDependenciesLayout } from "../../../context/filters";
 import { RelationsDependenciesTemplate } from "./relationsDependenciesTemplate/RelationsDependenciesTemplate";
 import { LayerDependenciesTemplate } from "./layerDependenciesTemplate/LayerDependenciesTemplate";
-import { useTranslation } from "react-i18next";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 
 interface DependenciesTemplateProps {

@@ -8,6 +8,10 @@ import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { Link } from "../../components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
 
 export interface OrganizationCardProps {
   title: {
@@ -66,35 +70,53 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
       <div className={styles.tagsContainer}>
         <ToolTip tooltip="Organisatie type">
-          <DataBadge onClick={() => navigate(title.href)}>{t(_.upperFirst(type ? type : "Unknown"))}</DataBadge>
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faBuilding} />
+
+            {t(_.upperFirst(type ? type : "Unknown"))}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal eigen componenten">
-          <DataBadge onClick={() => navigate(title.href)}>{components.owned}</DataBadge>
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faHouseLaptop} />
+            {components.owned}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal ondersteunde componenten">
-          <DataBadge onClick={() => navigate(title.href)}>{components.supported}</DataBadge>
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faUserCog} />
+            {components.supported}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal gebruikte componenten">
-          <DataBadge onClick={() => navigate(title.href)}>{components.used}</DataBadge>
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faRepeat} />
+            {components.used}
+          </DataBadge>
         </ToolTip>
 
         {website && (
           <ToolTip tooltip={website}>
-            <DataBadge onClick={() => open(website)}>Website</DataBadge>
+            <DataBadge onClick={() => open(website)}>
+              <FontAwesomeIcon icon={faGlobe} />
+              Website
+            </DataBadge>
           </ToolTip>
         )}
 
         {gitHub && (
           <ToolTip tooltip="GitHub">
+            <GitHubLogo />
             <DataBadge onClick={() => open(gitHub)}>{t("GitHub")} </DataBadge>
           </ToolTip>
         )}
 
         {gitLab && (
           <ToolTip tooltip="GitLab">
+            <GitLabLogo />
             <DataBadge onClick={() => open(gitLab)}>{t("GitLab")}</DataBadge>
           </ToolTip>
         )}

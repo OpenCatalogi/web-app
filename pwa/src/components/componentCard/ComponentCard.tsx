@@ -7,6 +7,9 @@ import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
 import { IconArrowRight } from "@tabler/icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faInfoCircle, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
 
 export interface ComponentCardProps {
   title: {
@@ -77,29 +80,50 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.tags}>
         {tags.status && (
           <ToolTip tooltip="Status">
-            <DataBadge>{t(_.upperFirst(tags.status))}</DataBadge>
+            <DataBadge>
+              <FontAwesomeIcon icon={faInfoCircle} />
+              {t(_.upperFirst(tags.status))}
+            </DataBadge>
           </ToolTip>
         )}
         <ToolTip tooltip="Aantal installaties">
-          <DataBadge>{tags.installations}</DataBadge>
+          <DataBadge>
+            <FontAwesomeIcon icon={faRepeat} />
+            {tags.installations}
+          </DataBadge>
         </ToolTip>
 
         {tags.organization?.name && (
           <ToolTip tooltip="Organisatie">
-            {!tags.organization.website && <DataBadge>{tags.organization.name}</DataBadge>}
+            {!tags.organization.website && (
+              <DataBadge>
+                <FontAwesomeIcon icon={faHouse} />
+                {tags.organization.name}
+              </DataBadge>
+            )}
+
             {tags.organization.website && (
-              <DataBadge onClick={() => open(tags?.organization?.website)}>{tags.organization.name}</DataBadge>
+              <DataBadge onClick={() => open(tags?.organization?.website)}>
+                <FontAwesomeIcon icon={faHouse} />
+                {tags.organization.name}
+              </DataBadge>
             )}
           </ToolTip>
         )}
         {tags.licence && (
           <ToolTip tooltip="Licentie">
-            <DataBadge>{tags.licence}</DataBadge>
+            <DataBadge>
+              <FontAwesomeIcon icon={faScroll} />
+              {tags.licence}
+            </DataBadge>
           </ToolTip>
         )}
         {tags.githubLink && (
           <ToolTip tooltip="GitHub">
-            <DataBadge onClick={() => open(tags.githubLink)}>{t("Repository")}</DataBadge>
+            <DataBadge onClick={() => open(tags.githubLink)}>
+              <GitHubLogo />
+              {t("Repository")}
+            </DataBadge>
           </ToolTip>
         )}
       </div>

@@ -2,9 +2,9 @@
   cursor: pointer;
 }
 
-/* .tableRow:nth-of-type(even) > td {
-  background-color: var(--web-app-color-table-grey);
-} */
+.tableRow > * {
+  vertical-align: middle !important;
+}
 
 .name {
   display: block;

@@ -5,6 +5,8 @@ import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
 import { IconArrowRight } from "@tabler/icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 
 export interface ApplicationCardProps {
   title: {
@@ -37,12 +39,18 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
       <div className={styles.tags}>
         {tags.organization && (
           <ToolTip tooltip="Organisatie">
-            <DataBadge>{tags.organization}</DataBadge>
+            <DataBadge>
+              <FontAwesomeIcon icon={faHouse} />
+              {tags.organization}
+            </DataBadge>
           </ToolTip>
         )}
         {tags.githubLink && (
           <ToolTip tooltip="Demo">
-            <DataBadge onClick={() => open(tags.githubLink)}>{t("Demo")}</DataBadge>
+            <DataBadge onClick={() => open(tags.githubLink)}>
+              <FontAwesomeIcon icon={faLaptopCode} />
+              {t("Demo")}
+            </DataBadge>
           </ToolTip>
         )}
       </div>

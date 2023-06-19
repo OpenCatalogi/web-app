@@ -1,19 +1,15 @@
 import * as React from "react";
 import * as styles from "./CardsResultTemplate.module.css";
-import _ from "lodash";
 import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
 import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 import { ApplicationCard } from "../../../../components/applicationCard/ApplicationCard";
 import { Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { useTranslation } from "react-i18next";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
-  const { t } = useTranslation();
-
   const _components = components.filter((component) => {
     return component._self;
   });

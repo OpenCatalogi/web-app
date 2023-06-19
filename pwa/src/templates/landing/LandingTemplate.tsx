@@ -12,7 +12,7 @@ import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsD
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 
 export const LandingTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [filters] = React.useContext(FiltersContext);
   const { screenSize } = React.useContext(GatsbyContext);
 
   return (

@@ -431,7 +431,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenStatus(false)}
               >
                 {statuses.map((status) => (
-                  <div onChange={() => setStatusRadioFilter(status.value)} key={status.value}>
+                  <div
+                    className={styles.radioContainer}
+                    onChange={() => setStatusRadioFilter(status.value)}
+                    key={status.value}
+                  >
                     <RadioButton
                       className={styles.radio}
                       value={status.value}
@@ -471,6 +475,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {maintenanceTypes.map((maintenanceType) => (
                   <div
+                    className={styles.radioContainer}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                     key={maintenanceType.value}
                   >
@@ -553,7 +558,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenSoftwareTypes(false)}
               >
                 {softwareTypes.map((softwareType) => (
-                  <div onChange={() => setSoftwareTypeRadioFilter(softwareType.value)} key={softwareType.value}>
+                  <div
+                    className={styles.radioContainer}
+                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                    key={softwareType.value}
+                  >
                     <RadioButton
                       className={styles.radio}
                       value={softwareType.value}
