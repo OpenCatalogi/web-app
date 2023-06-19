@@ -303,7 +303,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormLabel>
 
               <div className={styles.selectBorder}>
-                <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />{" "}
+                <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
               </div>
             </FormFieldInput>
           </FormField>
@@ -345,7 +345,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   name="category"
                   options={categories}
                   {...{ errors, control, register }}
-                />{" "}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -410,17 +410,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenStatus(false)}
               >
                 {statuses.map((status) => (
-                  <div
-                    className={clsx(styles.radio, styles.checkColor)}
-                    onChange={() => setStatusRadioFilter(status.value)}
-                    key={status.value}
-                  >
+                  <div onChange={() => setStatusRadioFilter(status.value)} key={status.value}>
                     <RadioButton
+                      className={styles.radio}
                       value={status.value}
-                      // {...register("status")}
                       checked={filters.developmentStatus === status.value}
                     />
-                    {status.label}
+                    <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
+                      {status.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -452,16 +450,21 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {maintenanceTypes.map((maintenanceType) => (
                   <div
-                    className={clsx(styles.radio, styles.checkColor)}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                     key={maintenanceType.value}
                   >
                     <RadioButton
+                      className={styles.radio}
                       value={maintenanceType.value}
-                      {...register("maintenanceType")}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                     />
-                    {maintenanceType.label}
+
+                    <span
+                      className={styles.radioLabel}
+                      onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    >
+                      {maintenanceType.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -482,7 +485,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   name="license"
                   options={licenses}
                   {...{ errors, control, register }}
-                />{" "}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -500,7 +503,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   name="bedrijfsfuncties"
                   options={bedrijfsfuncties}
                   {...{ errors, control, register }}
-                />{" "}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -529,17 +532,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 onClosing={() => setIsOpenSoftwareTypes(false)}
               >
                 {softwareTypes.map((softwareType) => (
-                  <div
-                    className={clsx(styles.radio, styles.checkColor)}
-                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
-                    key={softwareType.value}
-                  >
+                  <div onChange={() => setSoftwareTypeRadioFilter(softwareType.value)} key={softwareType.value}>
                     <RadioButton
+                      className={styles.radio}
                       value={softwareType.value}
-                      {...register("softwareTypes")}
                       checked={filters.softwareType === softwareType.value}
                     />
-                    {softwareType.label}
+                    <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                      {softwareType.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -559,7 +560,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   name="bedrijfsservices"
                   options={bedrijfsservices}
                   {...{ errors, control, register }}
-                />{" "}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -568,7 +569,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             <FormFieldInput>
               <FormLabel htmlFor={"sortFormReference"}>
                 <span className={styles.filterTitle}>
-                  Referentie componenten{" "}
+                  Referentie componenten
                   <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
                 </span>
               </FormLabel>
