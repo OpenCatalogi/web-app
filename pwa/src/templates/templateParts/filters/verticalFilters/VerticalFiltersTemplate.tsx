@@ -239,6 +239,27 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   }, [filters.platforms]);
 
+  React.useEffect(() => {
+    if (filters.developmentStatus === statusRadioFilter) return;
+    if (filters.developmentStatus === undefined) {
+      setStatusRadioFilter("");
+    }
+  }, [filters.developmentStatus]);
+
+  React.useEffect(() => {
+    if (filters["embedded.maintenance.type"] === maintenanceTypeRadioFilter) return;
+    if (filters["embedded.maintenance.type"] === undefined) {
+      setMaintenanceTypeRadioFilter("");
+    }
+  }, [filters["embedded.maintenance.type"]]);
+
+  React.useEffect(() => {
+    if (filters.softwareType === softwareTypeRadioFilter) return;
+    if (filters.softwareType === undefined) {
+      setSoftwareTypeRadioFilter("");
+    }
+  }, [filters.softwareType]);
+
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
       <Collapsible

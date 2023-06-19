@@ -101,4 +101,5 @@ export const en = {
   Sources: "Sources",
   "No description available": "No description available",
   "Search term": "Search term",
+  "Active Filters": "Active Filters",
 };
