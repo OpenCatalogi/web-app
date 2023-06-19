@@ -227,7 +227,6 @@
 .interactionLayer,
 .interfaceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .interactionCategory,
 .interfaceCategory {
@@ -237,7 +236,6 @@
 .processLayer,
 .processsLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .procesCategory,
 .processCategory {
@@ -246,7 +244,6 @@
 
 .integrationLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .integrationCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
@@ -255,7 +252,6 @@
 .servicesLayer,
 .serviceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 
 .servicesCategory,
@@ -265,7 +261,6 @@
 
 .dataLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .dataCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
@@ -273,7 +268,6 @@
 
 .unknownLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
-  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .unknownCategory {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
