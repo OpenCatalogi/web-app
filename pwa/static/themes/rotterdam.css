@@ -266,5 +266,5 @@
 
   /* @gemeente-utrecht: Databadge */
   --utrecht-badge-padding-block: 8px;
-  --utrecht-badge-background-color: var(--rotterdam-color-base-green);
+  --utrecht-badge-background-color: var(--rotterdam-color-base-black);
 }

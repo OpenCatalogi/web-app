@@ -226,52 +226,55 @@
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .interactionCategory,
 .interfaceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .processLayer,
 .processsLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-process);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
-.processCategory,
-.processsCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-process);
+.procesCategory,
+.processCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
 }
 
 .integrationLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-integration);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .integrationCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .servicesLayer,
 .serviceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-services);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-services);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
 }
 
 .dataLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-data);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
 }
 .dataCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-data);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
 }
 
 .unknownLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-unknown);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --conduction-tag-color: var(--rotterdam-color-base-white);
+}
+.unknownCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
 }

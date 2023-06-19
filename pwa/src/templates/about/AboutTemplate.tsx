@@ -18,7 +18,7 @@ export const AboutTemplate: React.FC = () => {
       <section className={styles.section}>
         <Heading level={1}>Over OpenCatalogi</Heading>
 
-        <Paragraph lead>
+        <Paragraph>
           OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het
           Gegevenslandschap.
         </Paragraph>
