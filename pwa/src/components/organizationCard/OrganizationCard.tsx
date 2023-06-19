@@ -3,7 +3,7 @@ import * as styles from "./OrganizationCard.module.css";
 import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -53,7 +53,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
           <div className={styles.titleLink}>
             <Link to={title.href}>
               <Icon className="utrecht-icon--conduction-start">
-                <ArrowRightIcon />
+                <IconArrowRight />
               </Icon>
               {title.label}
             </Link>

@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableHeaderCell,
 } from "@utrecht/component-library-react/dist/css-module";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -197,7 +197,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     rel="activate-row"
                   >
                     <Icon className="utrecht-icon--conduction-start">
-                      <ArrowRightIcon />
+                      <IconArrowRight />
                     </Icon>
                     {t("Details")}
                   </Link>

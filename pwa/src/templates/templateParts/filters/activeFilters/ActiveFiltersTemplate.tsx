@@ -53,8 +53,8 @@ export const ActiveFiltersTemplate: React.FC = () => {
     setFilters({
       ...filters,
       _search: "",
-      softwareType: "",
-      developmentStatus: "",
+      softwareType: undefined,
+      developmentStatus: undefined,
       platforms: [],
       category: "",
       "embedded.nl.embedded.commonground.layerType": [],
@@ -63,7 +63,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
       "embedded.nl.embedded.gemma.referentieComponenten": [],
       "embedded.nl.embedded.gemma.applicatiefunctie": "",
       "embedded.nl.embedded.upl": [],
-      "embedded.maintenance.type": "",
+      "embedded.maintenance.type": undefined,
       "embedded.legal.license": "",
       "embedded.legal.mainCopyrightOwner": "",
       "embedded.url.embedded.organisation.name": "",
@@ -73,7 +73,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
   return (
     <div>
       <div className={styles.activeFiltersHeader}>
-        <Heading level={4}>Actieve Filters</Heading>
+        <Heading level={4}>{t("Active Filters")}</Heading>
         <Tag layoutClassName={styles.removeActiveFiltersButton} label="Alles wissen" onClick={clearFilters} />
       </div>
       <div className={styles.activeFilters}>

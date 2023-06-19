@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApiDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink } from "@tabler/icons-react";
 import { Link } from "../../../components";
 
 export const ApiDocumentationTemplate: React.FC = () => {
@@ -17,7 +17,7 @@ export const ApiDocumentationTemplate: React.FC = () => {
           <span>
             <Link to="#">
               <Icon className="utrecht-icon--conduction-start">
-                <ExternalLinkIcon />
+                <IconExternalLink />
               </Icon>
               Lees meer.
             </Link>
