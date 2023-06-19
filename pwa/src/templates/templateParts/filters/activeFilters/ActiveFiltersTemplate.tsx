@@ -11,9 +11,8 @@ import {
   referentieComponenten,
   categories,
 } from "../../../../data/filters";
-import { Tag } from "@conduction/components";
 import { useTranslation } from "react-i18next";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-module";
 
 export const ActiveFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -73,22 +72,22 @@ export const ActiveFiltersTemplate: React.FC = () => {
   return (
     <div>
       <div className={styles.activeFiltersHeader}>
-        <Heading level={4}>{t("Active Filters")}</Heading>
-        <Tag layoutClassName={styles.removeActiveFiltersButton} label="Alles wissen" onClick={clearFilters} />
+        <Heading level={4}>Actieve Filters</Heading>
+        <DataBadge className={styles.onClickActiveFiltersButton} onClick={clearFilters}>
+          Alles wissen
+        </DataBadge>
       </div>
       <div className={styles.activeFilters}>
         {filters._search && (
-          <Tag
-            label={`${t("Search term")}: ${filters._search}`}
-            remove={() => setFilters({ ...filters, _search: "" })}
-          />
+          <DataBadge onClick={() => setFilters({ ...filters, _search: "" })}>{`${t("Search term")}: ${
+            filters._search
+          }`}</DataBadge>
         )}
 
         {filters["embedded.nl.embedded.commonground.layerType"]?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={t(_.upperFirst(layer))}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 "embedded.nl.embedded.commonground.layerType":
@@ -96,74 +95,80 @@ export const ActiveFiltersTemplate: React.FC = () => {
                   filters["embedded.nl.embedded.commonground.layerType"].filter((e) => e !== layer),
               })
             }
-          />
+          >
+            {t(_.upperFirst(layer))}
+          </DataBadge>
         ))}
 
         {filters["embedded.nl.embedded.upl"]?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={_.upperFirst(layer)}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 "embedded.nl.embedded.upl":
                   filters["embedded.nl.embedded.upl"] && filters["embedded.nl.embedded.upl"].filter((e) => e !== layer),
               })
             }
-          />
+          >
+            {_.upperFirst(layer)}
+          </DataBadge>
         ))}
 
         {filters["embedded.url.embedded.organisation.name"] && (
-          <Tag
-            label={filters["embedded.url.embedded.organisation.name"] ?? ""}
-            remove={() => setFilters({ ...filters, "embedded.url.embedded.organisation.name": undefined })}
-          />
+          <DataBadge onClick={() => setFilters({ ...filters, "embedded.url.embedded.organisation.name": undefined })}>
+            {filters["embedded.url.embedded.organisation.name"] ?? ""}
+          </DataBadge>
         )}
 
         {filters.category && (
-          <Tag label={category?.label ?? ""} remove={() => setFilters({ ...filters, category: undefined })} />
+          <DataBadge onClick={() => setFilters({ ...filters, category: undefined })}>
+            {category?.label ?? ""}{" "}
+          </DataBadge>
         )}
 
         {filters.platforms?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={t(_.upperFirst(layer))}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 platforms: filters.platforms && filters.platforms.filter((e) => e !== layer),
               })
             }
-          />
+          >
+            {t(_.upperFirst(layer))}
+          </DataBadge>
         ))}
 
         {filters.developmentStatus && (
-          <Tag label={status?.label ?? ""} remove={() => setFilters({ ...filters, developmentStatus: undefined })} />
+          <DataBadge onClick={() => setFilters({ ...filters, developmentStatus: undefined })}>
+            {status?.label ?? ""}
+          </DataBadge>
         )}
 
         {filters["embedded.maintenance.type"] && (
-          <Tag
-            label={maintenanceType?.label ?? ""}
-            remove={() => setFilters({ ...filters, "embedded.maintenance.type": undefined })}
-          />
+          <DataBadge onClick={() => setFilters({ ...filters, "embedded.maintenance.type": undefined })}>
+            {maintenanceType?.label ?? ""}
+          </DataBadge>
         )}
 
         {filters.softwareType && (
-          <Tag label={softwareType?.label ?? ""} remove={() => setFilters({ ...filters, softwareType: undefined })} />
+          <DataBadge onClick={() => setFilters({ ...filters, softwareType: undefined })}>
+            {softwareType?.label ?? ""}
+          </DataBadge>
         )}
 
         {filters["embedded.legal.license"] && (
-          <Tag
-            label={licence?.label ?? ""}
-            remove={() => setFilters({ ...filters, "embedded.legal.license": undefined })}
-          />
+          <DataBadge onClick={() => setFilters({ ...filters, "embedded.legal.license": undefined })}>
+            {licence?.label ?? ""}
+          </DataBadge>
         )}
 
         {filters["embedded.nl.embedded.gemma.bedrijfsfuncties"]?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={t(_.upperFirst(layer))}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 "embedded.nl.embedded.gemma.bedrijfsfuncties":
@@ -171,14 +176,15 @@ export const ActiveFiltersTemplate: React.FC = () => {
                   filters["embedded.nl.embedded.gemma.bedrijfsfuncties"].filter((e) => e !== layer),
               })
             }
-          />
+          >
+            {t(_.upperFirst(layer))}
+          </DataBadge>
         ))}
 
         {filters["embedded.nl.embedded.gemma.bedrijfsservices"]?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={t(_.upperFirst(layer))}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 "embedded.nl.embedded.gemma.bedrijfsservices":
@@ -186,13 +192,14 @@ export const ActiveFiltersTemplate: React.FC = () => {
                   filters["embedded.nl.embedded.gemma.bedrijfsservices"].filter((e) => e !== layer),
               })
             }
-          />
+          >
+            {t(_.upperFirst(layer))}
+          </DataBadge>
         ))}
         {_referentieComponenten?.map((layer, idx) => (
-          <Tag
+          <DataBadge
             key={idx}
-            label={layer?.label ?? ""}
-            remove={() =>
+            onClick={() =>
               setFilters({
                 ...filters,
                 "embedded.nl.embedded.gemma.referentieComponenten":
@@ -200,14 +207,15 @@ export const ActiveFiltersTemplate: React.FC = () => {
                   filters["embedded.nl.embedded.gemma.referentieComponenten"].filter((e) => e !== layer?.value),
               })
             }
-          />
+          >
+            {layer?.label ?? ""}
+          </DataBadge>
         ))}
 
         {filters["embedded.nl.embedded.gemma.applicatiefunctie"] && (
-          <Tag
-            label={applicatiefunctie?.label ?? ""}
-            remove={() => setFilters({ ...filters, "embedded.nl.embedded.gemma.applicatiefunctie": "" })}
-          />
+          <DataBadge onClick={() => setFilters({ ...filters, "embedded.nl.embedded.gemma.applicatiefunctie": "" })}>
+            {applicatiefunctie?.label ?? ""}
+          </DataBadge>
         )}
       </div>
     </div>

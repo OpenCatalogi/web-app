@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as _ from "lodash";
 import { TComponentResultsLayout } from "../../../context/filters";
 import { TableResultTemplate } from "./table/TableResultTemplate";
 import { CardsResultTemplate } from "./cards/CardsResultTemplate";

@@ -8,7 +8,7 @@ import {
   Button,
   ButtonGroup,
 } from "@utrecht/component-library-react/dist/css-module";
-import { Container, Tag } from "@conduction/components";
+import { Container } from "@conduction/components";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
@@ -16,9 +16,10 @@ import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
+import { DataBadge } from "@utrecht/component-library-react";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
@@ -57,8 +58,10 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           <Heading level={1} className={styles.title}>
             {portfolio.title}
           </Heading>
-          <Tag label={t(domain.title)} icon={<FontAwesomeIcon icon={faTags} />} />
-          <Paragraph className={styles.description}>{portfolio.longDescription}</Paragraph>
+          <DataBadge>{t(domain.title)}</DataBadge>
+          <Paragraph lead className={styles.description}>
+            {portfolio.longDescription}
+          </Paragraph>
         </div>
       )}
 

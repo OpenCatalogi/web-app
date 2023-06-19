@@ -262,6 +262,9 @@
   --utrecht-badge-counter-padding-inline: var(--web-app-font-size-4xs);
   --utrecht-badge-counter-font-weight: normal;
 
+  /* @gemeente-utrecht: Databadge */
+  --utrecht-badge-padding-block: 8px;
+  --utrecht-badge-background-color: var(--rotterdam-color-base-black);
   /* @gemeente-utrecht: Alert */
   --utrecht-alert-background-color: var(--web-app-alert-info-background-color);
   --utrecht-alert-border-color: #1791d440;

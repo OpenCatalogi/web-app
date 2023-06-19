@@ -221,52 +221,49 @@
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-interaction);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
 }
 .interactionCategory,
 .interfaceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-interaction);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
 }
 
 .processLayer,
 .processsLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-process);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-process);
 }
-.processCategory,
-.processsCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-process);
+.procesCategory,
+.processCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
 }
 
 .integrationLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-integration);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-integration);
 }
 .integrationCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-integration);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
 }
 
 .servicesLayer,
 .serviceLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-services);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-services);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-services);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
 }
 
 .dataLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-data);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-data);
 }
 .dataCategory {
-  --conduction-tag-background-color: var(--web-app-layer-category-color-data);
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
 }
 
 .unknownLayer {
-  --conduction-tag-background-color: var(--web-app-layer-color-unknown);
-  --conduction-tag-color: var(--web-app-color-white);
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+}
+.unknownCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
 }
