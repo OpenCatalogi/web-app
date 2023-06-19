@@ -22,7 +22,7 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDatabase } from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
@@ -103,6 +103,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       ]
                     }
                   >
+                    <FontAwesomeIcon icon={faLayerGroup} />
                     {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
                   </DataBadge>
                 </ToolTip>
@@ -122,6 +123,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                               ]
                             }
                           >
+                            {category?.icon}
                             {_.upperFirst(category?.title)}
                           </DataBadge>
                         </ToolTip>
@@ -132,28 +134,43 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
                   <ToolTip tooltip="Status">
-                    <DataBadge>{t(_.upperFirst(_getComponent.data.developmentStatus))}</DataBadge>
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faInfoCircle} />
+                      {t(_.upperFirst(_getComponent.data.developmentStatus))}
+                    </DataBadge>
                   </ToolTip>
                 )}
                 <ToolTip tooltip="Installaties">
-                  <DataBadge>{_.toString(_getComponent.data.usedBy?.length ?? "0")}</DataBadge>
+                  <DataBadge>
+                    <FontAwesomeIcon icon={faRepeat} />
+                    {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                  </DataBadge>
                 </ToolTip>
 
                 {organisation?.name && (
                   <ToolTip tooltip="Organisatie">
-                    <DataBadge>{organisation.name}</DataBadge>
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faHouse} />
+                      {organisation.name}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.url?.url && (
                   <ToolTip tooltip="GitHub/GitLab">
-                    <DataBadge onClick={() => open(_getComponent.data.embedded?.url?.url)}>{t("Repository")}</DataBadge>
+                    <DataBadge onClick={() => open(_getComponent.data.embedded?.url?.url)}>
+                      <GitHubLogo />
+                      {t("Repository")}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
-                    <DataBadge>{_getComponent.data.embedded?.legal.license}</DataBadge>
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faScroll} />
+                      {_getComponent.data.embedded?.legal.license}
+                    </DataBadge>
                   </ToolTip>
                 )}
               </div>

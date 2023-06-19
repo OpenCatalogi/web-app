@@ -12,7 +12,7 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import { faCircleNodes, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
@@ -55,13 +55,19 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (
                   <ToolTip tooltip="Organisatie">
-                    <DataBadge>{getApplications.data.embedded?.owner.fullName}</DataBadge>
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faHouse} />
+                      {getApplications.data.embedded?.owner.fullName}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {getApplications.data.demoUrl && (
                   <ToolTip tooltip="Demo">
-                    <DataBadge onClick={() => open(getApplications.data.demoUrl)}>{t("Demo")}</DataBadge>
+                    <DataBadge onClick={() => open(getApplications.data.demoUrl)}>
+                      <FontAwesomeIcon icon={faLaptopCode} />
+                      {t("Demo")}
+                    </DataBadge>
                   </ToolTip>
                 )}
               </div>

@@ -11,6 +11,10 @@ import { QueryClient } from "react-query";
 import { useOrganization } from "../../hooks/organization";
 import Skeleton from "react-loading-skeleton";
 import organizationPlaceholderImage from "../../assets/images/grey.png";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -53,17 +57,24 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.tagsContainer}>
                   {_getOrganization.data.github && (
                     <ToolTip tooltip="GitHub">
-                      <DataBadge onClick={() => open(_getOrganization.data.github)}>{t("GitHub")}</DataBadge>
+                      <DataBadge onClick={() => open(_getOrganization.data.github)}>
+                        <GitHubLogo />
+                        {t("GitHub")}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.gitlab && (
                     <ToolTip tooltip="GitLab">
-                      <DataBadge onClick={() => open(_getOrganization.data.gitlab)}>{t("GitLab")}</DataBadge>
+                      <DataBadge onClick={() => open(_getOrganization.data.gitlab)}>
+                        <GitLabLogo />
+                        {t("GitLab")}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.website && (
                     <ToolTip tooltip={"Website"}>
                       <DataBadge onClick={() => open(_getOrganization.data.website)}>
+                        <FontAwesomeIcon icon={faGlobe} />
                         {_getOrganization.data.website}
                       </DataBadge>
                     </ToolTip>
@@ -71,6 +82,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   {_getOrganization.data.phone && (
                     <ToolTip tooltip={"Telefoonnummer"}>
                       <DataBadge onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}>
+                        <FontAwesomeIcon icon={faPhone} />
                         {_getOrganization.data.phone}
                       </DataBadge>
                     </ToolTip>
@@ -78,6 +90,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   {_getOrganization.data.email && (
                     <ToolTip tooltip={"EmailAddress"}>
                       <DataBadge onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}>
+                        <FontAwesomeIcon icon={faEnvelope} />
                         {_getOrganization.data.email}
                       </DataBadge>
                     </ToolTip>
@@ -90,9 +103,12 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   <Divider />
 
                   <div className={styles.tagsContainer}>
-                    {_getOrganization.data.certificate.map((certificate: any) => (
-                      <ToolTip tooltip={certificate.name}>
-                        <DataBadge onClick={() => open(certificate.href)}>{certificate.name}</DataBadge>
+                    {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
+                      <ToolTip key={idx} tooltip={certificate.name}>
+                        <DataBadge onClick={() => open(certificate.href)}>
+                          <FontAwesomeIcon icon={faCertificate} />
+                          {certificate.name}
+                        </DataBadge>
                       </ToolTip>
                     ))}
                   </div>
