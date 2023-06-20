@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./CardsLandingDisplayTemplate.module.css";
 import _ from "lodash";
 import { InfoCard } from "@conduction/components";
-import { Heading2, LeadParagraph } from "@gemeente-denhaag/components-react";
+import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 
 interface CardsLandingDisplayTemplateProps {}
 
@@ -10,11 +10,11 @@ export const CardsLandingDisplayTemplate: React.FC<CardsLandingDisplayTemplatePr
   return (
     <>
       <div className={styles.subHeading}>
-        <Heading2>Portfolio</Heading2>
+        <Heading level={2}>Portfolio</Heading>
 
-        <LeadParagraph>
+        <Paragraph>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
-        </LeadParagraph>
+        </Paragraph>
       </div>
       <div className={styles.ComponentsGrid}>
         <InfoCard

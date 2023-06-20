@@ -11,21 +11,7 @@
 }
 
 .resultsDisplaySwitchButtons {
-  display: flex;
   align-items: center;
-}
-
-.resultsDisplaySwitchButtons > * {
-  display: flex;
-  align-items: center;
-}
-
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.buttonIcon > span > svg {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .filtersAndResultsContainer {
@@ -111,6 +97,11 @@
 }
 .breakLink :hover {
   cursor: default !important;
+}
+
+.ComponentAlert > div {
+  display: flex;
+  align-items: center;
 }
 
 @media only screen and (min-width: 992px) {

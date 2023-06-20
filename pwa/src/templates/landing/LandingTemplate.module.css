@@ -18,22 +18,8 @@
 }
 
 .landingDisplaySwitchButtons {
-  display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-
-.landingDisplaySwitchButtons > * {
-  display: flex;
-  align-items: center;
-}
-
-.landingDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.buttonIcon > span > svg {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .filtersAndResultsContainer {

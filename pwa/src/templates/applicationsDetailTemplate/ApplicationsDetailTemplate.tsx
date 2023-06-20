@@ -1,18 +1,24 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Button, Divider, Heading1, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
-import { Container, Tag, ToolTip } from "@conduction/components";
-import { navigate } from "gatsby";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import { Divider } from "@gemeente-denhaag/components-react";
+import { Container, ToolTip } from "@conduction/components";
+import {
+  Heading,
+  Paragraph,
+  Icon,
+  Button,
+  ButtonGroup,
+  DataBadge,
+} from "@utrecht/component-library-react/dist/css-module";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import _ from "lodash";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-import { categories as _categories } from "../../data/filters";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
+import { Link } from "../../components";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -28,8 +34,11 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/applications")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+      <div className={styles.backButton}>
+        <Link to="/applications">
+          <Icon className="utrecht-icon--conduction-start">
+            <IconArrowLeft />
+          </Icon>
           {t("Back to applications")}
         </Link>
       </div>
@@ -38,26 +47,27 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
         <>
           <div className={styles.header}>
             <div className={styles.description}>
-              <Heading1 className={styles.title}>{getApplications.data.name}</Heading1>
-              <LeadParagraph className={styles.description}>{getApplications.data.description}</LeadParagraph>
+              <Heading level={1} className={styles.title}>
+                {getApplications.data.name}
+              </Heading>
+              <Paragraph className={styles.description}>{getApplications.data.description}</Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (
                   <ToolTip tooltip="Organisatie">
-                    <Tag
-                      label={getApplications.data.embedded?.owner.fullName}
-                      icon={<FontAwesomeIcon icon={faHouse} />}
-                    />
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faHouse} />
+                      {getApplications.data.embedded?.owner.fullName}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {getApplications.data.demoUrl && (
                   <ToolTip tooltip="Demo">
-                    <Tag
-                      label={t("Demo")}
-                      icon={<FontAwesomeIcon icon={faLaptopCode} />}
-                      onClick={() => open(getApplications.data.demoUrl)}
-                    />
+                    <DataBadge onClick={() => open(getApplications.data.demoUrl)}>
+                      <FontAwesomeIcon icon={faLaptopCode} />
+                      {t("Demo")}
+                    </DataBadge>
                   </ToolTip>
                 )}
               </div>
@@ -67,7 +77,9 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div>
-            <Heading2 className={styles.title}>Screenshot</Heading2>
+            <Heading level={2} className={styles.title}>
+              Screenshot
+            </Heading>
             <div className={styles.screenshotContainer}>
               <img src={getApplications.data.detailPageImageUrl} className={styles.screenshot} />
             </div>
@@ -76,24 +88,30 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
           <Divider />
 
           <div className={styles.components}>
-            <div className={styles.dependenciesDisplaySwitchButtons}>
+            <ButtonGroup className={styles.dependenciesDisplaySwitchButtons}>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "layer" ? "primary-action" : "secondary-action"}
+                pressed={layerType === "layer"}
+                appearance={layerType === "layer" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("layer")}
               >
-                <FontAwesomeIcon icon={faLayerGroup} />
+                <Icon>
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                </Icon>{" "}
                 {t("Layers")}
               </Button>
               <Button
                 className={styles.buttonIcon}
-                variant={layerType === "relations" ? "primary-action" : "secondary-action"}
+                pressed={layerType === "relations"}
+                appearance={layerType === "relations" ? "secondary-action-button" : "subtle-button"}
                 onClick={() => setlayerType("relations")}
               >
-                <FontAwesomeIcon icon={faCircleNodes} />
+                <Icon>
+                  <FontAwesomeIcon icon={faCircleNodes} />
+                </Icon>{" "}
                 {t("Relations")}
               </Button>
-            </div>
+            </ButtonGroup>
 
             <DependenciesTemplate
               type={layerType}

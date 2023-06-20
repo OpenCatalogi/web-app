@@ -1,46 +1,31 @@
+/* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import {
-  Button,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
-import {
-  Container,
-  InfoCard,
   BadgeCounter,
-  Tag,
-  NotificationPopUp as _NotificationPopUp,
-} from "@conduction/components";
+  Heading,
+  Paragraph,
+  Icon,
+  Button,
+  DataBadge,
+} from "@utrecht/component-library-react/dist/css-module";
+import { Container, InfoCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon, ArrowRightIcon, ExternalLinkIcon, CallIcon } from "@gemeente-denhaag/icons";
+import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
+import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleNodes,
-  faDatabase,
-  faHouse,
-  faInfoCircle,
-  faLayerGroup,
-  faRepeat,
-  faScroll,
-} from "@fortawesome/free-solid-svg-icons";
+import { faDatabase, faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
-import { categories as _categories } from "../../data/filters";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
@@ -50,6 +35,7 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Link } from "../../components";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -59,7 +45,7 @@ interface ComponentsDetailTemplateProps {
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [filters] = React.useContext(FiltersContext);
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -85,8 +71,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton} onClick={() => navigate("/components")}>
-        <Link icon={<ArrowLeftIcon />} iconAlign="start">
+      <div className={styles.backButton}>
+        <Link to="/components">
+          <Icon className="utrecht-icon--conduction-start">
+            <IconArrowLeft />
+          </Icon>
           {t("Back to components")}
         </Link>
       </div>
@@ -95,27 +84,28 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
-              <Heading1 className={styles.componentName}>{_getComponent.data.name}</Heading1>
+              <Heading level={1} className={styles.componentName}>
+                {_getComponent.data.name}
+              </Heading>
 
-              <LeadParagraph className={styles.description}>
+              <Paragraph lead className={styles.description}>
                 {_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
-              </LeadParagraph>
+              </Paragraph>
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
-                  <Tag
-                    layoutClassName={
+                  <DataBadge
+                    className={
                       styles[
                         _.camelCase(
                           t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
                         )
                       ]
                     }
-                    label={t(
-                      _.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"),
-                    )}
-                    icon={<FontAwesomeIcon icon={faLayerGroup} />}
-                  />
+                  >
+                    <FontAwesomeIcon icon={faLayerGroup} />
+                    {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                  </DataBadge>
                 </ToolTip>
 
                 {_getComponent.data?.categories &&
@@ -124,17 +114,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     (category: any) =>
                       category && (
                         <ToolTip tooltip="Categorie">
-                          <Tag
-                            layoutClassName={
+                          <DataBadge
+                            className={
                               styles[
                                 _.camelCase(
                                   `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
                                 )
                               ]
                             }
-                            label={_.upperFirst(category?.title)}
-                            icon={category?.icon}
-                          />
+                          >
+                            {category?.icon}
+                            {_.upperFirst(category?.title)}
+                          </DataBadge>
                         </ToolTip>
                       ),
                   )}
@@ -143,41 +134,43 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
                   <ToolTip tooltip="Status">
-                    <Tag
-                      label={t(_.upperFirst(_getComponent.data.developmentStatus))}
-                      icon={<FontAwesomeIcon icon={faInfoCircle} />}
-                    />
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faInfoCircle} />
+                      {t(_.upperFirst(_getComponent.data.developmentStatus))}
+                    </DataBadge>
                   </ToolTip>
                 )}
                 <ToolTip tooltip="Installaties">
-                  <Tag
-                    label={_.toString(_getComponent.data.usedBy?.length ?? "0")}
-                    icon={<FontAwesomeIcon icon={faRepeat} />}
-                  />
+                  <DataBadge>
+                    <FontAwesomeIcon icon={faRepeat} />
+                    {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                  </DataBadge>
                 </ToolTip>
 
                 {organisation?.name && (
                   <ToolTip tooltip="Organisatie">
-                    <Tag label={organisation.name} icon={<FontAwesomeIcon icon={faHouse} />} />
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faHouse} />
+                      {organisation.name}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.url?.url && (
                   <ToolTip tooltip="GitHub/GitLab">
-                    <Tag
-                      label={t("Repository")}
-                      icon={<GitHubLogo />}
-                      onClick={() => open(_getComponent.data.embedded?.url?.url)}
-                    />
+                    <DataBadge onClick={() => open(_getComponent.data.embedded?.url?.url)}>
+                      <GitHubLogo />
+                      {t("Repository")}
+                    </DataBadge>
                   </ToolTip>
                 )}
 
                 {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
-                    <Tag
-                      label={_getComponent.data.embedded?.legal.license}
-                      icon={<FontAwesomeIcon icon={faScroll} />}
-                    />
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faScroll} />
+                      {_getComponent.data.embedded?.legal.license}
+                    </DataBadge>
                   </ToolTip>
                 )}
               </div>
@@ -190,7 +183,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={styles.logo}
                 />
               </div>
-              <Button icon={<ExternalLinkIcon />}>Toevoegen aan catalogus</Button>
+              <Button>
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconExternalLink />
+                </Icon>{" "}
+                Toevoegen aan catalogus
+              </Button>
             </div>
           </div>
 
@@ -229,8 +227,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         maxRating={_getComponent.data.embedded?.rating?.maxRating}
                         rating={_getComponent.data.embedded?.rating?.rating}
                       />
-                      <span onClick={show} className={styles.link}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <span className={styles.link}>
+                        <Link onClick={show}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
                           Rating
                         </Link>
                       </span>
@@ -258,6 +259,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   secondaryButton={{
                     label: t("Close"),
                     icon: <ArrowLeftIcon />,
+                    // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}
                   layoutClassName={styles.popup}
@@ -278,12 +280,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      Componenten & Afhankelijkheden
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>Componenten & Afhankelijkheden</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={0}
                 />
@@ -292,24 +296,28 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      {t("Schema's")}
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>{t("Schema's")}</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={3}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.badgeLayout}
-                      number={_.toString(_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0)}
-                    >
-                      {t("Processes")}
-                    </BadgeCounter>
+                    <>
+                      <div className={styles.tabBadgeContainer}>
+                        <span>{t("Processes")}</span>
+                        <BadgeCounter className={styles.badgeLayout}>
+                          {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={4}
                 />
@@ -335,72 +343,90 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table>
+                <Table className={styles.customTable}>
                   <TableBody>
                     <TableRow>
-                      <TableHeader>Gemeente Rotterdam</TableHeader>
+                      <TableCell>Gemeente Rotterdam</TableCell>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
                           010 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
                     </TableRow>
 
                     <TableRow>
-                      <TableHeader>Conduction</TableHeader>
+                      <TableCell>Conduction</TableCell>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
                           020 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
                     </TableRow>
 
                     <TableRow>
-                      <TableHeader>Gemeente Utrecht</TableHeader>
+                      <TableCell>Gemeente Utrecht</TableCell>
                       <TableCell>
-                        <Link icon={<GitHubLogo />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link icon={<CallIcon />} iconAlign="start">
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
                           030 - 123 456 7
                         </Link>
                       </TableCell>
 
-                      <TableCell
-                        className={styles.details}
-                        onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}
-                      >
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
+                      <TableCell className={styles.details}>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
                           {t("Details")}
                         </Link>
                       </TableCell>
@@ -465,19 +491,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <Table>
               <TableBody>
                 <TableRow>
-                  <TableHeader className={styles.title}>Gemma</TableHeader>
+                  <TableCell className={styles.title}>Gemma</TableCell>
                   <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>{t("Products")}</TableHeader>
+                  <TableCell className={styles.title}>{t("Products")}</TableCell>
                   <TableCell>
                     {_getComponent.data.embedded?.nl?.upl &&
                       _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                        <span
-                          key={idx}
-                          onClick={() => open("http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland")}
-                        >
-                          <Link icon={<ExternalLinkIcon />} iconAlign="start">
+                        <span key={idx}>
+                          <Link
+                            target="_new"
+                            href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                          >
+                            <Icon className="utrecht-icon--conduction-start">
+                              <IconExternalLink />
+                            </Icon>
                             {product},{" "}
                           </Link>
                         </span>
@@ -489,13 +518,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>Standaarden</TableHeader>
+                  <TableCell className={styles.title}>Standaarden</TableCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen standaarden beschikbaar.
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableHeader className={styles.title}>Wet en regelgeving</TableHeader>
+                  <TableCell className={styles.title}>Wet en regelgeving</TableCell>
                   <TableCell className={styles.description}>
                     Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
                   </TableCell>

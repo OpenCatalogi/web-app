@@ -55,10 +55,3 @@
 .tableRow > td {
   min-width: 250px;
 }
-
-@media screen and (max-width: 1060px) {
-  .standardsTableWrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-}

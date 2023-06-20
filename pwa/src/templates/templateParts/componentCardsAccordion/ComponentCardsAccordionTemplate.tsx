@@ -4,9 +4,10 @@ import _ from "lodash";
 import { getTokenValue } from "../../../services/getTokenValue";
 import { ComponentCard } from "../../../components/componentCard/ComponentCard";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
-import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { ComponentCardsAccordionHeaderTemplate } from "./header/ComponentCardsAccordionHeaderTemplate";
-
+import { Button, ButtonGroup, ColorSample } from "@utrecht/component-library-react";
+import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 interface ComponentCardsAccordionProps {
   components: any[];
 }
@@ -14,6 +15,8 @@ interface ComponentCardsAccordionProps {
 export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionProps> = ({ components }) => {
   const Accordion = LayerAccordion.accordion;
   const AccordionCardsController = LayerAccordion.controller;
+
+  const { t } = useTranslation();
 
   const { open: openInteraction, setOpen: setOpenInteraction } = AccordionCardsController();
   const { open: openProcess, setOpen: setOpenProcess } = AccordionCardsController();
@@ -43,27 +46,108 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
 
   return (
     <>
-      <LayerAccordionFiltersTemplate
-        items={[
-          {
-            label: "Interaction",
-            handleClick: setOpenInteraction,
-            active: openInteraction,
-            disabled: !interaction.length,
-          },
-          { label: "Process", handleClick: setOpenProcess, active: openProcess, disabled: !process.length },
-          {
-            label: "Integration",
-            handleClick: setOpenIntegration,
-            active: openIntegration,
-            disabled: !integration.length,
-          },
-          { label: "Service", handleClick: setOpenServices, active: openServices, disabled: !services.length },
-          { label: "Data", handleClick: setOpenData, active: openData, disabled: !data.length },
-          { label: "Unknown", handleClick: setOpenUnknown, active: openUnknown, disabled: !unknown.length },
-        ]}
-      />
-
+      <ButtonGroup>
+        <Button
+          appearance="subtle-button"
+          className={clsx(styles.LayerFilter)}
+          disabled={interaction.length === 0}
+          onClick={() => {
+            setOpenInteraction(!openInteraction);
+          }}
+          pressed={openInteraction}
+        >
+          <ColorSample
+            color={
+              interaction.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorInteraction)
+            }
+          />
+          {t("Interaction")}
+        </Button>
+        <Button
+          className={clsx(styles.LayerFilter)}
+          appearance="subtle-button"
+          disabled={process.length === 0}
+          onClick={() => {
+            setOpenProcess(!openProcess);
+          }}
+          pressed={openProcess}
+        >
+          <ColorSample
+            color={
+              process.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorProcess)
+            }
+          />
+          {t("Process")}
+        </Button>
+        <Button
+          className={clsx(styles.LayerFilter)}
+          appearance="subtle-button"
+          disabled={integration.length === 0}
+          onClick={() => {
+            setOpenIntegration(!openIntegration);
+          }}
+          pressed={openIntegration}
+        >
+          <ColorSample
+            color={
+              integration.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorIntegration)
+            }
+          />
+          {t("Integration")}
+        </Button>
+        <Button
+          className={clsx(styles.LayerFilter)}
+          appearance="subtle-button"
+          disabled={services.length === 0}
+          onClick={() => {
+            setOpenServices(!openServices);
+          }}
+          pressed={openServices}
+        >
+          <ColorSample
+            color={
+              services.length === 0
+                ? getTokenValue(styles.layerColorDisabled)
+                : getTokenValue(styles.layerColorServices)
+            }
+          />
+          {t("Service")}
+        </Button>
+        <Button
+          className={clsx(styles.LayerFilter)}
+          appearance="subtle-button"
+          disabled={data.length === 0}
+          onClick={() => {
+            setOpenData(!openData);
+          }}
+          pressed={openData}
+        >
+          <ColorSample
+            color={data.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorData)}
+          />
+          {t("Data")}
+        </Button>
+        <Button
+          className={clsx(styles.LayerFilter)}
+          appearance="subtle-button"
+          disabled={unknown.length === 0}
+          onClick={() => {
+            setOpenUnknown(!openUnknown);
+          }}
+          pressed={openUnknown}
+        >
+          <ColorSample
+            color={
+              unknown.length === 0 ? getTokenValue(styles.layerColorDisabled) : getTokenValue(styles.layerColorUnknown)
+            }
+          />
+          {t("Unknown")}
+        </Button>
+      </ButtonGroup>
       <Accordion
         open={openInteraction}
         setOpen={setOpenInteraction}

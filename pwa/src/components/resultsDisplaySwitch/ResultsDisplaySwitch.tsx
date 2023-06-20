@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ResultsDisplaySwitch.module.css";
-import { Button } from "@gemeente-denhaag/components-react";
+import { Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { FiltersContext } from "../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,8 +30,8 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
   };
 
   return (
-    <div className={clsx(styles.resultsDisplaySwitchButtons, [layoutClassName] && layoutClassName)}>
-      {acceptedFilters[resultsDisplayType].map((displayType) => {
+    <ButtonGroup className={clsx(styles.resultsDisplaySwitchButtons, [layoutClassName] && layoutClassName)}>
+      {acceptedFilters[resultsDisplayType].map((displayType, idx: number) => {
         let icon = faTable;
 
         if (displayType === "table") icon = faTable;
@@ -39,18 +39,22 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         if (displayType === "layer") icon = faLayerGroup;
         if (displayType === "relations") icon = faCircleNodes;
 
+        // TODO: Once the Rotterdam design system supports the "pressed" state,
+        // remove the `appereance` switch, and use the same appearance for each button.
         return (
           <Button
+            key={idx}
             className={styles.buttonIcon}
-            variant={filters[resultsDisplayType] === displayType ? "primary-action" : "secondary-action"}
+            pressed={filters[resultsDisplayType] === displayType}
+            appearance={filters[resultsDisplayType] === displayType ? "secondary-action-button" : "subtle-button"}
             onClick={() => setFilters({ ...filters, [resultsDisplayType]: displayType })}
           >
             <FontAwesomeIcon icon={icon} />
-            {t(_.upperFirst(displayType))}
+            <span>{t(_.upperFirst(displayType))}</span>
           </Button>
         );
       })}
-    </div>
+    </ButtonGroup>
   );
 };
 

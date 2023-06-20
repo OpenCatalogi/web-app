@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Divider, Link, Paragraph } from "@gemeente-denhaag/components-react";
-import { navigate } from "gatsby";
-import _ from "lodash";
-import { useTranslation } from "react-i18next";
+import { Divider } from "@gemeente-denhaag/components-react";
+import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { Link } from "../link/Link";
 
 export interface CategoryCardProps {
   title: {
@@ -16,12 +15,11 @@ export interface CategoryCardProps {
 }
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
-  const { t } = useTranslation();
-
   return (
     <div className={styles.container}>
-      <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-        <Link icon={icon} iconAlign="start">
+      <div className={styles.titleLink}>
+        <Link to={title.href}>
+          <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
           {title.label}
         </Link>
       </div>

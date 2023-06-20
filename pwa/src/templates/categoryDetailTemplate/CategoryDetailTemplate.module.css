@@ -31,9 +31,7 @@
 }
 
 .maxNumber {
-  --conduction-badge-counter-font-size: var(
-    --web-app-badge-counter-max-number-font-size
-  );
+  --conduction-badge-counter-font-size: var(--web-app-badge-counter-max-number-font-size);
 }
 
 .title {
@@ -41,23 +39,12 @@
 }
 
 .resultsDisplaySwitchButtons {
-  display: flex;
   align-items: center;
-}
-
-.resultsDisplaySwitchButtons > * {
-  display: flex;
-  align-items: center;
-}
-
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.buttonIcon > span > svg {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+.categoryTitle {
+  display: flex;
 }

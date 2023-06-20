@@ -1,8 +1,4 @@
 .buttons {
-  display: flex;
-  margin-block-start: var(--web-app-size-md);
-}
-
-.buttons > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-sm);
+  --utrecht-button-group-margin-block-start: var(--web-app-size-md);
+  --utrecht-space-around: 1;
 }

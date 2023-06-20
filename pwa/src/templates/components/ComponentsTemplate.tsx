@@ -1,7 +1,5 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
-import * as _ from "lodash";
-import { Alert, Heading2 } from "@gemeente-denhaag/components-react";
 import { Container } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
@@ -16,6 +14,9 @@ import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Alert, Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { IconInfoCircle } from "@tabler/icons-react";
+import { Paragraph } from "@gemeente-denhaag/components-react";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -43,7 +44,9 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2 className={styles.title}>Componenten</Heading2>
+          <Heading level={2} className={styles.title}>
+            Componenten
+          </Heading>
         </div>
 
         <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />
@@ -55,18 +58,41 @@ export const ComponentsTemplate: React.FC = () => {
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
           {filters.resultDisplayLayout === "table" && (
-            <Alert title="Op deze pagina worden alle resultaten weergegeven" text="" variant="info" />
+            <Alert
+              type="info"
+              icon={
+                <Icon>
+                  <IconInfoCircle />
+                </Icon>
+              }
+            >
+              <Paragraph>Op deze pagina worden alle resultaten weergegeven</Paragraph>
+            </Alert>
           )}
 
           {filters.resultDisplayLayout === "cards" && (
             <Alert
-              title="Op deze pagina staan alleen applicaties, organisaties en componenten"
-              text=""
-              variant="info"
-            />
+              type="info"
+              icon={
+                <Icon>
+                  <IconInfoCircle />
+                </Icon>
+              }
+            >
+              <Paragraph>Op deze pagina staan alleen applicaties, organisaties en componenten</Paragraph>
+            </Alert>
           )}
           {filters.resultDisplayLayout === "layer" && (
-            <Alert title="Op deze pagina staan alleen componenten met een laag" text="" variant="info" />
+            <Alert
+              type="info"
+              icon={
+                <Icon>
+                  <IconInfoCircle />
+                </Icon>
+              }
+            >
+              <Paragraph>Op deze pagina staan alleen componenten met een laag</Paragraph>
+            </Alert>
           )}
 
           <ActiveFiltersTemplate />

@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import _ from "lodash";
-import { Button, Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Button } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
-import { navigate } from "gatsby";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
@@ -13,43 +12,48 @@ import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
+import { ButtonLink, Link } from "../../../../components";
 
-interface CategoriesLandingDisplayTemplateProps {}
-
-export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplayTemplateProps> = ({}) => {
+export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
 
   const domains = TEMPORARY_DOMAINS;
   const categories = TEMPORARY_PORTFOLIOS;
 
-  const [showMore, setShowMore] = React.useState(domains.map((item) => false));
+  const [showMore, setShowMore] = React.useState(domains.map(() => false));
 
   const { screenSize } = React.useContext(GatsbyContext);
 
   return (
     <>
       <div className={styles.subHeading}>
-        <Heading2 className={styles.title}>{t("Categories")}</Heading2>
+        <Heading level={2} className={styles.title}>
+          {t("Categories")}
+        </Heading>
 
-        <LeadParagraph className={styles.description}>
+        <Paragraph className={styles.description}>
           Voor onderstaande gemeentelijke producten en diensten zijn Common Ground oplossingen beschikbaar.
-        </LeadParagraph>
+        </Paragraph>
       </div>
 
       <div className={styles.ComponentsGrid}>
         {domains.map((domain, index) => (
           <CategoryCard
+            key={index}
             title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
             description={
               <div>
                 {categories
                   .filter((category) => category.domain === domain.title)
                   .slice(0, 5)
-                  .map((_category) => (
-                    <div>
-                      <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                        <Link icon={<ArrowRightIcon />} iconAlign="start">
-                          {_category.title}
+                  .map((_category, idx) => (
+                    <div key={idx}>
+                      <div>
+                        <Link to={`/categories/${_category.id}`}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          <span>{_category.title}</span>
                         </Link>
                       </div>
                     </div>
@@ -60,11 +64,14 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                   categories
                     .filter((category) => category.domain === domain.title)
                     .slice(5)
-                    .map((_category) => (
-                      <div>
-                        <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                          <Link icon={<ArrowRightIcon />} iconAlign="start">
-                            {_category.title}
+                    .map((_category, idx) => (
+                      <div key={idx}>
+                        <div>
+                          <Link to={`/categories/${_category.id}`}>
+                            <Icon className="utrecht-icon--conduction-start">
+                              <IconArrowRight />
+                            </Icon>
+                            <span>{_category.title}</span>
                           </Link>
                         </div>
                       </div>
@@ -76,11 +83,14 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
                         {categories
                           .filter((category) => category.domain === domain.title)
                           .slice(5)
-                          .map((_category) => (
-                            <div>
-                              <div onClick={() => navigate(`/categories/${_category.id}`)}>
-                                <Link icon={<ArrowRightIcon />} iconAlign="start">
-                                  {_category.title}
+                          .map((_category, idx) => (
+                            <div key={idx}>
+                              <div>
+                                <Link to={`/categories/${_category.id}`}>
+                                  <Icon className="utrecht-icon--conduction-start">
+                                    <IconArrowRight />
+                                  </Icon>
+                                  <span>{_category.title}</span>
                                 </Link>
                               </div>
                             </div>
@@ -89,15 +99,15 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
 
                       <Button
                         className={styles.showMoreButton}
-                        variant="secondary-action"
+                        appearance="secondary-action-button"
                         onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
-                        icon={
+                      >
+                        <Icon>
                           <FontAwesomeIcon
                             className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
                             icon={faChevronRight}
                           />
-                        }
-                      >
+                        </Icon>
                         {showMore[index] ? "show less" : "show more"}
                       </Button>
                     </>
@@ -110,9 +120,9 @@ export const CategoriesLandingDisplayTemplate: React.FC<CategoriesLandingDisplay
         ))}
       </div>
 
-      <Button icon={<ArrowRightIcon />} iconAlign="start" onClick={() => navigate("/categories")}>
-        Bekijk alle categorieën
-      </Button>
+      <ButtonLink to="/categories">
+        <IconArrowRight /> Bekijk alle categorieën
+      </ButtonLink>
     </>
   );
 };

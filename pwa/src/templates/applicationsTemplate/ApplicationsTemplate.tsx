@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
-import * as _ from "lodash";
-import { Heading2, LeadParagraph, Link } from "@gemeente-denhaag/components-react";
+import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -9,9 +8,10 @@ import { ApplicationCard } from "../../components/applicationCard/ApplicationCar
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { IconExternalLink } from "@tabler/icons-react";
 import { PaginatedItems } from "../../components/pagination/pagination";
 import { GatsbyContext } from "../../context/gatsby";
+import { Link } from "../../components";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -41,17 +41,22 @@ export const ApplicationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading2 className={styles.title}>{t("Applications")}</Heading2>
-          <LeadParagraph className={styles.description}>
+          <Heading level={2} className={styles.title}>
+            {t("Applications")}
+          </Heading>
+          <Paragraph className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
-            <span onClick={() => open("https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties")}>
-              <Link icon={<ExternalLinkIcon />} iconAlign="start">
+            <span>
+              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconExternalLink />
+                </Icon>{" "}
                 bedrijfsfunctie
               </Link>
             </span>
             .
-          </LeadParagraph>
+          </Paragraph>
         </div>
       </div>
 

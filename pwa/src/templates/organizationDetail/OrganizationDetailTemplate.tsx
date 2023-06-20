@@ -1,29 +1,20 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, BadgeCounter, Tag } from "@conduction/components";
-import {
-  Divider,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
-import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { Container } from "@conduction/components";
+import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { BadgeCounter, Paragraph, Heading, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
-import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { navigate } from "gatsby";
-import _ from "lodash";
 import { QueryClient } from "react-query";
 import { useOrganization } from "../../hooks/organization";
 import Skeleton from "react-loading-skeleton";
 import organizationPlaceholderImage from "../../assets/images/grey.png";
+import { GitHubLogo } from "../../assets/svgs/GitHub";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -42,13 +33,15 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
         <>
           <div className={styles.headerContainer}>
             <div className={styles.headerContent}>
-              <Heading1 className={styles.title}>{_getOrganization.data.name}</Heading1>
+              <Heading level={1} className={styles.title}>
+                {_getOrganization.data.name}
+              </Heading>
 
               {_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{_getOrganization.data.description}</LeadParagraph>
+                <Paragraph className={styles.description}>{_getOrganization.data.description}</Paragraph>
               )}
               {!_getOrganization.data.description && (
-                <LeadParagraph className={styles.description}>{t("There is no description available")}</LeadParagraph>
+                <Paragraph className={styles.description}>{t("There is no description available")}</Paragraph>
               )}
             </div>
 
@@ -64,47 +57,42 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.tagsContainer}>
                   {_getOrganization.data.github && (
                     <ToolTip tooltip="GitHub">
-                      <Tag
-                        label={t("GitHub")}
-                        icon={<GitHubLogo />}
-                        onClick={() => open(_getOrganization.data.github)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.github)}>
+                        <GitHubLogo />
+                        {t("GitHub")}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.gitlab && (
                     <ToolTip tooltip="GitLab">
-                      <Tag
-                        label={t("GitLab")}
-                        icon={<GitLabLogo />}
-                        onClick={() => open(_getOrganization.data.gitlab)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.gitlab)}>
+                        <GitLabLogo />
+                        {t("GitLab")}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.website && (
                     <ToolTip tooltip={"Website"}>
-                      <Tag
-                        label={_getOrganization.data.website}
-                        icon={<FontAwesomeIcon icon={faGlobe} />}
-                        onClick={() => open(_getOrganization.data.website)}
-                      />
+                      <DataBadge onClick={() => open(_getOrganization.data.website)}>
+                        <FontAwesomeIcon icon={faGlobe} />
+                        {_getOrganization.data.website}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.phone && (
                     <ToolTip tooltip={"Telefoonnummer"}>
-                      <Tag
-                        label={_getOrganization.data.phone}
-                        icon={<FontAwesomeIcon icon={faPhone} />}
-                        onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}
-                      />
+                      <DataBadge onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}>
+                        <FontAwesomeIcon icon={faPhone} />
+                        {_getOrganization.data.phone}
+                      </DataBadge>
                     </ToolTip>
                   )}
                   {_getOrganization.data.email && (
                     <ToolTip tooltip={"EmailAddress"}>
-                      <Tag
-                        label={_getOrganization.data.email}
-                        icon={<FontAwesomeIcon icon={faEnvelope} />}
-                        onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}
-                      />
+                      <DataBadge onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}>
+                        <FontAwesomeIcon icon={faEnvelope} />
+                        {_getOrganization.data.email}
+                      </DataBadge>
                     </ToolTip>
                   )}
                 </div>
@@ -115,13 +103,12 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   <Divider />
 
                   <div className={styles.tagsContainer}>
-                    {_getOrganization.data.certificate.map((certificate: any) => (
-                      <ToolTip tooltip={certificate.name}>
-                        <Tag
-                          label={certificate.name}
-                          icon={<FontAwesomeIcon icon={faCertificate} />}
-                          onClick={() => open(certificate.href)}
-                        />
+                    {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
+                      <ToolTip key={idx} tooltip={certificate.name}>
+                        <DataBadge onClick={() => open(certificate.href)}>
+                          <FontAwesomeIcon icon={faCertificate} />
+                          {certificate.name}
+                        </DataBadge>
                       </ToolTip>
                     ))}
                   </div>
@@ -133,7 +120,9 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
           <Divider />
 
           <div className={styles.section}>
-            <Heading2 className={styles.title}>Componenten</Heading2>
+            <Heading level={2} className={styles.title}>
+              Componenten
+            </Heading>
             <TabContext value={currentTab.toString()}>
               <Tabs
                 value={currentTab}
@@ -145,36 +134,42 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.owns?.length ?? 0)}
-                    >
-                      Eigen componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Eigen componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.owns?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={0}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.supports?.length ?? 0)}
-                    >
-                      Ondersteunde componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Ondersteunde componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.supports?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={1}
                 />
                 <Tab
                   className={styles.tab}
                   label={
-                    <BadgeCounter
-                      layoutClassName={styles.tabAmountBadge}
-                      number={_.toString(_getOrganization.data?.uses?.length ?? 0)}
-                    >
-                      Gebruikte componenten
-                    </BadgeCounter>
+                    <>
+                      <div>
+                        <span>Gebruikte componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.uses?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
                   }
                   value={2}
                 />

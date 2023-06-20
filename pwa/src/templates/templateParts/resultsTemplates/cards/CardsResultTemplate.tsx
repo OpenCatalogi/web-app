@@ -1,19 +1,15 @@
 import * as React from "react";
 import * as styles from "./CardsResultTemplate.module.css";
-import _ from "lodash";
 import { ComponentCard } from "../../../../components/componentCard/ComponentCard";
 import { OrganizationCard } from "../../../../components/organizationCard/OrganizationCard";
 import { ApplicationCard } from "../../../../components/applicationCard/ApplicationCard";
-import { LeadParagraph } from "@gemeente-denhaag/components-react";
-import { useTranslation } from "react-i18next";
+import { Paragraph } from "@utrecht/component-library-react/dist/css-module";
 
 interface CardsResultTemplateProps {
   components: any[];
 }
 
 export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ components }) => {
-  const { t } = useTranslation();
-
   const _components = components.filter((component) => {
     return component._self;
   });
@@ -26,7 +22,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     );
   });
 
-  if (noResultFound) return <LeadParagraph>Geen Organisaties, Componenten of Applicaties gevonden.</LeadParagraph>;
+  if (noResultFound) return <Paragraph>Geen Organisaties, Componenten of Applicaties gevonden.</Paragraph>;
 
   return (
     <div className={styles.ComponentsGrid}>

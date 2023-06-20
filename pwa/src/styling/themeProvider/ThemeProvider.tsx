@@ -3,12 +3,13 @@ import * as styles from "./ThemeProvider.module.css";
 import "./../../styling/design-tokens/component-overrides.css";
 import { useForm } from "react-hook-form";
 import { themes } from "../../data/themes";
-import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { Heading2 } from "@gemeente-denhaag/components-react";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { SelectSingle } from "@conduction/components";
+import { Document } from "@utrecht/component-library-react/dist/css-module";
+import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 
-export const ThemeProvider: React.FC = ({ children }) => {
-  const [theme, setTheme] = React.useState<string>("rotterdam");
+export const ThemeProvider = ({ children }: React.PropsWithChildren<object>): JSX.Element => {
+  const [theme, setTheme] = React.useState<string>("utrecht");
 
   React.useEffect(() => {
     const link = document.createElement("link");
@@ -23,9 +24,10 @@ export const ThemeProvider: React.FC = ({ children }) => {
       document.head.removeChild(link);
     };
   }, [theme]);
+  const themeData = themes.find(({ value }) => value === theme);
 
   return (
-    <>
+    <Document className={themeData?.className}>
       {children}
 
       <div className={styles.container}>
@@ -33,7 +35,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
           <ThemeSwitcher {...{ setTheme }} />
         </div>
       </div>
-    </>
+    </Document>
   );
 };
 
@@ -62,13 +64,14 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ setTheme }) => {
     <div className={styles.themeSwitcherContainer}>
       <FormField>
         <FormFieldInput>
-          <FormFieldLabel>
+          <FormLabel htmlFor="themeChangerForm">
             <span className={styles.label}>Thema aanpasssen:</span>
-          </FormFieldLabel>
+          </FormLabel>
           <div className={styles.selectBorder}>
             <SelectSingle
+              id="themeChangerForm"
               name="themeSwitcher"
-              defaultValue={{ label: "Rotterdam", value: "rotterdam" }}
+              defaultValue={themes[1]}
               options={themes}
               {...{ errors, control, register }}
             />

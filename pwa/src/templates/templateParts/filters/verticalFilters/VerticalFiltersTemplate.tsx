@@ -2,9 +2,8 @@ import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
+import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
-import _ from "lodash";
 import clsx from "clsx";
 import { Divider } from "@gemeente-denhaag/components-react";
 import {
@@ -32,6 +31,7 @@ import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
+import { FormField, FormLabel, RadioButton } from "@utrecht/component-library-react";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -219,7 +219,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetLayerFilter.map((layer: any) => {
-      var checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${layer.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
@@ -232,12 +232,33 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     );
 
     unsetPlatformFilter.map((platform: any) => {
-      var checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
     });
   }, [filters.platforms]);
+
+  React.useEffect(() => {
+    if (filters.developmentStatus === statusRadioFilter) return;
+    if (filters.developmentStatus === undefined) {
+      setStatusRadioFilter("");
+    }
+  }, [filters.developmentStatus]);
+
+  React.useEffect(() => {
+    if (filters["embedded.maintenance.type"] === maintenanceTypeRadioFilter) return;
+    if (filters["embedded.maintenance.type"] === undefined) {
+      setMaintenanceTypeRadioFilter("");
+    }
+  }, [filters["embedded.maintenance.type"]]);
+
+  React.useEffect(() => {
+    if (filters.softwareType === softwareTypeRadioFilter) return;
+    if (filters.softwareType === undefined) {
+      setSoftwareTypeRadioFilter("");
+    }
+  }, [filters.softwareType]);
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
@@ -296,30 +317,31 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormULP"}>
                 <span className={styles.filterTitle}>
                   UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
 
               <div className={styles.selectBorder}>
-                <SelectMultiple name="upl" options={upls} {...{ errors, control, register }} />{" "}
+                <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
               </div>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormOrginisation"}>
                 <span className={styles.filterTitle}>
-                  Organisatie <span className={styles.filterCountIndicator}>({organizations.length ?? "-"})</span>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
                 {getOrganisations.isLoading && <Skeleton height="50px" />}
 
                 {getOrganisations.isSuccess && (
                   <SelectSingle
+                    id="sortFormOrginisation"
                     isClearable
                     options={organizations}
                     name="organization"
@@ -332,13 +354,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormCategory"}>
                 <span className={styles.filterTitle}>
                   Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="category" options={categories} {...{ errors, control, register }} />{" "}
+                <SelectSingle
+                  id="sortFormCategory"
+                  isClearable
+                  name="category"
+                  options={categories}
+                  {...{ errors, control, register }}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -404,17 +432,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {statuses.map((status) => (
                   <div
-                    className={clsx(styles.radio, styles.checkColor)}
+                    className={styles.radioContainer}
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
+                      className={styles.radio}
                       value={status.value}
-                      {...register("status")}
                       checked={filters.developmentStatus === status.value}
                     />
-                    {status.label}
+                    <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
+                      {status.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -446,17 +475,22 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {maintenanceTypes.map((maintenanceType) => (
                   <div
-                    className={clsx(styles.radio, styles.checkColor)}
+                    className={styles.radioContainer}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                     key={maintenanceType.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
+                      className={styles.radio}
                       value={maintenanceType.value}
-                      {...register("maintenanceType")}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                     />
-                    {maintenanceType.label}
+
+                    <span
+                      className={styles.radioLabel}
+                      onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    >
+                      {maintenanceType.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -465,26 +499,37 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormLicense"}>
                 <span className={styles.filterTitle}>
                   Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectSingle isClearable name="license" options={licenses} {...{ errors, control, register }} />{" "}
+                <SelectSingle
+                  id="sortFormLicense"
+                  isClearable
+                  name="license"
+                  options={licenses}
+                  {...{ errors, control, register }}
+                />
               </div>
             </FormFieldInput>
           </FormField>
 
-          <FormField>
+          <FormField id="sortFormCompanyFunction">
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormCompanyFunction"}>
                 <span className={styles.filterTitle}>
                   Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectMultiple name="bedrijfsfuncties" options={bedrijfsfuncties} {...{ errors, control, register }} />{" "}
+                <SelectMultiple
+                  id="sortFormLicense"
+                  name="bedrijfsfuncties"
+                  options={bedrijfsfuncties}
+                  {...{ errors, control, register }}
+                />
               </div>
             </FormFieldInput>
           </FormField>
@@ -514,17 +559,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {softwareTypes.map((softwareType) => (
                   <div
-                    className={clsx(styles.radio, styles.checkColor)}
+                    className={styles.radioContainer}
                     onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                     key={softwareType.value}
                   >
-                    <input
-                      type="radio"
+                    <RadioButton
+                      className={styles.radio}
                       value={softwareType.value}
-                      {...register("softwareTypes")}
                       checked={filters.softwareType === softwareType.value}
                     />
-                    {softwareType.label}
+                    <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                      {softwareType.label}
+                    </span>
                   </div>
                 ))}
               </Collapsible>
@@ -533,27 +579,33 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormServices"}>
                 <span className={styles.filterTitle}>
                   Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
-                <SelectMultiple name="bedrijfsservices" options={bedrijfsservices} {...{ errors, control, register }} />{" "}
+                <SelectMultiple
+                  id="sortFormServices"
+                  name="bedrijfsservices"
+                  options={bedrijfsservices}
+                  {...{ errors, control, register }}
+                />
               </div>
             </FormFieldInput>
           </FormField>
 
           <FormField>
             <FormFieldInput>
-              <FormFieldLabel>
+              <FormLabel htmlFor={"sortFormReference"}>
                 <span className={styles.filterTitle}>
-                  Referentie componenten{" "}
+                  Referentie componenten
                   <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
                 </span>
-              </FormFieldLabel>
+              </FormLabel>
               <div className={styles.selectBorder}>
                 <SelectMultiple
+                  id="sortFormReference"
                   name="referentieComponenten"
                   options={referentieComponenten}
                   {...{ errors, control, register }}

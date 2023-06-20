@@ -1,17 +1,17 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
-import { Link, Paragraph } from "@gemeente-denhaag/components-react";
+import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import { IconArrowRight } from "@tabler/icons-react";
+import { ToolTip } from "../toolTip/ToolTip";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import { Link } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
-import { ToolTip } from "../toolTip/ToolTip";
-import { useTranslation } from "react-i18next";
-import clsx from "clsx";
-import { Tag } from "@conduction/components";
 
 export interface OrganizationCardProps {
   title: {
@@ -49,8 +49,11 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
     <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
       <div className={styles.header}>
         <div className={styles.headerContent}>
-          <div className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Link icon={<ArrowRightIcon />} iconAlign="start">
+          <div className={styles.titleLink}>
+            <Link to={title.href}>
+              <Icon className="utrecht-icon--conduction-start">
+                <IconArrowRight />
+              </Icon>
               {title.label}
             </Link>
           </div>
@@ -67,52 +70,54 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
       <div className={styles.tagsContainer}>
         <ToolTip tooltip="Organisatie type">
-          <Tag
-            label={t(_.upperFirst(type ? type : "Unknown"))}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faBuilding} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faBuilding} />
+
+            {t(_.upperFirst(type ? type : "Unknown"))}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal eigen componenten">
-          <Tag
-            label={components.owned}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faHouseLaptop} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faHouseLaptop} />
+            {components.owned}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal ondersteunde componenten">
-          <Tag
-            label={components.supported}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faUserCog} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faUserCog} />
+            {components.supported}
+          </DataBadge>
         </ToolTip>
 
         <ToolTip tooltip="Aantal gebruikte componenten">
-          <Tag
-            label={components.used}
-            onClick={() => navigate(title.href)}
-            icon={<FontAwesomeIcon icon={faRepeat} />}
-          />
+          <DataBadge onClick={() => navigate(title.href)}>
+            <FontAwesomeIcon icon={faRepeat} />
+            {components.used}
+          </DataBadge>
         </ToolTip>
 
         {website && (
           <ToolTip tooltip={website}>
-            <Tag label="Website" icon={<FontAwesomeIcon icon={faGlobe} />} onClick={() => open(website)} />
+            <DataBadge onClick={() => open(website)}>
+              <FontAwesomeIcon icon={faGlobe} />
+              Website
+            </DataBadge>
           </ToolTip>
         )}
 
         {gitHub && (
           <ToolTip tooltip="GitHub">
-            <Tag label={t("GitHub")} icon={<GitHubLogo />} onClick={() => open(gitHub)} />
+            <GitHubLogo />
+            <DataBadge onClick={() => open(gitHub)}>{t("GitHub")} </DataBadge>
           </ToolTip>
         )}
 
         {gitLab && (
           <ToolTip tooltip="GitLab">
-            <Tag label={t("GitLab")} icon={<GitLabLogo />} onClick={() => open(gitLab)} />
+            <GitLabLogo />
+            <DataBadge onClick={() => open(gitLab)}>{t("GitLab")}</DataBadge>
           </ToolTip>
         )}
       </div>

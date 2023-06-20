@@ -83,7 +83,6 @@
 .breadcrumbsContainer {
   padding-block-start: var(--web-app-size-sm);
   padding-block-end: var(--web-app-size-sm);
-  --denhaag-breadcrumb-color: var(--web-app-breadcrumb-color);
 }
 
 .section > *:not(:last-child) {

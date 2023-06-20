@@ -1,21 +1,26 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Link } from "@gemeente-denhaag/components-react";
+import { Icon, StatusBadge, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { ArrowRightIcon } from "@gemeente-denhaag/icons";
+import {
+  Table,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+} from "@utrecht/component-library-react/dist/css-module";
+import { IconArrowRight } from "@tabler/icons-react";
 import { ToolTip } from "../../../../components/toolTip/ToolTip";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
-import { Tag } from "@conduction/components";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import { GitHubLogo } from "../../../../assets/svgs/GitHub";
-import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
+import { Link } from "../../../../components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface LayersResultTemplateProps {
   components: any[];
@@ -25,21 +30,59 @@ interface LayersResultTemplateProps {
 export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
 
+  /**
+   * Map component status to `StatusBadge` status
+   */
+  const getStatus = (description: string) => {
+    switch (description) {
+      case "Concept":
+        return "warning";
+      case "Development":
+        return "warning";
+      case "Beta":
+        return "warning";
+      case "Bruikbaar":
+        return "safe";
+      case "Stable":
+        return "safe";
+      case "Obsolete":
+        return "danger";
+      default:
+        return;
+    }
+  };
+
+  const ComponentStatusBadge = ({ status }: { status: string }) => {
+    const s = getStatus(status);
+    return (
+      <StatusBadge status={s} className={styles.tagWidth}>
+        {s ? (
+          <>
+            <FontAwesomeIcon icon={faInfoCircle} />{" "}
+          </>
+        ) : (
+          ""
+        )}
+        {t(status)}
+      </StatusBadge>
+    );
+  };
+
   return (
     <TableWrapper>
       <Table>
         {!hideTableHead && (
-          <TableHead>
+          <TableHeader>
             <TableRow>
-              <TableHeader>{t("Name")}</TableHeader>
-              <TableHeader>{t("Type")}</TableHeader>
-              <TableHeader>{t("Layer")}</TableHeader>
-              <TableHeader>{t("Sources")}</TableHeader>
-              <TableHeader>{t("ComponentType")}</TableHeader>
-              <TableHeader>{t("Status")}</TableHeader>
+              <TableHeaderCell>{t("Name")}</TableHeaderCell>
+              <TableHeaderCell>{t("Type")}</TableHeaderCell>
+              <TableHeaderCell>{t("Layer")}</TableHeaderCell>
+              <TableHeaderCell>{t("Sources")}</TableHeaderCell>
+              <TableHeaderCell>{t("ComponentType")}</TableHeaderCell>
+              <TableHeaderCell>{t("Status")}</TableHeaderCell>
               <TableHeader />
             </TableRow>
-          </TableHead>
+          </TableHeader>
         )}
 
         <TableBody>
@@ -71,61 +114,52 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                     )}
                   >
                     <ToolTip tooltip={t("Layer")}>
-                      <Tag
-                        layoutClassName={styles.tagWidth}
-                        label={t(
+                      <DataBadge className={styles.tagWidth}>
+                        <FontAwesomeIcon icon={faLayerGroup} />{" "}
+                        {t(
                           _.upperFirst(
                             component._self.schema.ref.includes("component.schema.json")
                               ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
                               : "N.V.T.",
                           ),
                         )}
-                        icon={
-                          component._self.schema.ref.includes("component.schema.json") ? (
-                            <FontAwesomeIcon icon={faLayerGroup} />
-                          ) : (
-                            <></>
-                          )
-                        }
-                      />
+                      </DataBadge>
                     </ToolTip>
                   </div>
                 </TableCell>
 
                 <TableCell>
                   <ToolTip tooltip={t("Sources")}>
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={_.upperFirst(
+                    <DataBadge className={styles.tagWidth}>
+                      {_.upperFirst(
                         component._self?.synchronizations
                           ? component._self?.synchronizations?.length
                             ? component._self?.synchronizations?.at(-1)?.gateway.name
                             : "Onbekend"
                           : "N.V.T.",
                       )}
-                      icon={
-                        component._self?.synchronizations?.length ? (
-                          component._self?.synchronizations?.at(-1)?.gateway.name === "github" ? (
-                            <GitHubLogo />
-                          ) : component._self?.synchronizations?.at(-1)?.gateway.name === "gitlab" ? (
-                            <GitLabLogo />
-                          ) : (
-                            <></>
-                          )
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
+                    </DataBadge>
                   </ToolTip>
                 </TableCell>
 
                 <TableCell>
                   <ToolTip tooltip="Component Type">
-                    <Tag
-                      label={_.upperFirst(
+                    <DataBadge>
+                      {_.upperFirst(
                         component._self.schema.ref.includes("component.schema.json")
                           ? component.softwareType ?? "Onbekend"
+                          : "N.V.T.",
+                      )}
+                    </DataBadge>
+                  </ToolTip>
+                </TableCell>
+
+                <TableCell>
+                  <ToolTip tooltip="Status">
+                    <ComponentStatusBadge
+                      status={_.upperFirst(
+                        component._self.schema.ref.includes("component.schema.json")
+                          ? component.developmentStatus ?? "Onbekend"
                           : "N.V.T.",
                       )}
                     />
@@ -133,29 +167,14 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip="Status">
-                    <Tag
-                      layoutClassName={styles.tagWidth}
-                      label={t(
-                        _.upperFirst(
-                          component._self.schema.ref.includes("component.schema.json")
-                            ? component.developmentStatus ?? "Onbekend"
-                            : "N.V.T.",
-                        ),
-                      )}
-                      icon={
-                        component._self.schema.ref.includes("component.schema.json") ? (
-                          <FontAwesomeIcon icon={faInfoCircle} />
-                        ) : (
-                          <></>
-                        )
-                      }
-                    />
-                  </ToolTip>
-                </TableCell>
-
-                <TableCell onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}>
-                  <Link className={styles.detailsLink} icon={<ArrowRightIcon />} iconAlign="start">
+                  <Link
+                    to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
+                    className={styles.detailsLink}
+                    rel="activate-row"
+                  >
+                    <Icon className="utrecht-icon--conduction-start">
+                      <IconArrowRight />
+                    </Icon>
                     {t("Details")}
                   </Link>
                 </TableCell>
