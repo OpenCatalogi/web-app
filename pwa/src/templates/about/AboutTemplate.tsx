@@ -12,6 +12,7 @@ import {
   Icon,
   Button,
   Paragraph,
+  ButtonLink,
 } from "@utrecht/component-library-react/dist/css-module";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
@@ -32,19 +33,19 @@ export const AboutTemplate: React.FC = () => {
         </Paragraph>
 
         <div className={styles.buttonsContainer}>
-          <Button onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}>
+          <ButtonLink onClick={() => open("https://www.gemmaonline.nl/index.php/Gegevenslandschap")}>
             <Icon className="utrecht-icon--conduction-start">
               <IconExternalLink />
             </Icon>
             Gegevenslandschap
-          </Button>
+          </ButtonLink>
 
-          <Button onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}>
+          <ButtonLink onClick={() => open("https://componentencatalogus.commonground.nl/5-lagen-model")}>
             <Icon className="utrecht-icon--conduction-start">
               <IconExternalLink />
             </Icon>
             5 lagen model
-          </Button>
+          </ButtonLink>
         </div>
       </section>
 
@@ -205,12 +206,12 @@ export const AboutTemplate: React.FC = () => {
 
         <div className={styles.paragraphButtons}>
           <div onClick={() => open("https://forumstandaardisatie.nl/")}>
-            <Button>
+            <ButtonLink>
               <Icon className="utrecht-icon--conduction-start">
                 <IconExternalLink />
               </Icon>
               Forum Standaardisatie
-            </Button>
+            </ButtonLink>
           </div>
           <div onClick={() => open("https://forumstandaardisatie.nl/open-standaarden/verplicht")}>
             <Button appearance="secondary-action-button">

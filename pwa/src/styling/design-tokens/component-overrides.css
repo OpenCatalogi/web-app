@@ -10,7 +10,7 @@
   --conduction-secondary-top-nav-item-icon-margin: var(--web-app-size-2xs);
 
   --conduction-primary-top-nav-item-padding: var(--web-app-primary-top-nav-item-padding);
-  --conduction-primary-top-nav-color: var(--web-app-color-text-grey);
+  --conduction-primary-top-nav-color: var(--web-app-nav-color-text);
   --conduction-primary-top-nav-background-color: var(--web-app-primary-top-nav-background-color);
   --conduction-primary-top-nav-background-color-hover: var(--web-app-primary-top-nav-background-color-hover);
   --conduction-primary-top-nav-dropdown-border-radius: var(--web-app-primary-top-nav-dropdown-border-radius);
@@ -142,7 +142,6 @@
   --utrecht-form-label-checkbox-color: var(--web-app-color-primary-text);
   --utrecht-form-label-font-size: var(--web-app-font-size-md);
   --utrecht-form-label-font-weight: var(--web-app-font-weight-bold);
-  --utrecht-form-label-color: var(--web-app-color-primary-text);
   --utrecht-form-input-invalid-border-color: var(--web-app-color-invalid);
   --utrecht-form-input-disabled-color: var(--web-app-color-disabled);
   --utrecht-form-input-disabled-border-color: var(--web-app-color-disabled);

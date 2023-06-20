@@ -3,7 +3,7 @@ import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, PageFooter } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
 import clsx from "clsx";
@@ -25,7 +25,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const [, setFilters] = React.useContext(FiltersContext);
 
   return (
-    <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+    <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <ul className={styles.list}>
@@ -211,6 +211,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </div>
         </div>
       </Container>
-    </footer>
+    </PageFooter>
   );
 };
