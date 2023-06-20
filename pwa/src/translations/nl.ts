@@ -101,4 +101,9 @@ export const nl = {
   "No description available": "Geen beschrijving beschikbaar",
   "Search term": "Zoekterm",
   "Active Filters": "Actieve Filters",
+  Contact: "Contact",
+  "Submit component or organization": "Component of organisatie indienen",
+  "Register your component or organization": "Meld uw component of organisatie",
+  "Repository url of your component or organization":
+    "Geef de url van de repository van uw component of organisatie op",
 };

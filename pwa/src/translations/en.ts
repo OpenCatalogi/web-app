@@ -102,4 +102,8 @@ export const en = {
   "No description available": "No description available",
   "Search term": "Search term",
   "Active Filters": "Active Filters",
+  Contact: "Contact",
+  "Submit component or organization": "Submit component or organization",
+  "Register your component or organization": "Register your component or organization",
+  "Repository url of your component or organization": "Repository url of your component or organization",
 };
