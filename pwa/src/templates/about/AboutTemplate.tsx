@@ -18,9 +18,11 @@ import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
 import { IconExternalLink } from "@tabler/icons-react";
+import { SubmitUrlTemplate } from "../templateParts/submitUrl/SubmitUrlTemplate";
 
 export const AboutTemplate: React.FC = () => {
   const { t } = useTranslation();
+
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
@@ -45,6 +47,16 @@ export const AboutTemplate: React.FC = () => {
             </Icon>
             5 lagen model
           </Button>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div>
+          <SubmitUrlTemplate
+            title={t("Register your component or organization")}
+            placeholder={t("Repository url of your component or organization")}
+            buttonLabel={t("Submit component or organization")}
+          />
         </div>
       </section>
 

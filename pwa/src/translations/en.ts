@@ -102,4 +102,10 @@ export const en = {
   "No description available": "No description available",
   "Search term": "Search term",
   "Active Filters": "Active Filters",
+  Contact: "Contact",
+  "Submit component or organization": "Submit component or organization",
+  "Register your component or organization": "Register your component or organization",
+  "Repository url of your component or organization": "Repository url of your component or organization",
+  "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
+    "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
 };

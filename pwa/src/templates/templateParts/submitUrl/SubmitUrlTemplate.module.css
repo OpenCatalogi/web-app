@@ -1,0 +1,40 @@
+.formContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formField {
+  width: 100% !important;
+  max-width: 650px !important;
+}
+
+.inputUrl > div {
+  margin-block-end: unset;
+  margin-block-start: unset;
+}
+
+.customErrorMessage {
+  display: block;
+  margin-block-start: var(--web-app-size-xs);
+  color: var(--web-app-color-invalid);
+  font-size: var(--web-app-font-size-sm);
+}
+
+@media screen and (max-width: 1060px) {
+  .standardsTableWrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .container *:not(:last-child) {
+    margin-block-end: var(--web-app-size-sm);
+  }
+
+  .formContent {
+    display: unset;
+  }
+
+  .formContent *:not(:last-child) {
+    margin-block-end: var(--web-app-size-xs);
+  }
+}
