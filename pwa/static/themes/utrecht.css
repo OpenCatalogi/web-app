@@ -300,6 +300,9 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: var(--web-app-size-md);
+
+  /* @gemeente-utrecht: link */
+  --utrecht-link-visited-color: inherit;
 }
 
 .utrecht-link {
