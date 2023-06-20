@@ -49,7 +49,7 @@ export const en = {
   "API's": "API's",
   "About OpenCatalogi": "About OpenCatalogi",
   Installation: "Installation",
-  Usage: "Usage",
+  Use: "Use",
   API: "API",
   Reuser: "Reuser",
   interface: "Interface",

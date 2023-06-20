@@ -5,7 +5,7 @@ import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
 import { navigate } from "gatsby";
 import { Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
-import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
+import { IconArrowRight, IconExternalLink, IconPhone, IconMail } from "@tabler/icons-react";
 import clsx from "clsx";
 import { GitHubLogo } from "../../../assets/svgs/GitHub";
 import { baseFilters, FiltersContext } from "../../../context/filters";
@@ -125,15 +125,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link to="/components">
-                <Icon className="utrecht-icon--conduction-start">
-                  <IconArrowRight />
-                </Icon>
-                Contact
-              </Link>
-            </li>
-
-            <li>
               <Link target="_new" href="https://github.com/OpenCatalogi">
                 <Icon className="utrecht-icon--conduction-start">
                   <GitHubLogo />
@@ -202,13 +193,68 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
         </div>
 
-        <div>
-          <div className={styles.heading}>{t("An initiative of")}</div>
+        <div className={styles.navigation}>
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("Conduction")}</div>
 
-          <div className={styles.logosContainer}>
-            <div className={styles.organizationLogo}></div>
-            <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
-          </div>
+            <li>
+              <Link href="tel:+31853036840">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconPhone />
+                </Icon>
+                Bel Conduction
+              </Link>
+            </li>
+
+            <li>
+              <Link href="mailto:info@conduction.nl">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconMail />
+                </Icon>
+                Mail Conduction
+              </Link>
+            </li>
+
+            <li>
+              <Link target="_new" href="https://conduction.nl/">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconExternalLink />
+                </Icon>
+                Bezoek de website
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("Gemeente Rotterdam")}</div>
+
+            <li>
+              <Link href="tel:14010">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconPhone />
+                </Icon>
+                Bel Gemeente Rotterdam
+              </Link>
+            </li>
+
+            <li>
+              <Link target="_new" href="https://rotterdam.nl/">
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconExternalLink />
+                </Icon>
+                Bezoek de website
+              </Link>
+            </li>
+          </ul>
+
+          <ul className={styles.list}>
+            <div className={styles.heading}>{t("An initiative of")}</div>
+
+            <div className={styles.logosContainer}>
+              <div className={styles.organizationLogo}></div>
+              <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+            </div>
+          </ul>
         </div>
       </Container>
     </footer>
