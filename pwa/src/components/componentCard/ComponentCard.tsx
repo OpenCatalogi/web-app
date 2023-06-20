@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
 import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 
 export interface ComponentCardProps {
@@ -60,7 +60,10 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       <div className={styles.layerTags}>
         <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
           <ToolTip tooltip="Laag">
-            <DataBadge>{t(_.upperFirst(layer ?? "unknown"))}</DataBadge>
+            <DataBadge>
+              <FontAwesomeIcon icon={faLayerGroup} />
+              {t(_.upperFirst(layer ?? "unknown"))}
+            </DataBadge>
           </ToolTip>
         </div>
 
@@ -70,7 +73,10 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
               (category: any, idx: number) =>
                 category && (
                   <ToolTip key={idx} tooltip="Categorie">
-                    <DataBadge>{_.upperFirst(category?.title)}</DataBadge>
+                    <DataBadge>
+                      {category?.icon}
+                      {_.upperFirst(category?.title)}
+                    </DataBadge>
                   </ToolTip>
                 ),
             )}

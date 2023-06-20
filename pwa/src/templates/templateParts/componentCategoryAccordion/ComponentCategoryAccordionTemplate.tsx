@@ -85,6 +85,7 @@ interface CategoriesProps {
 }
 
 const Categories: React.FC<CategoriesProps> = ({ layer }) => {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const [filters, setFilters] = React.useContext(FiltersContext);
 
   return (

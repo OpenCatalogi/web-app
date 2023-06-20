@@ -311,3 +311,12 @@
   gap: 4px !important;
   width: fit-content;
 }
+
+.utrecht-button-link {
+  --utrecht-button-padding-inline-start: var(--web-app-size-sm) !important;
+  --utrecht-button-padding-inline-end: var(--web-app-size-sm) !important;
+}
+
+.utrecht-alert__message .utrecht-paragraph {
+  --utrecht-paragraph-margin-block-start: 0px;
+}

@@ -16,7 +16,6 @@ import {
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
-import clsx from "clsx";
 import { Link } from "../../components";
 import { IconExternalLink } from "@tabler/icons-react";
 
@@ -93,7 +92,7 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={2}>Ingevuld met (voor zover van toepassing) voor OpenCatalogi</Heading>
 
         <Table>
-          <TableBody className={styles.customTable}>
+          <TableBody>
             <TableRow>
               <TableCell>Autonomie</TableCell>
               <TableCell>Componenten zijn zelfstandig inzetbaar, schaalbaar en vervangbaar</TableCell>
@@ -148,7 +147,7 @@ export const AboutTemplate: React.FC = () => {
         <Heading level={3}>Componenten conformeren zich aan het vijf-lagenmodel</Heading>
 
         <Table>
-          <TableBody className={styles.customTable}>
+          <TableBody>
             <TableRow>
               <TableCell>Componenten beperken zich tot functionaliteit binnen de laag waartoe ze behoren</TableCell>
             </TableRow>
@@ -223,10 +222,10 @@ export const AboutTemplate: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className={clsx(styles.section, styles.standardsTableWrapper)}>
+      <section className={styles.section}>
         <div className={styles.content}>
           <Table>
-            <TableHeader className={styles.customTable}>
+            <TableHeader>
               <TableRow className={styles.tableRow}>
                 <TableHeaderCell>{t("Standard")}</TableHeaderCell>
                 <TableHeaderCell>{t("Type")}</TableHeaderCell>
@@ -234,7 +233,7 @@ export const AboutTemplate: React.FC = () => {
                 <TableHeaderCell>{t("Management organization")}</TableHeaderCell>
               </TableRow>
             </TableHeader>
-            <TableBody className={styles.customTable}>
+            <TableBody>
               {TEMPORARY_STANDARDS.map((standard, idx) => (
                 <TableRow className={styles.tableRow} key={idx}>
                   <TableCell>{standard.name}</TableCell>

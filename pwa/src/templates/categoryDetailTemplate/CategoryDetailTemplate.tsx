@@ -16,7 +16,7 @@ import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
+import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { DataBadge } from "@utrecht/component-library-react";
@@ -58,7 +58,12 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           <Heading level={1} className={styles.title}>
             {portfolio.title}
           </Heading>
-          <DataBadge>{t(domain.title)}</DataBadge>
+
+          <DataBadge>
+            <FontAwesomeIcon icon={faTags} />
+            {t(domain.title)}
+          </DataBadge>
+
           <Paragraph lead className={styles.description}>
             {portfolio.longDescription}
           </Paragraph>

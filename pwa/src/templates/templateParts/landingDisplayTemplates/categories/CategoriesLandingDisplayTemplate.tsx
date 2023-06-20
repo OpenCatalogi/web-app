@@ -39,20 +39,21 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
       <div className={styles.ComponentsGrid}>
         {domains.map((domain, index) => (
           <CategoryCard
+            key={index}
             title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
             description={
               <div>
                 {categories
                   .filter((category) => category.domain === domain.title)
                   .slice(0, 5)
-                  .map((_category) => (
-                    <div>
+                  .map((_category, idx) => (
+                    <div key={idx}>
                       <div>
                         <Link to={`/categories/${_category.id}`}>
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />
                           </Icon>
-                          {_category.title}
+                          <span>{_category.title}</span>
                         </Link>
                       </div>
                     </div>
@@ -63,14 +64,14 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                   categories
                     .filter((category) => category.domain === domain.title)
                     .slice(5)
-                    .map((_category) => (
-                      <div>
+                    .map((_category, idx) => (
+                      <div key={idx}>
                         <div>
                           <Link to={`/categories/${_category.id}`}>
                             <Icon className="utrecht-icon--conduction-start">
                               <IconArrowRight />
                             </Icon>
-                            {_category.title}
+                            <span>{_category.title}</span>
                           </Link>
                         </div>
                       </div>
@@ -82,14 +83,14 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                         {categories
                           .filter((category) => category.domain === domain.title)
                           .slice(5)
-                          .map((_category) => (
-                            <div>
+                          .map((_category, idx) => (
+                            <div key={idx}>
                               <div>
                                 <Link to={`/categories/${_category.id}`}>
                                   <Icon className="utrecht-icon--conduction-start">
                                     <IconArrowRight />
                                   </Icon>
-                                  {_category.title}
+                                  <span>{_category.title}</span>
                                 </Link>
                               </div>
                             </div>
