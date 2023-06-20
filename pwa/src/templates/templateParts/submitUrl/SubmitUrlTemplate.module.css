@@ -1,15 +1,11 @@
 .formContent {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sendButton {
-  display: flex;
+  display: flex !important;
+  justify-content: space-between !important;
 }
 
 .formField {
-  width: 100%;
-  max-width: 650px;
+  width: 100% !important;
+  max-width: 650px !important;
 }
 
 .inputUrl > div {
@@ -19,19 +15,19 @@
 
 @media screen and (max-width: 1060px) {
   .standardsTableWrapper {
-    width: 100%;
-    overflow-x: auto;
+    width: 100% !important;
+    overflow-x: auto !important;
   }
 
   .container *:not(:last-child) {
-    margin-block-end: var(--web-app-size-sm);
+    margin-block-end: var(--web-app-size-sm) !important;
   }
 
   .formContent {
-    display: unset;
+    display: unset !important;
   }
 
   .formContent *:not(:last-child) {
-    margin-block-end: var(--web-app-size-xs);
+    margin-block-end: var(--web-app-size-xs) !important;
   }
 }

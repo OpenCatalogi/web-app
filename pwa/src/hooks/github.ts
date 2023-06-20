@@ -12,7 +12,8 @@ export const useGithub = (queryClient: QueryClient) => {
     useMutation<any, Error, any>([], API?.Github.postRepository, {
       onSuccess: async (newRepository) => {
         addItem(queryClient, "github", newRepository);
-        navigate(`/components/${newRepository.component._self.id}`);
+        newRepository.organization && navigate(`/organizations/${newRepository.organization._self.id}`);
+        newRepository.component && navigate(`/components/${newRepository.component._self.id}`);
       },
       onError: (error) => {
         console.warn(error.message);
