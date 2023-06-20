@@ -19,6 +19,7 @@ interface SubmitUrlTemplateProps {
 export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, placeholder, buttonLabel }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [formIsError, setFormIsError] = React.useState<boolean>(false);
 
   const queryClient = useQueryClient();
   const _useGithub = useGithub(queryClient);
@@ -45,6 +46,10 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
     setLoading(postRepository.isLoading);
   }, [postRepository.isLoading]);
 
+  React.useEffect(() => {
+    setFormIsError(postRepository.isError);
+  }, [postRepository.isError]);
+
   return (
     <div className={styles.container}>
       <Heading level={4}>{title}</Heading>
@@ -61,6 +66,13 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
                 disabled={loading}
                 type="url"
               />
+              {formIsError && (
+                <span className={styles.customErrorMessage}>
+                  {t(
+                    "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
+                  )}
+                </span>
+              )}
             </FormFieldInput>
           </FormField>
           <div className={styles.sendButton}>

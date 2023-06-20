@@ -13,6 +13,13 @@
   margin-block-start: unset;
 }
 
+.customErrorMessage {
+  display: block;
+  margin-block-start: var(--web-app-size-xs);
+  color: var(--web-app-color-invalid);
+  font-size: var(--web-app-font-size-sm);
+}
+
 @media screen and (max-width: 1060px) {
   .standardsTableWrapper {
     width: 100%;

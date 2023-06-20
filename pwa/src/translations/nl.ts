@@ -106,4 +106,6 @@ export const nl = {
   "Register your component or organization": "Meld uw component of organisatie",
   "Repository url of your component or organization":
     "Geef de url van de repository van uw component of organisatie op",
+  "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
+    "Oeps, er is iets misgegaan. Zorg ervoor dat je een geldige repository-URL gebruikt of probeer het later opnieuw.",
 };
