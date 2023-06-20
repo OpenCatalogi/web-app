@@ -12,51 +12,46 @@
 
 .categoryButton {
   border: none !important;
-  --_utrecht-button-appearance-color: var(--web-app-color-black) !important;
+  --utrecht-button-secondary-action-color: var(--web-app-color-black) !important;
 }
 
 .categoryButton:hover {
   cursor: pointer !important;
-  --_utrecht-button-appearance-color: var(--web-app-color-white) !important;
+  --utrecht-button-secondary-action-hover-color: var(--web-app-color-white) !important;
 }
 
 /* Colors of the 5 layers */
 .interactieCategory {
-  --_utrecht-button-appearance-background-color: var(--web-app-layer-category-color-interaction) !important;
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-interaction) !important;
 }
 .interactieCategory:hover {
-  --_utrecht-button-hover-background-color: var(--web-app-layer-color-interaction);
-  --denhaag-button-secondary-action-hover-color: var(--web-app-layer-color-interaction);
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-interaction);
 }
 
 .procesCategory {
-  --_utrecht-button-appearance-background-color: var(--web-app-layer-category-color-process) !important;
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-process) !important;
 }
 .procesCategory:hover {
-  --_utrecht-button-hover-background-color: var(--web-app-layer-color-process);
-  --denhaag-button-secondary-action-hover-color: var(--web-app-layer-color-process);
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-process);
 }
 
 .integratieCategory {
-  --_utrecht-button-appearance-background-color: var(--web-app-layer-category-color-integration) !important;
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-integration) !important;
 }
 .integratieCategory:hover {
-  --_utrecht-button-hover-background-color: var(--web-app-layer-color-integration);
-  --denhaag-button-secondary-action-hover-color: var(--web-app-layer-color-integration);
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-integration);
 }
 
 .serviceCategory {
-  --_utrecht-button-appearance-background-color: var(--web-app-layer-category-color-services) !important;
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-services) !important;
 }
 .serviceCategory:hover {
-  --_utrecht-button-hover-background-color: var(--web-app-layer-color-services);
-  --denhaag-button-secondary-action-hover-color: var(--web-app-layer-color-services);
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-services);
 }
 
 .dataCategory {
-  --_utrecht-button-appearance-background-color: var(--web-app-layer-category-color-data) !important;
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-data) !important;
 }
 .dataCategory:hover {
-  --_utrecht-button-hover-background-color: var(--web-app-layer-color-data);
-  --denhaag-button-secondary-action-hover-color: var(--web-app-layer-color-data);
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-data);
 }

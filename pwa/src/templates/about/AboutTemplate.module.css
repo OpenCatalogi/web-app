@@ -55,16 +55,3 @@
 .tableRow > td {
   min-width: 250px;
 }
-
-/*Todo:   */
-.customTable {
-  vertical-align: middle !important;
-  --utrecht-table-cell-padding-inline-start: 0px;
-}
-
-@media screen and (max-width: 1060px) {
-  .standardsTableWrapper {
-    width: 100%;
-    overflow-x: auto;
-  }
-}
