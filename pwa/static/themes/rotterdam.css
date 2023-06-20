@@ -104,6 +104,7 @@
   --web-app-footer-logo-container-height: 50px;
   --web-app-footer-organization-logo-width: 230px;
   --web-app-footer-organization-logo-src: url("images/LogoRotterdam.svg");
+  --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
 
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
@@ -300,6 +301,9 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: inherit;
+
+  /* @gemeente-utrecht: link */
+  --utrecht-link-visited-color: inherit;
 }
 
 .utrecht-link {
