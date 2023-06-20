@@ -166,7 +166,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://forumstandaardisatie.nl/">
-                <Icon className="utrecht-icon--conduction-start">
+                <Icon className={clsx("utrecht-icon--conduction-start", styles.forumStandaardisatieIcon)}>
                   <ForumStandaardisatieLogo />
                 </Icon>
                 Forum standaardisatie
