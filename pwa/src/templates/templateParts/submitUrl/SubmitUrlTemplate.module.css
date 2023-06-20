@@ -1,6 +1,6 @@
 .formContent {
-  display: flex !important;
-  justify-content: space-between !important;
+  display: flex;
+  justify-content: space-between;
 }
 
 .formField {
@@ -9,25 +9,25 @@
 }
 
 .inputUrl > div {
-  margin-block-end: unset !important;
-  margin-block-start: unset !important;
+  margin-block-end: unset;
+  margin-block-start: unset;
 }
 
 @media screen and (max-width: 1060px) {
   .standardsTableWrapper {
-    width: 100% !important;
-    overflow-x: auto !important;
+    width: 100%;
+    overflow-x: auto;
   }
 
   .container *:not(:last-child) {
-    margin-block-end: var(--web-app-size-sm) !important;
+    margin-block-end: var(--web-app-size-sm);
   }
 
   .formContent {
-    display: unset !important;
+    display: unset;
   }
 
   .formContent *:not(:last-child) {
-    margin-block-end: var(--web-app-size-xs) !important;
+    margin-block-end: var(--web-app-size-xs);
   }
 }
