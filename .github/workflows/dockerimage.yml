@@ -6,13 +6,11 @@ on:
       - master
       - staging
       - development
-      - refinement-demo
   push:
     branches:
       - master
       - staging
       - development
-      - refinement-demo
 
 jobs:
   build:
