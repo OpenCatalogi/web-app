@@ -102,7 +102,7 @@
   --web-app-footer-logo-container-background-color: var(--web-app-color-white);
   --web-app-footer-logo-container-padding: var(--web-app-size-md);
   --web-app-footer-logo-container-border-radius: unset;
-  --web-app-footer-logo-container-height: 67px;
+  --web-app-footer-logo-container-height: 50px;
   --web-app-footer-organization-logo-width: 126px;
   --web-app-footer-organization-logo-src: url("images/LogoUtrecht.svg");
   --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
