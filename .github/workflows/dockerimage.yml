@@ -6,13 +6,11 @@ on:
       - master
       - staging
       - development
-      - refinement-demo
   push:
     branches:
       - master
       - staging
       - development
-      - refinement-demo
 
 jobs:
   build:
@@ -74,7 +72,7 @@ jobs:
          else
            echo "##[set-output name=success;]false"
          fi
-      - if: steps.containerregistry-login.outputs.success == 'true' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/development || github.ref == 'refs/heads/refinement-demo')
+      - if: steps.containerregistry-login.outputs.success == 'true' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/development')
         name: Push to Container Registry
         run: docker-compose push
 
