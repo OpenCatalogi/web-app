@@ -12,6 +12,7 @@ on:
       - master
       - staging
       - development
+      - refinement-demo
 
 jobs:
   build:
