@@ -181,6 +181,10 @@
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
+  --web-app-primary-top-nav-color-hover: unset;
+  --web-app-primary-top-nav-color-dropdown: var(--web-app-color-top-nav-grey);
+  --web-app-primary-top-nav-color-dropdown-hover: unset;
+  --web-app-primary-top-nav-background-color-dropdown-hover: unset;
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: unset;

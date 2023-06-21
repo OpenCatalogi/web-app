@@ -107,7 +107,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <div className={styles.heading}>Documentatie</div>
 
             <li>
-              <Link to="/documentation/usage">
+              <Link to="/documentation/about">
                 <Icon className="utrecht-icon--conduction-start">
                   <IconArrowRight />
                 </Icon>
