@@ -1,5 +1,5 @@
 .container {
-  background-color: var(--web-app-color-background-footer);
+  background-color: var(--web-app-color-background-themeprovider-footer);
   padding-block-end: var(--web-app-size-3xl);
   padding-block-start: var(--web-app-size-3xl);
   padding-inline-start: var(--web-app-size-md);

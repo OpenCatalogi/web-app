@@ -88,6 +88,7 @@
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
 
   --web-app-color-background-footer: #eff4f6;
+  --web-app-color-background-themeprovider-footer: #eff4f6;
   --web-app-color-footer-headings: auto;
   --web-app-color-footer-links: var(--web-app-color-black);
 
@@ -104,6 +105,7 @@
   --web-app-footer-logo-container-height: 50px;
   --web-app-footer-organization-logo-width: 230px;
   --web-app-footer-organization-logo-src: url("images/LogoRotterdam.svg");
+  --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
 
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
@@ -184,7 +186,7 @@
   --web-app-primary-top-nav-color-hover: unset;
   --web-app-primary-top-nav-color-dropdown: var(--web-app-color-top-nav-grey);
   --web-app-primary-top-nav-color-dropdown-hover: unset;
-  --web-app-primary-top-nav-background-color-dropdown-hover: unset;
+  --web-app-primary-top-nav-background-color-dropdown-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: unset;
@@ -288,7 +290,7 @@
   --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
 
   --utrecht-color-sample-border-radius: 4px;
-  --utrecht-button-icon-gap: var(--rotterdam-space-scale-1);
+  --utrecht-button-icon-gap: var(--web-app-size-xs);
 
   /* @gemeente-utrecht: table */
   --utrecht-table-border-width: 0;

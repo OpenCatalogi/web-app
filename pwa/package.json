@@ -34,6 +34,7 @@
     "@gemeente-denhaag/sidenav": "0.1.0-alpha.127",
     "@gemeente-denhaag/table": "0.1.1-alpha.211",
     "@gemeente-denhaag/textarea": "0.1.1-alpha.182",
+    "@nl-design-system-unstable/hoorn-design-tokens": "1.0.0-alpha.96",
     "@nl-design-system-unstable/zwolle-design-tokens": "1.0.0-alpha.100",
     "@tabler/icons-react": "2.21.0",
     "@types/react": "^18.0.28",

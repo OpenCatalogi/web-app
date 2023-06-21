@@ -14,8 +14,8 @@
   --web-app-size-4xl: var(--skeleton-size-4xl);
 
   /* Font families */
-  --web-app-primary-font-family: DIN, Arial, Helvetica, sans-serif;
-  --web-app-content-font-family: DIN, Arial, Helvetica, sans-serif;
+  --web-app-primary-font-family: ClearSans-Regular, Sans-serif;
+  --web-app-content-font-family: ClearSans-Regular, Sans-serif;
 
   /* Font sizes */
   --web-app-font-size-4xs: var(--skeleton-font-size-4xs);
@@ -53,15 +53,15 @@
   --web-app-color-white: hsl(0 0% 100%);
   --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
-  --web-app-color-footer-text: var(--web-app-color-white);
+  --web-app-color-footer-text: var(--web-app-color-text-grey);
 
   --web-app-color-grey: var(--skeleton-color-grey-1);
   --web-app-color-table-grey: #f9f9f9;
   --web-app-color-table-hover-grey: #eff4f6;
   --web-app-color-top-nav-grey: #586265;
 
-  --web-app-color-link: var(--zwolle-primary-blue);
-  --web-app-color-link-active: #b54a92;
+  --web-app-color-link: var(--rotterdam-color-green);
+  --web-app-color-link-active: var(--rotterdam-color-green);
 
   --web-app-color-heading: var(--web-app-color-black);
 
@@ -69,11 +69,11 @@
 
   --web-app-color-disabled: #eff4f6;
 
-  --web-app-color-primary-action: var(--zwolle-primary-blue);
-  --web-app-color-primary-action-hover: var(--zwolle-primary-blue);
+  --web-app-color-primary-action: #266ea1;
+  --web-app-color-primary-action-hover: #266ea1;
 
-  --web-app-color-secondary-action: var(--zwolle-primary-blue);
-  --web-app-color-secondary-action-hover: var(--zwolle-primary-blue);
+  --web-app-color-secondary-action: var(--rotterdam-color-green);
+  --web-app-color-secondary-action-hover: var(--rotterdam-color-green);
 
   --web-app-color-table-row-background-hover: #eff4f6;
 
@@ -82,32 +82,32 @@
   --web-app-color-background-light: #eff4f6;
   --web-app-color-body-background: var(--web-app-color-white);
 
-  --web-app-color-background-page-header: var(--zwolle-primary-blue);
+  --web-app-color-background-page-header: var(--rotterdam-color-green);
   --web-app-color-page-header: var(--web-app-color-white);
 
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
 
-  --web-app-color-background-footer: #476db7;
-  --web-app-color-background-themeprovider-footer: #476db7;
+  --web-app-color-background-footer: #e8e9ea;
+  --web-app-color-background-themeprovider-footer: #ca464c;
   --web-app-color-footer-headings: var(--web-app-color-white);
-  --web-app-color-footer-links: var(--web-app-color-black);
+  --web-app-color-footer-links: #353b40;
 
   --web-app-header-logo-container-background-color: unset;
   --web-app-header-logo-container-padding: unset;
   --web-app-header-logo-container-border-radius: 0;
   --web-app-header-logo-container-height: 44px;
-  --web-app-header-organization-logo-width: 113px;
-  --web-app-header-organization-logo-src: url("images/LogoZwolle.png");
+  --web-app-header-organization-logo-width: 83px;
+  --web-app-header-organization-logo-src: url("images/LogoHoorn.svg");
 
   --web-app-footer-logo-container-background-color: var(--web-app-color-white);
   --web-app-footer-logo-container-padding: var(--web-app-size-md);
   --web-app-footer-logo-container-border-radius: 0;
   --web-app-footer-logo-container-height: 50px;
-  --web-app-footer-organization-logo-width: 128px;
-  --web-app-footer-organization-logo-src: url("images/LogoZwolle.png");
+  --web-app-footer-organization-logo-width: 95px;
+  --web-app-footer-organization-logo-src: url("images/LogoHoorn.svg");
   --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
 
-  --web-app-rating-active-color: var(--zwolle-primary-blue);
+  --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
 
   --web-app-layer-color-interaction: #1a75ff;
@@ -125,10 +125,10 @@
 
   --web-app-filter-badge-color: hsl(0deg 0% 85%);
 
-  --web-app-breadcrumb-color: hsl(211 60% 35%);
+  --web-app-breadcrumb-color: #266ea1;
 
-  --web-app-checkbox-color: var(--zwolle-primary-blue);
-  --web-app-radio-button-color: var(--zwolle-primary-blue);
+  --web-app-checkbox-color: var(--rotterdam-color-green);
+  --web-app-radio-button-color: var(--rotterdam-color-green);
 
   --web-app-submit-component-background-color: var(--skeleton-color-grey-1);
 
@@ -175,27 +175,27 @@
   /* @conduction: Secondary Top Navigation */
   --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
   --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
-  --web-app-secondary-top-nav-color: var(--zwolle-primary-blue);
+  --web-app-secondary-top-nav-color: var(--web-app-color-top-nav-grey);
   --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
   --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-light);
 
   /* @condcution: Primary Top Navigation */
   --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-primary-top-nav-color: var(--zwolle-primary-blue);
-  --web-app-primary-top-nav-color-hover: #7f99ce;
-  --web-app-primary-top-nav-color-dropdown: var(--zwolle-primary-blue);
-  --web-app-primary-top-nav-color-dropdown-hover: #7f99ce;
-  --web-app-primary-top-nav-background-color-dropdown-hover: unset;
+  --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
+  --web-app-primary-top-nav-color-hover: unset;
+  --web-app-primary-top-nav-color-dropdown: var(--web-app-color-top-nav-grey);
+  --web-app-primary-top-nav-color-dropdown-hover: unset;
+  --web-app-primary-top-nav-background-color-dropdown-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
-  --web-app-primary-top-nav-background-color-hover: unset;
+  --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: unset;
-  --web-app-primary-top-nav-box-shadow-active: unset;
+  --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 
   /* @gemeent-denhaag: SideNav */
-  --web-app-sidenav-link-active-color: var(--zwolle-primary-blue);
-  --web-app-sidenav-link-hover-color: var(--zwolle-primary-blue);
+  --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
+  --web-app-sidenav-link-hover-color: var(--rotterdam-color-green);
   --web-app-sidenav-link-padding-block-end: var(--web-app-size-xs);
   --web-app-sidenav-link-padding-block-start: var(--web-app-size-xs);
   --web-app-sidenav-item-font-family: var(--web-app-primary-font-family);
@@ -215,7 +215,7 @@
   --web-app-button-secondary-action-color: var(--rotterdam-color-base-white);
 }
 
-.zwolle-theme {
+.hoorn-theme {
   /* @gemeente-utrecht: Code block */
   --utrecht-code-block-background-color: var(--web-app-color-grey);
   --utrecht-code-block-margin-block-start: var(--web-app-size-lg);
@@ -240,6 +240,7 @@
 
   /* @gemeente-utrecht: Databadge */
   --utrecht-badge-padding-block: var(--web-app-size-xs);
+  --utrecht-badge-background-color: var(--rotterdam-color-base-black);
   --utrecht-badge-font-size: var(--web-app-font-size-sm);
   --utrecht-badge-font-weight: var(--web-app-font-weight-normal);
   --utrecht-badge-padding-block: var(--web-app-size-xs);
@@ -285,8 +286,8 @@
   --utrecht-action-activate-cursor: pointer;
 
   /* @gemeente-denhaag: Breadcrumb */
-  --denhaag-breadcrumb-color: #747474;
-  --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
+  --denhaag-breadcrumb-color: #266ea1;
+  --denhaag-breadcrumb-current-color: #266ea1;
 
   --utrecht-color-sample-border-radius: 4px;
   --utrecht-button-icon-gap: var(--web-app-size-xs);
@@ -305,9 +306,6 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: inherit;
-
-  /* @gemeente-utrecht: link */
-  --utrecht-link-visited-color: inherit;
 }
 
 .utrecht-link {
@@ -316,32 +314,3 @@
 }
 
 /******* END OF THEME TEMPLATE ********/
-
-/*
-   * Theme-specific generics
-  */
-:root {
-  --zwolle-primary-blue: #476db7;
-}
-
-@font-face {
-  font-family: "Bolder";
-  font-weight: bold;
-  src: url("./../../../fonts/Bolder-Bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: light;
-  src: url("./../../../fonts/Bolder-Light.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: normal;
-  src: url("./../../../fonts/Bolder-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: normal;
-  font-style: italic;
-  src: url("./../../../fonts/Bolder-RegularItalic.woff2") format("woff2");
-}
