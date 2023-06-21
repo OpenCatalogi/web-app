@@ -6,6 +6,7 @@
 @import "../../node_modules/@nl-design-system-unstable/rotterdam-design-tokens/dist/index.css";
 @import "../../node_modules/@nl-design-system-unstable/zwolle-design-tokens/dist/index.css";
 @import "../../node_modules/@nl-design-system-unstable/hoorn-design-tokens/dist/index.css";
+@import "../../node_modules/@nl-design-system-unstable/haarlemmermeer-design-tokens/dist/index.css";
 
 /* Package includes */
 @import "react-loading-skeleton/dist/skeleton.css";
