@@ -89,7 +89,7 @@
 
   --web-app-color-background-footer: #07838f;
   --web-app-color-background-themeprovider-footer: var(--web-app-color-white);
-  --web-app-color-footer-headings: auto;
+  --web-app-color-footer-headings: #07838f;
   --web-app-color-footer-links: var(--web-app-color-white);
 
   --web-app-header-logo-container-background-color: unset;
