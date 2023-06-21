@@ -88,6 +88,7 @@
   --web-app-color-background-page-top-bar: var(--web-app-color-white);
 
   --web-app-color-background-footer: #eff4f6;
+  --web-app-color-background-themeprovider-footer: #eff4f6;
   --web-app-color-footer-headings: auto;
   --web-app-color-footer-links: var(--web-app-color-black);
 
@@ -185,7 +186,7 @@
   --web-app-primary-top-nav-color-hover: unset;
   --web-app-primary-top-nav-color-dropdown: var(--web-app-color-top-nav-grey);
   --web-app-primary-top-nav-color-dropdown-hover: unset;
-  --web-app-primary-top-nav-background-color-dropdown-hover: unset;
+  --web-app-primary-top-nav-background-color-dropdown-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color: var(--web-app-color-white);
   --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
   --web-app-primary-top-nav-background-color-active: unset;
