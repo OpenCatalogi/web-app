@@ -78,7 +78,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <TableHeaderCell>{t("Type")}</TableHeaderCell>
               <TableHeaderCell>{t("Layer")}</TableHeaderCell>
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
-              <TableHeaderCell>{t("ComponentType")}</TableHeaderCell>
+              <TableHeaderCell>{t("Software type")}</TableHeaderCell>
               <TableHeaderCell>{t("Status")}</TableHeaderCell>
               <TableHeader />
             </TableRow>
