@@ -85,7 +85,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           pressed={filters.catagoryDisplayLayout === "cards"}
           appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
-        > 
+        >
           <Icon>
             <FontAwesomeIcon icon={faGripVertical} />
           </Icon>{" "}
