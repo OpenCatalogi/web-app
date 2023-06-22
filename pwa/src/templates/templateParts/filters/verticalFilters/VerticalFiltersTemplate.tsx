@@ -306,7 +306,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 <div>
                   {layers.map((layer) => (
-                    <div className={styles.checkColor} onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                    <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
                       <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
                     </div>
                   ))}
@@ -396,7 +396,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {platforms.map((platform) => (
                   <div
-                    className={styles.checkColor}
                     onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
                     key={platform.value}
                   >
@@ -437,7 +436,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={status.value}
                   >
                     <RadioButton
-                      className={styles.radio}
                       value={status.value}
                       checked={filters.developmentStatus === status.value}
                     />
@@ -480,7 +478,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={maintenanceType.value}
                   >
                     <RadioButton
-                      className={styles.radio}
                       value={maintenanceType.value}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                     />
@@ -564,7 +561,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={softwareType.value}
                   >
                     <RadioButton
-                      className={styles.radio}
                       value={softwareType.value}
                       checked={filters.softwareType === softwareType.value}
                     />

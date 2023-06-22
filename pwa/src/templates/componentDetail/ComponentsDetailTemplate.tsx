@@ -22,7 +22,17 @@ import { useComponent } from "../../hooks/components";
 import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDatabase, faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBroom,
+  faDatabase,
+  faHouse,
+  faInfoCircle,
+  faLaptop,
+  faLayerGroup,
+  faRepeat,
+  faScroll,
+  faWrench,
+} from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
@@ -156,20 +166,29 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </ToolTip>
                 )}
 
-                {_getComponent.data.embedded?.url?.url && (
-                  <ToolTip tooltip="GitHub/GitLab">
-                    <DataBadge onClick={() => open(_getComponent.data.embedded?.url?.url)}>
-                      <GitHubLogo />
-                      {t("Repository")}
-                    </DataBadge>
-                  </ToolTip>
-                )}
-
                 {_getComponent.data.embedded?.legal?.license && (
                   <ToolTip tooltip="Licentie">
                     <DataBadge>
                       <FontAwesomeIcon icon={faScroll} />
                       {_getComponent.data.embedded?.legal.license}
+                    </DataBadge>
+                  </ToolTip>
+                )}
+
+                {_getComponent.data.softwareType && (
+                  <ToolTip tooltip="Software type">
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faLaptop} />
+                      {_getComponent.data.softwareType}
+                    </DataBadge>
+                  </ToolTip>
+                )}
+
+                {_getComponent.data.embedded?.maintenance?.type && (
+                  <ToolTip tooltip="Onderhoudstype">
+                    <DataBadge>
+                      <FontAwesomeIcon icon={faWrench} />
+                      {_getComponent.data.embedded.maintenance.type}
                     </DataBadge>
                   </ToolTip>
                 )}
@@ -189,6 +208,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Icon>{" "}
                 Toevoegen aan catalogus
               </Button>
+
+              {_getComponent.data.embedded?.url?.url && (
+                <Button
+                  appearance="secondary-action-button"
+                  onClick={() => open(_getComponent.data.embedded?.url?.url)}
+                >
+                  <Icon className="utrecht-icon--conduction-start">
+                    <GitHubLogo />
+                  </Icon>{" "}
+                  {t("View Repository")}
+                </Button>
+              )}
             </div>
           </div>
 
@@ -343,7 +374,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table className={styles.customTable}>
+                <Table>
                   <TableBody>
                     <TableRow>
                       <TableCell>Gemeente Rotterdam</TableCell>
@@ -364,7 +395,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />
@@ -393,7 +424,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />
@@ -422,7 +453,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />

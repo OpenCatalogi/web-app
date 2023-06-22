@@ -72,7 +72,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
 
       <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
         <Button
-          className={styles.buttonIcon}
           pressed={filters.catagoryDisplayLayout === "table"}
           appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
@@ -83,7 +82,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           {t("Table")}
         </Button>
         <Button
-          className={styles.buttonIcon}
           pressed={filters.catagoryDisplayLayout === "cards"}
           appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
@@ -94,7 +92,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           {t("Cards")}
         </Button>
         <Button
-          className={styles.buttonIcon}
           pressed={filters.catagoryDisplayLayout === "layer"}
           appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
           onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}

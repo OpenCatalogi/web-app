@@ -108,4 +108,5 @@ export const en = {
   "Repository url of your component or organization": "Repository url of your component or organization",
   "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
     "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
+  "View Repository": "View Repository",
 };

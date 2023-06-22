@@ -44,7 +44,6 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         return (
           <Button
             key={idx}
-            className={styles.buttonIcon}
             pressed={filters[resultsDisplayType] === displayType}
             appearance={filters[resultsDisplayType] === displayType ? "secondary-action-button" : "subtle-button"}
             onClick={() => setFilters({ ...filters, [resultsDisplayType]: displayType })}
