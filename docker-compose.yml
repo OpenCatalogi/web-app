@@ -7,7 +7,7 @@ services:
     depends_on:
       - php
     ports:
-      - "81:80"
+      - "81:8080"
 
   php: &php
     image: ghcr.io/conductionnl/commonground-gateway-php:cleanup
