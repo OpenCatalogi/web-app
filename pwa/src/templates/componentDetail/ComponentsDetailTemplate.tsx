@@ -343,7 +343,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="1">
-                <Table className={styles.customTable}>
+                <Table>
                   <TableBody>
                     <TableRow>
                       <TableCell>Gemeente Rotterdam</TableCell>
@@ -364,7 +364,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />
@@ -393,7 +393,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />
@@ -422,7 +422,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         </Link>
                       </TableCell>
 
-                      <TableCell className={styles.details}>
+                      <TableCell>
                         <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
                           <Icon className="utrecht-icon--conduction-start">
                             <IconArrowRight />

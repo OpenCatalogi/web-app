@@ -306,7 +306,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 <div>
                   {layers.map((layer) => (
-                    <div className={styles.checkColor} onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                    <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
                       <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
                     </div>
                   ))}
@@ -396,7 +396,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               >
                 {platforms.map((platform) => (
                   <div
-                    className={styles.checkColor}
                     onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
                     key={platform.value}
                   >
@@ -436,11 +435,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <RadioButton
-                      className={styles.radio}
-                      value={status.value}
-                      checked={filters.developmentStatus === status.value}
-                    />
+                    <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
                     <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
                       {status.label}
                     </span>
@@ -480,7 +475,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     key={maintenanceType.value}
                   >
                     <RadioButton
-                      className={styles.radio}
                       value={maintenanceType.value}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                     />
@@ -563,11 +557,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                     key={softwareType.value}
                   >
-                    <RadioButton
-                      className={styles.radio}
-                      value={softwareType.value}
-                      checked={filters.softwareType === softwareType.value}
-                    />
+                    <RadioButton value={softwareType.value} checked={filters.softwareType === softwareType.value} />
                     <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
                       {softwareType.label}
                     </span>
