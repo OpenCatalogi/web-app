@@ -75,7 +75,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
               )}
             </FormFieldInput>
           </FormField>
-          <div className={styles.sendButton}>
+          <div>
             <Button type="submit" disabled={loading || !watchInputUrl}>
               <FontAwesomeIcon icon={faPaperPlane} />
               {buttonLabel ?? t("Send")}
