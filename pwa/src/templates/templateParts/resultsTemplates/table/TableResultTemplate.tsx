@@ -22,12 +22,12 @@ import { Link } from "../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 
-interface LayersResultTemplateProps {
+interface TableResultTemplateProps {
   components: any[];
   hideTableHead?: boolean;
 }
 
-export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ components, hideTableHead }) => {
+export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
 
   /**

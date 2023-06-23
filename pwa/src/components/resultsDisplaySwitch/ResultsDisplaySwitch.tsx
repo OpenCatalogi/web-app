@@ -12,11 +12,16 @@ interface AcceptedFilters {
   resultDisplayLayout: ["table", "cards", "layer"];
   dependenciesDisplayLayout: ["layer", "relations"];
   landingDisplayLayout: ["layer", "cards"];
+  organizationsResultDisplayLayout: ["table", "cards"];
 }
 
 interface ResultsDisplaySwitchProps {
   layoutClassName?: string;
-  resultsDisplayType: "resultDisplayLayout" | "dependenciesDisplayLayout" | "landingDisplayLayout";
+  resultsDisplayType:
+    | "resultDisplayLayout"
+    | "dependenciesDisplayLayout"
+    | "landingDisplayLayout"
+    | "organizationsResultDisplayLayout";
 }
 
 const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClassName, resultsDisplayType }) => {
@@ -27,6 +32,7 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
     resultDisplayLayout: ["table", "cards", "layer"],
     dependenciesDisplayLayout: ["layer", "relations"],
     landingDisplayLayout: ["layer", "cards"],
+    organizationsResultDisplayLayout: ["table", "cards"],
   };
 
   return (

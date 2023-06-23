@@ -4,6 +4,7 @@ export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TComponentDependenciesLayout = "layer" | "relations";
 export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
+export type TOrganizationsResultDisplayLayout = "table" | "cards";
 
 export interface IFilters {
   resultDisplayLayout: TComponentResultsLayout;
@@ -12,6 +13,10 @@ export interface IFilters {
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   currentPage: number;
   applicationsCurrentPage: number;
+
+  organizationCurrentPage: number;
+  organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
+  organizationSearch?: string;
 
   _search?: string;
   softwareType?: string;
@@ -38,8 +43,10 @@ export const baseFilters = {
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
+  organizationsResultDisplayLayout: "table",
   currentPage: 1,
   applicationsCurrentPage: 1,
+  organizationCurrentPage: 1,
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (_: IFilters) => void]>([baseFilters, () => null]);

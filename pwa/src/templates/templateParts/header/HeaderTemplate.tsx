@@ -90,6 +90,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       ],
     },
     {
+      label: t("Organizations"),
+      current: pathname.includes("/organizations"),
+      handleClick: () => {
+        navigate("/organizations");
+      },
+    },
+    {
       label: t("Initiatives"),
       current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {

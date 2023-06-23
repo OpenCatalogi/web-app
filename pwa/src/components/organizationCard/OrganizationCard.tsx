@@ -109,15 +109,19 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
 
         {gitHub && (
           <ToolTip tooltip="GitHub">
-            <GitHubLogo />
-            <DataBadge onClick={() => open(gitHub)}>{t("GitHub")} </DataBadge>
+            <DataBadge onClick={() => open(gitHub)}>
+              <GitHubLogo />
+              {t("GitHub")}
+            </DataBadge>
           </ToolTip>
         )}
 
         {gitLab && (
           <ToolTip tooltip="GitLab">
-            <GitLabLogo />
-            <DataBadge onClick={() => open(gitLab)}>{t("GitLab")}</DataBadge>
+            <DataBadge onClick={() => open(gitLab)}>
+              <GitLabLogo />
+              {t("GitLab")}
+            </DataBadge>
           </ToolTip>
         )}
       </div>

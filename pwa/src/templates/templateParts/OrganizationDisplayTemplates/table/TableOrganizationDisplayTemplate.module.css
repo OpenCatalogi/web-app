@@ -1,0 +1,32 @@
+.tableRow {
+  cursor: pointer;
+}
+
+.tableRow > * {
+  vertical-align: middle !important;
+}
+
+.name {
+  display: block;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tagWidth {
+  width: max-content !important;
+}
+
+.detailsLink {
+  display: inline-flex;
+}
+
+.tagsHeader {
+  text-align: center;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-evenly;
+}

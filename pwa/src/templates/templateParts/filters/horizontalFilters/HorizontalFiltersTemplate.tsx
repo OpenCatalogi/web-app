@@ -46,3 +46,50 @@ export const HorizontalFiltersTemplate: React.FC = () => {
     </form>
   );
 };
+
+export const OrganizationHorizontalFiltersTemplate: React.FC = () => {
+  const [filters, setFilters] = React.useContext(FiltersContext);
+
+  const {
+    register,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+  React.useEffect(() => {
+    reset({
+      name: filters.organizationSearch,
+    });
+  }, [filters]);
+
+  React.useEffect(() => {
+    const subscription = watch(({ name }) => {
+      setFilters({
+        ...filters,
+        organizationCurrentPage: 1,
+        organizationSearch: name,
+      });
+    });
+
+    return () => subscription.unsubscribe();
+  });
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <FormField>
+        <FormFieldInput>
+          <FormLabel htmlFor={"OrganizationSearchFormInput"}>Zoek op naam</FormLabel>
+          <Textbox
+            id="OrganizationSearchFormInput"
+            {...register("name", { required: true })}
+            invalid={errors["name"]}
+          />
+        </FormFieldInput>
+      </FormField>
+    </form>
+  );
+};

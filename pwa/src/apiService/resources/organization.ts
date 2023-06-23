@@ -17,11 +17,13 @@ export default class Organization {
   };
 
   public getAll = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(
-      this._instance,
-      "GET",
-      `/organizations?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
-    );
+    let url = `/organizations?page=${filters.organizationCurrentPage}&limit=10&extend[]=all`;
+
+    if (filters.organizationSearch) {
+      url += `&_search=${filters.organizationSearch}`;
+    }
+
+    const { data } = await Send(this._instance, "GET", url);
 
     return data;
   };
