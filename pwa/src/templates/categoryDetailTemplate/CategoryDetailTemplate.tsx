@@ -13,7 +13,7 @@ import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { DataBadge } from "@utrecht/component-library-react";
-import { ExpandableDescription } from "../../components/expandableDescription/ExpandableDescription";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
@@ -58,7 +58,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
             {t(domain.title)}
           </DataBadge>
 
-          <ExpandableDescription description={portfolio.longDescription} />
+          <ExpandableLeadParagraph description={portfolio.longDescription} />
         </div>
       )}
 

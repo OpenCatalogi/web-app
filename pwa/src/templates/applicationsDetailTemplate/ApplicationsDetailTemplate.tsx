@@ -2,14 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
 import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, ToolTip } from "@conduction/components";
-import {
-  Heading,
-  Paragraph,
-  Icon,
-  Button,
-  ButtonGroup,
-  DataBadge,
-} from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Icon, Button, ButtonGroup, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -19,6 +12,7 @@ import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { Link } from "../../components";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -50,7 +44,10 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               <Heading level={1} className={styles.title}>
                 {getApplications.data.name}
               </Heading>
-              <Paragraph className={styles.description}>{getApplications.data.description}</Paragraph>
+
+              <ExpandableLeadParagraph
+                description={getApplications.data.description ?? t("There is no description available")}
+              />
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded && (

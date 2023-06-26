@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Paragraph, Heading, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Heading, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -37,12 +38,9 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 {_getOrganization.data.name}
               </Heading>
 
-              {_getOrganization.data.description && (
-                <Paragraph className={styles.description}>{_getOrganization.data.description}</Paragraph>
-              )}
-              {!_getOrganization.data.description && (
-                <Paragraph className={styles.description}>{t("There is no description available")}</Paragraph>
-              )}
+              <ExpandableLeadParagraph
+                description={_getOrganization.data.description ?? t("There is no description available")}
+              />
             </div>
 
             <div className={styles.headerOrganizationData}>

@@ -38,7 +38,7 @@ import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Link } from "../../components";
-import { ExpandableDescription } from "../../components/expandableDescription/ExpandableDescription";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -91,7 +91,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.name}
               </Heading>
 
-              <ExpandableDescription
+              <ExpandableLeadParagraph
                 description={_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
               />
 
