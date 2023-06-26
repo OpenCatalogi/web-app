@@ -15,6 +15,10 @@
   margin-block-end: var(--web-app-size-2xl);
 }
 
+.headingContainer > .headingContent > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
 .headingContent {
   flex: 5;
 }
