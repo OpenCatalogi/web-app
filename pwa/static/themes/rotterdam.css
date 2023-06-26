@@ -323,25 +323,3 @@
 :root {
   --rotterdam-color-green: #00811f;
 }
-
-@font-face {
-  font-family: "Bolder";
-  font-weight: bold;
-  src: url("./../../../fonts/Bolder-Bold.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: light;
-  src: url("./../../../fonts/Bolder-Light.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: normal;
-  src: url("./../../../fonts/Bolder-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Bolder";
-  font-weight: normal;
-  font-style: italic;
-  src: url("./../../../fonts/Bolder-RegularItalic.woff2") format("woff2");
-}
