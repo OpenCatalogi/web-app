@@ -54,51 +54,6 @@
   flex: 1;
 }
 
-.paginationLink {
-  font-size: var(--web-app-font-size-lg);
-}
-
-.paginationLinkSmall {
-  font-size: var(--web-app-font-size-md);
-}
-
-.paginationLink :hover {
-  cursor: pointer;
-  color: var(--web-app-color-link-active);
-}
-
-.paginationActivePage {
-  color: var(--web-app-color-link-active);
-  font-weight: var(--web-app-font-weight-bold);
-  font-size: var(--web-app-font-size-lg);
-}
-
-.paginationActivePageSmall {
-  color: var(--web-app-color-link-active);
-  font-weight: var(--web-app-font-weight-bold);
-  font-size: var(--web-app-font-size-md);
-}
-
-.paginationActivePage :hover {
-  cursor: default;
-}
-
-.paginationDisabled :hover {
-  cursor: unset !important;
-  color: var(--web-app-color-disabled);
-}
-
-.paginationDisabled {
-  color: var(--web-app-color-disabled);
-}
-
-.breakLink {
-  font-size: var(--web-app-font-size-lg);
-}
-.breakLink :hover {
-  cursor: default !important;
-}
-
 .ComponentAlert > div {
   display: flex;
   align-items: center;
@@ -123,15 +78,5 @@
 
   .paginationContainer > *:not(:last-child) {
     flex: unset !important;
-  }
-
-  .paginationLink {
-    font-size: var(--web-app-font-size-lg);
-  }
-
-  .paginationActivePage {
-    color: var(--web-app-color-link-active);
-    font-weight: var(--web-app-font-weight-bold);
-    font-size: var(--web-app-font-size-lg);
   }
 }
