@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./ExpandableDescription.module.css";
+import * as styles from "./ExpandableLeadParagraph.module.css";
 import { Button, Paragraph } from "@utrecht/component-library-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -7,11 +7,11 @@ import clsx from "clsx";
 
 const SHORT_DESCRIPTION_TRESHOLD = 300;
 
-interface ExpandableDescriptionProps {
+interface ExpandableLeadParagraphProps {
   description: string;
 }
 
-export const ExpandableDescription: React.FC<ExpandableDescriptionProps> = ({ description }) => {
+export const ExpandableLeadParagraph: React.FC<ExpandableLeadParagraphProps> = ({ description }) => {
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
   const [shortDescription, setShortDescription] = React.useState<string>("");
   const [descriptionIsExpandable, setDescriptionIsExpandable] = React.useState<boolean>(false);
