@@ -36,7 +36,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         </Paragraph>
       </div>
 
-      <div className={styles.ComponentsGrid}>
+      <div className={styles.componentsGrid}>
         {domains.map((domain, index) => (
           <CategoryCard
             key={index}
@@ -102,13 +102,11 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                         appearance="secondary-action-button"
                         onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
                       >
-                        <Icon>
-                          <FontAwesomeIcon
-                            className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
-                            icon={faChevronRight}
-                          />
-                        </Icon>
-                        {showMore[index] ? "show less" : "show more"}
+                        <span>{showMore[index] ? "show less" : "show more"}</span>
+                        <FontAwesomeIcon
+                          className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
+                          icon={faChevronRight}
+                        />
                       </Button>
                     </>
                   )}

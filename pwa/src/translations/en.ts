@@ -113,4 +113,6 @@ export const en = {
   "No website found": "No website found",
   "No repository found": "No repository found",
   "Back to organizations": "Back to organizations",
+  "Show more": "Show more",
+  "Show less": "Show less",
 };

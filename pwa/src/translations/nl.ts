@@ -114,4 +114,6 @@ export const nl = {
     "Not found": "Niet gevonden",
     "No repository found": "Geen repository gevonden",
     "Back to organizations": "Terug naar organisaties",
+    "Show more" : "Toon meer",
+    "Show less" : "Toon minder",
 };
