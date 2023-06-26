@@ -438,6 +438,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     <RadioButton
                       value={status.value}
                       checked={filters.developmentStatus === status.value}
+                      onChange={() => undefined} // change handling is done elsewhere; this line is required to negate (redundant!) React warnings
                     />
                     <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
                       {status.label}
@@ -480,6 +481,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     <RadioButton
                       value={maintenanceType.value}
                       checked={filters["embedded.maintenance.type"] === maintenanceType.value}
+                      onChange={() => undefined} // change handling is done elsewhere; this line is required to negate (redundant!) React warnings
                     />
 
                     <span
@@ -563,6 +565,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     <RadioButton
                       value={softwareType.value}
                       checked={filters.softwareType === softwareType.value}
+                      onChange={() => undefined} // change handling is done elsewhere; this line is required to negate (redundant!) React warnings
                     />
                     <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
                       {softwareType.label}
