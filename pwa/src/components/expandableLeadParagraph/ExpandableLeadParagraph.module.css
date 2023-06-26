@@ -2,13 +2,8 @@
   margin-block-end: var(--web-app-size-sm);
 }
 
-.toggleButton {
-  display: flex;
-}
-
 .toggleButton svg {
   transition: transform 200ms;
-  margin-inline-start: var(--web-app-size-xs);
 }
 
 .toggleButton.isExpanded svg {

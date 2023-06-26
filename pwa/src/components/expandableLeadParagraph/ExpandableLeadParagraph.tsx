@@ -39,7 +39,7 @@ export const ExpandableLeadParagraph: React.FC<ExpandableLeadParagraphProps> = (
       >
         {isExpanded ? "Omschrijving inklappen" : "Volledige omschrijving lezen"}
 
-        <FontAwesomeIcon icon={faChevronDown} />
+        <FontAwesomeIcon className="utrecht-icon--conduction-end" icon={faChevronDown} />
       </Button>
     </div>
   );
