@@ -108,6 +108,7 @@ export const nl = {
     "Geef de url van de repository van uw component of organisatie op",
   "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
     "Oeps, er is iets misgegaan. Zorg ervoor dat je een geldige repository-URL gebruikt of probeer het later opnieuw.",
+  "View Repository": "Bekijk Repository",
     "Owned, suppored and used components": "Eigen, Ondersteunde en Gebruikte componenten",
     "No website found": "Geen website gevonden",
     "Not found": "Niet gevonden",
