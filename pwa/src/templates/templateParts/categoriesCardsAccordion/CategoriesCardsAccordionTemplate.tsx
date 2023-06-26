@@ -228,7 +228,7 @@ const Categories: React.FC<CategoriesProps> = ({ categories }) => {
         <CategoryCard
           key={idx}
           title={{ label: category.title, href: `/categories/${category.id}` }}
-          description={category.shortDescription}
+          content={category.shortDescription}
           icon={category.icon}
         />
       ))}
