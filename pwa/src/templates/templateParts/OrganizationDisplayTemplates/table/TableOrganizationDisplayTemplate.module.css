@@ -23,7 +23,8 @@
 }
 
 .tagsHeader {
-  text-align: center;
+  text-align: center !important;
+  width: max-content !important;
 }
 
 .tags {

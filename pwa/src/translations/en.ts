@@ -111,4 +111,5 @@ export const en = {
   "Owned, suppored and used components": "Owned, suppored and used components",
   "No website found": "No website found",
   "No repository found": "No repository found",
+  "Back to organizations": "Back to organizations",
 };

@@ -80,20 +80,20 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
                 <TableCell>
                   <div className={styles.tags}>
                     <ToolTip tooltip="Aantal eigen componenten">
-                      <DataBadge>
+                      <DataBadge className={styles.tagWidth}>
                         <FontAwesomeIcon icon={faHouseLaptop} />
                         {organization.owns?.length.toString() ?? "0"}
                       </DataBadge>
                     </ToolTip>
                     <ToolTip tooltip="Aantal ondersteunde componenten">
-                      <DataBadge>
+                      <DataBadge className={styles.tagWidth}>
                         <FontAwesomeIcon icon={faUserCog} />
                         {organization.supported?.length.toString() ?? "0"}
                       </DataBadge>
                     </ToolTip>
 
                     <ToolTip tooltip="Aantal gebruikte componenten">
-                      <DataBadge>
+                      <DataBadge className={styles.tagWidth}>
                         <FontAwesomeIcon icon={faRepeat} />
                         {organization.used?.length.toString() ?? "0"}
                       </DataBadge>
@@ -103,16 +103,16 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
 
                 <TableCell>
                   <ToolTip tooltip={organization.website ?? t("Website")}>
-                    <DataBadge onClick={() => open(organization.website)}>
+                    <DataBadge className={styles.tagWidth} onClick={() => open(organization.website)}>
                       {organization.website && <FontAwesomeIcon icon={faGlobe} />}
-                      {_.upperFirst(organization.website ? t("Website") : t("No website found"))}
+                      {_.upperFirst(organization.website ? t("Website") : t("Not found"))}
                     </DataBadge>
                   </ToolTip>
                 </TableCell>
                 <TableCell>
                   {organization.github && (
                     <ToolTip tooltip="GitHub">
-                      <DataBadge onClick={() => open(organization.github)}>
+                      <DataBadge className={styles.tagWidth} onClick={() => open(organization.github)}>
                         <GitHubLogo />
                         {t("GitHub")}
                       </DataBadge>
@@ -121,7 +121,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
 
                   {organization.gitlab && (
                     <ToolTip tooltip="GitLab">
-                      <DataBadge onClick={() => open(organization.gitlab)}>
+                      <DataBadge className={styles.tagWidth} onClick={() => open(organization.gitlab)}>
                         <GitLabLogo />
                         {t("GitLab")}
                       </DataBadge>
@@ -130,7 +130,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
 
                   {!organization.github && !organization.gitlab && (
                     <ToolTip tooltip={t("Repository")}>
-                      <DataBadge>{t("No repository found")}</DataBadge>
+                      <DataBadge className={styles.tagWidth}>{t("Not found")}</DataBadge>
                     </ToolTip>
                   )}
                 </TableCell>
