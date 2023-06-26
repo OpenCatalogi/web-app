@@ -44,6 +44,10 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
     return component?.embedded?.nl?.embedded?.commonground?.layerType === (null || undefined);
   });
 
+  if (!components.length) {
+    return <>Geen resultaten gevonden.</>;
+  }
+
   return (
     <>
       <ButtonGroup>

@@ -94,7 +94,7 @@ export const ApplicationsTemplate: React.FC = () => {
         </>
       )}
 
-      {!getApplications.data?.results && !getApplications.isLoading && "Geen componenten gevonden"}
+      {!getApplications.data?.results && !getApplications.isLoading && "Geen resultaten gevonden"}
 
       {getApplications.isLoading && <Skeleton height="200px" />}
     </Container>

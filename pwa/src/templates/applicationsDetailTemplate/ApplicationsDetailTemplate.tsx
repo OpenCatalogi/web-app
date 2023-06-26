@@ -87,42 +87,48 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
           <Divider />
 
-          <div className={styles.components}>
-            <ButtonGroup className={styles.dependenciesDisplaySwitchButtons}>
-              <Button
-                className={styles.buttonIcon}
-                pressed={layerType === "layer"}
-                appearance={layerType === "layer" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setlayerType("layer")}
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faLayerGroup} />
-                </Icon>{" "}
-                {t("Layers")}
-              </Button>
-              <Button
-                className={styles.buttonIcon}
-                pressed={layerType === "relations"}
-                appearance={layerType === "relations" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setlayerType("relations")}
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faCircleNodes} />
-                </Icon>{" "}
-                {t("Relations")}
-              </Button>
-            </ButtonGroup>
+          {getApplications.data?.embedded?.components && (
+            <div className={styles.components}>
+              <ButtonGroup className={styles.dependenciesDisplaySwitchButtons}>
+                <Button
+                  className={styles.buttonIcon}
+                  pressed={layerType === "layer"}
+                  appearance={layerType === "layer" ? "secondary-action-button" : "subtle-button"}
+                  onClick={() => setlayerType("layer")}
+                >
+                  <Icon>
+                    <FontAwesomeIcon icon={faLayerGroup} />
+                  </Icon>{" "}
+                  {t("Layers")}
+                </Button>
+                <Button
+                  className={styles.buttonIcon}
+                  pressed={layerType === "relations"}
+                  appearance={layerType === "relations" ? "secondary-action-button" : "subtle-button"}
+                  onClick={() => setlayerType("relations")}
+                >
+                  <Icon>
+                    <FontAwesomeIcon icon={faCircleNodes} />
+                  </Icon>{" "}
+                  {t("Relations")}
+                </Button>
+              </ButtonGroup>
 
-            <DependenciesTemplate
-              type={layerType}
-              components={getApplications.data?.embedded?.components ?? []}
-              mainComponent={{
-                id: getApplications.data.id,
-                name: getApplications.data.name,
-                layer: getApplications.data.embedded?.nl?.embedded?.commonground.layerType || null,
-              }}
-            />
-          </div>
+              <DependenciesTemplate
+                type={layerType}
+                components={getApplications.data?.embedded?.components ?? []}
+                mainComponent={{
+                  id: getApplications.data.id,
+                  name: getApplications.data.name,
+                  layer: getApplications.data.embedded?.nl?.embedded?.commonground.layerType || null,
+                }}
+              />
+            </div>
+          )}
+
+          {!getApplications.data?.embedded?.components && (
+            <span className={styles.noComponentsFound}>Deze applicatie heeft (nog) geen gekoppelde componenten.</span>
+          )}
         </>
       )}
 
