@@ -15,6 +15,7 @@ import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "../../../components";
+import { ButtonLink } from "@utrecht/component-library-react";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -183,12 +184,12 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
+              <ButtonLink target="_new" href={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
                 <Icon className="utrecht-icon--conduction-start">
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>
                 {t("Login")}
-              </Link>
+              </ButtonLink>
             </li>
           </ul>
         </div>
