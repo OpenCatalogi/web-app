@@ -15,6 +15,10 @@
   opacity: var(--web-app-layer-accordion-disabled-opacity);
 }
 
+.title {
+  font-size: var(--web-app-font-size-xl) !important;
+}
+
 .disabled:hover {
   cursor: no-drop;
 }

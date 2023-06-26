@@ -57,3 +57,8 @@
 .buttonIcon > span > svg {
   margin-inline-end: var(--web-app-size-xs);
 }
+
+.noComponentsFound {
+  font-size: var(--web-app-font-size-lg);
+  font-weight: var(--web-app-font-weight-bold);
+}

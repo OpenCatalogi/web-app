@@ -70,39 +70,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </div>
       )}
 
-      <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
-        <Button
-          pressed={filters.catagoryDisplayLayout === "table"}
-          appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
-        >
-          <Icon>
-            <FontAwesomeIcon icon={faTable} />
-          </Icon>{" "}
-          {t("Table")}
-        </Button>
-        <Button
-          pressed={filters.catagoryDisplayLayout === "cards"}
-          appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
-        >
-          <Icon>
-            <FontAwesomeIcon icon={faGripVertical} />
-          </Icon>{" "}
-          {t("Cards")}
-        </Button>
-        <Button
-          pressed={filters.catagoryDisplayLayout === "layer"}
-          appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
-          onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
-        >
-          <Icon>
-            <FontAwesomeIcon icon={faLayerGroup} />
-          </Icon>{" "}
-          {t("Layers")}
-        </Button>
-      </ButtonGroup>
-
       {filters.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
@@ -114,6 +81,39 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
                 <BadgeCounter>{0}</BadgeCounter>
               </div>
             </span>
+
+            <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
+              <Button
+                pressed={filters.catagoryDisplayLayout === "table"}
+                appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
+                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
+              >
+                <Icon>
+                  <FontAwesomeIcon icon={faTable} />
+                </Icon>{" "}
+                {t("Table")}
+              </Button>
+              <Button
+                pressed={filters.catagoryDisplayLayout === "cards"}
+                appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
+                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
+              >
+                <Icon>
+                  <FontAwesomeIcon icon={faGripVertical} />
+                </Icon>{" "}
+                {t("Cards")}
+              </Button>
+              <Button
+                pressed={filters.catagoryDisplayLayout === "layer"}
+                appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
+                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
+              >
+                <Icon>
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                </Icon>{" "}
+                {t("Layers")}
+              </Button>
+            </ButtonGroup>
           </div>
 
           <div className={styles.results}>

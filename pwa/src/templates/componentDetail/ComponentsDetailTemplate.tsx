@@ -356,10 +356,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <TabPanel className={styles.tabPanel} value="0">
                 <div className={styles.components}>
-                  <ResultsDisplaySwitch
-                    resultsDisplayType="dependenciesDisplayLayout"
-                    layoutClassName={styles.dependenciesDisplaySwitchButtons}
-                  />
+                  {_getComponent.data.embedded?.dependsOn?.embedded.open && (
+                    <ResultsDisplaySwitch
+                      resultsDisplayType="dependenciesDisplayLayout"
+                      layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                    />
+                  )}
 
                   <DependenciesTemplate
                     type={filters.dependenciesDisplayLayout}
@@ -466,46 +468,46 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Table>
               </TabPanel>
 
-              <TabPanel className={clsx(styles.tabPanel, styles.organizations)} value="2">
-                {_getComponent.data?.usedBy?.length &&
-                  _getComponent.data?.usedBy.map((organization: any) => (
-                    <OrganizationCard
-                      key={organization.id}
-                      title={{
-                        label: organization?.name,
-                        href: `#`,
-                      }}
-                      description={organization?.description}
-                      website={organization?.website}
-                      logo={organization?.logo}
-                      components={{
-                        owned: organization?.owns?.length.toString() ?? "0",
-                        supported: organization?.supports?.length.toString() ?? "0",
-                        used: organization?.uses?.length.toString() ?? "0",
-                      }}
-                      gitHub={organization?.github}
-                      gitLab={organization?.gitlab}
-                      type={organization?.type}
-                      layoutClassName={styles.organizationCardContainer}
-                    />
-                  ))}
+              <TabPanel className={styles.tabPanel} value="2">
+                {_getComponent.data?.usedBy?.length > 0 && (
+                  <div className={styles.organizations}>
+                    {_getComponent.data.usedBy.map((organization: any) => (
+                      <OrganizationCard
+                        key={organization.id}
+                        title={{
+                          label: organization?.name,
+                          href: `#`,
+                        }}
+                        description={organization?.description}
+                        website={organization?.website}
+                        logo={organization?.logo}
+                        components={{
+                          owned: organization?.owns?.length.toString() ?? "0",
+                          supported: organization?.supports?.length.toString() ?? "0",
+                          used: organization?.uses?.length.toString() ?? "0",
+                        }}
+                        gitHub={organization?.github}
+                        gitLab={organization?.gitlab}
+                        type={organization?.type}
+                        layoutClassName={styles.organizationCardContainer}
+                      />
+                    ))}
+                  </div>
+                )}
 
-                {!_getComponent.data?.usedBy?.length && <>Er zijn geen hergebruikers van dit component.</>}
+                {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
               </TabPanel>
 
               <TabPanel className={styles.tabPanel} value="3">
-                <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate
-                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                  />
-                </div>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
               </TabPanel>
+
               <TabPanel className={styles.tabPanel} value="4">
-                <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate
-                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                  />
-                </div>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
               </TabPanel>
             </TabContext>
           </div>
