@@ -1,13 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import {
-  BadgeCounter,
-  Heading,
-  Paragraph,
-  Icon,
-  Button,
-  ButtonGroup,
-} from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Heading, Icon, Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
@@ -20,6 +13,7 @@ import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { DataBadge } from "@utrecht/component-library-react";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
@@ -64,9 +58,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
             {t(domain.title)}
           </DataBadge>
 
-          <Paragraph lead className={styles.description}>
-            {portfolio.longDescription}
-          </Paragraph>
+          <ExpandableLeadParagraph description={portfolio.longDescription} />
         </div>
       )}
 

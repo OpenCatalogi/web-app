@@ -2,14 +2,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import {
-  BadgeCounter,
-  Heading,
-  Paragraph,
-  Icon,
-  Button,
-  DataBadge,
-} from "@utrecht/component-library-react/dist/css-module";
+import { BadgeCounter, Heading, Icon, Button, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
 import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
@@ -23,7 +16,6 @@ import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBroom,
   faDatabase,
   faHouse,
   faInfoCircle,
@@ -46,6 +38,7 @@ import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import clsx from "clsx";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Link } from "../../components";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -98,9 +91,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.name}
               </Heading>
 
-              <Paragraph lead className={styles.description}>
-                {_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
-              </Paragraph>
+              <ExpandableLeadParagraph
+                description={_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
+              />
 
               <div className={styles.layerAndCategoryContainer}>
                 <ToolTip tooltip="Laag">
