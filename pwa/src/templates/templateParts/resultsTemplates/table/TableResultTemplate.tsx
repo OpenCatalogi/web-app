@@ -80,7 +80,7 @@ export const TableResultTemplate: React.FC<LayersResultTemplateProps> = ({ compo
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
               <TableHeaderCell>{t("Software type")}</TableHeaderCell>
               <TableHeaderCell>{t("Status")}</TableHeaderCell>
-              <TableHeader />
+              <TableHeaderCell />
             </TableRow>
           </TableHeader>
         )}

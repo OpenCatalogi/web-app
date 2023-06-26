@@ -106,7 +106,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       {filters.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            <span className={0 >= 100 && styles.maxNumber}>
+            <span>
               <div className={styles.categoryTitle}>
                 <Heading level={3} className={styles.title}>
                   {t("Solutions")}
