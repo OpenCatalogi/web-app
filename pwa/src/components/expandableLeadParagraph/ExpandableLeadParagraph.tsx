@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ExpandableLeadParagraph.module.css";
 import { Button, Paragraph } from "@utrecht/component-library-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 
 const SHORT_DESCRIPTION_TRESHOLD = 300;
@@ -39,7 +39,7 @@ export const ExpandableLeadParagraph: React.FC<ExpandableLeadParagraphProps> = (
       >
         {isExpanded ? "Omschrijving inklappen" : "Volledige omschrijving lezen"}
 
-        <FontAwesomeIcon className="utrecht-icon--conduction-end" icon={faChevronDown} />
+        <FontAwesomeIcon className="utrecht-icon--conduction-end" icon={faChevronRight} />
       </Button>
     </div>
   );
