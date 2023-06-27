@@ -1,16 +1,28 @@
+.container {
+  padding-inline-start: var(--web-app-size-lg);
+  padding-inline-end: var(--web-app-size-lg);
+  padding-block-end: var(--web-app-size-lg);
+  padding-block-start: var(--web-app-size-lg);
+  background-color: var(--web-app-color-background-light);
+}
+
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
 .formContent {
+  width: 100%;
   display: flex;
+  gap: var(--web-app-size-md);
   justify-content: space-between;
 }
 
-.formField {
-  width: 100% !important;
-  max-width: 650px !important;
+.formContent > .formField {
+  width: 100%;
 }
 
-.inputUrl > div {
-  margin-block-end: unset;
-  margin-block-start: unset;
+.submitButton {
+  min-width: fit-content !important;
 }
 
 .customErrorMessage {

@@ -57,7 +57,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formContent}>
           <FormField className={styles.formField}>
-            <FormFieldInput className={styles.inputUrl}>
+            <FormFieldInput>
               <Textbox
                 id="submitUrlTextBox"
                 {...register("html_url")}
@@ -75,12 +75,11 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
               )}
             </FormFieldInput>
           </FormField>
-          <div>
-            <Button type="submit" disabled={loading || !watchInputUrl}>
-              <FontAwesomeIcon icon={faPaperPlane} />
-              {buttonLabel ?? t("Send")}
-            </Button>
-          </div>
+
+          <Button className={styles.submitButton} type="submit" disabled={loading || !watchInputUrl}>
+            <FontAwesomeIcon icon={faPaperPlane} />
+            {buttonLabel ?? t("Send")}
+          </Button>
         </div>
       </form>
     </div>

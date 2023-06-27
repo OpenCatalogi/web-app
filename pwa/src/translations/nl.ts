@@ -103,10 +103,12 @@ export const nl = {
   "Active Filters": "Actieve Filters",
   Contact: "Contact",
   "Submit component or organization": "Component of organisatie indienen",
-  "Register your component or organization": "Meld uw component of organisatie",
+  "Register your component or organization": "Registreer uw component of organisatie in Open Catalogi",
   "Repository url of your component or organization":
     "Geef de url van de repository van uw component of organisatie op",
   "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
     "Oeps, er is iets misgegaan. Zorg ervoor dat je een geldige repository-URL gebruikt of probeer het later opnieuw.",
   "View Repository": "Bekijk Repository",
+  "Already have a repository URL? Then register it immediately.":
+    "Heb je al een repository-URL? Registreer hem dan direct.",
 };
