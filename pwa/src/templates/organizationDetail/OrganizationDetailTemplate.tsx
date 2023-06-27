@@ -4,7 +4,6 @@ import { Container } from "@conduction/components";
 import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import {
   BadgeCounter,
-  Paragraph,
   Heading,
   DataBadge,
   Icon,
@@ -22,6 +21,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
 
@@ -55,12 +55,9 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 {_getOrganization.data.name}
               </Heading>
 
-              {_getOrganization.data.description && (
-                <Paragraph className={styles.description}>{_getOrganization.data.description}</Paragraph>
-              )}
-              {!_getOrganization.data.description && (
-                <Paragraph className={styles.description}>{t("There is no description available")}</Paragraph>
-              )}
+              <ExpandableLeadParagraph
+                description={_getOrganization.data.description ?? t("There is no description available")}
+              />
             </div>
 
             <div className={styles.headerOrganizationData}>

@@ -1,13 +1,11 @@
 import * as React from "react";
 import * as styles from "./RelationsDependenciesTemplate.module.css";
 import { Network } from "vis-network";
-import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
 import { navigate } from "gatsby";
 import { NodeToolTip } from "../../../../components/toolTip/ToolTip";
-import { NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import "vis-network/styles/vis-network.css";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -24,8 +22,6 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
   components,
   mainComponent,
 }) => {
-  const { t } = useTranslation();
-
   const ToolTip = document.createElement("div");
   const staticToolTipElement = renderToStaticMarkup(
     <NodeToolTip tooltip="Dubbelklik het component om naar het component te gaan" />,

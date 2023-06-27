@@ -22,7 +22,7 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
     );
   });
 
-  if (noResultFound) return <Paragraph>Geen Organisaties, Componenten of Applicaties gevonden.</Paragraph>;
+  if (noResultFound) return <Paragraph>Geen resultaten gevonden.</Paragraph>;
 
   return (
     <div className={styles.ComponentsGrid}>
