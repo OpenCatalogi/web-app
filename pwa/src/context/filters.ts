@@ -47,6 +47,8 @@ export const baseFilters = {
   currentPage: 1,
   applicationsCurrentPage: 1,
   organizationCurrentPage: 1,
+  _search: "",
+  organizationSearch: "",
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (_: IFilters) => void]>([baseFilters, () => null]);

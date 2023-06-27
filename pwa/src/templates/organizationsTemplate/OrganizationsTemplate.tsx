@@ -9,7 +9,7 @@ import { PaginatedItems } from "../../components/pagination/pagination";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
-import { OrganizationHorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
+import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
 import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDisplayTemplates/OrganizationDisplayTemplate";
 
 export const OrganizationsTemplate: React.FC = () => {
@@ -34,7 +34,7 @@ export const OrganizationsTemplate: React.FC = () => {
 
       <div>
         <div className={styles.results}>
-          <OrganizationHorizontalFiltersTemplate />
+          <OrganizationSearchFiltersTemplate />
 
           {getOrganisations.data?.results?.length === 0 && !getOrganisations.isLoading && (
             <span>{t("No organizations found")}</span>
