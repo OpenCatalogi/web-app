@@ -57,7 +57,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formContent}>
           <FormField className={styles.formField}>
-            <FormFieldInput className={styles.inputUrl}>
+            <FormFieldInput>
               <Textbox
                 id="submitUrlTextBox"
                 {...register("html_url")}
