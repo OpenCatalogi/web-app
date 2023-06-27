@@ -46,7 +46,7 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
-.tagsContainer > div {
+.tagsContainer > button {
   margin-block-end: var(--web-app-size-xs);
 }
 

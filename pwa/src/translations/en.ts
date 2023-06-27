@@ -109,7 +109,7 @@ export const en = {
   "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
     "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
   "View Repository": "View Repository",
-  "Owned, suppored and used components": "Owned, suppored and used components",
+  "Owned, supported and used components": "Owned, supported and used components",
   "No website found": "No website found",
   "No repository found": "No repository found",
   "Back to organizations": "Back to organizations",

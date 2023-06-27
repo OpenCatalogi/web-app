@@ -10,7 +10,7 @@ export const CardsOrganizationDisplayTemplate: React.FC<CardsOrganizationDisplay
   organizations,
 }) => {
   return (
-    <div className={styles.ComponentsGrid}>
+    <div className={styles.componentsGrid}>
       {organizations.map((organization) => (
         <>
           {organization._self.schema.ref.includes("organisation.schema.json") && (

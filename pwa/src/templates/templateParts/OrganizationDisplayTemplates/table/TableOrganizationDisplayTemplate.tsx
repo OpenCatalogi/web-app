@@ -13,14 +13,14 @@ import {
   TableHeaderCell,
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowRight } from "@tabler/icons-react";
-import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { Link } from "../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faHouseLaptop, faInfoCircle, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
+import { ToolTip } from "@conduction/components";
 
 interface TableOrganizationDisplayTemplateProps {
   organizations: any[];
@@ -41,8 +41,11 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
             <TableRow>
               <TableHeaderCell>{t("Name")}</TableHeaderCell>
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
-              <TableHeaderCell className={styles.tagsHeader}>
-                {t("Owned, suppored and used components")}
+              <TableHeaderCell className={styles.componentsHeader}>
+                {t("Components")}
+                <ToolTip tooltip={t("Owned, supported and used components")}>
+                  <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
+                </ToolTip>
               </TableHeaderCell>
               <TableHeaderCell>{t("Website")}</TableHeaderCell>
               <TableHeaderCell>{t("GitHub/Gitlab")}</TableHeaderCell>

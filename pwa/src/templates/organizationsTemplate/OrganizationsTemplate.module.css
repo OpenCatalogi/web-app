@@ -6,21 +6,6 @@
   margin-block-end: var(--web-app-size-lg);
 }
 
-.filtersAndResultsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--web-app-size-lg);
-}
-
-.results {
-  flex: 3;
-
-  --utrecht-heading-4-font-weight: normal;
-  --utrecht-heading-4-font-size: var(--web-app-font-size-md);
-  --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
-  --utrecht-heading-4-distanced-margin-block-start: var(--web-app-size-2xs);
-}
-
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
@@ -51,10 +36,6 @@
     margin-block-end: 0px;
   }
 
-  .filtersAndResultsContainer {
-    flex-direction: row;
-  }
-
   .paginationContainer > *:not(:first-child) {
     margin-inline-start: var(--web-app-size-xl);
   }
@@ -62,5 +43,4 @@
   .paginationContainer > *:not(:last-child) {
     flex: unset !important;
   }
-
 }

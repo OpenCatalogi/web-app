@@ -32,7 +32,7 @@ export const OrganizationsTemplate: React.FC = () => {
         <ResultsDisplaySwitch resultsDisplayType="organizationsResultDisplayLayout" />
       </div>
 
-      <div className={styles.filtersAndResultsContainer}>
+      <div>
         <div className={styles.results}>
           <OrganizationHorizontalFiltersTemplate />
 

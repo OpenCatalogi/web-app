@@ -22,9 +22,9 @@
   display: inline-flex;
 }
 
-.tagsHeader {
-  text-align: center !important;
-  width: max-content !important;
+.componentsHeader {
+  display: flex;
+  gap: var(--web-app-size-xs);
 }
 
 .tags {

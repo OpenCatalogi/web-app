@@ -102,7 +102,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                         appearance="secondary-action-button"
                         onClick={() => setShowMore(Object.values<boolean>({ ...showMore, [index]: !showMore[index] }))}
                       >
-                        <span>{showMore[index] ? "show less" : "show more"}</span>
+                        <span>{showMore[index] ? t("Show less") : t("Show more")}</span>
                         <FontAwesomeIcon
                           className={clsx(styles.toggleIcon, showMore[index] && styles.isOpen)}
                           icon={faChevronRight}
