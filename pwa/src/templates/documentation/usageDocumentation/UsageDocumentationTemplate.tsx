@@ -5,8 +5,12 @@ import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-
 import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import dedent from "dedent";
 import { Link } from "../../../components";
+import { SubmitUrlTemplate } from "../../templateParts/submitUrl/SubmitUrlTemplate";
+import { useTranslation } from "react-i18next";
 
 export const UsageDocumentationTemplate: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Container layoutClassName={styles.container}>
       <section className={styles.section}>
@@ -15,6 +19,14 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Paragraph lead className={styles.description}>
           Er zijn vier manieren om een component zichtbaar te maken op OpenCatalogi.
         </Paragraph>
+      </section>
+
+      <section className={styles.section}>
+        <SubmitUrlTemplate
+          title={t("Already have a repository URL? Then register it immediately.")}
+          placeholder={t("Repository url of your component or organization")}
+          buttonLabel={t("Submit component or organization")}
+        />
       </section>
 
       <section className={styles.section}>

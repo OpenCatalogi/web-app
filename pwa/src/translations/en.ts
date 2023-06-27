@@ -109,4 +109,6 @@ export const en = {
   "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.":
     "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
   "View Repository": "View Repository",
+  "Already have a repository URL? Then register it immediately.":
+    "Already have a repository URL? Then register it immediately.",
 };
