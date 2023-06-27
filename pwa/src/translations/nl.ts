@@ -111,4 +111,11 @@ export const nl = {
   "View Repository": "Bekijk Repository",
   "Already have a repository URL? Then register it immediately.":
     "Heb je al een repository-URL? Registreer hem dan direct.",
+    "Owned, supported and used components": "Eigen, ondersteunde en gebruikte componenten",
+    "No website found": "Geen website gevonden",
+    "Not found": "Niet gevonden",
+    "No repository found": "Geen repository gevonden",
+    "Back to organizations": "Terug naar organisaties",
+    "Show more" : "Toon meer",
+    "Show less" : "Toon minder",
 };

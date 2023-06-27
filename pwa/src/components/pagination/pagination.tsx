@@ -3,20 +3,14 @@ import * as styles from "./pagination.module.css";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../context/gatsby";
 
 interface PaginatedItemsProps {
   pages: number;
   currentPage: number;
   setPage: (page: number) => any;
   pageRangeDisplayed: number;
-  marginPagesDisplayed: number;
   containerClassName: string;
-  pageClassName: string;
-  previousClassName: string;
-  nextClassName: string;
-  activeClassName: string;
-  disabledClassName: string;
-  breakClassName: string;
 }
 
 export const PaginatedItems: React.FC<PaginatedItemsProps> = ({
@@ -24,18 +18,27 @@ export const PaginatedItems: React.FC<PaginatedItemsProps> = ({
   currentPage,
   setPage,
   pageRangeDisplayed,
-  marginPagesDisplayed,
   containerClassName,
-  pageClassName,
-  previousClassName,
-  nextClassName,
-  activeClassName,
-  disabledClassName,
-  breakClassName,
 }) => {
+  const { screenSize } = React.useContext(GatsbyContext);
+
+  const [marginPagesDisplayed, setMarginPageDisplayed] = React.useState<number>(3);
+
   const handlePageClick = (event: any) => {
     setPage(event.selected + 1);
   };
+
+  React.useEffect(() => {
+    if (screenSize === "mobile") {
+      setMarginPageDisplayed(2);
+    }
+    if (screenSize === "mobile" && pages > 100) {
+      setMarginPageDisplayed(1);
+    }
+    if (screenSize !== "mobile") {
+      setMarginPageDisplayed(3);
+    }
+  });
 
   return (
     <ReactPaginate
@@ -45,16 +48,16 @@ export const PaginatedItems: React.FC<PaginatedItemsProps> = ({
       forcePage={currentPage - 1}
       pageRangeDisplayed={pageRangeDisplayed}
       marginPagesDisplayed={marginPagesDisplayed}
-      pageClassName={pageClassName}
+      pageClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
       previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-      previousClassName={previousClassName}
+      previousClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
       nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-      nextClassName={nextClassName}
-      activeClassName={activeClassName}
+      nextClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+      activeClassName={pages > 1000 ? styles.paginationActivePageSmall : styles.paginationActivePage}
       disableInitialCallback={true}
-      disabledClassName={disabledClassName}
+      disabledClassName={styles.paginationDisabled}
       breakLabel="..."
-      breakClassName={breakClassName}
+      breakClassName={styles.breakLink}
     />
   );
 };

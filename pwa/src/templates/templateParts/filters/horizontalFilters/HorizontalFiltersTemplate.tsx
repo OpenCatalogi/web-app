@@ -6,6 +6,7 @@ import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const searchTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const {
     register,
@@ -19,17 +20,20 @@ export const HorizontalFiltersTemplate: React.FC = () => {
     });
   }, [filters]);
 
-  React.useEffect(() => {
-    const subscription = watch(({ name }) => {
-      setFilters({
-        ...filters,
-        currentPage: 1,
-        _search: name,
-      });
-    });
+  const watchName = watch("name");
 
-    return () => subscription.unsubscribe();
-  });
+  React.useEffect(() => {
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    searchTimeout.current = setTimeout(
+      () =>
+        setFilters({
+          ...filters,
+          currentPage: 1,
+          _search: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
+        }),
+      500,
+    );
+  }, [watchName]);
 
   return (
     <form

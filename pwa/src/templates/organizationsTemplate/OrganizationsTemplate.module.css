@@ -1,38 +1,9 @@
-.container {
-  max-width: var(--web-app-container-width-lg);
-}
-
 .container > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
 
 .header > :not(:last-child) {
   margin-block-end: var(--web-app-size-lg);
-}
-
-.resultsDisplaySwitchButtons {
-  align-items: center;
-}
-
-.filtersAndResultsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--web-app-size-lg);
-}
-
-.verticalFilters {
-  flex: 1;
-  min-width: 280px;
-  height: min-content;
-}
-
-.results {
-  flex: 3;
-
-  --utrecht-heading-4-font-weight: normal;
-  --utrecht-heading-4-font-size: var(--web-app-font-size-md);
-  --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
-  --utrecht-heading-4-distanced-margin-block-start: var(--web-app-size-2xs);
 }
 
 .results > *:not(:last-child) {
@@ -54,22 +25,15 @@
   flex: 1;
 }
 
-.ComponentAlert > div {
-  display: flex;
-  align-items: center;
-}
-
 @media only screen and (min-width: 992px) {
   .header {
     display: flex;
     justify-content: space-between;
     margin-block-start: var(--web-app-size-3xl) !important;
   }
+
   .header > :not(:last-child) {
     margin-block-end: 0px;
-  }
-  .filtersAndResultsContainer {
-    flex-direction: row;
   }
 
   .paginationContainer > *:not(:first-child) {

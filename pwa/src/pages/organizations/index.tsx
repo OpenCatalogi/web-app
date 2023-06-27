@@ -1,9 +1,3 @@
-import * as React from "react";
-import { navigate } from "gatsby";
+import OrganizationsPage from "./OrganizationsPage";
 
-const IndexPage = () => {
-  navigate("/");
-  return <></>;
-};
-
-export default IndexPage;
+export default OrganizationsPage;

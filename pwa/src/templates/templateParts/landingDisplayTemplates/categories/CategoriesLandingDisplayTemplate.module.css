@@ -1,4 +1,4 @@
-.ComponentsGrid {
+.componentsGrid {
   display: grid;
   grid-gap: var(--web-app-size-lg);
   grid-template-columns: 1fr;
@@ -39,16 +39,18 @@
 
 .showMoreButton {
   margin-block-start: var(--web-app-size-md);
+  display: flex;
+  gap: var(--web-app-size-xs);
 }
 
 @media only screen and (min-width: 576px) {
-  .ComponentsGrid {
+  .componentsGrid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .ComponentsGrid {
+  .componentsGrid {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

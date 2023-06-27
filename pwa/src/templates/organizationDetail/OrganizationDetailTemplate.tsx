@@ -2,7 +2,13 @@ import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container } from "@conduction/components";
 import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
-import { BadgeCounter, Heading, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import {
+  BadgeCounter,
+  Heading,
+  DataBadge,
+  Icon,
+  Button,
+} from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
@@ -16,6 +22,8 @@ import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { Link } from "../../components";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -30,6 +38,15 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
+      <div className={styles.backButton}>
+        <Link to="/organizations">
+          <Icon className="utrecht-icon--conduction-start">
+            <IconArrowLeft />
+          </Icon>
+          {t("Back to organizations")}
+        </Link>
+      </div>
+
       {_getOrganization.isSuccess && (
         <>
           <div className={styles.headerContainer}>
@@ -54,44 +71,40 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               <div>
                 <div className={styles.tagsContainer}>
                   {_getOrganization.data.github && (
-                    <ToolTip tooltip="GitHub">
-                      <DataBadge onClick={() => open(_getOrganization.data.github)}>
-                        <GitHubLogo />
-                        {t("GitHub")}
-                      </DataBadge>
-                    </ToolTip>
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.github)}>
+                      <GitHubLogo />
+                      {t("GitHub")}
+                    </Button>
                   )}
                   {_getOrganization.data.gitlab && (
-                    <ToolTip tooltip="GitLab">
-                      <DataBadge onClick={() => open(_getOrganization.data.gitlab)}>
-                        <GitLabLogo />
-                        {t("GitLab")}
-                      </DataBadge>
-                    </ToolTip>
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.gitlab)}>
+                      <GitLabLogo />
+                      {t("GitLab")}
+                    </Button>
                   )}
                   {_getOrganization.data.website && (
-                    <ToolTip tooltip={"Website"}>
-                      <DataBadge onClick={() => open(_getOrganization.data.website)}>
-                        <FontAwesomeIcon icon={faGlobe} />
-                        {_getOrganization.data.website}
-                      </DataBadge>
-                    </ToolTip>
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.website)}>
+                      <FontAwesomeIcon icon={faGlobe} />
+                      {_getOrganization.data.website}
+                    </Button>
                   )}
                   {_getOrganization.data.phone && (
-                    <ToolTip tooltip={"Telefoonnummer"}>
-                      <DataBadge onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}>
-                        <FontAwesomeIcon icon={faPhone} />
-                        {_getOrganization.data.phone}
-                      </DataBadge>
-                    </ToolTip>
+                    <Button
+                      appearance="secondary-action-button"
+                      onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}
+                    >
+                      <FontAwesomeIcon icon={faPhone} />
+                      {_getOrganization.data.phone}
+                    </Button>
                   )}
                   {_getOrganization.data.email && (
-                    <ToolTip tooltip={"EmailAddress"}>
-                      <DataBadge onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}>
-                        <FontAwesomeIcon icon={faEnvelope} />
-                        {_getOrganization.data.email}
-                      </DataBadge>
-                    </ToolTip>
+                    <Button
+                      appearance="secondary-action-button"
+                      onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}
+                    >
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      {_getOrganization.data.email}
+                    </Button>
                   )}
                 </div>
               </div>

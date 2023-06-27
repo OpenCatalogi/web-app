@@ -33,4 +33,5 @@ const filterKeysToRemove: string[] = [
   "dependenciesDisplayLayout",
   "landingDisplayLayout",
   "catagoryDisplayLayout",
+  "organizationsResultDisplayLayout",
 ];

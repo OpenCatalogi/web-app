@@ -435,10 +435,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setStatusRadioFilter(status.value)}
                     key={status.value}
                   >
-                    <RadioButton
-                      value={status.value}
-                      checked={filters.developmentStatus === status.value}
-                    />
+                    <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
                     <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
                       {status.label}
                     </span>
@@ -560,10 +557,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                     key={softwareType.value}
                   >
-                    <RadioButton
-                      value={softwareType.value}
-                      checked={filters.softwareType === softwareType.value}
-                    />
+                    <RadioButton value={softwareType.value} checked={filters.softwareType === softwareType.value} />
                     <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
                       {softwareType.label}
                     </span>
