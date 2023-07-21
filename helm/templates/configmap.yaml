@@ -37,7 +37,7 @@ data:
     window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "{{ .Values.pwa.frontendUrl }}");
     {{- end }}
     {{- if contains "useDomain" .Values.pwa.dashboardUrl }}
-    window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "{{ printf "https://admin.$s/" .Values.global.domain }}");
+    window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "{{ printf "https://admin.%s/" .Values.global.domain }}");
     {{ else }}
     window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "https://{{ .Values.pwa.dashboardUrl }}");
     {{- end }}
