@@ -5,6 +5,7 @@ require("dotenv").config({
 });
 
 module.exports = {
+  pathPrefix: `/${process.env.GITHUB_REPOSITORY_NAME}`,
   plugins: [
     {
       resolve: `gatsby-plugin-layout`,

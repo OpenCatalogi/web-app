@@ -2,6 +2,7 @@ name: Deploy Open Catalogi to GitHub Pages
 
 env: # Change these to your preferences any image url can also be a base encoded image
     GITHUB_PAGES_BRANCH: gh-pages
+    GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
 
     ME_URL: "https://api.opencatalogi.nl/api/users/me"
 
@@ -37,6 +38,7 @@ jobs:
             - name: Make envfile
               uses: SpicyPizza/create-envfile@v2.0
               with:
+                  envkey_GITHUB_REPOSITORY_NAME: ${{ env.GITHUB_REPOSITORY_NAME }}
                   envkey_GATSBY_ME_URL: ${{ env.ME_URL }}
                   envkey_GATSBY_API_URL: ${{ env.API_URL }}
                   envkey_GATSBY_ADMIN_URL: ${{ env.ADMIN_URL }}
