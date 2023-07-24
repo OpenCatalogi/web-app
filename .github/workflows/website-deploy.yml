@@ -3,19 +3,19 @@ name: Deploy Open Catalogi to GitHub Pages
 env: # Change these to your preferences any image url can also be a base encoded image
     GITHUB_PAGES_BRANCH: gh-pages
 
-    ME_URL: https://api.opencatalogi.nl/api/users/me
+    ME_URL: "https://api.opencatalogi.nl/api/users/me"
 
-    API_URL: https://api.opencatalogi.nl/api
+    API_URL: "https://api.opencatalogi.nl/api"
 
-    ADMIN_URL: https://api.opencatalogi.nl/admin
+    ADMIN_URL: "https://api.opencatalogi.nl/admin"
 
-    BASE_URL: https://api.opencatalogi.nl
+    BASE_URL: "https://api.opencatalogi.nl"
 
-    FRONTEND_URL: https://api.opencatalogi.nl
+    FRONTEND_URL: "https://api.opencatalogi.nl"
 
-    LOGIN_REDIRECT: vault
+    LOGIN_REDIRECT: "vault"
 
-    ADMIN_DASHBOARD_URL: https://admin.opencatalogi.nl
+    ADMIN_DASHBOARD_URL: "https://admin.opencatalogi.nl"
 
 on:
     push:
