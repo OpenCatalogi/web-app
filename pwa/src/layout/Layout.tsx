@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
 import "../styling/index.css";
 import * as styles from "./Layout.module.css";
