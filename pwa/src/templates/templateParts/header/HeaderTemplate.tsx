@@ -129,7 +129,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
+        open(process.env.ADMIN_DASHBOARD_URL);
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
