@@ -3,7 +3,7 @@ import "../styling/index.css";
 import { Helmet } from "react-helmet";
 
 export const Head: React.FC = () => {
-  console.log("deploy#3");
+  console.log("deploy#4");
 
   return (
     <Helmet>
