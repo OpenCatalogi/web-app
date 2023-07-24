@@ -3,6 +3,8 @@ import "../styling/index.css";
 import { Helmet } from "react-helmet";
 
 export const Head: React.FC = () => {
+  console.log("deploy#2");
+
   return (
     <Helmet>
       <title>OpenCatalogi</title>
