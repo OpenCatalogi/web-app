@@ -37,13 +37,13 @@ jobs:
             - name: Make envfile
               uses: SpicyPizza/create-envfile@v2.0
               with:
-                  envkey_GATSBY_ME_URL: ${{ ME_URL }}
-                  envkey_GATSBY_API_URL: ${{ API_URL }}
-                  envkey_GATSBY_ADMIN_URL: ${{ ADMIN_URL }}
-                  envkey_GATSBY_BASE_URL: ${{ BASE_URL }}
-                  envkey_GATSBY_FRONTEND_URL: ${{ FRONTEND_URL }}
-                  envkey_GATSBY_LOGIN_REDIRECT: ${{ LOGIN_REDIRECT }}
-                  envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ ADMIN_DASHBOARD_URL }}
+                  envkey_GATSBY_ME_URL: ${{ env.ME_URL }}
+                  envkey_GATSBY_API_URL: ${{ env.API_URL }}
+                  envkey_GATSBY_ADMIN_URL: ${{ env.ADMIN_URL }}
+                  envkey_GATSBY_BASE_URL: ${{ env.BASE_URL }}
+                  envkey_GATSBY_FRONTEND_URL: ${{ env.FRONTEND_URL }}
+                  envkey_GATSBY_LOGIN_REDIRECT: ${{ env.LOGIN_REDIRECT }}
+                  envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ env.ADMIN_DASHBOARD_URL }}
 
                   directory: pwa/static
                   file_name: .env.production
