@@ -28,7 +28,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
   const onSubmit = (data: any): void => {
     const payload = {
       repository: {
-        ...data,
+        html_url: data.html_url.trim(),
       },
     };
     postRepository.mutate({ payload });
