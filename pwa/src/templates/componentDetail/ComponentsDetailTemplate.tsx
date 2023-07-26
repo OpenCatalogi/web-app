@@ -72,6 +72,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
 
+  const isValidHttpUrl = (src: string) => {
+    let url;
+
+    try {
+      url = new URL(src);
+    } catch (_) {
+      return componentPlacholderLogo;
+    }
+    if (url.protocol === "http:" || url.protocol === "https:") return src;
+  };
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
@@ -191,7 +202,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <div className={styles.addToCatalogusContainer}>
               <div className={styles.logoContainer}>
                 <img
-                  src={_getComponent.data?.embedded?.url?.avatar_url ?? componentPlacholderLogo}
+                  src={
+                    _getComponent.data?.embedded?.url?.embedded?.component?.logo
+                      ? isValidHttpUrl(_getComponent.data?.embedded?.url?.embedded?.component?.logo)
+                      : componentPlacholderLogo
+                  }
                   className={styles.logo}
                 />
               </div>
