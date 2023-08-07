@@ -72,6 +72,15 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
 
+  const imageHasValidSource = (src: string): boolean => {
+    try {
+      const url = new URL(src);
+      return url.protocol === "htpp:" || url.protocol === "https:";
+    } catch (_) {
+      return false;
+    }
+  };
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
@@ -191,7 +200,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             <div className={styles.addToCatalogusContainer}>
               <div className={styles.logoContainer}>
                 <img
-                  src={_getComponent.data?.embedded?.url?.avatar_url ?? componentPlacholderLogo}
+                  src={
+                    _getComponent.data?.embedded?.url?.embedded?.component?.logo
+                      ? imageHasValidSource(_getComponent.data?.embedded?.url?.embedded?.component?.logo) &&
+                        _getComponent.data?.embedded?.url?.embedded?.component?.logo
+                      : componentPlacholderLogo
+                  }
                   className={styles.logo}
                 />
               </div>
