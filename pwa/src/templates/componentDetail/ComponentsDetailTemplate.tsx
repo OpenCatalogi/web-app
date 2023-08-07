@@ -201,10 +201,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.logoContainer}>
                 <img
                   src={
-                    _getComponent.data?.embedded?.url?.embedded?.component?.logo
-                      ? imageHasValidSource(_getComponent.data?.embedded?.url?.embedded?.component?.logo)
-                        ? _getComponent.data?.embedded?.url?.embedded?.component?.logo
-                        : componentPlacholderLogo
+                    imageHasValidSource(_getComponent.data?.embedded?.url?.embedded?.component?.logo)
+                      ? _getComponent.data?.embedded?.url?.embedded?.component?.logo
                       : componentPlacholderLogo
                   }
                   className={styles.logo}
