@@ -72,15 +72,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
 
-  const isValidHttpUrl = (src: string) => {
-    let url;
-
+  const imageHasValidSource = (src: string): boolean => {
     try {
-      url = new URL(src);
+      const url = new URL(src);
+      return url.protocol === "htpp:" || url.protocol === "https:";
     } catch (_) {
-      return componentPlacholderLogo;
+      return false;
     }
-    if (url.protocol === "http:" || url.protocol === "https:") return src;
   };
 
   return (
@@ -204,7 +202,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <img
                   src={
                     _getComponent.data?.embedded?.url?.embedded?.component?.logo
-                      ? isValidHttpUrl(_getComponent.data?.embedded?.url?.embedded?.component?.logo)
+                      ? imageHasValidSource(_getComponent.data?.embedded?.url?.embedded?.component?.logo) &&
+                        _getComponent.data?.embedded?.url?.embedded?.component?.logo
                       : componentPlacholderLogo
                   }
                   className={styles.logo}
