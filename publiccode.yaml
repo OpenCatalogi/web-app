@@ -2,6 +2,7 @@
 name: "OpenCatalogi web-app"
 url: "https://github.com/OpenCatalogi/web-app"
 landingURL: "https://github.com/OpenCatalogi/web-app"
+logo: "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/assets/images/logo_OpenCatalogi.png"
 
 publiccodeYmlVersion: 1.0
 softwareType: "standalone/web"
