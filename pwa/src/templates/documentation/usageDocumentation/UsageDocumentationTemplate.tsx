@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
 import { CodeBlock, Heading, Paragraph, Icon, Code } from "@utrecht/component-library-react/dist/css-module";
-import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
+import { IconExternalLink } from "@tabler/icons-react";
 import dedent from "dedent";
 import { Link } from "../../../components";
 import { SubmitUrlTemplate } from "../../templateParts/submitUrl/SubmitUrlTemplate";
@@ -17,7 +17,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         <Heading level={1}>Componenten op OpenCatalogi plaatsen en Componenten installeren</Heading>
 
         <Paragraph lead className={styles.description}>
-          Er zijn vier manieren om een component zichtbaar te maken op OpenCatalogi.
+          Er zijn drie manieren om een component zichtbaar te maken op OpenCatalogi.
         </Paragraph>
       </section>
 
@@ -98,20 +98,6 @@ export const UsageDocumentationTemplate: React.FC = () => {
             </Link>
           </span>
           , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in OpenCatalogi.
-        </Paragraph>
-        <Heading level={2}>4. Via het aanmaken van een account</Heading>
-        <Paragraph className={styles.description}>
-          U kunt via{" "}
-          <span>
-            <Link to="/documentation/contact">
-              <Icon className="utrecht-icon--conduction-start">
-                <IconArrowRight />
-              </Icon>
-              dit formulier
-            </Link>
-          </span>{" "}
-          een account aanvragen. Via een account kunt u de gegevens van uw component en organisatie aanpassen en nieuwe
-          componenten aanmelden.
         </Paragraph>
       </section>
       <section className={styles.section}>
@@ -242,7 +228,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
           Om de werking van de common-gateway die samen met de applicatie gaat draaien, te veranderen verwijzen we
           vriendelijk naar de technische documentatie van de{" "}
           <span>
-            <Link target="_new" href="https://docs.conductor-gateway.app/en/latest/installation/">
+            <Link target="_new" href="https://commongateway.readthedocs.io/en/latest/">
               <Icon className="utrecht-icon--conduction-start">
                 <IconExternalLink />
               </Icon>
