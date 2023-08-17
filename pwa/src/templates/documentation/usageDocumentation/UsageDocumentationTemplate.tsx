@@ -272,15 +272,6 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           De Helm grafiek kan geïnstalleerd worden met de hulp van Kubernetes beheertools zoals{" "}
           <span>
-            <Link target="_new" href="https://dashkube.com/">
-              <Icon className="utrecht-icon--conduction-start">
-                <IconExternalLink />
-              </Icon>
-              Dashkube
-            </Link>
-          </span>{" "}
-          of{" "}
-          <span>
             <Link target="_new" href="https://rancher.com/">
               <Icon className="utrecht-icon--conduction-start">
                 <IconExternalLink />

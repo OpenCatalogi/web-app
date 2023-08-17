@@ -85,7 +85,7 @@ To edit the working of the common gateway spun with the application we kindly re
 ## Installing on Kubernetes environments
 In order to install the application in your own cloud environment we support installation in [Kubernetes](https://kubernetes.io) using the supplied [helm](https://helm.sh) chart. Kubernetes is a Container Orchestration Engine that has been standardised for Dutch municipalities under the [Haven](https://haven.commonground.nl) standard, and for which Helm is the default installation method of components.
 
-This helm chart can be installed with the help of Kubernetes Management Tools like [Daskube](https://dashkube.com) or [Rancher](https://rancher.com).
+This helm chart can be installed with the help of Kubernetes Management Tools like [Rancher](https://rancher.com).
 
 This helm chart can be installed by running Helm from your local machine (see instructions on how to install Helm on [helm.sh](https://helm.sh/docs/intro/install/#through-package-managers), which requires to have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed).
 
