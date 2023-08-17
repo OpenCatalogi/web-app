@@ -16,17 +16,19 @@ To set up your own project, you will need a GitHub account and be logged in. Sim
 To develop locally, clone your new repository to your local machine. Open the terminal, navigate to the folder containing your repository, and make a choice to run the app in Node.js/npm or docker.
 
 ### Node.js / NPM
-You will need a Git client(optional), and have Node.js and NPM installed. This will use port :8000 so make sure nothing runs on that.
+You will need a Git client(optional), and have Node.js and NPM installed. This will use port :9000 so make sure nothing runs on that.
 
 ```cli
 $ cd /pwa
-$ npm install
-$ npm run develop
+$ npm run build
+$ npm run serve
 ```
 
 
 ### Docker
-You will need to have docker installed. This will also run Conductions gateway on port :80 and the app itself on :8000 so make sure nothing runs on those.
+
+You will need to have docker installed. This will run the app itself on port :81 so make sure nothing runs on those.
+
 ```cli
 $ docker-compose pull
 ```
@@ -42,6 +44,55 @@ $ docker-compose up
 ```
 
 After succesfully setting up your dev environment, navigate to [http://localhost:81/](http://localhost:81/) to view the app in your browser.
+
+### Configure back-end connection
+To connect to app to your local back-end you will first need to set up your back-end, you can follow the installation guide provided [here](https://github.com/OpenCatalogi/OpenCatalogiBundle#opencatalogibundle).
+
+To connect the app to your local gateway, you will need to change the environment variables in the `env.js` file. Replace everything in the file with the following:
+```
+window.sessionStorage.setItem(
+  "GATSBY_ME_URL",
+  "https://localhost/api/users/me"
+);
+window.sessionStorage.setItem(
+  "GATSBY_API_URL",
+  "https://localhost/api"
+);
+window.sessionStorage.setItem(
+  "GATSBY_ADMIN_URL",
+  "https://localhost/admin"
+);
+window.sessionStorage.setItem("GATSBY_BASE_URL", "https://localhost");
+window.sessionStorage.setItem(
+  "GATSBY_FRONTEND_URL",
+  "https://localhost"
+);
+window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
+window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
+window.sessionStorage.setItem(
+  "ADMIN_DASHBOARD_URL",
+  "http://localhost:8000"
+);
+
+```
+
+After this restart the app
+
+#### Node.js / NPM
+Stop the server by pressing `CTRL + C` and run:
+
+```cli
+$ npm run build
+$ npm run serve
+```
+
+#### Docker
+Stop the server by pressing `CTRL + C` and run:
+```cli
+$ docker-compose down
+$ docker-compose up
+```
+
 
 To edit the working of the common gateway spun with the application we kindly refer to the technical documentation of the [common gateway](https://docs.conductor-gateway.app/en/latest/installation/).
 
