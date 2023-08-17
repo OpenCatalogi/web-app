@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { CodeBlock, Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { CodeBlock, Heading, Paragraph, Icon, Code } from "@utrecht/component-library-react/dist/css-module";
 import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import dedent from "dedent";
 import { Link } from "../../../components";
@@ -141,27 +141,27 @@ export const UsageDocumentationTemplate: React.FC = () => {
           <br />
           <br />
         </Paragraph>
-        <Heading level={2}>Lokaal je omgeving laten draaien</Heading>
+        <Heading level={3}>Lokaal je omgeving laten draaien</Heading>
         <Paragraph className={styles.description}>
           Om lokaal te ontwikkelen, moet je de nieuwe repository klonen naar je eigen lokale machine. Open een terminal,
           navigeer naar de folder die de repository bevat, en maak een keuze tussen Node.js/npm of Docker om de app te
           laten draaien.
         </Paragraph>
-        <Heading level={2}>Node.js / NPM</Heading>
+        <Heading level={4}>Node.js / NPM</Heading>
         <Paragraph className={styles.description}>
-          Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit gaat poort:8000
-          gebruiken, dus zorg er voor dit poort niet al in gebruik is.
+          Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit zal de front-end
+          op poort:9000 laten draaien, dus zorg er voor dat de poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
           {dedent`
           $ cd /pwa
-          $ npm install
-          $ npm run develop`}
+          $ npm run build
+          $ npm run serve`}
         </CodeBlock>
-        <Heading level={2}>Docker</Heading>
+        <Heading level={4}>Docker</Heading>
         <Paragraph className={styles.description}>
-          Je moet Docker geïnstalleerd hebben. Docker laat de gateway van Conduction op poort:80 draaien en ook de app
-          zelf op poort:8000, dus zorg er voor dat deze poorten niet in gebruik zijn.
+          Je moet Docker geïnstalleerd hebben. Dit zal de front-end op poort:81 laten draaien, dus zorg er voor dat de
+          poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>{`$ docker-compose pull`}</CodeBlock>
         <Paragraph>
@@ -184,7 +184,61 @@ export const UsageDocumentationTemplate: React.FC = () => {
             </Link>
           </span>{" "}
           om de app in de browser te bekijken.
-          <br /> <br />
+        </Paragraph>
+
+        <Heading level={4}>Back-endverbinding configureren</Heading>
+        <Paragraph className={styles.description}>
+          Om verbinding te maken tussen de front-end en de lokale back-end moet je eerst de back-end opstarten, je kunt
+          de installatiehandleiding{" "}
+          <span>
+            <Link target="_new" href="https://github.com/OpenCatalogi/OpenCatalogiBundle#opencatalogibundle-">
+              <Icon className="utrecht-icon--conduction-start">
+                <IconExternalLink />
+              </Icon>
+              hier
+            </Link>
+          </span>{" "}
+          volgen.
+        </Paragraph>
+        <Paragraph>
+          Om de front-end met de lokale gateway te laten praten moet je de omgevingsvariabelen in het{" "}
+          <Code className={styles.code}>env.js</Code> bestand veranderen. Vervang de inhoud van het bestand met het
+          volgende:
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>
+          {dedent`
+          window.sessionStorage.setItem("GATSBY_ME_URL", "http://localhost/api/users/me");
+          window.sessionStorage.setItem("GATSBY_API_URL", "http://localhost/api");
+          window.sessionStorage.setItem("GATSBY_ADMIN_URL", "http://localhost/admin");
+          window.sessionStorage.setItem("GATSBY_BASE_URL", "http://localhost");
+          window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "http://localhost");
+          window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
+          window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
+          window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "http://localhost:8000");`}
+        </CodeBlock>
+        <Paragraph>Herstart de front-end na het aanpassen van dit bestand.</Paragraph>
+        <Heading level={5}>Node.js / NPM</Heading>
+        <Paragraph className={styles.description}>
+          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en bouw de front-end opnieuw
+          op:
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>
+          {dedent`
+          $ npm run build
+          $ npm run serve`}
+        </CodeBlock>
+        <Heading level={5}>Docker</Heading>
+        <Paragraph className={styles.description}>
+          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en herstart front-end:
+        </Paragraph>
+        <CodeBlock className={styles.codeBlock}>
+          {dedent`
+          $ docker-compose down
+          $ docker-compose up`}
+        </CodeBlock>
+        <br />
+        <br />
+        <Paragraph>
           Om de werking van de common-gateway die samen met de applicatie gaat draaien, te veranderen verwijzen we
           vriendelijk naar de technische documentatie van de{" "}
           <span>
