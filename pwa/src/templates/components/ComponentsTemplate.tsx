@@ -23,7 +23,7 @@ export const ComponentsTemplate: React.FC = () => {
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
-  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table" }); // Ensure no refetch on resultDisplayLayout change
+  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table", organizationSearch: "" }); // Ensure no refetch on resultDisplayLayout change
 
   return (
     <Container layoutClassName={styles.container}>
