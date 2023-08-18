@@ -46,7 +46,7 @@ $ docker-compose up
 After succesfully setting up your dev environment, navigate to [http://localhost:81/](http://localhost:81/) to view the app in your browser.
 
 ### Configure back-end connection
-To connect to front-end to your local back-end you will first need to set up your back-end, you can follow the installation guide provided [here](https://github.com/OpenCatalogi/OpenCatalogiBundle#opencatalogibundle).
+To connect to front-end to your local back-end you will first need to set up your back-end, you can follow the installation guide provided [here](https://github.com/OpenCatalogi/OpenCatalogiBundle#opencatalogibundle-).
 
 To connect the app to your local gateway, you will need to change the environment variables in the `env.js` file. Replace the content of the file with the following:
 ```
@@ -58,8 +58,6 @@ window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "http://localhost");
 window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
 window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
 window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "http://localhost:8000");
-
-
 ```
 
 After editing this file restart the front-end
