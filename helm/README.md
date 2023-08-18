@@ -38,4 +38,5 @@ Keep in mind that if the common gateway is installed via the subchart of this ch
 
 - 1.0.3: Updated common gateway helm chart from version 1.4.4 to version 1.5.0 (containing resource requests), added resource requests and extended helm file readme.
 - 1.0.4: Updated common gateway helm chart from version 1.5.0 to version 1.5.1 (containing some fixes on ingress settings)
-- 1.0.5: Updated common gateway helm chart from version 1.5.1 to version 1.5.2 (containing updated resource requests and limits for the gateway)
+- 1.0.5: Updated common gateway helm chart from version 1.5.1 to version 1.5.2 (containing updated resource requests and limits for the gateway.
+- 1.0.6: Updated common gateway helm chart form version 1.5.2 to version 1.5.3 resetting the size of the vendor PVC to 1GB
