@@ -2,7 +2,7 @@
 
 In order to install the application in your own cloud environment we support installation in [Kubernetes](https://kubernetes.io) using the supplied [helm](https://helm.sh) chart. Kubernetes is a Container Orchestration Engine that has been standardised for Dutch municipalities under the [Haven](https://haven.commonground.nl) standard, and for which Helm is the default installation method of components.
 
-This helm chart can be installed with the help of Kubernetes Management Tools like [Daskube](https://dashkube.com) or [Rancher](https://rancher.com).
+This helm chart can be installed with the help of Kubernetes Management Tools like [Rancher](https://rancher.com).
 
 This helm chart can be installed by running Helm from your local machine (see instructions on how to install Helm on [helm.sh](https://helm.sh/docs/intro/install/#through-package-managers), which requires to have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed).
 
@@ -36,4 +36,6 @@ Keep in mind that if the common gateway is installed via the subchart of this ch
 
 ## Changelog
 
-- 1.0.3: Updated common gateway helm chart to from version 1.4.4 version 1.5.0 (containing resource requests), added resource requests and extended helm file readme.
+- 1.0.3: Updated common gateway helm chart from version 1.4.4 to version 1.5.0 (containing resource requests), added resource requests and extended helm file readme.
+- 1.0.4: Updated common gateway helm chart from version 1.5.0 to version 1.5.1 (containing some fixes on ingress settings)
+- 1.0.5: Updated common gateway helm chart from version 1.5.1 to version 1.5.2 (containing updated resource requests and limits for the gateway)
