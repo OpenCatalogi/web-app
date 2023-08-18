@@ -72,7 +72,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
                       {_.upperFirst(
                         organization._self?.synchronizations
                           ? organization._self?.synchronizations?.length
-                            ? organization._self?.synchronizations?.at(-1)?.gateway.name
+                            ? organization._self?.synchronizations?.at(-1)?.source.name
                             : "Onbekend"
                           : "N.V.T.",
                       )}

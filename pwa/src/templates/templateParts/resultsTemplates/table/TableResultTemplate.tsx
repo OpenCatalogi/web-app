@@ -134,7 +134,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                       {_.upperFirst(
                         component._self?.synchronizations
                           ? component._self?.synchronizations?.length
-                            ? component._self?.synchronizations?.at(-1)?.gateway.name
+                            ? component._self?.synchronizations?.at(-1)?.source.name
                             : "Onbekend"
                           : "N.V.T.",
                       )}

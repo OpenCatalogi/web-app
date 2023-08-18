@@ -50,7 +50,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
               />
 
               <div className={styles.layerAndCategoryContainer}>
-                {getApplications.data.embedded && (
+                {getApplications.data.embedded?.owner && (
                   <ToolTip tooltip="Organisatie">
                     <DataBadge>
                       <FontAwesomeIcon icon={faHouse} />
