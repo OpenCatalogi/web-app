@@ -78,23 +78,14 @@ export const UsageDocumentationTemplate: React.FC = () => {
               </Icon>
               Common Ground Componenten­catalogus
             </Link>
-          </span>
-          ,{" "}
+          </span>{" "}
+          en{" "}
           <span>
             <Link target="_new" href="https://developer.overheid.nl/">
               <Icon className="utrecht-icon--conduction-start">
                 <IconExternalLink />
               </Icon>
               Developer Overheid
-            </Link>
-          </span>{" "}
-          en <br />
-          <span>
-            <Link target="_new" href="https://www.softwarecatalogus.nl/">
-              <Icon className="utrecht-icon--conduction-start">
-                <IconExternalLink />
-              </Icon>
-              GEMMA Softwarecatalogus
             </Link>
           </span>
           , het daar vermelden van software zorgt ervoor dat deze wordt overgenomen in OpenCatalogi.
