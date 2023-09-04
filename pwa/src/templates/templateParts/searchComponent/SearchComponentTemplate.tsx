@@ -5,10 +5,11 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
 import { navigate } from "gatsby";
-import { ArrowRightIcon, SearchIcon } from "@gemeente-denhaag/icons";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
 import { FormField, Textbox, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -61,12 +62,13 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       </FormField>
       <ButtonGroup className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
-          <SearchIcon />
+          <FontAwesomeIcon icon={faSearch} />
+
           {t("Search")}
         </Button>
 
         <ButtonLink to="/components" onClick={clearFilters}>
-          <ArrowRightIcon />
+          <FontAwesomeIcon icon={faArrowRight} />
           {t("View all components")}
         </ButtonLink>
       </ButtonGroup>
