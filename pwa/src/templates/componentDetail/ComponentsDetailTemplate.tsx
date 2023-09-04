@@ -5,7 +5,6 @@ import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-re
 import { BadgeCounter, Heading, Icon, Button, DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { Container, InfoCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { navigate } from "gatsby";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
 import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import componentPlacholderLogo from "../../assets/images/grey.png";
@@ -16,6 +15,7 @@ import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowLeft,
   faDatabase,
   faHouse,
   faInfoCircle,
@@ -295,7 +295,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   }}
                   secondaryButton={{
                     label: t("Close"),
-                    icon: <ArrowLeftIcon />,
+                    icon: <FontAwesomeIcon icon={faArrowLeft} />,
                     // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}

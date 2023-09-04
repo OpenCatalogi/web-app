@@ -3,8 +3,7 @@ import * as styles from "./DownloadTemplate.module.css";
 
 import { DownloadCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import { ArrowLeftIcon } from "@gemeente-denhaag/icons";
+import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { GatsbyContext } from "../../../context/gatsby";
@@ -48,12 +47,12 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ layoutClassN
             primaryButton={{
               label: "Download",
               icon: <FontAwesomeIcon icon={faDownload} />,
-              handleClick: () => {},
+              handleClick: () => ({}),
             }}
             secondaryButton={{
               label: t("Go back"),
-              icon: <ArrowLeftIcon />,
-              handleClick: () => {},
+              icon: <FontAwesomeIcon icon={faArrowLeft} />,
+              handleClick: () => ({}),
             }}
             layoutClassName={styles.popup}
           />
