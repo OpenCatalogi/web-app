@@ -13,9 +13,8 @@ import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Alert, Heading, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { Paragraph } from "@gemeente-denhaag/components-react";
 
 export const ComponentsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
