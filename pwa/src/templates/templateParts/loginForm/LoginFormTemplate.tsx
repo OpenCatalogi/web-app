@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { handleLogin } from "../../../services/auth";
-import { Alert, Button, FormFieldInput } from "@gemeente-denhaag/components-react";
+import { Alert, Button } from "@gemeente-denhaag/components-react";
 import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
 import * as styles from "./LoginFormTemplate.module.css";
 import { useTranslation } from "react-i18next";
@@ -40,16 +40,12 @@ export const LoginForm: React.FC = () => {
       {formError && <Alert text={formError} title={t("Oops, something went wrong")} variant="error" />}
 
       <FormField>
-        <FormFieldInput>
-          <FormLabel htmlFor={""}>{t("Username")}</FormLabel>
-          <InputText {...{ register, errors }} name="username" validation={{ required: true }} disabled={loading} />
-        </FormFieldInput>
+        <FormLabel htmlFor={""}>{t("Username")}</FormLabel>
+        <InputText {...{ register, errors }} name="username" validation={{ required: true }} disabled={loading} />
       </FormField>
       <FormField>
         <FormLabel htmlFor={""}>{t("Password")}</FormLabel>
-        <FormFieldInput>
-          <InputPassword {...{ register, errors }} name="password" validation={{ required: true }} disabled={loading} />
-        </FormFieldInput>
+        <InputPassword {...{ register, errors }} name="password" validation={{ required: true }} disabled={loading} />
       </FormField>
 
       <Button size="large" type="submit" disabled={loading}>

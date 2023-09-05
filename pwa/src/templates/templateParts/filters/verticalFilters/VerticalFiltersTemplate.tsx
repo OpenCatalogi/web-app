@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import { FormFieldInput } from "@gemeente-denhaag/form-field";
+
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
 import {
@@ -281,326 +281,302 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
         <form className={styles.form}>
           <FormField>
-            <FormFieldInput>
-              <Collapsible
-                className={styles.collapsible}
-                openedClassName={styles.collapsible}
-                triggerClassName={styles.title}
-                triggerOpenedClassName={styles.title}
-                trigger={
-                  <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
-                    </span>
-                    <FontAwesomeIcon
-                      className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
-                      icon={faChevronRight}
-                    />
-                  </div>
-                }
-                open={isOpenLayer}
-                transitionTime={100}
-                onOpening={() => setIsOpenLayer(true)}
-                onClosing={() => setIsOpenLayer(false)}
-              >
-                <div>
-                  {layers.map((layer) => (
-                    <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
-                      <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
-                    </div>
-                  ))}
-                </div>
-              </Collapsible>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormULP"}>
-                <span className={styles.filterTitle}>
-                  UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
-                </span>
-              </FormLabel>
-
-              <div className={styles.selectBorder}>
-                <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
-              </div>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormOrginisation"}>
-                <span className={styles.filterTitle}>
-                  Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
-                {getOrganisations.isLoading && <Skeleton height="50px" />}
-
-                {getOrganisations.isSuccess && (
-                  <SelectSingle
-                    id="sortFormOrginisation"
-                    isClearable
-                    options={organizations}
-                    name="organization"
-                    {...{ errors, control, register }}
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
+                    icon={faChevronRight}
                   />
-                )}
+                </div>
+              }
+              open={isOpenLayer}
+              transitionTime={100}
+              onOpening={() => setIsOpenLayer(true)}
+              onClosing={() => setIsOpenLayer(false)}
+            >
+              <div>
+                {layers.map((layer) => (
+                  <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                    <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                  </div>
+                ))}
               </div>
-            </FormFieldInput>
+            </Collapsible>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormCategory"}>
-                <span className={styles.filterTitle}>
-                  Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
+            <FormLabel htmlFor={"sortFormULP"}>
+              <span className={styles.filterTitle}>
+                UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+              </span>
+            </FormLabel>
+
+            <div className={styles.selectBorder}>
+              <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
+            </div>
+          </FormField>
+
+          <FormField>
+            <FormLabel htmlFor={"sortFormOrginisation"}>
+              <span className={styles.filterTitle}>
+                Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              {getOrganisations.isLoading && <Skeleton height="50px" />}
+
+              {getOrganisations.isSuccess && (
                 <SelectSingle
-                  id="sortFormCategory"
+                  id="sortFormOrginisation"
                   isClearable
-                  name="category"
-                  options={categories}
+                  options={organizations}
+                  name="organization"
                   {...{ errors, control, register }}
                 />
-              </div>
-            </FormFieldInput>
+              )}
+            </div>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <Collapsible
-                className={styles.collapsible}
-                openedClassName={styles.collapsible}
-                triggerClassName={styles.title}
-                triggerOpenedClassName={styles.title}
-                trigger={
-                  <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
-                    </span>
-                    <FontAwesomeIcon
-                      className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
-                      icon={faChevronRight}
-                    />
-                  </div>
-                }
-                open={isOpenPlatforms}
-                transitionTime={100}
-                onOpening={() => setIsOpenPlatforms(true)}
-                onClosing={() => setIsOpenPlatforms(false)}
-              >
-                {platforms.map((platform) => (
-                  <div
-                    onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
-                    key={platform.value}
+            <FormLabel htmlFor={"sortFormCategory"}>
+              <span className={styles.filterTitle}>
+                Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                id="sortFormCategory"
+                isClearable
+                name="category"
+                options={categories}
+                {...{ errors, control, register }}
+              />
+            </div>
+          </FormField>
+
+          <FormField>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenPlatforms}
+              transitionTime={100}
+              onOpening={() => setIsOpenPlatforms(true)}
+              onClosing={() => setIsOpenPlatforms(false)}
+            >
+              {platforms.map((platform) => (
+                <div
+                  onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
+                  key={platform.value}
+                >
+                  <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
+                </div>
+              ))}
+            </Collapsible>
+          </FormField>
+
+          <FormField>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenStatus}
+              transitionTime={100}
+              onOpening={() => setIsOpenStatus(true)}
+              onClosing={() => setIsOpenStatus(false)}
+            >
+              {statuses.map((status) => (
+                <div
+                  className={styles.radioContainer}
+                  onChange={() => setStatusRadioFilter(status.value)}
+                  key={status.value}
+                >
+                  <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
+                  <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
+                    {status.label}
+                  </span>
+                </div>
+              ))}
+            </Collapsible>
+          </FormField>
+
+          <FormField>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenMaintenanceType}
+              transitionTime={100}
+              onOpening={() => setIsOpenMaintenanceType(true)}
+              onClosing={() => setIsOpenMaintenanceType(false)}
+            >
+              {maintenanceTypes.map((maintenanceType) => (
+                <div
+                  className={styles.radioContainer}
+                  onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                  key={maintenanceType.value}
+                >
+                  <RadioButton
+                    value={maintenanceType.value}
+                    checked={filters["embedded.maintenance.type"] === maintenanceType.value}
+                  />
+
+                  <span
+                    className={styles.radioLabel}
+                    onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                   >
-                    <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
-                  </div>
-                ))}
-              </Collapsible>
-            </FormFieldInput>
+                    {maintenanceType.label}
+                  </span>
+                </div>
+              ))}
+            </Collapsible>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <Collapsible
-                className={styles.collapsible}
-                openedClassName={styles.collapsible}
-                triggerClassName={styles.title}
-                triggerOpenedClassName={styles.title}
-                trigger={
-                  <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
-                    </span>
-                    <FontAwesomeIcon
-                      className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
-                      icon={faChevronRight}
-                    />
-                  </div>
-                }
-                open={isOpenStatus}
-                transitionTime={100}
-                onOpening={() => setIsOpenStatus(true)}
-                onClosing={() => setIsOpenStatus(false)}
-              >
-                {statuses.map((status) => (
-                  <div
-                    className={styles.radioContainer}
-                    onChange={() => setStatusRadioFilter(status.value)}
-                    key={status.value}
-                  >
-                    <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
-                    <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
-                      {status.label}
-                    </span>
-                  </div>
-                ))}
-              </Collapsible>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <Collapsible
-                className={styles.collapsible}
-                openedClassName={styles.collapsible}
-                triggerClassName={styles.title}
-                triggerOpenedClassName={styles.title}
-                trigger={
-                  <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
-                    </span>
-                    <FontAwesomeIcon
-                      className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
-                      icon={faChevronRight}
-                    />
-                  </div>
-                }
-                open={isOpenMaintenanceType}
-                transitionTime={100}
-                onOpening={() => setIsOpenMaintenanceType(true)}
-                onClosing={() => setIsOpenMaintenanceType(false)}
-              >
-                {maintenanceTypes.map((maintenanceType) => (
-                  <div
-                    className={styles.radioContainer}
-                    onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
-                    key={maintenanceType.value}
-                  >
-                    <RadioButton
-                      value={maintenanceType.value}
-                      checked={filters["embedded.maintenance.type"] === maintenanceType.value}
-                    />
-
-                    <span
-                      className={styles.radioLabel}
-                      onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
-                    >
-                      {maintenanceType.label}
-                    </span>
-                  </div>
-                ))}
-              </Collapsible>
-            </FormFieldInput>
-          </FormField>
-
-          <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormLicense"}>
-                <span className={styles.filterTitle}>
-                  Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
-                <SelectSingle
-                  id="sortFormLicense"
-                  isClearable
-                  name="license"
-                  options={licenses}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
+            <FormLabel htmlFor={"sortFormLicense"}>
+              <span className={styles.filterTitle}>
+                Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              <SelectSingle
+                id="sortFormLicense"
+                isClearable
+                name="license"
+                options={licenses}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormField>
 
           <FormField id="sortFormCompanyFunction">
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormCompanyFunction"}>
-                <span className={styles.filterTitle}>
-                  Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
-                <SelectMultiple
-                  id="sortFormLicense"
-                  name="bedrijfsfuncties"
-                  options={bedrijfsfuncties}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
+            <FormLabel htmlFor={"sortFormCompanyFunction"}>
+              <span className={styles.filterTitle}>
+                Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              <SelectMultiple
+                id="sortFormLicense"
+                name="bedrijfsfuncties"
+                options={bedrijfsfuncties}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <Collapsible
-                className={styles.collapsible}
-                openedClassName={styles.collapsible}
-                triggerClassName={styles.title}
-                triggerOpenedClassName={styles.title}
-                trigger={
-                  <div className={styles.trigger}>
-                    <span className={styles.filterTitle}>
-                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
-                    </span>
-                    <FontAwesomeIcon
-                      className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
-                      icon={faChevronRight}
-                    />
-                  </div>
-                }
-                open={isOpenSoftwareTypes}
-                transitionTime={100}
-                onOpening={() => setIsOpenSoftwareTypes(true)}
-                onClosing={() => setIsOpenSoftwareTypes(false)}
-              >
-                {softwareTypes.map((softwareType) => (
-                  <div
-                    className={styles.radioContainer}
-                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
-                    key={softwareType.value}
-                  >
-                    <RadioButton value={softwareType.value} checked={filters.softwareType === softwareType.value} />
-                    <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
-                      {softwareType.label}
-                    </span>
-                  </div>
-                ))}
-              </Collapsible>
-            </FormFieldInput>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenSoftwareTypes}
+              transitionTime={100}
+              onOpening={() => setIsOpenSoftwareTypes(true)}
+              onClosing={() => setIsOpenSoftwareTypes(false)}
+            >
+              {softwareTypes.map((softwareType) => (
+                <div
+                  className={styles.radioContainer}
+                  onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                  key={softwareType.value}
+                >
+                  <RadioButton value={softwareType.value} checked={filters.softwareType === softwareType.value} />
+                  <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                    {softwareType.label}
+                  </span>
+                </div>
+              ))}
+            </Collapsible>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormServices"}>
-                <span className={styles.filterTitle}>
-                  Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
-                <SelectMultiple
-                  id="sortFormServices"
-                  name="bedrijfsservices"
-                  options={bedrijfsservices}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
+            <FormLabel htmlFor={"sortFormServices"}>
+              <span className={styles.filterTitle}>
+                Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              <SelectMultiple
+                id="sortFormServices"
+                name="bedrijfsservices"
+                options={bedrijfsservices}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormField>
 
           <FormField>
-            <FormFieldInput>
-              <FormLabel htmlFor={"sortFormReference"}>
-                <span className={styles.filterTitle}>
-                  Referentie componenten
-                  <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
-                </span>
-              </FormLabel>
-              <div className={styles.selectBorder}>
-                <SelectMultiple
-                  id="sortFormReference"
-                  name="referentieComponenten"
-                  options={referentieComponenten}
-                  {...{ errors, control, register }}
-                />
-              </div>
-            </FormFieldInput>
+            <FormLabel htmlFor={"sortFormReference"}>
+              <span className={styles.filterTitle}>
+                Referentie componenten
+                <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
+              </span>
+            </FormLabel>
+            <div className={styles.selectBorder}>
+              <SelectMultiple
+                id="sortFormReference"
+                name="referentieComponenten"
+                options={referentieComponenten}
+                {...{ errors, control, register }}
+              />
+            </div>
           </FormField>
         </form>
       </Collapsible>

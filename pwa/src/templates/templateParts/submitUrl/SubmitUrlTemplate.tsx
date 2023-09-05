@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./SubmitUrlTemplate.module.css";
-import { FormFieldInput } from "@gemeente-denhaag/components-react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,23 +56,21 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formContent}>
           <FormField className={styles.formField}>
-            <FormFieldInput>
-              <Textbox
-                id="submitUrlTextBox"
-                {...register("html_url")}
-                invalid={errors["html_url"]}
-                placeholder={t(placeholder)}
-                disabled={loading}
-                type="url"
-              />
-              {formIsError && (
-                <span className={styles.customErrorMessage}>
-                  {t(
-                    "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
-                  )}
-                </span>
-              )}
-            </FormFieldInput>
+            <Textbox
+              id="submitUrlTextBox"
+              {...register("html_url")}
+              invalid={errors["html_url"]}
+              placeholder={t(placeholder)}
+              disabled={loading}
+              type="url"
+            />
+            {formIsError && (
+              <span className={styles.customErrorMessage}>
+                {t(
+                  "Oops, something went wrong. Please make sure you're using a valid repository URL or try again later.",
+                )}
+              </span>
+            )}
           </FormField>
 
           <Button className={styles.submitButton} type="submit" disabled={loading || !watchInputUrl}>

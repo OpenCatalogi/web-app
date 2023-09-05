@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
-import { FormFieldInput } from "@gemeente-denhaag/components-react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FiltersContext, IFilters } from "../../../context/filters";
@@ -51,14 +50,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={layoutClassName}>
       <FormField>
-        <FormFieldInput>
-          <Textbox
-            id="searchComponentFormTextBox"
-            {...register("name")}
-            invalid={errors["name"]}
-            placeholder={t("Search all components")}
-          />
-        </FormFieldInput>
+        <Textbox
+          id="searchComponentFormTextBox"
+          {...register("name")}
+          invalid={errors["name"]}
+          placeholder={t("Search all components")}
+        />
       </FormField>
       <ButtonGroup className={styles.buttons}>
         <Button type="submit" appearance="primary-action-button">
