@@ -300,6 +300,15 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: inherit;
+
+  /* @gemeente-utrecht: link */
+  --utrecht-link-visited-color: inherit;
+
+  /* @gemeente-utrecht: separator */
+  --utrecht-separator-color: var(--web-app-color-table-hover-grey);
+  --utrecht-separator-block-size: var(--web-app-size-3xs);
+  --utrecht-separator-margin-block-end: 0px;
+  --utrecht-separator-margin-block-start: 0px;
 }
 
 .utrecht-link {

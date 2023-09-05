@@ -5,7 +5,6 @@ import { FiltersContext } from "../../../../context/filters";
 import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
-import { Divider } from "@gemeente-denhaag/components-react";
 import {
   upls,
   platforms,
@@ -31,7 +30,7 @@ import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
-import { FormField, FormLabel, RadioButton } from "@utrecht/component-library-react";
+import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -278,7 +277,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         onOpening={() => setIsOpen(true)}
         onClosing={() => setIsOpen(false)}
       >
-        <Divider className={styles.divider} />
+        <Separator className={styles.separator} />
 
         <form className={styles.form}>
           <FormField>

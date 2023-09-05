@@ -1,13 +1,14 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container } from "@conduction/components";
-import { Divider, Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
 import {
   BadgeCounter,
   Heading,
   DataBadge,
   Icon,
   Button,
+  Separator,
 } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { ToolTip } from "../../components/toolTip/ToolTip";
@@ -111,7 +112,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
               {_getOrganization.data.certificate && (
                 <>
-                  <Divider />
+                  <Separator />
 
                   <div className={styles.tagsContainer}>
                     {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
@@ -128,7 +129,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             </div>
           </div>
 
-          <Divider />
+          <Separator />
 
           <div className={styles.section}>
             <Heading level={2} className={styles.title}>
