@@ -2,12 +2,11 @@ import * as React from "react";
 import * as styles from "./ComponentCardsAccordionHeaderTemplate.module.css";
 import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { BadgeCounter } from "@conduction/components";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 
 interface ComponentCardsAccordionHeaderTemplateProps {
   title: string;
@@ -39,7 +38,7 @@ export const ComponentCardsAccordionHeaderTemplate: React.FC<ComponentCardsAccor
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
       </div>
 
-      <Divider />
+      <Separator />
     </div>
   );
 };

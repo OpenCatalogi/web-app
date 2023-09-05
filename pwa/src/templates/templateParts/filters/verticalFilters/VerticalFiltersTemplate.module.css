@@ -55,7 +55,7 @@
   transform: rotate(90deg);
 }
 
-.collapsible .divider {
+.collapsible .separator {
   margin-block-start: var(--web-app-size-md);
   margin-block-end: var(--web-app-size-md);
 }
