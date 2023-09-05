@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Icon, Paragraph, Separator } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { Link } from "../link/Link";
 
 export interface CategoryCardProps {
@@ -22,7 +22,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
           {title.label}
         </Link>
       </div>
-      <Separator />
+
       <Paragraph className={domain ?? styles.description}>{description}</Paragraph>
     </div>
   );
