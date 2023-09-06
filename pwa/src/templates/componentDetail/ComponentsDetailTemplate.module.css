@@ -110,26 +110,6 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.tabPanel {
-  padding-inline-start: var(--web-app-size-lg) !important;
-  padding-inline-end: var(--web-app-size-lg) !important;
-  padding-block-start: var(--web-app-size-lg) !important;
-  padding-block-end: var(--web-app-size-lg) !important;
-}
-
-.tab {
-  max-width: unset !important;
-}
-
-.tabBadgeContainer {
-  display: flex;
-  flex-direction: row;
-}
-
-.badgeLayout {
-  margin-inline-start: var(--web-app-size-xs);
-}
-
 .dependenciesDisplaySwitchButtons {
   display: flex;
   justify-content: flex-end;
