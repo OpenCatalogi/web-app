@@ -1,3 +1,5 @@
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -23,43 +25,31 @@ module.exports = {
         excludeOptions: {
           separator: ".",
         },
-        autoGenHomeLabel: "Overview",
+        autoGenHomeLabel: "OpenCatalogi",
         crumbLabelUpdates: [
           {
-            pathname: "/self-services",
-            crumbLabel: "Self services",
+            pathname: "/components",
+            crumbLabel: "Components overview",
           },
           {
-            pathname: "/my-messages",
-            crumbLabel: "My messages",
+            pathname: "/components/[componentId]",
+            crumbLabel: "Component",
           },
           {
-            pathname: "/my-messages/[messageId]",
-            crumbLabel: "Message",
+            pathname: "/organizations/[organizationId]",
+            crumbLabel: "Organization",
           },
           {
-            pathname: "/my-cases",
-            crumbLabel: "My cases",
+            pathname: "/categories/[categoryId]",
+            crumbLabel: "Category",
           },
           {
-            pathname: "/my-cases/[caseId]",
-            crumbLabel: "Case",
+            pathname: "/documentation/about",
+            crumbLabel: "Over OpenCatalogi",
           },
           {
-            pathname: "/my-account",
-            crumbLabel: "My account",
-          },
-          {
-            pathname: "/self-services/marriage",
-            crumbLabel: "Marriage / Partnership",
-          },
-          {
-            pathname: "/self-services/moving",
-            crumbLabel: "Moving away",
-          },
-          {
-            pathname: "/self-services/moving/form",
-            crumbLabel: "Form",
+            pathname: "/applications/[applicationId]",
+            crumbLabel: "Application",
           },
         ],
       },

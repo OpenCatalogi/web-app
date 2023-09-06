@@ -1,15 +1,16 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Heading1 } from "@gemeente-denhaag/components-react";
+import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { HavenLogo } from "../../../assets/svgs/Haven";
-import { CommongroundLogo } from "../../../assets/svgs/Commonground";
-import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
-import { FiltersContext } from "../../../context/filters";
-import { ExternalLinkIcon } from "@gemeente-denhaag/icons";
+import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
+import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../context/gatsby";
+import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
+import _ from "lodash";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -18,65 +19,105 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
+
+  const {
+    pageContext: {
+      breadcrumb: { crumbs },
+    },
+    location: { pathname },
+    screenSize,
+  } = React.useContext(GatsbyContext);
+
+  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
 
   const primaryTopNavItems = [
     {
       label: "Home",
+      current: pathname === "/",
       handleClick: () => {
         navigate("/");
       },
     },
     {
-      label: t("Software"),
+      label: t("Categories"),
+      current: pathname.includes("/categories"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "standalone/desktop" });
-        navigate("/components");
+        navigate("/categories");
       },
     },
     {
-      label: t("Processes"),
+      label: t("Applications"),
+      current: pathname.includes("/applications"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "process" });
-        navigate("/components");
+        navigate("/applications");
       },
     },
     {
-      label: t("Data models"),
+      label: t("Components"),
+      current: pathname.includes("/components"),
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "schema" });
         navigate("/components");
+      },
+      subItems: [
+        {
+          label: t("Processes"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
+          handleClick: () => {
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["process"] });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("Data models"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
+          handleClick: () => {
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["data"] });
+            navigate("/components");
+          },
+        },
+        {
+          label: t("API's"),
+          current:
+            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
+          handleClick: () => {
+            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["service"] });
+            navigate("/components");
+          },
+        },
+      ],
+    },
+    {
+      label: t("Organizations"),
+      current: pathname.includes("/organizations"),
+      handleClick: () => {
+        navigate("/organizations");
       },
     },
     {
-      label: t("API's"),
+      label: t("Initiatives"),
+      current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setFilters({ ...filters, softwareType: "api" });
+        setFilters({ ...baseFilters, developmentStatus: "concept" });
         navigate("/components");
       },
     },
     {
       label: "Documentatie",
+      current: pathname.includes("/documentation"),
       subItems: [
         {
-          label: t("About Open Catalogi"),
-          handleClick: () => navigate("/about"),
+          label: t("About"),
+          current: pathname === "/documentation/about",
+          handleClick: () => navigate("/documentation/about"),
         },
         {
-          label: t("Installation"),
-          handleClick: () => {
-            navigate("#");
-          },
-        },
-        {
-          label: t("Usage"),
+          label: t("Use"),
+          current: pathname === "/documentation/usage",
           handleClick: () => {
             navigate("/documentation/usage");
-          },
-        },
-        {
-          label: t("API"),
-          handleClick: () => {
-            navigate("#");
           },
         },
       ],
@@ -85,51 +126,70 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   const secondaryTopNavItems = [
     {
-      label: "Common ground",
+      label: t("Login"),
+      current: pathname === "/login",
       handleClick: () => {
-        window.open("https://commonground.nl");
+        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
       },
-      icon: <CommongroundLogo />,
-    },
-    {
-      label: "Haven",
-      handleClick: () => {
-        window.open("https://haven.commonground.nl/");
-      },
-      icon: <HavenLogo />,
-    },
-    {
-      label: "NL Design",
-      handleClick: () => {
-        window.open("https://designsystem.gebruikercentraal.nl/");
-      },
-      icon: <ExternalLinkIcon />,
-    },
-    {
-      label: "Github",
-      handleClick: () => {
-        window.open("https://github.com/OpenCatalogi");
-      },
-      icon: <GitHubLogo />,
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
   ];
 
+  React.useEffect(() => {
+    if (screenSize === "desktop") {
+      setTopNavItems(primaryTopNavItems);
+      return;
+    }
+
+    setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
+  }, [screenSize, pathname, crumbs]);
+
   return (
-    <header className={clsx(styles.header, layoutClassName && layoutClassName)}>
-      <div className={styles.top}>
+    <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
+      <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <SecondaryTopNav items={secondaryTopNavItems} />
         </Container>
       </div>
+      <div className={styles.headerMiddleBar}>
+        <Container layoutClassName={styles.primaryNavContainer}>
+          <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
+            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+          </div>
 
-      <Container layoutClassName={styles.headingContainer}>
-        <Heading1 className={styles.title}>{t("Open Catalogs")}</Heading1>
-        <span className={styles.subTitle}>{t("Reusable components within the government")}</span>
-      </Container>
+          <PrimaryTopNav
+            mobileLogo={
+              <div className={clsx(styles.logoContainer, styles.logoMobile)}>
+                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+              </div>
+            }
+            layoutClassName={styles.textColor}
+            items={topNavItems}
+          />
+        </Container>
+      </div>
 
-      <Container>
-        <PrimaryTopNav items={primaryTopNavItems} />
-      </Container>
+      {pathname === "/" && (
+        <Container layoutClassName={styles.headerContent}>
+          <section className={clsx(styles.headerSearchForm, styles.section)}>
+            <div>
+              <Heading level={1} className={styles.title}>
+                {t("Open Catalogs")}
+              </Heading>
+
+              <Paragraph className={styles.subTitle}>
+                {t("One central place for reuse of information technology within the government")}
+              </Paragraph>
+            </div>
+            <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
+          </section>
+        </Container>
+      )}
+      {pathname !== "/" && (
+        <Container layoutClassName={styles.breadcrumbsContainer}>
+          <Breadcrumbs crumbs={translatedCrumbs} />
+        </Container>
+      )}
     </header>
   );
 };

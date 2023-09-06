@@ -1,0 +1,17 @@
+git # Ignore 3rd party files
+node_modules
+SearchBar
+
+# Ignore minified files
+*.min.js
+
+# Ignore generated files
+public
+dist
+build
+tmp
+.docusaurus
+.angular
+.cache
+package-lock.json
+package.json

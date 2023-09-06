@@ -2,42 +2,292 @@ apiVersion: v1
 entries:
   commonground-gateway:
   - apiVersion: v2
-    appVersion: 1.16.0
-    created: "2022-08-18T11:12:47.796657+02:00"
+    appVersion: "2.2"
+    created: "2023-08-18T11:15:18.184369292+02:00"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
       repository: https://charts.bitnami.com/bitnami
-      version: 10.9.5
+      version: 12.1.2
     - condition: redis.enabled
       name: redis
       repository: https://charts.bitnami.com/bitnami
-      version: 15.3.2
+      version: 17.3.11
     - name: rabbitmq
       repository: https://charts.bitnami.com/bitnami
-      version: 9.0.1
+      version: 11.9.1
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.4.4
+    - condition: gateway-ui.enabled
+      name: gateway-ui
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/development/helm/
+      version: 0.1.7
     description: A Helm chart for Kubernetes
-    digest: 7afafbeef29915b18067ed8ea18f98348b9c80312eafc8c0ffe259736fd10f13
+    digest: f3367f85691a72ee2022df449e7d817e965a9597180964df8e748f507d7c4e56
     name: commonground-gateway
     type: application
     urls:
-    - charts/commonground-gateway-0.1.11.tgz
-    version: 0.1.11
+    - charts/commonground-gateway-1.5.3.tgz
+    version: 1.5.3
   opencatalogi:
   - apiVersion: v2
-    appVersion: 0.1.0
-    created: "2022-08-18T11:12:47.787961+02:00"
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:18.147552834+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/development/api/helm/
+      version: 1.5.3
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 412d23b997426b4854b1dbea5cba3cb1efec21ef973b806df3b004f9a7ec7412
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:18.115539464+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/development/api/helm/
+      version: 1.5.2
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: b8851cd11621d8965ef0bc660df4ec102cf69014ae280c03fdcf5a2dbece2b15
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:18.075652994+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/development/api/helm/
+      version: 1.5.1
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 6b748ba1a02296a6affce75c87d9072bd9e287c37b72a251c6f90fcc307b8115
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:18.032906954+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/development/api/helm/
+      version: 1.5.0
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 3ef6405441cebeae2c92ca898a1cb57c01cbecda42072f4ea0fbd200f0fcffa8
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:17.992008117+02:00"
     dependencies:
     - alias: gateway
       condition: gateway.enabled
       name: commonground-gateway
       repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
-      version: 0.1.11
+      version: 1.4.4
     description: A Helm chart for the Skeleton Gatsby Application
-    digest: af84f8483d784cdaea2b75a78129596a47e2f6d85fb1806e50d7a7439fce4cc6
+    digest: ad7ced8f7a1cdef9b9071ffb29770c991d99d25b8ba35f0818a911e93b3ed9c3
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:17.953153691+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.4.4
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: ccefec45f231821d4fc1ee971d64ee5dc5bc14fc38403d6ff2ea98bbc42bb9a2
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-08-18T11:15:17.912086361+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.4.4
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 1a599f26bfbd73c38498195a68313d368eca8d37cac7e73ad763a7ce521d3758
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.864980341+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.2.8
+    - alias: gatewayui
+      condition: gatewayui.enabled
+      name: skeleton-app
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/refinement-demo-branch/helm
+      version: 0.1.4
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: a19e0fb9156f3c6fc1584153a200389cdaeb11a4a37930b7b51aad6cdede89b0
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.7.tgz
+    version: 0.9.7
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.789998741+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.2.8
+    - alias: gatewayui
+      condition: gatewayui.enabled
+      name: skeleton-app
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/refinement-demo-branch/helm
+      version: 0.1.3
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 3d905051e4c726576b2c1eb2edd829ae2c3d328a06ae4c833110aa19c7dbfe3b
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.6.tgz
+    version: 0.9.6
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.707953896+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.1.4
+    - alias: gatewayui
+      name: skeleton-app
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/refinement-demo-branch/helm
+      version: 0.1.2
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 12b8dc9b2f1c90f6e094d31953a1587444d09bb065b5d43de5f843dfe1b0341b
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.5.tgz
+    version: 0.9.5
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.635576269+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.1.4
+    - alias: gatewayui
+      name: skeleton-app
+      repository: https://raw.githubusercontent.com/ConductionNL/gateway-ui/demo/helm/
+      version: 0.1.1
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 6e45554479770f2cb738a6811a71cc24a90634b68f1301e59c3cbf4b45c1a9a2
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.4.tgz
+    version: 0.9.4
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.562620021+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.1.4
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: f2a280df5961148f0b09ab9f92eb6a7bb892715fc790f854136daad1ff44a32b
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.3.tgz
+    version: 0.9.3
+  - apiVersion: v2
+    appVersion: 0.9.0
+    created: "2023-08-18T11:15:17.51792693+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 1.1.1
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 0f81fbba6907bef450752601a5c6d7a3e1b324b51d1d49fcc132700d33af42ef
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.2.tgz
+    version: 0.9.2
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-08-18T11:15:17.465947553+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 0.1.12
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 481d521f5a2a9ec4611d2ab6eac82e336341138a4607d08118d905b297319f7a
+    name: opencatalogi
+    type: application
+    urls:
+    - opencatalogi-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-08-18T11:15:17.429513799+02:00"
+    dependencies:
+    - alias: gateway
+      condition: gateway.enabled
+      name: commonground-gateway
+      repository: https://raw.githubusercontent.com/ConductionNL/commonground-gateway/feature-cleanup/api/helm/
+      version: 0.1.12
+    description: A Helm chart for the Skeleton Gatsby Application
+    digest: 4c7e3d9f32803f610203e6227a40ae3b938dd17adfec738bd74654aaab0b828a
     name: opencatalogi
     type: application
     urls:
     - opencatalogi-0.1.0.tgz
     version: 0.1.0
-generated: "2022-08-18T11:12:47.775807+02:00"
+generated: "2023-08-18T11:15:17.387154802+02:00"

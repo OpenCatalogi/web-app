@@ -1,58 +1,48 @@
 import * as React from "react";
-import * as styles from "./HorizontalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import FormField, { FormFieldInput, FormFieldLabel } from "@gemeente-denhaag/form-field";
-import { InputText, SelectMultiple } from "@conduction/components";
-import _ from "lodash";
-import { layers } from "../../../../data/filters";
-import { getSelectedItemsFromFilters } from "../../../../services/getSelectedItemsFromFilters";
+import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
+  const searchTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const {
     register,
     watch,
     reset,
-    control,
     formState: { errors },
   } = useForm();
-
   React.useEffect(() => {
     reset({
-      name: filters.search,
-      layerType: getSelectedItemsFromFilters(layers, filters["nl.commonground.layerType"]),
+      name: filters._search,
     });
   }, [filters]);
 
-  React.useEffect(() => {
-    const subscription = watch(({ name, layerType }) => {
-      setFilters({
-        ...filters,
-        currentPage: 1,
-        search: name,
-        "nl.commonground.layerType": layerType?.map((l: any) => l.value),
-      });
-    });
+  const watchName = watch("name");
 
-    return () => subscription.unsubscribe();
-  });
+  React.useEffect(() => {
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    searchTimeout.current = setTimeout(
+      () =>
+        setFilters({
+          ...filters,
+          currentPage: 1,
+          _search: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
+        }),
+      500,
+    );
+  }, [watchName]);
 
   return (
-    <form className={styles.form}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       <FormField>
-        <FormFieldInput>
-          <FormFieldLabel>Zoek op naam</FormFieldLabel>
-          <InputText name="name" validation={{ required: true }} {...{ errors, register }} />
-        </FormFieldInput>
-      </FormField>
-
-      <FormField>
-        <FormFieldInput>
-          <FormFieldLabel>Zoek op laag</FormFieldLabel>
-          <SelectMultiple name="layerType" options={layers} {...{ errors, control, register }} />
-        </FormFieldInput>
+        <FormLabel htmlFor={"componentSearchFormInput"}>Zoek op naam</FormLabel>
+        <Textbox id="componentSearchFormInput" {...register("name", { required: true })} invalid={errors["name"]} />
       </FormField>
     </form>
   );

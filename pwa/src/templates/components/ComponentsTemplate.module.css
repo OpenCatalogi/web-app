@@ -1,49 +1,82 @@
 .container {
-  max-width: 1440px;
+  max-width: var(--web-app-container-width-lg);
 }
 
 .container > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-block-start: var(--web-app-size-3xl);
+.header > :not(:last-child) {
+  margin-block-end: var(--web-app-size-lg);
 }
 
 .resultsDisplaySwitchButtons {
-  display: flex;
   align-items: center;
-}
-
-.resultsDisplaySwitchButtons > * {
-  display: flex;
-  align-items: center;
-}
-
-.resultsDisplaySwitchButtons *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.buttonIcon > span > svg {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .filtersAndResultsContainer {
   display: flex;
+  flex-direction: column;
   gap: var(--web-app-size-lg);
 }
 
 .verticalFilters {
   flex: 1;
   min-width: 280px;
+  height: min-content;
 }
 
 .results {
   flex: 3;
+
+  --utrecht-heading-4-font-weight: normal;
+  --utrecht-heading-4-font-size: var(--web-app-font-size-md);
+  --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
+  --utrecht-heading-4-distanced-margin-block-start: var(--web-app-size-2xs);
 }
 
 .results > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.paginationContainer {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.paginationContainer > *:not(:last-child) {
+  flex: 1;
+}
+
+.ComponentAlert > div {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 992px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: var(--web-app-size-3xl) !important;
+  }
+  .header > :not(:last-child) {
+    margin-block-end: 0px;
+  }
+  .filtersAndResultsContainer {
+    flex-direction: row;
+  }
+
+  .paginationContainer > *:not(:first-child) {
+    margin-inline-start: var(--web-app-size-xl);
+  }
+
+  .paginationContainer > *:not(:last-child) {
+    flex: unset !important;
+  }
 }

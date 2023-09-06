@@ -1,0 +1,66 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: var(--web-app-size-3xl);
+}
+
+.subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.description {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.ComponentsGrid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ComponentsGrid > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+@media only screen and (min-width: 576px) {
+  .ComponentsGrid {
+    display: grid;
+    grid-gap: var(--web-app-size-lg);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ComponentsGrid > :not(:last-child) {
+    margin-block-end: 0;
+  }
+}
+
+/* pagination */
+
+.paginationContainer {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  justify-content: center;
+}
+
+.paginationContainer > *:not(:last-child) {
+  flex: 1;
+}
+
+@media only screen and (min-width: 992px) {
+  .paginationContainer > *:not(:first-child) {
+    margin-inline-start: var(--web-app-size-xl);
+  }
+
+  .paginationContainer > *:not(:last-child) {
+    flex: unset !important;
+  }
+}

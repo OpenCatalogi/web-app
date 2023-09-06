@@ -1,7 +1,7 @@
 export const layers = [
-  { label: "Interactie", value: "interactie" },
-  { label: "Proces", value: "proces" },
-  { label: "Integratie", value: "integratie" },
-  { label: "Services", value: "services" },
+  { label: "Interactie", value: "interface" },
+  { label: "Proces", value: "process" },
+  { label: "Integratie", value: "integration" },
+  { label: "Services", value: "service" },
   { label: "Data", value: "data" },
 ];

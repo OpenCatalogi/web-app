@@ -1,71 +1,85 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { SearchComponentTemplate } from "../templateParts/searchComponent/SearchComponentTemplate";
-import { Divider, Heading1, Heading2, Heading3, LeadParagraph } from "@gemeente-denhaag/components-react";
-import { useTranslation } from "react-i18next";
-import { Container, ImageAndDetailsCard } from "@conduction/components";
+import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
-import { MiniDashboardTemplate } from "../templateParts/miniDashboard/MiniDashboardTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import clsx from "clsx";
-import { CategorySearchTemplate } from "../templateParts/categorySearch/CategorySearchTemplate";
+import { FiltersContext } from "../../context/filters";
+import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
+import { GatsbyContext } from "../../context/gatsby";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 
 export const LandingTemplate: React.FC = () => {
-  const { t } = useTranslation();
+  const [filters] = React.useContext(FiltersContext);
+  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
     <Container layoutClassName={styles.container}>
-      <section className={clsx(styles.headingAndSearchForm, styles.section)}>
-        <div className={styles.heading}>
-          <Heading1>{t("A central place for reuse of information technology within the government")}</Heading1>
-          <LeadParagraph> {t("Here you will find components for all Common Ground layers")}</LeadParagraph>
-        </div>
-
-        <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
-      </section>
-
-      <Divider />
-
       <section className={styles.section}>
-        <div className={styles.subHeading}>
-          <Heading2>Zoeken per categorie</Heading2>
+        <ResultsDisplaySwitch
+          resultsDisplayType="landingDisplayLayout"
+          layoutClassName={styles.landingDisplaySwitchButtons}
+        />
 
-          <LeadParagraph>
-            Hier kunnen de components gezocht worden op categorie.
-          </LeadParagraph>
-        </div>
-
-        <CategorySearchTemplate />
+        <LandingDisplayTemplate type={filters.landingDisplayLayout} />
       </section>
 
       <section className={styles.section}>
-        <Heading3>Open Catalogi in getallen</Heading3>
+        <Heading level={3} className={styles.textColor}>
+          Veelbezochte pagina's
+        </Heading>
+        {screenSize === "desktop" && (
+          <div className={styles.cards}>
+            <ImageAndDetailsCard
+              layoutClassName={styles.textColor}
+              title="Over OpenCatalogi"
+              image={<img src={overOpenCatalogiImage} />}
+              introduction="OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
+              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+            />
 
-        <MiniDashboardTemplate />
+            <ImageAndDetailsCard
+              layoutClassName={styles.textColor}
+              title="Aan de slag met OpenCatalogi"
+              image={<img src={aanDeSlagMetOpenCatalogiImage} />}
+              introduction="Wilt u uw component op OpenCatalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
+              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+            />
+          </div>
+        )}
+        {screenSize === "tablet" && (
+          <div className={styles.cards}>
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Over OpenCatalogi"
+              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+            />
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Aan de slag met OpenCatalogi"
+              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+            />
+          </div>
+        )}
+
+        {screenSize === "mobile" && (
+          <div className={styles.cards}>
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Over OpenCatalogi"
+              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+            />
+            <DetailsCard
+              layoutClassName={styles.textColor}
+              title="Aan de slag met OpenCatalogi"
+              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+            />
+          </div>
+        )}
       </section>
 
-      <section className={styles.section}>
-        <Heading3>(Direct naar) veelbezochte pagina's</Heading3>
-
-        <div className={styles.cards}>
-          <ImageAndDetailsCard
-            title="Over Open Catalogi"
-            image={<img src={overOpenCatalogiImage} />}
-            introduction="Open Catalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
-            link={{ label: "Ga naar Over Open Catalogi", href: "/about" }}
-          />
-
-          <ImageAndDetailsCard
-            title="Aan de slag met Open Catalogi"
-            image={<img src={aanDeSlagMetOpenCatalogiImage} />}
-            introduction="Wilt u uw component op Open Catalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
-            link={{ label: "Aan de slag met Open Catalogi", href: "documentation/usage" }}
-          />
-        </div>
-      </section>
-
-      <Divider />
+      <Separator />
 
       <FeedbackTemplate layoutClassName={styles.feedback} />
     </Container>

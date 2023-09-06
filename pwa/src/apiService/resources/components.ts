@@ -1,6 +1,7 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
 import { IFilters } from "../../context/filters";
+import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Component {
   private _instance: AxiosInstance;
@@ -31,29 +32,3 @@ export default class Component {
     return data.total;
   };
 }
-
-const filtersToQueryParams = (filters: any): string => {
-  delete filters.resultDisplayLayout;
-
-  let params: string = "";
-
-  for (const [key, value] of Object.entries(filters)) {
-    if (!value) continue;
-
-    if (typeof value === "string") {
-      params += `&${key}=${value}`;
-    }
-
-    if (Array.isArray(value)) {
-      let arrayParams = "";
-
-      value.forEach((value) => {
-        arrayParams += `&${key}[]=${value}`;
-      });
-
-      params += arrayParams;
-    }
-  }
-
-  return params;
-};

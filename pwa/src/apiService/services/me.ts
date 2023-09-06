@@ -6,10 +6,10 @@ export default class Me {
 
   constructor(_instance: AxiosInstance) {
     this._instance = _instance;
-  }  
+  }
 
   public getMe = async (): Promise<AxiosResponse> => {
-    const { data } = await Send(this._instance, "GET", `/me`);  
+    const { data } = await Send(this._instance, "GET", `/me`);
     return data;
   };
 }

@@ -18,3 +18,15 @@ export const ToolTip: React.FC<ToolTipProps> = ({ children, tooltip }) => {
     </div>
   );
 };
+
+interface NodeToolTipProps {
+  tooltip: string;
+}
+
+export const NodeToolTip: React.FC<NodeToolTipProps> = ({ tooltip }) => {
+  return (
+    <div className={styles.wrapper}>
+      <div className={clsx(styles.content, styles.top)}>{tooltip}</div>
+    </div>
+  );
+};

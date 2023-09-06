@@ -1,0 +1,19 @@
+.componentsGrid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.componentsGrid > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+@media only screen and (min-width: 576px) {
+  .componentsGrid {
+    display: grid;
+    grid-gap: var(--web-app-size-lg);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .componentsGrid > :not(:last-child) {
+    margin-block-end: 0;
+  }
+}

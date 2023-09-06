@@ -1,0 +1,57 @@
+.items {
+  padding-block-end: var(--web-app-size-md);
+}
+
+.items > * {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.items > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-sm);
+}
+
+.categoryButton {
+  border: none !important;
+  --utrecht-button-secondary-action-color: var(--web-app-color-black) !important;
+}
+
+.categoryButton:hover {
+  cursor: pointer !important;
+  --utrecht-button-secondary-action-hover-color: var(--web-app-color-white) !important;
+}
+
+/* Colors of the 5 layers */
+.interactieCategory {
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-interaction) !important;
+}
+.interactieCategory:hover {
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-interaction);
+}
+
+.procesCategory {
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-process) !important;
+}
+.procesCategory:hover {
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-process);
+}
+
+.integratieCategory {
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-integration) !important;
+}
+.integratieCategory:hover {
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-integration);
+}
+
+.serviceCategory {
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-services) !important;
+}
+.serviceCategory:hover {
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-services);
+}
+
+.dataCategory {
+  --utrecht-button-secondary-action-background-color: var(--web-app-layer-category-color-data) !important;
+}
+.dataCategory:hover {
+  --utrecht-button-secondary-action-hover-background-color: var(--web-app-layer-color-data);
+}

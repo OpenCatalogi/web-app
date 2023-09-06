@@ -2,65 +2,112 @@
   margin-block-end: var(--web-app-size-4xl);
 }
 
-.backButton {
+.container > .backButton {
+  display: none;
   margin-block-start: var(--web-app-size-2xl);
+  margin-block-end: var(--web-app-size-sm);
 }
 
 .container > .headingContainer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--web-app-size-xl);
   margin-block-end: var(--web-app-size-2xl);
 }
 
-.description {
-  padding-top: 0 !important;
-  padding-inline-end: var(--skeleton-size-xs);
-  margin-block-end: var(--web-app-size-md) !important;
+.headingContainer > .headingContent > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
 }
 
-.tags {
+.headingContent {
+  flex: 5;
+}
+
+.componentName {
+  color: var(--web-app-color-text-grey) !important;
+  word-break: break-word;
+}
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.description {
+  margin-block-start: var(--web-app-size-sm) !important;
+  margin-block-end: var(--web-app-size-md) !important;
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.layerAndCategoryContainer {
   display: flex;
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.layerAndCategoryContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
 }
 
 .tags > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-sm);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .addToCatalogusContainer {
   display: flex;
   flex-direction: column;
+  max-width: var(--web-app-component-detail-logo-width);
 }
 
-.addToCatalogusContainer > .componentImg {
+.logoContainer {
+  height: var(--web-app-component-detail-logo-height);
+  width: var(--web-app-component-detail-logo-width);
+  max-height: 255px;
   max-width: 300px;
+  display: none;
+  justify-content: center;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.organizationCardContainer {
+  flex: 5;
+}
+
+.noOrganizationCardAvailable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 5;
+  background-color: var(--web-app-color-grey);
+  padding-block-end: 50px;
+  padding-block-start: 50px;
+  padding-inline-end: 50px;
+  padding-inline-start: 50px;
+}
+
+.infoCard {
+  flex: 2;
+}
+.ratingIndicatorContainer {
+  height: var(--web-app-component-rating-indicator-height);
 }
 
 .addToCatalogusContainer > *:not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
-.cardsContainer {
-  display: grid;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
-  column-gap: var(--web-app-size-md);
-}
-
 .externalLink {
   text-decoration: none;
 }
 
-.description {
-  padding-top: var(--web-app-size-md);
-}
-
-.tabs :first-child {
-  width: fit-content;
-}
-
-.panels,
-.tabs {
-  position: relative;
-  left: calc(var(--web-app-size-lg) * -1);
+.components > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
 }
 
 .tabPanel {
@@ -70,60 +117,157 @@
   padding-block-end: var(--web-app-size-lg) !important;
 }
 
-.details {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .tab {
   max-width: unset !important;
 }
 
+.tabBadgeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+}
+
+.dependenciesDisplaySwitchButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dependenciesDisplaySwitchButtons *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.buttonIcon > span > svg {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.noRatingStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--web-app-component-rating-indicator-height);
+}
+
+.link {
+  align-items: center;
+  margin-inline-start: var(--web-app-size-sm);
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--web-app-overlay-background);
+  z-index: 500;
+  display: block;
+}
+
+.popup {
+  position: fixed;
+  max-width: var(--web-app-download-popup-width);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 700;
+  outline: 0;
+}
+
+.organizations {
+  display: grid;
+  gap: var(--web-app-size-lg);
+  grid-template-columns: 1fr 1fr;
+}
+
+.cardsContainer {
+  grid-template-columns: 1fr 1fr;
+}
+
+.cardsContainer > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+@media only screen and (min-width: 576px) {
+  .container > .headingContainer {
+    grid-template-columns: 2fr var(--web-app-component-detail-logo-width);
+  }
+
+  .logoContainer {
+    display: flex;
+  }
+
+  .container > .backButton {
+    display: block;
+  }
+
+  .cardsContainer {
+    display: flex;
+    gap: var(--web-app-size-xl);
+  }
+
+  .cardsContainer > :not(:last-child) {
+    margin-block-end: 0;
+  }
+
+  .noOrganizationCardAvailable {
+    padding-block-end: unset;
+    padding-block-start: unset;
+    padding-inline-end: unset;
+    padding-inline-start: unset;
+  }
+}
+
 /* Colors of the 5 layers */
-.interactie {
-  --web-app-tag-background-color: #1a75ff;
-  --web-app-tag-color: var(--web-app-color-white);
+.interactionLayer,
+.interfaceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
 }
-.interactieCategory,
+.interactionCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: #cfe2ff;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
 }
 
-.proces,
-.process,
-.processs {
-  --web-app-tag-background-color: #dd3c49;
-  --web-app-tag-color: var(--web-app-color-white);
+.processLayer,
+.processsLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-process);
 }
-.procesCategory .processCategory {
-  --web-app-tag-background-color: #f8d7da;
+.procesCategory,
+.processCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
 }
 
-.integratie,
-.integration {
-  --web-app-tag-background-color: #efc025;
-  --web-app-tag-color: var(--web-app-color-white);
+.integrationLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-integration);
 }
-.integratieCategory,
 .integrationCategory {
-  --web-app-tag-background-color: #fff3cd;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
 }
 
-.services,
-.service {
-  --web-app-tag-background-color: #69b090;
-  --web-app-tag-color: var(--web-app-color-white);
+.servicesLayer,
+.serviceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-services);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --web-app-tag-background-color: #d1e7dd;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
 }
 
-.data {
-  --web-app-tag-background-color: #7a51c8;
-  --web-app-tag-color: var(--web-app-color-white);
+.dataLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-data);
 }
 .dataCategory {
-  --web-app-tag-background-color: #e2d9f3;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+}
+
+.unknownLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+}
+.unknownCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
 }

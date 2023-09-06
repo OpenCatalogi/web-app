@@ -1,0 +1,11 @@
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-sm);
+}
+
+.toggleButton svg {
+  transition: transform 200ms;
+}
+
+.toggleButton.isExpanded svg {
+  transform: rotate(90deg);
+}

@@ -1,131 +1,214 @@
-import { Container } from "@conduction/components";
-import {
-  Divider,
-  Heading1,
-  Heading2,
-  LeadParagraph,
-  Link,
-  Tab,
-  TabContext,
-  TabPanel,
-  Tabs,
-} from "@gemeente-denhaag/components-react";
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
+import { Container } from "@conduction/components";
+import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import {
+  BadgeCounter,
+  Heading,
+  DataBadge,
+  Icon,
+  Button,
+  Separator,
+} from "@utrecht/component-library-react/dist/css-module";
+import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
+import { ToolTip } from "../../components/toolTip/ToolTip";
+import { useTranslation } from "react-i18next";
+import { navigate } from "gatsby";
+import { QueryClient } from "react-query";
+import { useOrganization } from "../../hooks/organization";
+import Skeleton from "react-loading-skeleton";
+import organizationPlaceholderImage from "../../assets/images/grey.png";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
-import organizationLogo from "./../../assets/svgs/LogoRotterdam.svg";
-import { ExternalLinkIcon, CallIcon, EmailIcon } from "@gemeente-denhaag/icons";
-import { TableResultTemplate } from "../templateParts/resultsTemplates/table/TableResultTemplate";
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@gemeente-denhaag/table";
-import { TEMPORARY_COMPONENTS } from "../../data/components";
+import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { Link } from "../../components";
+import { IconArrowLeft } from "@tabler/icons-react";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
 }
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
+  const { t } = useTranslation();
   const [currentTab, setCurrentTab] = React.useState<number>(0);
+  const queryClient = new QueryClient();
+  const _useOrganization = useOrganization(queryClient);
+  const _getOrganization = _useOrganization.getOne(organizationId);
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.headerContainer}>
-        <div className={styles.headerContent}>
-          <Heading1>Gemeente Rotterdam</Heading1>
-
-          <LeadParagraph>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas faucibus mollis interdum. Duis
-            mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </LeadParagraph>
-        </div>
-
-        <div className={styles.headerLogo}>
-          <img className={styles.logo} src={organizationLogo} alt="Organization logo" />
-        </div>
+      <div className={styles.backButton}>
+        <Link to="/organizations">
+          <Icon className="utrecht-icon--conduction-start">
+            <IconArrowLeft />
+          </Icon>
+          {t("Back to organizations")}
+        </Link>
       </div>
 
-      <Divider />
+      {_getOrganization.isSuccess && (
+        <>
+          <div className={styles.headerContainer}>
+            <div className={styles.headerContent}>
+              <Heading level={1} className={styles.title}>
+                {_getOrganization.data.name}
+              </Heading>
 
-      <div className={styles.section}>
-        <Heading2>Componenten</Heading2>
+              <ExpandableLeadParagraph
+                description={_getOrganization.data.description ?? t("There is no description available")}
+              />
+            </div>
 
-        <TabContext value={currentTab.toString()}>
-          <Tabs
-            value={currentTab}
-            onChange={(_, newValue: number) => {
-              setCurrentTab(newValue);
-            }}
-            variant="scrollable"
-          >
-            <Tab className={styles.tab} label="Eigen componenten" value={0} />
-            <Tab className={styles.tab} label="Ondersteunde componenten" value={1} />
-            <Tab className={styles.tab} label="Gebruikte componenten" value={2} />
-          </Tabs>
+            <div className={styles.headerOrganizationData}>
+              <div className={styles.logoContainer}>
+                <img
+                  className={styles.logo}
+                  src={_getOrganization.data.logo ?? organizationPlaceholderImage}
+                  alt="Organization logo"
+                />
+              </div>
+              <div>
+                <div className={styles.tagsContainer}>
+                  {_getOrganization.data.github && (
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.github)}>
+                      <GitHubLogo />
+                      {t("GitHub")}
+                    </Button>
+                  )}
+                  {_getOrganization.data.gitlab && (
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.gitlab)}>
+                      <GitLabLogo />
+                      {t("GitLab")}
+                    </Button>
+                  )}
+                  {_getOrganization.data.website && (
+                    <Button appearance="secondary-action-button" onClick={() => open(_getOrganization.data.website)}>
+                      <FontAwesomeIcon icon={faGlobe} />
+                      {_getOrganization.data.website}
+                    </Button>
+                  )}
+                  {_getOrganization.data.phone && (
+                    <Button
+                      appearance="secondary-action-button"
+                      onClick={() => navigate(`tel:${_getOrganization.data.phone}`)}
+                    >
+                      <FontAwesomeIcon icon={faPhone} />
+                      {_getOrganization.data.phone}
+                    </Button>
+                  )}
+                  {_getOrganization.data.email && (
+                    <Button
+                      appearance="secondary-action-button"
+                      onClick={() => navigate(`mailto:${_getOrganization.data.email}`)}
+                    >
+                      <FontAwesomeIcon icon={faEnvelope} />
+                      {_getOrganization.data.email}
+                    </Button>
+                  )}
+                </div>
+              </div>
 
-          <TabPanel className={styles.tabPanel} value="0">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(0, 6)} hideTableHead />
-          </TabPanel>
+              {_getOrganization.data.certificate && (
+                <>
+                  <Separator />
 
-          <TabPanel className={styles.tabPanel} value="1">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS.slice(3, 6)} hideTableHead />
-          </TabPanel>
+                  <div className={styles.tagsContainer}>
+                    {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
+                      <ToolTip key={idx} tooltip={certificate.name}>
+                        <DataBadge onClick={() => open(certificate.href)}>
+                          <FontAwesomeIcon icon={faCertificate} />
+                          {certificate.name}
+                        </DataBadge>
+                      </ToolTip>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
 
-          <TabPanel className={styles.tabPanel} value="2">
-            <TableResultTemplate components={TEMPORARY_COMPONENTS} hideTableHead />
-          </TabPanel>
-        </TabContext>
-      </div>
+          <Separator />
 
-      <Divider />
+          <div className={styles.section}>
+            <Heading level={2} className={styles.title}>
+              Componenten
+            </Heading>
+            <TabContext value={currentTab.toString()}>
+              <Tabs
+                value={currentTab}
+                onChange={(_, newValue: number) => {
+                  setCurrentTab(newValue);
+                }}
+                variant="scrollable"
+              >
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <>
+                      <div>
+                        <span>Eigen componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.owns?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
+                  }
+                  value={0}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <>
+                      <div>
+                        <span>Ondersteunde componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.supports?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
+                  }
+                  value={1}
+                />
+                <Tab
+                  className={styles.tab}
+                  label={
+                    <>
+                      <div>
+                        <span>Gebruikte componenten</span>
+                        <BadgeCounter className={styles.tabAmountBadge}>
+                          {_getOrganization.data?.uses?.length ?? 0}
+                        </BadgeCounter>
+                      </div>
+                    </>
+                  }
+                  value={2}
+                />
+              </Tabs>
 
-      <div className={styles.section}>
-        <Heading2>Organisatie gegevens</Heading2>
+              <TabPanel className={styles.tabPanel} value="0">
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
+                </div>
+              </TabPanel>
 
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableHeader>Naam</TableHeader>
-              <TableCell>Gemeente Rotterdam</TableCell>
-            </TableRow>
+              <TabPanel className={styles.tabPanel} value="1">
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
+                </div>
+              </TabPanel>
 
-            <TableRow>
-              <TableHeader>GitHub</TableHeader>
-              <TableCell>
-                <Link icon={<GitHubLogo />} iconAlign="start">
-                  Gemeente Rotterdam componenten GitHub
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Website</TableHeader>
-              <TableCell>
-                <Link icon={<ExternalLinkIcon />} iconAlign="start">
-                  rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>Telefoonnummer</TableHeader>
-              <TableCell>
-                <Link icon={<CallIcon />} iconAlign="start">
-                  010 - 123 456 7
-                </Link>
-              </TableCell>
-            </TableRow>
-
-            <TableRow>
-              <TableHeader>E-mailadres</TableHeader>
-              <TableCell>
-                <Link icon={<EmailIcon />} iconAlign="start">
-                  componenten-support@rotterdam.nl
-                </Link>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </div>
+              <TabPanel className={styles.tabPanel} value="2">
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
+                </div>
+              </TabPanel>
+            </TabContext>
+          </div>
+        </>
+      )}
+      {_getOrganization.isLoading && <Skeleton height="200px" />}
     </Container>
   );
 };

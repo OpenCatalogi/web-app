@@ -6,36 +6,33 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.headingAndSearchForm {
-  display: flex;
-  flex-direction: column;
-}
-
-.heading {
-  padding-block-start: var(--web-app-size-3xl);
-}
-
-.section > .subHeading {
-  width: 100%;
-  max-width: 800px;
-  margin-block-end: var(--web-app-size-2xl);
-}
-
-.searchFormContainer {
-  width: 100%;
-  max-width: 650px;
-}
-
 .cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--web-app-size-lg);
-}
-
-.cards > * {
-  flex: 1;
 }
 
 .feedback {
   width: 100%;
   max-width: 800px;
+}
+
+.landingDisplaySwitchButtons {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.filtersAndResultsContainer {
+  display: flex;
+  gap: var(--web-app-size-lg);
+}
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
 }

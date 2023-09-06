@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "api-platform.fullname" . }}
   labels:
-    {{- include "api-platform.labels" . | nindent 4 }}
+  {{- include "api-platform.labels" . | nindent 4 }}
 data:
   {{- if .Values.gateway.enabled }}
   gateway-location: https://{{ .Values.ingress.hostname }}
@@ -11,13 +11,33 @@ data:
   gateway-location: {{ .Values.gateway.location }}
   {{- end }}
   properties: |-
-    export const setEnv = () => {
-      window.GATSBY_ME_URL = "{{ .Values.pwa.meUrl }}";
-      window.GATSBY_API_URL = "{{ .Values.pwa.apiUrl }}";
-      window.GATSBY_ADMIN_URL = "{{ .Values.pwa.adminUrl }}";
-      window.GATSBY_BASE_URL= "{{ .Values.pwa.baseUrl }}";
-      window.GATSBY_FRONTEND_URL= "{{ .Values.pwa.frontendUrl }}";
-      window.GATSBY_ORGANIZATION= "{{ .Values.pwa.organization }}";
-      window.GATSBY_LOGIN_REDIRECT= "{{ .Values.pwa.redirectUrl }}";
-    };
-    
+    {{- if contains "useDomain" .Values.pwa.meUrl }}
+    window.sessionStorage.setItem("GATSBY_ME_URL", "{{ printf "https://api.%s/api/users/me" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("GATSBY_ME_URL", "{{ .Values.pwa.meUrl }}");
+    {{- end }}
+    {{- if contains "useDomain" .Values.pwa.apiUrl }}
+    window.sessionStorage.setItem("GATSBY_API_URL", "{{ printf "https://api.%s/api" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("GATSBY_API_URL", "{{ .Values.pwa.apiUrl }}");
+    {{- end }}
+    {{- if contains "useDomain" .Values.pwa.adminUrl }}
+    window.sessionStorage.setItem("GATSBY_ADMIN_URL", "{{ printf "https://api.%s/admin" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("GATSBY_ADMIN_URL", "{{ .Values.pwa.adminUrl }}");
+    {{- end }}
+    {{- if contains "useDomain" .Values.pwa.baseUrl }}
+    window.sessionStorage.setItem("GATSBY_BASE_URL", "{{ printf "https://api.%s" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("GATSBY_BASE_URL", "{{ .Values.pwa.baseUrl }}");
+    {{- end }}
+    {{- if contains "useDomain" .Values.pwa.frontendUrl }}
+    window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "{{ printf "https://%s" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "{{ .Values.pwa.frontendUrl }}");
+    {{- end }}
+    {{- if contains "useDomain" .Values.pwa.dashboardUrl }}
+    window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "{{ printf "https://admin.%s/" .Values.global.domain }}");
+    {{ else }}
+    window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "https://{{ .Values.pwa.dashboardUrl }}");
+    {{- end }}

@@ -1,6 +1,9 @@
-.details {
-  display: flex;
-  justify-content: flex-end;
+.tableRow {
+  cursor: pointer;
+}
+
+.tableRow > * {
+  vertical-align: middle !important;
 }
 
 .name {
@@ -9,4 +12,62 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.tagWidth {
+  width: max-content !important;
+}
+
+.detailsLink {
+  display: inline-flex;
+}
+
+/* Colors of the 5 layers */
+.interactionLayer,
+.interfaceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
+}
+.interactionCategory,
+.interfaceCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
+}
+
+.processLayer,
+.processsLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-process);
+}
+.procesCategory,
+.processCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
+}
+
+.integrationLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-integration);
+}
+.integrationCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
+}
+
+.servicesLayer,
+.serviceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-services);
+}
+
+.servicesCategory,
+.serviceCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
+}
+
+.dataLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-data);
+}
+.dataCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+}
+
+.unknownLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+}
+.unknownCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
 }

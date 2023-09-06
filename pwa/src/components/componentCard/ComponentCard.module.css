@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  border: var(--web-app-component-card-border-color);
+  border: var(--web-app-card-border-color);
   padding-inline-start: var(--web-app-size-md);
   padding-inline-end: var(--web-app-size-md);
   padding-block-start: var(--web-app-size-md);
@@ -52,50 +52,51 @@
 }
 
 /* Colors of the 5 layers */
-.interactie {
-  --web-app-tag-background-color: #1a75ff;
-  --web-app-tag-color: var(--web-app-color-white);
+.interactionLayer,
+.interfaceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
 }
-.interactieCategory,
+.interactionCategory,
 .interfaceCategory {
-  --web-app-tag-background-color: #cfe2ff;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
 }
 
-.proces,
-.process,
-.processs {
-  --web-app-tag-background-color: #dd3c49;
-  --web-app-tag-color: var(--web-app-color-white);
+.processLayer,
+.processsLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-process);
 }
-.procesCategory .processCategory {
-  --web-app-tag-background-color: #f8d7da;
+.procesCategory,
+.processCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
 }
 
-.integratie,
-.integration {
-  --web-app-tag-background-color: #efc025;
-  --web-app-tag-color: var(--web-app-color-white);
+.integrationLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-integration);
 }
-.integratieCategory,
 .integrationCategory {
-  --web-app-tag-background-color: #fff3cd;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
 }
 
-.services,
-.service {
-  --web-app-tag-background-color: #69b090;
-  --web-app-tag-color: var(--web-app-color-white);
+.servicesLayer,
+.serviceLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-services);
 }
 
 .servicesCategory,
 .serviceCategory {
-  --web-app-tag-background-color: #d1e7dd;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
 }
 
-.data {
-  --web-app-tag-background-color: #7a51c8;
-  --web-app-tag-color: var(--web-app-color-white);
+.dataLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-data);
 }
 .dataCategory {
-  --web-app-tag-background-color: #e2d9f3;
+  --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+}
+
+.unknownLayer {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+}
+.unknownCategory {
+  --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
 }

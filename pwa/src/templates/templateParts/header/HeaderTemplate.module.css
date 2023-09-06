@@ -1,28 +1,175 @@
-.header {
-  background-color: var(--web-app-color-background-page-header);
+.headerContainer {
+  background-color: var(--web-app-color-background-light);
 }
 
-.top {
+.headerTopBar {
+  display: none;
+  background-color: var(--web-app-color-background-light);
+}
+.headerMiddleBar {
   background-color: var(--web-app-color-background-page-top-bar);
-}
-
-.headingContainer {
-  padding-block-start: var(--web-app-size-3xl);
-  padding-block-end: var(--web-app-size-3xl);
-}
-
-.title {
-  padding-block-end: var(--web-app-size-lg);
-  color: var(--web-app-color-page-header) !important;
-}
-
-.subTitle {
-  font-weight: var(--web-app-font-weight-light);
-  color: var(--web-app-color-page-header);
+  box-shadow: 0px 10px 13px -14px #000000;
 }
 
 .secondaryNavContainer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.primaryNavContainer {
+  position: fixed;
+  width: 100%;
+  background-color: var(--web-app-color-background-page-top-bar);
+  box-shadow: 0px 10px 13px -14px #000000;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  width: fit-content;
+  height: var(--web-app-header-logo-container-height);
+  border-radius: var(--web-app-header-logo-container-border-radius);
+  padding: var(--web-app-header-logo-container-padding);
+  background-color: var(--web-app-header-logo-container-background-color);
+}
+
+.logoDesktop {
+  display: none;
+}
+
+.logoMobile {
+  padding: var(--web-app-size-md);
+}
+
+.logoContainer > * {
+  height: 100%;
+}
+
+.logoContainer > *:hover {
+  cursor: pointer;
+}
+
+.logoContainer > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-lg);
+}
+
+.organizationLogo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: var(--web-app-header-organization-logo-padding);
+  width: var(--web-app-header-organization-logo-width);
+  background-image: var(--web-app-header-organization-logo-src);
+  background-color: var(--web-app-header-organization-logo-background-color);
+  background-origin: content-box;
+}
+
+.headerContent {
+  padding-block-start: var(--web-app-size-4xl);
+  padding-block-end: var(--web-app-size-3xl);
+  padding-inline-start: var(--web-app-size-md);
+  padding-inline-end: var(--web-app-size-md);
+  width: auto !important;
+}
+
+.headerSearchForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumbsContainer {
+  padding-block-start: var(--web-app-size-sm);
+  padding-block-end: var(--web-app-size-sm);
+}
+
+.section > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xl);
+}
+
+.section > .subHeading {
+  width: 100%;
+  max-width: 800px;
+  margin-block-end: var(--web-app-size-2xl);
+}
+
+.title {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.subTitle {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.searchFormContainer {
+  width: 100%;
+  max-width: 650px;
+}
+
+.textColor {
+  color: var(--web-app-color-text-grey) !important;
+}
+
+.denhaag-link__icon {
+  align-items: center;
+  display: inline-flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  vertical-align: text-top;
+  width: var(--web-app-size-md);
+}
+
+.denhaag-link--with-icon-start {
+  padding-inline-start: calc(var(--web-app-size-md) + var(--web-app-size-xs));
+}
+
+li .denhaag-link__icon {
+  left: 0;
+}
+
+@media only screen and (min-width: 992px) {
+  .logoContainer {
+    display: flex;
+  }
+
+  .logoDesktop {
+    display: block;
+  }
+
+  .logoMobile {
+    display: none;
+  }
+
+  .headerContainer {
+    padding-inline: 0;
+    padding-block-start: 0;
+  }
+
+  .headerTopBar {
+    display: block;
+  }
+
+  .primaryNavContainer {
+    position: unset;
+    top: unset;
+    left: unset;
+    width: auto;
+    background-color: unset;
+    box-shadow: unset;
+    z-index: unset;
+  }
+
+  .headerContainer {
+    padding-inline: var(--web-app-size-md);
+    background-color: var(--web-app-color-background-light);
+  }
+
+  .headerContent {
+    padding-block-start: var(--web-app-size-3xl);
+    padding-block-end: var(--web-app-size-3xl);
+  }
 }

@@ -1,0 +1,47 @@
+.container {
+  user-select: none;
+  padding-block-end: var(--web-app-size-md);
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.container:not(.active):not(.disabled) {
+  opacity: var(--web-app-layer-accordion-inactive-opacity);
+}
+
+.disabled {
+  opacity: var(--web-app-layer-accordion-disabled-opacity);
+}
+
+.disabled:hover {
+  cursor: not-allowed;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.title:not(:last-child) {
+  display: flex;
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.content > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.content > .layerIcon {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.toggleIcon {
+  font-size: var(--web-app-font-size-lg);
+  transition: transform 200ms ease-in-out;
+}
+
+.toggleIcon.active {
+  transform: rotate(90deg);
+}

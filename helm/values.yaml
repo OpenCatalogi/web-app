@@ -7,20 +7,32 @@ pwa:
     pullPolicy: Always
     tag: "dev"
     # Overrides the image tag whose default is the chart appVersion.
-  apiUrl: "https://backend-bisc-dev.commonground.nu/api"
-  meUrl: "https://backend-bisc-dev.commonground.nu/api/users/me"
-  baseUrl: "https://backend-bisc-dev.commonground.nu"
-  frontendUrl: "https://admin-bisc-dev.commonground.nu"
+  apiUrl: "useDomain"
+  meUrl: "useDomain"
+  baseUrl: "useDomain"
+  frontendUrl: "useDomain"
   organization: ""
   redirectUrl: "vault"
-  adminUrl: "https://backend-bisc-dev.commonground.nu/admin"
+  adminUrl: "useDomain"
+  dashboardUrl: "useDomain"
+  # These values override the use of the default domain in global.domain
 
-replicacount: 1
+replicacount: 2
+
+global:
+  domain: opencatalogi.nl
+  # The main domain the application should be run on. The api's will be available at api., the admin ui on admin.
+  tls: true
+  # Whether the helm file should take care of creating TLS certificates and adding them to the ingress resource.
 
 gateway:
-  enabled: false
-  fixtures: {}
-  location: "example"
+  enabled: true
+  # config:
+  #  trustedProxies: []
+  # If the application needs to run HTTPS only without any HTTP to HTTPS redirects, add in the internal IP of the
+  # load balancer in the field above. The application otherwise might redirect to HTTP addresses that should be HTTPS.
+  # This due to internal traffic in Kubernetes typically being without TLS. Adding the load balancer to the trusted proxies
+  # will tell the application that the traffic was sent in HTTPS.
 
 imagePullSecrets: []
 nameOverride: ""
@@ -55,7 +67,6 @@ service:
 
 ingress:
   enabled: true
-  hostname: admin-bisc-dev.commonground.nu
   path: ""
   pathType: ImplementationSpecific
   className: nginx
@@ -68,17 +79,17 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
-  #   cpu: 100m
+  #   cpu: 10m
   #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+   requests:
+     cpu: 100m
+     memory: 128Mi
 
 autoscaling:
   enabled: false
