@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
@@ -9,7 +8,7 @@ import { FiltersContext } from "../../context/filters";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 import { GatsbyContext } from "../../context/gatsby";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 
 export const LandingTemplate: React.FC = () => {
   const [filters] = React.useContext(FiltersContext);
@@ -80,7 +79,7 @@ export const LandingTemplate: React.FC = () => {
         )}
       </section>
 
-      <Divider />
+      <Separator />
 
       <FeedbackTemplate layoutClassName={styles.feedback} />
     </Container>

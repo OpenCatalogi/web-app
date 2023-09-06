@@ -1,8 +1,14 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Divider } from "@gemeente-denhaag/components-react";
 import { Container, ToolTip } from "@conduction/components";
-import { Heading, Icon, Button, ButtonGroup, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Heading,
+  Icon,
+  Button,
+  ButtonGroup,
+  DataBadge,
+  Separator,
+} from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
@@ -71,7 +77,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
             </div>
           </div>
 
-          <Divider />
+          <Separator />
 
           <div>
             <Heading level={2} className={styles.title}>
@@ -82,7 +88,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
             </div>
           </div>
 
-          <Divider />
+          <Separator />
 
           {getApplications.data?.embedded?.components && (
             <div className={styles.components}>

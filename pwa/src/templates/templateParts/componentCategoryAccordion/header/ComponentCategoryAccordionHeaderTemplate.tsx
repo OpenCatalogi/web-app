@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as styles from "./ComponentCategoryAccordionHeaderTemplate.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Divider } from "@gemeente-denhaag/components-react";
 import clsx from "clsx";
 import { faChevronRight, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
-import { Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 
 interface ComponentCategoryAccordionHeaderTemplateProps {
   title: string;
@@ -24,7 +23,7 @@ export const ComponentCategoryAccordionHeaderTemplate: React.FC<ComponentCategor
         <FontAwesomeIcon className={clsx(styles.toggleIcon, active && styles.active)} icon={faChevronRight} />
       </div>
 
-      <Divider />
+      <Separator />
     </div>
   );
 };

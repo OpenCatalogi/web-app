@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { FiltersContext } from "../../../../context/filters";
-import { FormFieldInput } from "@gemeente-denhaag/form-field";
 import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
@@ -42,10 +41,8 @@ export const HorizontalFiltersTemplate: React.FC = () => {
       }}
     >
       <FormField>
-        <FormFieldInput>
-          <FormLabel htmlFor={"componentSearchFormInput"}>Zoek op naam</FormLabel>
-          <Textbox id="componentSearchFormInput" {...register("name", { required: true })} invalid={errors["name"]} />
-        </FormFieldInput>
+        <FormLabel htmlFor={"componentSearchFormInput"}>Zoek op naam</FormLabel>
+        <Textbox id="componentSearchFormInput" {...register("name", { required: true })} invalid={errors["name"]} />
       </FormField>
     </form>
   );
