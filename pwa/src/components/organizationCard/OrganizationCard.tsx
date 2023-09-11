@@ -4,7 +4,6 @@ import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dis
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { IconArrowRight } from "@tabler/icons-react";
-import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import { Link } from "../../components";
@@ -12,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 export interface OrganizationCardProps {
   title: {
@@ -69,60 +69,62 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       </div>
 
       <div className={styles.tagsContainer}>
-        <ToolTip tooltip="Organisatie type">
-          <DataBadge onClick={() => navigate(title.href)}>
-            <FontAwesomeIcon icon={faBuilding} />
+        <DataBadge
+          data-tooltip-id={TOOLTIP_ID}
+          data-tooltip-content="Organisatie type"
+          onClick={() => navigate(title.href)}
+        >
+          <FontAwesomeIcon icon={faBuilding} />
 
-            {t(_.upperFirst(type ? type : "Unknown"))}
-          </DataBadge>
-        </ToolTip>
+          {t(_.upperFirst(type ? type : "Unknown"))}
+        </DataBadge>
 
-        <ToolTip tooltip="Aantal eigen componenten">
-          <DataBadge onClick={() => navigate(title.href)}>
-            <FontAwesomeIcon icon={faHouseLaptop} />
-            {components.owned}
-          </DataBadge>
-        </ToolTip>
+        <DataBadge
+          data-tooltip-id={TOOLTIP_ID}
+          data-tooltip-content="Aantal eigen componenten"
+          onClick={() => navigate(title.href)}
+        >
+          <FontAwesomeIcon icon={faHouseLaptop} />
+          {components.owned}
+        </DataBadge>
 
-        <ToolTip tooltip="Aantal ondersteunde componenten">
-          <DataBadge onClick={() => navigate(title.href)}>
-            <FontAwesomeIcon icon={faUserCog} />
-            {components.supported}
-          </DataBadge>
-        </ToolTip>
+        <DataBadge
+          data-tooltip-id={TOOLTIP_ID}
+          data-tooltip-content="Aantal ondersteunde componenten"
+          onClick={() => navigate(title.href)}
+        >
+          <FontAwesomeIcon icon={faUserCog} />
+          {components.supported}
+        </DataBadge>
 
-        <ToolTip tooltip="Aantal gebruikte componenten">
-          <DataBadge onClick={() => navigate(title.href)}>
-            <FontAwesomeIcon icon={faRepeat} />
-            {components.used}
-          </DataBadge>
-        </ToolTip>
+        <DataBadge
+          data-tooltip-id={TOOLTIP_ID}
+          data-tooltip-content="Aantal gebruikte componenten"
+          onClick={() => navigate(title.href)}
+        >
+          <FontAwesomeIcon icon={faRepeat} />
+          {components.used}
+        </DataBadge>
 
         {website && (
-          <ToolTip tooltip={website}>
-            <DataBadge onClick={() => open(website)}>
-              <FontAwesomeIcon icon={faGlobe} />
-              Website
-            </DataBadge>
-          </ToolTip>
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={website} onClick={() => open(website)}>
+            <FontAwesomeIcon icon={faGlobe} />
+            Website
+          </DataBadge>
         )}
 
         {gitHub && (
-          <ToolTip tooltip="GitHub">
-            <DataBadge onClick={() => open(gitHub)}>
-              <GitHubLogo />
-              {t("GitHub")}
-            </DataBadge>
-          </ToolTip>
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="GitHub" onClick={() => open(gitHub)}>
+            <GitHubLogo />
+            {t("GitHub")}
+          </DataBadge>
         )}
 
         {gitLab && (
-          <ToolTip tooltip="GitLab">
-            <DataBadge onClick={() => open(gitLab)}>
-              <GitLabLogo />
-              {t("GitLab")}
-            </DataBadge>
-          </ToolTip>
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="GitLab" onClick={() => open(gitLab)}>
+            <GitLabLogo />
+            {t("GitLab")}
+          </DataBadge>
         )}
       </div>
     </div>
