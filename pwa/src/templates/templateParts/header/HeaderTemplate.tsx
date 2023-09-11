@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { Paragraph, Heading, BreadcrumbNav, BreadcrumbLink } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
+import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,6 +30,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   } = React.useContext(GatsbyContext);
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
+
+  const handleBreadcrumbClick = (e: React.MouseEvent<HTMLElement, MouseEvent>, pathname: string) => {
+    e.preventDefault();
+
+    navigate(pathname);
+  };
 
   const primaryTopNavItems = [
     {
@@ -187,7 +193,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          <Breadcrumbs crumbs={translatedCrumbs} />
+          <BreadcrumbNav>
+            {translatedCrumbs.map((crumb: any, idx: number) => (
+              <span key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}>
+                <BreadcrumbLink href="">{crumb.crumbLabel}</BreadcrumbLink>
+              </span>
+            ))}
+          </BreadcrumbNav>
         </Container>
       )}
     </header>
