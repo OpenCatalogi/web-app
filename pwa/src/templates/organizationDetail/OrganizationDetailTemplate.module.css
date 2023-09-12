@@ -47,12 +47,9 @@
   margin-block-end: var(--web-app-size-lg);
 }
 
-.tagsContainer > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
-.tagsContainer > button {
-  margin-block-end: var(--web-app-size-xs);
+.tagsContainer {
+  display: flex;
+  gap: var(--web-app-size-xs);
 }
 
 .headerContent {

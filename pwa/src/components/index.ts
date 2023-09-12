@@ -7,4 +7,3 @@ export * from "./organizationCard/OrganizationCard";
 export * from "./pagination/pagination";
 export * from "./resultsDisplaySwitch/ResultsDisplaySwitch";
 export * from "./tableWrapper/TableWrapper";
-export * from "./toolTip/ToolTip";
