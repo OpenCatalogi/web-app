@@ -1,5 +1,23 @@
+.container {
+  position: relative;
+}
+
 .wrapper {
   overflow-x: scroll;
+}
+
+.scrollRightButton,
+.scrollLeftButton {
+  top: 50%;
+  position: absolute;
+}
+
+.scrollRightButton {
+  right: 0;
+}
+
+.scrollLeftButton {
+  left: 0;
 }
 
 /* Hide scrollbar */
