@@ -14,7 +14,7 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
+import { TableWrapper } from "../../../../components/tableWrapper/TableWrapper";
 import { Link } from "../../../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faHouseLaptop, faInfoCircle, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";

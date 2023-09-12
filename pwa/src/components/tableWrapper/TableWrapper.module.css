@@ -1,33 +1,12 @@
-.table {
-  width: 100%;
-  overflow-x: auto;
+.wrapper {
+  overflow-x: scroll;
 }
 
-.tableBoxShadow {
-  position: relative;
-  z-index: 1;
+/* Hide scrollbar */
+.wrapper::-webkit-scrollbar {
+  display: none;
 }
-
-.tableBoxShadow::before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  transition: 0.2s all ease-in;
-}
-
-.tableBoxShadowR::before {
-  box-shadow: inset 0px 0px 10px -10px rgba(0, 0, 0, 0.2), inset -16px 0px 10px -10px rgba(0, 0, 0, 0.2);
-}
-
-.tableBoxShadowL::before {
-  box-shadow: inset 16px 0px 10px -10px rgba(0, 0, 0, 0.2), inset -0px 0px 10px -10px rgba(0, 0, 0, 0.2);
-}
-
-.tableBoxShadowM::before {
-  box-shadow: inset 16px 0px 10px -10px rgba(0, 0, 0, 0.2), inset -16px 0px 10px -10px rgba(0, 0, 0, 0.2);
+.wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
