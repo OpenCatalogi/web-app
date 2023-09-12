@@ -5,9 +5,9 @@ import _ from "lodash";
 import { getTokenValue } from "../../../../services/getTokenValue";
 import { addNewLineToString } from "../../../../services/addNewLineToString";
 import { navigate } from "gatsby";
-import { NodeToolTip } from "../../../../components/toolTip/ToolTip";
 import "vis-network/styles/vis-network.css";
 import { renderToStaticMarkup } from "react-dom/server";
+import { TOOLTIP_ID } from "../../../../layout/Layout";
 
 interface RelationsDependenciesTemplateProps {
   components: any[];
@@ -22,16 +22,19 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
   components,
   mainComponent,
 }) => {
-  const ToolTip = document.createElement("div");
+  const ToolTipElement = document.createElement("div");
   const staticToolTipElement = renderToStaticMarkup(
-    <NodeToolTip tooltip="Dubbelklik het component om naar het component te gaan" />,
+    <div
+      data-tooltip-id={TOOLTIP_ID}
+      data-tooltip-content="Dubbelklik het component om naar het component te gaan"
+    ></div>,
   );
-  ToolTip.innerHTML = `${staticToolTipElement}`;
+  ToolTipElement.innerHTML = `${staticToolTipElement}`;
 
   const componentNodes = components.map((component) => ({
     id: component.id ?? component._self?.id,
     label: addNewLineToString(component.name),
-    title: ToolTip,
+    title: ToolTipElement,
     layer: component.embedded?.nl?.embedded?.commonground?.layerType,
     color: {
       background: getTokenValue(
