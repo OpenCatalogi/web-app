@@ -55,7 +55,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
   const ComponentStatusBadge = ({ status }: { status: string }) => {
     const s = getStatus(status);
     return (
-      <StatusBadge status={s} className={styles.tagWidth}>
+      <StatusBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status" status={s} className={styles.tagWidth}>
         {s ? (
           <>
             <FontAwesomeIcon icon={faInfoCircle} />{" "}
@@ -156,7 +156,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                   </DataBadge>
                 </TableCell>
 
-                <TableCell data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
+                <TableCell>
                   <ComponentStatusBadge
                     status={_.upperFirst(
                       component._self.schema.ref.includes("component.schema.json")
