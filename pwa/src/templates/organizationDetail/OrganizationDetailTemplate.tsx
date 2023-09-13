@@ -3,7 +3,6 @@ import * as styles from "./OrganizationDetailTemplate.module.css";
 import { Container, TabContext } from "@conduction/components";
 import { Heading, DataBadge, Icon, Button, Separator } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { QueryClient } from "react-query";
@@ -17,6 +16,7 @@ import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-s
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -107,12 +107,15 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
                   <div className={styles.tagsContainer}>
                     {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
-                      <ToolTip key={idx} tooltip={certificate.name}>
-                        <DataBadge onClick={() => open(certificate.href)}>
-                          <FontAwesomeIcon icon={faCertificate} />
-                          {certificate.name}
-                        </DataBadge>
-                      </ToolTip>
+                      <DataBadge
+                        key={idx}
+                        data-tooltip-id={TOOLTIP_ID}
+                        data-tooltip-content={certificate.name}
+                        onClick={() => open(certificate.href)}
+                      >
+                        <FontAwesomeIcon icon={faCertificate} />
+                        {certificate.name}
+                      </DataBadge>
                     ))}
                   </div>
                 </>

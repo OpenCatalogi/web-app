@@ -188,6 +188,19 @@
   --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
   --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
 
+  /* @conduction: Tooltip */
+  --conduction-tooltip-padding-inline-start: 0px;
+  --conduction-tooltip-padding-inline-end: 0px;
+  --conduction-tooltip-padding-block-start: 0px;
+  --conduction-tooltip-padding-block-end: 0px;
+  --conduction-tooltip-background-color: var(--web-app-color-black);
+  --conduction-tooltip-color: var(--web-app-color-white);
+  --conduction-tooltip-border-width: 0px;
+  --conduction-tooltip-border-color: unset;
+  --conduction-tooltip-border-style: unset;
+  --conduction-tooltip-border-radius: 0px;
+  --conduction-tooltip-opacity: 1;
+
   /* @conduction: Tabs */
   --conduction-tab-list-padding-inline-start: 0px;
   --conduction-tab-list-border-bottom-width: var(--web-app-size-3xs);

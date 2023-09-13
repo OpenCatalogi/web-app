@@ -24,6 +24,7 @@
 
 .componentsHeader {
   display: flex;
+  align-items: center;
   gap: var(--web-app-size-xs);
 }
 

@@ -25,7 +25,6 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -37,6 +36,7 @@ import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Link } from "../../components";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -102,94 +102,82 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               />
 
               <div className={styles.layerAndCategoryContainer}>
-                <ToolTip tooltip="Laag">
-                  <DataBadge
-                    className={
-                      styles[
-                        _.camelCase(
-                          t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
-                        )
-                      ]
-                    }
-                  >
-                    <FontAwesomeIcon icon={faLayerGroup} />
-                    {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
-                  </DataBadge>
-                </ToolTip>
+                <DataBadge
+                  data-tooltip-id={TOOLTIP_ID}
+                  data-tooltip-content="Laag"
+                  className={
+                    styles[
+                      _.camelCase(
+                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
+                      )
+                    ]
+                  }
+                >
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                </DataBadge>
 
                 {_getComponent.data?.categories &&
                   _categories &&
                   _categories.map(
                     (category: any) =>
                       category && (
-                        <ToolTip tooltip="Categorie">
-                          <DataBadge
-                            className={
-                              styles[
-                                _.camelCase(
-                                  `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
-                                )
-                              ]
-                            }
-                          >
-                            {category?.icon}
-                            {_.upperFirst(category?.title)}
-                          </DataBadge>
-                        </ToolTip>
+                        <DataBadge
+                          data-tooltip-id={TOOLTIP_ID}
+                          data-tooltip-content="Categorie"
+                          className={
+                            styles[
+                              _.camelCase(
+                                `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
+                              )
+                            ]
+                          }
+                        >
+                          {category?.icon}
+                          {_.upperFirst(category?.title)}
+                        </DataBadge>
                       ),
                   )}
               </div>
 
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
-                  <ToolTip tooltip="Status">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faInfoCircle} />
-                      {t(_.upperFirst(_getComponent.data.developmentStatus))}
-                    </DataBadge>
-                  </ToolTip>
-                )}
-                <ToolTip tooltip="Installaties">
-                  <DataBadge>
-                    <FontAwesomeIcon icon={faRepeat} />
-                    {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    {t(_.upperFirst(_getComponent.data.developmentStatus))}
                   </DataBadge>
-                </ToolTip>
+                )}
+                <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
+                  <FontAwesomeIcon icon={faRepeat} />
+                  {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                </DataBadge>
 
                 {organisation?.name && (
-                  <ToolTip tooltip="Organisatie">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faHouse} />
-                      {organisation.name}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+                    <FontAwesomeIcon icon={faHouse} />
+                    {organisation.name}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.embedded?.legal?.license && (
-                  <ToolTip tooltip="Licentie">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faScroll} />
-                      {_getComponent.data.embedded?.legal.license}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
+                    <FontAwesomeIcon icon={faScroll} />
+                    {_getComponent.data.embedded?.legal.license}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.softwareType && (
-                  <ToolTip tooltip="Software type">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faLaptop} />
-                      {_getComponent.data.softwareType}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Software type">
+                    <FontAwesomeIcon icon={faLaptop} />
+                    {_getComponent.data.softwareType}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.embedded?.maintenance?.type && (
-                  <ToolTip tooltip="Onderhoudstype">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faWrench} />
-                      {_getComponent.data.embedded.maintenance.type}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Onderhoudstype">
+                    <FontAwesomeIcon icon={faWrench} />
+                    {_getComponent.data.embedded.maintenance.type}
+                  </DataBadge>
                 )}
               </div>
             </div>
