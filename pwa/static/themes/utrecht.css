@@ -202,37 +202,41 @@
   --conduction-tooltip-opacity: 1;
 
   /* @conduction: Tabs */
-  --conduction-tab-list-padding-inline-start: 0px;
-  --conduction-tab-list-border-bottom-width: var(--web-app-size-3xs);
-  --conduction-tab-list-border-bottom-style: solid;
-  --conduction-tab-list-border-bottom-color: #cccccc;
+  --conduction-tabs-tab-background-color: transparent;
+  --conduction-tabs-tab-color: #000000b3;
+  --conduction-tabs-tab-bottom: -2px;
+  --conduction-tabs-tab-padding-inline-end: 12px;
+  --conduction-tabs-tab-padding-inline-start: 12px;
+  --conduction-tabs-tab-padding-block-end: 6px;
+  --conduction-tabs-tab-padding-block-start: 6px;
+  --conduction-tabs-tab-font-size: 14px;
+  --conduction-tabs-tab-font-weight: var(--web-app-font-weight-normal);
+  --conduction-tabs-tab-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  --conduction-tabs-tab-max-width: unset;
+  --conduction-tabs-tab-min-width: 160px;
+  --conduction-tabs-tab-min-height: 48px;
+  --conduction-tabs-tab-letter-spacing: 0.02857em;
 
-  --conduction-tab-padding-block-start: 6px;
-  --conduction-tab-padding-block-end: 6px;
-  --conduction-tab-padding-inline-start: 12px;
-  --conduction-tab-padding-inline-end: 12px;
-  --conduction-tab-font-size: 14px;
-  --conduction-tab-font-weight: var(--web-app-font-weight-normal);
-  --conduction-tab-font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  --conduction-tab-max-width: unset;
-  --conduction-tab-min-width: 160px;
-  --conduction-tab-min-height: 48px;
-  --conduction-tab-letter-spacing: 0.02857em;
-  --conduction-tab-text-transform: uppercase;
-  --conduction-tab-color: #000000b3;
+  --conduction-tabs-tab-selected-background-color: transparent;
+  --conduction-tabs-tab-selected-color: #000000;
+  --conduction-tabs-tab-selected-border-bottom-width: var(--web-app-size-3xs);
+  --conduction-tabs-tab-selected-border-bottom-style: solid;
+  --conduction-tabs-tab-selected-border-bottom-color: var(--web-app-color-link);
+  --conduction-tabs-tab-selected-font-weight: var(--web-app-font-weight-bold);
 
-  --conduction-tab-selected-color: #000000;
-  --conduction-tab-selected-border-bottom-width: var(--web-app-size-3xs);
-  --conduction-tab-selected-border-bottom-style: solid;
-  --conduction-tab-selected-border-bottom-color: var(--web-app-color-link);
-  --conduction-tab-selected-font-weight: var(--web-app-font-weight-bold);
+  --conduction-tabs-tab-hover-background-color: transparent;
+  --conduction-tabs-tab-hover-color: #000000;
 
-  --conduction-tab-panel-padding-block-start: var(--web-app-size-lg);
-  --conduction-tab-panel-padding-block-end: var(--web-app-size-lg);
-  --conduction-tab-panel-padding-inline-start: var(--web-app-size-lg);
-  --conduction-tab-panel-padding-inline-end: var(--web-app-size-lg);
+  --conduction-tabs-tab-list-padding-inline-start: 0px;
+  --conduction-tabs-tab-list-margin-block-end: 0px;
+  --conduction-tabs-tab-list-border-bottom-width: var(--web-app-size-3xs);
+  --conduction-tabs-tab-list-border-bottom-style: solid;
+  --conduction-tabs-tab-list-border-bottom-color: #cccccc;
 
-  --conduction-tab-badge-margin-inline-start: var(--web-app-size-xs);
+  --conduction-tabs-tab-panel-padding-block-start: var(--web-app-size-lg);
+  --conduction-tabs-tab-panel-padding-block-end: var(--web-app-size-lg);
+  --conduction-tabs-tab-panel-padding-inline-start: var(--web-app-size-lg);
+  --conduction-tabs-tab-panel-padding-inline-end: var(--web-app-size-lg);
 
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
