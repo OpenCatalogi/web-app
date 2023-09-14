@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faHouseLaptop, faInfoCircle, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
-import { ToolTip } from "@conduction/components";
+import { TOOLTIP_ID } from "../../../../layout/Layout";
 
 interface TableOrganizationDisplayTemplateProps {
   organizations: any[];
@@ -41,11 +41,13 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
             <TableRow>
               <TableHeaderCell>{t("Name")}</TableHeaderCell>
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
-              <TableHeaderCell className={styles.componentsHeader}>
+              <TableHeaderCell
+                data-tooltip-id={TOOLTIP_ID}
+                data-tooltip-content={t("Owned, supported and used components")}
+                className={styles.componentsHeader}
+              >
                 {t("Components")}
-                <ToolTip tooltip={t("Owned, supported and used components")}>
-                  <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
-                </ToolTip>
+                <FontAwesomeIcon icon={faInfoCircle}></FontAwesomeIcon>
               </TableHeaderCell>
               <TableHeaderCell>{t("Website")}</TableHeaderCell>
               <TableHeaderCell>{t("GitHub/Gitlab")}</TableHeaderCell>
@@ -67,74 +69,95 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip={t("Sources")}>
-                    <DataBadge className={styles.tagWidth}>
-                      {_.upperFirst(
-                        organization._self?.synchronizations
-                          ? organization._self?.synchronizations?.length
-                            ? organization._self?.synchronizations?.at(-1)?.source.name
-                            : "Onbekend"
-                          : "N.V.T.",
-                      )}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content={t("Sources")}
+                    className={styles.tagWidth}
+                  >
+                    {_.upperFirst(
+                      organization._self?.synchronizations
+                        ? organization._self?.synchronizations?.length
+                          ? organization._self?.synchronizations?.at(-1)?.source.name
+                          : "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  </DataBadge>
                 </TableCell>
 
                 <TableCell>
                   <div className={styles.tags}>
-                    <ToolTip tooltip="Aantal eigen componenten">
-                      <DataBadge className={styles.tagWidth}>
-                        <FontAwesomeIcon icon={faHouseLaptop} />
-                        {organization.owns?.length.toString() ?? "0"}
-                      </DataBadge>
-                    </ToolTip>
-                    <ToolTip tooltip="Aantal ondersteunde componenten">
-                      <DataBadge className={styles.tagWidth}>
-                        <FontAwesomeIcon icon={faUserCog} />
-                        {organization.supported?.length.toString() ?? "0"}
-                      </DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="Aantal eigen componenten"
+                      className={styles.tagWidth}
+                    >
+                      <FontAwesomeIcon icon={faHouseLaptop} />
+                      {organization.owns?.length.toString() ?? "0"}
+                    </DataBadge>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="Aantal ondersteunde componenten"
+                      className={styles.tagWidth}
+                    >
+                      <FontAwesomeIcon icon={faUserCog} />
+                      {organization.supported?.length.toString() ?? "0"}
+                    </DataBadge>
 
-                    <ToolTip tooltip="Aantal gebruikte componenten">
-                      <DataBadge className={styles.tagWidth}>
-                        <FontAwesomeIcon icon={faRepeat} />
-                        {organization.used?.length.toString() ?? "0"}
-                      </DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="Aantal gebruikte componenten"
+                      className={styles.tagWidth}
+                    >
+                      <FontAwesomeIcon icon={faRepeat} />
+                      {organization.used?.length.toString() ?? "0"}
+                    </DataBadge>
                   </div>
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip={organization.website ?? t("Website")}>
-                    <DataBadge className={styles.tagWidth} onClick={() => open(organization.website)}>
-                      {organization.website && <FontAwesomeIcon icon={faGlobe} />}
-                      {_.upperFirst(organization.website ? t("Website") : t("Not found"))}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content={organization.website ?? t("Website")}
+                    className={styles.tagWidth}
+                    onClick={() => open(organization.website)}
+                  >
+                    {organization.website && <FontAwesomeIcon icon={faGlobe} />}
+                    {_.upperFirst(organization.website ? t("Website") : t("Not found"))}
+                  </DataBadge>
                 </TableCell>
                 <TableCell>
                   {organization.github && (
-                    <ToolTip tooltip="GitHub">
-                      <DataBadge className={styles.tagWidth} onClick={() => open(organization.github)}>
-                        <GitHubLogo />
-                        {t("GitHub")}
-                      </DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="GitHub"
+                      className={styles.tagWidth}
+                      onClick={() => open(organization.github)}
+                    >
+                      <GitHubLogo />
+                      {t("GitHub")}
+                    </DataBadge>
                   )}
 
                   {organization.gitlab && (
-                    <ToolTip tooltip="GitLab">
-                      <DataBadge className={styles.tagWidth} onClick={() => open(organization.gitlab)}>
-                        <GitLabLogo />
-                        {t("GitLab")}
-                      </DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="GitLab"
+                      className={styles.tagWidth}
+                      onClick={() => open(organization.gitlab)}
+                    >
+                      <GitLabLogo />
+                      {t("GitLab")}
+                    </DataBadge>
                   )}
 
                   {!organization.github && !organization.gitlab && (
-                    <ToolTip tooltip={t("Repository")}>
-                      <DataBadge className={styles.tagWidth}>{t("Not found")}</DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={t("Repository")}
+                      className={styles.tagWidth}
+                    >
+                      {t("Not found")}
+                    </DataBadge>
                   )}
                 </TableCell>
 

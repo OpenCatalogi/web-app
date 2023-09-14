@@ -1,17 +1,15 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container } from "@conduction/components";
-import { Tab, TabContext, TabPanel, Tabs } from "@gemeente-denhaag/components-react";
+import { Container, Tabs, TabList, Tab, TabPanel } from "@conduction/components";
 import {
-  BadgeCounter,
   Heading,
   DataBadge,
   Icon,
   Button,
   Separator,
+  BadgeCounter,
 } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { QueryClient } from "react-query";
@@ -25,6 +23,7 @@ import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-s
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -32,7 +31,6 @@ interface OrganizationDetailTemplateProps {
 
 export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProps> = ({ organizationId }) => {
   const { t } = useTranslation();
-  const [currentTab, setCurrentTab] = React.useState<number>(0);
   const queryClient = new QueryClient();
   const _useOrganization = useOrganization(queryClient);
   const _getOrganization = _useOrganization.getOne(organizationId);
@@ -116,12 +114,15 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
                   <div className={styles.tagsContainer}>
                     {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
-                      <ToolTip key={idx} tooltip={certificate.name}>
-                        <DataBadge onClick={() => open(certificate.href)}>
-                          <FontAwesomeIcon icon={faCertificate} />
-                          {certificate.name}
-                        </DataBadge>
-                      </ToolTip>
+                      <DataBadge
+                        key={idx}
+                        data-tooltip-id={TOOLTIP_ID}
+                        data-tooltip-content={certificate.name}
+                        onClick={() => open(certificate.href)}
+                      >
+                        <FontAwesomeIcon icon={faCertificate} />
+                        {certificate.name}
+                      </DataBadge>
                     ))}
                   </div>
                 </>
@@ -135,76 +136,78 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Heading level={2} className={styles.title}>
               Componenten
             </Heading>
-            <TabContext value={currentTab.toString()}>
-              <Tabs
-                value={currentTab}
-                onChange={(_, newValue: number) => {
-                  setCurrentTab(newValue);
-                }}
-                variant="scrollable"
-              >
-                <Tab
-                  className={styles.tab}
-                  label={
-                    <>
-                      <div>
-                        <span>Eigen componenten</span>
-                        <BadgeCounter className={styles.tabAmountBadge}>
-                          {_getOrganization.data?.owns?.length ?? 0}
-                        </BadgeCounter>
-                      </div>
-                    </>
-                  }
-                  value={0}
-                />
-                <Tab
-                  className={styles.tab}
-                  label={
-                    <>
-                      <div>
-                        <span>Ondersteunde componenten</span>
-                        <BadgeCounter className={styles.tabAmountBadge}>
-                          {_getOrganization.data?.supports?.length ?? 0}
-                        </BadgeCounter>
-                      </div>
-                    </>
-                  }
-                  value={1}
-                />
-                <Tab
-                  className={styles.tab}
-                  label={
-                    <>
-                      <div>
-                        <span>Gebruikte componenten</span>
-                        <BadgeCounter className={styles.tabAmountBadge}>
-                          {_getOrganization.data?.uses?.length ?? 0}
-                        </BadgeCounter>
-                      </div>
-                    </>
-                  }
-                  value={2}
-                />
-              </Tabs>
-
-              <TabPanel className={styles.tabPanel} value="0">
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <span>Eigen componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.owns?.length ?? 0}</BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Ondersteunde componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getOrganization.data?.supports?.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Gebruikte componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.uses?.length ?? 0}</BadgeCounter>
+                </Tab>
+              </TabList>
+              <TabPanel>
                 <div className={styles.components}>
                   <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
                 </div>
               </TabPanel>
-
-              <TabPanel className={styles.tabPanel} value="1">
+              <TabPanel>
                 <div className={styles.components}>
                   <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
                 </div>
               </TabPanel>
-
-              <TabPanel className={styles.tabPanel} value="2">
+              <TabPanel>
                 <div className={styles.components}>
                   <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
                 </div>
               </TabPanel>
-            </TabContext>
+            </Tabs>
+            {/* <TabContext
+              tabs={[
+                {
+                  name: "Eigen componenten",
+                  badge: _getOrganization.data?.owns?.length ?? 0,
+                },
+                {
+                  name: "Ondersteunde componenten",
+                  badge: _getOrganization.data?.supports?.length ?? 0,
+                },
+                {
+                  name: "Gebruikte componenten",
+                  badge: _getOrganization.data?.uses?.length ?? 0,
+                },
+              ]}
+              tabContent={[
+                {
+                  content: (
+                    <div className={styles.components}>
+                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
+                    </div>
+                  ),
+                },
+                {
+                  content: (
+                    <div className={styles.components}>
+                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
+                    </div>
+                  ),
+                },
+                {
+                  content: (
+                    <div className={styles.components}>
+                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
+                    </div>
+                  ),
+                },
+              ]}
+            /> */}
           </div>
         </>
       )}

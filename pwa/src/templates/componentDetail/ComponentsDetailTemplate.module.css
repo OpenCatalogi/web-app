@@ -46,6 +46,10 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.tags {
+  display: flex;
+}
+
 .tags > div {
   margin-block-end: var(--web-app-size-xs);
 }
@@ -110,26 +114,6 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
-.tabPanel {
-  padding-inline-start: var(--web-app-size-lg) !important;
-  padding-inline-end: var(--web-app-size-lg) !important;
-  padding-block-start: var(--web-app-size-lg) !important;
-  padding-block-end: var(--web-app-size-lg) !important;
-}
-
-.tab {
-  max-width: unset !important;
-}
-
-.tabBadgeContainer {
-  display: flex;
-  flex-direction: row;
-}
-
-.badgeLayout {
-  margin-inline-start: var(--web-app-size-xs);
-}
-
 .dependenciesDisplaySwitchButtons {
   display: flex;
   justify-content: flex-end;
@@ -190,6 +174,10 @@
 
 .cardsContainer > :not(:last-child) {
   margin-block-end: var(--web-app-size-md);
+}
+
+.badgeLayout{
+  margin-inline-start: var(--web-app-size-xs);
 }
 
 @media only screen and (min-width: 576px) {

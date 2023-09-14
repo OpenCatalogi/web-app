@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationsDetailTemplate.module.css";
-import { Container, ToolTip } from "@conduction/components";
+import { Container } from "@conduction/components";
 import {
   Heading,
   Icon,
@@ -19,6 +19,7 @@ import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { Link } from "../../components";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -57,21 +58,21 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
               <div className={styles.layerAndCategoryContainer}>
                 {getApplications.data.embedded?.owner && (
-                  <ToolTip tooltip="Organisatie">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faHouse} />
-                      {getApplications.data.embedded?.owner.fullName}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+                    <FontAwesomeIcon icon={faHouse} />
+                    {getApplications.data.embedded?.owner.fullName}
+                  </DataBadge>
                 )}
 
                 {getApplications.data.demoUrl && (
-                  <ToolTip tooltip="Demo">
-                    <DataBadge onClick={() => open(getApplications.data.demoUrl)}>
-                      <FontAwesomeIcon icon={faLaptopCode} />
-                      {t("Demo")}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Demo"
+                    onClick={() => open(getApplications.data.demoUrl)}
+                  >
+                    <FontAwesomeIcon icon={faLaptopCode} />
+                    {t("Demo")}
+                  </DataBadge>
                 )}
               </div>
             </div>

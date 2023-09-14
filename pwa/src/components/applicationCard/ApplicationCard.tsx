@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
 import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { ToolTip } from "../toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { Link } from "../../components";
 import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 export interface ApplicationCardProps {
   title: {
@@ -38,20 +38,16 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
 
       <div className={styles.tags}>
         {tags.organization && (
-          <ToolTip tooltip="Organisatie">
-            <DataBadge>
-              <FontAwesomeIcon icon={faHouse} />
-              {tags.organization}
-            </DataBadge>
-          </ToolTip>
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+            <FontAwesomeIcon icon={faHouse} />
+            {tags.organization}
+          </DataBadge>
         )}
         {tags.githubLink && (
-          <ToolTip tooltip="Demo">
-            <DataBadge onClick={() => open(tags.githubLink)}>
-              <FontAwesomeIcon icon={faLaptopCode} />
-              {t("Demo")}
-            </DataBadge>
-          </ToolTip>
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Demo" onClick={() => open(tags.githubLink)}>
+            <FontAwesomeIcon icon={faLaptopCode} />
+            {t("Demo")}
+          </DataBadge>
         )}
       </div>
     </div>
