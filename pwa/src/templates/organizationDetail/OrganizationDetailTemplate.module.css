@@ -77,6 +77,10 @@
   margin-block-end: var(--web-app-size-xl);
 }
 
+.badgeLayout {
+  margin-inline-start: var(--web-app-size-xs);
+}
+
 @media only screen and (min-width: 576px) {
   .headerContainer {
     display: flex;

@@ -1,7 +1,14 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, TabContext } from "@conduction/components";
-import { Heading, DataBadge, Icon, Button, Separator } from "@utrecht/component-library-react/dist/css-module";
+import { Container, Tabs, TabList, Tab, TabPanel } from "@conduction/components";
+import {
+  Heading,
+  DataBadge,
+  Icon,
+  Button,
+  Separator,
+  BadgeCounter,
+} from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
@@ -129,7 +136,40 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Heading level={2} className={styles.title}>
               Componenten
             </Heading>
-            <TabContext
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <span>Eigen componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.owns?.length ?? 0}</BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Ondersteunde componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getOrganization.data?.supports?.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Gebruikte componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.uses?.length ?? 0}</BadgeCounter>
+                </Tab>
+              </TabList>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
+                </div>
+              </TabPanel>
+            </Tabs>
+            {/* <TabContext
               tabs={[
                 {
                   name: "Eigen componenten",
@@ -167,7 +207,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   ),
                 },
               ]}
-            />
+            /> */}
           </div>
         </>
       )}

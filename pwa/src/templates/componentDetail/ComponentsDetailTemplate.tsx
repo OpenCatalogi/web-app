@@ -1,8 +1,16 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading, Icon, Button, DataBadge } from "@utrecht/component-library-react/dist/css-module";
-import { Container, InfoCard, TabContext, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { Heading, Icon, Button, DataBadge, BadgeCounter } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Container,
+  InfoCard,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  NotificationPopUp as _NotificationPopUp,
+} from "@conduction/components";
 import { navigate } from "gatsby";
 import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
@@ -291,194 +299,187 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div>
-            <TabContext
-              tabs={[
-                {
-                  name: "Componenten & Afhankelijkheden",
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-                {
-                  name: t("Suppliers"),
-                },
-                {
-                  name: t("Reuse"),
-                },
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <span>Componenten & Afhankelijkheden</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>{t("Suppliers")}</span>
+                </Tab>
+                <Tab>
+                  <span>{t("Reuse")}</span>
+                </Tab>
+                <Tab>
+                  <span>{t("Schema's")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>{t("Processes")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+              </TabList>
+              <TabPanel>
+                <div className={styles.components}>
+                  {_getComponent.data.embedded?.dependsOn?.embedded.open && (
+                    <ResultsDisplaySwitch
+                      resultsDisplayType="dependenciesDisplayLayout"
+                      layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                    />
+                  )}
 
-                {
-                  name: t("Schema's"),
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-                {
-                  name: t("Processes"),
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-              ]}
-              tabContent={[
-                {
-                  content: (
-                    <div className={styles.components}>
-                      {_getComponent.data.embedded?.dependsOn?.embedded.open && (
-                        <ResultsDisplaySwitch
-                          resultsDisplayType="dependenciesDisplayLayout"
-                          layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                  <DependenciesTemplate
+                    type={filters.dependenciesDisplayLayout}
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                    mainComponent={{
+                      id: componentId,
+                      name: _getComponent.data.name,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
+                    }}
+                  />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Gemeente Rotterdam</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell>Conduction</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell>Gemeente Utrecht</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+              <TabPanel>
+                <>
+                  {_getComponent.data?.usedBy?.length > 0 && (
+                    <div className={styles.organizations}>
+                      {_getComponent.data.usedBy.map((organization: any) => (
+                        <OrganizationCard
+                          key={organization.id}
+                          title={{
+                            label: organization?.name,
+                            href: `#`,
+                          }}
+                          description={organization?.description}
+                          website={organization?.website}
+                          logo={organization?.logo}
+                          components={{
+                            owned: organization?.owns?.length.toString() ?? "0",
+                            supported: organization?.supports?.length.toString() ?? "0",
+                            used: organization?.uses?.length.toString() ?? "0",
+                          }}
+                          gitHub={organization?.github}
+                          gitLab={organization?.gitlab}
+                          type={organization?.type}
+                          layoutClassName={styles.organizationCardContainer}
                         />
-                      )}
-
-                      <DependenciesTemplate
-                        type={filters.dependenciesDisplayLayout}
-                        components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                        mainComponent={{
-                          id: componentId,
-                          name: _getComponent.data.name,
-                          layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
-                        }}
-                      />
+                      ))}
                     </div>
-                  ),
-                },
-                {
-                  content: (
-                    <Table>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>Gemeente Rotterdam</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              010 - 123 456 7
-                            </Link>
-                          </TableCell>
+                  )}
 
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                          <TableCell>Conduction</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              020 - 123 456 7
-                            </Link>
-                          </TableCell>
-
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                          <TableCell>Gemeente Utrecht</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              030 - 123 456 7
-                            </Link>
-                          </TableCell>
-
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  ),
-                },
-                {
-                  content: (
-                    <>
-                      {_getComponent.data?.usedBy?.length > 0 && (
-                        <div className={styles.organizations}>
-                          {_getComponent.data.usedBy.map((organization: any) => (
-                            <OrganizationCard
-                              key={organization.id}
-                              title={{
-                                label: organization?.name,
-                                href: `#`,
-                              }}
-                              description={organization?.description}
-                              website={organization?.website}
-                              logo={organization?.logo}
-                              components={{
-                                owned: organization?.owns?.length.toString() ?? "0",
-                                supported: organization?.supports?.length.toString() ?? "0",
-                                used: organization?.uses?.length.toString() ?? "0",
-                              }}
-                              gitHub={organization?.github}
-                              gitLab={organization?.gitlab}
-                              type={organization?.type}
-                              layoutClassName={styles.organizationCardContainer}
-                            />
-                          ))}
-                        </div>
-                      )}
-
-                      {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
-                    </>
-                  ),
-                },
-                {
-                  content: (
-                    <ComponentCardsAccordionTemplate
-                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                    />
-                  ),
-                },
-                {
-                  content: (
-                    <ComponentCardsAccordionTemplate
-                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                    />
-                  ),
-                },
-              ]}
-            />
+                  {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
+                </>
+              </TabPanel>
+              <TabPanel>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
+              </TabPanel>
+              <TabPanel>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
+              </TabPanel>
+            </Tabs>
           </div>
 
           <DownloadTemplate
