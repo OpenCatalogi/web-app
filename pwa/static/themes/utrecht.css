@@ -238,6 +238,22 @@
   --conduction-tabs-tab-panel-padding-inline-start: var(--web-app-size-lg);
   --conduction-tabs-tab-panel-padding-inline-end: var(--web-app-size-lg);
 
+  --conduction-tabs-scroll-button-hover-color: #000000;
+  --conduction-tabs-scroll-button-hover-background-color: var(--web-app-color-white);
+  --conduction-tabs-scroll-button-color: #000000b3;
+  --conduction-tabs-scroll-button-background-color: var(--web-app-color-white);
+
+  /* @conduction: TableWrapper */
+  --conduction-table-wrapper-scroll-button-hover-color: var(--web-app-color-link-active);
+  --conduction-table-wrapper-scroll-button-hover-background-color: var(--web-app-color-white);
+  --conduction-table-wrapper-scroll-button-padding-inline-end: 14px;
+  --conduction-table-wrapper-scroll-button-padding-inline-start: 14px;
+  --conduction-table-wrapper-scroll-button-color: #000000;
+  --conduction-table-wrapper-scroll-button-background-color: var(--web-app-color-white);
+  --conduction-table-wrapper-scroll-button-border-width: var(--web-app-size-4xs);
+  --conduction-table-wrapper-scroll-button-border-style: solid;
+  --conduction-table-wrapper-scroll-button-border-color: var(--web-app-color-disabled);
+
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
   --web-app-sidenav-link-hover-color: var(--web-app-color-link-active);
