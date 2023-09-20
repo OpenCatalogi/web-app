@@ -252,7 +252,6 @@
   --conduction-table-wrapper-scroll-button-padding-inline-start: 14px;
   --conduction-table-wrapper-scroll-button-color: #404b4f;
   --conduction-table-wrapper-scroll-button-background-color: var(--web-app-color-white);
-  
 
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
@@ -376,6 +375,27 @@
   --utrecht-separator-block-size: var(--web-app-size-3xs);
   --utrecht-separator-margin-block-end: 0px;
   --utrecht-separator-margin-block-start: 0px;
+
+  /* @gemeente-utrecht: breadcrumbs */
+  /* --utrecht-breadcrumb-block-size: <length>; */
+  /* --utrecht-breadcrumb-font-family: *; */
+  /* --utrecht-breadcrumb-font-size: <length>; */
+  /* --utrecht-breadcrumb-text-transform: inherit | none | uppercase; */
+  /* --utrecht-breadcrumb-item-padding-block-start: <length>; */
+  /* --utrecht-breadcrumb-item-padding-block-end: <length>; */
+  /* --utrecht-breadcrumb-item-padding-inline-end: <length>; */
+  /* --utrecht-breadcrumb-item-padding-inline-start: <length>; */
+  /* --utrecht-breadcrumb-link-background-color: <color>; */
+  --utrecht-breadcrumb-link-color: var(--rotterdam-color-green);
+  /* --utrecht-breadcrumb-link-focus-background-color: <color>; */
+  /* --utrecht-breadcrumb-link-focus-color: <color>; */
+  /* --utrecht-breadcrumb-link-current-background-color: <color>; */
+  --utrecht-breadcrumb-link-current-color: #65757b;
+  /* --utrecht-breadcrumb-separator-inline-size: <length>; */
+  --utrecht-breadcrumb-separator-icon-color: var(--rotterdam-color-green);
+  --utrecht-breadcrumb-separator-icon-size: 16px;
+
+  --utrecht-breadcrumb-link-disabled-color: #65757b;
 }
 
 .utrecht-link {

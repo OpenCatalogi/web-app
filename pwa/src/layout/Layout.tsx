@@ -16,6 +16,7 @@ import { getScreenSize } from "../services/getScreenSize";
 import Favicon from "react-favicon";
 import Logo from "../assets/images/logo_OpenCatalogi.png";
 import { ToolTip } from "@conduction/components";
+import { ThemesContextProvider, IThemesContext, baseThemesContext as _themesContext } from "../context/theme";
 
 export const TOOLTIP_ID = "cb8f47c3-7151-4a46-954d-784a531b01e6";
 
@@ -27,6 +28,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
+  const [themeContext, setThemeContext] = React.useState<IThemesContext>(_themesContext);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
   const [, setBreadcrumbs] = React.useState<any>(null);
   const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
@@ -84,17 +86,19 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
-            <ThemeProvider>
-              <ToolTip id={TOOLTIP_ID} />
+            <ThemesContextProvider value={[themeContext, setThemeContext]}>
+              <ThemeProvider>
+                <ToolTip id={TOOLTIP_ID} />
 
-              <Favicon url={Logo} />
+                <Favicon url={Logo} />
 
-              <HeaderTemplate layoutClassName={styles.header} />
+                <HeaderTemplate layoutClassName={styles.header} />
 
-              <div className={styles.pageContent}>{children}</div>
+                <div className={styles.pageContent}>{children}</div>
 
-              <FooterTemplate layoutClassName={styles.footer} />
-            </ThemeProvider>
+                <FooterTemplate layoutClassName={styles.footer} />
+              </ThemeProvider>
+            </ThemesContextProvider>
           </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>

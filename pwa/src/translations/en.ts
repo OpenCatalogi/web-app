@@ -117,4 +117,5 @@ export const en = {
   "Back to organizations": "Back to organizations",
   "Show more": "Show more",
   "Show less": "Show less",
+  Breadcrumbs: "Breadcrumbs",
 };
