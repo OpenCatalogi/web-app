@@ -15,12 +15,13 @@ import {
 import { IconArrowRight } from "@tabler/icons-react";
 import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { Link } from "../../../../components";
+import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
+import { GatsbyContext } from "../../../../context/gatsby";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -29,6 +30,7 @@ interface TableResultTemplateProps {
 
 export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
+  const { screenSize } = React.useContext(GatsbyContext);
 
   /**
    * Map component status to `StatusBadge` status
@@ -69,7 +71,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
   };
 
   return (
-    <TableWrapper>
+    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
       <Table>
         {!hideTableHead && (
           <TableHeader>

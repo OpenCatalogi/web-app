@@ -237,6 +237,20 @@
   --conduction-tabs-tab-panel-padding-inline-start: var(--web-app-size-lg);
   --conduction-tabs-tab-panel-padding-inline-end: var(--web-app-size-lg);
 
+  --conduction-tabs-scroll-button-hover-color: var(--rotterdam-color-green);
+  --conduction-tabs-scroll-button-hover-background-color: var(--web-app-color-white);
+  --conduction-tabs-scroll-button-color: #404b4f;
+  --conduction-tabs-scroll-button-background-color: var(--web-app-color-white);
+
+  /* @conduction: TableWrapper */
+  --conduction-table-wrapper-scroll-button-hover-color: var(--rotterdam-color-green);
+  --conduction-table-wrapper-scroll-button-hover-background-color: var(--web-app-color-white);
+  --conduction-table-wrapper-scroll-button-padding-inline-end: 14px;
+  --conduction-table-wrapper-scroll-button-padding-inline-start: 14px;
+  --conduction-table-wrapper-scroll-button-color: #404b4f;
+  --conduction-table-wrapper-scroll-button-background-color: var(--web-app-color-white);
+
+
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
   --web-app-sidenav-link-hover-color: var(--rotterdam-color-green);
