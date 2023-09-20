@@ -46,6 +46,10 @@
   margin-inline-end: var(--web-app-size-xs);
 }
 
+.tags {
+  display: flex;
+}
+
 .tags > div {
   margin-block-end: var(--web-app-size-xs);
 }
@@ -170,6 +174,10 @@
 
 .cardsContainer > :not(:last-child) {
   margin-block-end: var(--web-app-size-md);
+}
+
+.badgeLayout{
+  margin-inline-start: var(--web-app-size-xs);
 }
 
 @media only screen and (min-width: 576px) {

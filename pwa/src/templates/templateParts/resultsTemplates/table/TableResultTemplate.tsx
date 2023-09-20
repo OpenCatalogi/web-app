@@ -13,14 +13,15 @@ import {
   TableHeaderCell,
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowRight } from "@tabler/icons-react";
-import { ToolTip } from "../../../../components/toolTip/ToolTip";
 import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { Link } from "../../../../components";
+import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { TOOLTIP_ID } from "../../../../layout/Layout";
+import { GatsbyContext } from "../../../../context/gatsby";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -29,6 +30,7 @@ interface TableResultTemplateProps {
 
 export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
+  const { screenSize } = React.useContext(GatsbyContext);
 
   /**
    * Map component status to `StatusBadge` status
@@ -55,7 +57,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
   const ComponentStatusBadge = ({ status }: { status: string }) => {
     const s = getStatus(status);
     return (
-      <StatusBadge status={s} className={styles.tagWidth}>
+      <StatusBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status" status={s} className={styles.tagWidth}>
         {s ? (
           <>
             <FontAwesomeIcon icon={faInfoCircle} />{" "}
@@ -69,7 +71,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
   };
 
   return (
-    <TableWrapper>
+    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
       <Table>
         {!hideTableHead && (
           <TableHeader>
@@ -113,57 +115,57 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                       ],
                     )}
                   >
-                    <ToolTip tooltip={t("Layer")}>
-                      <DataBadge className={styles.tagWidth}>
-                        <FontAwesomeIcon icon={faLayerGroup} />{" "}
-                        {t(
-                          _.upperFirst(
-                            component._self.schema.ref.includes("component.schema.json")
-                              ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
-                              : "N.V.T.",
-                          ),
-                        )}
-                      </DataBadge>
-                    </ToolTip>
+                    <DataBadge
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={t("Layer")}
+                      className={styles.tagWidth}
+                    >
+                      <FontAwesomeIcon icon={faLayerGroup} />{" "}
+                      {t(
+                        _.upperFirst(
+                          component._self.schema.ref.includes("component.schema.json")
+                            ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
+                            : "N.V.T.",
+                        ),
+                      )}
+                    </DataBadge>
                   </div>
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip={t("Sources")}>
-                    <DataBadge className={styles.tagWidth}>
-                      {_.upperFirst(
-                        component._self?.synchronizations
-                          ? component._self?.synchronizations?.length
-                            ? component._self?.synchronizations?.at(-1)?.source.name
-                            : "Onbekend"
-                          : "N.V.T.",
-                      )}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content={t("Sources")}
+                    className={styles.tagWidth}
+                  >
+                    {_.upperFirst(
+                      component._self?.synchronizations
+                        ? component._self?.synchronizations?.length
+                          ? component._self?.synchronizations?.at(-1)?.source.name
+                          : "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  </DataBadge>
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip="Component Type">
-                    <DataBadge>
-                      {_.upperFirst(
-                        component._self.schema.ref.includes("component.schema.json")
-                          ? component.softwareType ?? "Onbekend"
-                          : "N.V.T.",
-                      )}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Component Type">
+                    {_.upperFirst(
+                      component._self.schema.ref.includes("component.schema.json")
+                        ? component.softwareType ?? "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  </DataBadge>
                 </TableCell>
 
                 <TableCell>
-                  <ToolTip tooltip="Status">
-                    <ComponentStatusBadge
-                      status={_.upperFirst(
-                        component._self.schema.ref.includes("component.schema.json")
-                          ? component.developmentStatus ?? "Onbekend"
-                          : "N.V.T.",
-                      )}
-                    />
-                  </ToolTip>
+                  <ComponentStatusBadge
+                    status={_.upperFirst(
+                      component._self.schema.ref.includes("component.schema.json")
+                        ? component.developmentStatus ?? "Onbekend"
+                        : "N.V.T.",
+                    )}
+                  />
                 </TableCell>
 
                 <TableCell>

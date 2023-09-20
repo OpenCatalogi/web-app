@@ -1,9 +1,15 @@
 import * as React from "react";
 import * as styles from "./OrganizationDetailTemplate.module.css";
-import { Container, TabContext } from "@conduction/components";
-import { Heading, DataBadge, Icon, Button, Separator } from "@utrecht/component-library-react/dist/css-module";
+import { Container, Tabs, TabList, Tab, TabPanel } from "@conduction/components";
+import {
+  Heading,
+  DataBadge,
+  Icon,
+  Button,
+  Separator,
+  BadgeCounter,
+} from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { QueryClient } from "react-query";
@@ -17,6 +23,7 @@ import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-s
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -107,12 +114,15 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
                   <div className={styles.tagsContainer}>
                     {_getOrganization.data.certificate.map((certificate: any, idx: number) => (
-                      <ToolTip key={idx} tooltip={certificate.name}>
-                        <DataBadge onClick={() => open(certificate.href)}>
-                          <FontAwesomeIcon icon={faCertificate} />
-                          {certificate.name}
-                        </DataBadge>
-                      </ToolTip>
+                      <DataBadge
+                        key={idx}
+                        data-tooltip-id={TOOLTIP_ID}
+                        data-tooltip-content={certificate.name}
+                        onClick={() => open(certificate.href)}
+                      >
+                        <FontAwesomeIcon icon={faCertificate} />
+                        {certificate.name}
+                      </DataBadge>
                     ))}
                   </div>
                 </>
@@ -126,7 +136,40 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
             <Heading level={2} className={styles.title}>
               Componenten
             </Heading>
-            <TabContext
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <span>Eigen componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.owns?.length ?? 0}</BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Ondersteunde componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getOrganization.data?.supports?.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>Gebruikte componenten</span>
+                  <BadgeCounter className={styles.badgeLayout}>{_getOrganization.data?.uses?.length ?? 0}</BadgeCounter>
+                </Tab>
+              </TabList>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={styles.components}>
+                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
+                </div>
+              </TabPanel>
+            </Tabs>
+            {/* <TabContext
               tabs={[
                 {
                   name: "Eigen componenten",
@@ -164,7 +207,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                   ),
                 },
               ]}
-            />
+            /> */}
           </div>
         </>
       )}

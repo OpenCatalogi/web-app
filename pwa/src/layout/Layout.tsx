@@ -15,6 +15,9 @@ import { Head } from "./Head";
 import { getScreenSize } from "../services/getScreenSize";
 import Favicon from "react-favicon";
 import Logo from "../assets/images/logo_OpenCatalogi.png";
+import { ToolTip } from "@conduction/components";
+
+export const TOOLTIP_ID = "cb8f47c3-7151-4a46-954d-784a531b01e6";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,7 +28,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
-  const [breadcrumbs, setBreadcrumbs] = React.useState<any>(null);
+  const [, setBreadcrumbs] = React.useState<any>(null);
   const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
   const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
     ...{ pageContext, location, screenSize: "mobile" },
@@ -82,6 +85,8 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
             <ThemeProvider>
+              <ToolTip id={TOOLTIP_ID} />
+
               <Favicon url={Logo} />
 
               <HeaderTemplate layoutClassName={styles.header} />

@@ -1,8 +1,16 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading, Icon, Button, DataBadge } from "@utrecht/component-library-react/dist/css-module";
-import { Container, InfoCard, TabContext, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { Heading, Icon, Button, DataBadge, BadgeCounter } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Container,
+  InfoCard,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  NotificationPopUp as _NotificationPopUp,
+} from "@conduction/components";
 import { navigate } from "gatsby";
 import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
@@ -25,7 +33,6 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import _ from "lodash";
-import { ToolTip } from "../../components/toolTip/ToolTip";
 import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -37,6 +44,7 @@ import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Link } from "../../components";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -102,94 +110,82 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               />
 
               <div className={styles.layerAndCategoryContainer}>
-                <ToolTip tooltip="Laag">
-                  <DataBadge
-                    className={
-                      styles[
-                        _.camelCase(
-                          t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
-                        )
-                      ]
-                    }
-                  >
-                    <FontAwesomeIcon icon={faLayerGroup} />
-                    {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
-                  </DataBadge>
-                </ToolTip>
+                <DataBadge
+                  data-tooltip-id={TOOLTIP_ID}
+                  data-tooltip-content="Laag"
+                  className={
+                    styles[
+                      _.camelCase(
+                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
+                      )
+                    ]
+                  }
+                >
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                </DataBadge>
 
                 {_getComponent.data?.categories &&
                   _categories &&
                   _categories.map(
                     (category: any) =>
                       category && (
-                        <ToolTip tooltip="Categorie">
-                          <DataBadge
-                            className={
-                              styles[
-                                _.camelCase(
-                                  `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
-                                )
-                              ]
-                            }
-                          >
-                            {category?.icon}
-                            {_.upperFirst(category?.title)}
-                          </DataBadge>
-                        </ToolTip>
+                        <DataBadge
+                          data-tooltip-id={TOOLTIP_ID}
+                          data-tooltip-content="Categorie"
+                          className={
+                            styles[
+                              _.camelCase(
+                                `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
+                              )
+                            ]
+                          }
+                        >
+                          {category?.icon}
+                          {_.upperFirst(category?.title)}
+                        </DataBadge>
                       ),
                   )}
               </div>
 
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
-                  <ToolTip tooltip="Status">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faInfoCircle} />
-                      {t(_.upperFirst(_getComponent.data.developmentStatus))}
-                    </DataBadge>
-                  </ToolTip>
-                )}
-                <ToolTip tooltip="Installaties">
-                  <DataBadge>
-                    <FontAwesomeIcon icon={faRepeat} />
-                    {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    {t(_.upperFirst(_getComponent.data.developmentStatus))}
                   </DataBadge>
-                </ToolTip>
+                )}
+                <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
+                  <FontAwesomeIcon icon={faRepeat} />
+                  {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                </DataBadge>
 
                 {organisation?.name && (
-                  <ToolTip tooltip="Organisatie">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faHouse} />
-                      {organisation.name}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+                    <FontAwesomeIcon icon={faHouse} />
+                    {organisation.name}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.embedded?.legal?.license && (
-                  <ToolTip tooltip="Licentie">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faScroll} />
-                      {_getComponent.data.embedded?.legal.license}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
+                    <FontAwesomeIcon icon={faScroll} />
+                    {_getComponent.data.embedded?.legal.license}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.softwareType && (
-                  <ToolTip tooltip="Software type">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faLaptop} />
-                      {_getComponent.data.softwareType}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Software type">
+                    <FontAwesomeIcon icon={faLaptop} />
+                    {_getComponent.data.softwareType}
+                  </DataBadge>
                 )}
 
                 {_getComponent.data.embedded?.maintenance?.type && (
-                  <ToolTip tooltip="Onderhoudstype">
-                    <DataBadge>
-                      <FontAwesomeIcon icon={faWrench} />
-                      {_getComponent.data.embedded.maintenance.type}
-                    </DataBadge>
-                  </ToolTip>
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Onderhoudstype">
+                    <FontAwesomeIcon icon={faWrench} />
+                    {_getComponent.data.embedded.maintenance.type}
+                  </DataBadge>
                 )}
               </div>
             </div>
@@ -303,194 +299,187 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div>
-            <TabContext
-              tabs={[
-                {
-                  name: "Componenten & Afhankelijkheden",
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-                {
-                  name: t("Suppliers"),
-                },
-                {
-                  name: t("Reuse"),
-                },
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <span>Componenten & Afhankelijkheden</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>{t("Suppliers")}</span>
+                </Tab>
+                <Tab>
+                  <span>{t("Reuse")}</span>
+                </Tab>
+                <Tab>
+                  <span>{t("Schema's")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>{t("Processes")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+              </TabList>
+              <TabPanel>
+                <div className={styles.components}>
+                  {_getComponent.data.embedded?.dependsOn?.embedded.open && (
+                    <ResultsDisplaySwitch
+                      resultsDisplayType="dependenciesDisplayLayout"
+                      layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                    />
+                  )}
 
-                {
-                  name: t("Schema's"),
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-                {
-                  name: t("Processes"),
-                  badge: _getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0,
-                },
-              ]}
-              tabContent={[
-                {
-                  content: (
-                    <div className={styles.components}>
-                      {_getComponent.data.embedded?.dependsOn?.embedded.open && (
-                        <ResultsDisplaySwitch
-                          resultsDisplayType="dependenciesDisplayLayout"
-                          layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                  <DependenciesTemplate
+                    type={filters.dependenciesDisplayLayout}
+                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                    mainComponent={{
+                      id: componentId,
+                      name: _getComponent.data.name,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
+                    }}
+                  />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Gemeente Rotterdam</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          010 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell>Conduction</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          020 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+
+                    <TableRow>
+                      <TableCell>Gemeente Utrecht</TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <GitHubLogo />
+                          </Icon>
+                          Componenten GitHub
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Link to={""}>
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconPhone />
+                          </Icon>
+                          030 - 123 456 7
+                        </Link>
+                      </TableCell>
+
+                      <TableCell>
+                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
+                          <Icon className="utrecht-icon--conduction-start">
+                            <IconArrowRight />
+                          </Icon>
+                          {t("Details")}
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TabPanel>
+              <TabPanel>
+                <>
+                  {_getComponent.data?.usedBy?.length > 0 && (
+                    <div className={styles.organizations}>
+                      {_getComponent.data.usedBy.map((organization: any) => (
+                        <OrganizationCard
+                          key={organization.id}
+                          title={{
+                            label: organization?.name,
+                            href: `#`,
+                          }}
+                          description={organization?.description}
+                          website={organization?.website}
+                          logo={organization?.logo}
+                          components={{
+                            owned: organization?.owns?.length.toString() ?? "0",
+                            supported: organization?.supports?.length.toString() ?? "0",
+                            used: organization?.uses?.length.toString() ?? "0",
+                          }}
+                          gitHub={organization?.github}
+                          gitLab={organization?.gitlab}
+                          type={organization?.type}
+                          layoutClassName={styles.organizationCardContainer}
                         />
-                      )}
-
-                      <DependenciesTemplate
-                        type={filters.dependenciesDisplayLayout}
-                        components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                        mainComponent={{
-                          id: componentId,
-                          name: _getComponent.data.name,
-                          layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
-                        }}
-                      />
+                      ))}
                     </div>
-                  ),
-                },
-                {
-                  content: (
-                    <Table>
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>Gemeente Rotterdam</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              010 - 123 456 7
-                            </Link>
-                          </TableCell>
+                  )}
 
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                          <TableCell>Conduction</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              020 - 123 456 7
-                            </Link>
-                          </TableCell>
-
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                          <TableCell>Gemeente Utrecht</TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <GitHubLogo />
-                              </Icon>
-                              Componenten GitHub
-                            </Link>
-                          </TableCell>
-                          <TableCell>
-                            <Link to={""}>
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconPhone />
-                              </Icon>
-                              030 - 123 456 7
-                            </Link>
-                          </TableCell>
-
-                          <TableCell>
-                            <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                              <Icon className="utrecht-icon--conduction-start">
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Details")}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  ),
-                },
-                {
-                  content: (
-                    <>
-                      {_getComponent.data?.usedBy?.length > 0 && (
-                        <div className={styles.organizations}>
-                          {_getComponent.data.usedBy.map((organization: any) => (
-                            <OrganizationCard
-                              key={organization.id}
-                              title={{
-                                label: organization?.name,
-                                href: `#`,
-                              }}
-                              description={organization?.description}
-                              website={organization?.website}
-                              logo={organization?.logo}
-                              components={{
-                                owned: organization?.owns?.length.toString() ?? "0",
-                                supported: organization?.supports?.length.toString() ?? "0",
-                                used: organization?.uses?.length.toString() ?? "0",
-                              }}
-                              gitHub={organization?.github}
-                              gitLab={organization?.gitlab}
-                              type={organization?.type}
-                              layoutClassName={styles.organizationCardContainer}
-                            />
-                          ))}
-                        </div>
-                      )}
-
-                      {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
-                    </>
-                  ),
-                },
-                {
-                  content: (
-                    <ComponentCardsAccordionTemplate
-                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                    />
-                  ),
-                },
-                {
-                  content: (
-                    <ComponentCardsAccordionTemplate
-                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                    />
-                  ),
-                },
-              ]}
-            />
+                  {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
+                </>
+              </TabPanel>
+              <TabPanel>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
+              </TabPanel>
+              <TabPanel>
+                <ComponentCardsAccordionTemplate
+                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                />
+              </TabPanel>
+            </Tabs>
           </div>
 
           <DownloadTemplate
