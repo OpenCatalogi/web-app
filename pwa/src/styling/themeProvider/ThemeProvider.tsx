@@ -6,9 +6,11 @@ import { themes } from "../../data/themes";
 import { SelectSingle } from "@conduction/components";
 import { Document } from "@utrecht/component-library-react/dist/css-module";
 import { FormField, FormLabel } from "@utrecht/component-library-react/dist/css-module";
+import { ThemesContextContext } from "../../context/theme";
 
 export const ThemeProvider = ({ children }: React.PropsWithChildren<object>): JSX.Element => {
   const [theme, setTheme] = React.useState<string>("rotterdam");
+  const [_, setThemeContext] = React.useContext(ThemesContextContext);
 
   React.useEffect(() => {
     const link = document.createElement("link");
@@ -22,6 +24,10 @@ export const ThemeProvider = ({ children }: React.PropsWithChildren<object>): JS
     return () => {
       document.head.removeChild(link);
     };
+  }, [theme]);
+
+  React.useEffect(() => {
+    setThemeContext({ current: theme });
   }, [theme]);
   const themeData = themes.find(({ value }) => value === theme);
 

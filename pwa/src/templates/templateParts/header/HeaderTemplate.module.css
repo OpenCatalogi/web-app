@@ -131,6 +131,19 @@ li .denhaag-link__icon {
   left: 0;
 }
 
+.breadcrumbDisabled {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+}
+
+.breadcrumbDisabled:hover {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+  user-select: none !important;
+}
+
+.breadcrumbs > ol {
+  align-items: baseline;
+}
+
 @media only screen and (min-width: 992px) {
   .logoContainer {
     display: flex;

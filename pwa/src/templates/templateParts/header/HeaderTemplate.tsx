@@ -1,16 +1,24 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Paragraph, Heading, BreadcrumbNav, BreadcrumbLink } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Paragraph,
+  Heading,
+  BreadcrumbNav,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  Icon,
+} from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
+import { ThemesContextContext } from "../../../context/theme";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -20,6 +28,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
+  // arrowNav should become a configuration key
+  const [arrowNav, setArrowNav] = React.useState<boolean>(false);
+  // themeContext should be removed after arrowNav has become a configuration key
+  const [themeContext] = React.useContext(ThemesContextContext);
 
   const {
     pageContext: {
@@ -150,6 +162,15 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
   }, [screenSize, pathname, crumbs]);
 
+  React.useEffect(() => {
+    if (themeContext.current === "utrecht") {
+      setArrowNav(true);
+      return;
+    }
+
+    setArrowNav(false);
+  }, [themeContext]);
+
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
@@ -193,13 +214,50 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          <BreadcrumbNav>
-            {translatedCrumbs.map((crumb: any, idx: number) => (
-              <span key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}>
-                <BreadcrumbLink href="">{crumb.crumbLabel}</BreadcrumbLink>
-              </span>
-            ))}
-          </BreadcrumbNav>
+          {arrowNav && (
+            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
+              {translatedCrumbs.map((crumb: any, idx: number) => {
+                if (crumbs.length !== idx + 1) {
+                  return (
+                    <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbLink>
+                  );
+                }
+                return (
+                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    {crumb.crumbLabel}
+                  </BreadcrumbLink>
+                );
+              })}
+            </BreadcrumbNav>
+          )}
+          {!arrowNav && (
+            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+              {translatedCrumbs.map((crumb: any, idx: number) => {
+                if (crumbs.length !== idx + 1) {
+                  return (
+                    <React.Fragment key={idx}>
+                      <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                        {crumb.crumbLabel}
+                      </BreadcrumbLink>
+
+                      <BreadcrumbSeparator>
+                        <Icon>
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Icon>
+                      </BreadcrumbSeparator>
+                    </React.Fragment>
+                  );
+                }
+                return (
+                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    {crumb.crumbLabel}
+                  </BreadcrumbLink>
+                );
+              })}
+            </BreadcrumbNav>
+          )}
         </Container>
       )}
     </header>
