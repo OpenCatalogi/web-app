@@ -39,7 +39,7 @@ export interface IFilters {
 }
 
 export const baseFilters = {
-  resultDisplayLayout: "cards",
+  resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
