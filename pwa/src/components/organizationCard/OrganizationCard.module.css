@@ -1,11 +1,3 @@
-.container {
-  border: var(--web-app-card-border-color);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-md);
-  padding-block-end: var(--web-app-size-md);
-}
-
 .container > *:not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }

@@ -365,12 +365,6 @@
 
   --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
   --utrecht-action-activate-cursor: pointer;
-
-  /* @gemeente-denhaag: Breadcrumb */
-  --denhaag-breadcrumb-color: var(--rotterdam-color-green);
-  --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
-
-  --utrecht-color-sample-border-radius: 4px;
   --utrecht-button-icon-gap: var(--rotterdam-space-scale-1);
 
   /* @gemeente-utrecht: table */

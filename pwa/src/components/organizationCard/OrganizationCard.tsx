@@ -12,6 +12,7 @@ import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortaw
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { TOOLTIP_ID } from "../../layout/Layout";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components/lib/components/card";
 
 export interface OrganizationCardProps {
   title: {
@@ -46,17 +47,19 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className={clsx(styles.container, [layoutClassName && layoutClassName])}>
-      <div className={styles.header}>
+    <CardWrapper className={clsx([styles.container, layoutClassName && layoutClassName])}>
+      <CardHeader className={styles.header}>
         <div className={styles.headerContent}>
-          <div className={styles.titleLink}>
-            <Link to={title.href}>
-              <Icon className="utrecht-icon--conduction-start">
-                <IconArrowRight />
-              </Icon>
-              {title.label}
-            </Link>
-          </div>
+          <CardHeaderTitle>
+            <div className={styles.titleLink}>
+              <Link to={title.href}>
+                <Icon className="utrecht-icon--conduction-start">
+                  <IconArrowRight />
+                </Icon>
+                {title.label}
+              </Link>
+            </div>
+          </CardHeaderTitle>
 
           <Paragraph className={styles.description}>{description}</Paragraph>
         </div>
@@ -66,7 +69,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
             <img className={styles.logo} onClick={() => navigate(title.href)} src={logo} />
           </div>
         )}
-      </div>
+      </CardHeader>
 
       <div className={styles.tagsContainer}>
         <DataBadge
@@ -127,6 +130,6 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
           </DataBadge>
         )}
       </div>
-    </div>
+    </CardWrapper>
   );
 };
