@@ -7,6 +7,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../layout/Layout";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components/lib/components/card";
 
 export interface ApplicationCardProps {
   title: {
@@ -24,16 +25,19 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
   const { t } = useTranslation();
 
   return (
-    <div className={styles.container}>
-      <div className={styles.titleLink}>
-        <Link to={title.href}>
-          <Icon className="utrecht-icon--conduction-start">
-            <IconArrowRight />
-          </Icon>
-          {title.label}
-        </Link>
-      </div>
-
+    <CardWrapper className={styles.container}>
+      <CardHeader className={styles.cardHeader}>
+        <CardHeaderTitle>
+          <div className={styles.titleLink}>
+            <Link to={title.href}>
+              <Icon className="utrecht-icon--conduction-start">
+                <IconArrowRight />
+              </Icon>
+              {title.label}
+            </Link>
+          </div>
+        </CardHeaderTitle>
+      </CardHeader>
       <Paragraph className={styles.description}>{description}</Paragraph>
 
       <div className={styles.tags}>
@@ -50,6 +54,6 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
           </DataBadge>
         )}
       </div>
-    </div>
+    </CardWrapper>
   );
 };

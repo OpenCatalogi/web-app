@@ -39,11 +39,11 @@ export interface IFilters {
 }
 
 export const baseFilters = {
-  resultDisplayLayout: "cards",
+  resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
-  organizationsResultDisplayLayout: "cards",
+  organizationsResultDisplayLayout: "table",
   currentPage: 1,
   applicationsCurrentPage: 1,
   organizationCurrentPage: 1,

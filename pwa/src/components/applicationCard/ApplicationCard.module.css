@@ -1,14 +1,4 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  border: var(--web-app-card-border-color);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-md);
-  padding-block-end: var(--web-app-size-md);
-}
-
-.container > *:not(.titleLink):not(.layerTags):not(:last-child) {
+.container > *:not(.cardHeader):not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
