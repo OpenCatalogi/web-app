@@ -274,8 +274,8 @@
   /* --conduction-card-header-date-font-weight: 400; */
   /* --conduction-card-header-date-font-size: 16px; */
   /* --conduction-card-header-date-color: #404b4f; */
-  /* --conduction-card-header-title-color: var(--rotterdam-color-green); */
-  /* --conduction-card-header-color: var(--web-app-color-white); */
+  --conduction-card-header-title-color: hsl(211 60% 35%);
+  --conduction-card-header-color: var(--web-app-color-white);
 
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
@@ -369,12 +369,6 @@
   --utrecht-button-group-inline-gap: inherit;
   --utrecht-action-activate-cursor: inherit;
 
-  /* @gemeente-denhaag: Breadcrumb */
-  --denhaag-breadcrumb-color: inherit;
-  --denhaag-breadcrumb-current-color: inherit;
-
-  --utrecht-color-sample-border-radius: inherit;
-  --utrecht-button-icon-gap: var(--web-app-size-xs);
 
   /* @gemeente-utrecht: table */
   --utrecht-table-border-width: inherit;
@@ -390,6 +384,7 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: var(--web-app-size-md);
+  --utrecht-button-icon-gap: var(--web-app-size-xs);
 
   /* @gemeente-utrecht: link */
   --utrecht-link-visited-color: inherit;

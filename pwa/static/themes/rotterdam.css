@@ -376,13 +376,6 @@
   --utrecht-button-group-inline-gap: var(--rotterdam-space-scale-3);
   --utrecht-action-activate-cursor: pointer;
 
-  /* @gemeente-denhaag: Breadcrumb */
-  --denhaag-breadcrumb-color: var(--rotterdam-color-green);
-  --denhaag-breadcrumb-current-color: var(--rotterdam-color-gray-tint-09);
-
-  --utrecht-color-sample-border-radius: 4px;
-  --utrecht-button-icon-gap: var(--rotterdam-space-scale-1);
-
   /* @gemeente-utrecht: table */
   --utrecht-table-border-width: 0;
   --utrecht-table-row-hover-background-color: var(--rotterdam-color-base-gray);
@@ -397,6 +390,7 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: inherit;
+  --utrecht-button-icon-gap: var(--web-app-size-xs);
 
   /* @gemeente-utrecht: link */
   --utrecht-link-visited-color: inherit;
