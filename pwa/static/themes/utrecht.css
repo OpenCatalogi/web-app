@@ -254,6 +254,29 @@
   --conduction-table-wrapper-scroll-button-border-style: solid;
   --conduction-table-wrapper-scroll-button-border-color: var(--web-app-color-disabled);
 
+  /* @conduction: CardWrapper */
+  --conduction-card-wrapper-padding-block-start: 16px;
+  --conduction-card-wrapper-padding-block-end: 16px;
+  --conduction-card-wrapper-padding-inline-start: 16px;
+  --conduction-card-wrapper-padding-inline-end: 16px;
+  /* --conduction-card-wrapper-hover-border-bottom-width: 4px; */
+  /* --conduction-card-wrapper-hover-border-bottom-style: solid; */
+  /* --conduction-card-wrapper-hover-border-bottom-color: var(--rotterdam-color-green); */
+  /* --conduction-card-wrapper-color: #404b4f; */
+  --conduction-card-wrapper-border-radius: 0px;
+  /* --conduction-card-wrapper-border-bottom-width: 4px; */
+  /* --conduction-card-wrapper-border-bottom-style: solid; */
+  /* --conduction-card-wrapper-border-bottom-color: #cad6da; */
+  --conduction-card-wrapper-background-color: var(--web-app-color-white);
+
+  /* @conduction: CardHeader */
+  /* --conduction-card-header-date-margin-block-end: 8px; */
+  /* --conduction-card-header-date-font-weight: 400; */
+  /* --conduction-card-header-date-font-size: 16px; */
+  /* --conduction-card-header-date-color: #404b4f; */
+  /* --conduction-card-header-title-color: var(--rotterdam-color-green); */
+  /* --conduction-card-header-color: var(--web-app-color-white); */
+
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
   --web-app-sidenav-link-hover-color: var(--web-app-color-link-active);
