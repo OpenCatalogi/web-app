@@ -35,6 +35,7 @@
   border-radius: var(--web-app-header-logo-container-border-radius);
   padding: var(--web-app-header-logo-container-padding);
   background-color: var(--web-app-header-logo-container-background-color);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .logoDesktop {

@@ -7,7 +7,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../layout/Layout";
-import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components/lib/components/card";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 
 export interface ApplicationCardProps {
   title: {
