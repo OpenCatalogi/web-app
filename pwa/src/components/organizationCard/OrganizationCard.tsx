@@ -12,7 +12,7 @@ import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortaw
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { TOOLTIP_ID } from "../../layout/Layout";
-import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components/lib/components/card";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 
 export interface OrganizationCardProps {
   title: {

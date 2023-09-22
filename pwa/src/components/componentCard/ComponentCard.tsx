@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { TOOLTIP_ID } from "../../layout/Layout";
-import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components/lib/components/card";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 import { navigate } from "gatsby";
 
 export interface ComponentCardProps {
