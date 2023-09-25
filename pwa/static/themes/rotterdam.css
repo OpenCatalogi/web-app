@@ -276,6 +276,49 @@
   --conduction-card-header-title-color: var(--rotterdam-color-green);
   --conduction-card-header-color: var(--web-app-color-white);
 
+  /* @conduction: Pagination */
+  --conduction-pagination-page-hover-border-color: var(--rotterdam-color-green);
+  --conduction-pagination-page-hover-border-style: solid;
+  --conduction-pagination-page-hover-border-width: 1px;
+  --conduction-pagination-page-hover-text-decoration-thickness: 0px;
+  --conduction-pagination-page-hover-text-decoration: unset;
+  --conduction-pagination-page-hover-background-color: var(--web-app-color-white);
+  --conduction-pagination-page-hover-color: var(--rotterdam-color-green);
+  --conduction-pagination-current-page-border-color: #00602e;
+  --conduction-pagination-current-page-border-style: solid;
+  --conduction-pagination-current-page-border-width: 1px;
+  --conduction-pagination-current-page-text-decoration: unset;
+  --conduction-pagination-current-page-font-weight: 700;
+  --conduction-pagination-current-page-background-color: #e1efe2;
+  --conduction-pagination-current-page-color: #00602e;
+  --conduction-pagination-disabled-background-color: var(--web-app-color-white);
+  --conduction-pagination-disabled-color: #8d9da4;
+  --conduction-pagination-navigation-button-background-color: transparent;
+  --conduction-pagination-navigation-button-color: #404b4f;
+  --conduction-pagination-navigation-button-padding-block-end: 8px;
+  --conduction-pagination-navigation-button-padding-block-start: 8px;
+  --conduction-pagination-navigation-button-padding-inline-end: 8px;
+  --conduction-pagination-navigation-button-padding-inline-start: 8px;
+  --conduction-pagination-item-border-color: var(--web-app-color-white);
+  --conduction-pagination-item-border-style: solid;
+  --conduction-pagination-item-border-width: 1px;
+  --conduction-pagination-item-font-family: Bolder, ArialforRotterdam, Arial, sans-serif;
+  --conduction-pagination-item-font-weight: 400;
+  --conduction-pagination-item-font-size: 16px;
+  --conduction-pagination-item-padding-block-end: 8px;
+  --conduction-pagination-item-padding-block-start: 8px;
+  --conduction-pagination-item-padding-inline-end: 14px;
+  --conduction-pagination-item-padding-inline-start: 14px;
+  --conduction-pagination-item-border-radius: 0px;
+  --conduction-pagination-item-background-color: var(--web-app-color-white);
+  --conduction-pagination-item-color: #404b4f;
+  --conduction-pagination-item-gap: 8px;
+  --conduction-pagination-container-padding-block-end: 0px;
+  --conduction-pagination-container-padding-block-start: 0px;
+  --conduction-pagination-container-padding-inline-end: 0px;
+  --conduction-pagination-container-padding-inline-start: 0px;
+  --conduction-pagination-container-background-color: unset;
+
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--rotterdam-color-green);
   --web-app-sidenav-link-hover-color: var(--rotterdam-color-green);
@@ -295,7 +338,7 @@
   * Utrecht component overrides
   */
   --web-app-button-secondary-action-background-color: var(--rotterdam-color-base-green);
-  --web-app-button-secondary-action-color: var(--rotterdam-color-base-white);
+  --web-app-button-secondary-action-color: var(--web-app-color-white);
 }
 
 .rotterdam-theme {
@@ -309,7 +352,7 @@
 
   /* Utrecht: Icon */
   --utrecht-focus-background-color: transparent;
-  --utrecht-focus-inverse-outline-color: var(--rotterdam-color-base-white);
+  --utrecht-focus-inverse-outline-color: var(--web-app-color-white);
   --utrecht-focus-outline-color: var(--rotterdam-color-base-black);
   --utrecht-focus-outline-style: dotted;
   --utrecht-focus-outline-width: 2px;

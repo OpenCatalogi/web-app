@@ -4,6 +4,10 @@ import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../context/gatsby";
+// import { Pagination } from "@conduction/components";
+import clsx from "clsx";
+import { Button } from "@utrecht/component-library-react";
+import { Pagination } from "../paginationTest/Pagination";
 
 interface PaginatedItemsProps {
   pages: number;
@@ -40,24 +44,37 @@ export const PaginatedItems: React.FC<PaginatedItemsProps> = ({
     }
   });
 
+  const [_, setCurrentPage] = React.useState<number>(1);
+
   return (
-    <ReactPaginate
-      containerClassName={containerClassName}
-      pageCount={pages}
-      onPageChange={handlePageClick}
-      forcePage={currentPage - 1}
-      pageRangeDisplayed={pageRangeDisplayed}
-      marginPagesDisplayed={marginPagesDisplayed}
-      pageClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
-      previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-      previousClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
-      nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-      nextClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
-      activeClassName={pages > 1000 ? styles.paginationActivePageSmall : styles.paginationActivePage}
-      disableInitialCallback={true}
-      disabledClassName={styles.paginationDisabled}
-      breakLabel="..."
-      breakClassName={styles.breakLink}
-    />
+    <>
+      <ReactPaginate
+        containerClassName={containerClassName}
+        pageCount={pages}
+        onPageChange={handlePageClick}
+        forcePage={currentPage - 1}
+        pageRangeDisplayed={pageRangeDisplayed}
+        marginPagesDisplayed={marginPagesDisplayed}
+        pageClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        previousClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+        nextClassName={pages > 1000 ? styles.paginationLinkSmall : styles.paginationLink}
+        activeClassName={pages > 1000 ? styles.paginationActivePageSmall : styles.paginationActivePage}
+        disableInitialCallback={true}
+        disabledClassName={styles.paginationDisabled}
+        breakLabel="..."
+        breakClassName={styles.breakLink}
+      />
+
+      <Pagination
+        layoutClassName={containerClassName}
+        totalPages={pages}
+        {...{ currentPage, setCurrentPage, pageRangeDisplayed, marginPagesDisplayed }}
+      />
+    </>
   );
 };
+
+{
+}

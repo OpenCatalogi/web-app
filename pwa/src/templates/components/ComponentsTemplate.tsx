@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -91,13 +91,15 @@ export const ComponentsTemplate: React.FC = () => {
 
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
-                <PaginatedItems
-                  pages={getComponents.data.pages}
-                  currentPage={getComponents.data.page}
-                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
-                  pageRangeDisplayed={2}
-                  containerClassName={styles.paginationContainer}
-                />
+                <>
+                  <PaginatedItems
+                    pages={getComponents.data.pages}
+                    currentPage={getComponents.data.page}
+                    setPage={(page) => setFilters({ ...filters, currentPage: page })}
+                    pageRangeDisplayed={2}
+                    containerClassName={styles.paginationContainer}
+                  />
+                </>
               )}
             </>
           )}
@@ -107,3 +109,5 @@ export const ComponentsTemplate: React.FC = () => {
     </Container>
   );
 };
+
+
