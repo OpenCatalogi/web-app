@@ -10,7 +10,6 @@ export const Head: React.FC = () => {
       }}
     >
       <title>OpenCatalogi</title>
-      <script src="/env.js"></script>
     </Helmet>
   );
 };

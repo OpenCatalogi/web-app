@@ -27,9 +27,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
-  // arrowNav should become a configuration key
-  const [arrowNav, setArrowNav] = React.useState<boolean>(false);
-  // themeContext should be removed after arrowNav has become a configuration key
 
   const {
     pageContext: {
@@ -145,7 +142,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
+        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
@@ -159,15 +156,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
     setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
   }, [screenSize, pathname, crumbs]);
-
-  React.useEffect(() => {
-    if (process.env.GATSBY_ARROW_BREADCRUMBS === "true") {
-      setArrowNav(true);
-      return;
-    }
-
-    setArrowNav(false);
-  }, []);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
@@ -212,7 +200,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          {arrowNav && (
+          {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
             <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
               {translatedCrumbs.map((crumb: any, idx: number) => {
                 if (crumbs.length !== idx + 1) {
@@ -230,7 +218,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
               })}
             </BreadcrumbNav>
           )}
-          {!arrowNav && (
+          {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
             <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
               {translatedCrumbs.map((crumb: any, idx: number) => {
                 if (crumbs.length !== idx + 1) {

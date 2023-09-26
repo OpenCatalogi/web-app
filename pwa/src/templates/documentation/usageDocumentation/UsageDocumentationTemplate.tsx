@@ -179,19 +179,20 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Paragraph>
           Om de front-end met de lokale gateway te laten praten moet je de omgevingsvariabelen in het{" "}
-          <Code className={styles.code}>env.js</Code> bestand veranderen. Vervang de inhoud van het bestand met het
+          <Code className={styles.code}>.env.development</Code> bestand veranderen. Vervang de inhoud onder het kopje <Code className={styles.code}>Backend-config</Code> met het
           volgende:
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
           {dedent`
-          window.sessionStorage.setItem("GATSBY_ME_URL", "http://localhost/api/users/me");
-          window.sessionStorage.setItem("GATSBY_API_URL", "http://localhost/api");
-          window.sessionStorage.setItem("GATSBY_ADMIN_URL", "http://localhost/admin");
-          window.sessionStorage.setItem("GATSBY_BASE_URL", "http://localhost");
-          window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "http://localhost");
-          window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
-          window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
-          window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "http://localhost:8000");`}
+            GATSBY_ME_URL=http://localhost/me
+            GATSBY_API_URL=http://localhost/api
+            GATSBY_ADMIN_URL=http://localhost/admin
+            GATSBY_BASE_URL=http://localhost
+            GATSBY_FRONTEND_URL=http://localhost:8000
+            GATSBY_ORGANIZATION=http://webresourcecatalogus.conduction.svc.cluster.local/organizations/b2d3176e-f1c6-4365-ab86-dd253c65fc43
+            GATSBY_LOGIN_REDIRECT=vault
+            GATSBY_ADMIN_DASHBOARD_URL=https://admin.opencatalogi.nl
+          `}
         </CodeBlock>
         <Paragraph>Herstart de front-end na het aanpassen van dit bestand.</Paragraph>
         <Heading level={5}>Node.js / NPM</Heading>
