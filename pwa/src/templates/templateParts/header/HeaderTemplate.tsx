@@ -18,7 +18,6 @@ import { faChevronRight, faCircleUser } from "@fortawesome/free-solid-svg-icons"
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
-import { ThemesContextContext } from "../../../context/theme";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -31,7 +30,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   // arrowNav should become a configuration key
   const [arrowNav, setArrowNav] = React.useState<boolean>(false);
   // themeContext should be removed after arrowNav has become a configuration key
-  const [themeContext] = React.useContext(ThemesContextContext);
 
   const {
     pageContext: {
@@ -163,13 +161,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   }, [screenSize, pathname, crumbs]);
 
   React.useEffect(() => {
-    if (themeContext.current === "utrecht") {
+    if (process.env.GATSBY_ARROW_BREADCRUMBS === "true") {
       setArrowNav(true);
       return;
     }
 
     setArrowNav(false);
-  }, [themeContext]);
+  }, []);
 
   return (
     <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>

@@ -19,12 +19,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
     <CardWrapper className={styles.container}>
       <CardHeader>
         <CardHeaderTitle>
-          <div className={styles.titleLink}>
-            <Link to={title.href}>
-              <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
-              {title.label}
-            </Link>
-          </div>
+          <Link className={styles.titleLink} to={title.href}>
+            <Icon className={styles.icon}>{icon}</Icon>
+            {title.label}
+          </Link>
         </CardHeaderTitle>
       </CardHeader>
       <Paragraph className={domain ?? styles.description}>{description}</Paragraph>

@@ -54,7 +54,7 @@ export const ApplicationsTemplate: React.FC = () => {
                 title={{ label: application.name, href: `/applications/${application.id}` }}
                 description={application.shortDescription}
                 tags={{
-                  organization: application?.embedded?.owner.fullName,
+                  organization: application?.embedded?.owner?.fullName,
                   githubLink: application?.demoUrl,
                 }}
               />

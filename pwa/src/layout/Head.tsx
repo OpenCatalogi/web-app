@@ -4,7 +4,11 @@ import { Helmet } from "react-helmet";
 
 export const Head: React.FC = () => {
   return (
-    <Helmet>
+    <Helmet
+      bodyAttributes={{
+        class: process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME,
+      }}
+    >
       <title>OpenCatalogi</title>
       <script src="/env.js"></script>
     </Helmet>
