@@ -1,9 +1,3 @@
-.footer {
-  background-color: var(--web-app-color-background-footer);
-  padding-block-start: var(--web-app-size-xl);
-  padding-block-end: var(--web-app-size-xl);
-}
-
 .footerContainer > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
@@ -14,10 +8,7 @@
 }
 
 .heading {
-  font-weight: bold;
-  color: var(--web-app-color-footer-text) !important;
-  margin-block-end: var(--web-app-size-lg);
-  font-size: var(--web-app-font-size-lg);
+  margin-block-end: var(--web-app-size-lg) !important;
 }
 
 .list {
@@ -34,7 +25,6 @@
 }
 
 .list > li > * {
-  --utrecht-link-color: var(--web-app-color-footer-text);
   width: fit-content;
   display: flex;
   justify-content: flex-start;
@@ -46,7 +36,6 @@
   height: var(--web-app-footer-logo-container-height);
   border-radius: var(--web-app-footer-logo-container-border-radius);
   padding: var(--web-app-footer-logo-container-padding);
-  background-color: var(--web-app-footer-logo-container-background-color);
 }
 
 .logosContainer > * {
@@ -67,12 +56,15 @@
   padding: var(--web-app-footer-organization-logo-padding);
   width: var(--web-app-footer-organization-logo-width);
   background-image: var(--web-app-footer-organization-logo-src);
-  background-color: var(--web-app-footer-organization-logo-background-color);
   background-origin: content-box;
 }
 
+.footer {
+  background-color: var(--utrecht-page-footer-background-color);
+}
+
 .forumStandaardisatieIcon path {
-  fill: var(--web-app-footer-forum-standaardisatie-icon-path-fill);
+  fill: var(--utrecht-page-footer-background-color, inherit);
 }
 
 @media only screen and (min-width: 576px) {

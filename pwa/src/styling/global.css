@@ -54,4 +54,6 @@ body {
   --web-app-layer-color-services: #69b090;
   --web-app-layer-color-data: #7a51c8;
   --web-app-layer-color-unknown: #586265;
+
+  --web-app-footer-logo-container-height: 50px;
 }

@@ -2,8 +2,10 @@ import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
+import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
+import LogoRotterdamWhite from "../../../assets/svgs/LogoRotterdamWhite.svg";
 import { navigate } from "gatsby";
-import { Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading4, Icon, PageFooter } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight, IconExternalLink, IconPhone, IconMail } from "@tabler/icons-react";
 import clsx from "clsx";
@@ -23,13 +25,35 @@ interface FooterTemplateProps {
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [, setFilters] = React.useContext(FiltersContext);
+  const [imgSrc, setImgSrc] = React.useState<string>(LogoRotterdam);
+  const footerRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (!footerRef.current) return;
+    function getTextColor(rgba: any) {
+      rgba = rgba.match(/\d+/g);
+      if (rgba[0] * 0.299 + rgba[1] * 0.587 + rgba[2] * 0.114 > 186) {
+        return setImgSrc(LogoRotterdam);
+      } else {
+        return setImgSrc(LogoRotterdamWhite);
+      }
+    }
+
+    const backgroundStyle = getComputedStyle(document.getElementById("footer")!, "").getPropertyValue(
+      "background-color",
+    );
+
+    console.log(footerRef.current.style);
+
+    getTextColor(backgroundStyle);
+  }, [footerRef.current]);
 
   return (
-    <footer className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+    <PageFooter id="footer" className={clsx(layoutClassName && layoutClassName)} ref={footerRef}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <ul className={styles.list}>
-            <div className={styles.heading}>Componenten</div>
+            <Heading4 className={styles.heading}>Componenten</Heading4>
 
             <li>
               <Link
@@ -104,7 +128,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
 
           <ul className={styles.list}>
-            <div className={styles.heading}>Documentatie</div>
+            <Heading4 className={styles.heading}>Documentatie</Heading4>
 
             <li>
               <Link to="/documentation/usage">
@@ -135,7 +159,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
 
           <ul className={styles.list}>
-            <div className={styles.heading}>Links</div>
+            <Heading4 className={styles.heading}>Links</Heading4>
 
             <li>
               <Link target="_new" href="https://commonground.nl/">
@@ -195,7 +219,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
         <div className={styles.navigation}>
           <ul className={styles.list}>
-            <div className={styles.heading}>{t("Conduction")}</div>
+            <Heading4 className={styles.heading}>{t("Conduction")}</Heading4>
 
             <li>
               <Link href="tel:+31853036840">
@@ -226,7 +250,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
 
           <ul className={styles.list}>
-            <div className={styles.heading}>{t("Gemeente Rotterdam")}</div>
+            <Heading4 className={styles.heading}>{t("Gemeente Rotterdam")}</Heading4>
 
             <li>
               <Link href="tel:14010">
@@ -248,15 +272,15 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           </ul>
 
           <ul className={styles.list}>
-            <div className={styles.heading}>{t("An initiative of")}</div>
+            <Heading4 className={styles.heading}>{t("An initiative of")}</Heading4>
 
             <div className={styles.logosContainer}>
-              <div className={styles.organizationLogo}></div>
+              <img onClick={() => window.open("https://www.rotterdam.nl/")} src={imgSrc} />
               <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
             </div>
           </ul>
         </div>
       </Container>
-    </footer>
+    </PageFooter>
   );
 };

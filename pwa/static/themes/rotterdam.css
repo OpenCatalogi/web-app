@@ -178,6 +178,9 @@
   --utrecht-breadcrumb-separator-icon-color: var(--rotterdam-color-green);
   --utrecht-breadcrumb-separator-icon-size: 16px;
 
+  /* @gemeente-utrecht: Heading4 */
+  --utrecht-heading-4-margin-block-end: var(--web-app-size-lg);
+
   /* ComponentOverwrites */
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding) !important;
   --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size) !important;
