@@ -17,6 +17,7 @@ import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisa
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "../../../components";
+import { colorIsLight } from "../../../services/colorIsLight";
 
 interface FooterTemplateProps {
   layoutClassName?: string;
@@ -25,27 +26,19 @@ interface FooterTemplateProps {
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [, setFilters] = React.useContext(FiltersContext);
-  const [imgSrc, setImgSrc] = React.useState<string>(LogoRotterdam);
+  const [rotterdamLogoSource, setRotterdamLogoSource] = React.useState<string>(LogoRotterdam);
   const footerRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     if (!footerRef.current) return;
-    function getTextColor(rgba: any) {
-      rgba = rgba.match(/\d+/g);
-      if (rgba[0] * 0.299 + rgba[1] * 0.587 + rgba[2] * 0.114 > 186) {
-        return setImgSrc(LogoRotterdam);
-      } else {
-        return setImgSrc(LogoRotterdamWhite);
-      }
+
+    if (colorIsLight(getComputedStyle(footerRef.current).getPropertyValue("background-color"))) {
+      setRotterdamLogoSource(LogoRotterdam);
+
+      return;
     }
 
-    const backgroundStyle = getComputedStyle(document.getElementById("footer")!, "").getPropertyValue(
-      "background-color",
-    );
-
-    console.log(footerRef.current.style);
-
-    getTextColor(backgroundStyle);
+    setRotterdamLogoSource(LogoRotterdamWhite);
   }, [footerRef.current]);
 
   return (
@@ -275,7 +268,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             <Heading4 className={styles.heading}>{t("An initiative of")}</Heading4>
 
             <div className={styles.logosContainer}>
-              <img onClick={() => window.open("https://www.rotterdam.nl/")} src={imgSrc} />
+              <img onClick={() => window.open("https://www.rotterdam.nl/")} src={rotterdamLogoSource} />
               <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
             </div>
           </ul>
