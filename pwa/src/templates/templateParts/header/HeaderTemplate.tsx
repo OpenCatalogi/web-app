@@ -46,12 +46,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   };
 
   React.useEffect(() => {
+    console.log({ pathname });
     setIsHomePage(
       pathname === "/" ||
         (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
           pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
     );
-  }, [location]);
+  }, [pathname]);
 
   const primaryTopNavItems = [
     {
