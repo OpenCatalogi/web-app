@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
+import { navigate } from "gatsby-link";
 
 export interface ApplicationCardProps {
   title: {
@@ -25,7 +26,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
   const { t } = useTranslation();
 
   return (
-    <CardWrapper className={styles.container}>
+    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
       <CardHeader className={styles.cardHeader}>
         <CardHeaderTitle>
           <div className={styles.titleLink}>
