@@ -35,6 +35,7 @@
   border-radius: var(--web-app-header-logo-container-border-radius);
   padding: var(--web-app-header-logo-container-padding);
   background-color: var(--web-app-header-logo-container-background-color);
+  margin-inline-end: var(--web-app-size-xs);
 }
 
 .logoDesktop {
@@ -129,6 +130,19 @@
 
 li .denhaag-link__icon {
   left: 0;
+}
+
+.breadcrumbDisabled {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+}
+
+.breadcrumbDisabled:hover {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+  user-select: none !important;
+}
+
+.breadcrumbs > ol {
+  align-items: baseline;
 }
 
 @media only screen and (min-width: 992px) {

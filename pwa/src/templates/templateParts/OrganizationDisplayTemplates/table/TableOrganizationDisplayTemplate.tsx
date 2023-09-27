@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./TableOrganizationDisplayTemplate.module.css";
 import _ from "lodash";
-import { Icon, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,13 +14,13 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
-import { Link } from "../../../../components";
+import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faHouseLaptop, faInfoCircle, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
+import { GatsbyContext } from "../../../../context/gatsby";
 
 interface TableOrganizationDisplayTemplateProps {
   organizations: any[];
@@ -32,9 +32,10 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
   hideTableHead,
 }) => {
   const { t } = useTranslation();
+  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <TableWrapper>
+    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
       <Table>
         {!hideTableHead && (
           <TableHeader>
@@ -163,11 +164,10 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
 
                 <TableCell>
                   <Link
-                    to={`/${getResultsUrl(organization._self?.schema?.ref)}/${organization.id}`}
+                    onClick={() => navigate(`/${getResultsUrl(organization._self?.schema?.ref)}/${organization.id}`)}
                     className={styles.detailsLink}
-                    rel="activate-row"
                   >
-                    <Icon className="utrecht-icon--conduction-start">
+                    <Icon>
                       <IconArrowRight />
                     </Icon>
                     {t("Details")}

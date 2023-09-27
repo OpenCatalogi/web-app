@@ -75,8 +75,8 @@
 }
 
 .container > .unknown.active::before {
-  background-color: var(--web-app-color-top-nav-grey);
+  background-color: var(--web-app-layer-color-unkown);
 }
 .container > :not(.disabled).unknown:not(.active)::before {
-  background-color: var(--web-app-color-top-nav-grey);
+  background-color: var(--web-app-layer-color-unkown);
 }

@@ -1,28 +1,17 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  border: var(--web-app-card-border-color);
-  padding-inline-start: var(--web-app-size-md);
-  padding-inline-end: var(--web-app-size-md);
-  padding-block-start: var(--web-app-size-md);
-  padding-block-end: var(--web-app-size-md);
-}
-
-.container > *:not(.titleLink):not(.layerTags):not(:last-child) {
+.container > *:not(.title):not(.layerTags):not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
-.titleLink {
+.title {
   font-size: var(--web-app-font-size-lg);
-  --denhaag-link-icon-gap: var(--web-app-size-xs);
 }
 
-.titleLink > :first-child > span > svg {
+.title > span > svg {
   width: var(--web-app-font-size-lg);
   height: var(--web-app-font-size-lg);
 }
 
-.titleLink > :first-child {
+.title > span {
   display: flex;
 }
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./TableResultTemplate.module.css";
 import _ from "lodash";
-import { Icon, StatusBadge, DataBadge } from "@utrecht/component-library-react/dist/css-module";
+import { Icon, StatusBadge, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,12 +15,13 @@ import {
 import { IconArrowRight } from "@tabler/icons-react";
 import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import TableWrapper from "../../../../components/tableWrapper/TableWrapper";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
-import { Link } from "../../../../components";
+import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
+import { GatsbyContext } from "../../../../context/gatsby";
+import { getStatusColor } from "../../../../services/getStatusColor";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -29,47 +30,10 @@ interface TableResultTemplateProps {
 
 export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
-
-  /**
-   * Map component status to `StatusBadge` status
-   */
-  const getStatus = (description: string) => {
-    switch (description) {
-      case "Concept":
-        return "warning";
-      case "Development":
-        return "warning";
-      case "Beta":
-        return "warning";
-      case "Bruikbaar":
-        return "safe";
-      case "Stable":
-        return "safe";
-      case "Obsolete":
-        return "danger";
-      default:
-        return;
-    }
-  };
-
-  const ComponentStatusBadge = ({ status }: { status: string }) => {
-    const s = getStatus(status);
-    return (
-      <StatusBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status" status={s} className={styles.tagWidth}>
-        {s ? (
-          <>
-            <FontAwesomeIcon icon={faInfoCircle} />{" "}
-          </>
-        ) : (
-          ""
-        )}
-        {t(status)}
-      </StatusBadge>
-    );
-  };
+  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <TableWrapper>
+    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
       <Table>
         {!hideTableHead && (
           <TableHeader>
@@ -157,22 +121,31 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                 </TableCell>
 
                 <TableCell>
-                  <ComponentStatusBadge
-                    status={_.upperFirst(
-                      component._self.schema.ref.includes("component.schema.json")
-                        ? component.developmentStatus ?? "Onbekend"
-                        : "N.V.T.",
+                  <StatusBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Status"
+                    status={getStatusColor(_.upperFirst(component.developmentStatus) ?? "Onbekend")}
+                    className={styles.tagWidth}
+                  >
+                    {component._self.schema.ref.includes("component.schema.json") ? (
+                      <>
+                        <span>
+                          <FontAwesomeIcon icon={faInfoCircle} />
+                        </span>
+                        {_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                      </>
+                    ) : (
+                      "N.V.T."
                     )}
-                  />
+                  </StatusBadge>
                 </TableCell>
 
                 <TableCell>
                   <Link
-                    to={`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`}
+                    onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}
                     className={styles.detailsLink}
-                    rel="activate-row"
                   >
-                    <Icon className="utrecht-icon--conduction-start">
+                    <Icon>
                       <IconArrowRight />
                     </Icon>
                     {t("Details")}

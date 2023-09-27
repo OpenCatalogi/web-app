@@ -32,7 +32,7 @@ export default class APIService {
     const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
 
     return axios.create({
-      baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
+      baseURL: process.env.GATSBY_API_URL ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default class APIService {
 
   public get LoginClient(): AxiosInstance {
     return axios.create({
-      baseURL: window.sessionStorage.getItem("GATSBY_API_URL") ?? undefined,
+      baseURL: process.env.GATSBY_API_URL ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default class APIService {
 
   public get BaseClient(): AxiosInstance {
     return axios.create({
-      baseURL: window.sessionStorage.getItem("GATSBY_BASE_URL") ?? undefined,
+      baseURL: process.env.GATSBY_BASE_URL ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

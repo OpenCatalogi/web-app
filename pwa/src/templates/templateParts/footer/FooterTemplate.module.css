@@ -61,7 +61,7 @@
   margin-inline-end: var(--web-app-size-lg);
 }
 
-.organizationLogo {
+/* .organizationLogo {
   background-size: contain;
   background-repeat: no-repeat;
   padding: var(--web-app-footer-organization-logo-padding);
@@ -69,7 +69,7 @@
   background-image: var(--web-app-footer-organization-logo-src);
   background-color: var(--web-app-footer-organization-logo-background-color);
   background-origin: content-box;
-}
+} */
 
 .forumStandaardisatieIcon path {
   fill: var(--web-app-footer-forum-standaardisatie-icon-path-fill);

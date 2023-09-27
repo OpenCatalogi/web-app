@@ -1,13 +1,20 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
-import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Paragraph,
+  Heading,
+  BreadcrumbNav,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  Icon,
+} from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, Breadcrumbs, PrimaryTopNav } from "@conduction/components";
+import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
@@ -18,6 +25,7 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const [isHomePage, setIsHomePage] = React.useState<boolean>(false);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
@@ -30,6 +38,20 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   } = React.useContext(GatsbyContext);
 
   const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
+
+  const handleBreadcrumbClick = (e: React.MouseEvent<HTMLElement, MouseEvent>, pathname: string) => {
+    e.preventDefault();
+
+    navigate(pathname);
+  };
+
+  React.useEffect(() => {
+    setIsHomePage(
+      pathname === "/" ||
+        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
+    );
+  }, [pathname]);
 
   const primaryTopNavItems = [
     {
@@ -129,7 +151,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
+        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
@@ -169,7 +191,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         </Container>
       </div>
 
-      {pathname === "/" && (
+      {isHomePage && (
         <Container layoutClassName={styles.headerContent}>
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
@@ -187,7 +209,50 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" && (
         <Container layoutClassName={styles.breadcrumbsContainer}>
-          <Breadcrumbs crumbs={translatedCrumbs} />
+          {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
+            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
+              {translatedCrumbs.map((crumb: any, idx: number) => {
+                if (crumbs.length !== idx + 1) {
+                  return (
+                    <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbLink>
+                  );
+                }
+                return (
+                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    {crumb.crumbLabel}
+                  </BreadcrumbLink>
+                );
+              })}
+            </BreadcrumbNav>
+          )}
+          {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
+            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+              {translatedCrumbs.map((crumb: any, idx: number) => {
+                if (crumbs.length !== idx + 1) {
+                  return (
+                    <React.Fragment key={idx}>
+                      <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                        {crumb.crumbLabel}
+                      </BreadcrumbLink>
+
+                      <BreadcrumbSeparator>
+                        <Icon>
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Icon>
+                      </BreadcrumbSeparator>
+                    </React.Fragment>
+                  );
+                }
+                return (
+                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    {crumb.crumbLabel}
+                  </BreadcrumbLink>
+                );
+              })}
+            </BreadcrumbNav>
+          )}
         </Container>
       )}
     </header>

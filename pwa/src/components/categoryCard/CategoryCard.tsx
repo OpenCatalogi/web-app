@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { Link } from "../link/Link";
+import { Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
+import { navigate } from "gatsby-link";
 
 export interface CategoryCardProps {
   title: {
@@ -15,15 +16,16 @@ export interface CategoryCardProps {
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.titleLink}>
-        <Link to={title.href}>
-          <Icon className="utrecht-icon--conduction-start">{icon}</Icon>
-          {title.label}
-        </Link>
-      </div>
-
+    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
+      <CardHeader>
+        <CardHeaderTitle>
+          <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
+            <Icon>{icon}</Icon>
+            {title.label}
+          </Link>
+        </CardHeaderTitle>
+      </CardHeader>
       <Paragraph className={domain ?? styles.description}>{description}</Paragraph>
-    </div>
+    </CardWrapper>
   );
 };

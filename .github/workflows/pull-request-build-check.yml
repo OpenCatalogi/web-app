@@ -1,0 +1,27 @@
+name: Build Check
+
+on:
+  pull_request:
+    branches:
+      - development
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Remove cache, modules and public
+        run: rm -rf pwa/node_modules && rm -rf pwa/.cache && rm -rf pwa/public
+
+      - name: Parcel/watcher
+        run: npm i @parcel/watcher
+
+      - name: Install dependencies
+        run: cd pwa && npm i
+
+      - name: Build
+        run: cd pwa && npm run build
