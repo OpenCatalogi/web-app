@@ -50,7 +50,7 @@ jobs:
           envkey_GATSBY_FRONTEND_URL: ${{ env.FRONTEND_URL }}
           envkey_GATSBY_LOGIN_REDIRECT: ${{ env.LOGIN_REDIRECT }}
           envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ env.ADMIN_DASHBOARD_URL }}
-          envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.DESIGN_THEME_CLASSNAME }}
+          envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
           envkey_GATSBY_ARROW_BREADCRUMBS: ${{ env.ARROW_BREADCRUMBS }}
 
           # envkey_GATSBY_ORGANIZATION: ${{ env.ORGANIZATION }}
