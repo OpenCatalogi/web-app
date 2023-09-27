@@ -38,7 +38,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                   navigate("/components");
                 }}
               >
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 {t("Processes")}
@@ -52,7 +52,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                   navigate("/components");
                 }}
               >
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 {t("Data models")}
@@ -66,7 +66,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                   navigate("/components");
                 }}
               >
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 {t("API's")}
@@ -80,7 +80,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                   navigate("/components");
                 }}
               >
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 {t("Initiatives")}
@@ -93,7 +93,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link onClick={() => navigate("/documentation/about")}>
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 {t("About OpenCatalogi")}
@@ -102,7 +102,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link onClick={() => navigate("/documentation/usage")}>
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
                 Gebruik
@@ -111,7 +111,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://github.com/OpenCatalogi">
-                <Icon className={styles.icon}>
+                <Icon>
                   <GitHubLogo />
                 </Icon>
                 Github
@@ -124,7 +124,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://commonground.nl/">
-                <Icon className={styles.icon}>
+                <Icon>
                   <CommongroundLogo />
                 </Icon>
                 Common ground
@@ -133,7 +133,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://haven.commonground.nl/">
-                <Icon className={styles.icon}>
+                <Icon>
                   <HavenLogo />
                 </Icon>
                 Haven
@@ -142,7 +142,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconExternalLink />
                 </Icon>
                 NL design
@@ -160,7 +160,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link onClick={() => navigate("#")}>
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconExternalLink />
                 </Icon>
                 {t("Privacy declaration")}
@@ -175,7 +175,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
                     : navigate("#")
                 }
               >
-                <Icon className={styles.icon}>
+                <Icon>
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>
                 {t("Login")}
@@ -190,7 +190,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link href="tel:+31853036840">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconPhone />
                 </Icon>
                 Bel Conduction
@@ -199,7 +199,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link href="mailto:info@conduction.nl">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconMail />
                 </Icon>
                 Mail Conduction
@@ -208,7 +208,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://conduction.nl/">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconExternalLink />
                 </Icon>
                 Bezoek de website
@@ -221,7 +221,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link href="tel:14010">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconPhone />
                 </Icon>
                 Bel Gemeente Rotterdam
@@ -230,7 +230,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://rotterdam.nl/">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconExternalLink />
                 </Icon>
                 Bezoek de website

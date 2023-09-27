@@ -16,11 +16,11 @@ export interface CategoryCardProps {
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
   return (
-    <CardWrapper className={styles.container}>
+    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
       <CardHeader>
         <CardHeaderTitle>
           <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Icon className={styles.icon}>{icon}</Icon>
+            <Icon>{icon}</Icon>
             {title.label}
           </Link>
         </CardHeaderTitle>

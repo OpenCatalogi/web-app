@@ -167,7 +167,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
                     onClick={() => navigate(`/${getResultsUrl(organization._self?.schema?.ref)}/${organization.id}`)}
                     className={styles.detailsLink}
                   >
-                    <Icon className={styles.icon}>
+                    <Icon>
                       <IconArrowRight />
                     </Icon>
                     {t("Details")}

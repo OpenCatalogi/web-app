@@ -129,7 +129,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                   >
                     {component._self.schema.ref.includes("component.schema.json") ? (
                       <>
-                        <span className={styles.icon}>
+                        <span>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </span>
                         {_.upperFirst(component.developmentStatus ?? "Onbekend")}
@@ -145,7 +145,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                     onClick={() => navigate(`/${getResultsUrl(component._self?.schema?.ref)}/${component.id}`)}
                     className={styles.detailsLink}
                   >
-                    <Icon className={styles.icon}>
+                    <Icon>
                       <IconArrowRight />
                     </Icon>
                     {t("Details")}

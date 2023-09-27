@@ -47,7 +47,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
         <Link onClick={() => navigate("/categories")}>
-          <Icon className={styles.icon}>
+          <Icon>
             <IconArrowLeft />
           </Icon>
           {t("Back to categories")}

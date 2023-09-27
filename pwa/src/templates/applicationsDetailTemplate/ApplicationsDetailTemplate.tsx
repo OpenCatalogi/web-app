@@ -37,7 +37,7 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
   return (
     <Container layoutClassName={styles.container}>
       <Link className={styles.backButton} onClick={() => navigate("/applications")}>
-        <Icon className={styles.icon}>
+        <Icon>
           <FontAwesomeIcon icon={faArrowLeft} />
         </Icon>
         {t("Back to applications")}

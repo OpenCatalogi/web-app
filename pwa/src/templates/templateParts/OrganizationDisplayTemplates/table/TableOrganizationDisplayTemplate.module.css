@@ -32,7 +32,3 @@
   display: flex;
   justify-content: space-evenly;
 }
-
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}

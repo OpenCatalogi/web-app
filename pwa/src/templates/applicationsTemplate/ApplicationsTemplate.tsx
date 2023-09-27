@@ -33,7 +33,7 @@ export const ApplicationsTemplate: React.FC = () => {
             voor een bepaalde{" "}
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
-                <Icon className={styles.icon}>
+                <Icon>
                   <IconExternalLink />
                 </Icon>{" "}
                 bedrijfsfunctie

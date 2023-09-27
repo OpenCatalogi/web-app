@@ -47,11 +47,11 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
     });
 
   return (
-    <CardWrapper className={styles.container}>
+    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
       <CardHeader>
         <CardHeaderTitle>
           <Link className={styles.title} onClick={() => navigate(title.href)}>
-            <Icon className={styles.icon}>
+            <Icon>
               <IconArrowRight />
             </Icon>
             {title.label}
@@ -108,7 +108,10 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
               <DataBadge
                 data-tooltip-id={TOOLTIP_ID}
                 data-tooltip-content="Organisatie"
-                onClick={() => open(tags?.organization?.website)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  open(tags?.organization?.website);
+                }}
               >
                 <FontAwesomeIcon icon={faHouse} />
                 {tags.organization.name}
@@ -123,7 +126,14 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </DataBadge>
         )}
         {tags.githubLink && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="GitHub" onClick={() => open(tags.githubLink)}>
+          <DataBadge
+            data-tooltip-id={TOOLTIP_ID}
+            data-tooltip-content="GitHub"
+            onClick={(e) => {
+              e.stopPropagation();
+              open(tags.githubLink);
+            }}
+          >
             <GitHubLogo />
             {t("Repository")}
           </DataBadge>

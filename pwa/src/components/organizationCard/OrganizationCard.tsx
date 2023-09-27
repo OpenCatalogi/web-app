@@ -46,12 +46,15 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
   const { t } = useTranslation();
 
   return (
-    <CardWrapper className={clsx([styles.container, layoutClassName && layoutClassName])}>
+    <CardWrapper
+      className={clsx([styles.container, layoutClassName && layoutClassName])}
+      onClick={() => navigate(title.href)}
+    >
       <CardHeader className={styles.header}>
         <div className={styles.headerContent}>
           <CardHeaderTitle>
             <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
-              <Icon className={styles.icon}>
+              <Icon>
                 <IconArrowRight />
               </Icon>
               {title.label}
@@ -69,59 +72,64 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       </CardHeader>
 
       <div className={styles.tagsContainer}>
-        <DataBadge
-          data-tooltip-id={TOOLTIP_ID}
-          data-tooltip-content="Organisatie type"
-          onClick={() => navigate(title.href)}
-        >
+        <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie type">
           <FontAwesomeIcon icon={faBuilding} />
 
           {t(_.upperFirst(type ? type : "Unknown"))}
         </DataBadge>
 
-        <DataBadge
-          data-tooltip-id={TOOLTIP_ID}
-          data-tooltip-content="Aantal eigen componenten"
-          onClick={() => navigate(title.href)}
-        >
+        <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal eigen componenten">
           <FontAwesomeIcon icon={faHouseLaptop} />
           {components.owned}
         </DataBadge>
 
-        <DataBadge
-          data-tooltip-id={TOOLTIP_ID}
-          data-tooltip-content="Aantal ondersteunde componenten"
-          onClick={() => navigate(title.href)}
-        >
+        <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal ondersteunde componenten">
           <FontAwesomeIcon icon={faUserCog} />
           {components.supported}
         </DataBadge>
 
-        <DataBadge
-          data-tooltip-id={TOOLTIP_ID}
-          data-tooltip-content="Aantal gebruikte componenten"
-          onClick={() => navigate(title.href)}
-        >
+        <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal gebruikte componenten">
           <FontAwesomeIcon icon={faRepeat} />
           {components.used}
         </DataBadge>
 
         {website && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={website} onClick={() => open(website)}>
+          <DataBadge
+            data-tooltip-id={TOOLTIP_ID}
+            data-tooltip-content={website}
+            onClick={(e) => {
+              e.stopPropagation();
+              open(website);
+            }}
+          >
             <FontAwesomeIcon icon={faGlobe} />
             Website
           </DataBadge>
         )}
 
         {gitHub && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="GitHub" onClick={() => open(gitHub)}>
+          <DataBadge
+            data-tooltip-id={TOOLTIP_ID}
+            data-tooltip-content="GitHub"
+            onClick={(e) => {
+              e.stopPropagation();
+              open(gitHub);
+            }}
+          >
             <GitHubLogo />
             {t("GitHub")}
           </DataBadge>
         )}
 
         {gitLab && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="GitLab" onClick={() => open(gitLab)}>
+          <DataBadge
+            data-tooltip-id={TOOLTIP_ID}
+            data-tooltip-content="GitLab"
+            onClick={(e) => {
+              e.stopPropagation();
+              open(gitLab);
+            }}
+          >
             <GitLabLogo />
             {t("GitLab")}
           </DataBadge>

@@ -1,4 +1,4 @@
-export const getStatusColor = (status: string) => {
+export const getStatusColor = (status: string): string => {
   switch (status) {
     case "Concept":
       return "warning";
@@ -13,6 +13,6 @@ export const getStatusColor = (status: string) => {
     case "Obsolete":
       return "danger";
     default:
-      return;
+      return "";
   }
 };

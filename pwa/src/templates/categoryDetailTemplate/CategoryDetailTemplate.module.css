@@ -50,11 +50,6 @@
   display: flex;
 }
 
-
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 .backButton:hover {
   cursor: pointer;
 }

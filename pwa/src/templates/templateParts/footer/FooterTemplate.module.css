@@ -61,10 +61,6 @@
   margin-inline-end: var(--web-app-size-lg);
 }
 
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 /* .organizationLogo {
   background-size: contain;
   background-repeat: no-repeat;

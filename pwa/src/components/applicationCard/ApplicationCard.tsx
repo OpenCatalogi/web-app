@@ -29,7 +29,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
       <CardHeader className={styles.cardHeader}>
         <CardHeaderTitle>
           <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
-            <Icon className={styles.icon}>
+            <Icon>
               <IconArrowRight />
             </Icon>
             {title.label}
@@ -46,7 +46,14 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
           </DataBadge>
         )}
         {tags.githubLink && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Demo" onClick={() => open(tags.githubLink)}>
+          <DataBadge
+            data-tooltip-id={TOOLTIP_ID}
+            data-tooltip-content="Demo"
+            onClick={(e) => {
+              e.stopPropagation();
+              open(tags.githubLink);
+            }}
+          >
             <FontAwesomeIcon icon={faLaptopCode} />
             {t("Demo")}
           </DataBadge>

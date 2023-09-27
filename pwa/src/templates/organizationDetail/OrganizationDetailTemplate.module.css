@@ -28,10 +28,6 @@
   color: var(--web-app-color-text-grey) !important;
 }
 
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 .backButton:hover {
   cursor: pointer;
 }

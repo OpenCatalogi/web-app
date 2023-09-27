@@ -43,10 +43,6 @@
   gap: var(--web-app-size-xs);
 }
 
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 @media only screen and (min-width: 576px) {
   .componentsGrid {
     grid-template-columns: 1fr 1fr;

@@ -24,34 +24,30 @@ export const CategoriesTemplate: React.FC = () => {
           <Paragraph className={styles.description}>
             We verdelen{" "}
             <span>
-              <Link className={styles.link} onClick={() => navigate("/applications")}>
-                <Icon className={styles.icon}>
+              <Link onClick={() => navigate("/applications")}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
-                <span className={styles.linkText}> applicaties</span>
+                <span> applicaties</span>
               </Link>
             </span>{" "}
             en{" "}
             <span>
-              <Link className={styles.link} onClick={() => navigate("/components")}>
-                <Icon className={styles.icon}>
+              <Link onClick={() => navigate("/components")}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
-                <span className={styles.linkText}> componenten </span>
+                <span> componenten </span>
               </Link>
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
             <span>
-              <Link
-                className={styles.link}
-                target="_new"
-                href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties"
-              >
-                <Icon className={styles.icon}>
+              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+                <Icon>
                   <IconExternalLink />
                 </Icon>
-                <span className={styles.linkText}> Gemma bedrijfsfuncties </span>
+                <span> Gemma bedrijfsfuncties </span>
               </Link>
             </span>
             .

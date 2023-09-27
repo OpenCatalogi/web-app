@@ -38,7 +38,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
   return (
     <Container layoutClassName={styles.container}>
       <Link className={styles.backButton} onClick={() => navigate("/organizations")}>
-        <Icon className={styles.icon}>
+        <Icon>
           <IconArrowLeft />
         </Icon>
         {t("Back to organizations")}

@@ -51,7 +51,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                     <div key={idx}>
                       <div>
                         <Link onClick={() => navigate(`/categories/${_category.id}`)}>
-                          <Icon className={styles.icon}>
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           <span>{_category.title}</span>
@@ -69,7 +69,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                       <div key={idx}>
                         <div>
                           <Link onClick={() => navigate(`/categories/${_category.id}`)}>
-                            <Icon className={styles.icon}>
+                            <Icon>
                               <IconArrowRight />
                             </Icon>
                             <span>{_category.title}</span>
@@ -88,7 +88,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                             <div key={idx}>
                               <div>
                                 <Link onClick={() => navigate(`/categories/${_category.id}`)}>
-                                  <Icon className={styles.icon}>
+                                  <Icon>
                                     <IconArrowRight />
                                   </Icon>
                                   <span>{_category.title}</span>
