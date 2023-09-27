@@ -1,8 +1,53 @@
 /******* START OF THEME TEMPLATE ********/
-.utrecht-theme {
-    /* Font families */
-    --web-app-primary-font-family: "Lucida Grande";
-    --web-app-content-font-family: "Lucida Grande";
+:root {
+  /* Sizes */
+  --web-app-size-4xs: var(--skeleton-size-4xs);
+  --web-app-size-3xs: var(--skeleton-size-3xs);
+  --web-app-size-2xs: var(--skeleton-size-2xs);
+  --web-app-size-xs: var(--skeleton-size-xs);
+  --web-app-size-sm: var(--skeleton-size-sm);
+  --web-app-size-md: var(--skeleton-size-md);
+  --web-app-size-lg: var(--skeleton-size-lg);
+  --web-app-size-xl: var(--skeleton-size-xl);
+  --web-app-size-2xl: var(--skeleton-size-2xl);
+  --web-app-size-3xl: var(--skeleton-size-3xl);
+  --web-app-size-4xl: var(--skeleton-size-4xl);
+
+  /* Font families */
+  --web-app-primary-font-family: "Lucida Grande";
+  --web-app-content-font-family: "Lucida Grande";
+
+  /* Font sizes */
+  --web-app-font-size-4xs: var(--skeleton-font-size-4xs);
+  --web-app-font-size-3xs: var(--skeleton-font-size-3xs);
+  --web-app-font-size-2xs: var(--skeleton-font-size-2xs);
+  --web-app-font-size-xs: var(--skeleton-font-size-xs);
+  --web-app-font-size-sm: var(--skeleton-font-size-sm);
+  --web-app-font-size-md: var(--skeleton-font-size-md);
+  --web-app-font-size-lg: var(--skeleton-font-size-lg);
+  --web-app-font-size-xl: var(--skeleton-font-size-xl);
+  --web-app-font-size-2xl: var(--skeleton-font-size-2xl);
+  --web-app-font-size-3xl: var(--skeleton-font-size-3xl);
+  --web-app-font-size-4xl: var(--skeleton-font-size-4xl);
+
+  /* Line heights */
+  --web-app-line-height-xs: var(--skeleton-line-height-xs);
+  --web-app-line-height-sm: var(--skeleton-line-height-sm);
+  --web-app-line-height-md: var(--skeleton-line-height-md);
+  --web-app-line-height-lg: var(--skeleton-line-height-lg);
+
+  /* Font weights */
+  --web-app-font-weight-light: var(--skeleton-font-weight-light);
+  --web-app-font-weight-normal: var(--skeleton-font-weight-normal);
+  --web-app-font-weight-bold: var(--skeleton-font-weight-bold);
+
+  /* Border radiuses */
+  --web-app-border-radius-sm: 0;
+  --web-app-border-radius-md: 0;
+  --web-app-border-radius-lg: 0;
+
+  /* Focus border */
+  --web-app-focus-border: 2px dashed var(--web-app-color-black);
 
   /* Theme colors */
   --web-app-color-white: hsl(0 0% 100%);
@@ -51,14 +96,14 @@
   --web-app-header-logo-container-border-radius: 0;
   --web-app-header-logo-container-height: 50px;
   --web-app-header-organization-logo-width: 115px;
-  --web-app-header-organization-logo-src: url("../images/LogoUtrecht.svg");
+  --web-app-header-organization-logo-src: url("images/LogoUtrecht.svg");
 
   --web-app-footer-logo-container-background-color: var(--web-app-color-white);
   --web-app-footer-logo-container-padding: var(--web-app-size-md);
   --web-app-footer-logo-container-border-radius: unset;
   --web-app-footer-logo-container-height: 67px;
   --web-app-footer-organization-logo-width: 126px;
-  --web-app-footer-organization-logo-src: url("../images/LogoUtrecht.svg");
+  --web-app-footer-organization-logo-src: url("images/LogoUtrecht.svg");
   --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
 
   --web-app-rating-active-color: hsl(211 60% 35%);
@@ -193,45 +238,6 @@
   --conduction-tabs-tab-panel-padding-inline-start: var(--web-app-size-lg);
   --conduction-tabs-tab-panel-padding-inline-end: var(--web-app-size-lg);
 
-  --conduction-tabs-scroll-button-hover-color: #000000;
-  --conduction-tabs-scroll-button-hover-background-color: var(--web-app-color-white);
-  --conduction-tabs-scroll-button-color: #000000b3;
-  --conduction-tabs-scroll-button-background-color: var(--web-app-color-white);
-
-  /* @conduction: TableWrapper */
-  --conduction-table-wrapper-scroll-button-hover-color: var(--web-app-color-link-active);
-  --conduction-table-wrapper-scroll-button-hover-background-color: var(--web-app-color-white);
-  --conduction-table-wrapper-scroll-button-padding-inline-end: 14px;
-  --conduction-table-wrapper-scroll-button-padding-inline-start: 14px;
-  --conduction-table-wrapper-scroll-button-color: #000000;
-  --conduction-table-wrapper-scroll-button-background-color: var(--web-app-color-white);
-  --conduction-table-wrapper-scroll-button-border-width: var(--web-app-size-4xs);
-  --conduction-table-wrapper-scroll-button-border-style: solid;
-  --conduction-table-wrapper-scroll-button-border-color: var(--web-app-color-disabled);
-
-  /* @conduction: CardWrapper */
-  --conduction-card-wrapper-padding-block-start: 16px;
-  --conduction-card-wrapper-padding-block-end: 16px;
-  --conduction-card-wrapper-padding-inline-start: 16px;
-  --conduction-card-wrapper-padding-inline-end: 16px;
-  /* --conduction-card-wrapper-hover-border-bottom-width: 4px; */
-  /* --conduction-card-wrapper-hover-border-bottom-style: solid; */
-  /* --conduction-card-wrapper-hover-border-bottom-color: var(--rotterdam-color-green); */
-  /* --conduction-card-wrapper-color: #404b4f; */
-  --conduction-card-wrapper-border-radius: 0px;
-  /* --conduction-card-wrapper-border-bottom-width: 4px; */
-  /* --conduction-card-wrapper-border-bottom-style: solid; */
-  /* --conduction-card-wrapper-border-bottom-color: #cad6da; */
-  --conduction-card-wrapper-background-color: var(--web-app-color-white);
-
-  /* @conduction: CardHeader */
-  /* --conduction-card-header-date-margin-block-end: 8px; */
-  /* --conduction-card-header-date-font-weight: 400; */
-  /* --conduction-card-header-date-font-size: 16px; */
-  /* --conduction-card-header-date-color: #404b4f; */
-  --conduction-card-header-title-color: hsl(211 60% 35%);
-  --conduction-card-header-color: var(--web-app-color-white);
-
   /* @gemeent-denhaag: SideNav */
   --web-app-sidenav-link-active-color: var(--web-app-color-link-active);
   --web-app-sidenav-link-hover-color: var(--web-app-color-link-active);
@@ -324,6 +330,13 @@
   --utrecht-button-group-inline-gap: inherit;
   --utrecht-action-activate-cursor: inherit;
 
+  /* @gemeente-denhaag: Breadcrumb */
+  --denhaag-breadcrumb-color: inherit;
+  --denhaag-breadcrumb-current-color: inherit;
+
+  --utrecht-color-sample-border-radius: inherit;
+  --utrecht-button-icon-gap: var(--web-app-size-xs);
+
   /* @gemeente-utrecht: table */
   --utrecht-table-border-width: inherit;
   --utrecht-table-row-hover-background-color: inherit;
@@ -338,7 +351,6 @@
 
   /* @gemeente-utrecht: radio button */
   --utrecht-radio-button-size: var(--web-app-size-md);
-  --utrecht-button-icon-gap: var(--web-app-size-xs);
 
   /* @gemeente-utrecht: link */
   --utrecht-link-visited-color: inherit;
@@ -348,24 +360,6 @@
   --utrecht-separator-block-size: var(--web-app-size-3xs);
   --utrecht-separator-margin-block-end: 0px;
   --utrecht-separator-margin-block-start: 0px;
-
-  /* ComponentOverwrites */
-  --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding) !important;
-  --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size) !important;
-  --conduction-secondary-top-nav-color: var(--web-app-color-text-grey) !important;
-  --conduction-secondary-top-nav-background-color-hover: var(--web-app-secondary-top-nav-background-color-hover) !important;
-  --conduction-secondary-top-nav-font-weight: var(--web-app-secondary-top-nav-font-weight) !important;
-  --conduction-secondary-top-nav-background-color-active: var(--web-app-secondary-top-nav-background-color-active) !important;
-  --conduction-secondary-top-nav-item-icon-margin: var(--web-app-size-2xs) !important;
-
-  --conduction-primary-top-nav-item-padding: var(--web-app-primary-top-nav-item-padding) !important;
-  --conduction-primary-top-nav-color: var(--web-app-color-text-grey) !important;
-  --conduction-primary-top-nav-background-color: var(--web-app-primary-top-nav-background-color) !important;
-  --conduction-primary-top-nav-background-color-hover: var(--web-app-primary-top-nav-background-color-hover) !important;
-  --conduction-primary-top-nav-dropdown-border-radius: var(--web-app-primary-top-nav-dropdown-border-radius) !important;
-  --conduction-primary-top-nav-background-color-active: var(--web-app-primary-top-nav-background-color-active) !important;
-  --conduction-primary-top-nav-box-shadow-active: var(--web-app-primary-top-nav-box-shadow-active) !important;
-  --conduction-primary-top-nav-item-icon-margin: var(--web-app-size-2xs) !important;
 }
 
 .utrecht-link {
