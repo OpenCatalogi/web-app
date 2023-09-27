@@ -6,8 +6,8 @@ require("dotenv").config({
 
 module.exports = {
   pathPrefix:
-    process.env.USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true"
-      ? `/${process.env.GITHUB_REPOSITORY_NAME}`
+    process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true"
+      ? `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}`
       : "", // we do NOT want to set the prefix if we're using an DNS
   plugins: [
     {
