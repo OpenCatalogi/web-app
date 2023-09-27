@@ -41,8 +41,8 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
         with:
-          envkey_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX: ${{ env.USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX }}
-          envkey_GITHUB_REPOSITORY_NAME: ${{ env.GITHUB_REPOSITORY_NAME }}
+          envkey_GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX: ${{ env.USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX }}
+          envkey_GATSBY_GITHUB_REPOSITORY_NAME: ${{ env.GITHUB_REPOSITORY_NAME }}
           envkey_GATSBY_ME_URL: ${{ env.ME_URL }}
           envkey_GATSBY_API_URL: ${{ env.API_URL }}
           envkey_GATSBY_ADMIN_URL: ${{ env.ADMIN_URL }}
