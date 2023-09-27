@@ -176,7 +176,7 @@
   margin-block-end: var(--web-app-size-md);
 }
 
-.badgeLayout{
+.badgeLayout {
   margin-inline-start: var(--web-app-size-xs);
 }
 
@@ -258,4 +258,12 @@
 }
 .unknownCategory {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+}
+
+.icon {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.backButton:hover {
+  cursor: pointer;
 }

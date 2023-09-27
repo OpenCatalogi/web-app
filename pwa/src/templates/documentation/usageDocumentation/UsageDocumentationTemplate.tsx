@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as styles from "./UsageDocumentationTemplate.module.css";
 import { Container } from "@conduction/components";
-import { CodeBlock, Heading, Paragraph, Icon, Code } from "@utrecht/component-library-react/dist/css-module";
+import { CodeBlock, Heading, Paragraph, Icon, Code, Link } from "@utrecht/component-library-react/dist/css-module";
 import { IconExternalLink } from "@tabler/icons-react";
 import dedent from "dedent";
-import { Link } from "../../../components";
 import { SubmitUrlTemplate } from "../../templateParts/submitUrl/SubmitUrlTemplate";
 import { useTranslation } from "react-i18next";
 

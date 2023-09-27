@@ -16,10 +16,6 @@
   height: var(--web-app-font-size-lg);
 }
 
-.icon {
-  margin-inline-end: var(--web-app-size-xs);
-}
-
 .titleLink > span {
   display: flex;
 }
