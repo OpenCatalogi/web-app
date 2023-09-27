@@ -1,7 +1,16 @@
 /* Skeleton Design Tokens */
 
+/* Local Design Tokens */
+@import "../../static/themes/rotterdam.css";
+@import "../../static/themes/utrecht.css";
+
 /* Theme Design Tokens */
 /* TODO: Load themes on-demand */
+/* Design Tokens maintained by Conduction */
+@import "../../node_modules/@conduction/theme/conduction-design-tokens/dist/index.css";
+@import "../../node_modules/@conduction/theme/municipalities/rotterdam-design-tokens/dist/design-tokens.css";
+
+/* Design Tokens maintained by Frameless */
 @import "../../node_modules/@nl-design-system-unstable/rotterdam-design-tokens/dist/index.css";
 @import "../../node_modules/@utrecht/design-tokens/dist/theme.css";
 

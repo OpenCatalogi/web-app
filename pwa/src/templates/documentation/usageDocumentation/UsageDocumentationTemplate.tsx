@@ -126,7 +126,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </Paragraph>
         <Heading level={4}>Node.js / NPM</Heading>
         <Paragraph className={styles.description}>
-          Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit zal de front-end
+          Je hebt een Git client nodig(optioneel), en je moet Node.js en NPM geïnstalleerd hebben. Dit zal de frontend
           op poort:9000 laten draaien, dus zorg er voor dat de poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
@@ -137,7 +137,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </CodeBlock>
         <Heading level={4}>Docker</Heading>
         <Paragraph className={styles.description}>
-          Je moet Docker geïnstalleerd hebben. Dit zal de front-end op poort:81 laten draaien, dus zorg er voor dat de
+          Je moet Docker geïnstalleerd hebben. Dit zal de frontend op poort:81 laten draaien, dus zorg er voor dat de
           poort niet al in gebruik is.
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>{`$ docker-compose pull`}</CodeBlock>
@@ -165,7 +165,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
 
         <Heading level={4}>Back-endverbinding configureren</Heading>
         <Paragraph className={styles.description}>
-          Om verbinding te maken tussen de front-end en de lokale back-end moet je eerst de back-end opstarten, je kunt
+          Om verbinding te maken tussen de frontend en de lokale back-end moet je eerst de back-end opstarten, je kunt
           de installatiehandleiding{" "}
           <span>
             <Link target="_new" href="https://github.com/OpenCatalogi/OpenCatalogiBundle#opencatalogibundle-">
@@ -178,25 +178,26 @@ export const UsageDocumentationTemplate: React.FC = () => {
           volgen.
         </Paragraph>
         <Paragraph>
-          Om de front-end met de lokale gateway te laten praten moet je de omgevingsvariabelen in het{" "}
-          <Code className={styles.code}>env.js</Code> bestand veranderen. Vervang de inhoud van het bestand met het
-          volgende:
+          Om de frontend met de lokale gateway te laten praten moet je de omgevingsvariabelen in het{" "}
+          <Code className={styles.code}>.env.development</Code> bestand veranderen. Vervang de inhoud onder het kopje{" "}
+          <Code className={styles.code}>Backend-config</Code> met het volgende:
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
           {dedent`
-          window.sessionStorage.setItem("GATSBY_ME_URL", "http://localhost/api/users/me");
-          window.sessionStorage.setItem("GATSBY_API_URL", "http://localhost/api");
-          window.sessionStorage.setItem("GATSBY_ADMIN_URL", "http://localhost/admin");
-          window.sessionStorage.setItem("GATSBY_BASE_URL", "http://localhost");
-          window.sessionStorage.setItem("GATSBY_FRONTEND_URL", "http://localhost");
-          window.sessionStorage.setItem("GATSBY_ORGANIZATION", "");
-          window.sessionStorage.setItem("GATSBY_LOGIN_REDIRECT", "vault");
-          window.sessionStorage.setItem("ADMIN_DASHBOARD_URL", "http://localhost:8000");`}
+            GATSBY_ME_URL=http://localhost/me
+            GATSBY_API_URL=http://localhost/api
+            GATSBY_ADMIN_URL=http://localhost/admin
+            GATSBY_BASE_URL=http://localhost
+            GATSBY_FRONTEND_URL=http://localhost:8000
+            GATSBY_ORGANIZATION=http://webresourcecatalogus.conduction.svc.cluster.local/organizations/b2d3176e-f1c6-4365-ab86-dd253c65fc43
+            GATSBY_LOGIN_REDIRECT=vault
+            GATSBY_ADMIN_DASHBOARD_URL=https://admin.opencatalogi.nl
+          `}
         </CodeBlock>
-        <Paragraph>Herstart de front-end na het aanpassen van dit bestand.</Paragraph>
+        <Paragraph>Herstart de frontend na het aanpassen van dit bestand.</Paragraph>
         <Heading level={5}>Node.js / NPM</Heading>
         <Paragraph className={styles.description}>
-          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en bouw de front-end opnieuw
+          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en bouw de frontend opnieuw
           op:
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
@@ -206,7 +207,7 @@ export const UsageDocumentationTemplate: React.FC = () => {
         </CodeBlock>
         <Heading level={5}>Docker</Heading>
         <Paragraph className={styles.description}>
-          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en herstart front-end:
+          Stop de server door op <Code className={styles.code}>CTRL + C</Code> te drukken en herstart frontend:
         </Paragraph>
         <CodeBlock className={styles.codeBlock}>
           {dedent`

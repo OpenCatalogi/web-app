@@ -183,7 +183,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
             </li>
 
             <li>
-              <Link target="_new" to={window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#"}>
+              <Link target="_new" to={process.env.ADMIN_DASHBOARD_URL ?? "#"}>
                 <Icon className="utrecht-icon--conduction-start">
                   <FontAwesomeIcon icon={faCircleUser} />
                 </Icon>

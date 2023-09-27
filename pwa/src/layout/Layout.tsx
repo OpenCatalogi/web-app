@@ -8,7 +8,6 @@ import { GatsbyProvider, IGatsbyContext, TScreenSize } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
 import { FiltersProvider, IFilters, baseFilters as _filters } from "../context/filters";
-import { ThemeProvider } from "../styling/themeProvider/ThemeProvider";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
 import { Head } from "./Head";
@@ -16,7 +15,7 @@ import { getScreenSize } from "../services/getScreenSize";
 import Favicon from "react-favicon";
 import Logo from "../assets/images/logo_OpenCatalogi.png";
 import { ToolTip } from "@conduction/components";
-import { ThemesContextProvider, IThemesContext, baseThemesContext as _themesContext } from "../context/theme";
+import { Document } from "@utrecht/component-library-react/dist/css-module";
 
 export const TOOLTIP_ID = "cb8f47c3-7151-4a46-954d-784a531b01e6";
 
@@ -28,7 +27,6 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   const [filters, setFilters] = React.useState<IFilters>(_filters);
-  const [themeContext, setThemeContext] = React.useState<IThemesContext>(_themesContext);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
   const [, setBreadcrumbs] = React.useState<any>(null);
   const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
@@ -86,19 +84,17 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
       <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
           <FiltersProvider value={[filters, setFilters]}>
-            <ThemesContextProvider value={[themeContext, setThemeContext]}>
-              <ThemeProvider>
-                <ToolTip id={TOOLTIP_ID} />
+            <Document>
+              <ToolTip id={TOOLTIP_ID} />
 
-                <Favicon url={Logo} />
+              <Favicon url={Logo} />
 
-                <HeaderTemplate layoutClassName={styles.header} />
+              <HeaderTemplate layoutClassName={styles.header} />
 
-                <div className={styles.pageContent}>{children}</div>
+              <div className={styles.pageContent}>{children}</div>
 
-                <FooterTemplate layoutClassName={styles.footer} />
-              </ThemeProvider>
-            </ThemesContextProvider>
+              <FooterTemplate layoutClassName={styles.footer} />
+            </Document>
           </FiltersProvider>
         </APIProvider>
       </GatsbyProvider>
