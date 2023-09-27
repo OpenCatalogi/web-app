@@ -11,13 +11,15 @@ export default class Search {
   }
 
   public getSearch = async (filters: IFilters): Promise<any> => {
-    const { data } = await Send(
-      this._instance,
-      "GET",
-      `/search?page=${
-        filters.currentPage
-      }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
-    );
+    let endpoint = `/search?page=${
+      filters.currentPage
+    }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
+
+    if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
+      endpoint += `&legal.repoOwner.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
+    }
+
+    const { data } = await Send(this._instance, "GET", endpoint);
 
     return data;
   };

@@ -25,6 +25,7 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const [isHomePage, setIsHomePage] = React.useState<boolean>(false);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
@@ -43,6 +44,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
     navigate(pathname);
   };
+
+  React.useEffect(() => {
+    setIsHomePage(
+      pathname === "/" ||
+        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
+    );
+  }, [pathname]);
 
   const primaryTopNavItems = [
     {
@@ -182,7 +191,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         </Container>
       </div>
 
-      {pathname === "/" && (
+      {isHomePage && (
         <Container layoutClassName={styles.headerContent}>
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
