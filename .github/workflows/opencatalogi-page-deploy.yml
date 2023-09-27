@@ -24,7 +24,7 @@ env: # Change these to your preferences any image url can also be a base encoded
 on:
   push:
     branches:
-      - feature/OP-56/deployment-workflow
+      - development
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: OpenCatalogi/web-app
-          ref: feature/OP-56/deployment-workflow
+          ref: development
 
       # With special thanxs to https://github.com/SpicyPizza/create-envfile
       - name: Make envfile
