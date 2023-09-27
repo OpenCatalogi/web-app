@@ -50,14 +50,12 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
     <CardWrapper className={styles.container}>
       <CardHeader>
         <CardHeaderTitle>
-          <div className={styles.title}>
-            <Link onClick={() => navigate(title.href)}>
-              <Icon className="utrecht-icon--conduction-start">
-                <IconArrowRight />
-              </Icon>
-              {title.label}
-            </Link>
-          </div>
+          <Link className={styles.title} onClick={() => navigate(title.href)}>
+            <Icon className={styles.icon}>
+              <IconArrowRight />
+            </Icon>
+            {title.label}
+          </Link>
         </CardHeaderTitle>
       </CardHeader>
 

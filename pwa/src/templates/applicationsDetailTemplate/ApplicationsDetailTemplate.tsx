@@ -8,18 +8,19 @@ import {
   ButtonGroup,
   DataBadge,
   Separator,
+  Link,
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import { faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCircleNodes, faHouse, faLaptopCode, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
-import { Link } from "../../components";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
+import { navigate } from "gatsby-link";
 
 interface ApplicationsDetailTemplateProps {
   applicationId: string;
@@ -35,14 +36,12 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton}>
-        <Link to="/applications">
-          <Icon className="utrecht-icon--conduction-start">
-            <IconArrowLeft />
-          </Icon>
-          {t("Back to applications")}
-        </Link>
-      </div>
+      <Link className={styles.backButton} onClick={() => navigate("/applications")}>
+        <Icon className={styles.icon}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Icon>
+        {t("Back to applications")}
+      </Link>
 
       {getApplications.isSuccess && (
         <>

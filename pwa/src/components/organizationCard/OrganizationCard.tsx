@@ -1,12 +1,11 @@
 import * as React from "react";
 import * as styles from "./OrganizationCard.module.css";
-import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import _ from "lodash";
 import { IconArrowRight } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { Link } from "../../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuilding, faGlobe, faHouseLaptop, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -51,14 +50,12 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
       <CardHeader className={styles.header}>
         <div className={styles.headerContent}>
           <CardHeaderTitle>
-            <div className={styles.titleLink}>
-              <Link to={title.href}>
-                <Icon className="utrecht-icon--conduction-start">
-                  <IconArrowRight />
-                </Icon>
-                {title.label}
-              </Link>
-            </div>
+            <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
+              <Icon className={styles.icon}>
+                <IconArrowRight />
+              </Icon>
+              {title.label}
+            </Link>
           </CardHeaderTitle>
 
           <Paragraph className={styles.description}>{description}</Paragraph>

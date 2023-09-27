@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
-import { DataBadge, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
-import { Link } from "../../components";
 import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
@@ -29,14 +28,12 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, descrip
     <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
       <CardHeader className={styles.cardHeader}>
         <CardHeaderTitle>
-          <div className={styles.titleLink}>
-            <Link to={title.href}>
-              <Icon className="utrecht-icon--conduction-start">
-                <IconArrowRight />
-              </Icon>
-              {title.label}
-            </Link>
-          </div>
+          <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
+            <Icon className={styles.icon}>
+              <IconArrowRight />
+            </Icon>
+            {title.label}
+          </Link>
         </CardHeaderTitle>
       </CardHeader>
       <Paragraph className={styles.description}>{description}</Paragraph>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
-import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,6 @@ import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
 import { IconExternalLink } from "@tabler/icons-react";
 import { PaginatedItems } from "../../components/pagination/pagination";
-import { Link } from "../../components";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -34,7 +33,7 @@ export const ApplicationsTemplate: React.FC = () => {
             voor een bepaalde{" "}
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
-                <Icon className="utrecht-icon--conduction-start">
+                <Icon className={styles.icon}>
                   <IconExternalLink />
                 </Icon>{" "}
                 bedrijfsfunctie

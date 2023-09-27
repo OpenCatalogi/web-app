@@ -27,6 +27,10 @@
   display: flex;
 }
 
+.icon {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
 .description {
   display: -webkit-box;
   -webkit-line-clamp: 2;

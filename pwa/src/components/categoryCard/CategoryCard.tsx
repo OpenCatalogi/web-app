@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
-import { Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { Link } from "../link/Link";
+import { Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
+import { navigate } from "gatsby-link";
 
 export interface CategoryCardProps {
   title: {
@@ -19,7 +19,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
     <CardWrapper className={styles.container}>
       <CardHeader>
         <CardHeaderTitle>
-          <Link className={styles.titleLink} to={title.href}>
+          <Link className={styles.titleLink} onClick={() => navigate(title.href)}>
             <Icon className={styles.icon}>{icon}</Icon>
             {title.label}
           </Link>

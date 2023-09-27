@@ -8,6 +8,7 @@ import {
   Button,
   Separator,
   BadgeCounter,
+  Link,
 } from "@utrecht/component-library-react/dist/css-module";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,6 @@ import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
-import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { TOOLTIP_ID } from "../../layout/Layout";
 
@@ -37,14 +37,12 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton}>
-        <Link to="/organizations">
-          <Icon className="utrecht-icon--conduction-start">
-            <IconArrowLeft />
-          </Icon>
-          {t("Back to organizations")}
-        </Link>
-      </div>
+      <Link className={styles.backButton} onClick={() => navigate("/organizations")}>
+        <Icon className={styles.icon}>
+          <IconArrowLeft />
+        </Icon>
+        {t("Back to organizations")}
+      </Link>
 
       {_getOrganization.isSuccess && (
         <>

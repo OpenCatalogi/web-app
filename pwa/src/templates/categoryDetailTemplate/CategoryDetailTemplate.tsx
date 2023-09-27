@@ -1,8 +1,15 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import { BadgeCounter, Heading, Icon, Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
+import {
+  BadgeCounter,
+  Heading,
+  Icon,
+  Button,
+  ButtonGroup,
+  DataBadge,
+  Link,
+} from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
-import { Link } from "../../components";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
@@ -12,8 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
 import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { DataBadge } from "@utrecht/component-library-react";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
+import { navigate } from "gatsby-link";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
@@ -39,8 +46,8 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
-        <Link to="/categories">
-          <Icon className="utrecht-icon--conduction-start">
+        <Link onClick={() => navigate("/categories")}>
+          <Icon className={styles.icon}>
             <IconArrowLeft />
           </Icon>
           {t("Back to categories")}
