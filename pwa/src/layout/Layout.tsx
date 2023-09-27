@@ -86,9 +86,13 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
           <FiltersProvider value={[filters, setFilters]}>
             <Document>
               <ToolTip id={TOOLTIP_ID} />
+
               <Favicon url={Logo} />
+
               <HeaderTemplate layoutClassName={styles.header} />
+
               <div className={styles.pageContent}>{children}</div>
+
               <FooterTemplate layoutClassName={styles.footer} />
             </Document>
           </FiltersProvider>
