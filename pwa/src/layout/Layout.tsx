@@ -91,7 +91,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
 
               <HeaderTemplate layoutClassName={styles.header} />
 
-              <>Changes test 1</>
+              <>Changes test 2</>
 
               <div className={styles.pageContent}>{children}</div>
 

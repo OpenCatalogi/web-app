@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: OpenCatalogi/web-app
-          ref: development
+          ref: feature/OP-56/deployment-workflow
 
       # With special thanxs to https://github.com/SpicyPizza/create-envfile
       - name: Make envfile
