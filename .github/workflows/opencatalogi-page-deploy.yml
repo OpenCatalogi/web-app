@@ -19,7 +19,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
   ARROW_BREADCRUMBS: "false"
 
-  GITHUB_ORGANIZATION_URL: "https://github.com/OpenCatalogi"
+  # GITHUB_ORGANIZATION_URL: ""
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
           envkey_GATSBY_ARROW_BREADCRUMBS: ${{ env.ARROW_BREADCRUMBS }}
 
-          envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
+          # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
           directory: pwa/static
           file_name: .env.production
           fail_on_empty: true

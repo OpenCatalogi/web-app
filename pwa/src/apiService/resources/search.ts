@@ -15,8 +15,8 @@ export default class Search {
       filters.currentPage
     }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
 
-    if (process.env.GITHUB_ORGANIZATION_URL) {
-      endpoint += `&legal.repoOwner.github=${process.env.GITHUB_ORGANIZATION_URL}`;
+    if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
+      endpoint += `&legal.repoOwner.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
     }
 
     const { data } = await Send(this._instance, "GET", endpoint);
