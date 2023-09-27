@@ -27,7 +27,7 @@ export const LandingTemplate: React.FC = () => {
 
       <section className={styles.section}>
         <Heading level={3} className={styles.textColor}>
-          Veelbezochte pagina's +2
+          Veelbezochte pagina's
         </Heading>
         {screenSize === "desktop" && (
           <div className={styles.cards}>
