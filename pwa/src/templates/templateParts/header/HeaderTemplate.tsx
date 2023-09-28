@@ -56,7 +56,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   const primaryTopNavItems = [
     {
       label: "Home",
-      current: pathname === "/",
+      current:
+        pathname === "/" ||
+        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
       handleClick: () => {
         navigate("/");
       },
@@ -207,54 +210,56 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           </section>
         </Container>
       )}
-      {pathname !== "/" && (
-        <Container layoutClassName={styles.breadcrumbsContainer}>
-          {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
+      {(process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+        pathname !== `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
+        (pathname !== "/" && (
+          <Container layoutClassName={styles.breadcrumbsContainer}>
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
+                      <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                        {crumb.crumbLabel}
+                      </BreadcrumbLink>
+                    );
+                  }
                   return (
-                    <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
                       {crumb.crumbLabel}
                     </BreadcrumbLink>
                   );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-          {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <React.Fragment key={idx}>
-                      <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
-                        {crumb.crumbLabel}
-                      </BreadcrumbLink>
+                })}
+              </BreadcrumbNav>
+            )}
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                          {crumb.crumbLabel}
+                        </BreadcrumbLink>
 
-                      <BreadcrumbSeparator>
-                        <Icon>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </Icon>
-                      </BreadcrumbSeparator>
-                    </React.Fragment>
+                        <BreadcrumbSeparator>
+                          <Icon>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </Icon>
+                        </BreadcrumbSeparator>
+                      </React.Fragment>
+                    );
+                  }
+                  return (
+                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbLink>
                   );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-        </Container>
-      )}
+                })}
+              </BreadcrumbNav>
+            )}
+          </Container>
+        ))}
     </header>
   );
 };

@@ -177,6 +177,8 @@
   /* @conduction: Breadcumbs */
   --utrecht-breadcrumb-separator-icon-color: var(--rotterdam-color-green);
   --utrecht-breadcrumb-separator-icon-size: 16px;
+  --utrecht-breadcrumb-link-color: var(--rotterdam-color-green);
+  --utrecht-breadcrumb-link-disabled-color: var(--web-app-color-text-grey);
 
   /* @gemeente-utrecht: Heading4 */
   --utrecht-heading-4-margin-block-end: var(--web-app-size-lg);

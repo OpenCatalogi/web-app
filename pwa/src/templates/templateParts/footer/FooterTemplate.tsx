@@ -2,11 +2,11 @@ import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
 import { Container } from "@conduction/components";
 import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
+import LogoConductionWhite from "../../../assets/svgs/LogoConductionWhite.svg";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import LogoRotterdamWhite from "../../../assets/svgs/LogoRotterdamWhite.svg";
 import { navigate } from "gatsby";
-import { Icon, Link } from "@utrecht/component-library-react/dist/css-module";
-import { Heading4, Icon, PageFooter } from "@utrecht/component-library-react/dist/css-module";
+import { Heading4, Icon, Link, PageFooter } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight, IconExternalLink, IconPhone, IconMail } from "@tabler/icons-react";
 import clsx from "clsx";
@@ -27,6 +27,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const { t } = useTranslation();
   const [, setFilters] = React.useContext(FiltersContext);
   const [rotterdamLogoSource, setRotterdamLogoSource] = React.useState<string>(LogoRotterdam);
+  const [conductionLogoSource, setConductionLogoSource] = React.useState<string>(LogoConduction);
   const footerRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
@@ -34,15 +35,17 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
     if (colorIsLight(getComputedStyle(footerRef.current).getPropertyValue("background-color"))) {
       setRotterdamLogoSource(LogoRotterdam);
+      setConductionLogoSource(LogoConduction);
 
       return;
     }
 
     setRotterdamLogoSource(LogoRotterdamWhite);
+    setConductionLogoSource(LogoConductionWhite);
   }, [footerRef.current]);
 
   return (
-    <PageFooter id="footer" className={clsx(layoutClassName && layoutClassName)} ref={footerRef}>
+    <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)} ref={footerRef}>
       <Container layoutClassName={styles.footerContainer}>
         <div className={styles.navigation}>
           <ul className={styles.list}>
@@ -168,7 +171,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <li>
               <Link target="_new" href="https://forumstandaardisatie.nl/">
-                <Icon className={clsx(styles.icon, styles.forumStandaardisatieIcon)}>
+                <Icon className={styles.forumStandaardisatieIcon}>
                   <ForumStandaardisatieLogo />
                 </Icon>
                 Forum standaardisatie
@@ -260,7 +263,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
             <div className={styles.logosContainer}>
               <img onClick={() => window.open("https://www.rotterdam.nl/")} src={rotterdamLogoSource} />
-              <img onClick={() => window.open("https://www.conduction.nl/")} src={LogoConduction} />
+              <img onClick={() => window.open("https://www.conduction.nl/")} src={conductionLogoSource} />
             </div>
           </ul>
         </div>

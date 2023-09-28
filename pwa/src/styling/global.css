@@ -9,6 +9,11 @@ body {
   margin-inline-end: var(--web-app-size-2xs);
 }
 
+.utrecht-link {
+  display: inline-flex;
+  align-items: flex-start !important;
+}
+
 :root {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);
@@ -60,4 +65,5 @@ body {
   --web-app-layer-color-unknown: #586265;
 
   --web-app-footer-logo-container-height: 50px;
+  --web-app-container-width-lg: 1440px;
 }
