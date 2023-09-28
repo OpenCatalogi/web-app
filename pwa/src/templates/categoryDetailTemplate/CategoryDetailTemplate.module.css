@@ -49,3 +49,7 @@
 .categoryTitle {
   display: flex;
 }
+
+.backButton:hover {
+  cursor: pointer;
+}

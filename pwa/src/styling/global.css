@@ -5,6 +5,10 @@ body {
   font-family: var(--web-app-primary-font-family);
 }
 
+.utrecht-link > .utrecht-icon {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
 :root {
   /* Sizes */
   --web-app-size-4xs: var(--skeleton-size-4xs);

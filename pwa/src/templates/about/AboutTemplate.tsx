@@ -12,11 +12,11 @@ import {
   Icon,
   Button,
   Paragraph,
+  Link,
 } from "@utrecht/component-library-react/dist/css-module";
 import layersVisual from "./../../assets/images/5-lagen-visualisatie.png";
 import { TEMPORARY_STANDARDS } from "../../data/standards";
 import { useTranslation } from "react-i18next";
-import { Link } from "../../components";
 import { IconExternalLink } from "@tabler/icons-react";
 import { SubmitUrlTemplate } from "../templateParts/submitUrl/SubmitUrlTemplate";
 

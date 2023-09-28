@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
-import { Button } from "@utrecht/component-library-react/dist/css-module";
+import { Button, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
@@ -12,7 +12,8 @@ import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
 import { GatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
-import { ButtonLink, Link } from "../../../../components";
+import { ButtonLink } from "../../../../components";
+import { navigate } from "gatsby-link";
 
 export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
   const { t } = useTranslation();
@@ -49,8 +50,8 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                   .map((_category, idx) => (
                     <div key={idx}>
                       <div>
-                        <Link to={`/categories/${_category.id}`}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           <span>{_category.title}</span>
@@ -67,8 +68,8 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                     .map((_category, idx) => (
                       <div key={idx}>
                         <div>
-                          <Link to={`/categories/${_category.id}`}>
-                            <Icon className="utrecht-icon--conduction-start">
+                          <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                            <Icon>
                               <IconArrowRight />
                             </Icon>
                             <span>{_category.title}</span>
@@ -86,8 +87,8 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                           .map((_category, idx) => (
                             <div key={idx}>
                               <div>
-                                <Link to={`/categories/${_category.id}`}>
-                                  <Icon className="utrecht-icon--conduction-start">
+                                <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                                  <Icon>
                                     <IconArrowRight />
                                   </Icon>
                                   <span>{_category.title}</span>

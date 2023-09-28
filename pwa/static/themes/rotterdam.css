@@ -202,7 +202,11 @@
 
 .utrecht-link {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: flex-start !important;
+}
+
+.utrecht-badge-data > svg {
+  margin-inline-end: var(--web-app-size-2xs);
 }
 
 /******* END OF THEME TEMPLATE ********/
