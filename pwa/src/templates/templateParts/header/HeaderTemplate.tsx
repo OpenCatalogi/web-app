@@ -18,6 +18,7 @@ import { faChevronRight, faCircleUser } from "@fortawesome/free-solid-svg-icons"
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
+import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -179,13 +180,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+            <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
           </div>
-
+          <>{console.log(process.env.GATSBY_HEADER_LOGO_URL)}</>
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+                <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
               </div>
             }
             layoutClassName={styles.textColor}
@@ -219,7 +220,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                 {translatedCrumbs.map((crumb: any, idx: number) => {
                   if (crumbs.length !== idx + 1) {
                     return (
-                      <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                      <BreadcrumbLink
+                        className={styles.breadcrumbLink}
+                        key={idx}
+                        onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
+                        href=""
+                      >
                         {crumb.crumbLabel}
                       </BreadcrumbLink>
                     );
@@ -238,7 +244,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                   if (crumbs.length !== idx + 1) {
                     return (
                       <React.Fragment key={idx}>
-                        <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+                        <BreadcrumbLink
+                          className={styles.breadcrumbLink}
+                          onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
+                          href=""
+                        >
                           {crumb.crumbLabel}
                         </BreadcrumbLink>
 

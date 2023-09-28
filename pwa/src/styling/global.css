@@ -66,4 +66,22 @@ body {
 
   --web-app-footer-logo-container-height: 50px;
   --web-app-container-width-lg: 1440px;
+  --web-app-color-background-light: #eff4f6;
+  --web-app-color-background-page-top-bar: #ffffff;
+  --web-app-header-logo-container-height: 44px;
+  --web-app-header-logo-container-border-radius: 0;
+  --web-app-header-logo-container-background-color: unset;
+  --web-app-header-logo-container-padding: unset;
+  --utrecht-icon-inset-block-start: 0.1em;
+  --utrecht-icon-size: 1em !important;
+  --web-app-color-grey: #f2f2f2;
+  --web-app-component-detail-logo-height: 225px;
+  --web-app-component-detail-logo-width: 300px;
+  --web-app-organization-detail-logo-height: 300px;
+  --web-app-organization-detail-logo-width: 350px;
+  --web-app-component-image-max-width: 300px;
+  --web-app-component-rating-indicator-height: 160px;
+  --web-app-organization-card-logo-height: 100px;
+  --web-app-organization-card-logo-width: 100px;
+  --web-app-color-white: #ffffff;
 }
