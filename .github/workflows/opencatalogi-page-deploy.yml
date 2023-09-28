@@ -18,6 +18,7 @@ env: # Change these to your preferences any image url can also be a base encoded
 
   NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
   ARROW_BREADCRUMBS: "false"
+  HEADER_LOGO_URL: "https://www.rotterdam.nl/images/logo-base.svg"
 
   # GITHUB_ORGANIZATION_URL: ""
 
@@ -36,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: OpenCatalogi/web-app
-          ref: main
+          ref: development
 
       # With special thanxs to https://github.com/SpicyPizza/create-envfile
       - name: Make envfile
@@ -53,6 +54,7 @@ jobs:
           envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ env.ADMIN_DASHBOARD_URL }}
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
           envkey_GATSBY_ARROW_BREADCRUMBS: ${{ env.ARROW_BREADCRUMBS }}
+          envkey_GATSBY_HEADER_LOGO_URL: ${{ env.HEADER_LOGO_URL }}
 
           # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
           directory: pwa/static
