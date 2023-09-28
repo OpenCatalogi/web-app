@@ -86,6 +86,10 @@
   padding-block-end: var(--web-app-size-sm);
 }
 
+.breadcrumbLink:hover {
+  --utrecht-link-hover-color: var(--utrecht-breadcrumb-link-hover-color) !important;
+}
+
 .section > *:not(:last-child) {
   margin-block-end: var(--web-app-size-xl);
 }
