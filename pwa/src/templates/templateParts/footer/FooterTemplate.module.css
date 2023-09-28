@@ -1,7 +1,14 @@
 .footer {
-  background-color: var(--web-app-color-background-footer);
-  padding-block-start: var(--web-app-size-xl);
-  padding-block-end: var(--web-app-size-xl);
+  --utrecht-unordered-list-item-padding-inline-start: 0;
+  --utrecht-unordered-list-padding-inline-start: 0;
+  --utrecht-unordered-list-item-margin-block-end: 0;
+  --utrecht-unordered-list-item-margin-block-start: 0;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: var(--utrecht-page-footer-background-position);
+  min-height: var(--utrecht-page-footer-min-height);
 }
 
 .footerContainer > *:not(:last-child) {
@@ -14,15 +21,16 @@
 }
 
 .heading {
-  font-weight: bold;
-  color: var(--web-app-color-footer-text) !important;
-  margin-block-end: var(--web-app-size-lg);
-  font-size: var(--web-app-font-size-lg);
+  margin-block-end: var(--web-app-size-lg) !important;
 }
 
 .list {
   padding: 0;
   list-style-type: none;
+}
+
+.list > * {
+  color: var(--utrecht-page-footer-color);
 }
 
 .list > li:hover {
@@ -34,19 +42,16 @@
 }
 
 .list > li > * {
-  --utrecht-link-color: var(--web-app-color-footer-text);
   width: fit-content;
   display: flex;
   justify-content: flex-start;
 }
 
 .logosContainer {
-  display: flex;
   width: fit-content;
-  height: var(--web-app-footer-logo-container-height);
   border-radius: var(--web-app-footer-logo-container-border-radius);
+  height: var(--web-app-footer-logo-container-height);
   padding: var(--web-app-footer-logo-container-padding);
-  background-color: var(--web-app-footer-logo-container-background-color);
 }
 
 .logosContainer > * {
@@ -58,21 +63,11 @@
 }
 
 .logosContainer > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-lg);
+  margin-block-end: var(--web-app-size-2xs);
 }
 
-/* .organizationLogo {
-  background-size: contain;
-  background-repeat: no-repeat;
-  padding: var(--web-app-footer-organization-logo-padding);
-  width: var(--web-app-footer-organization-logo-width);
-  background-image: var(--web-app-footer-organization-logo-src);
-  background-color: var(--web-app-footer-organization-logo-background-color);
-  background-origin: content-box;
-} */
-
 .forumStandaardisatieIcon path {
-  fill: var(--web-app-footer-forum-standaardisatie-icon-path-fill);
+  fill: var(--utrecht-page-footer-background-color, inherit);
 }
 
 @media only screen and (min-width: 576px) {

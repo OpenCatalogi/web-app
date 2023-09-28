@@ -129,7 +129,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                   >
                     {component._self.schema.ref.includes("component.schema.json") ? (
                       <>
-                        <span>
+                        <span className={styles.icon}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </span>
                         {_.upperFirst(component.developmentStatus ?? "Onbekend")}
