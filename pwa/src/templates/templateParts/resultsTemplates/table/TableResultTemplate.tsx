@@ -20,7 +20,6 @@ import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
-import { GatsbyContext } from "../../../../context/gatsby";
 import { getStatusColor } from "../../../../services/getStatusColor";
 
 interface TableResultTemplateProps {
@@ -30,10 +29,9 @@ interface TableResultTemplateProps {
 
 export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ components, hideTableHead }) => {
   const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
+    <TableWrapper>
       <Table>
         {!hideTableHead && (
           <TableHeader>

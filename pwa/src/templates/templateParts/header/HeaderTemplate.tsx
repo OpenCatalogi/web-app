@@ -182,7 +182,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
             <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
           </div>
-          <>{console.log(process.env.GATSBY_HEADER_LOGO_URL)}</>
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
@@ -211,65 +210,66 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           </section>
         </Container>
       )}
-      {(pathname !== "/" ||
-        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
-          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`)) && (
-        <Container layoutClassName={styles.breadcrumbsContainer}>
-          {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <BreadcrumbLink
-                      className={styles.breadcrumbLink}
-                      key={idx}
-                      onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
-                      href=""
-                    >
-                      {crumb.crumbLabel}
-                    </BreadcrumbLink>
-                  );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-          {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <React.Fragment key={idx}>
+      {pathname !== "/" &&
+        ((process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
+          process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "false") && (
+          <Container layoutClassName={styles.breadcrumbsContainer}>
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
                       <BreadcrumbLink
                         className={styles.breadcrumbLink}
+                        key={idx}
                         onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
                         href=""
                       >
                         {crumb.crumbLabel}
                       </BreadcrumbLink>
-
-                      <BreadcrumbSeparator>
-                        <Icon>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </Icon>
-                      </BreadcrumbSeparator>
-                    </React.Fragment>
+                    );
+                  }
+                  return (
+                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbLink>
                   );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-        </Container>
-      )}
+                })}
+              </BreadcrumbNav>
+            )}
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <BreadcrumbLink
+                          className={styles.breadcrumbLink}
+                          onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
+                          href=""
+                        >
+                          {crumb.crumbLabel}
+                        </BreadcrumbLink>
+
+                        <BreadcrumbSeparator>
+                          <Icon>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </Icon>
+                        </BreadcrumbSeparator>
+                      </React.Fragment>
+                    );
+                  }
+                  return (
+                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbLink>
+                  );
+                })}
+              </BreadcrumbNav>
+            )}
+          </Container>
+        )}
     </header>
   );
 };
