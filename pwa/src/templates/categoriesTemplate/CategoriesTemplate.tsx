@@ -4,7 +4,7 @@ import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react
 import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
-import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
+import { CategoriesCardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import { navigate } from "gatsby-link";
 
@@ -55,7 +55,7 @@ export const CategoriesTemplate: React.FC = () => {
         </div>
       </div>
 
-      <CategoriesardsAccordionTemplate {...{ categories }} />
+      <CategoriesCardsAccordionTemplate {...{ categories }} />
     </Container>
   );
 };
