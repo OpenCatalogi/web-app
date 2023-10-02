@@ -212,7 +212,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       )}
       {pathname !== "/" &&
         ((process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
-          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
+          pathname !== `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
           process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "false") && (
           <Container layoutClassName={styles.breadcrumbsContainer}>
             {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
