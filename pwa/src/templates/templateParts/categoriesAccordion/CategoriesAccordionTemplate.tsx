@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as styles from "./CategoriesAccordionTemplate.module.css";
 import Collapsible from "react-collapsible";
 
 interface CategoriesAccordionTemplateProps {
@@ -16,17 +15,15 @@ const CategoriesAccordionTemplate: React.FC<CategoriesAccordionTemplateProps> = 
   header,
 }) => {
   return (
-    <div className={!open ? styles.containerInactive : ""}>
-      <Collapsible
-        trigger={header}
-        {...{ open }}
-        transitionTime={200}
-        onOpening={() => setOpen(true)}
-        onClosing={() => setOpen(false)}
-      >
-        {children}
-      </Collapsible>
-    </div>
+    <Collapsible
+      trigger={header}
+      {...{ open }}
+      transitionTime={200}
+      onOpening={() => setOpen(true)}
+      onClosing={() => setOpen(false)}
+    >
+      {children}
+    </Collapsible>
   );
 };
 
@@ -37,4 +34,5 @@ const CategoriesAccordionController = () => {
 };
 
 const CategoriesAccordion = { accordion: CategoriesAccordionTemplate, controller: CategoriesAccordionController };
+
 export { CategoriesAccordion };

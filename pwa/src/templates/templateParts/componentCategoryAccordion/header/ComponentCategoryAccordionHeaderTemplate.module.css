@@ -7,14 +7,6 @@
   cursor: pointer;
 }
 
-.container:not(.active):not(.disabled) {
-  opacity: var(--web-app-layer-accordion-inactive-opacity);
-}
-
-.disabled {
-  opacity: var(--web-app-layer-accordion-disabled-opacity);
-}
-
 .disabled:hover {
   cursor: not-allowed;
 }
