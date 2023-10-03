@@ -60,6 +60,9 @@ body {
   --web-app-color-black: #000000;
   --web-app-color-white: #ffffff;
 
+  --web-app-disabled-opacity: 0.15;
+  --web-app-inactive-opacity: 0.65;
+
   --web-app-layer-color-interaction: #1a75ff;
   --web-app-layer-color-process: #dd3c49;
   --web-app-layer-color-integration: #efc025;

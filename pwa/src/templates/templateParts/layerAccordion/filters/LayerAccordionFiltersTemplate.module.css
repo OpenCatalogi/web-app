@@ -23,7 +23,7 @@
 }
 
 .container .disabled {
-  opacity: var(--web-app-layer-accordion-disabled-opacity);
+  opacity: var(--web-app-disabled-opacity);
 }
 
 .container > *::before {
@@ -33,10 +33,6 @@
   height: var(--web-app-size-md);
   background-color: var(--web-app-color-background-light);
   margin-inline-end: var(--web-app-size-2xs);
-}
-
-:not(.disabled).filter:not(.active) {
-  opacity: var(--web-app-layer-accordion-inactive-opacity);
 }
 
 .container > .interaction.active::before {

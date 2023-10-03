@@ -133,9 +133,6 @@
   --web-app-badge-counter-font-size: 12px;
   --web-app-badge-counter-max-number-font-size: 10px;
 
-  --web-app-layer-accordion-inactive-opacity: 0.65;
-  --web-app-layer-accordion-disabled-opacity: 0.15;
-
   --web-app-component-image-max-width: 300px;
   --web-app-component-rating-indicator-height: 160px;
 
