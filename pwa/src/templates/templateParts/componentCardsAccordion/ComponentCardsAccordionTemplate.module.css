@@ -11,16 +11,10 @@
 .layerFilter {
   --utrecht-color-sample-block-size: var(--utrecht-icon-size);
   --utrecht-color-sample-inline-size: var(--utrecht-icon-size);
-  --conduction-color-sample-button-pressed-opacity: 1;
-  --conduction-color-sample-button-opacity: 0.65;
-}
-
-.layerFilter[aria-pressed="true"] {
-  opacity: var(--conduction-color-sample-button-pressed-opacity);
 }
 
 .layerFilter[aria-pressed="false"] {
-  opacity: var(--conduction-color-sample-button-opacity);
+  opacity: var(--web-app-inactive-opacity);
 }
 
 .ComponentsGrid {
