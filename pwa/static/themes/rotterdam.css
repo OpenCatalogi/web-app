@@ -119,23 +119,6 @@
 
   --web-app-container-width-lg: 1440px;
 
-  /* @conduction: Secondary Top Navigation */
-  --web-app-secondary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-secondary-top-nav-font-size: var(--web-app-font-size-md);
-  --web-app-secondary-top-nav-color: var(--web-app-color-top-nav-grey);
-  --web-app-secondary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
-  --web-app-secondary-top-nav-background-color-active: rgba(0, 0, 0, 0.1);
-  --web-app-secondary-top-nav-font-weight: var(--web-app-font-weight-light);
-
-  /* @condcution: Primary Top Navigation */
-  --web-app-primary-top-nav-item-padding: var(--web-app-size-md);
-  --web-app-primary-top-nav-color: var(--web-app-color-top-nav-grey);
-  --web-app-primary-top-nav-background-color: var(--web-app-color-white);
-  --web-app-primary-top-nav-background-color-hover: rgba(0, 0, 0, 0.1);
-  --web-app-primary-top-nav-background-color-active: unset;
-  --web-app-primary-top-nav-box-shadow-active: inset 0 -4px var(--rotterdam-color-green);
-  --web-app-primary-top-nav-dropdown-border-radius: var(--web-app-border-radius-md);
-
   /* 
   * Utrecht component overrides
   */
@@ -175,31 +158,13 @@
   --utrecht-separator-margin-block-start: 0px;
 
   /* @conduction: Breadcumbs */
-  --utrecht-breadcrumb-separator-icon-color: var(--rotterdam-color-green);
-  --utrecht-breadcrumb-separator-icon-size: 16px;
-  --utrecht-breadcrumb-link-color: var(--rotterdam-color-green);
-  --utrecht-breadcrumb-link-disabled-color: var(--web-app-color-text-grey);
+  --utrecht-breadcrumb-nav-separator-icon-color: var(--rotterdam-color-green);
+  --utrecht-breadcrumb-nav-separator-icon-size: 16px;
+  --utrecht-breadcrumb-nav-link-color: var(--rotterdam-color-green);
+  --utrecht-breadcrumb-nav-link-disabled-color: var(--web-app-color-text-grey);
 
   /* @gemeente-utrecht: Heading4 */
   --utrecht-heading-4-margin-block-end: var(--web-app-size-lg);
-
-  /* ComponentOverwrites */
-  --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding) !important;
-  --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size) !important;
-  --conduction-secondary-top-nav-color: var(--web-app-color-text-grey) !important;
-  --conduction-secondary-top-nav-background-color-hover: var(--web-app-secondary-top-nav-background-color-hover) !important;
-  --conduction-secondary-top-nav-font-weight: var(--web-app-secondary-top-nav-font-weight) !important;
-  --conduction-secondary-top-nav-background-color-active: var(--web-app-secondary-top-nav-background-color-active) !important;
-  --conduction-secondary-top-nav-item-icon-margin: var(--web-app-size-2xs) !important;
-
-  --conduction-primary-top-nav-item-padding: var(--web-app-primary-top-nav-item-padding) !important;
-  --conduction-primary-top-nav-color: var(--web-app-color-text-grey) !important;
-  --conduction-primary-top-nav-background-color: var(--web-app-primary-top-nav-background-color) !important;
-  --conduction-primary-top-nav-background-color-hover: var(--web-app-primary-top-nav-background-color-hover) !important;
-  --conduction-primary-top-nav-dropdown-border-radius: var(--web-app-primary-top-nav-dropdown-border-radius) !important;
-  --conduction-primary-top-nav-background-color-active: var(--web-app-primary-top-nav-background-color-active) !important;
-  --conduction-primary-top-nav-box-shadow-active: var(--web-app-primary-top-nav-box-shadow-active) !important;
-  --conduction-primary-top-nav-item-icon-margin: var(--web-app-size-2xs) !important;
 }
 
 .utrecht-link {

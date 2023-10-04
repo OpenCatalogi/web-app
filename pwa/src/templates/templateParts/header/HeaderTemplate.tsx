@@ -4,13 +4,15 @@ import {
   Paragraph,
   Heading,
   BreadcrumbNav,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
+  BreadcrumbNavLink,
+  BreadcrumbNavSeparator,
   Icon,
 } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
+import { Container } from "@conduction/components";
+import { SecondaryTopNav } from "@conduction/components";
+import { PrimaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +21,7 @@ import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
+import { PageHeader } from "@utrecht/component-library-react";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -86,6 +89,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         navigate("/components");
       },
       subItems: [
+        {
+          label: t("Components"),
+          current: pathname.includes("/components"),
+          handleClick: () => {
+            navigate("/components");
+          },
+        },
         {
           label: t("Processes"),
           current:
@@ -163,6 +173,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   React.useEffect(() => {
     if (screenSize === "desktop") {
+      primaryTopNavItems[3].subItems?.splice(0, 1);
+
       setTopNavItems(primaryTopNavItems);
       return;
     }
@@ -171,7 +183,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   }, [screenSize, pathname, crumbs]);
 
   return (
-    <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
+    <PageHeader className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <SecondaryTopNav items={secondaryTopNavItems} />
@@ -220,20 +232,20 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                 {translatedCrumbs.map((crumb: any, idx: number) => {
                   if (crumbs.length !== idx + 1) {
                     return (
-                      <BreadcrumbLink
-                        className={styles.breadcrumbLink}
+                      <BreadcrumbNavLink
+                        className={styles.breadcrumbNavLink}
                         key={idx}
-                        onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
+                        onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
                         href=""
                       >
                         {crumb.crumbLabel}
-                      </BreadcrumbLink>
+                      </BreadcrumbNavLink>
                     );
                   }
                   return (
-                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
                       {crumb.crumbLabel}
-                    </BreadcrumbLink>
+                    </BreadcrumbNavLink>
                   );
                 })}
               </BreadcrumbNav>
@@ -244,32 +256,32 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                   if (crumbs.length !== idx + 1) {
                     return (
                       <React.Fragment key={idx}>
-                        <BreadcrumbLink
-                          className={styles.breadcrumbLink}
-                          onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)}
+                        <BreadcrumbNavLink
+                          className={styles.breadcrumbNavLink}
+                          onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
                           href=""
                         >
                           {crumb.crumbLabel}
-                        </BreadcrumbLink>
+                        </BreadcrumbNavLink>
 
-                        <BreadcrumbSeparator>
+                        <BreadcrumbNavSeparator>
                           <Icon>
                             <FontAwesomeIcon icon={faChevronRight} />
                           </Icon>
-                        </BreadcrumbSeparator>
+                        </BreadcrumbNavSeparator>
                       </React.Fragment>
                     );
                   }
                   return (
-                    <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
                       {crumb.crumbLabel}
-                    </BreadcrumbLink>
+                    </BreadcrumbNavLink>
                   );
                 })}
               </BreadcrumbNav>
             )}
           </Container>
         )}
-    </header>
+    </PageHeader>
   );
 };

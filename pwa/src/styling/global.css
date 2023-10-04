@@ -64,6 +64,12 @@ body {
   --web-app-layer-color-data: #7a51c8;
   --web-app-layer-color-unknown: #586265;
 
+  --web-app-layer-category-color-interaction: #cfe2ff;
+  --web-app-layer-category-color-process: #f8d7da;
+  --web-app-layer-category-color-integration: #fff3cd;
+  --web-app-layer-category-color-services: #d1e7dd;
+  --web-app-layer-category-color-data: #e2d9f3;
+
   --web-app-footer-logo-container-height: 50px;
   --web-app-container-width-lg: 1440px;
   --web-app-color-background-light: #eff4f6;

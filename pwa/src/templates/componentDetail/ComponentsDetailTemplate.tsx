@@ -88,7 +88,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   return (
     <Container layoutClassName={styles.container}>
       <Link className={styles.backButton} onClick={() => navigate("/components")}>
-        <Icon >
+        <Icon>
           <IconArrowLeft />
         </Icon>
         {t("Back to components")}
@@ -199,7 +199,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 />
               </div>
               <Button>
-                <Icon >
+                <Icon>
                   <IconExternalLink />
                 </Icon>{" "}
                 Toevoegen aan catalogus
@@ -210,7 +210,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   appearance="secondary-action-button"
                   onClick={() => open(_getComponent.data.embedded?.url?.url)}
                 >
-                  <Icon >
+                  <Icon>
                     <GitHubLogo />
                   </Icon>{" "}
                   {t("View Repository")}
@@ -256,7 +256,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       />
                       <span className={styles.link}>
                         <Link onClick={show}>
-                          <Icon >
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           Rating
@@ -350,7 +350,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>Gemeente Rotterdam</TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
@@ -358,7 +358,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           010 - 123 456 7
@@ -367,7 +367,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                       <TableCell>
                         <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon >
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -379,7 +379,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>Conduction</TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
@@ -387,7 +387,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           020 - 123 456 7
@@ -396,7 +396,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                       <TableCell>
                         <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon >
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -408,7 +408,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <TableCell>Gemeente Utrecht</TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
@@ -416,7 +416,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
                       <TableCell>
                         <Link>
-                          <Icon >
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           030 - 123 456 7
@@ -425,7 +425,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                       <TableCell>
                         <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon >
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -504,7 +504,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             target="_new"
                             href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
                           >
-                            <Icon >
+                            <Icon>
                               <IconExternalLink />
                             </Icon>
                             {product},{" "}

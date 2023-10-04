@@ -4,13 +4,16 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build --prefix-paths",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "serve": "gatsby serve",
+    "serve-page": "gatsby serve --prefix-paths",
     "clean": "gatsby clean",
     "lint": "npm-run-all lint:** ",
     "lint:eslint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
@@ -22,8 +25,8 @@
     "prepare": "cd .. && husky install"
   },
   "dependencies": {
-    "@conduction/components": "2.2.10",
-    "@conduction/theme": "1.0.41",
+    "@conduction/components": "2.2.11",
+    "@conduction/theme": "1.0.43",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -70,7 +73,7 @@
     "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "@utrecht/component-library-react": "1.0.0-alpha.374",
+    "@utrecht/component-library-react": "1.0.0-alpha.394",
     "@utrecht/design-tokens": "1.0.0-alpha.503",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
