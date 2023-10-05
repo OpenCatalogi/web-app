@@ -53,7 +53,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
       <ButtonGroup>
         <Button
           appearance="subtle-button"
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           disabled={interaction.length === 0}
           onClick={() => {
             setOpenInteraction(!openInteraction);
@@ -70,7 +70,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           {t("Interaction")}
         </Button>
         <Button
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           appearance="subtle-button"
           disabled={process.length === 0}
           onClick={() => {
@@ -86,7 +86,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           {t("Process")}
         </Button>
         <Button
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           appearance="subtle-button"
           disabled={integration.length === 0}
           onClick={() => {
@@ -104,7 +104,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           {t("Integration")}
         </Button>
         <Button
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           appearance="subtle-button"
           disabled={services.length === 0}
           onClick={() => {
@@ -122,7 +122,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           {t("Service")}
         </Button>
         <Button
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           appearance="subtle-button"
           disabled={data.length === 0}
           onClick={() => {
@@ -136,7 +136,7 @@ export const ComponentCardsAccordionTemplate: React.FC<ComponentCardsAccordionPr
           {t("Data")}
         </Button>
         <Button
-          className={clsx(styles.LayerFilter)}
+          className={clsx(styles.layerFilter)}
           appearance="subtle-button"
           disabled={unknown.length === 0}
           onClick={() => {

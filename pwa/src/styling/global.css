@@ -4,3 +4,95 @@ body {
   background-color: var(--web-app-color-body-background);
   font-family: var(--web-app-primary-font-family);
 }
+
+.utrecht-link > .utrecht-icon {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.utrecht-link {
+  display: inline-flex;
+  align-items: flex-start !important;
+}
+
+:root {
+  /* Sizes */
+  --web-app-size-4xs: var(--skeleton-size-4xs);
+  --web-app-size-3xs: var(--skeleton-size-3xs);
+  --web-app-size-2xs: var(--skeleton-size-2xs);
+  --web-app-size-xs: var(--skeleton-size-xs);
+  --web-app-size-sm: var(--skeleton-size-sm);
+  --web-app-size-md: var(--skeleton-size-md);
+  --web-app-size-lg: var(--skeleton-size-lg);
+  --web-app-size-xl: var(--skeleton-size-xl);
+  --web-app-size-2xl: var(--skeleton-size-2xl);
+  --web-app-size-3xl: var(--skeleton-size-3xl);
+  --web-app-size-4xl: var(--skeleton-size-4xl);
+
+  /* Font sizes */
+  --web-app-font-size-4xs: var(--skeleton-font-size-4xs);
+  --web-app-font-size-3xs: var(--skeleton-font-size-3xs);
+  --web-app-font-size-2xs: var(--skeleton-font-size-2xs);
+  --web-app-font-size-xs: var(--skeleton-font-size-xs);
+  --web-app-font-size-sm: var(--skeleton-font-size-sm);
+  --web-app-font-size-md: var(--skeleton-font-size-md);
+  --web-app-font-size-lg: var(--skeleton-font-size-lg);
+  --web-app-font-size-xl: var(--skeleton-font-size-xl);
+  --web-app-font-size-2xl: var(--skeleton-font-size-2xl);
+  --web-app-font-size-3xl: var(--skeleton-font-size-3xl);
+  --web-app-font-size-4xl: var(--skeleton-font-size-4xl);
+
+  /* Line heights */
+  --web-app-line-height-xs: var(--skeleton-line-height-xs);
+  --web-app-line-height-sm: var(--skeleton-line-height-sm);
+  --web-app-line-height-md: var(--skeleton-line-height-md);
+  --web-app-line-height-lg: var(--skeleton-line-height-lg);
+
+  /* Font weights */
+  --web-app-font-weight-light: var(--skeleton-font-weight-light);
+  --web-app-font-weight-normal: var(--skeleton-font-weight-normal);
+  --web-app-font-weight-bold: var(--skeleton-font-weight-bold);
+
+  /* Border radiuses */
+  --web-app-border-radius-sm: 0;
+  --web-app-border-radius-md: 0;
+  --web-app-border-radius-lg: 0;
+
+  --web-app-color-black: #000000;
+  --web-app-color-white: #ffffff;
+
+  --web-app-disabled-opacity: 0.15;
+  --web-app-inactive-opacity: 0.65;
+
+  --web-app-layer-color-interaction: #1a75ff;
+  --web-app-layer-color-process: #dd3c49;
+  --web-app-layer-color-integration: #efc025;
+  --web-app-layer-color-services: #69b090;
+  --web-app-layer-color-data: #7a51c8;
+  --web-app-layer-color-unknown: #586265;
+
+  --web-app-layer-category-color-interaction: #cfe2ff;
+  --web-app-layer-category-color-process: #f8d7da;
+  --web-app-layer-category-color-integration: #fff3cd;
+  --web-app-layer-category-color-services: #d1e7dd;
+  --web-app-layer-category-color-data: #e2d9f3;
+
+  --web-app-footer-logo-container-height: 50px;
+  --web-app-container-width-lg: 1440px;
+  --web-app-color-background-light: #eff4f6;
+  --web-app-color-background-page-top-bar: #ffffff;
+  --web-app-header-logo-container-height: 44px;
+  --web-app-header-logo-container-border-radius: 0;
+  --web-app-header-logo-container-background-color: unset;
+  --web-app-header-logo-container-padding: unset;
+  --utrecht-icon-inset-block-start: 0.1em;
+  --utrecht-icon-size: 1em !important;
+  --web-app-color-grey: #f2f2f2;
+  --web-app-component-detail-logo-height: 225px;
+  --web-app-component-detail-logo-width: 300px;
+  --web-app-organization-detail-logo-height: 300px;
+  --web-app-organization-detail-logo-width: 350px;
+  --web-app-component-image-max-width: 300px;
+  --web-app-component-rating-indicator-height: 160px;
+  --web-app-organization-card-logo-height: 100px;
+  --web-app-organization-card-logo-width: 100px;
+}

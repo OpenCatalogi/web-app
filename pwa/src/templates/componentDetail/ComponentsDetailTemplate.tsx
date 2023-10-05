@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading, Icon, Button, DataBadge, BadgeCounter } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Icon, Button, DataBadge, BadgeCounter, Link } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -42,7 +42,6 @@ import { ComponentCardsAccordionTemplate } from "../templateParts/componentCards
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Link } from "../../components";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 
@@ -88,14 +87,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   return (
     <Container layoutClassName={styles.container}>
-      <div className={styles.backButton}>
-        <Link to="/components">
-          <Icon className="utrecht-icon--conduction-start">
-            <IconArrowLeft />
-          </Icon>
-          {t("Back to components")}
-        </Link>
-      </div>
+      <Link className={styles.backButton} onClick={() => navigate("/components")}>
+        <Icon>
+          <IconArrowLeft />
+        </Icon>
+        {t("Back to components")}
+      </Link>
 
       {_getComponent.isSuccess && (
         <>
@@ -202,7 +199,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 />
               </div>
               <Button>
-                <Icon className="utrecht-icon--conduction-start">
+                <Icon>
                   <IconExternalLink />
                 </Icon>{" "}
                 Toevoegen aan catalogus
@@ -213,7 +210,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   appearance="secondary-action-button"
                   onClick={() => open(_getComponent.data.embedded?.url?.url)}
                 >
-                  <Icon className="utrecht-icon--conduction-start">
+                  <Icon>
                     <GitHubLogo />
                   </Icon>{" "}
                   {t("View Repository")}
@@ -259,7 +256,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       />
                       <span className={styles.link}>
                         <Link onClick={show}>
-                          <Icon className="utrecht-icon--conduction-start">
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           Rating
@@ -352,16 +349,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableCell>Gemeente Rotterdam</TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           010 - 123 456 7
@@ -369,8 +366,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
 
                       <TableCell>
-                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -381,16 +378,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableCell>Conduction</TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           020 - 123 456 7
@@ -398,8 +395,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
 
                       <TableCell>
-                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -410,16 +407,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableRow>
                       <TableCell>Gemeente Utrecht</TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <GitHubLogo />
                           </Icon>
                           Componenten GitHub
                         </Link>
                       </TableCell>
                       <TableCell>
-                        <Link to={""}>
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link>
+                          <Icon>
                             <IconPhone />
                           </Icon>
                           030 - 123 456 7
@@ -427,8 +424,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </TableCell>
 
                       <TableCell>
-                        <Link to="/organizations/5b9e0b17-00ca-433c-961b-913270643e6d">
-                          <Icon className="utrecht-icon--conduction-start">
+                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
+                          <Icon>
                             <IconArrowRight />
                           </Icon>
                           {t("Details")}
@@ -507,7 +504,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             target="_new"
                             href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
                           >
-                            <Icon className="utrecht-icon--conduction-start">
+                            <Icon>
                               <IconExternalLink />
                             </Icon>
                             {product},{" "}

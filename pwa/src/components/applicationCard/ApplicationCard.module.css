@@ -4,15 +4,14 @@
 
 .titleLink {
   font-size: var(--web-app-font-size-lg);
-  --denhaag-link-icon-gap: var(--web-app-size-xs);
 }
 
-.titleLink > :first-child > span > svg {
+.titleLink > span > svg {
   width: var(--web-app-font-size-lg);
   height: var(--web-app-font-size-lg);
 }
 
-.titleLink > :first-child {
+.titleLink > span {
   display: flex;
 }
 

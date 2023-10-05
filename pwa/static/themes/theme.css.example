@@ -50,8 +50,6 @@
   --web-app-focus-border: unset;
 
   /* Theme colors */
-  --web-app-color-white: hsl(0 0% 100%);
-  --web-app-color-black: hsl(0 0% 0%);
   --web-app-color-text-grey: #404b4f;
   --web-app-color-footer-text: var(--web-app-color-text-grey);
 
@@ -108,19 +106,6 @@
   --web-app-rating-active-color: var(--rotterdam-color-green);
   --web-app-rating-disable-color: #bfbfbf;
 
-  --web-app-layer-color-interaction: #1a75ff;
-  --web-app-layer-color-process: #dd3c49;
-  --web-app-layer-color-integration: #efc025;
-  --web-app-layer-color-services: #69b090;
-  --web-app-layer-color-data: #7a51c8;
-  --web-app-layer-color-unknown: #586265;
-
-  --web-app-layer-category-color-interaction: #cfe2ff;
-  --web-app-layer-category-color-process: #f8d7da;
-  --web-app-layer-category-color-integration: #fff3cd;
-  --web-app-layer-category-color-services: #d1e7dd;
-  --web-app-layer-category-color-data: #e2d9f3;
-
   --web-app-filter-badge-color: hsl(0deg 0% 85%);
 
   --web-app-breadcrumb-color: hsl(211 60% 35%);
@@ -147,9 +132,6 @@
   --web-app-badge-counter-width: 18px;
   --web-app-badge-counter-font-size: 12px;
   --web-app-badge-counter-max-number-font-size: 10px;
-
-  --web-app-layer-accordion-inactive-opacity: 0.65;
-  --web-app-layer-accordion-disabled-opacity: 0.15;
 
   --web-app-component-image-max-width: 300px;
   --web-app-component-rating-indicator-height: 160px;

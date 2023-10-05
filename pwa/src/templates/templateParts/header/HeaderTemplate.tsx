@@ -4,13 +4,15 @@ import {
   Paragraph,
   Heading,
   BreadcrumbNav,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
+  BreadcrumbNavLink,
+  BreadcrumbNavSeparator,
   Icon,
 } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, SecondaryTopNav, PrimaryTopNav } from "@conduction/components";
+import { Container } from "@conduction/components";
+import { SecondaryTopNav } from "@conduction/components";
+import { PrimaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +20,8 @@ import { faChevronRight, faCircleUser } from "@fortawesome/free-solid-svg-icons"
 import { GatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import _ from "lodash";
-import { ThemesContextContext } from "../../../context/theme";
+import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
+import { PageHeader } from "@utrecht/component-library-react";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -26,12 +29,9 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const [isHomePage, setIsHomePage] = React.useState<boolean>(false);
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
-  // arrowNav should become a configuration key
-  const [arrowNav, setArrowNav] = React.useState<boolean>(false);
-  // themeContext should be removed after arrowNav has become a configuration key
-  const [themeContext] = React.useContext(ThemesContextContext);
 
   const {
     pageContext: {
@@ -49,10 +49,21 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     navigate(pathname);
   };
 
+  React.useEffect(() => {
+    setIsHomePage(
+      pathname === "/" ||
+        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
+    );
+  }, [pathname]);
+
   const primaryTopNavItems = [
     {
       label: "Home",
-      current: pathname === "/",
+      current:
+        pathname === "/" ||
+        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
       handleClick: () => {
         navigate("/");
       },
@@ -78,6 +89,13 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         navigate("/components");
       },
       subItems: [
+        {
+          label: t("Components"),
+          current: pathname.includes("/components"),
+          handleClick: () => {
+            navigate("/components");
+          },
+        },
         {
           label: t("Processes"),
           current:
@@ -147,7 +165,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Login"),
       current: pathname === "/login",
       handleClick: () => {
-        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
+        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
@@ -155,6 +173,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   React.useEffect(() => {
     if (screenSize === "desktop") {
+      primaryTopNavItems[3].subItems?.splice(0, 1);
+
       setTopNavItems(primaryTopNavItems);
       return;
     }
@@ -162,17 +182,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
   }, [screenSize, pathname, crumbs]);
 
-  React.useEffect(() => {
-    if (themeContext.current === "utrecht") {
-      setArrowNav(true);
-      return;
-    }
-
-    setArrowNav(false);
-  }, [themeContext]);
-
   return (
-    <header className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
+    <PageHeader className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       <div className={styles.headerTopBar}>
         <Container layoutClassName={styles.secondaryNavContainer}>
           <SecondaryTopNav items={secondaryTopNavItems} />
@@ -181,13 +192,12 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+            <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
           </div>
-
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                <div onClick={() => navigate("/")} className={styles.organizationLogo} />
+                <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
               </div>
             }
             layoutClassName={styles.textColor}
@@ -196,7 +206,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
         </Container>
       </div>
 
-      {pathname === "/" && (
+      {isHomePage && (
         <Container layoutClassName={styles.headerContent}>
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
@@ -212,54 +222,66 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           </section>
         </Container>
       )}
-      {pathname !== "/" && (
-        <Container layoutClassName={styles.breadcrumbsContainer}>
-          {arrowNav && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <BreadcrumbLink key={idx} onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
-                      {crumb.crumbLabel}
-                    </BreadcrumbLink>
-                  );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-          {!arrowNav && (
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <React.Fragment key={idx}>
-                      <BreadcrumbLink onClick={(e) => handleBreadcrumbClick(e, crumb.pathname)} href="">
+      {pathname !== "/" &&
+        ((process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
+          pathname !== `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
+          process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "false") && (
+          <Container layoutClassName={styles.breadcrumbsContainer}>
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
+                      <BreadcrumbNavLink
+                        className={styles.breadcrumbNavLink}
+                        key={idx}
+                        onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
+                        href=""
+                      >
                         {crumb.crumbLabel}
-                      </BreadcrumbLink>
-
-                      <BreadcrumbSeparator>
-                        <Icon>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </Icon>
-                      </BreadcrumbSeparator>
-                    </React.Fragment>
+                      </BreadcrumbNavLink>
+                    );
+                  }
+                  return (
+                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbNavLink>
                   );
-                }
-                return (
-                  <BreadcrumbLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbLink>
-                );
-              })}
-            </BreadcrumbNav>
-          )}
-        </Container>
-      )}
-    </header>
+                })}
+              </BreadcrumbNav>
+            )}
+            {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
+              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+                {translatedCrumbs.map((crumb: any, idx: number) => {
+                  if (crumbs.length !== idx + 1) {
+                    return (
+                      <React.Fragment key={idx}>
+                        <BreadcrumbNavLink
+                          className={styles.breadcrumbNavLink}
+                          onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
+                          href=""
+                        >
+                          {crumb.crumbLabel}
+                        </BreadcrumbNavLink>
+
+                        <BreadcrumbNavSeparator>
+                          <Icon>
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </Icon>
+                        </BreadcrumbNavSeparator>
+                      </React.Fragment>
+                    );
+                  }
+                  return (
+                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                      {crumb.crumbLabel}
+                    </BreadcrumbNavLink>
+                  );
+                })}
+              </BreadcrumbNav>
+            )}
+          </Container>
+        )}
+    </PageHeader>
   );
 };

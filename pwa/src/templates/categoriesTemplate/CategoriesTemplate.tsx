@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as styles from "./CategoriesTemplate.module.css";
-import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
-import { CategoriesardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
+import { CategoriesCardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
 import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
-import { Link } from "../../components";
+import { navigate } from "gatsby-link";
 
 export const CategoriesTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -24,30 +24,30 @@ export const CategoriesTemplate: React.FC = () => {
           <Paragraph className={styles.description}>
             We verdelen{" "}
             <span>
-              <Link to="/applications">
-                <Icon className="utrecht-icon--conduction-start">
+              <Link onClick={() => navigate("/applications")}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
-                applicaties
+                <span> applicaties</span>
               </Link>
             </span>{" "}
             en{" "}
             <span>
-              <Link to="/components">
-                <Icon className="utrecht-icon--conduction-start">
+              <Link onClick={() => navigate("/components")}>
+                <Icon>
                   <IconArrowRight />
                 </Icon>
-                componenten
+                <span> componenten </span>
               </Link>
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
             <span>
               <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
-                <Icon className="utrecht-icon--conduction-start">
+                <Icon>
                   <IconExternalLink />
                 </Icon>
-                Gemma bedrijfsfuncties
+                <span> Gemma bedrijfsfuncties </span>
               </Link>
             </span>
             .
@@ -55,7 +55,7 @@ export const CategoriesTemplate: React.FC = () => {
         </div>
       </div>
 
-      <CategoriesardsAccordionTemplate {...{ categories }} />
+      <CategoriesCardsAccordionTemplate {...{ categories }} />
     </Container>
   );
 };

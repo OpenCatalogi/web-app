@@ -11,7 +11,7 @@ interface CategoriesardsAccordionProps {
   categories: any[];
 }
 
-export const CategoriesardsAccordionTemplate: React.FC<CategoriesardsAccordionProps> = ({ categories }) => {
+export const CategoriesCardsAccordionTemplate: React.FC<CategoriesardsAccordionProps> = ({ categories }) => {
   const Accordion = CategoriesAccordion.accordion;
   const AccordionCardsController = CategoriesAccordion.controller;
   const { t } = useTranslation();
@@ -223,7 +223,7 @@ interface CategoriesProps {
 
 const Categories: React.FC<CategoriesProps> = ({ categories }) => {
   return (
-    <div className={styles.ComponentsGrid}>
+    <div className={styles.componentsGrid}>
       {categories.map((category, idx) => (
         <CategoryCard
           key={idx}
