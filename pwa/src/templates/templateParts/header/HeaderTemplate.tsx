@@ -20,6 +20,7 @@ import { SearchComponentTemplate } from "../searchComponent/SearchComponentTempl
 import _ from "lodash";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import { PageHeader } from "@utrecht/component-library-react";
+import { isHomepage } from "../../../services/isHomepage";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -220,41 +221,38 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           </section>
         </Container>
       )}
-      {pathname !== "/" &&
-        ((process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
-          pathname !== `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
-          process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "false") && (
-          <Container layoutClassName={styles.breadcrumbsContainer}>
-            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
-              {translatedCrumbs.map((crumb: any, idx: number) => {
-                if (crumbs.length !== idx + 1) {
-                  return (
-                    <React.Fragment key={idx}>
-                      <BreadcrumbNavLink
-                        className={styles.breadcrumbNavLink}
-                        onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
-                        href=""
-                      >
-                        {crumb.crumbLabel}
-                      </BreadcrumbNavLink>
-
-                      <BreadcrumbNavSeparator>
-                        <Icon>
-                          <FontAwesomeIcon icon={faChevronRight} />
-                        </Icon>
-                      </BreadcrumbNavSeparator>
-                    </React.Fragment>
-                  );
-                }
+      {isHomepage(pathname) && (
+        <Container layoutClassName={styles.breadcrumbsContainer}>
+          <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+            {translatedCrumbs.map((crumb: any, idx: number) => {
+              if (crumbs.length !== idx + 1) {
                 return (
-                  <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                    {crumb.crumbLabel}
-                  </BreadcrumbNavLink>
+                  <React.Fragment key={idx}>
+                    <BreadcrumbNavLink
+                      className={styles.breadcrumbNavLink}
+                      onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
+                      href=""
+                    >
+                      {crumb.crumbLabel}
+                    </BreadcrumbNavLink>
+
+                    <BreadcrumbNavSeparator>
+                      <Icon>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                      </Icon>
+                    </BreadcrumbNavSeparator>
+                  </React.Fragment>
                 );
-              })}
-            </BreadcrumbNav>
-          </Container>
-        )}
+              }
+              return (
+                <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                  {crumb.crumbLabel}
+                </BreadcrumbNavLink>
+              );
+            })}
+          </BreadcrumbNav>
+        </Container>
+      )}
     </PageHeader>
   );
 };
