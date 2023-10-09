@@ -10,9 +10,7 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container } from "@conduction/components";
-import { SecondaryTopNav } from "@conduction/components";
-import { PrimaryTopNav } from "@conduction/components";
+import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -227,59 +225,34 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           pathname !== `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`) ||
           process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "false") && (
           <Container layoutClassName={styles.breadcrumbsContainer}>
-            {process.env.GATSBY_ARROW_BREADCRUMBS === "true" && (
-              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")} appearance="arrows">
-                {translatedCrumbs.map((crumb: any, idx: number) => {
-                  if (crumbs.length !== idx + 1) {
-                    return (
+            <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
+              {translatedCrumbs.map((crumb: any, idx: number) => {
+                if (crumbs.length !== idx + 1) {
+                  return (
+                    <React.Fragment key={idx}>
                       <BreadcrumbNavLink
                         className={styles.breadcrumbNavLink}
-                        key={idx}
                         onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
                         href=""
                       >
                         {crumb.crumbLabel}
                       </BreadcrumbNavLink>
-                    );
-                  }
-                  return (
-                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                      {crumb.crumbLabel}
-                    </BreadcrumbNavLink>
-                  );
-                })}
-              </BreadcrumbNav>
-            )}
-            {process.env.GATSBY_ARROW_BREADCRUMBS === "false" && (
-              <BreadcrumbNav className={styles.breadcrumbs} label={t("Breadcrumbs")}>
-                {translatedCrumbs.map((crumb: any, idx: number) => {
-                  if (crumbs.length !== idx + 1) {
-                    return (
-                      <React.Fragment key={idx}>
-                        <BreadcrumbNavLink
-                          className={styles.breadcrumbNavLink}
-                          onClick={(e: any) => handleBreadcrumbClick(e, crumb.pathname)}
-                          href=""
-                        >
-                          {crumb.crumbLabel}
-                        </BreadcrumbNavLink>
 
-                        <BreadcrumbNavSeparator>
-                          <Icon>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                          </Icon>
-                        </BreadcrumbNavSeparator>
-                      </React.Fragment>
-                    );
-                  }
-                  return (
-                    <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
-                      {crumb.crumbLabel}
-                    </BreadcrumbNavLink>
+                      <BreadcrumbNavSeparator>
+                        <Icon>
+                          <FontAwesomeIcon icon={faChevronRight} />
+                        </Icon>
+                      </BreadcrumbNavSeparator>
+                    </React.Fragment>
                   );
-                })}
-              </BreadcrumbNav>
-            )}
+                }
+                return (
+                  <BreadcrumbNavLink key={idx} className={styles.breadcrumbDisabled} current disabled href="">
+                    {crumb.crumbLabel}
+                  </BreadcrumbNavLink>
+                );
+              })}
+            </BreadcrumbNav>
           </Container>
         )}
     </PageHeader>
