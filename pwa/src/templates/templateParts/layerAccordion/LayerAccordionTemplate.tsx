@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as styles from "./LayerAccordionTemplate.module.css";
 import { QuoteWrapper } from "@conduction/components";
 import Collapsible from "react-collapsible";
 
@@ -21,20 +20,18 @@ const LayerAccordionTemplate: React.FC<LayerAccordionTemplateProps> = ({
   disabled,
 }) => {
   return (
-    <div className={!open ? styles.containerInactive : ""}>
-      <QuoteWrapper borderColor={!disabled ? color : ""}>
-        <Collapsible
-          triggerDisabled={disabled}
-          trigger={header}
-          {...{ open }}
-          transitionTime={200}
-          onOpening={() => setOpen(true)}
-          onClosing={() => setOpen(false)}
-        >
-          {children}
-        </Collapsible>
-      </QuoteWrapper>
-    </div>
+    <QuoteWrapper borderColor={!disabled ? color : ""}>
+      <Collapsible
+        triggerDisabled={disabled}
+        trigger={header}
+        {...{ open }}
+        transitionTime={200}
+        onOpening={() => setOpen(true)}
+        onClosing={() => setOpen(false)}
+      >
+        {children}
+      </Collapsible>
+    </QuoteWrapper>
   );
 };
 

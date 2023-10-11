@@ -24,7 +24,6 @@ export const CategoriesAccordionFiltersTemplate: React.FC<CategoriesAccordionFil
           className={clsx(
             styles[label.toLowerCase()],
             active && !disabled && styles.active,
-            styles.filter,
             disabled && styles.disabled,
           )}
         >

@@ -26,9 +26,5 @@
 }
 
 .container .disabled {
-  opacity: var(--web-app-layer-accordion-disabled-opacity);
-}
-
-:not(.disabled).filter:not(.active) {
-  opacity: var(--web-app-layer-accordion-inactive-opacity);
+  opacity: var(--web-app-disabled-opacity);
 }

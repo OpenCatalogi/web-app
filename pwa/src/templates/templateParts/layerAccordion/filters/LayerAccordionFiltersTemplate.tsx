@@ -24,7 +24,6 @@ export const LayerAccordionFiltersTemplate: React.FC<LayerAccordionFiltersTempla
           className={clsx(
             styles[label.toLowerCase()],
             active && !disabled && styles.active,
-            styles.filter,
             disabled && styles.disabled,
           )}
         >
