@@ -331,6 +331,10 @@
   --utrecht-separator-margin-block-end: 0px;
   --utrecht-separator-margin-block-start: 0px;
 
+  /* @gemeente-utrecht: Breadcumbs */
+  --utrecht-breadcrumb-nav-separator-icon-size: 16px;
+  --utrecht-breadcrumb-nav-link-disabled-color: var(--web-app-color-text-grey);
+
   /* ComponentOverwrites */
   --conduction-secondary-top-nav-item-padding: var(--web-app-secondary-top-nav-item-padding) !important;
   --conduction-secondary-top-nav-font-size: var(--web-app-secondary-top-nav-font-size) !important;
