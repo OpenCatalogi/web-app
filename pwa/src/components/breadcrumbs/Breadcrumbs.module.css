@@ -1,0 +1,27 @@
+.breadcrumbsContainer {
+  margin-block-start: var(--web-app-size-sm);
+  padding-block-start: var(--web-app-size-sm);
+  padding-block-end: var(--web-app-size-sm);
+}
+
+.breadcrumbs {
+  background-color: var(--utrecht-breadcrumb-nav-background-color);
+  border-radius: var(--utrecht-breadcrumb-nav-border-radius);
+}
+
+.breadcrumbNavLink:hover {
+  --utrecht-link-hover-color: var(--utrecht-breadcrumb-link-hover-color) !important;
+}
+
+.breadcrumbDisabled {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+}
+
+.breadcrumbDisabled:hover {
+  color: var(--utrecht-link-placeholder-color, --web-app-color-disabled) !important;
+  user-select: none !important;
+}
+
+.breadcrumbs > ol {
+  align-items: baseline;
+}
