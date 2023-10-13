@@ -112,7 +112,7 @@
   * Utrecht component overrides
   */
   --web-app-button-secondary-action-background-color: var(--rotterdam-color-base-green);
-  --web-app-button-secondary-action-color: var(--rotterdam-color-base-white);
+  --web-app-button-secondary-action-color: var(--web-app-color-white);
 }
 
 .rotterdam-theme {
