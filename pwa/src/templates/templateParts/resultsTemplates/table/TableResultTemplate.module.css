@@ -1,9 +1,46 @@
-.tableRow {
-  cursor: pointer;
+.table {
+  background-color: var(--utrecht-table-background-color);
+  border-collapse: var(--utrecht-table-border-collapse);
+}
+
+.tableHeader > * {
+  border-block-end: var(--utrecht-table-header-border-block-end-width) solid var(--utrecht-table-header-border-block-end-color);
+}
+
+.tableHeader {
+  font-family: var(--utrecht-table-header-font-family);
 }
 
 .tableRow > * {
   vertical-align: middle !important;
+}
+
+.tableRow:hover {
+  cursor: pointer;
+  background-color: var(--utrecht-table-row-hover-background-color);
+}
+
+.tableBody {
+  border: var(--utrecht-table-body-border);
+}
+
+.tableBody .tableRow:nth-child(odd) {
+  background-color: var(--utrecht-table-row-alternate-odd-background-color);
+  color: var(--utrecht-table-row-alternate-odd-color);
+}
+
+.tableBody .tableRow:nth-child(odd):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
+}
+
+.tableBody .tableRow:nth-child(even) {
+  background-color: var(--utrecht-table-row-alternate-even-background-color);
+  color: var(--utrecht-table-row-alternate-even-color);
+}
+.tableBody .tableRow:nth-child(even):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
 }
 
 .name {

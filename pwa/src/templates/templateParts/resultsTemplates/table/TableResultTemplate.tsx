@@ -32,9 +32,9 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
 
   return (
     <TableWrapper>
-      <Table>
+      <Table className={styles.table}>
         {!hideTableHead && (
-          <TableHeader>
+          <TableHeader className={styles.tableHeader}>
             <TableRow>
               <TableHeaderCell>{t("Name")}</TableHeaderCell>
               <TableHeaderCell>{t("Type")}</TableHeaderCell>
@@ -47,7 +47,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
           </TableHeader>
         )}
 
-        <TableBody>
+        <TableBody className={styles.tableBody}>
           {components.length > 0 &&
             components.map((component) => (
               <TableRow
