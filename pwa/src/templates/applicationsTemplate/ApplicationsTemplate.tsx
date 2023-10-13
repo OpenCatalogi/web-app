@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
@@ -9,7 +9,6 @@ import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
 import { IconExternalLink } from "@tabler/icons-react";
-import { PaginatedItems } from "../../components/pagination/pagination";
 
 export const ApplicationsTemplate: React.FC = () => {
   const [filters, setFilters] = React.useContext(FiltersContext);
@@ -59,12 +58,11 @@ export const ApplicationsTemplate: React.FC = () => {
               />
             ))}
           </div>
-          <PaginatedItems
-            pages={getApplications.data.pages}
+          <Pagination
+            layoutClassName={styles.paginationContainer}
+            totalPages={getApplications.data.pages}
             currentPage={getApplications.data.page}
-            setPage={(page) => setFilters({ ...filters, applicationsCurrentPage: page })}
-            pageRangeDisplayed={2}
-            containerClassName={styles.paginationContainer}
+            setCurrentPage={(page: any) => setFilters({ ...filters, applicationsCurrentPage: page })}
           />
         </>
       )}

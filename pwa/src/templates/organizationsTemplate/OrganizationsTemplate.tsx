@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
-import { PaginatedItems } from "../../components/pagination/pagination";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
@@ -48,12 +47,11 @@ export const OrganizationsTemplate: React.FC = () => {
               />
 
               {getOrganisations.data.results.length && (
-                <PaginatedItems
-                  pages={getOrganisations.data.pages}
+                <Pagination
+                  layoutClassName={styles.paginationContainer}
+                  totalPages={getOrganisations.data.pages}
                   currentPage={getOrganisations.data.page}
-                  setPage={(page) => setFilters({ ...filters, organizationCurrentPage: page })}
-                  pageRangeDisplayed={2}
-                  containerClassName={styles.paginationContainer}
+                  setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
                 />
               )}
             </>

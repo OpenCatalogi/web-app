@@ -50,10 +50,6 @@
   justify-content: center;
 }
 
-.paginationContainer > *:not(:last-child) {
-  flex: 1;
-}
-
 .ComponentAlert > div {
   display: flex;
   align-items: center;
