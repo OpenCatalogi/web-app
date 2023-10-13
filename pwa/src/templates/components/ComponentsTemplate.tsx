@@ -9,7 +9,6 @@ import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilter
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
-import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
@@ -92,12 +91,11 @@ export const ComponentsTemplate: React.FC = () => {
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
                 <>
-                  <PaginatedItems
-                    pages={getComponents.data.pages}
+                  <Pagination
+                    layoutClassName={styles.paginationContainer}
+                    totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
-                    setPage={(page) => setFilters({ ...filters, currentPage: page })}
-                    pageRangeDisplayed={2}
-                    containerClassName={styles.paginationContainer}
+                    setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
                   />
                 </>
               )}
@@ -109,5 +107,3 @@ export const ComponentsTemplate: React.FC = () => {
     </Container>
   );
 };
-
-

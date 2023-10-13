@@ -48,12 +48,6 @@
   padding-left: 0;
   list-style: none;
   justify-content: center;
-  flex-wrap: unset;
-  gap: unset;
-}
-
-.paginationContainer > *:not(:last-child) {
-  flex: 1;
 }
 
 .ComponentAlert > div {
