@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
-import { Container } from "@conduction/components";
+import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,6 @@ import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilter
 import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
-import { PaginatedItems } from "../../components/pagination/pagination";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
@@ -91,13 +90,14 @@ export const ComponentsTemplate: React.FC = () => {
 
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
-                <PaginatedItems
-                  pages={getComponents.data.pages}
-                  currentPage={getComponents.data.page}
-                  setPage={(page) => setFilters({ ...filters, currentPage: page })}
-                  pageRangeDisplayed={2}
-                  containerClassName={styles.paginationContainer}
-                />
+                <>
+                  <Pagination
+                    layoutClassName={styles.paginationContainer}
+                    totalPages={getComponents.data.pages}
+                    currentPage={getComponents.data.page}
+                    setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
+                  />
+                </>
               )}
             </>
           )}
