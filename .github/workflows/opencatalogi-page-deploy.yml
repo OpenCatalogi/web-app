@@ -8,16 +8,11 @@ env: # Change these to your preferences any image url can also be a base encoded
 
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
 
-  ME_URL: "https://api.opencatalogi.nl/api/users/me"
   API_URL: "https://api.opencatalogi.nl/api"
-  ADMIN_URL: "https://api.opencatalogi.nl/admin"
   BASE_URL: "https://api.opencatalogi.nl"
-  FRONTEND_URL: "https://api.opencatalogi.nl"
-  LOGIN_REDIRECT: "vault"
   ADMIN_DASHBOARD_URL: "https://admin.opencatalogi.nl"
 
   NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
-  ARROW_BREADCRUMBS: "false"
   HEADER_LOGO_URL: "https://www.rotterdam.nl/images/logo-base.svg"
 
   # GITHUB_ORGANIZATION_URL: ""
@@ -45,15 +40,10 @@ jobs:
         with:
           envkey_GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX: ${{ env.USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX }}
           envkey_GATSBY_GITHUB_REPOSITORY_NAME: ${{ env.GITHUB_REPOSITORY_NAME }}
-          envkey_GATSBY_ME_URL: ${{ env.ME_URL }}
           envkey_GATSBY_API_URL: ${{ env.API_URL }}
-          envkey_GATSBY_ADMIN_URL: ${{ env.ADMIN_URL }}
           envkey_GATSBY_BASE_URL: ${{ env.BASE_URL }}
-          envkey_GATSBY_FRONTEND_URL: ${{ env.FRONTEND_URL }}
-          envkey_GATSBY_LOGIN_REDIRECT: ${{ env.LOGIN_REDIRECT }}
           envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ env.ADMIN_DASHBOARD_URL }}
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
-          envkey_GATSBY_ARROW_BREADCRUMBS: ${{ env.ARROW_BREADCRUMBS }}
           envkey_GATSBY_HEADER_LOGO_URL: ${{ env.HEADER_LOGO_URL }}
 
           # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
