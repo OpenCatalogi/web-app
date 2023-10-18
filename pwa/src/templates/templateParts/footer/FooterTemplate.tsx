@@ -46,7 +46,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   library.add(fas, fab as IconPack, far as IconPack);
 
   React.useEffect(() => {
-    const data = process.env.GATSBY_FOOTER_CONTENT
+    process.env.GATSBY_FOOTER_CONTENT
       ? fetch(process.env.GATSBY_FOOTER_CONTENT)
           .then((response) => response.json())
           .then((results) => {
@@ -59,11 +59,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           .then((results) => {
             setFooterContent(results);
           });
-
-    process.env.GATSBY_FOOTER_SHOW_CREATOR === "false" && console.log("hi");
-    process.env.GATSBY_FOOTER_LOGO_URL === "false" && console.log("hi");
-    console.log(process.env.GATSBY_FOOTER_SHOW_CREATOR);
-    console.log(process.env.GATSBY_FOOTER_LOGO_URL);
   }, []);
 
   return (
