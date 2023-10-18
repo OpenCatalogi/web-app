@@ -118,4 +118,7 @@ export const en = {
   "Show more": "Show more",
   "Show less": "Show less",
   Breadcrumbs: "Breadcrumbs",
+  Publications: "Publications",
+  "Opens a new window": "Opens a new window",
+  Usage: "Usage",
 };

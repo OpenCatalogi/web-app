@@ -1,273 +1,270 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
-import { Container } from "@conduction/components";
-import LogoConduction from "../../../assets/svgs/LogoConduction.svg";
-import LogoConductionWhite from "../../../assets/svgs/LogoConductionWhite.svg";
-import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
-import LogoRotterdamWhite from "../../../assets/svgs/LogoRotterdamWhite.svg";
-import { navigate } from "gatsby";
-import { Heading4, Icon, Link, PageFooter } from "@utrecht/component-library-react/dist/css-module";
-import { useTranslation } from "react-i18next";
-import { IconArrowRight, IconExternalLink, IconPhone, IconMail } from "@tabler/icons-react";
-import clsx from "clsx";
-import { GitHubLogo } from "../../../assets/svgs/GitHub";
-import { baseFilters, FiltersContext } from "../../../context/filters";
-import { HavenLogo } from "../../../assets/svgs/Haven";
-import { CommongroundLogo } from "../../../assets/svgs/Commonground";
-import { ForumStandaardisatieLogo } from "../../../assets/svgs/ForumStandaardisatie";
+import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-react/dist/css-module";
+import { navigate } from "gatsby-link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { colorIsLight } from "../../../services/colorIsLight";
+import { faCode, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import clsx from "clsx";
+import { baseFilters, FiltersContext } from "../../../context/filters";
+import { library, IconPack, IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import parse from "html-react-parser";
+
+type TDynamicContentItem = {
+  title: string;
+  items: {
+    value: string;
+    ariaLabel: string;
+    link?: string;
+    label?: string;
+    icon?: {
+      icon: IconName;
+      prefix: IconPrefix;
+      placement: "left" | "right";
+    };
+    customIcon?: {
+      icon: string;
+      placement: "left" | "right";
+    };
+    setFilter?: {
+      filter: string;
+      value: string;
+      link: string;
+    };
+  }[];
+};
 
 interface FooterTemplateProps {
   layoutClassName?: string;
 }
 
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
-  const { t } = useTranslation();
-  const [, setFilters] = React.useContext(FiltersContext);
-  const [rotterdamLogoSource, setRotterdamLogoSource] = React.useState<string>(LogoRotterdam);
-  const [conductionLogoSource, setConductionLogoSource] = React.useState<string>(LogoConduction);
-  const footerRef = React.useRef<HTMLDivElement | null>(null);
+  const [footerContent, setFooterContent] = React.useState<TDynamicContentItem[]>([]);
+  library.add(fas, fab as IconPack, far as IconPack);
 
   React.useEffect(() => {
-    if (!footerRef.current) return;
+    const data = process.env.GATSBY_FOOTER_CONTENT
+      ? fetch(process.env.GATSBY_FOOTER_CONTENT)
+          .then((response) => response.json())
+          .then((results) => {
+            setFooterContent(results);
+          })
+      : fetch(
+          "https://raw.githubusercontent.com/OpenCatalogi/web-app/25995205e1dbb043822d1c58c5c23f8e6f77ff7e/pwa/src/templates/templateParts/footer/FooterContent.json",
+        )
+          .then((response) => response.json())
+          .then((results) => {
+            setFooterContent(results);
+          });
 
-    if (colorIsLight(getComputedStyle(footerRef.current).getPropertyValue("background-color"))) {
-      setRotterdamLogoSource(LogoRotterdam);
-      setConductionLogoSource(LogoConduction);
-
-      return;
-    }
-
-    setRotterdamLogoSource(LogoRotterdamWhite);
-    setConductionLogoSource(LogoConductionWhite);
-  }, [footerRef.current]);
+    process.env.GATSBY_FOOTER_SHOW_CREATOR === "false" && console.log("hi");
+    process.env.GATSBY_FOOTER_LOGO_URL === "false" && console.log("hi");
+    console.log(process.env.GATSBY_FOOTER_SHOW_CREATOR);
+    console.log(process.env.GATSBY_FOOTER_LOGO_URL);
+  }, []);
 
   return (
-    <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)} ref={footerRef}>
-      <Container layoutClassName={styles.footerContainer}>
-        <div className={styles.navigation}>
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>Componenten</Heading4>
-
-            <li>
-              <Link
-                onClick={() => {
-                  setFilters({ ...baseFilters, softwareType: "process" });
-                  navigate("/components");
-                }}
-              >
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                {t("Processes")}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={() => {
-                  setFilters({ ...baseFilters, softwareType: "schema" });
-                  navigate("/components");
-                }}
-              >
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                {t("Data models")}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={() => {
-                  setFilters({ ...baseFilters, softwareType: "api" });
-                  navigate("/components");
-                }}
-              >
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                {t("API's")}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={() => {
-                  setFilters({ ...baseFilters, developmentStatus: "concept" });
-                  navigate("/components");
-                }}
-              >
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                {t("Initiatives")}
-              </Link>
-            </li>
-          </ul>
-
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>Documentatie</Heading4>
-
-            <li>
-              <Link onClick={() => navigate("/documentation/about")}>
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                {t("About OpenCatalogi")}
-              </Link>
-            </li>
-
-            <li>
-              <Link onClick={() => navigate("/documentation/usage")}>
-                <Icon>
-                  <IconArrowRight />
-                </Icon>
-                Gebruik
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://github.com/OpenCatalogi">
-                <Icon>
-                  <GitHubLogo />
-                </Icon>
-                Github
-              </Link>
-            </li>
-          </ul>
-
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>Links</Heading4>
-
-            <li>
-              <Link target="_new" href="https://commonground.nl/">
-                <Icon>
-                  <CommongroundLogo />
-                </Icon>
-                Common ground
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://haven.commonground.nl/">
-                <Icon>
-                  <HavenLogo />
-                </Icon>
-                Haven
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://designsystem.gebruikercentraal.nl">
-                <Icon>
-                  <IconExternalLink />
-                </Icon>
-                NL design
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://forumstandaardisatie.nl/">
-                <Icon className={styles.forumStandaardisatieIcon}>
-                  <ForumStandaardisatieLogo />
-                </Icon>
-                Forum standaardisatie
-              </Link>
-            </li>
-
-            <li>
-              <Link onClick={() => navigate("#")}>
-                <Icon>
-                  <IconExternalLink />
-                </Icon>
-                {t("Privacy declaration")}
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                onClick={() =>
-                  process.env.GATSBY_ADMIN_DASHBOARD_URL
-                    ? window.open(process.env.GATSBY_ADMIN_DASHBOARD_URL)
-                    : navigate("#")
-                }
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faCircleUser} />
-                </Icon>
-                {t("Login")}
-              </Link>
-            </li>
-          </ul>
+    <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
+      <div className={styles.container}>
+        <div className={styles.contentGrid}>
+          {footerContent?.map((content, idx) => (
+            <DynamicSection key={idx} {...{ content }} />
+          ))}
         </div>
 
-        <div className={styles.navigation}>
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>{t("Conduction")}</Heading4>
-
-            <li>
-              <Link href="tel:+31853036840">
-                <Icon>
-                  <IconPhone />
-                </Icon>
-                Bel Conduction
-              </Link>
-            </li>
-
-            <li>
-              <Link href="mailto:info@conduction.nl">
-                <Icon>
-                  <IconMail />
-                </Icon>
-                Mail Conduction
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://conduction.nl/">
-                <Icon>
-                  <IconExternalLink />
-                </Icon>
-                Bezoek de website
-              </Link>
-            </li>
-          </ul>
-
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>{t("Gemeente Rotterdam")}</Heading4>
-
-            <li>
-              <Link href="tel:14010">
-                <Icon>
-                  <IconPhone />
-                </Icon>
-                Bel Gemeente Rotterdam
-              </Link>
-            </li>
-
-            <li>
-              <Link target="_new" href="https://rotterdam.nl/">
-                <Icon>
-                  <IconExternalLink />
-                </Icon>
-                Bezoek de website
-              </Link>
-            </li>
-          </ul>
-
-          <ul className={styles.list}>
-            <Heading4 className={styles.heading}>{t("An initiative of")}</Heading4>
-
-            <div className={styles.logosContainer}>
-              <img onClick={() => window.open("https://www.rotterdam.nl/")} src={rotterdamLogoSource} />
-              <img onClick={() => window.open("https://www.conduction.nl/")} src={conductionLogoSource} />
-            </div>
-          </ul>
+        <div className={styles.logoAndConduction}>
+          <Logo />
+          <WithLoveByConduction />
         </div>
-      </Container>
+      </div>
     </PageFooter>
+  );
+};
+
+const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content }) => {
+  const { t } = useTranslation();
+  const [, setFilters] = React.useContext(FiltersContext);
+
+  return (
+    <section>
+      <Heading3 className={styles.dynamicSectionTitle}>{t(content.title)}</Heading3>
+
+      {content.items.map((item, idx) => (
+        <div key={idx} className={styles.dynamicSectionContent}>
+          {item.label && <strong>{t(item.label)}</strong>}
+          {/* External Link */}
+          {item.link && item.link.includes("http") && (
+            <Link
+              className={styles.link}
+              href={item.link}
+              target="_blank"
+              tabIndex={0}
+              aria-label={`${t(item.ariaLabel)}, ${t("Opens a new window")}`}
+            >
+              {item.customIcon && item.customIcon.placement === "left" && (
+                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+              )}
+
+              {item.icon && item.icon.placement === "left" && (
+                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {t(item.value)}
+
+              {item.icon && item.icon.placement === "right" && (
+                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "right" && (
+                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+              )}
+            </Link>
+          )}
+
+          {/* Internal Link */}
+          {item.link && !item.link.includes("http") && !item.setFilter && (
+            <Link
+              className={styles.link}
+              onClick={() => navigate(item.link ?? "")}
+              tabIndex={0}
+              aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
+              role="button"
+            >
+              {item.icon && item.icon.placement === "left" && (
+                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "left" && (
+                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+              )}
+
+              {t(item.value)}
+
+              {item.icon && item.icon.placement === "right" && (
+                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "right" && (
+                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+              )}
+            </Link>
+          )}
+
+          {!item.link && item.setFilter && (
+            <Link
+              className={styles.link}
+              onClick={() => {
+                setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
+                navigate(item.setFilter!.link);
+              }}
+              tabIndex={0}
+              aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
+              role="button"
+            >
+              {item.icon && item.icon.placement === "left" && (
+                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "left" && (
+                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+              )}
+
+              {t(item.value)}
+
+              {item.icon && item.icon.placement === "right" && (
+                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "right" && (
+                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+              )}
+            </Link>
+          )}
+
+          {/* No Link */}
+          {!item.link && !item.setFilter && (
+            <span>
+              {item.customIcon && item.customIcon.placement === "left" && (
+                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+              )}
+
+              {item.icon && item.icon.placement === "left" && (
+                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {t(item.value)}
+
+              {item.icon && item.icon.placement === "right" && (
+                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "right" && (
+                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+              )}
+            </span>
+          )}
+        </div>
+      ))}
+    </section>
+  );
+};
+
+const Logo: React.FC = () => {
+  if (process.env.GATSBY_FOOTER_LOGO_URL === "false") return <></>;
+  const { t } = useTranslation();
+
+  return (
+    <div className={styles.imageContainer}>
+      <img
+        className={styles.image}
+        onClick={() =>
+          process.env.GATSBY_FOOTER_LOGO_HREF ? open(process.env.GATSBY_FOOTER_LOGO_HREF) : navigate("/")
+        }
+        src={process.env.GATSBY_FOOTER_LOGO_URL}
+        alt={t("Footer-logo")}
+        aria-label={`${t("Footer-logo")}, ${t("Can open a new window")}`}
+        tabIndex={0}
+      />
+    </div>
+  );
+};
+
+const WithLoveByConduction: React.FC = () => {
+  if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
+
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <Link
+        className={styles.withLoveLink}
+        href="https://github.com/ConductionNL/woo-website-template"
+        target="_blank"
+        aria-label={`${t("Link to github repository")}, ${t("Opens a new window")}`}
+      >
+        <FontAwesomeIcon icon={faCode} />
+      </Link>{" "}
+      with{" "}
+      <Link
+        className={styles.withLoveLink}
+        href="https://github.com/ConductionNL/woo-website-template/graphs/contributors"
+        target="_blank"
+        aria-label={`${t("Link to github contributors page")}, ${t("Opens a new window")}`}
+      >
+        <FontAwesomeIcon icon={faHeart} />
+      </Link>{" "}
+      by{" "}
+      <Link
+        className={styles.withLoveLink}
+        href="https://conduction.nl"
+        target="_blank"
+        aria-label={`${t("Link to conduction website")}, ${t("Opens a new window")}`}
+      >
+        <span className={styles.withLoveConductionLink}> Conduction.</span>
+      </Link>
+    </div>
   );
 };

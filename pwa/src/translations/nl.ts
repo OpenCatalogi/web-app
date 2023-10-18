@@ -119,4 +119,7 @@ export const nl = {
   "Show more": "Toon meer",
   "Show less": "Toon minder",
   Breadcrumbs: "Kruimelpad",
+  Publications: "Publicaties",
+  "Opens a new window": "Opent een nieuw venster",
+  Usage: "Gebruik",
 };

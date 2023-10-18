@@ -7,11 +7,7 @@ body {
 
 .utrecht-link > .utrecht-icon {
   margin-inline-end: var(--web-app-size-2xs);
-}
-
-.utrecht-link {
-  display: inline-flex;
-  align-items: flex-start !important;
+  inset-block-start: unset !important;
 }
 
 :root {
