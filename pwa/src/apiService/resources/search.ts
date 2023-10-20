@@ -19,6 +19,14 @@ export default class Search {
       endpoint += `&legal.repoOwner.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
     }
 
+    if (filters.isBasedOn) {
+      endpoint += `&isBasedOn=IS NULL`;
+    }
+
+    if (filters.developmentStatusObsolete) {
+      endpoint += `&developmentStatus[ne]=obsolete`;
+    }
+
     const { data } = await Send(this._instance, "GET", endpoint);
 
     return data;
