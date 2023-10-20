@@ -14,7 +14,7 @@ import { getTableBody } from "./tableBody/getTableBody";
 import { getTableCell } from "./tableCell/getTableCell";
 import { getCode } from "./code/getCode";
 import { getAlert } from "./alert/getAlert";
-import { useMarkdownDirectories } from "../useGitHubDirectories";
+import { useMarkdownDirectories } from "../useMarkdownDirectories";
 import { getSvg } from "./svg/getSvg";
 
 export const useHtmlParser = (location: string) => {

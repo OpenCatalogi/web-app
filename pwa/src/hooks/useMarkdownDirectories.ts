@@ -1,24 +1,24 @@
 import * as React from "react";
 
-export type TGitHubDirectory = {
+export type TMarkdownDirectory = {
   name: string;
   location: string;
 };
 
-export const useGitHubDirectories = () => {
-  const [directories, setDirectories] = React.useState<TGitHubDirectory[]>([]);
+export const useMarkdownDirectories = () => {
+  const [directories, setDirectories] = React.useState<TMarkdownDirectory[]>([]);
 
   React.useEffect(() => {
-    const gitHubDirectoryPathsString: string | undefined = process.env.GATSBY_GITHUB_DOCS_DIRECTORY_PATHS;
+    const markdownDirectoryPathsString: string | undefined = process.env.GATSBY_GITHUB_DOCS_DIRECTORY_PATHS;
 
-    if (!gitHubDirectoryPathsString) return;
+    if (!markdownDirectoryPathsString) return;
 
     try {
-      const directories = JSON.parse(gitHubDirectoryPathsString);
+      const directories = JSON.parse(markdownDirectoryPathsString);
 
       setDirectories(directories);
     } catch {
-      console.warn("Something went wrong parsing the GitHub directories.");
+      console.warn("Something went wrong parsing the Markdown directories.");
     }
   }, []);
 

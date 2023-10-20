@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useMarkdown } from "../../hooks/markdown";
 import { ParsedHTML } from "../../components/ParsedHTML/ParsedHTML";
-import { useMarkdownDirectories } from "../../hooks/useGitHubDirectories";
+import { useMarkdownDirectories } from "../../hooks/useMarkdownDirectories";
 import { Page, PageContent } from "@utrecht/component-library-react/dist/css-module";
 
 interface MarkdownContentTemplateProps {

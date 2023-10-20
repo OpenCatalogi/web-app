@@ -1,3 +1,4 @@
+import * as React from "react";
 import _ from "lodash";
 import { Link } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
@@ -11,6 +12,7 @@ export const getAnchor = (
   directories: TGitHubDirectory[],
   location: string,
 ) => {
+  const conditions = ["://", "tel:", "mailto:"];
   const handleClick = (e: any) => {
     e.preventDefault();
 
@@ -31,14 +33,14 @@ export const getAnchor = (
     }
 
     // Internal Links
-    if (!props.href.includes("://")) {
+    if (!conditions.some((substring) => props.href.includes(substring))) {
       handleInternalLinks(props, targetFile, location, directories);
 
       return;
     }
 
     // External Links
-    if (props.href.includes("://")) {
+    if (conditions.some((substring) => props.href.includes(substring))) {
       open(props.href);
 
       return;
