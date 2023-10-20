@@ -1,17 +1,17 @@
 import * as React from "react";
 import * as styles from "./FooterTemplate.module.css";
+import clsx from "clsx";
+import parse from "html-react-parser";
 import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby-link";
+import { baseFilters, FiltersContext } from "../../../context/filters";
+import { useTranslation } from "react-i18next";
+import { library, IconPack, IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
-import clsx from "clsx";
-import { baseFilters, FiltersContext } from "../../../context/filters";
-import { library, IconPack, IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import parse from "html-react-parser";
 
 type TDynamicContentItem = {
   title: string;
@@ -19,6 +19,7 @@ type TDynamicContentItem = {
     value: string;
     ariaLabel: string;
     link?: string;
+    markdownLink?: string;
     label?: string;
     icon?: {
       icon: IconName;
@@ -59,6 +60,10 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
           .then((results) => {
             setFooterContent(results);
           });
+
+    // For development
+    // const data = require("./FooterContent.json");
+    // setFooterContent(data);
   }, []);
 
   return (
@@ -148,6 +153,35 @@ const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content })
             </Link>
           )}
 
+          {/* Internal Link Github/Markdown link */}
+          {item.markdownLink && !item.setFilter && (
+            <Link
+              className={styles.link}
+              onClick={() => navigate(`/github/${item.value}/?link=${item.markdownLink}`)}
+              tabIndex={0}
+              aria-label={`${t(item.ariaLabel)}, ${t(item.markdownLink)}`}
+              role="button"
+            >
+              {item.icon && item.icon.placement === "left" && (
+                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "left" && (
+                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+              )}
+
+              {t(item.value)}
+
+              {item.icon && item.icon.placement === "right" && (
+                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
+              )}
+
+              {item.customIcon && item.customIcon.placement === "right" && (
+                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+              )}
+            </Link>
+          )}
+
           {!item.link && item.setFilter && (
             <Link
               className={styles.link}
@@ -180,7 +214,7 @@ const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content })
           )}
 
           {/* No Link */}
-          {!item.link && !item.setFilter && (
+          {!item.link && !item.setFilter && !item.markdownLink && (
             <span>
               {item.customIcon && item.customIcon.placement === "left" && (
                 <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>

@@ -1,0 +1,7 @@
+.container {
+  margin-block-start: var(--utrecht-space-block-3xl);
+}
+
+.container > div > article > *:not(:last-child) {
+  margin-block-end: var(--utrecht-space-block-lg);
+}

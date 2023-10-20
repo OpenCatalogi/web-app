@@ -112,5 +112,16 @@
         "icon": { "prefix": "fas", "icon": "phone", "placement": "left" }
       }
     ]
+  },
+  {
+    "title": "Readme",
+    "items": [
+      {
+        "value": "Kosten",
+        "ariaLabel": "Website",
+        "markdownLink": "https://api.github.com/repos/ConductionNL/woo-website-template/contents/docs/Kosten.md",
+        "icon": { "prefix": "fab", "icon": "markdown", "placement": "left" }
+      }
+    ]
   }
 ]
