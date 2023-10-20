@@ -13,6 +13,8 @@ export interface IFilters {
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   currentPage: number;
   applicationsCurrentPage: number;
+  developmentStatusObsolete: boolean;
+  isBasedOn: boolean;
 
   organizationCurrentPage: number;
   organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
@@ -49,6 +51,8 @@ export const baseFilters = {
   organizationCurrentPage: 1,
   _search: "",
   organizationSearch: "",
+  developmentStatusObsolete: true,
+  isBasedOn: true,
 } as IFilters;
 
 export const FiltersContext = React.createContext<[IFilters, (_: IFilters) => void]>([baseFilters, () => null]);
