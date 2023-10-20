@@ -7,6 +7,7 @@ import Organization from "./resources/organization";
 import Applications from "./resources/applications";
 import Search from "./resources/search";
 import Github from "./resources/github";
+import Markdown from "./resources/markdown";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -62,6 +63,15 @@ export default class APIService {
     });
   }
 
+  public get MarkdownClient(): AxiosInstance {
+    return axios.create({
+      baseURL: process.env.GATSBY_BASE_URL ?? undefined,
+      headers: {
+        Accept: "application/vnd.github.html",
+      },
+    });
+  }
+
   // Resources
   public get Case(): Case {
     return new Case(this.apiClient);
@@ -89,6 +99,9 @@ export default class APIService {
 
   public get Github(): Github {
     return new Github(this.apiClient);
+  }
+  public get Markdown(): Markdown {
+    return new Markdown(this.MarkdownClient);
   }
 
   // Services

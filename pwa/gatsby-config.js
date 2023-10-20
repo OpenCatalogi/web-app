@@ -55,6 +55,10 @@ module.exports = {
             pathname: "/applications/[applicationId]",
             crumbLabel: "Application",
           },
+          {
+            pathname: "/github/[md]",
+            crumbLabel: "Markdown file",
+          },
         ],
       },
     },
