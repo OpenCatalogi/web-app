@@ -374,9 +374,4 @@
   --utrecht-separator-margin-block-start: 0px;
 }
 
-.utrecht-link {
-  display: inline-flex;
-  align-items: flex-start;
-}
-
 /******* END OF THEME TEMPLATE ********/
