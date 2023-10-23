@@ -52,6 +52,7 @@ export const OrganizationsTemplate: React.FC = () => {
                   totalPages={getOrganisations.data.pages}
                   currentPage={getOrganisations.data.page}
                   setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
+                  ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                 />
               )}
             </>

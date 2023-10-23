@@ -125,4 +125,10 @@ export const nl = {
   "Markdown file": "Markdown bestand",
   "No markdown file found, make sure that the query param link is filled":
     "Geen markdown bestand gevonden, zorg er voor dat de query parameter link is gevuld",
+  "All components": "Alle componenten",
+  "Scroll left": "Scroll naar links",
+  "Scroll right": "Scroll naar rechts",
+  "Next page": "Volgende pagina",
+  "Previous page": "Vorige pagina",
+  Page: "Pagina",
 };

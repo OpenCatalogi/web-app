@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
 import clsx from "clsx";
-import _ from "lodash";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
@@ -15,6 +14,7 @@ import { SearchComponentTemplate } from "../searchComponent/SearchComponentTempl
 import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
+import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -33,7 +33,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     screenSize,
   } = React.useContext(GatsbyContext);
 
-  const primaryTopNavItems = [
+  const primaryTopNavItems: ITopNavItem[] = [
     {
       label: "Home",
       current:
@@ -61,12 +61,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     {
       label: t("Components"),
       current: pathname.includes("/components"),
-      handleClick: () => {
-        navigate("/components");
-      },
       subItems: [
         {
-          label: t("Components"),
+          label: t("All components"),
           current: pathname.includes("/components"),
           handleClick: () => {
             navigate("/components");
@@ -149,8 +146,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
   React.useEffect(() => {
     if (screenSize === "desktop") {
-      primaryTopNavItems[3].subItems?.splice(0, 1);
-
       setTopNavItems(primaryTopNavItems);
       return;
     }
