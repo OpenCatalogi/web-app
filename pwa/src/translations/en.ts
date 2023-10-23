@@ -124,4 +124,10 @@ export const en = {
   "Markdown file": "Markdown file",
   "No markdown file found, make sure that the query param link is filled":
     "No markdown file found, make sure that the query param link is filled",
+  "All components": "All components",
+  "Scroll left": "Scroll left",
+  "Scroll right": "Scroll right",
+  "Next page": "Next page",
+  "Previous page": "Previous page",
+  Page: "Page",
 };
