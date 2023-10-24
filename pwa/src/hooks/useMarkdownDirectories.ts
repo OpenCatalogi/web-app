@@ -22,8 +22,8 @@ export const useMarkdownDirectories = () => {
     }
   }, []);
 
-  const getSlugFromName = (name: string): string => name.replace(" ", "-");
-  const getNameFromSlug = (slug: string): string => slug.replace("-", " "); // internal function
+  const getSlugFromName = (name: string): string => name?.replace(" ", "-");
+  const getNameFromSlug = (slug: string): string => slug?.replace("-", " "); // internal function
 
   const getDirectoryReadMeLocation = (pageSlug: string): string => {
     const directory = directories.find((directory) => directory.name === getNameFromSlug(pageSlug));

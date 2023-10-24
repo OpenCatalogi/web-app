@@ -143,7 +143,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.developmentStatus && (
           <DataBadge onClick={() => setFilters({ ...filters, developmentStatus: undefined })}>
-            {status?.label ?? ""}
+            {t(status?.label ?? "")}
           </DataBadge>
         )}
 
