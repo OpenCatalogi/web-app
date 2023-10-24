@@ -3,12 +3,12 @@ import qs from "qs";
 export const getParsedParamsFromSearch = (search: string): any => {
   const [, params] = search.split("?");
 
-  const parsedParams = qs.parse(params, {
+  const parsedParams: Record<string, unknown> = qs.parse(params, {
     decoder: (str, _, __, type) => {
       if (type === "key") return str;
 
       if (type === "value") {
-        if (str === "") return str;
+        if (str === "") return; // ignore empty strings
 
         if (str === "true" || str === "false") return str === "true";
 
@@ -17,6 +17,13 @@ export const getParsedParamsFromSearch = (search: string): any => {
         return str;
       }
     },
+  });
+
+  // ignore empty array params
+  Object.keys(parsedParams).forEach((key) => {
+    if (Array.isArray(parsedParams[key]) && (parsedParams[key] as unknown[]).length === 0) {
+      delete parsedParams[key];
+    }
   });
 
   return parsedParams;
