@@ -130,4 +130,11 @@ export const en = {
   "Next page": "Next page",
   "Previous page": "Previous page",
   Page: "Page",
+  "Select UPL": "Select UPL",
+  "Select organization": "Select organization",
+  "Select category": "Select category",
+  "Select license": "Select license",
+  "Select company function": "Select company function",
+  "Select company services": "Select company services",
+  "Select reference components": "Select reference components",
 };

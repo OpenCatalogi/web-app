@@ -31,6 +31,7 @@ import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
+import { useTranslation } from "react-i18next";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -43,6 +44,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
+
+  const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -381,7 +384,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             </FormLabel>
 
             <div className={styles.selectBorder}>
-              <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
+              <SelectMultiple
+                id="sortFormULP"
+                name="upl"
+                options={upls}
+                {...{ errors, control, register }}
+                ariaLabel={t("Select UPL")}
+              />
             </div>
           </FormField>
 
@@ -400,6 +409,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   isClearable
                   options={organizations}
                   name="organization"
+                  ariaLabel={t("Select organization")}
                   {...{ errors, control, register }}
                 />
               )}
@@ -418,6 +428,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 isClearable
                 name="category"
                 options={categories}
+                ariaLabel={t("Select category")}
                 {...{ errors, control, register }}
               />
             </div>
@@ -552,6 +563,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 isClearable
                 name="license"
                 options={licenses}
+                ariaLabel={t("Select license")}
                 {...{ errors, control, register }}
               />
             </div>
@@ -568,6 +580,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormLicense"
                 name="bedrijfsfuncties"
                 options={bedrijfsfuncties}
+                ariaLabel={t("Select company function")}
                 {...{ errors, control, register }}
               />
             </div>
@@ -621,6 +634,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormServices"
                 name="bedrijfsservices"
                 options={bedrijfsservices}
+                ariaLabel={t("Select company services")}
                 {...{ errors, control, register }}
               />
             </div>
@@ -638,6 +652,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormReference"
                 name="referentieComponenten"
                 options={referentieComponenten}
+                ariaLabel={t("Select reference components")}
                 {...{ errors, control, register }}
               />
             </div>

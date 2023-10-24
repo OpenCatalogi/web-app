@@ -131,4 +131,11 @@ export const nl = {
   "Next page": "Volgende pagina",
   "Previous page": "Vorige pagina",
   Page: "Pagina",
+  "Select UPL": "Selecteer UPL",
+  "Select organization": "Selecteer ogranisatie",
+  "Select category": "Selecteer categorie",
+  "Select license": "Selecteer licentie",
+  "Select company function": "Selecteer bedrijfsfunctie",
+  "Select company services": "Selecteer bedrijfsservices",
+  "Select reference components": "Selecter referentiecomponenten",
 };
