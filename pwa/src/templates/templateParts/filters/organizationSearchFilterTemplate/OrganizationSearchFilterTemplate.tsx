@@ -27,7 +27,6 @@ export const OrganizationSearchFiltersTemplate: React.FC = () => {
       () =>
         setFilters({
           ...filters,
-          organizationCurrentPage: 1,
           organizationSearch: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
         }),
       500,

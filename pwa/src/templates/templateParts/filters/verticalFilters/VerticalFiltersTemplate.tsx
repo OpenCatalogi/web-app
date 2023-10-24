@@ -156,7 +156,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     handleSetFormValues();
-  }, []);
+  }, [filters]);
 
   React.useEffect(() => {
     setFilters({

@@ -1,5 +1,8 @@
 import * as React from "react";
 import { GlobalContext } from "./global";
+import { getParsedParamsFromSearch } from "../services/getParsedParamsFromSearch";
+import { navigate } from "gatsby";
+import { filtersToUrlQueryParams } from "../services/filtersToQueryParams";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TComponentDependenciesLayout = "layer" | "relations";
@@ -62,8 +65,20 @@ export const useFiltersContext = () => {
   const filters: IFiltersContext = globalContext.filters;
 
   const setFilters = (newFilters: IFiltersContext) => {
-    setGlobalContext((oldGlobalContext) => ({ ...oldGlobalContext, filters: newFilters }));
+    const currentParsedQueryParams = getParsedParamsFromSearch(location.search);
+    const newParsedQueryParams = getParsedParamsFromSearch(filtersToUrlQueryParams(newFilters));
+
+    const targetParams = { ...currentParsedQueryParams, ...newParsedQueryParams };
+
+    navigate(filtersToUrlQueryParams(targetParams));
   };
 
-  return { filters, setFilters };
+  React.useEffect(() => {
+    setGlobalContext((oldGlobalContext) => ({
+      ...oldGlobalContext,
+      filters: { ...defaultFiltersContext, ...getParsedParamsFromSearch(location.search) },
+    }));
+  }, [location.search]);
+
+  return { setFilters, filters };
 };
