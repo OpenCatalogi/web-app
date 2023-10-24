@@ -6,15 +6,15 @@ import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-mo
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
-import { baseFilters, FiltersContext } from "../../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { GatsbyContext } from "../../../context/gatsby";
+import { useGatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
+import { defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -22,7 +22,6 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
-  const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
 
   const {
@@ -31,7 +30,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     location: { pathname },
     screenSize,
-  } = React.useContext(GatsbyContext);
+  } = useGatsbyContext();
+
+  const { filters, setFilters } = useFiltersContext();
 
   const primaryTopNavItems: ITopNavItem[] = [
     {
@@ -74,7 +75,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           current:
             pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["process"] });
+            setFilters({ ...defaultFiltersContext, "embedded.nl.embedded.commonground.layerType": ["process"] });
             navigate("/components");
           },
         },
@@ -83,7 +84,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           current:
             pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["data"] });
+            setFilters({ ...defaultFiltersContext, "embedded.nl.embedded.commonground.layerType": ["data"] });
             navigate("/components");
           },
         },
@@ -92,7 +93,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           current:
             pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
           handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["service"] });
+            setFilters({ ...defaultFiltersContext, "embedded.nl.embedded.commonground.layerType": ["service"] });
             navigate("/components");
           },
         },
@@ -109,7 +110,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       label: t("Initiatives"),
       current: pathname === "/components" && filters.developmentStatus === "concept",
       handleClick: () => {
-        setFilters({ ...baseFilters, developmentStatus: "concept" });
+        setFilters({ ...defaultFiltersContext, developmentStatus: "concept" });
         navigate("/components");
       },
     },

@@ -2,12 +2,12 @@ import * as React from "react";
 import qs from "qs";
 import { PageProps } from "gatsby";
 import { MarkdownContentTemplate } from "../../templates/markdown/MarkdownContentTemplate";
-import { GatsbyContext } from "../../context/gatsby";
+import { useGatsbyContext } from "../../context/gatsby";
 import { useTranslation } from "react-i18next";
 
 const MarkdownPage: React.FC<PageProps> = (props: PageProps) => {
   const { t } = useTranslation();
-  const { location } = React.useContext(GatsbyContext);
+  const { location } = useGatsbyContext();
 
   const url = location.search;
   const [, params] = url.split("?");

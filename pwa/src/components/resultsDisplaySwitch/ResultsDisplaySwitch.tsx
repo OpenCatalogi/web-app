@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ResultsDisplaySwitch.module.css";
 import { Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNodes, faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
@@ -26,7 +26,7 @@ interface ResultsDisplaySwitchProps {
 
 const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClassName, resultsDisplayType }) => {
   const { t } = useTranslation();
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
 
   const acceptedFilters: AcceptedFilters = {
     resultDisplayLayout: ["table", "cards", "layer"],

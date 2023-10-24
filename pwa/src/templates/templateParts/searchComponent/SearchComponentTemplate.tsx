@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { FiltersContext, IFilters } from "../../../context/filters";
+import { IFiltersContext, useFiltersContext } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
@@ -15,7 +15,7 @@ interface SearchComponentTemplateProps {
 }
 
 export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
 
   const {
@@ -32,7 +32,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       landingDisplayLayout: filters.landingDisplayLayout,
       currentPage: filters.currentPage,
       applicationsCurrentPage: filters.applicationsCurrentPage,
-    } as IFilters);
+    } as IFiltersContext);
 
     navigate("/components");
   };
@@ -44,7 +44,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       landingDisplayLayout: filters.landingDisplayLayout,
       currentPage: filters.currentPage,
       applicationsCurrentPage: filters.applicationsCurrentPage,
-    } as IFilters);
+    } as IFiltersContext);
   };
 
   return (

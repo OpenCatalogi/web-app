@@ -4,7 +4,7 @@ import clsx from "clsx";
 import parse from "html-react-parser";
 import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby-link";
-import { baseFilters, FiltersContext } from "../../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 import { useTranslation } from "react-i18next";
 import { library, IconPack, IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -86,7 +86,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
 const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content }) => {
   const { t } = useTranslation();
-  const [, setFilters] = React.useContext(FiltersContext);
+  const { setFilters } = useFiltersContext();
 
   return (
     <section>
@@ -186,7 +186,7 @@ const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content })
             <Link
               className={styles.link}
               onClick={() => {
-                setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
+                setFilters({ ...defaultFiltersContext, [item.setFilter!.filter]: item.setFilter!.value });
                 navigate(item.setFilter!.link);
               }}
               tabIndex={0}

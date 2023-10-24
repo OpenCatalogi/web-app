@@ -4,15 +4,15 @@ import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/compone
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
-import { GatsbyContext } from "../../context/gatsby";
+import { useGatsbyContext } from "../../context/gatsby";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 
 export const LandingTemplate: React.FC = () => {
-  const [filters] = React.useContext(FiltersContext);
-  const { screenSize } = React.useContext(GatsbyContext);
+  const { filters } = useFiltersContext();
+  const { screenSize } = useGatsbyContext();
 
   return (
     <Container layoutClassName={styles.container}>

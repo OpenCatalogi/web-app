@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../../context/filters";
+import { useFiltersContext } from "../../../../context/filters";
 
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
@@ -26,12 +26,12 @@ import {
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
+import { useGatsbyContext } from "../../../../context/gatsby";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -39,7 +39,9 @@ interface VerticalFiltersTemplateProps {
 }
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
+  const { screenSize } = useGatsbyContext();
+
   const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
@@ -55,8 +57,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpenMaintenanceType, setIsOpenMaintenanceType] = React.useState<boolean>(true);
   const [isOpenPlatforms, setIsOpenPlatforms] = React.useState<boolean>(true);
   const [isOpenSoftwareTypes, setIsOpenSoftwareTypes] = React.useState<boolean>(true);
-
-  const { screenSize } = React.useContext(GatsbyContext);
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
