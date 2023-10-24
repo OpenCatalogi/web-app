@@ -2,7 +2,5 @@
 export const isHtml = (data: string): boolean => {
   const hmlRegex = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/;
 
-  const valid = hmlRegex.test(data);
-
-  return valid;
+  return hmlRegex.test(data);
 };

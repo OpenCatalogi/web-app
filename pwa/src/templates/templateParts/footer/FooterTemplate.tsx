@@ -6,12 +6,13 @@ import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-rea
 import { navigate } from "gatsby-link";
 import { baseFilters, FiltersContext } from "../../../context/filters";
 import { useTranslation } from "react-i18next";
-import { library, IconPack, IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
+import { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
+import { useFooterContent } from "../../../hooks/footerContent";
+
+export const DEFAULT_FOOTER_CONTENT_URL =
+  "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/templates/templateParts/footer/FooterContent.json";
 
 type TDynamicContentItem = {
   title: string;
@@ -44,27 +45,19 @@ interface FooterTemplateProps {
 
 export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName }) => {
   const [footerContent, setFooterContent] = React.useState<TDynamicContentItem[]>([]);
-  library.add(fas, fab as IconPack, far as IconPack);
+
+  const _useFooterContent = useFooterContent();
+  const getFooterContent = _useFooterContent.getContent();
 
   React.useEffect(() => {
-    process.env.GATSBY_FOOTER_CONTENT
-      ? fetch(process.env.GATSBY_FOOTER_CONTENT)
-          .then((response) => response.json())
-          .then((results) => {
-            setFooterContent(results);
-          })
-      : fetch(
-          "https://raw.githubusercontent.com/OpenCatalogi/web-app/25995205e1dbb043822d1c58c5c23f8e6f77ff7e/pwa/src/templates/templateParts/footer/FooterContent.json",
-        )
-          .then((response) => response.json())
-          .then((results) => {
-            setFooterContent(results);
-          });
+    setFooterContent(getFooterContent.data);
+  }, [getFooterContent]);
 
-    // For development
-    // const data = require("./FooterContent.json");
-    // setFooterContent(data);
-  }, []);
+  // For development
+  // React.useEffect(() => {
+  //   const data = require("./FooterContent.json");
+  //   setFooterContent(data);
+  // }, []);
 
   return (
     <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
@@ -86,7 +79,6 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
 
 const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content }) => {
   const { t } = useTranslation();
-  const [, setFilters] = React.useContext(FiltersContext);
 
   return (
     <section>
@@ -96,145 +88,19 @@ const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content })
         <div key={idx} className={styles.dynamicSectionContent}>
           {item.label && <strong>{t(item.label)}</strong>}
           {/* External Link */}
-          {item.link && item.link.includes("http") && (
-            <Link
-              className={styles.link}
-              href={item.link}
-              target="_blank"
-              tabIndex={0}
-              aria-label={`${t(item.ariaLabel)}, ${t("Opens a new window")}`}
-            >
-              {item.customIcon && item.customIcon.placement === "left" && (
-                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
-              )}
-
-              {item.icon && item.icon.placement === "left" && (
-                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {t(item.value)}
-
-              {item.icon && item.icon.placement === "right" && (
-                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "right" && (
-                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
-              )}
-            </Link>
-          )}
+          {item.link && item.link.includes("http") && <ExternalLink {...{ item }} />}
 
           {/* Internal Link */}
-          {item.link && !item.link.includes("http") && !item.setFilter && (
-            <Link
-              className={styles.link}
-              onClick={() => navigate(item.link ?? "")}
-              tabIndex={0}
-              aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
-              role="button"
-            >
-              {item.icon && item.icon.placement === "left" && (
-                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "left" && (
-                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
-              )}
-
-              {t(item.value)}
-
-              {item.icon && item.icon.placement === "right" && (
-                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "right" && (
-                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
-              )}
-            </Link>
-          )}
+          {item.link && !item.link.includes("http") && !item.setFilter && <InternalLink {...{ item }} />}
 
           {/* Internal Link Github/Markdown link */}
-          {item.markdownLink && !item.setFilter && (
-            <Link
-              className={styles.link}
-              onClick={() => navigate(`/github/${item.value}/?link=${item.markdownLink}`)}
-              tabIndex={0}
-              aria-label={`${t(item.ariaLabel)}, ${t(item.markdownLink)}`}
-              role="button"
-            >
-              {item.icon && item.icon.placement === "left" && (
-                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
+          {item.markdownLink && !item.setFilter && <MarkdownLink {...{ item }} />}
 
-              {item.customIcon && item.customIcon.placement === "left" && (
-                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
-              )}
-
-              {t(item.value)}
-
-              {item.icon && item.icon.placement === "right" && (
-                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "right" && (
-                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
-              )}
-            </Link>
-          )}
-
-          {!item.link && item.setFilter && (
-            <Link
-              className={styles.link}
-              onClick={() => {
-                setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
-                navigate(item.setFilter!.link);
-              }}
-              tabIndex={0}
-              aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
-              role="button"
-            >
-              {item.icon && item.icon.placement === "left" && (
-                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "left" && (
-                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
-              )}
-
-              {t(item.value)}
-
-              {item.icon && item.icon.placement === "right" && (
-                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "right" && (
-                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
-              )}
-            </Link>
-          )}
+          {/* Internal filter link */}
+          {!item.link && item.setFilter && <FilterLink {...{ item }} />}
 
           {/* No Link */}
-          {!item.link && !item.setFilter && !item.markdownLink && (
-            <span>
-              {item.customIcon && item.customIcon.placement === "left" && (
-                <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
-              )}
-
-              {item.icon && item.icon.placement === "left" && (
-                <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {t(item.value)}
-
-              {item.icon && item.icon.placement === "right" && (
-                <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon!.icon]} />
-              )}
-
-              {item.customIcon && item.customIcon.placement === "right" && (
-                <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
-              )}
-            </span>
-          )}
+          {!item.link && !item.setFilter && !item.markdownLink && <NoLink {...{ item }} />}
         </div>
       ))}
     </section>
@@ -295,5 +161,167 @@ const WithLoveByConduction: React.FC = () => {
         <span className={styles.withLoveConductionLink}> Conduction.</span>
       </Link>
     </div>
+  );
+};
+
+interface LinkComponentProps {
+  item: any;
+}
+
+const ExternalLink: React.FC<LinkComponentProps> = ({ item }) => {
+  const { t } = useTranslation();
+
+  return (
+    <Link
+      className={styles.link}
+      href={item.link}
+      target="_blank"
+      tabIndex={0}
+      aria-label={`${t(item.ariaLabel)}, ${t("Opens a new window")}`}
+    >
+      {item.customIcon && item.customIcon.placement === "left" && (
+        <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+      )}
+
+      {item.icon && item.icon.placement === "left" && (
+        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {t(item.value)}
+
+      {item.icon && item.icon.placement === "right" && (
+        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "right" && (
+        <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+      )}
+    </Link>
+  );
+};
+
+const InternalLink: React.FC<LinkComponentProps> = ({ item }) => {
+  const { t } = useTranslation();
+
+  return (
+    <Link
+      className={styles.link}
+      onClick={() => navigate(item.link ?? "")}
+      tabIndex={0}
+      aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
+      role="button"
+    >
+      {item.icon && item.icon.placement === "left" && (
+        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "left" && (
+        <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+      )}
+
+      {t(item.value)}
+
+      {item.icon && item.icon.placement === "right" && (
+        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "right" && (
+        <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+      )}
+    </Link>
+  );
+};
+
+const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
+  const { t } = useTranslation();
+
+  return (
+    <Link
+      className={styles.link}
+      onClick={() => navigate(`/github/${item.value.replaceAll(" ", "_")}/?link=${item.markdownLink}`)}
+      tabIndex={0}
+      aria-label={`${t(item.ariaLabel)}, ${t(item.markdownLink)}`}
+      role="button"
+    >
+      {item.icon && item.icon.placement === "left" && (
+        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "left" && (
+        <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+      )}
+
+      {t(item.value)}
+
+      {item.icon && item.icon.placement === "right" && (
+        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "right" && (
+        <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+      )}
+    </Link>
+  );
+};
+
+const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
+  const { t } = useTranslation();
+  const [, setFilters] = React.useContext(FiltersContext);
+
+  return (
+    <Link
+      className={styles.link}
+      onClick={() => {
+        setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
+        navigate(item.setFilter!.link);
+      }}
+      tabIndex={0}
+      aria-label={`${t(item.ariaLabel)}, ${t(item.value)}`}
+      role="button"
+    >
+      {item.icon && item.icon.placement === "left" && (
+        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "left" && (
+        <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+      )}
+
+      {t(item.value)}
+
+      {item.icon && item.icon.placement === "right" && (
+        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "right" && (
+        <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+      )}
+    </Link>
+  );
+};
+
+const NoLink: React.FC<LinkComponentProps> = ({ item }) => {
+  const { t } = useTranslation();
+
+  return (
+    <span>
+      {item.customIcon && item.customIcon.placement === "left" && (
+        <Icon className={styles.iconLeft}>{parse(item.customIcon.icon)}</Icon>
+      )}
+
+      {item.icon && item.icon.placement === "left" && (
+        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {t(item.value)}
+
+      {item.icon && item.icon.placement === "right" && (
+        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+      )}
+
+      {item.customIcon && item.customIcon.placement === "right" && (
+        <Icon className={styles.iconRight}>{parse(item.customIcon.icon)}</Icon>
+      )}
+    </span>
   );
 };
