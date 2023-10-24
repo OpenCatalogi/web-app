@@ -35,3 +35,20 @@ const filterKeysToRemove: string[] = [
   "catagoryDisplayLayout",
   "organizationsResultDisplayLayout",
 ];
+
+export const filtersToUrlQueryParams = (filters: Record<string, any>): string => {
+  const params = Object.entries(filters)
+    .map(([key, value]) => {
+      if (value === null || value === undefined) return null;
+
+      const formattedValue = Array.isArray(value)
+        ? value.map((v: string) => v.replace(/\s+/g, "_")).join(`&${key}[]=`)
+        : value.toString().replace(/\s+/g, "_");
+
+      return `${Array.isArray(value) ? `${key}[]` : key}=${formattedValue}`;
+    })
+    .filter(Boolean)
+    .join("&");
+
+  return params ? `?${params}` : "";
+};
