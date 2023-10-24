@@ -11,9 +11,12 @@ export const filtersToQueryParams = (filters: any): string => {
     if (!value) continue;
 
     if (typeof value === "string") {
-      params += `&${key}=${value}`;
+      if (key === "developmentStatus" && value === "hideObsolete") {
+        params += `&developmentStatus[ne]=obsolete`;
+      } else {
+        params += `&${key}=${value}`;
+      }
     }
-
     if (Array.isArray(value)) {
       let arrayParams = "";
 

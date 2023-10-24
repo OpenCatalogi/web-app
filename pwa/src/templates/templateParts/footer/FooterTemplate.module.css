@@ -56,7 +56,7 @@
 .contentGrid {
   gap: 28px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .dynamicSectionTitle {
@@ -82,4 +82,16 @@
 }
 .iconRight {
   margin-inline-start: var(--web-app-size-2xs);
+}
+
+@media only screen and (min-width: 576px) {
+  .contentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

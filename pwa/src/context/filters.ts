@@ -17,8 +17,7 @@ export interface IFiltersContext {
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   currentPage: number;
   applicationsCurrentPage: number;
-  developmentStatusObsolete: boolean;
-  isBasedOn: boolean;
+  isForked: boolean;
 
   organizationCurrentPage: number;
   organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
@@ -55,8 +54,8 @@ export const defaultFiltersContext: IFiltersContext = {
   organizationCurrentPage: 1,
   _search: "",
   organizationSearch: "",
-  developmentStatusObsolete: true,
-  isBasedOn: true,
+  isForked: true,
+  developmentStatus: "hideObsolete",
 };
 
 export const useFiltersContext = () => {

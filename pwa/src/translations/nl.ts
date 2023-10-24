@@ -68,6 +68,7 @@ export const nl = {
   Breadcrumbs: "Kruimelpad",
   Publications: "Publicaties",
   Usage: "Gebruik",
+  Page: "Pagina",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -130,7 +131,6 @@ export const nl = {
   "Scroll right": "Scroll naar rechts",
   "Next page": "Volgende pagina",
   "Previous page": "Vorige pagina",
-  Page: "Pagina",
   "Select UPL": "Selecteer UPL",
   "Select organization": "Selecteer ogranisatie",
   "Select category": "Selecteer categorie",
@@ -138,4 +138,7 @@ export const nl = {
   "Select company function": "Selecteer bedrijfsfunctie",
   "Select company services": "Selecteer bedrijfsservices",
   "Select reference components": "Selecter referentiecomponenten",
+  "Hide forks": "Forks verbergen",
+  "Hide obsolete": "Uitgefaseerd verbergen",
+  "Phone number": "Telefoonnummer",
 };

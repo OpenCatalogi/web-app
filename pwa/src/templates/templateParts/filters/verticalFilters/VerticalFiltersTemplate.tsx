@@ -80,28 +80,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     formState: { errors },
   } = useForm();
 
-  const isObsolete = (status: boolean) => {
+  const isForked = (status: boolean) => {
     if (status) {
-      setFilters({ ...filters, developmentStatusObsolete: false });
+      setFilters({ ...filters, isForked: false });
     }
     if (!status) {
-      setFilters({ ...filters, developmentStatus: undefined, developmentStatusObsolete: true });
+      setFilters({ ...filters, isForked: true });
     }
-  };
-
-  const isBasedOn = (status: boolean) => {
-    if (status) {
-      setFilters({ ...filters, isBasedOn: false });
-    }
-    if (!status) {
-      setFilters({ ...filters, isBasedOn: true });
-    }
-  };
-
-  const setStatusRadioFilterState = (value: string) => {
-    setStatusRadioFilter(value);
-    setFilters({ ...filters, developmentStatusObsolete: false });
-    setValue("hideObsolete", false);
   };
 
   const handleLayerChange = (layer: any, e: any) => {
@@ -143,8 +128,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   };
 
   const handleSetFormValues = (): void => {
-    setValue("hideObsolete", filters.developmentStatusObsolete);
-    setValue("hideForks", filters.isBasedOn);
+    setValue("hideForks", filters.isForked);
   };
 
   React.useEffect(() => {
@@ -235,7 +219,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           "embedded.nl.embedded.gemma.applicatiefunctie": applicatiefunctie?.value,
           softwareType: softwareType?.value,
           developmentStatus: status?.value,
-          developmentStatusObsolete: status?.value,
           "embedded.maintenance.type": maintenanceType?.value,
           "embedded.legal.license": license?.value,
           "embedded.url.embedded.organisation.name": organization?.value,
@@ -276,6 +259,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       }
     });
   }, [filters.platforms]);
+
+  React.useEffect(() => {
+    if (filters.isForked === true) return;
+    if (filters.isForked === false) {
+      const checkBox = document.getElementById(`checkboxhideForks`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked === true) {
+        checkBox.click();
+      }
+    }
+  }, [filters.isForked]);
 
   React.useEffect(() => {
     if (filters.developmentStatus === statusRadioFilter) return;
@@ -339,8 +332,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               onOpening={() => setIsOpenExtra(true)}
               onClosing={() => setIsOpenExtra(false)}
             >
-              <div className={styles.radioContainer} onChange={() => isBasedOn(filters.isBasedOn)}>
-                <InputCheckbox label={"hideForks"} name={"hideForks"} {...{ errors, control, register }} />
+              <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
+                <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
               </div>
             </Collapsible>
           </FormField>
@@ -489,18 +482,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               onOpening={() => setIsOpenStatus(true)}
               onClosing={() => setIsOpenStatus(false)}
             >
-              <div className={styles.radioContainer} onChange={() => isObsolete(filters.developmentStatusObsolete)}>
-                <InputCheckbox label={"hideObsolete"} name={"hideObsolete"} {...{ errors, control, register }} />
-              </div>
               {statuses.map((status) => (
                 <div
                   className={styles.radioContainer}
-                  onChange={() => setStatusRadioFilterState(status.value)}
+                  onChange={() => setStatusRadioFilter(status.value)}
                   key={status.value}
                 >
                   <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
-                  <span className={styles.radioLabel} onClick={() => setStatusRadioFilterState(status.value)}>
-                    {status.label}
+                  <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
+                    {t(status.label)}
                   </span>
                 </div>
               ))}

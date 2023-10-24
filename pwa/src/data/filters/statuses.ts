@@ -4,4 +4,5 @@ export const statuses = [
   { label: "Beta", value: "beta" },
   { label: "Bruikbaar", value: "stable" },
   { label: "Uitgefaseerd", value: "obsolete" },
+  { label: "Hide obsolete", value: "hideObsolete" },
 ];

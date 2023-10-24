@@ -17,12 +17,11 @@ const MarkdownPage: React.FC<PageProps> = (props: PageProps) => {
   const detailPageSlug = props.params.detailPageSlug;
   const pageSlug = props.params.pageSlug;
 
-  return (
-    <>
-      {link && <MarkdownContentTemplate {...{ pageSlug, detailPageSlug, link }} />}
-      {!link && <span>{t("No markdown file found, make sure that the query param link is filled")}</span>}
-    </>
-  );
+  if (!link) {
+    return <span>{t("No markdown file found, make sure that the query param link is filled")}</span>;
+  }
+
+  return <MarkdownContentTemplate {...{ pageSlug, detailPageSlug, link }} />;
 };
 
 export default MarkdownPage;

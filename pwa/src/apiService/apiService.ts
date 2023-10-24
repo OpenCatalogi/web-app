@@ -1,4 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
+import { DEFAULT_FOOTER_CONTENT_URL } from "../templates/templateParts/footer/FooterTemplate";
+import { removeFileNameFromUrl } from "../services/FileNameFromUrl";
 
 import Case from "./resources/case";
 import Component from "./resources/components";
@@ -8,6 +10,7 @@ import Applications from "./resources/applications";
 import Search from "./resources/search";
 import Github from "./resources/github";
 import Markdown from "./resources/markdown";
+import FooterContent from "./resources/footerContent";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -72,6 +75,16 @@ export default class APIService {
     });
   }
 
+  public get FooterContentClient(): AxiosInstance {
+    return axios.create({
+      baseURL: removeFileNameFromUrl(
+        process.env.GATSBY_FOOTER_CONTENT !== undefined && process.env.GATSBY_FOOTER_CONTENT.length !== 0
+          ? process.env.GATSBY_FOOTER_CONTENT
+          : DEFAULT_FOOTER_CONTENT_URL,
+      ),
+    });
+  }
+
   // Resources
   public get Case(): Case {
     return new Case(this.apiClient);
@@ -100,8 +113,13 @@ export default class APIService {
   public get Github(): Github {
     return new Github(this.apiClient);
   }
+
   public get Markdown(): Markdown {
     return new Markdown(this.MarkdownClient);
+  }
+
+  public get FooterContent(): FooterContent {
+    return new FooterContent(this.FooterContentClient);
   }
 
   // Services

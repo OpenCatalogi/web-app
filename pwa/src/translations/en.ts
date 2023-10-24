@@ -67,6 +67,7 @@ export const en = {
   Publications: "Publications",
   Usage: "Usage",
   Breadcrumbs: "Breadcrumbs",
+  Page: "Page",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -129,7 +130,6 @@ export const en = {
   "Scroll right": "Scroll right",
   "Next page": "Next page",
   "Previous page": "Previous page",
-  Page: "Page",
   "Select UPL": "Select UPL",
   "Select organization": "Select organization",
   "Select category": "Select category",
@@ -137,4 +137,7 @@ export const en = {
   "Select company function": "Select company function",
   "Select company services": "Select company services",
   "Select reference components": "Select reference components",
+  "Hide forks": "Hide forks",
+  "Hide obsolete": "Hide obsolete",
+  "Phone number": "Phone number",
 };

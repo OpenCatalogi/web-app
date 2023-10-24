@@ -18,22 +18,12 @@ export const MarkdownContentTemplate: React.FC<MarkdownContentTemplateProps> = (
   let content: any;
 
   if (link.includes("https://github.com/")) {
-    let linkHttps = "";
-    let linkContents = "";
-    linkHttps = link.replace("https://github.com/", "https://api.github.com/repos/");
-
-    if (linkHttps.includes("/blob/main/")) linkContents = linkHttps.replace("/blob/main/", "/contents/");
-    if (linkHttps.includes("/blob/master/")) linkContents = linkHttps.replace("/blob/master/", "/contents/");
-
-    content = useMarkdown().getContent(linkContents);
-  }
-
-  if (link.includes("https://api.github.com/repos/")) {
-    content = useMarkdown().getContent(link);
-  }
-
-  if (!link.includes("https://api.github.com/repos/") && !link.includes("https://github.com/")) {
-    content = useMarkdown().getContent(link);
+    const linkHttps = link.replace("https://github.com/", "https://api.github.com/repos/");
+    linkHttps.includes("/blob/main/")
+      ? (content = useMarkdown().getContent(linkHttps.replace("/blob/main/", "/contents/")))
+      : (content = useMarkdown().getContent(linkHttps.replace("/blob/master/", "/contents/")));
+  } else {
+    content = useMarkdown().getContent(link.includes("https://api.github.com/repos/") ? link : link);
   }
 
   return (
