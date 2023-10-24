@@ -5,7 +5,7 @@ export const getParsedParamsFromSearch = (search: string): any => {
 
   const parsedParams: Record<string, unknown> = qs.parse(params, {
     decoder: (str, _, __, type) => {
-      if (type === "key") return str;
+      if (type === "key") return decodeURIComponent(str);
 
       if (type === "value") {
         if (str === "") return; // ignore empty strings
@@ -14,7 +14,7 @@ export const getParsedParamsFromSearch = (search: string): any => {
 
         if (!isNaN(Number(str))) return parseInt(str, 16);
 
-        return str;
+        return decodeURIComponent(str);
       }
     },
   });

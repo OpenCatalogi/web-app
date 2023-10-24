@@ -42,8 +42,8 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>): string =>
       if (value === null || value === undefined) return null;
 
       const formattedValue = Array.isArray(value)
-        ? value.map((v: string) => v.replace(/\s+/g, "_")).join(`&${key}[]=`)
-        : value.toString().replace(/\s+/g, "_");
+        ? value.map((v) => encodeURIComponent(v)).join(`&${key}[]=`)
+        : encodeURIComponent(value.toString());
 
       return `${Array.isArray(value) ? `${key}[]` : key}=${formattedValue}`;
     })
