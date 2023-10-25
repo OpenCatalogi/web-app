@@ -131,7 +131,15 @@
   {
     "label": "Initiatives",
     "type": "internal",
-    "current": "pathname === \"/components\" && filters.developmentStatus === \"concept\"",
+    "current": {
+      "pathname": "/components",
+      "operator": "includes",
+      "filterCondition": {
+        "filter": "developmentStatus",
+        "value": "concept",
+        "isObject": true
+      }
+    },
     "handleClick": {
       "link": "/components",
       "setFilter": {

@@ -74,6 +74,8 @@
 .headerSearchForm {
   display: flex;
   flex-direction: column;
+  padding-inline-start: var(--web-app-size-sm);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .section > *:not(:last-child) {
