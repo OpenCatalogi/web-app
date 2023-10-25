@@ -158,6 +158,10 @@ li .denhaag-link__icon {
     padding-inline: var(--web-app-size-md);
   }
 
+  .headerContainerSingle {
+    padding-block-start: var(--web-app-size-md);
+  }
+
   .headerContent {
     padding-block-start: var(--web-app-size-3xl);
     padding-block-end: var(--web-app-size-3xl);

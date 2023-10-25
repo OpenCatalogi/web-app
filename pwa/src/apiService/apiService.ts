@@ -14,6 +14,8 @@ import FooterContent from "./resources/footerContent";
 
 import Login from "./services/login";
 import Me from "./services/me";
+import { DEFAULT_HEADER_CONTENT_URL } from "../templates/templateParts/header/HeaderTemplate";
+import HeaderContent from "./resources/headerContent";
 
 export default class APIService {
   public JWT?: string;
@@ -85,6 +87,16 @@ export default class APIService {
     });
   }
 
+  public get HeaderContentClient(): AxiosInstance {
+    return axios.create({
+      baseURL: removeFileNameFromUrl(
+        process.env.GATSBY_HEADER_CONTENT !== undefined && process.env.GATSBY_HEADER_CONTENT.length !== 0
+          ? process.env.GATSBY_HEADER_CONTENT
+          : DEFAULT_HEADER_CONTENT_URL,
+      ),
+    });
+  }
+
   // Resources
   public get Case(): Case {
     return new Case(this.apiClient);
@@ -120,6 +132,10 @@ export default class APIService {
 
   public get FooterContent(): FooterContent {
     return new FooterContent(this.FooterContentClient);
+  }
+
+  public get HeaderContent(): HeaderContent {
+    return new HeaderContent(this.HeaderContentClient);
   }
 
   // Services

@@ -15,6 +15,10 @@ import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
+import { useHeaderContent } from "../../../hooks/headerContent";
+
+export const DEFAULT_HEADER_CONTENT_URL =
+  "https://raw.githubusercontent.com/OpenCatalogi/web-app/348679b7537b20e51767dfdc6086349602afe219/pwa/src/templates/templateParts/header/HeaderContent.json";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -23,7 +27,7 @@ interface HeaderTemplateProps {
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
-  const [topNavItems, setTopNavItems] = React.useState<any[]>([]);
+  const [topNavItems, setTopNavItems] = React.useState<ITopNavItem[]>([]);
 
   const {
     pageContext: {
@@ -33,109 +37,10 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     screenSize,
   } = React.useContext(GatsbyContext);
 
-  const primaryTopNavItems: ITopNavItem[] = [
-    {
-      label: "Home",
-      current:
-        pathname === "/" ||
-        (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true" &&
-          pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}/`),
-      handleClick: () => {
-        navigate("/");
-      },
-    },
-    {
-      label: t("Categories"),
-      current: pathname.includes("/categories"),
-      handleClick: () => {
-        navigate("/categories");
-      },
-    },
-    {
-      label: t("Applications"),
-      current: pathname.includes("/applications"),
-      handleClick: () => {
-        navigate("/applications");
-      },
-    },
-    {
-      label: t("Components"),
-      current: pathname.includes("/components"),
-      subItems: [
-        {
-          label: t("All components"),
-          current: pathname.includes("/components"),
-          handleClick: () => {
-            navigate("/components");
-          },
-        },
-        {
-          label: t("Processes"),
-          current:
-            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
-          handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["process"] });
-            navigate("/components");
-          },
-        },
-        {
-          label: t("Data models"),
-          current:
-            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
-          handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["data"] });
-            navigate("/components");
-          },
-        },
-        {
-          label: t("API's"),
-          current:
-            pathname === "/components" && filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
-          handleClick: () => {
-            setFilters({ ...baseFilters, "embedded.nl.embedded.commonground.layerType": ["service"] });
-            navigate("/components");
-          },
-        },
-      ],
-    },
-    {
-      label: t("Organizations"),
-      current: pathname.includes("/organizations"),
-      handleClick: () => {
-        navigate("/organizations");
-      },
-    },
-    {
-      label: t("Initiatives"),
-      current: pathname === "/components" && filters.developmentStatus === "concept",
-      handleClick: () => {
-        setFilters({ ...baseFilters, developmentStatus: "concept" });
-        navigate("/components");
-      },
-    },
-    {
-      label: "Documentatie",
-      current: pathname.includes("/documentation"),
-      subItems: [
-        {
-          label: t("About"),
-          current: pathname === "/documentation/about",
-          handleClick: () => navigate("/documentation/about"),
-        },
-        {
-          label: t("Use"),
-          current: pathname === "/documentation/usage",
-          handleClick: () => {
-            navigate("/documentation/usage");
-          },
-        },
-      ],
-    },
-  ];
-
-  const secondaryTopNavItems = [
+  const secondaryTopNavItemsMobile: ITopNavItem[] = [
     {
       label: t("Login"),
+      type: "external",
       current: pathname === "/login",
       handleClick: () => {
         open(process.env.ADMIN_DASHBOARD_URL ?? "#");
@@ -144,22 +49,145 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
+  const secondaryTopNavItems = [
+    {
+      label: t("Login"),
+      type: "external",
+      current: pathname === "/login",
+      handleClick: () => {
+        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
+      },
+      icon: <FontAwesomeIcon icon={faCircleUser} />,
+    },
+  ];
+
+  const _useHeaderContent = useHeaderContent();
+  const getHeaderContent = _useHeaderContent.getContent();
+
   React.useEffect(() => {
+    const itemsArray: ITopNavItem[] = [];
+
+    getHeaderContent.isSuccess &&
+      getHeaderContent.data.map((item: any) => {
+        const isCurrent = (current: any) => {
+          if (current && !current.filterCondition) {
+            switch (current.operator) {
+              case "equals":
+                if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
+                  return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}`;
+                } else {
+                  return pathname === current.pathname;
+                }
+
+              case "includes":
+                return pathname.includes(current.pathname);
+            }
+          }
+          if (current && current.filterCondition) {
+            switch (current.operator) {
+              case "equals":
+                if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
+                  return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}` &&
+                    current.filterCondition?.isObject === true
+                    ? //@ts-ignore
+                      filters[current.filterCondition.filter]?.includes(current.filterCondition.value)
+                    : //@ts-ignore
+                      filters[current.filterCondition.filter] === current.filterConditon.value;
+                } else {
+                  return pathname === current.pathname && current.filterCondition?.isObject === true
+                    ? //@ts-ignore
+                      filters[current.filterCondition.filter]?.includes(current.filterCondition.value)
+                    : //@ts-ignore
+                      filters[current.filterCondition.filter] === current.filterConditon.value;
+                }
+
+              case "includes":
+                return current.filterCondition?.isObject === true
+                  ? pathname.includes(current.pathname) &&
+                      //@ts-ignore
+                      filters[current.filterCondition.filter]?.includes(current.filterCondition?.value)
+                  : pathname.includes(current.pathname) &&
+                      //@ts-ignore
+                      filters[current.filterCondition.filter] === current.filterCondition?.value;
+            }
+          }
+        };
+
+        const getOnClick = (onClick: any, type: "readme" | "internal" | "external", label: string) => {
+          if (!onClick || !type || !label) return;
+
+          if (onClick.link && !onClick.setFilter) {
+            if (type === "internal") {
+              navigate(onClick.link);
+            }
+            if (type === "external") {
+              open(onClick.link);
+            }
+            if (type === "readme") {
+              navigate(`/github/${label.replaceAll(" ", "_")}/?link=${onClick.link}`);
+            }
+          }
+          if (onClick.link && onClick.setFilter && type === "internal") {
+            onClick.setFilter?.isObject === true
+              ? setFilters({ ...baseFilters, [onClick.setFilter!.filter]: [onClick.setFilter!.value] })
+              : setFilters({ ...baseFilters, [onClick.setFilter!.filter]: onClick.setFilter!.value });
+            navigate(onClick.link);
+          }
+        };
+
+        const setSubItems = (subItems: ITopNavItem[]) => {
+          if (!subItems) return;
+          const subItemsArray: ITopNavItem[] = [];
+
+          subItems.map((item: any) => {
+            subItemsArray.push({
+              label: t(item.label),
+              type: item.type,
+              current: isCurrent(item.current),
+              handleClick: () => getOnClick(item.handleClick, item.type, item.label),
+            });
+          });
+
+          const subItemsObject = Object.assign(subItemsArray);
+
+          return subItemsObject;
+        };
+
+        itemsArray.push({
+          label: t(item.label),
+          type: item.type,
+          current: isCurrent(item.current),
+          handleClick: () => getOnClick(item.handleClick, item.type, item.label),
+          subItems: setSubItems(item.subItems),
+        });
+      });
+
     if (screenSize === "desktop") {
-      setTopNavItems(primaryTopNavItems);
+      setTopNavItems(itemsArray);
+
       return;
     }
 
-    setTopNavItems([...primaryTopNavItems, ...secondaryTopNavItems]);
-  }, [screenSize, pathname, crumbs]);
+    process.env.GATSBY_HEADER_SHOW_LOGIN === "true"
+      ? setTopNavItems([...itemsArray, ...secondaryTopNavItemsMobile])
+      : setTopNavItems(itemsArray);
+  }, [screenSize, pathname, crumbs, getHeaderContent]);
 
   return (
-    <PageHeader className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
-      <div className={styles.headerTopBar}>
-        <Container layoutClassName={styles.secondaryNavContainer}>
-          <SecondaryTopNav items={secondaryTopNavItems} />
-        </Container>
-      </div>
+    <PageHeader
+      className={clsx(
+        styles.headerContainer,
+        layoutClassName && layoutClassName,
+        process.env.GATSBY_HEADER_SHOW_LOGIN === "false" && styles.headerContainerSingle,
+      )}
+    >
+      {process.env.GATSBY_HEADER_SHOW_LOGIN === "true" && (
+        <div className={styles.headerTopBar}>
+          <Container layoutClassName={styles.secondaryNavContainer}>
+            <SecondaryTopNav items={secondaryTopNavItems} />
+          </Container>
+        </div>
+      )}
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
