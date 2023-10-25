@@ -171,7 +171,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     process.env.GATSBY_HEADER_SHOW_LOGIN === "true"
       ? setTopNavItems([...itemsArray, ...secondaryTopNavItemsMobile])
       : setTopNavItems(itemsArray);
-  }, [screenSize, pathname, crumbs, filters]);
+  }, [screenSize, pathname, crumbs, filters, getHeaderContent.isSuccess]);
 
   return (
     <PageHeader

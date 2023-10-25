@@ -2,7 +2,6 @@ import * as React from "react";
 import { useMarkdown } from "../../hooks/markdown";
 import { ParsedHTML } from "../../components/ParsedHTML/ParsedHTML";
 import { useMarkdownDirectories } from "../../hooks/useMarkdownDirectories";
-import { Page, PageContent } from "@utrecht/component-library-react/dist/css-module";
 
 interface MarkdownContentTemplateProps {
   pageSlug: string;
@@ -26,11 +25,5 @@ export const MarkdownContentTemplate: React.FC<MarkdownContentTemplateProps> = (
     content = useMarkdown().getContent(link.includes("https://api.github.com/repos/") ? link : link);
   }
 
-  return (
-    <Page>
-      <PageContent>
-        <ParsedHTML contentQuery={content} {...{ location }} />
-      </PageContent>
-    </Page>
-  );
+  return <ParsedHTML contentQuery={content} {...{ location }} />;
 };
