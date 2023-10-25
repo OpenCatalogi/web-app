@@ -20,7 +20,18 @@ export const Breadcrumbs: React.FC = () => {
     location: { pathname },
   } = React.useContext(GatsbyContext);
 
-  const translatedCrumbs = crumbs.map((crumb: any) => ({ ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) }));
+  const githubLabel = () => {
+    const stringLabelfull = location.pathname.split("/github/")[1];
+    const stringLabel = stringLabelfull?.slice(0, -1);
+
+    return stringLabel?.replaceAll("_", " ");
+  };
+
+  const translatedCrumbs = crumbs.map((crumb: any) => {
+    if (crumb.pathname === "/github/[md]") {
+      return { ...crumb, crumbLabel: t(githubLabel()) };
+    } else return { ...crumb, crumbLabel: t(_.upperFirst(crumb.crumbLabel)) };
+  });
 
   const handleBreadcrumbClick = (e: React.MouseEvent<HTMLElement, MouseEvent>, pathname: string) => {
     e.preventDefault();

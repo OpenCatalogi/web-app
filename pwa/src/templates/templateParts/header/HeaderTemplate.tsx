@@ -174,13 +174,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   }, [screenSize, pathname, crumbs, filters, getHeaderContent.isSuccess]);
 
   return (
-    <PageHeader
-      className={clsx(
-        styles.headerContainer,
-        layoutClassName && layoutClassName,
-        process.env.GATSBY_HEADER_SHOW_LOGIN === "false" && styles.headerContainerSingle,
-      )}
-    >
+    <PageHeader className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
       {process.env.GATSBY_HEADER_SHOW_LOGIN === "true" && (
         <div className={styles.headerTopBar}>
           <Container layoutClassName={styles.secondaryNavContainer}>
