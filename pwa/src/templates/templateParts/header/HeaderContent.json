@@ -7,7 +7,9 @@
       "pathname": "/",
       "operator": "equals"
     },
-    "handleClick": { "link": "/" }
+    "handleClick": {
+      "link": "/"
+    }
   },
   {
     "label": "Categories",
@@ -27,7 +29,9 @@
       "pathname": "/applications",
       "operator": "includes"
     },
-    "handleClick": { "link": "/applications" }
+    "handleClick": {
+      "link": "/applications"
+    }
   },
   {
     "label": "Components",
@@ -43,7 +47,9 @@
           "pathname": "/components",
           "operator": "includes"
         },
-        "handleClick": { "link": "/components" }
+        "handleClick": {
+          "link": "/components"
+        }
       },
       {
         "label": "Processes",
@@ -118,12 +124,22 @@
       "pathname": "/organizations",
       "operator": "includes"
     },
-    "handleClick": { "link": "/organizations" }
+    "handleClick": {
+      "link": "/organizations"
+    }
   },
   {
     "label": "Initiatives",
     "type": "internal",
-    "current": "pathname === \"/components\" && filters.developmentStatus === \"concept\"",
+    "current": {
+      "pathname": "/components",
+      "operator": "includes",
+      "filterCondition": {
+        "filter": "developmentStatus",
+        "value": "concept",
+        "isObject": true
+      }
+    },
     "handleClick": {
       "link": "/components",
       "setFilter": {
@@ -146,7 +162,9 @@
           "pathname": "/documentation/about",
           "operator": "equals"
         },
-        "handleClick": { "link": "/documentation/about" }
+        "handleClick": {
+          "link": "/documentation/about"
+        }
       },
       {
         "label": "Use",
@@ -155,7 +173,9 @@
           "pathname": "/documentation/usage",
           "operator": "equals"
         },
-        "handleClick": { "link": "/documentation/usage" }
+        "handleClick": {
+          "link": "/documentation/usage"
+        }
       }
     ]
   }
