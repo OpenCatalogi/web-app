@@ -6,7 +6,7 @@ import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-mo
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
-import { baseFilters, FiltersContext } from "../../../context/filters";
+import { baseFilters, FiltersContext, IFilters } from "../../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyContext } from "../../../context/gatsby";
@@ -89,26 +89,26 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                 if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
                   return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}` &&
                     current.filterCondition?.isObject === true
-                    ? //@ts-ignore
-                      filters[current.filterCondition.filter]?.includes(current.filterCondition.value)
-                    : //@ts-ignore
-                      filters[current.filterCondition.filter] === current.filterConditon.value;
+                    ? filters[current.filterCondition.filter as keyof IFilters]
+                        ?.toString()
+                        .includes(current.filterCondition.value)
+                    : filters[current.filterCondition.filter as keyof IFilters] === current.filterConditon.value;
                 } else {
                   return pathname === current.pathname && current.filterCondition?.isObject === true
-                    ? //@ts-ignore
-                      filters[current.filterCondition.filter]?.includes(current.filterCondition.value)
-                    : //@ts-ignore
-                      filters[current.filterCondition.filter] === current.filterConditon.value;
+                    ? filters[current.filterCondition.filter as keyof IFilters]
+                        ?.toString()
+                        ?.includes(current.filterCondition.value)
+                    : filters[current.filterCondition.filter as keyof IFilters] === current.filterConditon.value;
                 }
 
               case "includes":
                 return current.filterCondition?.isObject === true
                   ? pathname.includes(current.pathname) &&
-                      //@ts-ignore
-                      filters[current.filterCondition.filter]?.includes(current.filterCondition?.value)
+                      filters[current.filterCondition.filter as keyof IFilters]
+                        ?.toString()
+                        ?.includes(current.filterCondition?.value)
                   : pathname.includes(current.pathname) &&
-                      //@ts-ignore
-                      filters[current.filterCondition.filter] === current.filterCondition?.value;
+                      filters[current.filterCondition.filter as keyof IFilters] === current.filterCondition?.value;
             }
           }
         };
@@ -171,7 +171,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     process.env.GATSBY_HEADER_SHOW_LOGIN === "true"
       ? setTopNavItems([...itemsArray, ...secondaryTopNavItemsMobile])
       : setTopNavItems(itemsArray);
-  }, [screenSize, pathname, crumbs, getHeaderContent]);
+  }, [screenSize, pathname, crumbs, getHeaderContent.isSuccess]);
 
   return (
     <PageHeader
