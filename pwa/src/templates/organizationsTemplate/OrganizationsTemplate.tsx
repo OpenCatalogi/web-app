@@ -24,7 +24,7 @@ export const OrganizationsTemplate: React.FC = () => {
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            Organizations
+            {t("Organizations")}
           </Heading>
         </div>
 
