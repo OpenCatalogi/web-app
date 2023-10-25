@@ -20,13 +20,11 @@
 
 .layerAndCategoryContainer {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-sm);
   justify-self: end;
   margin-block-start: var(--web-app-size-md);
   margin-block-end: var(--web-app-size-xs);
-}
-
-.layerAndCategoryContainer > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .screenshotContainer {

@@ -49,6 +49,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const _useFooterContent = useFooterContent();
   const getFooterContent = _useFooterContent.getContent();
 
+  // For Production
   React.useEffect(() => {
     setFooterContent(getFooterContent.data);
   }, [getFooterContent]);
