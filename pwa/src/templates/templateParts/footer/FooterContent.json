@@ -112,5 +112,28 @@
         "icon": { "prefix": "fas", "icon": "phone", "placement": "left" }
       }
     ]
+  },
+  {
+    "title": "Readme",
+    "items": [
+      {
+        "value": "Kosten Github Api",
+        "ariaLabel": "Website",
+        "markdownLink": "https://github.com/ConductionNL/woo-website-template/blob/main/docs/Kosten.md",
+        "icon": { "prefix": "fab", "icon": "markdown", "placement": "left" }
+      },
+      {
+        "value": "Kosten Github Raw",
+        "ariaLabel": "Website",
+        "markdownLink": "https://raw.githubusercontent.com/ConductionNL/woo-website-template/main/docs/Kosten.md",
+        "icon": { "prefix": "fab", "icon": "github", "placement": "left" }
+      },
+      {
+        "value": "Readme Gitlab raw",
+        "ariaLabel": "Website",
+        "markdownLink": "https://gitlab.com/api/v4/projects/7050597/repository/files/README.md/raw",
+        "icon": { "prefix": "fab", "icon": "gitlab", "placement": "left" }
+      }
+    ]
   }
 ]

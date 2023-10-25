@@ -1,77 +1,97 @@
+.container {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  max-inline-size: var(--utrecht-page-max-inline-size);
+  padding-inline-start: var(--utrecht-page-margin-inline-start);
+  padding-inline-end: var(--utrecht-page-margin-inline-end);
+}
+
 .footer {
-  --utrecht-unordered-list-item-padding-inline-start: 0;
-  --utrecht-unordered-list-padding-inline-start: 0;
-  --utrecht-unordered-list-item-margin-block-end: 0;
-  --utrecht-unordered-list-item-margin-block-start: 0;
   display: flex;
   align-items: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: var(--utrecht-page-footer-background-size);
   background-position: var(--utrecht-page-footer-background-position);
   min-height: var(--utrecht-page-footer-min-height);
 }
 
-.footerContainer > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-xl);
+.imageContainer {
+  height: var(--utrecht-page-footer-logo-max-height);
+  width: var(--utrecht-page-footer-logo-max-width);
 }
 
-.navigation {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.heading {
-  margin-block-end: var(--web-app-size-lg) !important;
-}
-
-.list {
-  padding: 0;
-  list-style-type: none;
-}
-
-.list > * {
-  color: var(--utrecht-page-footer-color);
-}
-
-.list > li:hover {
-  cursor: pointer;
-}
-
-.list > li:not(:last-child) {
-  margin-block-end: var(--web-app-size-md);
-}
-
-.list > li > * {
-  width: fit-content;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.logosContainer {
-  width: fit-content;
-  border-radius: var(--web-app-footer-logo-container-border-radius);
-  height: var(--web-app-footer-logo-container-height);
-  padding: var(--web-app-footer-logo-container-padding);
-}
-
-.logosContainer > * {
+.image {
+  vertical-align: middle;
+  margin-inline-end: 10px;
+  width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
-.logosContainer > *:hover {
+.image:hover {
   cursor: pointer;
 }
 
-.logosContainer > *:not(:last-child) {
-  margin-block-end: var(--web-app-size-2xs);
+.link:hover {
+  cursor: pointer;
 }
 
-.forumStandaardisatieIcon path {
-  fill: var(--utrecht-page-footer-background-color, inherit);
+.withLoveConductionLink {
+  display: inline-block;
+}
+.withLoveConductionLink:hover {
+  margin-inline-start: 10px;
+}
+
+.withLoveLink:hover > :first-child {
+  transform: scale(1.2);
+}
+.withLoveLink > :first-child {
+  transition: all 1s;
+  transform-origin: 50% 50%;
+  margin-inline-end: unset;
+}
+
+.contentGrid {
+  gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.dynamicSectionTitle {
+  margin-block-end: 18px;
+  color: inherit !important;
+}
+
+.dynamicSectionContent {
+  display: flex;
+  flex-direction: column;
+  margin-block-end: 8px;
+}
+
+.logoAndConduction {
+  margin-top: 38px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.iconLeft {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+.iconRight {
+  margin-inline-start: var(--web-app-size-2xs);
 }
 
 @media only screen and (min-width: 576px) {
-  .navigation {
-    grid-template-columns: 1fr 1fr 1fr;
+  .contentGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

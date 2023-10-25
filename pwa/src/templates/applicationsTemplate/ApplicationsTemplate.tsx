@@ -63,6 +63,7 @@ export const ApplicationsTemplate: React.FC = () => {
             totalPages={getApplications.data.pages}
             currentPage={getApplications.data.page}
             setCurrentPage={(page: any) => setFilters({ ...filters, applicationsCurrentPage: page })}
+            ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
           />
         </>
       )}

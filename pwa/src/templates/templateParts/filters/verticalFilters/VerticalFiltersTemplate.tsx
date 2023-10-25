@@ -31,6 +31,7 @@ import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
+import { useTranslation } from "react-i18next";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -38,6 +39,7 @@ interface VerticalFiltersTemplateProps {
 }
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
+  const { t } = useTranslation();
   const [filters, setFilters] = React.useContext(FiltersContext);
   const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
@@ -46,6 +48,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
+  const [isOpenExtra, setIsOpenExtra] = React.useState<boolean>(true);
   const [isOpenLayer, setIsOpenLayer] = React.useState<boolean>(true);
   const [isOpenStatus, setIsOpenStatus] = React.useState<boolean>(true);
   const [isOpenMaintenanceType, setIsOpenMaintenanceType] = React.useState<boolean>(true);
@@ -71,9 +74,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     register,
     watch,
     reset,
+    setValue,
     control,
     formState: { errors },
   } = useForm();
+
+  const isForked = (status: boolean) => {
+    if (status) {
+      setFilters({ ...filters, isForked: false });
+    }
+    if (!status) {
+      setFilters({ ...filters, isForked: true });
+    }
+  };
 
   const handleLayerChange = (layer: any, e: any) => {
     const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
@@ -113,12 +126,20 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   };
 
+  const handleSetFormValues = (): void => {
+    setValue("hideForks", filters.isForked);
+  };
+
   React.useEffect(() => {
     setFilters({
       ...filters,
       developmentStatus: statusRadioFilter,
     });
   }, [statusRadioFilter]);
+
+  React.useEffect(() => {
+    handleSetFormValues();
+  }, []);
 
   React.useEffect(() => {
     setFilters({
@@ -239,6 +260,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.platforms]);
 
   React.useEffect(() => {
+    if (filters.isForked === true) return;
+    if (filters.isForked === false) {
+      const checkBox = document.getElementById(`checkboxhideForks`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked === true) {
+        checkBox.click();
+      }
+    }
+  }, [filters.isForked]);
+
+  React.useEffect(() => {
     if (filters.developmentStatus === statusRadioFilter) return;
     if (filters.developmentStatus === undefined) {
       setStatusRadioFilter("");
@@ -288,6 +319,31 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               triggerOpenedClassName={styles.title}
               trigger={
                 <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>Extra</span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenExtra && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenExtra}
+              transitionTime={100}
+              onOpening={() => setIsOpenExtra(true)}
+              onClosing={() => setIsOpenExtra(false)}
+            >
+              <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
+                <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
+              </div>
+            </Collapsible>
+          </FormField>
+          <FormField>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
                   <span className={styles.filterTitle}>
                     Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
                   </span>
@@ -320,7 +376,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             </FormLabel>
 
             <div className={styles.selectBorder}>
-              <SelectMultiple id="sortFormULP" name="upl" options={upls} {...{ errors, control, register }} />
+              <SelectMultiple
+                id="sortFormULP"
+                name="upl"
+                options={upls}
+                {...{ errors, control, register }}
+                ariaLabel={t("Select upl")}
+              />
             </div>
           </FormField>
 
@@ -340,6 +402,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   options={organizations}
                   name="organization"
                   {...{ errors, control, register }}
+                  ariaLabel={t("Select organization")}
                 />
               )}
             </div>
@@ -358,6 +421,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="category"
                 options={categories}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select category")}
               />
             </div>
           </FormField>
@@ -425,7 +489,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 >
                   <RadioButton value={status.value} checked={filters.developmentStatus === status.value} />
                   <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
-                    {status.label}
+                    {t(status.label)}
                   </span>
                 </div>
               ))}
@@ -489,6 +553,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="license"
                 options={licenses}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select license")}
               />
             </div>
           </FormField>
@@ -505,6 +570,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="bedrijfsfuncties"
                 options={bedrijfsfuncties}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select business functions")}
               />
             </div>
           </FormField>
@@ -558,6 +624,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="bedrijfsservices"
                 options={bedrijfsservices}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select business services")}
               />
             </div>
           </FormField>
@@ -575,6 +642,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="referentieComponenten"
                 options={referentieComponenten}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select reference component")}
               />
             </div>
           </FormField>

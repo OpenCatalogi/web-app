@@ -1,0 +1,28 @@
+.tableHeader {
+  font-family: var(--utrecht-table-header-font-family);
+}
+
+.tableHeader > * {
+  border-block-end: var(--utrecht-table-header-border-block-end-width) solid
+    var(--utrecht-table-header-border-block-end-color);
+}
+
+.tableHeader > tr:nth-child(odd) {
+  background-color: inherit;
+  color: inherit;
+}
+
+.tableHeader > tr:nth-child(odd):hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+.tableHeader > tr:nth-child(even) {
+  background-color: inherit;
+  color: inherit;
+}
+
+.tableHeader > tr:nth-child(even):hover {
+  background-color: inherit;
+  color: inherit;
+}

@@ -16,11 +16,11 @@ import { IconArrowRight } from "@tabler/icons-react";
 import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
-import { TableWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
 import { getStatusColor } from "../../../../services/getStatusColor";
+import { HorizontalOverflowWrapper } from "@conduction/components";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -31,7 +31,9 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
   const { t } = useTranslation();
 
   return (
-    <TableWrapper>
+    <HorizontalOverflowWrapper
+      ariaLabels={{ scrollLeftButton: t("Scroll left"), scrollRightButton: t("Scroll right") }}
+    >
       <Table className={styles.table}>
         {!hideTableHead && (
           <TableHeader className={styles.tableHeader}>
@@ -165,6 +167,6 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
           )}
         </TableBody>
       </Table>
-    </TableWrapper>
+    </HorizontalOverflowWrapper>
   );
 };

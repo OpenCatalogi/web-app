@@ -96,6 +96,7 @@ export const ComponentsTemplate: React.FC = () => {
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
                     setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
+                    ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
                 </>
               )}

@@ -19,6 +19,10 @@ export default class Search {
       endpoint += `&legal.repoOwner.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
     }
 
+    if (filters.isForked) {
+      endpoint += `&isBasedOn=IS NULL`;
+    }
+
     const { data } = await Send(this._instance, "GET", endpoint);
 
     return data;
