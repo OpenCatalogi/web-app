@@ -9,79 +9,94 @@ import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates
 import { useGatsbyContext } from "../../context/gatsby";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
+import { MarkdownContentTemplate } from "../markdown/MarkdownContentTemplate";
 
-export const LandingTemplate: React.FC = () => {
+interface LandingTemplateProps {
+  params: any;
+}
+export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
   const { filters } = useFiltersContext();
   const { screenSize } = useGatsbyContext();
 
+  const detailPageSlug = params.detailPageSlug;
+  const pageSlug = params.pageSlug;
+
   return (
     <Container layoutClassName={styles.container}>
-      <section className={styles.section}>
-        <ResultsDisplaySwitch
-          resultsDisplayType="landingDisplayLayout"
-          layoutClassName={styles.landingDisplaySwitchButtons}
-        />
+      {process.env.GATSBY_OPTIONAL_START_PAGE !== "false" && process.env.GATSBY_OPTIONAL_START_PAGE !== undefined && (
+        <MarkdownContentTemplate link={process.env.GATSBY_OPTIONAL_START_PAGE} {...{ pageSlug, detailPageSlug }} />
+      )}
 
-        <LandingDisplayTemplate type={filters.landingDisplayLayout} />
-      </section>
-
-      <section className={styles.section}>
-        <Heading level={3} className={styles.textColor}>
-          Veelbezochte pagina's
-        </Heading>
-        {screenSize === "desktop" && (
-          <div className={styles.cards}>
-            <ImageAndDetailsCard
-              layoutClassName={styles.textColor}
-              title="Over OpenCatalogi"
-              image={<img src={overOpenCatalogiImage} />}
-              introduction="OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
-              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+      {process.env.GATSBY_OPTIONAL_START_PAGE === "false" && (
+        <>
+          <section className={styles.section}>
+            <ResultsDisplaySwitch
+              resultsDisplayType="landingDisplayLayout"
+              layoutClassName={styles.landingDisplaySwitchButtons}
             />
 
-            <ImageAndDetailsCard
-              layoutClassName={styles.textColor}
-              title="Aan de slag met OpenCatalogi"
-              image={<img src={aanDeSlagMetOpenCatalogiImage} />}
-              introduction="Wilt u uw component op OpenCatalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
-              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
-            />
-          </div>
-        )}
-        {screenSize === "tablet" && (
-          <div className={styles.cards}>
-            <DetailsCard
-              layoutClassName={styles.textColor}
-              title="Over OpenCatalogi"
-              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
-            />
-            <DetailsCard
-              layoutClassName={styles.textColor}
-              title="Aan de slag met OpenCatalogi"
-              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
-            />
-          </div>
-        )}
+            <LandingDisplayTemplate type={filters.landingDisplayLayout} />
+          </section>
 
-        {screenSize === "mobile" && (
-          <div className={styles.cards}>
-            <DetailsCard
-              layoutClassName={styles.textColor}
-              title="Over OpenCatalogi"
-              link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
-            />
-            <DetailsCard
-              layoutClassName={styles.textColor}
-              title="Aan de slag met OpenCatalogi"
-              link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
-            />
-          </div>
-        )}
-      </section>
+          <section className={styles.section}>
+            <Heading level={3} className={styles.textColor}>
+              Veelbezochte pagina's
+            </Heading>
+            {screenSize === "desktop" && (
+              <div className={styles.cards}>
+                <ImageAndDetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Over OpenCatalogi"
+                  image={<img src={overOpenCatalogiImage} />}
+                  introduction="OpenCatalogi is een weergave van Componenten verdeeld over de 5 lagen zoals gedefinieerd door VNG in het Gegevenslandschap."
+                  link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+                />
 
-      <Separator />
+                <ImageAndDetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Aan de slag met OpenCatalogi"
+                  image={<img src={aanDeSlagMetOpenCatalogiImage} />}
+                  introduction="Wilt u uw component op OpenCatalogi aanbieden zodat andere uw component kunnen (her)gebruiken of bij dragen aan de doorontwikkeling van uw component?"
+                  link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+                />
+              </div>
+            )}
+            {screenSize === "tablet" && (
+              <div className={styles.cards}>
+                <DetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Over OpenCatalogi"
+                  link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+                />
+                <DetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Aan de slag met OpenCatalogi"
+                  link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+                />
+              </div>
+            )}
 
-      <FeedbackTemplate layoutClassName={styles.feedback} />
+            {screenSize === "mobile" && (
+              <div className={styles.cards}>
+                <DetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Over OpenCatalogi"
+                  link={{ label: "Ga naar Over OpenCatalogi", href: "/documentation/about" }}
+                />
+                <DetailsCard
+                  layoutClassName={styles.textColor}
+                  title="Aan de slag met OpenCatalogi"
+                  link={{ label: "Aan de slag met OpenCatalogi", href: "documentation/usage" }}
+                />
+              </div>
+            )}
+          </section>
+
+          <Separator />
+
+          <FeedbackTemplate layoutClassName={styles.feedback} />
+        </>
+      )}
     </Container>
   );
 };

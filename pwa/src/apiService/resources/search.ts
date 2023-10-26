@@ -1,6 +1,6 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFilters } from "../../context/filters";
+import { IFiltersContext } from "../../context/filters";
 import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Search {
@@ -10,7 +10,7 @@ export default class Search {
     this._instance = _instance;
   }
 
-  public getSearch = async (filters: IFilters): Promise<any> => {
+  public getSearch = async (filters: IFiltersContext): Promise<any> => {
     let endpoint = `/search?page=${
       filters.currentPage
     }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;

@@ -1,0 +1,182 @@
+[
+  {
+    "label": "Home",
+    "type": "internal",
+
+    "current": {
+      "pathname": "/",
+      "operator": "equals"
+    },
+    "handleClick": {
+      "link": "/"
+    }
+  },
+  {
+    "label": "Categories",
+    "type": "internal",
+    "current": {
+      "pathname": "/categories",
+      "operator": "includes"
+    },
+    "handleClick": {
+      "link": "/categories"
+    }
+  },
+  {
+    "label": "Applications",
+    "type": "internal",
+    "current": {
+      "pathname": "/applications",
+      "operator": "includes"
+    },
+    "handleClick": {
+      "link": "/applications"
+    }
+  },
+  {
+    "label": "Components",
+    "current": {
+      "pathname": "/components",
+      "operator": "includes"
+    },
+    "subItems": [
+      {
+        "label": "All components",
+        "type": "internal",
+        "current": {
+          "pathname": "/components",
+          "operator": "includes"
+        },
+        "handleClick": {
+          "link": "/components"
+        }
+      },
+      {
+        "label": "Processes",
+        "type": "internal",
+        "current": {
+          "pathname": "/components",
+          "operator": "includes",
+          "filterCondition": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "process",
+            "isObject": true
+          }
+        },
+        "handleClick": {
+          "link": "/components",
+          "type": "internal",
+          "setFilter": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "process",
+            "isObject": true
+          }
+        }
+      },
+      {
+        "label": "Data models",
+        "type": "internal",
+        "current": {
+          "pathname": "/components",
+          "operator": "includes",
+          "filterCondition": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "data",
+            "isObject": true
+          }
+        },
+        "handleClick": {
+          "link": "/components",
+          "setFilter": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "data",
+            "isObject": true
+          }
+        }
+      },
+      {
+        "label": "API's",
+        "type": "internal",
+        "current": {
+          "pathname": "/components",
+          "operator": "includes",
+          "filterCondition": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "service",
+            "isObject": true
+          }
+        },
+        "handleClick": {
+          "link": "/components",
+          "setFilter": {
+            "filter": "embedded.nl.embedded.commonground.layerType",
+            "value": "service",
+            "isObject": true
+          }
+        }
+      }
+    ]
+  },
+  {
+    "label": "Organizations",
+    "type": "internal",
+    "current": {
+      "pathname": "/organizations",
+      "operator": "includes"
+    },
+    "handleClick": {
+      "link": "/organizations"
+    }
+  },
+  {
+    "label": "Initiatives",
+    "type": "internal",
+    "current": {
+      "pathname": "/components",
+      "operator": "includes",
+      "filterCondition": {
+        "filter": "developmentStatus",
+        "value": "concept",
+        "isObject": true
+      }
+    },
+    "handleClick": {
+      "link": "/components",
+      "setFilter": {
+        "filter": "developmentStatus",
+        "value": "concept"
+      }
+    }
+  },
+  {
+    "label": "Documentatie",
+    "current": {
+      "pathname": "/documentation",
+      "operator": "includes"
+    },
+    "subItems": [
+      {
+        "label": "About",
+        "type": "internal",
+        "current": {
+          "pathname": "/documentation/about",
+          "operator": "equals"
+        },
+        "handleClick": {
+          "link": "/documentation/about"
+        }
+      },
+      {
+        "label": "Use",
+        "type": "internal",
+        "current": {
+          "pathname": "/documentation/usage",
+          "operator": "equals"
+        },
+        "handleClick": {
+          "link": "/documentation/usage"
+        }
+      }
+    ]
+  }
+]
