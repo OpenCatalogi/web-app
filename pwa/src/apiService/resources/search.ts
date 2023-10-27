@@ -13,7 +13,7 @@ export default class Search {
   public getSearch = async (filters: IFiltersContext): Promise<any> => {
     let endpoint = `/search?page=${
       filters.currentPage
-    }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
+    }&order[_self.dateCreated]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
 
     if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
       endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
