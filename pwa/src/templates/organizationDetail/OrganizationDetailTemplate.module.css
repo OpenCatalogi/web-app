@@ -53,6 +53,7 @@
 
 .tagsContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--web-app-size-xs);
 }
 

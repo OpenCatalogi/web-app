@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
-import { GatsbyContext } from "../../../context/gatsby";
+import { useGatsbyContext } from "../../../context/gatsby";
 
 interface DownloadTemplateProps {
   icon: JSX.Element;
@@ -17,7 +17,7 @@ interface DownloadTemplateProps {
 
 export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ layoutClassName, icon, label, sizeKb }) => {
   const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
+  const { screenSize } = useGatsbyContext();
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;

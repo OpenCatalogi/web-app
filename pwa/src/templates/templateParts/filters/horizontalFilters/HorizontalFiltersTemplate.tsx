@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../../context/filters";
+import { useFiltersContext } from "../../../../context/filters";
 import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
   const searchTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const {
