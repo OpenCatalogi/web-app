@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { useFiltersContext } from "../../../../context/filters";
+import { FiltersContext } from "../../../../context/filters";
 import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
 
 export const OrganizationSearchFiltersTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const searchTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const {
@@ -27,6 +27,7 @@ export const OrganizationSearchFiltersTemplate: React.FC = () => {
       () =>
         setFilters({
           ...filters,
+          organizationCurrentPage: 1,
           organizationSearch: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
         }),
       500,

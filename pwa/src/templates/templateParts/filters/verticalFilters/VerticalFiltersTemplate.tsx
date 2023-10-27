@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
-import clsx from "clsx";
-import qs from "qs";
-import _ from "lodash";
 import { useForm } from "react-hook-form";
-import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../../context/filters";
+import { FiltersContext } from "../../../../context/filters";
+
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
+import clsx from "clsx";
 import {
   upls,
   platforms,
@@ -27,14 +26,12 @@ import {
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { GatsbyContext } from "../../../../context/gatsby";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
-import { useGatsbyContext } from "../../../../context/gatsby";
-import { navigate } from "gatsby";
-import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -42,16 +39,12 @@ interface VerticalFiltersTemplateProps {
 }
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
-  const { filters, setFilters } = useFiltersContext();
-  const { screenSize, location } = useGatsbyContext();
-
-  const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
-
+  const { t } = useTranslation();
+  const [filters, setFilters] = React.useContext(FiltersContext);
+  const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
-
-  const { t } = useTranslation();
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -61,6 +54,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpenMaintenanceType, setIsOpenMaintenanceType] = React.useState<boolean>(true);
   const [isOpenPlatforms, setIsOpenPlatforms] = React.useState<boolean>(true);
   const [isOpenSoftwareTypes, setIsOpenSoftwareTypes] = React.useState<boolean>(true);
+
+  const { screenSize } = React.useContext(GatsbyContext);
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
@@ -93,14 +88,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     }
   };
 
-  React.useEffect(() => {
-    //Prevents loop that puts user at top of page after scroll
-    if (_.isEqual(filters, queryParams)) return;
-
-    setQueryParams(filters);
-    navigate(filtersToUrlQueryParams(filters, location.pathname));
-  }, [filters]);
-
   const handleLayerChange = (layer: any, e: any) => {
     const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
 
@@ -116,18 +103,26 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   };
 
-  const handlePlatformChange = (platform: any, e: any) => {
-    const currentFilters = filters.platforms ?? [];
+  const addToPlatformsArray = (value: { label: string; value: string }) => {
+    !platformsArray.some((item) => item.label === value.label)
+      ? platformsArray.push(value)
+      : removePlatform(platformsArray, value);
 
-    if (e.target.checked) {
-      setFilters({ ...filters, platforms: [...currentFilters, platform.value] });
-
-      return; // added the platform to filters, no need to also remove an entry
+    function removePlatform(newPlatformArray: any[], value: any) {
+      const index = newPlatformArray.findIndex((item) => item.label === value.label);
+      if (index > -1) {
+        newPlatformArray.splice(index, 1);
+        setPlatformsArray(newPlatformArray);
+      }
+      return newPlatformArray;
     }
+    setPlatformFilter();
+  };
 
+  const setPlatformFilter = () => {
     setFilters({
       ...filters,
-      platforms: currentFilters.filter((l) => l !== platform.value),
+      platforms: platformsArray?.map((l: any) => l.value),
     });
   };
 
@@ -144,7 +139,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     handleSetFormValues();
-  }, [filters]);
+  }, []);
 
   React.useEffect(() => {
     setFilters({
@@ -193,12 +188,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
       service: filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
       data: filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
-      web: filters.platforms?.includes("web"),
-      windows: filters.platforms?.includes("windows"),
-      mac: filters.platforms?.includes("mac"),
-      linux: filters.platforms?.includes("linux"),
-      ios: filters.platforms?.includes("ios"),
-      android: filters.platforms?.includes("android"),
     });
   }, [filters]);
 
@@ -206,6 +195,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     const subscription = watch(
       ({
         upl,
+        platforms,
         category,
         maintenanceType,
         status,
@@ -220,6 +210,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         setFilters({
           ...filters,
           currentPage: 1,
+          platforms: platforms?.map((p: any) => p.value),
           category: category?.value,
           "embedded.nl.embedded.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "embedded.nl.embedded.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
@@ -256,11 +247,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters["embedded.nl.embedded.commonground.layerType"]]);
 
   React.useEffect(() => {
-    const unsetPlatformsFilter = platforms.filter(
+    const unsetPlatformFilter = platforms.filter(
       (platform) => filters.platforms && !filters.platforms.includes(platform.value),
     );
 
-    unsetPlatformsFilter.map((platform: any) => {
+    unsetPlatformFilter.map((platform: any) => {
       const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -298,47 +289,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       setSoftwareTypeRadioFilter("");
     }
   }, [filters.softwareType]);
-
-  const handleSetFormValuesFromParams = (params: any): void => {
-    setFilters({
-      ...filters,
-      resultDisplayLayout: params.resultDisplayLayout !== undefined ? params.resultDisplayLayout : "table",
-      currentPage: params.currentPage ? _.toNumber(params.currentPage) : 3,
-      isForked: params.isForked ? params.isForked : false,
-      softwareType: params.softwareType ? params.softwareType : "",
-      developmentStatus: params.developmentStatus ? params.developmentStatus : "",
-      platforms: params.platforms ? [...params.platforms] : [],
-      category: params.category ? params.category : "",
-      "embedded.nl.embedded.commonground.layerType": params["embedded.nl.embedded.commonground.layerType"]
-        ? [...params["embedded.nl.embedded.commonground.layerType"]]
-        : [],
-      "embedded.url.embedded.organisation.name": params["embedded.url.embedded.organisation.name"]
-        ? params["embedded.url.embedded.organisation.name"]
-        : undefined,
-      "embedded.maintenance.type": params["embedded.maintenance.type"] ? params["embedded.maintenance.type"] : "",
-      "embedded.legal.license": params["embedded.legal.license"] ? params["embedded.legal.license"] : "",
-      "embedded.nl.embedded.gemma.bedrijfsfuncties": params["embedded.nl.embedded.gemma.bedrijfsfuncties"]
-        ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
-        : [],
-      "embedded.nl.embedded.gemma.bedrijfsservices": params["embedded.nl.embedded.gemma.bedrijfsservices"]
-        ? [...params["embedded.nl.embedded.gemma.bedrijfsservices"]]
-        : [],
-      "embedded.nl.embedded.gemma.referentieComponenten": params["embedded.nl.embedded.gemma.referentieComponenten"]
-        ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
-        : [],
-      "embedded.nl.embedded.upl": params["embedded.nl.embedded.upl"] ? [...params["embedded.nl.embedded.upl"]] : [],
-    });
-  };
-
-  const url = location.search;
-  const [, params] = url.split("?");
-  const parsedParams = qs.parse(params);
-
-  React.useEffect(() => {
-    if (_.isEmpty(parsedParams)) return;
-
-    handleSetFormValuesFromParams(parsedParams);
-  }, []);
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
@@ -431,7 +381,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 name="upl"
                 options={upls}
                 {...{ errors, control, register }}
-                ariaLabel={t("Select UPL")}
+                ariaLabel={t("Select upl")}
               />
             </div>
           </FormField>
@@ -451,8 +401,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   isClearable
                   options={organizations}
                   name="organization"
-                  ariaLabel={t("Select organization")}
                   {...{ errors, control, register }}
+                  ariaLabel={t("Select organization")}
                 />
               )}
             </div>
@@ -470,8 +420,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 isClearable
                 name="category"
                 options={categories}
-                ariaLabel={t("Select category")}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select category")}
               />
             </div>
           </FormField>
@@ -499,8 +449,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               onClosing={() => setIsOpenPlatforms(false)}
             >
               {platforms.map((platform) => (
-                <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
-                  <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
+                <div
+                  onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
+                  key={platform.value}
+                >
+                  <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
                 </div>
               ))}
             </Collapsible>
@@ -599,8 +552,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 isClearable
                 name="license"
                 options={licenses}
-                ariaLabel={t("Select license")}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select license")}
               />
             </div>
           </FormField>
@@ -616,8 +569,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormLicense"
                 name="bedrijfsfuncties"
                 options={bedrijfsfuncties}
-                ariaLabel={t("Select company function")}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select business functions")}
               />
             </div>
           </FormField>
@@ -670,8 +623,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormServices"
                 name="bedrijfsservices"
                 options={bedrijfsservices}
-                ariaLabel={t("Select company services")}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select business services")}
               />
             </div>
           </FormField>
@@ -688,8 +641,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormReference"
                 name="referentieComponenten"
                 options={referentieComponenten}
-                ariaLabel={t("Select reference components")}
                 {...{ errors, control, register }}
+                ariaLabel={t("Select reference component")}
               />
             </div>
           </FormField>

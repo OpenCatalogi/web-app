@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
-import { useFiltersContext } from "../../context/filters";
+import { FiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
@@ -12,7 +12,7 @@ import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/orga
 import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDisplayTemplates/OrganizationDisplayTemplate";
 
 export const OrganizationsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();

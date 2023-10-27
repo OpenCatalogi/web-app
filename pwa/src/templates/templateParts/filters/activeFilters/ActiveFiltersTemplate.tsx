@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as styles from "./ActiveFiltersTemplate.module.css";
-import { useFiltersContext } from "../../../../context/filters";
+import { FiltersContext } from "../../../../context/filters";
 import _ from "lodash";
 import {
   maintenanceTypes,
@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-module";
 
 export const ActiveFiltersTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const category = categories.find((category) => {

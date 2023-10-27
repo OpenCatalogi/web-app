@@ -2,7 +2,7 @@ import * as React from "react";
 import { QueryClient, useQuery } from "react-query";
 import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
-import { IFiltersContext } from "../context/filters";
+import { IFilters } from "../context/filters";
 
 export const useOrganization = (queryClient: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
@@ -17,7 +17,7 @@ export const useOrganization = (queryClient: QueryClient) => {
       enabled: !!organizationId,
     });
 
-  const getAll = (filters: IFiltersContext) =>
+  const getAll = (filters: IFilters) =>
     useQuery<any, Error>(["organizations", filters], () => API?.Organization.getAll(filters), {
       onError: (error) => {
         throw new Error(error.message);
@@ -31,7 +31,7 @@ export const useOrganization = (queryClient: QueryClient) => {
       },
     });
 
-  const getCount = (filters: IFiltersContext) =>
+  const getCount = (filters: IFilters) =>
     useQuery<any, Error>(["organizations_count", filters], () => API?.Organization.getCount(filters), {
       onError: (error) => {
         throw new Error(error.message);

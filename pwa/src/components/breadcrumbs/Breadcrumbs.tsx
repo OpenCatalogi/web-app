@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Container } from "@conduction/components";
 import { isHomepage } from "../../services/isHomepage";
 import { BreadcrumbNav, BreadcrumbNavLink, BreadcrumbNavSeparator, Icon } from "@utrecht/component-library-react";
-import { useGatsbyContext } from "../../context/gatsby";
+import { GatsbyContext } from "../../context/gatsby";
 import { navigate } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ export const Breadcrumbs: React.FC = () => {
       breadcrumb: { crumbs },
     },
     location: { pathname },
-  } = useGatsbyContext();
+  } = React.useContext(GatsbyContext);
 
   const githubLabel = () => {
     const stringLabelfull = location.pathname.split("/github/")[1];

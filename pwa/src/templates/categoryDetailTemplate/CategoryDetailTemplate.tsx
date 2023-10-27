@@ -17,7 +17,7 @@ import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
-import { useFiltersContext } from "../../context/filters";
+import { FiltersContext } from "../../context/filters";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { navigate } from "gatsby-link";
@@ -27,7 +27,7 @@ interface CategoryDetailTemplateProps {
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const { filters, setFilters } = useFiltersContext();
+  const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
 
   const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
