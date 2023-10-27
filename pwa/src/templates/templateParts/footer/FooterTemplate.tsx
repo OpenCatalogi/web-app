@@ -4,7 +4,7 @@ import clsx from "clsx";
 import parse from "html-react-parser";
 import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby-link";
-import { baseFilters, FiltersContext } from "../../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 import { useTranslation } from "react-i18next";
 import { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -267,13 +267,13 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
 
 const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
   const { t } = useTranslation();
-  const [, setFilters] = React.useContext(FiltersContext);
+  const { setFilters } = useFiltersContext();
 
   return (
     <Link
       className={styles.link}
       onClick={() => {
-        setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
+        setFilters({ ...defaultFiltersContext, [item.setFilter!.filter]: item.setFilter!.value });
         navigate(item.setFilter!.link);
       }}
       tabIndex={0}

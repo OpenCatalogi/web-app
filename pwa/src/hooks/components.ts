@@ -2,7 +2,7 @@ import * as React from "react";
 import { QueryClient, useQuery } from "react-query";
 import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
-import { IFilters } from "../context/filters";
+import { IFiltersContext } from "../context/filters";
 
 export const useComponent = (queryClient: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
@@ -17,14 +17,14 @@ export const useComponent = (queryClient: QueryClient) => {
       enabled: !!componentId,
     });
 
-  const getAll = (filters: IFilters) =>
+  const getAll = (filters: IFiltersContext) =>
     useQuery<any, Error>(["components", filters], () => API?.Component.getAll(filters), {
       onError: (error) => {
         throw new Error(error.message);
       },
     });
 
-  const getCount = (filters: IFilters) =>
+  const getCount = (filters: IFiltersContext) =>
     useQuery<any, Error>(["components_count", filters], () => API?.Component.getCount(filters), {
       onError: (error) => {
         throw new Error(error.message);
