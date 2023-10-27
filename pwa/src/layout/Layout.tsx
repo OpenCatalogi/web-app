@@ -1,15 +1,15 @@
 import * as React from "react";
-import * as styles from "./Layout.module.css";
-
 import "../styling/index.css";
+import * as styles from "./Layout.module.css";
 import "./../translations/i18n";
-
-import { GlobalProvider, IGlobalContext, defaultGlobalContext } from "../context/global";
 import APIContext, { APIProvider } from "../apiService/apiContext";
 import APIService from "../apiService/apiService";
-import { TScreenSize } from "../context/gatsby";
+import { GatsbyProvider, IGatsbyContext, TScreenSize } from "../context/gatsby";
 import { HeaderTemplate } from "../templates/templateParts/header/HeaderTemplate";
 import { FooterTemplate } from "../templates/templateParts/footer/FooterTemplate";
+import { FiltersProvider, IFilters, baseFilters as _filters } from "../context/filters";
+import { useTranslation } from "react-i18next";
+import _ from "lodash";
 import { Head } from "./Head";
 import { getScreenSize } from "../services/getScreenSize";
 import Favicon from "react-favicon";
@@ -31,17 +31,31 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
-  const [globalContext, setGlobalContext] = React.useState<IGlobalContext>(defaultGlobalContext);
+  const [filters, setFilters] = React.useState<IFilters>(_filters);
   const [API, setAPI] = React.useState<APIService | null>(React.useContext(APIContext));
+  const [, setBreadcrumbs] = React.useState<any>(null);
   const [screenSize, setScreenSize] = React.useState<TScreenSize>("mobile");
+  const [gatsbyContext, setGatsbyContext] = React.useState<IGatsbyContext>({
+    ...{ pageContext, location, screenSize: "mobile" },
+  });
+
+  const { t } = useTranslation();
 
   library.add(fas, fab, far);
 
   React.useEffect(() => {
-    // initiate API Service
     setAPI(new APIService());
+  }, []);
 
-    // initiate screen size watcher
+  React.useEffect(() => {
+    setGatsbyContext({ ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) } });
+
+    const JWT = sessionStorage.getItem("JWT");
+
+    API && !API.authenticated && JWT && API.setAuthentication(JWT);
+  }, [pageContext, location, screenSize]);
+
+  React.useEffect(() => {
     const handleWindowResize = () => {
       setScreenSize(getScreenSize(window.innerWidth));
     };
@@ -52,44 +66,47 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
   }, []);
 
   React.useEffect(() => {
-    // keep track of authentication
-    const JWT = sessionStorage.getItem("JWT");
+    if (!gatsbyContext) return;
 
-    API && !API.authenticated && JWT && API.setAuthentication(JWT);
-
-    // keep track of gatsby context
-    setGlobalContext((context) => ({
-      ...context,
-      initiated: true,
-      gatsby: {
-        ...{ pageContext, location, screenSize: getScreenSize(window.innerWidth) },
+    const {
+      pageContext: {
+        breadcrumb: { crumbs },
       },
-    }));
-  }, [pageContext, location, screenSize]);
+    } = gatsbyContext;
 
-  if (!globalContext.initiated) return <></>;
+    setBreadcrumbs(
+      crumbs.map((crumb: any) => ({
+        ...crumb,
+        crumbLabel: t(_.upperFirst(crumb.crumbLabel)),
+      })),
+    );
+  }, [gatsbyContext]);
+
+  if (!API) return <></>;
 
   return (
     <>
       <Head />
 
-      <GlobalProvider value={[globalContext, setGlobalContext]}>
+      <GatsbyProvider value={gatsbyContext}>
         <APIProvider value={API}>
-          <Surface>
-            <Document>
-              <ToolTip id={TOOLTIP_ID} />
+          <FiltersProvider value={[filters, setFilters]}>
+            <Surface>
+              <Document>
+                <ToolTip id={TOOLTIP_ID} />
 
-              <Favicon url={Logo} />
+                <Favicon url={Logo} />
 
-              <HeaderTemplate layoutClassName={styles.header} />
+                <HeaderTemplate layoutClassName={styles.header} />
 
-              <div className={styles.pageContent}>{children}</div>
+                <div className={styles.pageContent}>{children}</div>
 
-              <FooterTemplate layoutClassName={styles.footer} />
-            </Document>
-          </Surface>
+                <FooterTemplate layoutClassName={styles.footer} />
+              </Document>
+            </Surface>
+          </FiltersProvider>
         </APIProvider>
-      </GlobalProvider>
+      </GatsbyProvider>
     </>
   );
 };

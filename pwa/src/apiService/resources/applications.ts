@@ -1,6 +1,6 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFiltersContext } from "../../context/filters";
+import { IFilters } from "../../context/filters";
 
 export default class Applications {
   private _instance: AxiosInstance;
@@ -15,7 +15,7 @@ export default class Applications {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
+  public getAll = async (filters: IFilters): Promise<any> => {
     const { data } = await Send(
       this._instance,
       "GET",
