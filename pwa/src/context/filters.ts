@@ -1,4 +1,8 @@
 import * as React from "react";
+import { GlobalContext } from "./global";
+import { getParsedParamsFromSearch } from "../services/getParsedParamsFromSearch";
+import { navigate } from "gatsby";
+import { filtersToUrlQueryParams } from "../services/filtersToQueryParams";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TComponentDependenciesLayout = "layer" | "relations";
@@ -6,7 +10,7 @@ export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 export type TOrganizationsResultDisplayLayout = "table" | "cards";
 
-export interface IFilters {
+export interface IFiltersContext {
   resultDisplayLayout: TComponentResultsLayout;
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
@@ -28,7 +32,7 @@ export interface IFilters {
   "embedded.nl.embedded.gemma.bedrijfsfuncties"?: string[];
   "embedded.nl.embedded.gemma.bedrijfsservices"?: string[];
   "embedded.nl.embedded.gemma.referentieComponenten"?: string[];
-  "embedded.nl.embedded.gemma.applicatiefunctie": string;
+  "embedded.nl.embedded.gemma.applicatiefunctie"?: string;
   "embedded.nl.embedded.upl"?: string[];
   "embedded.maintenance.type"?: string;
   "embedded.legal.license"?: string;
@@ -39,7 +43,7 @@ export interface IFilters {
   showMoreSupport?: boolean;
 }
 
-export const baseFilters = {
+export const defaultFiltersContext: IFiltersContext = {
   resultDisplayLayout: "table",
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
@@ -52,8 +56,19 @@ export const baseFilters = {
   organizationSearch: "",
   isForked: true,
   developmentStatus: "hideObsolete",
-} as IFilters;
+};
 
-export const FiltersContext = React.createContext<[IFilters, (_: IFilters) => void]>([baseFilters, () => null]);
+export const useFiltersContext = () => {
+  const [globalContext, setGlobalContext] = React.useContext(GlobalContext);
 
-export const FiltersProvider = FiltersContext.Provider;
+  const filters: IFiltersContext = globalContext.filters;
+
+  const setFilters = (newFilters: IFiltersContext) => {
+    setGlobalContext((oldGlobalContext) => ({
+      ...oldGlobalContext,
+      filters: newFilters,
+    }));
+  };
+
+  return { setFilters, filters };
+};

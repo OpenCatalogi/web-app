@@ -4,9 +4,9 @@ import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/compone
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
-import { GatsbyContext } from "../../context/gatsby";
+import { useGatsbyContext } from "../../context/gatsby";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 import { MarkdownContentTemplate } from "../markdown/MarkdownContentTemplate";
@@ -14,10 +14,9 @@ import { MarkdownContentTemplate } from "../markdown/MarkdownContentTemplate";
 interface LandingTemplateProps {
   params: any;
 }
-
 export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
-  const [filters] = React.useContext(FiltersContext);
-  const { screenSize } = React.useContext(GatsbyContext);
+  const { filters } = useFiltersContext();
+  const { screenSize } = useGatsbyContext();
 
   const detailPageSlug = params.detailPageSlug;
   const pageSlug = params.pageSlug;

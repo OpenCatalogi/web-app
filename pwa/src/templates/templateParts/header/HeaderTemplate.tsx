@@ -6,15 +6,15 @@ import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-mo
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
-import { baseFilters, FiltersContext, IFilters } from "../../../context/filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { GatsbyContext } from "../../../context/gatsby";
+import { useGatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
 import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
+import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 import { useHeaderContent } from "../../../hooks/headerContent";
 
 export const DEFAULT_HEADER_CONTENT_URL =
@@ -26,7 +26,6 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
-  const [filters, setFilters] = React.useContext(FiltersContext);
   const [topNavItems, setTopNavItems] = React.useState<ITopNavItem[]>([]);
 
   const {
@@ -35,8 +34,9 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
     location: { pathname },
     screenSize,
-  } = React.useContext(GatsbyContext);
+  } = useGatsbyContext();
 
+  const { filters, setFilters } = useFiltersContext();
   const secondaryTopNavItemsMobile: ITopNavItem[] = [
     {
       label: t("Login"),
@@ -89,26 +89,26 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                 if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
                   return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}` &&
                     current.filterCondition?.isObject === true
-                    ? filters[current.filterCondition.filter as keyof IFilters]
+                    ? filters[current.filterCondition.filter as keyof IFiltersContext]
                         ?.toString()
                         .includes(current.filterCondition.value)
-                    : filters[current.filterCondition.filter as keyof IFilters] === current.filterConditon.value;
+                    : filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterConditon.value;
                 } else {
                   return pathname === current.pathname && current.filterCondition?.isObject === true
-                    ? filters[current.filterCondition.filter as keyof IFilters]
+                    ? filters[current.filterCondition.filter as keyof IFiltersContext]
                         ?.toString()
                         ?.includes(current.filterCondition.value)
-                    : filters[current.filterCondition.filter as keyof IFilters] === current.filterConditon.value;
+                    : filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterConditon.value;
                 }
 
               case "includes":
                 return current.filterCondition?.isObject === true
                   ? pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFilters]
+                      filters[current.filterCondition.filter as keyof IFiltersContext]
                         ?.toString()
                         ?.includes(current.filterCondition?.value)
                   : pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFilters] === current.filterCondition?.value;
+                      filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterCondition?.value;
             }
           }
         };
@@ -129,8 +129,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           }
           if (onClick.link && onClick.setFilter && type === "internal") {
             onClick.setFilter?.isObject === true
-              ? setFilters({ ...baseFilters, [onClick.setFilter!.filter]: [onClick.setFilter!.value] })
-              : setFilters({ ...baseFilters, [onClick.setFilter!.filter]: onClick.setFilter!.value });
+              ? setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: [onClick.setFilter!.value] })
+              : setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: onClick.setFilter!.value });
             navigate(onClick.link);
           }
         };

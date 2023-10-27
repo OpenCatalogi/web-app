@@ -4,7 +4,7 @@ import { categories, TCategories } from "../../../data/categories";
 import { LayerAccordion } from "../layerAccordion/LayerAccordionTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";
 import { Button, Icon } from "@utrecht/component-library-react/dist/css-module";
-import { baseFilters, FiltersContext } from "../../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 import clsx from "clsx";
 import { navigate } from "gatsby";
 import _ from "lodash";
@@ -85,7 +85,7 @@ interface CategoriesProps {
 }
 
 const Categories: React.FC<CategoriesProps> = ({ layer }) => {
-  const [, setFilters] = React.useContext(FiltersContext);
+  const { setFilters } = useFiltersContext();
 
   return (
     <div className={styles.items}>
@@ -95,7 +95,7 @@ const Categories: React.FC<CategoriesProps> = ({ layer }) => {
           className={clsx(styles[_.camelCase(`${layer} category`)], styles.categoryButton)}
           appearance="secondary-action-button"
           onClick={() => {
-            setFilters({ ...baseFilters, category: _.lowerCase(category?.value) });
+            setFilters({ ...defaultFiltersContext, category: _.lowerCase(category?.value) });
             navigate("/components");
           }}
         >
