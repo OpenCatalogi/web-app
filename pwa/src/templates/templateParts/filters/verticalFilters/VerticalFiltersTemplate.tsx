@@ -300,9 +300,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.softwareType]);
 
   const handleSetFormValuesFromParams = (params: any): void => {
-    // console.log("params", params);
-    // console.log("filters", filters);
-
     setFilters({
       ...filters,
       resultDisplayLayout: params.resultDisplayLayout !== undefined ? params.resultDisplayLayout : "table",
