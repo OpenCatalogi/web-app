@@ -16,10 +16,10 @@ export default class Search {
     }&order[embedded.rating.rating]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
 
     if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
-      endpoint += `&legal.repoOwner.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
+      endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
     }
 
-    if (filters.isForked) {
+    if (filters.isForked === true) {
       endpoint += `&isBasedOn=IS NULL`;
     }
 

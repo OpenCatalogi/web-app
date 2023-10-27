@@ -64,20 +64,11 @@ export const useFiltersContext = () => {
   const filters: IFiltersContext = globalContext.filters;
 
   const setFilters = (newFilters: IFiltersContext) => {
-    const currentParsedQueryParams = getParsedParamsFromSearch(location.search);
-    const newParsedQueryParams = getParsedParamsFromSearch(filtersToUrlQueryParams(newFilters));
-
-    const targetParams = { ...currentParsedQueryParams, ...newParsedQueryParams };
-
-    navigate(filtersToUrlQueryParams(targetParams));
-  };
-
-  React.useEffect(() => {
     setGlobalContext((oldGlobalContext) => ({
       ...oldGlobalContext,
-      filters: { ...defaultFiltersContext, ...getParsedParamsFromSearch(location.search) },
+      filters: newFilters,
     }));
-  }, [location.search]);
+  };
 
   return { setFilters, filters };
 };

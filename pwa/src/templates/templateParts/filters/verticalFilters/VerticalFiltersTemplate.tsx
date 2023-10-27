@@ -1,10 +1,11 @@
 import * as React from "react";
 import * as styles from "./VerticalFiltersTemplate.module.css";
-import { useForm } from "react-hook-form";
-import { useFiltersContext } from "../../../../context/filters";
-
-import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import clsx from "clsx";
+import qs from "qs";
+import _ from "lodash";
+import { useForm } from "react-hook-form";
+import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../../context/filters";
+import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import {
   upls,
   platforms,
@@ -32,6 +33,8 @@ import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
 import { useGatsbyContext } from "../../../../context/gatsby";
+import { navigate } from "gatsby";
+import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -40,9 +43,10 @@ interface VerticalFiltersTemplateProps {
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
   const { filters, setFilters } = useFiltersContext();
-  const { screenSize } = useGatsbyContext();
+  const { screenSize, location } = useGatsbyContext();
 
-  const [platformsArray, setPlatformsArray] = React.useState<any[]>([]);
+  const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
+
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
@@ -89,6 +93,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     }
   };
 
+  React.useEffect(() => {
+    //Prevents loop that puts user at top of page after scroll
+    if (_.isEqual(filters, queryParams)) return;
+
+    setQueryParams(filters);
+    navigate(filtersToUrlQueryParams(filters, location.pathname));
+  }, [filters]);
+
   const handleLayerChange = (layer: any, e: any) => {
     const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
 
@@ -104,26 +116,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
   };
 
-  const addToPlatformsArray = (value: { label: string; value: string }) => {
-    !platformsArray.some((item) => item.label === value.label)
-      ? platformsArray.push(value)
-      : removePlatform(platformsArray, value);
+  const handlePlatformChange = (platform: any, e: any) => {
+    const currentFilters = filters.platforms ?? [];
 
-    function removePlatform(newPlatformArray: any[], value: any) {
-      const index = newPlatformArray.findIndex((item) => item.label === value.label);
-      if (index > -1) {
-        newPlatformArray.splice(index, 1);
-        setPlatformsArray(newPlatformArray);
-      }
-      return newPlatformArray;
+    if (e.target.checked) {
+      setFilters({ ...filters, platforms: [...currentFilters, platform.value] });
+
+      return; // added the platform to filters, no need to also remove an entry
     }
-    setPlatformFilter();
-  };
 
-  const setPlatformFilter = () => {
     setFilters({
       ...filters,
-      platforms: platformsArray?.map((l: any) => l.value),
+      platforms: currentFilters.filter((l) => l !== platform.value),
     });
   };
 
@@ -189,6 +193,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
       service: filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
       data: filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
+      web: filters.platforms?.includes("web"),
+      windows: filters.platforms?.includes("windows"),
+      mac: filters.platforms?.includes("mac"),
+      linux: filters.platforms?.includes("linux"),
+      ios: filters.platforms?.includes("ios"),
+      android: filters.platforms?.includes("android"),
     });
   }, [filters]);
 
@@ -196,7 +206,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     const subscription = watch(
       ({
         upl,
-        platforms,
         category,
         maintenanceType,
         status,
@@ -211,7 +220,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         setFilters({
           ...filters,
           currentPage: 1,
-          platforms: platforms?.map((p: any) => p.value),
           category: category?.value,
           "embedded.nl.embedded.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "embedded.nl.embedded.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
@@ -248,11 +256,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters["embedded.nl.embedded.commonground.layerType"]]);
 
   React.useEffect(() => {
-    const unsetPlatformFilter = platforms.filter(
+    const unsetPlatformsFilter = platforms.filter(
       (platform) => filters.platforms && !filters.platforms.includes(platform.value),
     );
 
-    unsetPlatformFilter.map((platform: any) => {
+    unsetPlatformsFilter.map((platform: any) => {
       const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -290,6 +298,50 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       setSoftwareTypeRadioFilter("");
     }
   }, [filters.softwareType]);
+
+  const handleSetFormValuesFromParams = (params: any): void => {
+    // console.log("params", params);
+    // console.log("filters", filters);
+
+    setFilters({
+      ...filters,
+      resultDisplayLayout: params.resultDisplayLayout !== undefined ? params.resultDisplayLayout : "table",
+      currentPage: params.currentPage ? _.toNumber(params.currentPage) : 3,
+      isForked: params.isForked ? params.isForked : false,
+      softwareType: params.softwareType ? params.softwareType : "",
+      developmentStatus: params.developmentStatus ? params.developmentStatus : "",
+      platforms: params.platforms ? [...params.platforms] : [],
+      category: params.category ? params.category : "",
+      "embedded.nl.embedded.commonground.layerType": params["embedded.nl.embedded.commonground.layerType"]
+        ? [...params["embedded.nl.embedded.commonground.layerType"]]
+        : [],
+      "embedded.url.embedded.organisation.name": params["embedded.url.embedded.organisation.name"]
+        ? params["embedded.url.embedded.organisation.name"]
+        : undefined,
+      "embedded.maintenance.type": params["embedded.maintenance.type"] ? params["embedded.maintenance.type"] : "",
+      "embedded.legal.license": params["embedded.legal.license"] ? params["embedded.legal.license"] : "",
+      "embedded.nl.embedded.gemma.bedrijfsfuncties": params["embedded.nl.embedded.gemma.bedrijfsfuncties"]
+        ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
+        : [],
+      "embedded.nl.embedded.gemma.bedrijfsservices": params["embedded.nl.embedded.gemma.bedrijfsservices"]
+        ? [...params["embedded.nl.embedded.gemma.bedrijfsservices"]]
+        : [],
+      "embedded.nl.embedded.gemma.referentieComponenten": params["embedded.nl.embedded.gemma.referentieComponenten"]
+        ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
+        : [],
+      "embedded.nl.embedded.upl": params["embedded.nl.embedded.upl"] ? [...params["embedded.nl.embedded.upl"]] : [],
+    });
+  };
+
+  const url = location.search;
+  const [, params] = url.split("?");
+  const parsedParams = qs.parse(params);
+
+  React.useEffect(() => {
+    if (_.isEmpty(parsedParams)) return;
+
+    handleSetFormValuesFromParams(parsedParams);
+  }, []);
 
   return (
     <div className={clsx(styles.container, layoutClassName && layoutClassName)}>
@@ -450,11 +502,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               onClosing={() => setIsOpenPlatforms(false)}
             >
               {platforms.map((platform) => (
-                <div
-                  onChange={() => addToPlatformsArray({ label: platform.label, value: platform.value })}
-                  key={platform.value}
-                >
-                  <InputCheckbox label={platform.label} name={platform.label} {...{ errors, control, register }} />
+                <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
+                  <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
                 </div>
               ))}
             </Collapsible>
