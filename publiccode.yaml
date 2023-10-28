@@ -1,0 +1,49 @@
+categories:
+- it-development
+description:
+  en:
+    apiDocumentation: ''
+    awards: []
+    documentation: ''
+    features: []
+    genericName: Web application for OpenCatalogi components.
+    localisedName: ''
+    longDescription: ''
+    screenshots: []
+    shortDescription: ''
+    videos: []
+developmentStatus: development
+landingURL: ''
+legal:
+  authorsFile: ''
+  license: ''
+  mainCopyrightOwner: ''
+  repoOwner: ''
+localisation:
+  availableLanguages:
+  - en
+  localisationReady: false
+maintenance:
+  contacts: []
+  contractors: []
+  type: none
+name: web-app
+nl:
+  vng:
+    commonground: []
+    gemma: []
+organisation:
+  description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
+    \ de overheid"
+  logo: https://avatars.githubusercontent.com/u/106239067?v=4
+  name: OpenCatalogi
+  url: OpenCatalogi
+platforms:
+- web
+publiccodeYmlVersion: '0.2'
+releaseDate: '2023-10-28'
+roadmap: ''
+softwareType: standalone/web
+softwareVersion: ''
+url: https://github.com/OpenCatalogi/web-app
+usedBy: []
