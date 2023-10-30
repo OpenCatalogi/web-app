@@ -79,7 +79,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
             <Document>
               <ToolTip id={TOOLTIP_ID} />
 
-              <Favicon url={Logo} />
+              <Favicon url={process.env.GATSBY_FAVICON_URL ?? Logo} />
 
               <HeaderTemplate layoutClassName={styles.header} />
 
