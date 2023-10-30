@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Pagination } from "@conduction/components";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
 import { QueryClient } from "react-query";
@@ -11,7 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import { IconExternalLink } from "@tabler/icons-react";
 
 export const ApplicationsTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();

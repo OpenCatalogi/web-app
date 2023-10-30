@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GlobalContext } from "./global";
 
 export type TScreenSize = "mobile" | "tablet" | "desktop";
 
@@ -8,10 +9,16 @@ export interface IGatsbyContext {
   screenSize: TScreenSize;
 }
 
-export const GatsbyContext = React.createContext<IGatsbyContext>({
+export const defaultGatsbyContext: IGatsbyContext = {
   pageContext: null,
   location: null,
   screenSize: "mobile",
-});
+};
 
-export const GatsbyProvider = GatsbyContext.Provider;
+export const useGatsbyContext = () => {
+  const [globalContext] = React.useContext(GlobalContext);
+
+  const gatsbyContext: IGatsbyContext = globalContext.gatsby;
+
+  return gatsbyContext;
+};

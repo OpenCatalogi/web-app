@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -16,7 +16,7 @@ import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-reac
 import { IconInfoCircle } from "@tabler/icons-react";
 
 export const ComponentsTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
 
   const queryClient = new QueryClient();
