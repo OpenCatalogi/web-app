@@ -117,7 +117,7 @@ const Logo: React.FC = () => {
       <img
         className={styles.image}
         onClick={() =>
-          process.env.GATSBY_FOOTER_LOGO_HREF ? open(process.env.GATSBY_FOOTER_LOGO_HREF) : navigate("/")
+          process.env.GATSBY_FOOTER_LOGO_URL ? open(process.env.GATSBY_FOOTER_LOGO_URL) : navigate("/")
         }
         src={process.env.GATSBY_FOOTER_LOGO_URL}
         alt={t("Footer-logo")}
@@ -137,7 +137,7 @@ const WithLoveByConduction: React.FC = () => {
     <div>
       <Link
         className={styles.withLoveLink}
-        href="https://github.com/ConductionNL/woo-website-template"
+        href="https://github.com/OpenCatalogi/web-app"
         target="_blank"
         aria-label={`${t("Link to github repository")}, ${t("Opens a new window")}`}
       >
@@ -146,7 +146,7 @@ const WithLoveByConduction: React.FC = () => {
       with{" "}
       <Link
         className={styles.withLoveLink}
-        href="https://github.com/ConductionNL/woo-website-template/graphs/contributors"
+        href="https://github.com/OpenCatalogi/web-app/graphs/contributors"
         target="_blank"
         aria-label={`${t("Link to github contributors page")}, ${t("Opens a new window")}`}
       >
