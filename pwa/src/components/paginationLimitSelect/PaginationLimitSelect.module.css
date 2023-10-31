@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--web-app-size-xs);
   align-items: center;
   list-style-type: none;
 

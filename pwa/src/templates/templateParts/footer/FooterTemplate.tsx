@@ -127,7 +127,7 @@ const Logo: React.FC = () => {
 };
 
 const WithLoveByConduction: React.FC = () => {
-  // if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
+  if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
 
   const { t } = useTranslation();
 
