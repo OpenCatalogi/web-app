@@ -136,8 +136,8 @@ export const nl = {
   "Select organization": "Selecteer ogranisatie",
   "Select category": "Selecteer categorie",
   "Select license": "Selecteer licentie",
-  "Select company function": "Selecteer bedrijfsfunctie",
-  "Select company services": "Selecteer bedrijfsservices",
+  "Select business function": "Selecteer bedrijfsfunctie",
+  "Select business services": "Selecteer bedrijfsservices",
   "Select reference components": "Selecter referentiecomponenten",
   "Hide forks": "Forks verbergen",
   "Hide obsolete": "Uitgefaseerd verbergen",
@@ -146,4 +146,5 @@ export const nl = {
   "No results available": "Geen resultaten beschikbaar",
   "Results per page": "Resultaten per pagina",
   "Select result limit": "Selecteer resultaten limiet",
+  "Business function": "Bedrijfsfunctie"
 };

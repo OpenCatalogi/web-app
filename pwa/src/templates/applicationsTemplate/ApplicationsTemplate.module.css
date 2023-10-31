@@ -59,6 +59,13 @@
   flex: 1;
 }
 
+.pagination {
+  display: grid;
+  justify-content: unset;
+  justify-items: center;
+  margin-block-start: var(--web-app-size-lg);
+}
+
 @media only screen and (min-width: 992px) {
   .paginationContainer > *:not(:first-child) {
     margin-inline-start: var(--web-app-size-xl);

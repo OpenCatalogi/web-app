@@ -15,13 +15,19 @@ export default class Applications {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
+  public getAll = async (filters: IFiltersContext, limit: number): Promise<any> => {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/applications?page=${filters.applicationsCurrentPage}&limit=10&extend[]=all`,
+      `/applications?page=${filters.applicationsCurrentPage}&limit=${limit}&extend[]=all`,
     );
 
     return data;
+  };
+
+  public getCount = async (filters: IFiltersContext): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/applications?limit=1`);
+
+    return data.total;
   };
 }

@@ -7,8 +7,8 @@ import { IFiltersContext } from "../context/filters";
 export const useApplications = (queryClient: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
 
-  const getAll = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["applications", filters], () => API?.Applications.getAll(filters), {
+  const getAll = (filters: IFiltersContext, limit: number) =>
+    useQuery<any, Error>(["applications", filters, limit], () => API?.Applications.getAll(filters, limit), {
       onError: (error) => {
         throw new Error(error.message);
       },
@@ -24,5 +24,16 @@ export const useApplications = (queryClient: QueryClient) => {
       enabled: !!applicationId,
     });
 
-  return { getOne, getAll };
+  const getCount = (filters: IFiltersContext) =>
+    useQuery<any, Error>(["applications_count", filters], () => API?.Applications.getCount(filters), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 60 * 10 * 1000, // 10 minutes
+    });
+
+  return { getOne, getAll, getCount };
 };
