@@ -69,6 +69,7 @@ export const nl = {
   Publications: "Publicaties",
   Usage: "Gebruik",
   Page: "Pagina",
+  Limit: "Limiet",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -141,4 +142,8 @@ export const nl = {
   "Hide forks": "Forks verbergen",
   "Hide obsolete": "Uitgefaseerd verbergen",
   "Phone number": "Telefoonnummer",
+  "No results found": "Geen resultaten gevonden",
+  "No results available": "Geen resultaten beschikbaar",
+  "Results per page": "Resultaten per pagina",
+  "Select result limit": "Selecteer resultaten limiet",
 };

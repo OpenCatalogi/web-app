@@ -140,4 +140,8 @@ export const en = {
   "Hide forks": "Hide forks",
   "Hide obsolete": "Hide obsolete",
   "Phone number": "Phone number",
+  "No results found": "No results found",
+  "No results available": "No results available",
+  "Results per page": "Results per page",
+  "Select result limit": "Select result limit",
 };

@@ -7,8 +7,8 @@ import { IFiltersContext } from "../context/filters";
 export const useSearch = (_: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
 
-  const getSearch = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["search", filters], () => API?.Search.getSearch(filters), {
+  const getSearch = (filters: IFiltersContext, limit: number) =>
+    useQuery<any, Error>(["search", filters, limit], () => API?.Search.getSearch(filters, limit), {
       onError: (error) => {
         throw new Error(error.message);
       },
