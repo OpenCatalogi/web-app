@@ -37,7 +37,7 @@ export const ComponentsTemplate: React.FC = () => {
   const componentsCount = _useComponents.getCount(defaultFiltersContext);
 
   React.useEffect(() => {
-    setFilters({ ...filters, currentPage: 1 });
+    setPagination({ ...pagination, componentsCurrentPage: 1 });
   }, [queryLimit.componentsSearchQueryLimit]);
 
   return (

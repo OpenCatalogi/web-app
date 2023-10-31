@@ -33,7 +33,7 @@ export const ApplicationsTemplate: React.FC = () => {
   const applicationsCount = _useApplications.getCount();
 
   React.useEffect(() => {
-    setFilters({ ...filters, applicationsCurrentPage: 1 });
+    setPagination({ ...pagination, applicationCurrentPage: 1 });
   }, [queryLimit.applicationsQueryLimit]);
 
   return (

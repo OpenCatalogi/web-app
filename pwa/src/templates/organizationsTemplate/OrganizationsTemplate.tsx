@@ -29,7 +29,7 @@ export const OrganizationsTemplate: React.FC = () => {
   );
 
   React.useEffect(() => {
-    setFilters({ ...filters, organizationCurrentPage: 1 });
+    setPagination({ ...pagination, organizationCurrentPage: 1 });
   }, [queryLimit.organizationsQueryLimit]);
 
   return (
