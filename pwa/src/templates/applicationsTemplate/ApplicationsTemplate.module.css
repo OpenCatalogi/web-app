@@ -46,6 +46,11 @@
   }
 }
 
+.inlineTextLink {
+  display: inline-flex;
+  align-items: baseline !important;
+}
+
 /* pagination */
 
 .paginationContainer {
@@ -57,6 +62,13 @@
 
 .paginationContainer > *:not(:last-child) {
   flex: 1;
+}
+
+.pagination {
+  display: grid;
+  justify-content: unset;
+  justify-items: center;
+  margin-block-start: var(--web-app-size-lg);
 }
 
 @media only screen and (min-width: 992px) {

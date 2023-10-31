@@ -17,10 +17,10 @@ export const useOrganization = (queryClient: QueryClient) => {
       enabled: !!organizationId,
     });
 
-  const getAll = (filters: IFiltersContext, currentPage: number) =>
+  const getAll = (filters: IFiltersContext, currentPage: number, limit: number) =>
     useQuery<any, Error>(
-      ["organizations", filters, currentPage],
-      () => API?.Organization.getAll(filters, currentPage),
+      ["organizations", filters, currentPage, limit],
+      () => API?.Organization.getAll(filters, currentPage, limit),
       {
         onError: (error) => {
           throw new Error(error.message);

@@ -10,8 +10,8 @@ export default class Search {
     this._instance = _instance;
   }
 
-  public getSearch = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
-    let endpoint = `/search?page=${currentPage}&order[_self.dateCreated]=desc&limit=10&extend[]=all${filtersToQueryParams(
+  public getSearch = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
+    let endpoint = `/search?page=${currentPage}&order[_self.dateCreated]=desc&limit=${limit}&extend[]=all${filtersToQueryParams(
       filters,
     )}`;
 

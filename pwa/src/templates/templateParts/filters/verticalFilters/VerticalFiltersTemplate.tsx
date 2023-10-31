@@ -625,7 +625,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormLicense"
                 name="bedrijfsfuncties"
                 options={bedrijfsfuncties}
-                ariaLabel={t("Select company function")}
+                ariaLabel={t("Select business function")}
                 {...{ errors, control, register }}
               />
             </div>
@@ -679,7 +679,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 id="sortFormServices"
                 name="bedrijfsservices"
                 options={bedrijfsservices}
-                ariaLabel={t("Select company services")}
+                ariaLabel={t("Select business services")}
                 {...{ errors, control, register }}
               />
             </div>

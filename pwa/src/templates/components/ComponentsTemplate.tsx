@@ -16,10 +16,13 @@ import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-reac
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useComponent } from "../../hooks/components";
 import { usePaginationContext } from "../../context/pagination";
+import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
+import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const ComponentsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
+  const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
@@ -27,17 +30,22 @@ export const ComponentsTemplate: React.FC = () => {
   const getComponents = _useSearch.getSearch(
     { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
     pagination.componentsCurrentPage,
+    queryLimit.componentsSearchQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
 
   const _useComponents = useComponent(queryClient);
   const componentsCount = _useComponents.getCount(defaultFiltersContext);
+
+  React.useEffect(() => {
+    setPagination({ ...pagination, componentsCurrentPage: 1 });
+  }, [queryLimit.componentsSearchQueryLimit]);
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            Componenten {componentsCount.data && `(${componentsCount.data})`}
+            {t("Components")} {componentsCount.data >= 0 && `(${componentsCount.data})`}
           </Heading>
         </div>
 
@@ -99,7 +107,7 @@ export const ComponentsTemplate: React.FC = () => {
 
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
-                <>
+                <div className={styles.pagination}>
                   <Pagination
                     layoutClassName={styles.paginationContainer}
                     totalPages={getComponents.data.pages}
@@ -107,7 +115,8 @@ export const ComponentsTemplate: React.FC = () => {
                     setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
-                </>
+                  <PaginationLimitSelectComponent queryLimitName={"componentsSearchQueryLimit"} />
+                </div>
               )}
             </>
           )}
