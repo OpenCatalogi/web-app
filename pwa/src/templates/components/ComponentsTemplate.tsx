@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { useFiltersContext } from "../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -14,6 +14,7 @@ import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/Ac
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { useComponent } from "../../hooks/components";
 
 export const ComponentsTemplate: React.FC = () => {
   const { filters, setFilters } = useFiltersContext();
@@ -23,12 +24,15 @@ export const ComponentsTemplate: React.FC = () => {
   const _useSearch = useSearch(queryClient);
   const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table", organizationSearch: "" }); // Ensure no refetch on resultDisplayLayout change
 
+  const _useComponents = useComponent(queryClient);
+  const componentsCount = _useComponents.getCount(defaultFiltersContext);
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            Componenten
+            Componenten {componentsCount.data && `(${componentsCount.data})`}
           </Heading>
         </div>
 
