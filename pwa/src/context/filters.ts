@@ -1,8 +1,5 @@
 import * as React from "react";
 import { GlobalContext } from "./global";
-import { getParsedParamsFromSearch } from "../services/getParsedParamsFromSearch";
-import { navigate } from "gatsby";
-import { filtersToUrlQueryParams } from "../services/filtersToQueryParams";
 
 export type TComponentResultsLayout = "table" | "cards" | "layer";
 export type TComponentDependenciesLayout = "layer" | "relations";
@@ -15,7 +12,6 @@ export interface IFiltersContext {
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
   catagoryDisplayLayout: TCatagoryDisplayLayout;
-  currentPage: number;
   applicationsCurrentPage: number;
   isForked: boolean;
 
@@ -48,8 +44,7 @@ export const defaultFiltersContext: IFiltersContext = {
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
-  organizationsResultDisplayLayout: "table",
-  currentPage: 1,
+  organizationsResultDisplayLayout: "cards",
   applicationsCurrentPage: 1,
   organizationCurrentPage: 1,
   _search: "",

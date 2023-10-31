@@ -7,12 +7,16 @@ import { IFiltersContext } from "../context/filters";
 export const useSearch = (_: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
 
-  const getSearch = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["search", filters], () => API?.Search.getSearch(filters), {
-      onError: (error) => {
-        throw new Error(error.message);
+  const getSearch = (filters: IFiltersContext, currentPage: number) =>
+    useQuery<any, Error>(
+      ["search", filters, currentPage],
+      () => API?.Search.getSearch(filters, currentPage),
+      {
+        onError: (error) => {
+          throw new Error(error.message);
+        },
       },
-    });
+    );
 
   return { getSearch };
 };

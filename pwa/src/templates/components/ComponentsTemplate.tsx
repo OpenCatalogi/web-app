@@ -15,14 +15,19 @@ import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsD
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useComponent } from "../../hooks/components";
+import { usePaginationContext } from "../../context/pagination";
 
 export const ComponentsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
+  const { filters } = useFiltersContext();
   const { t } = useTranslation();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
-  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table", organizationSearch: "" }); // Ensure no refetch on resultDisplayLayout change
+  const getComponents = _useSearch.getSearch(
+    { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
+    pagination.currentPage,
+  ); // Ensure no refetch on resultDisplayLayout change
 
   const _useComponents = useComponent(queryClient);
   const componentsCount = _useComponents.getCount(defaultFiltersContext);
@@ -99,7 +104,7 @@ export const ComponentsTemplate: React.FC = () => {
                     layoutClassName={styles.paginationContainer}
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
-                    setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, currentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
                 </>

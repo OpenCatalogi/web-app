@@ -35,6 +35,7 @@ import { useTranslation } from "react-i18next";
 import { useGatsbyContext } from "../../../../context/gatsby";
 import { navigate } from "gatsby";
 import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
+import { usePaginationContext } from "../../../../context/pagination";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -44,6 +45,7 @@ interface VerticalFiltersTemplateProps {
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
   const { filters, setFilters } = useFiltersContext();
   const { screenSize, location } = useGatsbyContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
 
@@ -219,7 +221,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       }) => {
         setFilters({
           ...filters,
-          currentPage: 1,
           category: category?.value,
           "embedded.nl.embedded.gemma.bedrijfsfuncties": bedrijfsfuncties?.map((b: any) => b.value),
           "embedded.nl.embedded.gemma.bedrijfsservices": bedrijfsservices?.map((b: any) => b.value),
@@ -231,6 +232,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           "embedded.legal.license": license?.value,
           "embedded.url.embedded.organisation.name": organization?.value,
           "embedded.nl.embedded.upl": upl?.map((u: any) => u.value),
+        });
+        setPagination({
+          ...pagination,
+          currentPage: 1,
         });
       },
     );
@@ -303,7 +308,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setFilters({
       ...filters,
       resultDisplayLayout: params.resultDisplayLayout !== undefined ? params.resultDisplayLayout : "table",
-      currentPage: params.currentPage ? _.toNumber(params.currentPage) : 3,
       isForked: params.isForked ? params.isForked : false,
       softwareType: params.softwareType ? params.softwareType : "",
       developmentStatus: params.developmentStatus ? params.developmentStatus : "",
@@ -327,6 +331,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
         : [],
       "embedded.nl.embedded.upl": params["embedded.nl.embedded.upl"] ? [...params["embedded.nl.embedded.upl"]] : [],
+    });
+    setPagination({
+      ...pagination,
+      currentPage: params.currentPage ? _.toNumber(params.currentPage) : 1,
     });
   };
 
