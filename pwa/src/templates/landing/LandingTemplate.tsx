@@ -23,11 +23,13 @@ export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
 
   return (
     <Container layoutClassName={styles.container}>
-      {process.env.GATSBY_OPTIONAL_START_PAGE !== "false" && process.env.GATSBY_OPTIONAL_START_PAGE !== undefined && (
-        <MarkdownContentTemplate link={process.env.GATSBY_OPTIONAL_START_PAGE} {...{ pageSlug, detailPageSlug }} />
-      )}
+      {process.env.GATSBY_OPTIONAL_START_PAGE &&
+        process.env.GATSBY_OPTIONAL_START_PAGE !== "false" &&
+        process.env.GATSBY_OPTIONAL_START_PAGE !== undefined && (
+          <MarkdownContentTemplate link={process.env.GATSBY_OPTIONAL_START_PAGE} {...{ pageSlug, detailPageSlug }} />
+        )}
 
-      {process.env.GATSBY_OPTIONAL_START_PAGE === "false" && (
+      {(!process.env.GATSBY_OPTIONAL_START_PAGE || process.env.GATSBY_OPTIONAL_START_PAGE === "false") && (
         <>
           <section className={styles.section}>
             <ResultsDisplaySwitch

@@ -17,7 +17,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   ADMIN_DASHBOARD_URL: "https://admin.opencatalogi.nl"
 
   NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
-  ARROW_BREADCRUMBS: "false"
+  OPTIONAL_START_PAGE: "false"
   HEADER_LOGO_URL: "https://www.rotterdam.nl/images/logo-base.svg"
 
   # GITHUB_ORGANIZATION_URL: ""
@@ -53,7 +53,7 @@ jobs:
           envkey_GATSBY_LOGIN_REDIRECT: ${{ env.LOGIN_REDIRECT }}
           envkey_GATSBY_ADMIN_DASHBOARD_URL: ${{ env.ADMIN_DASHBOARD_URL }}
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
-          envkey_GATSBY_ARROW_BREADCRUMBS: ${{ env.ARROW_BREADCRUMBS }}
+          envkey_GATSBY_OPTIONAL_START_PAGE: ${{ env.OPTIONAL_START_PAGE }}
           envkey_GATSBY_HEADER_LOGO_URL: ${{ env.HEADER_LOGO_URL }}
 
           # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
