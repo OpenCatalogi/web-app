@@ -17,8 +17,8 @@ export const useOrganization = (queryClient: QueryClient) => {
       enabled: !!organizationId,
     });
 
-  const getAll = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["organizations", filters], () => API?.Organization.getAll(filters), {
+  const getAll = (filters: IFiltersContext, limit: number) =>
+    useQuery<any, Error>(["organizations", filters, limit], () => API?.Organization.getAll(filters, limit), {
       onError: (error) => {
         throw new Error(error.message);
       },

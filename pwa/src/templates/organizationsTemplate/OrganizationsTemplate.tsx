@@ -10,14 +10,24 @@ import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
 import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
 import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDisplayTemplates/OrganizationDisplayTemplate";
+import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
+import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const OrganizationsTemplate: React.FC = () => {
   const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { queryLimit } = useQueryLimitContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.getAll({ ...filters, organizationsResultDisplayLayout: "cards" });
+  const getOrganisations = _useOrganisation.getAll(
+    { ...filters, organizationsResultDisplayLayout: "cards" },
+    queryLimit.organizationsQueryLimit,
+  );
+
+  React.useEffect(() => {
+    setFilters({ ...filters, organizationCurrentPage: 1 });
+  }, [queryLimit.organizationsQueryLimit]);
 
   return (
     <Container layoutClassName={styles.container}>
@@ -47,13 +57,16 @@ export const OrganizationsTemplate: React.FC = () => {
               />
 
               {getOrganisations.data.results.length && (
-                <Pagination
-                  layoutClassName={styles.paginationContainer}
-                  totalPages={getOrganisations.data.pages}
-                  currentPage={getOrganisations.data.page}
-                  setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
-                  ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
-                />
+                <div className={styles.pagination}>
+                  <Pagination
+                    layoutClassName={styles.paginationContainer}
+                    totalPages={getOrganisations.data.pages}
+                    currentPage={getOrganisations.data.page}
+                    setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
+                    ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
+                  />
+                  <PaginationLimitSelectComponent queryLimitName={"organizationsQueryLimit"} />
+                </div>
               )}
             </>
           )}
