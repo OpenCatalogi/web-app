@@ -43,7 +43,11 @@ export const ApplicationsTemplate: React.FC = () => {
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}
             <span>
-              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+              <Link
+                className={styles.inlineTextLink}
+                target="_new"
+                href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties"
+              >
                 <Icon>
                   <FontAwesomeIcon icon={faExternalLink} />
                 </Icon>

@@ -20,10 +20,7 @@ export const OrganizationsTemplate: React.FC = () => {
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.getAll(
-    { ...filters, organizationsResultDisplayLayout: "cards" },
-    queryLimit.organizationsQueryLimit,
-  );
+  const getOrganisations = _useOrganisation.getAll({ ...filters }, queryLimit.organizationsQueryLimit);
 
   React.useEffect(() => {
     setFilters({ ...filters, organizationCurrentPage: 1 });

@@ -116,9 +116,7 @@ const Logo: React.FC = () => {
     <div className={styles.imageContainer}>
       <img
         className={styles.image}
-        onClick={() =>
-          process.env.GATSBY_FOOTER_LOGO_URL ? open(process.env.GATSBY_FOOTER_LOGO_URL) : navigate("/")
-        }
+        onClick={() => (process.env.GATSBY_FOOTER_LOGO_URL ? open(process.env.GATSBY_FOOTER_LOGO_URL) : navigate("/"))}
         src={process.env.GATSBY_FOOTER_LOGO_URL}
         alt={t("Footer-logo")}
         aria-label={`${t("Footer-logo")}, ${t("Can open a new window")}`}
@@ -129,7 +127,7 @@ const Logo: React.FC = () => {
 };
 
 const WithLoveByConduction: React.FC = () => {
-  if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
+  // if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
 
   const { t } = useTranslation();
 
@@ -141,7 +139,9 @@ const WithLoveByConduction: React.FC = () => {
         target="_blank"
         aria-label={`${t("Link to github repository")}, ${t("Opens a new window")}`}
       >
-        <FontAwesomeIcon icon={faCode} />
+        <Icon>
+          <FontAwesomeIcon icon={faCode} />
+        </Icon>
       </Link>{" "}
       with{" "}
       <Link
@@ -150,7 +150,9 @@ const WithLoveByConduction: React.FC = () => {
         target="_blank"
         aria-label={`${t("Link to github contributors page")}, ${t("Opens a new window")}`}
       >
-        <FontAwesomeIcon icon={faHeart} />
+        <Icon>
+          <FontAwesomeIcon icon={faHeart} />
+        </Icon>
       </Link>{" "}
       by{" "}
       <Link
@@ -185,13 +187,17 @@ const ExternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       )}
 
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -213,7 +219,9 @@ const InternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -223,7 +231,9 @@ const InternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -245,7 +255,9 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -255,7 +267,9 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -281,7 +295,9 @@ const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -291,7 +307,9 @@ const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -311,13 +329,17 @@ const NoLink: React.FC<LinkComponentProps> = ({ item }) => {
       )}
 
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (

@@ -46,6 +46,11 @@
   }
 }
 
+.inlineTextLink {
+  display: inline-flex;
+  align-items: baseline !important;
+}
+
 /* pagination */
 
 .paginationContainer {
