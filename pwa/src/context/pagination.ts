@@ -4,11 +4,13 @@ import { GlobalContext } from "./global";
 export interface IPaginationContext {
   currentPage: number;
   organizationCurrentPage: number;
+  applicationCurrentPage: number;
 }
 
 export const defaultPaginationContext: IPaginationContext = {
   currentPage: 1,
   organizationCurrentPage: 1,
+  applicationCurrentPage: 1,
 };
 
 export const usePaginationContext = () => {

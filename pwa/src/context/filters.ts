@@ -12,7 +12,6 @@ export interface IFiltersContext {
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
   catagoryDisplayLayout: TCatagoryDisplayLayout;
-  applicationsCurrentPage: number;
   isForked: boolean;
 
   organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
@@ -44,7 +43,6 @@ export const defaultFiltersContext: IFiltersContext = {
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
   organizationsResultDisplayLayout: "cards",
-  applicationsCurrentPage: 1,
   _search: "",
   organizationSearch: "",
   isForked: true,

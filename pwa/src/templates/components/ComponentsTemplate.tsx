@@ -18,8 +18,8 @@ import { useComponent } from "../../hooks/components";
 import { usePaginationContext } from "../../context/pagination";
 
 export const ComponentsTemplate: React.FC = () => {
-  const { filters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();

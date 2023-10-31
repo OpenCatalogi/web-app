@@ -32,11 +32,11 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFiltersContext);
     setPagination({
       ...pagination,
       currentPage: pagination.currentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
     });
 
     navigate("/components");
@@ -47,11 +47,11 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFiltersContext);
     setPagination({
       ...pagination,
       currentPage: pagination.currentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
     });
   };
 

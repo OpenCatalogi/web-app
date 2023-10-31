@@ -9,16 +9,21 @@ import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
 import { IconExternalLink } from "@tabler/icons-react";
+import { usePaginationContext } from "../../context/pagination";
 
 export const ApplicationsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useApplications = useApplications(queryClient);
-  const getApplications = _useApplications.getAll({
-    ...filters,
-  });
+  const getApplications = _useApplications.getAll(
+    {
+      ...filters,
+    },
+    pagination.applicationCurrentPage,
+  );
 
   return (
     <Container layoutClassName={styles.container}>
@@ -62,7 +67,7 @@ export const ApplicationsTemplate: React.FC = () => {
             layoutClassName={styles.paginationContainer}
             totalPages={getApplications.data.pages}
             currentPage={getApplications.data.page}
-            setCurrentPage={(page: any) => setFilters({ ...filters, applicationsCurrentPage: page })}
+            setCurrentPage={(page: any) => setPagination({ ...pagination, applicationCurrentPage: page })}
             ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
           />
         </>

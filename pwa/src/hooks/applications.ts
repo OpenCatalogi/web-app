@@ -7,8 +7,8 @@ import { IFiltersContext } from "../context/filters";
 export const useApplications = (queryClient: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
 
-  const getAll = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["applications", filters], () => API?.Applications.getAll(filters), {
+  const getAll = (filters: IFiltersContext, currentPage: number) =>
+    useQuery<any, Error>(["applications", filters, currentPage], () => API?.Applications.getAll(filters, currentPage), {
       onError: (error) => {
         throw new Error(error.message);
       },
