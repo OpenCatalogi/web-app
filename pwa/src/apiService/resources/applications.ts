@@ -15,12 +15,8 @@ export default class Applications {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
-    const { data } = await Send(
-      this._instance,
-      "GET",
-      `/applications?page=${filters.applicationsCurrentPage}&limit=10&extend[]=all`,
-    );
+  public getAll = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/applications?page=${currentPage}&limit=10&extend[]=all`);
 
     return data;
   };

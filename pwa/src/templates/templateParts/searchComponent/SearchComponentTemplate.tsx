@@ -9,6 +9,7 @@ import { ButtonLink } from "../../../components";
 import { FormField, Textbox, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { usePaginationContext } from "../../../context/pagination";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
@@ -16,6 +17,7 @@ interface SearchComponentTemplateProps {
 
 export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
   const { filters, setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
   const { t } = useTranslation();
 
   const {
@@ -30,9 +32,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      currentPage: filters.currentPage,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFiltersContext);
+    setPagination({
+      ...pagination,
+      componentsCurrentPage: pagination.componentsCurrentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
+    });
 
     navigate("/components");
   };
@@ -42,9 +47,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      currentPage: filters.currentPage,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
     } as IFiltersContext);
+    setPagination({
+      ...pagination,
+      componentsCurrentPage: pagination.componentsCurrentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
+    });
   };
 
   return (

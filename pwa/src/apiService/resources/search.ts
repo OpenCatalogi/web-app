@@ -10,10 +10,10 @@ export default class Search {
     this._instance = _instance;
   }
 
-  public getSearch = async (filters: IFiltersContext): Promise<any> => {
-    let endpoint = `/search?page=${
-      filters.currentPage
-    }&order[_self.dateCreated]=desc&limit=10&extend[]=all${filtersToQueryParams(filters)}`;
+  public getSearch = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
+    let endpoint = `/search?page=${currentPage}&order[_self.dateCreated]=desc&limit=10&extend[]=all${filtersToQueryParams(
+      filters,
+    )}`;
 
     if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
       endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;

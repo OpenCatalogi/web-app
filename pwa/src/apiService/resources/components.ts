@@ -16,11 +16,11 @@ export default class Component {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
+  public getAll = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
+      `/components?page=${currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
     );
 
     return data;

@@ -16,8 +16,8 @@ export default class Organization {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
-    let url = `/organizations?page=${filters.organizationCurrentPage}&order[owns]=desc&limit=10&extend[]=all`;
+  public getAll = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
+    let url = `/organizations?page=${currentPage}&order[owns]=desc&limit=10&extend[]=all`;
 
     if (filters.organizationSearch) {
       url += `&_search=${filters.organizationSearch}`;
