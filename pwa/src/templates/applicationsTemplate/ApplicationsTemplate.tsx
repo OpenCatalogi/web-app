@@ -2,21 +2,23 @@ import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
 import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Pagination } from "@conduction/components";
-import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
 import Skeleton from "react-loading-skeleton";
+import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 export const ApplicationsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const { queryLimit } = useQueryLimitContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useApplications = useApplications(queryClient);
@@ -24,9 +26,11 @@ export const ApplicationsTemplate: React.FC = () => {
     {
       ...filters,
     },
+    pagination.applicationCurrentPage,
     queryLimit.applicationsQueryLimit,
   );
-  const applicationsCount = _useApplications.getCount(defaultFiltersContext);
+
+  const applicationsCount = _useApplications.getCount();
 
   React.useEffect(() => {
     setFilters({ ...filters, applicationsCurrentPage: 1 });
@@ -79,7 +83,7 @@ export const ApplicationsTemplate: React.FC = () => {
               layoutClassName={styles.paginationContainer}
               totalPages={getApplications.data.pages}
               currentPage={getApplications.data.page}
-              setCurrentPage={(page: any) => setFilters({ ...filters, applicationsCurrentPage: page })}
+              setCurrentPage={(page: any) => setPagination({ ...pagination, applicationCurrentPage: page })}
               ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
             />
             <PaginationLimitSelectComponent queryLimitName={"applicationsQueryLimit"} />

@@ -15,18 +15,21 @@ import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsD
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useComponent } from "../../hooks/components";
+import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const ComponentsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const { queryLimit } = useQueryLimitContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
   const getComponents = _useSearch.getSearch(
     { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
+    pagination.componentsCurrentPage,
     queryLimit.componentsSearchQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
 
@@ -109,7 +112,7 @@ export const ComponentsTemplate: React.FC = () => {
                     layoutClassName={styles.paginationContainer}
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
-                    setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
                   <PaginationLimitSelectComponent queryLimitName={"componentsSearchQueryLimit"} />

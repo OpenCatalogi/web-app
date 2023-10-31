@@ -10,17 +10,23 @@ import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
 import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
 import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDisplayTemplates/OrganizationDisplayTemplate";
+import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const OrganizationsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const { queryLimit } = useQueryLimitContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.getAll({ ...filters }, queryLimit.organizationsQueryLimit);
+  const getOrganisations = _useOrganisation.getAll(
+    { ...filters, organizationsResultDisplayLayout: "cards" },
+    pagination.organizationCurrentPage,
+    queryLimit.organizationsQueryLimit,
+  );
 
   React.useEffect(() => {
     setFilters({ ...filters, organizationCurrentPage: 1 });
@@ -59,7 +65,7 @@ export const OrganizationsTemplate: React.FC = () => {
                     layoutClassName={styles.paginationContainer}
                     totalPages={getOrganisations.data.pages}
                     currentPage={getOrganisations.data.page}
-                    setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, organizationCurrentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
                   <PaginationLimitSelectComponent queryLimitName={"organizationsQueryLimit"} />
