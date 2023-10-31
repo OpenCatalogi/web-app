@@ -26,7 +26,7 @@ export const ComponentsTemplate: React.FC = () => {
   const _useSearch = useSearch(queryClient);
   const getComponents = _useSearch.getSearch(
     { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
-    pagination.currentPage,
+    pagination.componentsCurrentPage,
   ); // Ensure no refetch on resultDisplayLayout change
 
   const _useComponents = useComponent(queryClient);
@@ -104,7 +104,7 @@ export const ComponentsTemplate: React.FC = () => {
                     layoutClassName={styles.paginationContainer}
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
-                    setCurrentPage={(page: any) => setPagination({ ...pagination, currentPage: page })}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
                 </>

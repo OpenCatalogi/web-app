@@ -97,11 +97,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     //Prevents loop that puts user at top of page after scroll
-    if (_.isEqual(filters, queryParams)) return;
+    const allFilters = { ...filters, ...pagination };
+    if (_.isEqual(allFilters, queryParams)) return;
 
-    setQueryParams(filters);
-    navigate(filtersToUrlQueryParams(filters, location.pathname));
-  }, [filters]);
+    setQueryParams({ ...filters, ...pagination });
+    navigate(filtersToUrlQueryParams({ ...filters, ...pagination }, location.pathname));
+  }, [filters, pagination]);
 
   const handleLayerChange = (layer: any, e: any) => {
     const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
@@ -235,7 +236,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         });
         setPagination({
           ...pagination,
-          currentPage: 1,
+          componentsCurrentPage: 1,
         });
       },
     );
@@ -334,7 +335,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     });
     setPagination({
       ...pagination,
-      currentPage: params.currentPage ? _.toNumber(params.currentPage) : 1,
+      componentsCurrentPage: params.componentsCurrentPage ? _.toNumber(params.componentsCurrentPage) : 1,
     });
   };
 

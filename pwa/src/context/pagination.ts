@@ -2,13 +2,13 @@ import * as React from "react";
 import { GlobalContext } from "./global";
 
 export interface IPaginationContext {
-  currentPage: number;
+  componentsCurrentPage: number;
   organizationCurrentPage: number;
   applicationCurrentPage: number;
 }
 
 export const defaultPaginationContext: IPaginationContext = {
-  currentPage: 1,
+  componentsCurrentPage: 1,
   organizationCurrentPage: 1,
   applicationCurrentPage: 1,
 };

@@ -35,7 +35,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
     } as IFiltersContext);
     setPagination({
       ...pagination,
-      currentPage: pagination.currentPage,
+      componentsCurrentPage: pagination.componentsCurrentPage,
       applicationCurrentPage: pagination.applicationCurrentPage,
     });
 
@@ -50,7 +50,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
     } as IFiltersContext);
     setPagination({
       ...pagination,
-      currentPage: pagination.currentPage,
+      componentsCurrentPage: pagination.componentsCurrentPage,
       applicationCurrentPage: pagination.applicationCurrentPage,
     });
   };
