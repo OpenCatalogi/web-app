@@ -108,7 +108,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                         ?.toString()
                         ?.includes(current.filterCondition?.value)
                   : pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterCondition?.value;
+                      filters[current.filterCondition.filter as keyof IFiltersContext] ===
+                        current.filterCondition?.value;
             }
           }
         };
@@ -204,11 +205,15 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
               <Heading level={1} className={styles.title}>
-                {t("Open Catalogs")}
+                {process.env.GATSBY_JUMBOTRON_TITLE && process.env.GATSBY_JUMBOTRON_TITLE !== ""
+                  ? process.env.GATSBY_JUMBOTRON_TITLE
+                  : t("Open Catalogs")}
               </Heading>
 
               <Paragraph className={styles.subTitle}>
-                {t("One central place for reuse of information technology within the government")}
+                {process.env.GATSBY_JUMBOTRON_SUBTITLE && process.env.GATSBY_JUMBOTRON_SUBTITLE !== ""
+                  ? process.env.GATSBY_JUMBOTRON_SUBTITLE
+                  : t("One central place for reuse of information technology within the government")}
               </Paragraph>
             </div>
             <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
