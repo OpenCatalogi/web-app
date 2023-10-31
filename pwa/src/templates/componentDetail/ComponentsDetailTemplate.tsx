@@ -198,12 +198,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={styles.logo}
                 />
               </div>
-              <Button>
+
+              {/* This button should only be visible for authenticated users; feature will come in the future. */}
+              {/* <Button>
                 <Icon>
                   <IconExternalLink />
                 </Icon>{" "}
                 Toevoegen aan catalogus
-              </Button>
+              </Button> */}
 
               {_getComponent.data.embedded?.url?.url && (
                 <Button
