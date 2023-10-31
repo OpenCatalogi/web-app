@@ -33,6 +33,10 @@ export const ComponentsTemplate: React.FC = () => {
   const _useComponents = useComponent(queryClient);
   const componentsCount = _useComponents.getCount(defaultFiltersContext);
 
+  React.useEffect(() => {
+    setFilters({ ...filters, currentPage: 1 });
+  }, [queryLimit.componentsSearchQueryLimit]);
+
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
