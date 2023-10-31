@@ -3,10 +3,12 @@ import { GlobalContext } from "./global";
 
 export interface IPaginationContext {
   currentPage: number;
+  organizationCurrentPage: number;
 }
 
 export const defaultPaginationContext: IPaginationContext = {
   currentPage: 1,
+  organizationCurrentPage: 1,
 };
 
 export const usePaginationContext = () => {

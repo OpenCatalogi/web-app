@@ -17,12 +17,16 @@ export const useOrganization = (queryClient: QueryClient) => {
       enabled: !!organizationId,
     });
 
-  const getAll = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["organizations", filters], () => API?.Organization.getAll(filters), {
-      onError: (error) => {
-        throw new Error(error.message);
+  const getAll = (filters: IFiltersContext, currentPage: number) =>
+    useQuery<any, Error>(
+      ["organizations", filters, currentPage],
+      () => API?.Organization.getAll(filters, currentPage),
+      {
+        onError: (error) => {
+          throw new Error(error.message);
+        },
       },
-    });
+    );
 
   const filtersGetAll = () =>
     useQuery<any, Error>(["organizations"], () => API?.Organization.filtersGetAll(), {

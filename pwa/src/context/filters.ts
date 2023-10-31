@@ -15,7 +15,6 @@ export interface IFiltersContext {
   applicationsCurrentPage: number;
   isForked: boolean;
 
-  organizationCurrentPage: number;
   organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
   organizationSearch?: string;
 
@@ -46,7 +45,6 @@ export const defaultFiltersContext: IFiltersContext = {
   catagoryDisplayLayout: "table",
   organizationsResultDisplayLayout: "cards",
   applicationsCurrentPage: 1,
-  organizationCurrentPage: 1,
   _search: "",
   organizationSearch: "",
   isForked: true,
