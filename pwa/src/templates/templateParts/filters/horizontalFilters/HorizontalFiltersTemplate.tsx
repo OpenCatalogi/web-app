@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import { FiltersContext } from "../../../../context/filters";
+import { useFiltersContext } from "../../../../context/filters";
 import { FormField, FormLabel, Textbox } from "@utrecht/component-library-react/dist/css-module";
+import { usePaginationContext } from "../../../../context/pagination";
 
 export const HorizontalFiltersTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
   const searchTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const {
@@ -23,15 +25,13 @@ export const HorizontalFiltersTemplate: React.FC = () => {
 
   React.useEffect(() => {
     if (searchTimeout.current) clearTimeout(searchTimeout.current);
-    searchTimeout.current = setTimeout(
-      () =>
-        setFilters({
-          ...filters,
-          currentPage: 1,
-          _search: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
-        }),
-      500,
-    );
+    searchTimeout.current = setTimeout(() => {
+      setFilters({
+        ...filters,
+        _search: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
+      }),
+        setPagination({ ...pagination, componentsCurrentPage: 1 });
+    }, 500);
   }, [watchName]);
 
   return (

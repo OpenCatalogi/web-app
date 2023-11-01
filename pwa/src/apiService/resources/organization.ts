@@ -1,6 +1,6 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFilters } from "../../context/filters";
+import { IFiltersContext } from "../../context/filters";
 import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Organization {
@@ -16,8 +16,8 @@ export default class Organization {
     return data;
   };
 
-  public getAll = async (filters: IFilters): Promise<any> => {
-    let url = `/organizations?page=${filters.organizationCurrentPage}&order[owns]=desc&limit=10&extend[]=all`;
+  public getAll = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
+    let url = `/organizations?page=${currentPage}&order[owns]=desc&limit=${limit}&extend[]=all`;
 
     if (filters.organizationSearch) {
       url += `&_search=${filters.organizationSearch}`;
@@ -34,7 +34,7 @@ export default class Organization {
     return data;
   };
 
-  public getCount = async (filters: IFilters): Promise<any> => {
+  public getCount = async (filters: IFiltersContext): Promise<any> => {
     const { data } = await Send(this._instance, "GET", `/organizations?limit=1${filtersToQueryParams(filters)}`);
 
     return data.total;

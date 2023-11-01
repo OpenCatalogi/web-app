@@ -14,13 +14,12 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import { IconArrowRight } from "@tabler/icons-react";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
-import { TableWrapper } from "@conduction/components";
+import { HorizontalOverflowWrapper } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe, faHouseLaptop, faInfoCircle, faRepeat, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../../../assets/svgs/GitLab";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
-import { GatsbyContext } from "../../../../context/gatsby";
 
 interface TableOrganizationDisplayTemplateProps {
   organizations: any[];
@@ -32,10 +31,11 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
   hideTableHead,
 }) => {
   const { t } = useTranslation();
-  const { screenSize } = React.useContext(GatsbyContext);
 
   return (
-    <TableWrapper touchScreen={screenSize === "tablet" || screenSize === "mobile"}>
+    <HorizontalOverflowWrapper
+      ariaLabels={{ scrollLeftButton: t("Scroll left"), scrollRightButton: t("Scroll right") }}
+    >
       <Table>
         {!hideTableHead && (
           <TableHeader>
@@ -190,6 +190,6 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
           )}
         </TableBody>
       </Table>
-    </TableWrapper>
+    </HorizontalOverflowWrapper>
   );
 };

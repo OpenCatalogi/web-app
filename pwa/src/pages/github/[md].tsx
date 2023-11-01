@@ -2,12 +2,13 @@ import * as React from "react";
 import qs from "qs";
 import { PageProps } from "gatsby";
 import { MarkdownContentTemplate } from "../../templates/markdown/MarkdownContentTemplate";
-import { GatsbyContext } from "../../context/gatsby";
+import { useGatsbyContext } from "../../context/gatsby";
 import { useTranslation } from "react-i18next";
+import { Page, PageContent } from "@utrecht/component-library-react/dist/css-module";
 
 const MarkdownPage: React.FC<PageProps> = (props: PageProps) => {
   const { t } = useTranslation();
-  const { location } = React.useContext(GatsbyContext);
+  const { location } = useGatsbyContext();
 
   const url = location.search;
   const [, params] = url.split("?");
@@ -21,7 +22,13 @@ const MarkdownPage: React.FC<PageProps> = (props: PageProps) => {
     return <span>{t("No markdown file found, make sure that the query param link is filled")}</span>;
   }
 
-  return <MarkdownContentTemplate {...{ pageSlug, detailPageSlug, link }} />;
+  return (
+    <Page>
+      <PageContent>
+        <MarkdownContentTemplate {...{ pageSlug, detailPageSlug, link }} />
+      </PageContent>
+    </Page>
+  );
 };
 
 export default MarkdownPage;

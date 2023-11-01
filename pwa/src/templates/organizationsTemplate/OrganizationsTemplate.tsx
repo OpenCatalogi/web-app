@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
-import { FiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
@@ -10,21 +10,34 @@ import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
 import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
 import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDisplayTemplates/OrganizationDisplayTemplate";
+import { usePaginationContext } from "../../context/pagination";
+import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
+import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const OrganizationsTemplate: React.FC = () => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
+  const { queryLimit } = useQueryLimitContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.getAll({ ...filters, organizationsResultDisplayLayout: "cards" });
+  const getOrganisations = _useOrganisation.getAll(
+    { ...filters, organizationsResultDisplayLayout: "cards" },
+    pagination.organizationCurrentPage,
+    queryLimit.organizationsQueryLimit,
+  );
+
+  React.useEffect(() => {
+    setPagination({ ...pagination, organizationCurrentPage: 1 });
+  }, [queryLimit.organizationsQueryLimit]);
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            Organizations
+            {t("Organizations")}
           </Heading>
         </div>
 
@@ -47,13 +60,16 @@ export const OrganizationsTemplate: React.FC = () => {
               />
 
               {getOrganisations.data.results.length && (
-                <Pagination
-                  layoutClassName={styles.paginationContainer}
-                  totalPages={getOrganisations.data.pages}
-                  currentPage={getOrganisations.data.page}
-                  setCurrentPage={(page: any) => setFilters({ ...filters, organizationCurrentPage: page })}
-                  ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
-                />
+                <div className={styles.pagination}>
+                  <Pagination
+                    layoutClassName={styles.paginationContainer}
+                    totalPages={getOrganisations.data.pages}
+                    currentPage={getOrganisations.data.page}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, organizationCurrentPage: page })}
+                    ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
+                  />
+                  <PaginationLimitSelectComponent queryLimitName={"organizationsQueryLimit"} />
+                </div>
               )}
             </>
           )}

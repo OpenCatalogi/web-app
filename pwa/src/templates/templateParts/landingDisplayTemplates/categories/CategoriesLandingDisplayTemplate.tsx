@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
 import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
 import Collapsible from "react-collapsible";
-import { GatsbyContext } from "../../../../context/gatsby";
+import { useGatsbyContext } from "../../../../context/gatsby";
 import clsx from "clsx";
 import { ButtonLink } from "../../../../components";
 import { navigate } from "gatsby-link";
@@ -23,7 +23,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
 
   const [showMore, setShowMore] = React.useState(domains.map(() => false));
 
-  const { screenSize } = React.useContext(GatsbyContext);
+  const { screenSize } = useGatsbyContext();
 
   return (
     <>

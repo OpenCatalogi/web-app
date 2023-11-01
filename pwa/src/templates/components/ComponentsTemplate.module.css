@@ -55,6 +55,13 @@
   align-items: center;
 }
 
+.pagination {
+  display: grid;
+  justify-content: unset;
+  justify-items: center;
+  margin-block-start: var(--web-app-size-lg);
+}
+
 @media only screen and (min-width: 992px) {
   .header {
     display: flex;

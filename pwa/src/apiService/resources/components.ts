@@ -1,6 +1,6 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFilters } from "../../context/filters";
+import { IFiltersContext } from "../../context/filters";
 import { filtersToQueryParams } from "../../services/filtersToQueryParams";
 
 export default class Component {
@@ -16,17 +16,17 @@ export default class Component {
     return data;
   };
 
-  public getAll = async (filters: IFilters): Promise<any> => {
+  public getAll = async (filters: IFiltersContext, currentPage: number): Promise<any> => {
     const { data } = await Send(
       this._instance,
       "GET",
-      `/components?page=${filters.currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
+      `/components?page=${currentPage}&limit=10&extend[]=all${filtersToQueryParams(filters)}`,
     );
 
     return data;
   };
 
-  public getCount = async (filters: IFilters): Promise<any> => {
+  public getCount = async (filters: IFiltersContext): Promise<any> => {
     const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters)}`);
 
     return data.total;

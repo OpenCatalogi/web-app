@@ -20,9 +20,8 @@ import organizationPlaceholderImage from "../../assets/images/grey.png";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { GitLabLogo } from "../../assets/svgs/GitLab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
-import { IconArrowLeft } from "@tabler/icons-react";
 import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface OrganizationDetailTemplateProps {
@@ -39,7 +38,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
     <Container layoutClassName={styles.container}>
       <Link className={styles.backButton} onClick={() => navigate("/organizations")}>
         <Icon>
-          <IconArrowLeft />
+          <FontAwesomeIcon icon={faArrowLeft} />
         </Icon>
         {t("Back to organizations")}
       </Link>

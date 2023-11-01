@@ -4,7 +4,7 @@ import clsx from "clsx";
 import parse from "html-react-parser";
 import { PageFooter, Link, Heading3, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby-link";
-import { baseFilters, FiltersContext } from "../../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../../context/filters";
 import { useTranslation } from "react-i18next";
 import { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,6 +49,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
   const _useFooterContent = useFooterContent();
   const getFooterContent = _useFooterContent.getContent();
 
+  // For Production
   React.useEffect(() => {
     setFooterContent(getFooterContent.data);
   }, [getFooterContent]);
@@ -115,9 +116,7 @@ const Logo: React.FC = () => {
     <div className={styles.imageContainer}>
       <img
         className={styles.image}
-        onClick={() =>
-          process.env.GATSBY_FOOTER_LOGO_HREF ? open(process.env.GATSBY_FOOTER_LOGO_HREF) : navigate("/")
-        }
+        onClick={() => (process.env.GATSBY_FOOTER_LOGO_URL ? open(process.env.GATSBY_FOOTER_LOGO_URL) : navigate("/"))}
         src={process.env.GATSBY_FOOTER_LOGO_URL}
         alt={t("Footer-logo")}
         aria-label={`${t("Footer-logo")}, ${t("Can open a new window")}`}
@@ -136,20 +135,24 @@ const WithLoveByConduction: React.FC = () => {
     <div>
       <Link
         className={styles.withLoveLink}
-        href="https://github.com/ConductionNL/woo-website-template"
+        href="https://github.com/OpenCatalogi/web-app"
         target="_blank"
         aria-label={`${t("Link to github repository")}, ${t("Opens a new window")}`}
       >
-        <FontAwesomeIcon icon={faCode} />
+        <Icon>
+          <FontAwesomeIcon icon={faCode} />
+        </Icon>
       </Link>{" "}
       with{" "}
       <Link
         className={styles.withLoveLink}
-        href="https://github.com/ConductionNL/woo-website-template/graphs/contributors"
+        href="https://github.com/OpenCatalogi/web-app/graphs/contributors"
         target="_blank"
         aria-label={`${t("Link to github contributors page")}, ${t("Opens a new window")}`}
       >
-        <FontAwesomeIcon icon={faHeart} />
+        <Icon>
+          <FontAwesomeIcon icon={faHeart} />
+        </Icon>
       </Link>{" "}
       by{" "}
       <Link
@@ -184,13 +187,17 @@ const ExternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       )}
 
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -212,7 +219,9 @@ const InternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -222,7 +231,9 @@ const InternalLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -244,7 +255,9 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -254,7 +267,9 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -266,13 +281,13 @@ const MarkdownLink: React.FC<LinkComponentProps> = ({ item }) => {
 
 const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
   const { t } = useTranslation();
-  const [, setFilters] = React.useContext(FiltersContext);
+  const { setFilters } = useFiltersContext();
 
   return (
     <Link
       className={styles.link}
       onClick={() => {
-        setFilters({ ...baseFilters, [item.setFilter!.filter]: item.setFilter!.value });
+        setFilters({ ...defaultFiltersContext, [item.setFilter!.filter]: item.setFilter!.value });
         navigate(item.setFilter!.link);
       }}
       tabIndex={0}
@@ -280,7 +295,9 @@ const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
       role="button"
     >
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "left" && (
@@ -290,7 +307,9 @@ const FilterLink: React.FC<LinkComponentProps> = ({ item }) => {
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (
@@ -310,13 +329,17 @@ const NoLink: React.FC<LinkComponentProps> = ({ item }) => {
       )}
 
       {item.icon && item.icon.placement === "left" && (
-        <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconLeft}>
+          <FontAwesomeIcon className={styles.iconLeft} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {t(item.value)}
 
       {item.icon && item.icon.placement === "right" && (
-        <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        <Icon className={styles.iconRight}>
+          <FontAwesomeIcon className={styles.iconRight} icon={[item.icon.prefix, item.icon.icon]} />
+        </Icon>
       )}
 
       {item.customIcon && item.customIcon.placement === "right" && (

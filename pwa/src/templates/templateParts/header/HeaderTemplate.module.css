@@ -74,6 +74,8 @@
 .headerSearchForm {
   display: flex;
   flex-direction: column;
+  padding-inline-start: var(--web-app-size-sm);
+  padding-inline-end: var(--web-app-size-md);
 }
 
 .section > *:not(:last-child) {
@@ -122,6 +124,10 @@ li .denhaag-link__icon {
   left: 0;
 }
 
+.headerContainer {
+  padding-block-start: unset !important;
+}
+
 @media only screen and (min-width: 992px) {
   .logoContainer {
     display: flex;
@@ -152,10 +158,6 @@ li .denhaag-link__icon {
     background-color: unset;
     box-shadow: unset;
     z-index: unset;
-  }
-
-  .headerContainer {
-    padding-inline: var(--web-app-size-md);
   }
 
   .headerContent {

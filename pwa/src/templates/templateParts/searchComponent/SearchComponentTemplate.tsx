@@ -2,20 +2,22 @@ import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { FiltersContext, IFilters } from "../../../context/filters";
+import { IFiltersContext, useFiltersContext } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { Button } from "@utrecht/component-library-react";
 import { ButtonLink } from "../../../components";
 import { FormField, Textbox, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { usePaginationContext } from "../../../context/pagination";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
 }
 
 export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
-  const [filters, setFilters] = React.useContext(FiltersContext);
+  const { filters, setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
   const { t } = useTranslation();
 
   const {
@@ -30,9 +32,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      currentPage: filters.currentPage,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
-    } as IFilters);
+    } as IFiltersContext);
+    setPagination({
+      ...pagination,
+      componentsCurrentPage: pagination.componentsCurrentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
+    });
 
     navigate("/components");
   };
@@ -42,9 +47,12 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
-      currentPage: filters.currentPage,
-      applicationsCurrentPage: filters.applicationsCurrentPage,
-    } as IFilters);
+    } as IFiltersContext);
+    setPagination({
+      ...pagination,
+      componentsCurrentPage: pagination.componentsCurrentPage,
+      applicationCurrentPage: pagination.applicationCurrentPage,
+    });
   };
 
   return (
