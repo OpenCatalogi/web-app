@@ -5,8 +5,9 @@ import { Container } from "@conduction/components";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import { CategoriesCardsAccordionTemplate } from "../templateParts/categoriesCardsAccordion/CategoriesCardsAccordionTemplate";
-import { IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import { navigate } from "gatsby-link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
 export const CategoriesTemplate: React.FC = () => {
   const { t } = useTranslation();
@@ -24,28 +25,44 @@ export const CategoriesTemplate: React.FC = () => {
           <Paragraph className={styles.description}>
             We verdelen{" "}
             <span>
-              <Link onClick={() => navigate("/applications")}>
+              <Link
+                className={styles.inlineTextLink}
+                onClick={(e) => {
+                  e.preventDefault(), navigate("/applications");
+                }}
+                href="/applications"
+              >
                 <Icon>
-                  <IconArrowRight />
+                  <FontAwesomeIcon icon={faArrowRight} />
                 </Icon>
-                <span> applicaties</span>
+                {t("Applications").toLowerCase()}
               </Link>
             </span>{" "}
             en{" "}
             <span>
-              <Link onClick={() => navigate("/components")}>
+              <Link
+                className={styles.inlineTextLink}
+                onClick={(e) => {
+                  e.preventDefault(), navigate("/components");
+                }}
+                href="/components"
+              >
                 <Icon>
-                  <IconArrowRight />
+                  <FontAwesomeIcon icon={faArrowRight} />
                 </Icon>
-                <span> componenten </span>
+                {t("Components").toLowerCase()}
               </Link>
             </span>{" "}
             in categorieën gebaseerd op de
             <br />
             <span>
-              <Link target="_new" href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties">
+              <Link
+                className={styles.inlineTextLink}
+                target="_new"
+                href="https://www.gemmaonline.nl/index.php/GEMMA_Bedrijfsfuncties"
+              >
                 <Icon>
-                  <IconExternalLink />
+                  <FontAwesomeIcon icon={faExternalLink} />
                 </Icon>
                 <span> Gemma bedrijfsfuncties </span>
               </Link>
