@@ -28,6 +28,8 @@ export const OrganizationsTemplate: React.FC = () => {
     queryLimit.organizationsQueryLimit,
   );
 
+  const organizationCount = _useOrganisation.getCount();
+
   React.useEffect(() => {
     setPagination({ ...pagination, organizationCurrentPage: 1 });
   }, [queryLimit.organizationsQueryLimit]);
@@ -37,7 +39,7 @@ export const OrganizationsTemplate: React.FC = () => {
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            {t("Organizations")}
+            {t("Organizations")} {organizationCount.data >= 0 && `(${organizationCount.data})`}
           </Heading>
         </div>
 
