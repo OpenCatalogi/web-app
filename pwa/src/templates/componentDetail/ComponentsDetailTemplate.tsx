@@ -87,7 +87,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   return (
     <Container layoutClassName={styles.container}>
-      <Link className={styles.backButton} onClick={() => navigate("/components")}>
+      <Link
+        className={styles.backButton}
+        onClick={(e) => {
+          e.preventDefault(), navigate("/components");
+        }}
+        href="/components"
+      >
         <Icon>
           <IconArrowLeft />
         </Icon>
