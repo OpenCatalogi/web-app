@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TLandingDisplayLayout } from "../../../context/filters";
+import { TLandingDisplayLayout } from "../../../context/resultDisplayLayout";
 import { LayersLandingDisplayTemplate } from "./layer/LayersLandingDisplayTemplate";
 import { CategoriesLandingDisplayTemplate } from "./categories/CategoriesLandingDisplayTemplate";
 

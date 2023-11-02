@@ -1,10 +1,7 @@
 import * as React from "react";
 import { GlobalContext } from "./global";
 
-export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
-
 export interface IFiltersContext {
-  catagoryDisplayLayout: TCatagoryDisplayLayout;
   isForked: boolean;
   organizationSearch?: string;
 
@@ -29,7 +26,6 @@ export interface IFiltersContext {
 }
 
 export const defaultFiltersContext: IFiltersContext = {
-  catagoryDisplayLayout: "table",
   _search: "",
   organizationSearch: "",
   isForked: true,

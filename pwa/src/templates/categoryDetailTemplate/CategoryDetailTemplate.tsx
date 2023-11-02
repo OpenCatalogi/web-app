@@ -17,7 +17,7 @@ import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { navigate } from "gatsby-link";
@@ -27,7 +27,7 @@ interface CategoryDetailTemplateProps {
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const { filters, setFilters } = useFiltersContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
   const { t } = useTranslation();
 
   const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
@@ -38,10 +38,6 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
     TEMPORARY_DOMAINS.find((domain) => {
       return domain.title === portfolio.domain;
     });
-
-  React.useEffect(() => {
-    setFilters({ ...filters, catagoryDisplayLayout: "table" });
-  }, []);
 
   return (
     <Container layoutClassName={styles.container}>
@@ -69,7 +65,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </div>
       )}
 
-      {filters.catagoryDisplayLayout && (
+      {resultDisplayLayout.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={0 >= 100 && styles.maxNumber}>
@@ -83,9 +79,11 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
 
             <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
               <Button
-                pressed={filters.catagoryDisplayLayout === "table"}
-                appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
+                pressed={resultDisplayLayout.catagoryDisplayLayout === "table"}
+                appearance={
+                  resultDisplayLayout.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"
+                }
+                onClick={() => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "table" })}
               >
                 <Icon>
                   <FontAwesomeIcon icon={faTable} />
@@ -93,9 +91,11 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
                 {t("Table")}
               </Button>
               <Button
-                pressed={filters.catagoryDisplayLayout === "cards"}
-                appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
+                pressed={resultDisplayLayout.catagoryDisplayLayout === "cards"}
+                appearance={
+                  resultDisplayLayout.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"
+                }
+                onClick={() => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "cards" })}
               >
                 <Icon>
                   <FontAwesomeIcon icon={faGripVertical} />
@@ -103,9 +103,11 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
                 {t("Cards")}
               </Button>
               <Button
-                pressed={filters.catagoryDisplayLayout === "layer"}
-                appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
+                pressed={resultDisplayLayout.catagoryDisplayLayout === "layer"}
+                appearance={
+                  resultDisplayLayout.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"
+                }
+                onClick={() => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "layer" })}
               >
                 <Icon>
                   <FontAwesomeIcon icon={faLayerGroup} />
@@ -116,7 +118,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
           </div>
 
           <div className={styles.results}>
-            <ComponentResultTemplate components={[]} type={filters.catagoryDisplayLayout} />
+            <ComponentResultTemplate components={[]} type={resultDisplayLayout.catagoryDisplayLayout} />
           </div>
         </div>
       )}
