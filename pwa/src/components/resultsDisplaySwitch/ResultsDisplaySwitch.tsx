@@ -2,14 +2,14 @@ import * as React from "react";
 import * as styles from "./ResultsDisplaySwitch.module.css";
 import { Button, ButtonGroup } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNodes, faGripVertical, faLayerGroup, faTable } from "@fortawesome/free-solid-svg-icons";
 import clsx from "clsx";
 import _ from "lodash";
 
 interface AcceptedFilters {
-  resultDisplayLayout: ["table", "cards", "layer"];
+  componentsDisplayLayout: ["table", "cards", "layer"];
   dependenciesDisplayLayout: ["layer", "relations"];
   landingDisplayLayout: ["layer", "cards"];
   organizationsResultDisplayLayout: ["table", "cards"];
@@ -18,7 +18,7 @@ interface AcceptedFilters {
 interface ResultsDisplaySwitchProps {
   layoutClassName?: string;
   resultsDisplayType:
-    | "resultDisplayLayout"
+    | "componentsDisplayLayout"
     | "dependenciesDisplayLayout"
     | "landingDisplayLayout"
     | "organizationsResultDisplayLayout";
@@ -26,10 +26,10 @@ interface ResultsDisplaySwitchProps {
 
 const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClassName, resultsDisplayType }) => {
   const { t } = useTranslation();
-  const { filters, setFilters } = useFiltersContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const acceptedFilters: AcceptedFilters = {
-    resultDisplayLayout: ["table", "cards", "layer"],
+    componentsDisplayLayout: ["table", "cards", "layer"],
     dependenciesDisplayLayout: ["layer", "relations"],
     landingDisplayLayout: ["layer", "cards"],
     organizationsResultDisplayLayout: ["table", "cards"],
@@ -50,9 +50,11 @@ const ResultsDisplaySwitch: React.FC<ResultsDisplaySwitchProps> = ({ layoutClass
         return (
           <Button
             key={idx}
-            pressed={filters[resultsDisplayType] === displayType}
-            appearance={filters[resultsDisplayType] === displayType ? "secondary-action-button" : "subtle-button"}
-            onClick={() => setFilters({ ...filters, [resultsDisplayType]: displayType })}
+            pressed={resultDisplayLayout[resultsDisplayType] === displayType}
+            appearance={
+              resultDisplayLayout[resultsDisplayType] === displayType ? "secondary-action-button" : "subtle-button"
+            }
+            onClick={() => setResultDisplayLayout({ ...resultDisplayLayout, [resultsDisplayType]: displayType })}
           >
             <FontAwesomeIcon icon={icon} />
             <span>{t(_.upperFirst(displayType))}</span>

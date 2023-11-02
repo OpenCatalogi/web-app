@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TComponentResultsLayout } from "../../../context/filters";
+import { TComponentResultsLayout } from "../../../context/resultDisplayLayout";
 import { TableResultTemplate } from "./table/TableResultTemplate";
 import { CardsResultTemplate } from "./cards/CardsResultTemplate";
 import { LayersResultTemplate } from "./layers/LayersResultTemplate";

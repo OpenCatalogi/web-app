@@ -3,6 +3,7 @@ import { defaultGatsbyContext, IGatsbyContext } from "./gatsby";
 import { defaultFiltersContext, IFiltersContext } from "./filters";
 import { defaultPaginationContext, IPaginationContext } from "./pagination";
 import { defaultQueryLimitContext, IQueryLimitContext } from "./queryLimit";
+import { defaultResultDisplayLayoutContext, IResultDisplayLayoutContext } from "./resultDisplayLayout";
 
 export interface IGlobalContext {
   initiated: boolean;
@@ -10,6 +11,7 @@ export interface IGlobalContext {
   filters: IFiltersContext;
   pagination: IPaginationContext;
   queryLimit: IQueryLimitContext;
+  resultDisplayLayout: IResultDisplayLayoutContext;
 }
 
 export const defaultGlobalContext: IGlobalContext = {
@@ -18,6 +20,7 @@ export const defaultGlobalContext: IGlobalContext = {
   filters: defaultFiltersContext,
   pagination: defaultPaginationContext,
   queryLimit: defaultQueryLimitContext,
+  resultDisplayLayout: defaultResultDisplayLayoutContext,
 };
 
 export const GlobalContext = React.createContext<

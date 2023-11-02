@@ -27,7 +27,6 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   const onSubmit = (data: any): void => {
     setFilters({
       _search: data.name,
-      resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
     } as IFiltersContext);
@@ -42,7 +41,6 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
 
   const clearFilters = () => {
     setFilters({
-      resultDisplayLayout: filters.resultDisplayLayout,
       dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
       landingDisplayLayout: filters.landingDisplayLayout,
     } as IFiltersContext);

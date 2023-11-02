@@ -18,17 +18,19 @@ import { useComponent } from "../../hooks/components";
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 
 export const ComponentsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
+  const { resultDisplayLayout } = useResultDisplayLayoutContext();
   const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
   const getComponents = _useSearch.getSearch(
-    { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
+    { ...filters, organizationSearch: "" },
     pagination.componentsCurrentPage,
     queryLimit.componentsSearchQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
@@ -49,7 +51,7 @@ export const ComponentsTemplate: React.FC = () => {
           </Heading>
         </div>
 
-        <ResultsDisplaySwitch resultsDisplayType="resultDisplayLayout" />
+        <ResultsDisplaySwitch resultsDisplayType="componentsDisplayLayout" />
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
@@ -57,7 +59,7 @@ export const ComponentsTemplate: React.FC = () => {
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
-          {filters.resultDisplayLayout === "table" && (
+          {resultDisplayLayout.componentsDisplayLayout === "table" && (
             <Alert
               type="info"
               icon={
@@ -70,7 +72,7 @@ export const ComponentsTemplate: React.FC = () => {
             </Alert>
           )}
 
-          {filters.resultDisplayLayout === "cards" && (
+          {resultDisplayLayout.componentsDisplayLayout === "cards" && (
             <Alert
               type="info"
               icon={
@@ -82,7 +84,7 @@ export const ComponentsTemplate: React.FC = () => {
               <Paragraph>Op deze pagina staan alleen applicaties, organisaties en componenten</Paragraph>
             </Alert>
           )}
-          {filters.resultDisplayLayout === "layer" && (
+          {resultDisplayLayout.componentsDisplayLayout === "layer" && (
             <Alert
               type="info"
               icon={
@@ -103,7 +105,10 @@ export const ComponentsTemplate: React.FC = () => {
 
           {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
             <>
-              <ComponentResultTemplate components={getComponents.data.results} type={filters.resultDisplayLayout} />
+              <ComponentResultTemplate
+                components={getComponents.data.results}
+                type={resultDisplayLayout.componentsDisplayLayout}
+              />
 
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
