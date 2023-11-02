@@ -37,7 +37,7 @@ import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
@@ -52,7 +52,7 @@ interface ComponentsDetailTemplateProps {
 
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
-  const { filters } = useFiltersContext();
+  const { resultDisplayLayout } = useResultDisplayLayoutContext();
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -335,7 +335,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   )}
 
                   <DependenciesTemplate
-                    type={filters.dependenciesDisplayLayout}
+                    type={resultDisplayLayout.dependenciesDisplayLayout}
                     components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                     mainComponent={{
                       id: componentId,

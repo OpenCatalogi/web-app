@@ -1,13 +1,9 @@
 import * as React from "react";
 import { GlobalContext } from "./global";
 
-export type TComponentDependenciesLayout = "layer" | "relations";
-export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 
 export interface IFiltersContext {
-  dependenciesDisplayLayout: TComponentDependenciesLayout;
-  landingDisplayLayout: TLandingDisplayLayout;
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   isForked: boolean;
   organizationSearch?: string;
@@ -33,8 +29,6 @@ export interface IFiltersContext {
 }
 
 export const defaultFiltersContext: IFiltersContext = {
-  dependenciesDisplayLayout: "layer",
-  landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
   _search: "",
   organizationSearch: "",

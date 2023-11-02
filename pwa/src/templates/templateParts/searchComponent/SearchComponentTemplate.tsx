@@ -14,7 +14,7 @@ interface SearchComponentTemplateProps {
 }
 
 export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
-  const { filters, setFilters } = useFiltersContext();
+  const { setFilters } = useFiltersContext();
   const { pagination, setPagination } = usePaginationContext();
   const { t } = useTranslation();
 
@@ -27,8 +27,6 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   const onSubmit = (data: any): void => {
     setFilters({
       _search: data.name,
-      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
-      landingDisplayLayout: filters.landingDisplayLayout,
     } as IFiltersContext);
     setPagination({
       ...pagination,
@@ -40,10 +38,6 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   };
 
   const clearFilters = () => {
-    setFilters({
-      dependenciesDisplayLayout: filters.dependenciesDisplayLayout,
-      landingDisplayLayout: filters.landingDisplayLayout,
-    } as IFiltersContext);
     setPagination({
       ...pagination,
       componentsCurrentPage: pagination.componentsCurrentPage,

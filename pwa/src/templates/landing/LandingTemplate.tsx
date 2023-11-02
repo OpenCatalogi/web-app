@@ -4,7 +4,7 @@ import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/compone
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 import { useGatsbyContext } from "../../context/gatsby";
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
@@ -15,7 +15,7 @@ interface LandingTemplateProps {
   params: any;
 }
 export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
-  const { filters } = useFiltersContext();
+  const { resultDisplayLayout } = useResultDisplayLayoutContext();
   const { screenSize } = useGatsbyContext();
 
   const detailPageSlug = params.detailPageSlug;
@@ -37,7 +37,7 @@ export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
               layoutClassName={styles.landingDisplaySwitchButtons}
             />
 
-            <LandingDisplayTemplate type={filters.landingDisplayLayout} />
+            <LandingDisplayTemplate type={resultDisplayLayout.landingDisplayLayout} />
           </section>
 
           <section className={styles.section}>
