@@ -4,15 +4,12 @@ import { GlobalContext } from "./global";
 export type TComponentDependenciesLayout = "layer" | "relations";
 export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
-export type TOrganizationsResultDisplayLayout = "table" | "cards";
 
 export interface IFiltersContext {
   dependenciesDisplayLayout: TComponentDependenciesLayout;
   landingDisplayLayout: TLandingDisplayLayout;
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   isForked: boolean;
-
-  organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
   organizationSearch?: string;
 
   _search?: string;
@@ -39,7 +36,6 @@ export const defaultFiltersContext: IFiltersContext = {
   dependenciesDisplayLayout: "layer",
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
-  organizationsResultDisplayLayout: "cards",
   _search: "",
   organizationSearch: "",
   isForked: true,

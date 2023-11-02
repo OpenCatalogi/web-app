@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
+import clsx from "clsx";
 import { Container, Pagination } from "@conduction/components";
 import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -13,17 +14,19 @@ import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDispla
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 
 export const OrganizationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
+  const { resultDisplayLayout } = useResultDisplayLayoutContext();
   const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
   const getOrganisations = _useOrganisation.getAll(
-    { ...filters, organizationsResultDisplayLayout: "cards" },
+    { ...filters },
     pagination.organizationCurrentPage,
     queryLimit.organizationsQueryLimit,
   );
@@ -38,8 +41,15 @@ export const OrganizationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={styles.title}>
-            {t("Organizations")} {organizationCount.data >= 0 && `(${organizationCount.data})`}
+          <Heading level={2} className={clsx(styles.title, !organizationCount.isSuccess && styles.loading)}>
+            {t("Organizations")}{" "}
+            {organizationCount.data >= 0 ? (
+              `(${organizationCount.data})`
+            ) : (
+              <>
+                (<Skeleton className={styles.test} height="1ch" width="1ch" />)
+              </>
+            )}
           </Heading>
         </div>
 
@@ -58,7 +68,7 @@ export const OrganizationsTemplate: React.FC = () => {
             <>
               <OrganizationDisplayTemplate
                 organizations={getOrganisations.data.results}
-                type={filters.organizationsResultDisplayLayout}
+                type={resultDisplayLayout.organizationsResultDisplayLayout}
               />
 
               {getOrganisations.data.results.length && (
