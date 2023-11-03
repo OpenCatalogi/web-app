@@ -213,6 +213,11 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
               ? process.env.GATSBY_JUMBOTRON_ISCARD === "true" && true
               : false
           }
+          container={
+            process.env.GATSBY_JUMBOTRON_CONTAINER && process.env.GATSBY_JUMBOTRON_CONTAINER !== ""
+              ? process.env.GATSBY_JUMBOTRON_CONTAINER === "true" && true
+              : false
+          }
           subTitle={process.env.GATSBY_JUMBOTRON_SUBTITLE && process.env.GATSBY_JUMBOTRON_SUBTITLE}
           description={
             process.env.GATSBY_JUMBOTRON_DESCRIPTION && process.env.GATSBY_JUMBOTRON_DESCRIPTION !== ""
