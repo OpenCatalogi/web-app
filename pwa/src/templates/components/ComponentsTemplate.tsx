@@ -1,17 +1,18 @@
 import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
+import Skeleton from "react-loading-skeleton";
+import clsx from "clsx";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
-import Skeleton from "react-loading-skeleton";
 import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
 import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { useComponent } from "../../hooks/components";
@@ -46,8 +47,15 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={styles.title}>
-            {t("Components")} {componentsCount.data >= 0 && `(${componentsCount.data})`}
+          <Heading level={2} className={clsx(styles.title, !componentsCount.isSuccess && styles.loading)}>
+            {t("Components")}{" "}
+            {componentsCount.data >= 0 ? (
+              `(${componentsCount.data})`
+            ) : (
+              <>
+                (<Skeleton height="1ch" width="1ch" />)
+              </>
+            )}
           </Heading>
         </div>
 

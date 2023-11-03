@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
 import clsx from "clsx";
+import Skeleton from "react-loading-skeleton";
+import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Container, Pagination } from "@conduction/components";
 import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
-import Skeleton from "react-loading-skeleton";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
 import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
@@ -47,7 +47,7 @@ export const OrganizationsTemplate: React.FC = () => {
               `(${organizationCount.data})`
             ) : (
               <>
-                (<Skeleton className={styles.test} height="1ch" width="1ch" />)
+                (<Skeleton height="1ch" width="1ch" />)
               </>
             )}
           </Heading>
