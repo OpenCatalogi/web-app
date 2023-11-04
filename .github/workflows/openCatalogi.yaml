@@ -14,15 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:              
       - name: Create or Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@1.0.1
-        with:
-          opencatalogi: true
+        uses: OpenCatalogi/publiccode-action@1.1.1
       - name: Create an Open Catalogi page
-        uses: OpenCatalogi/opencatalogi-action@1.0.0
+        uses: OpenCatalogi/opencatalogi-action@1.1.1
         with:
           github_repository_name_as_prefix: false
           nl_design_theme_classname: 'rotterdam-theme'
           pull_from_branche: 'development'
+          footer_content: 'https://raw.githubusercontent.com/OpenCatalogi/opencatalogi.nl/main/FooterContent.json'
+          navbar_content: 'https://raw.githubusercontent.com/OpenCatalogi/opencatalogi.nl/main/HeaderContent.json'
           favicon_logo: 'https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png'
           navbar_logo: 'https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png'
           footer_logo: 'https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png'

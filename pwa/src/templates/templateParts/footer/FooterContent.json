@@ -29,18 +29,12 @@
     ]
   },
   {
-    "title": "Documentation",
+    "title": "Documentatie",
     "items": [
       {
-        "value": "About OpenCatalogi",
+        "value": "Over OpenCatalogi",
         "ariaLabel": "About OpenCatalogi",
-        "link": "/documentation/about",
-        "icon": { "prefix": "fas", "icon": "arrow-right", "placement": "left" }
-      },
-      {
-        "value": "Usage",
-        "ariaLabel": "Usage",
-        "link": "/documentation/usage",
+        "link": "https://documentatie.opencatalogi.nl/",
         "icon": { "prefix": "fas", "icon": "arrow-right", "placement": "left" }
       },
       {
@@ -92,47 +86,6 @@
         "ariaLabel": "NL design",
         "link": "https://designsystem.gebruikercentraal.nl",
         "icon": { "prefix": "fas", "icon": "external-link", "placement": "left" }
-      }
-    ]
-  },
-  {
-    "title": "Contact",
-    "items": [
-      {
-        "label": "Rotterdam:",
-        "value": "www.rotterdam.nl",
-        "ariaLabel": "Website",
-        "link": "https://www.rotterdam.nl/",
-        "icon": { "prefix": "fas", "icon": "globe", "placement": "left" }
-      },
-      {
-        "value": "14 010",
-        "ariaLabel": "Phone number",
-        "link": "tel:14010",
-        "icon": { "prefix": "fas", "icon": "phone", "placement": "left" }
-      }
-    ]
-  },
-  {
-    "title": "Readme",
-    "items": [
-      {
-        "value": "Kosten Github Api",
-        "ariaLabel": "Website",
-        "markdownLink": "https://github.com/ConductionNL/woo-website-template/blob/main/docs/Kosten.md",
-        "icon": { "prefix": "fab", "icon": "markdown", "placement": "left" }
-      },
-      {
-        "value": "Kosten Github Raw",
-        "ariaLabel": "Website",
-        "markdownLink": "https://raw.githubusercontent.com/ConductionNL/woo-website-template/main/docs/Kosten.md",
-        "icon": { "prefix": "fab", "icon": "github", "placement": "left" }
-      },
-      {
-        "value": "Readme Gitlab raw",
-        "ariaLabel": "Website",
-        "markdownLink": "https://gitlab.com/api/v4/projects/7050597/repository/files/README.md/raw",
-        "icon": { "prefix": "fab", "icon": "gitlab", "placement": "left" }
       }
     ]
   }
