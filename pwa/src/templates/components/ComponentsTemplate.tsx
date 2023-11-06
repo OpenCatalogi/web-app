@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { useFiltersContext } from "../../context/filters";
+import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -14,21 +14,38 @@ import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/Ac
 import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { useComponent } from "../../hooks/components";
+import { usePaginationContext } from "../../context/pagination";
+import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
+import { useQueryLimitContext } from "../../context/queryLimit";
 
 export const ComponentsTemplate: React.FC = () => {
-  const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
+  const { queryLimit } = useQueryLimitContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
-  const getComponents = _useSearch.getSearch({ ...filters, resultDisplayLayout: "table", organizationSearch: "" }); // Ensure no refetch on resultDisplayLayout change
+  const getComponents = _useSearch.getSearch(
+    { ...filters, resultDisplayLayout: "table", organizationSearch: "" },
+    pagination.componentsCurrentPage,
+    queryLimit.componentsSearchQueryLimit,
+  ); // Ensure no refetch on resultDisplayLayout change
+
+  const _useComponents = useComponent(queryClient);
+  const componentsCount = _useComponents.getCount(defaultFiltersContext);
+
+  React.useEffect(() => {
+    setPagination({ ...pagination, componentsCurrentPage: 1 });
+  }, [queryLimit.componentsSearchQueryLimit]);
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
           <Heading level={2} className={styles.title}>
-            Componenten
+            {t("Components")} {componentsCount.data >= 0 && `(${componentsCount.data})`}
           </Heading>
         </div>
 
@@ -90,15 +107,16 @@ export const ComponentsTemplate: React.FC = () => {
 
               <SubmitComponentTemplate />
               {getComponents.data.results.length && (
-                <>
+                <div className={styles.pagination}>
                   <Pagination
                     layoutClassName={styles.paginationContainer}
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
-                    setCurrentPage={(page: any) => setFilters({ ...filters, currentPage: page })}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
                     ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
                   />
-                </>
+                  <PaginationLimitSelectComponent queryLimitName={"componentsSearchQueryLimit"} />
+                </div>
               )}
             </>
           )}

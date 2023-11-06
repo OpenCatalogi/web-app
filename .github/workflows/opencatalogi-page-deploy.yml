@@ -20,6 +20,9 @@ env: # Change these to your preferences any image url can also be a base encoded
   OPTIONAL_START_PAGE: "false"
   HEADER_LOGO_URL: "https://www.rotterdam.nl/images/logo-base.svg"
 
+  # JUMBOTRON_TITLE: ""
+  # JUMBOTRON_SUBTITLE: ""
+
   # GITHUB_ORGANIZATION_URL: ""
 
 on:
@@ -55,6 +58,8 @@ jobs:
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
           envkey_GATSBY_OPTIONAL_START_PAGE: ${{ env.OPTIONAL_START_PAGE }}
           envkey_GATSBY_HEADER_LOGO_URL: ${{ env.HEADER_LOGO_URL }}
+          # envkey_GATSBY_JUMBOTRON_TITLE: ${{ env.JUMBOTRON_TITLE }}
+          # envkey_GATSBY_JUMBOTRON_SUBTITLE: ${{ env.JUMBOTRON_SUBTITLE }}
 
           # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
           directory: pwa/static

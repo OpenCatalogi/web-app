@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as styles from "./CategoriesLandingDisplayTemplate.module.css";
+import clsx from "clsx";
+import Collapsible from "react-collapsible";
 import { Button, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Heading, Paragraph, Icon } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
@@ -7,12 +9,9 @@ import { CategoryCard } from "../../../../components/categoryCard/CategoryCard";
 import { IconArrowRight } from "@tabler/icons-react";
 import { TEMPORARY_DOMAINS } from "../../../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faChevronRight, faTags } from "@fortawesome/free-solid-svg-icons";
 import { TEMPORARY_PORTFOLIOS } from "../../../../data/portfolio";
-import Collapsible from "react-collapsible";
 import { useGatsbyContext } from "../../../../context/gatsby";
-import clsx from "clsx";
-import { ButtonLink } from "../../../../components";
 import { navigate } from "gatsby-link";
 
 export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
@@ -119,9 +118,9 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
         ))}
       </div>
 
-      <ButtonLink to="/categories">
-        <IconArrowRight /> Bekijk alle categorieën
-      </ButtonLink>
+      <Button onClick={() => navigate("/categories")}>
+        <FontAwesomeIcon icon={faArrowRight} /> Bekijk alle categorieën
+      </Button>
     </>
   );
 };

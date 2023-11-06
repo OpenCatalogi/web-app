@@ -20,7 +20,7 @@ export const filtersToQueryParams = (filters: any): string => {
         case "isForked":
           params += "";
           break;
-        case "currentPage":
+        case "componentsCurrentPage":
           params += "";
           break;
 
@@ -57,12 +57,12 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
       if (value === null || value === undefined || value === "" || (Array.isArray(value) && _.isEmpty(value)))
         return null;
 
-      if (pathname === "/components" || pathname === "/components/") {
+      if (pathname === "/components" || pathname === "/components/" || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
         if (key === "dependenciesDisplayLayout") return null;
         if (key === "catagoryDisplayLayout") return null;
         if (key === "organizationsResultDisplayLayout") return null;
-        if (key === "applicationsCurrentPage") return null;
+        if (key === "applicationCurrentPage") return null;
         if (key === "organizationCurrentPage") return null;
       }
 

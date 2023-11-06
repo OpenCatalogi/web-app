@@ -1,6 +1,5 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFiltersContext } from "../../context/filters";
 
 export default class Applications {
   private _instance: AxiosInstance;
@@ -15,13 +14,15 @@ export default class Applications {
     return data;
   };
 
-  public getAll = async (filters: IFiltersContext): Promise<any> => {
-    const { data } = await Send(
-      this._instance,
-      "GET",
-      `/applications?page=${filters.applicationsCurrentPage}&limit=10&extend[]=all`,
-    );
+  public getAll = async (currentPage: number, limit: number): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/applications?page=${currentPage}&limit=${limit}&extend[]=all`);
 
     return data;
+  };
+
+  public getCount = async (): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/applications?limit=1`);
+
+    return data.total;
   };
 }

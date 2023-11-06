@@ -17,8 +17,8 @@ export const useComponent = (queryClient: QueryClient) => {
       enabled: !!componentId,
     });
 
-  const getAll = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["components", filters], () => API?.Component.getAll(filters), {
+  const getAll = (filters: IFiltersContext, currentPage: number) =>
+    useQuery<any, Error>(["components", filters, currentPage], () => API?.Component.getAll(filters, currentPage), {
       onError: (error) => {
         throw new Error(error.message);
       },

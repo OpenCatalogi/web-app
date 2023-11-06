@@ -33,8 +33,20 @@
   cursor: pointer;
 }
 
+.link {
+  color: var(--utrecht-page-footer-link-color, inherit) !important;
+  text-decoration-line: var(--utrecht-page-footer-link-text-decoration, inherit) !important;
+  text-decoration-color: var(--utrecht-page-footer-link-text-decoration-color, inherit) !important;
+  text-decoration-thickness: var(--utrecht-page-footer-link-text-decoration-thickness, inherit) !important;
+  text-underline-offset: var(--utrecht-page-footer-link-text-underline-offset, inherit) !important;
+  display: inline-flex;
+}
+
 .link:hover {
   cursor: pointer;
+  color: var(--utrecht-page-footer-link-hover-color, inherit) !important;
+  text-decoration-line: var(--utrecht-page-footer-link-hover-text-decoration, inherit) !important;
+  text-decoration-thickness: var(--utrecht-page-footer-link-hover-text-decoration-thickness, inherit) !important;
 }
 
 .withLoveConductionLink {
@@ -82,6 +94,11 @@
 }
 .iconRight {
   margin-inline-start: var(--web-app-size-2xs);
+}
+
+.iconLeft,
+.iconRight {
+  color: var(--utrecht-page-footer-icon-color, inherit);
 }
 
 @media only screen and (min-width: 576px) {

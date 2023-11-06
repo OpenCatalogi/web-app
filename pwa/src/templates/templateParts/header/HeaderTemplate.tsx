@@ -2,10 +2,9 @@ import * as React from "react";
 import * as styles from "./HeaderTemplate.module.css";
 import clsx from "clsx";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
-import { Paragraph, Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
+import { Container, Jumbotron, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useGatsbyContext } from "../../../context/gatsby";
@@ -108,7 +107,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                         ?.toString()
                         ?.includes(current.filterCondition?.value)
                   : pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterCondition?.value;
+                      filters[current.filterCondition.filter as keyof IFiltersContext] ===
+                        current.filterCondition?.value;
             }
           }
         };
@@ -200,20 +200,52 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       </div>
 
       {isHomepage(pathname) && (
-        <Container layoutClassName={styles.headerContent}>
-          <section className={clsx(styles.headerSearchForm, styles.section)}>
-            <div>
-              <Heading level={1} className={styles.title}>
-                {t("Open Catalogs")}
-              </Heading>
-
-              <Paragraph className={styles.subTitle}>
-                {t("One central place for reuse of information technology within the government")}
-              </Paragraph>
-            </div>
-            <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
-          </section>
-        </Container>
+        <Jumbotron
+          title={
+            process.env.GATSBY_JUMBOTRON_TITLE && process.env.GATSBY_JUMBOTRON_TITLE !== ""
+              ? process.env.GATSBY_JUMBOTRON_TITLE
+              : t("Open Catalogs")
+          }
+          ariaLabel={{ container: t("Jumbotron"), card: t("Jumbotron card") }}
+          role="contentinfo"
+          isCard={
+            process.env.GATSBY_JUMBOTRON_ISCARD && process.env.GATSBY_JUMBOTRON_ISCARD !== ""
+              ? process.env.GATSBY_JUMBOTRON_ISCARD === "true" && true
+              : false
+          }
+          container={
+            process.env.GATSBY_JUMBOTRON_CONTAINER && process.env.GATSBY_JUMBOTRON_CONTAINER !== ""
+              ? process.env.GATSBY_JUMBOTRON_CONTAINER === "true" && true
+              : false
+          }
+          subTitle={process.env.GATSBY_JUMBOTRON_SUBTITLE && process.env.GATSBY_JUMBOTRON_SUBTITLE}
+          description={
+            process.env.GATSBY_JUMBOTRON_DESCRIPTION && process.env.GATSBY_JUMBOTRON_DESCRIPTION !== ""
+              ? process.env.GATSBY_JUMBOTRON_DESCRIPTION
+              : t("One central place for reuse of information technology within the government")
+          }
+          searchForm={{
+            element: <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />,
+            show:
+              process.env.GATSBY_JUMBOTRON_SEARCHFORM && process.env.GATSBY_JUMBOTRON_SEARCHFORM !== ""
+                ? process.env.GATSBY_JUMBOTRON_SEARCHFORM === "true" && true
+                : false,
+          }}
+          image={{
+            placement:
+              process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT && process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT !== ""
+                ? process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT === "background"
+                  ? "background"
+                  : process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT === "right"
+                  ? "right"
+                  : "false"
+                : "false",
+            url:
+              process.env.GATSBY_JUMBOTRON_IMAGE_URL && process.env.GATSBY_JUMBOTRON_IMAGE_URL !== ""
+                ? process.env.GATSBY_JUMBOTRON_IMAGE_URL
+                : "",
+          }}
+        />
       )}
 
       <Breadcrumbs />
