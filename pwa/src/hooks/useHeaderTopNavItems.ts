@@ -6,18 +6,18 @@ import { useTranslation } from "react-i18next";
 
 type THeaderTopNavItem = {
   label: string;
-  type: "readme" | "internal" | "external";
+  type: "markdown" | "internal" | "external";
   current: {
     pathname: string;
     filterCondition?: {
-      filter: string;
+      filterKey: string;
       value: string;
     };
   };
   handleClick?: {
     link: string;
     setFilter?: {
-      filter: string;
+      filterKey: string;
       value: string;
     };
   };
@@ -54,7 +54,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
       if (current.filterCondition) {
         if (!isCurrentRoute()) return false;
 
-        const currentFilter = filters[current.filterCondition.filter as keyof IFiltersContext];
+        const currentFilter = filters[current.filterCondition.filterKey as keyof IFiltersContext];
 
         if (typeof currentFilter === "object") {
           return currentFilter?.toString().includes(current.filterCondition.value);
@@ -66,7 +66,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
       }
     };
 
-    const getOnClick = (onClick: any, type: "readme" | "internal" | "external", label: string) => {
+    const getOnClick = (onClick: any, type: "markdown" | "internal" | "external", label: string) => {
       if (!onClick || !type || !label) return;
 
       if (onClick.link && !onClick.setFilter) {
@@ -78,20 +78,20 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
           open(onClick.link);
         }
 
-        if (type === "readme") {
+        if (type === "markdown") {
           navigate(`/github/${label.replaceAll(" ", "_")}/?link=${onClick.link}`);
         }
       }
 
       if (onClick.link && onClick.setFilter && type === "internal") {
-        const onClickFilter = filters[onClick.setFilter!.filter as keyof IFiltersContext];
+        const onClickFilter = filters[onClick.setFilter!.filterKey as keyof IFiltersContext];
 
         if (typeof onClickFilter === "object") {
-          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: [onClick.setFilter!.value] });
+          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filterKey]: [onClick.setFilter!.value] });
         }
 
         if (typeof onClickFilter === "string") {
-          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: onClick.setFilter!.value });
+          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filterKey]: onClick.setFilter!.value });
         }
 
         navigate(onClick.link);
