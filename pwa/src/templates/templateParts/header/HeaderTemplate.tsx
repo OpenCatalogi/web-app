@@ -13,12 +13,12 @@ import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
-import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../context/filters";
+import { useFiltersContext } from "../../../context/filters";
 import { useHeaderContent } from "../../../hooks/headerContent";
 import { useHeaderTopNavItems } from "../../../hooks/useHeaderTopNavItems";
 
 export const DEFAULT_HEADER_CONTENT_URL =
-  "https://raw.githubusercontent.com/OpenCatalogi/web-app/348679b7537b20e51767dfdc6086349602afe219/pwa/src/templates/templateParts/header/HeaderContent.json";
+  "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -26,13 +26,13 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const [topNavItems, setTopNavItems] = React.useState<ITopNavItem[]>([]);
-  const { filters, setFilters } = useFiltersContext();
 
   const _useHeaderContent = useHeaderContent();
   const getHeaderContent = _useHeaderContent.getContent();
-  const data = require("./HeaderContent.json");
-  const { headerTopNavItems } = useHeaderTopNavItems(data);
+
+  const { headerTopNavItems } = useHeaderTopNavItems(getHeaderContent.data);
 
   const {
     pageContext: {
@@ -69,7 +69,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
   React.useEffect(() => {
     if (screenSize === "desktop") {
       setTopNavItems(headerTopNavItems);
-
       return;
     }
 

@@ -1,11 +1,29 @@
-import * as React from "react";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
 import { useGatsbyContext } from "../context/gatsby";
 import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../context/filters";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 
-export const useHeaderTopNavItems = (data: any) => {
+type THeaderTopNavItem = {
+  label: string;
+  type: "readme" | "internal" | "external";
+  current: {
+    pathname: string;
+    filterCondition?: {
+      filter: string;
+      value: string;
+    };
+  };
+  handleClick?: {
+    link: string;
+    setFilter?: {
+      filter: string;
+      value: string;
+    };
+  };
+};
+
+export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
   const {
     location: { pathname },
   } = useGatsbyContext();
@@ -36,7 +54,6 @@ export const useHeaderTopNavItems = (data: any) => {
       if (current.filterCondition) {
         if (!isCurrentRoute()) return false;
 
-        console.log(current.filterCondition.filter);
         const currentFilter = filters[current.filterCondition.filter as keyof IFiltersContext];
 
         if (typeof currentFilter === "object") {
@@ -44,12 +61,7 @@ export const useHeaderTopNavItems = (data: any) => {
         }
 
         if (typeof currentFilter === "string") {
-          console.log("currentFilterName", currentFilter);
-          console.log("currentFilterType", typeof currentFilter);
-          console.log("valuerName", current.filterCondition?.value);
-          console.log("valuerNameType",typeof current.filterCondition?.value);
-          console.log(currentFilter == current.filterConditon?.value);
-          return currentFilter === current.filterConditon?.value;
+          return currentFilter === current.filterCondition?.value;
         }
       }
     };
@@ -61,17 +73,27 @@ export const useHeaderTopNavItems = (data: any) => {
         if (type === "internal") {
           navigate(onClick.link);
         }
+
         if (type === "external") {
           open(onClick.link);
         }
+
         if (type === "readme") {
           navigate(`/github/${label.replaceAll(" ", "_")}/?link=${onClick.link}`);
         }
       }
+
       if (onClick.link && onClick.setFilter && type === "internal") {
-        onClick.setFilter?.isObject === true
-          ? setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: [onClick.setFilter!.value] })
-          : setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: onClick.setFilter!.value });
+        const onClickFilter = filters[onClick.setFilter!.filter as keyof IFiltersContext];
+
+        if (typeof onClickFilter === "object") {
+          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: [onClick.setFilter!.value] });
+        }
+
+        if (typeof onClickFilter === "string") {
+          setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: onClick.setFilter!.value });
+        }
+
         navigate(onClick.link);
       }
     };

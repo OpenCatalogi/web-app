@@ -52,8 +52,7 @@
           "pathname": "/components",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "process",
-            "isObject": true
+            "value": "process"
           }
         },
         "handleClick": {
@@ -61,8 +60,7 @@
           "type": "internal",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "process",
-            "isObject": true
+            "value": "process"
           }
         }
       },
@@ -73,16 +71,14 @@
           "pathname": "/components",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "data",
-            "isObject": true
+            "value": "data"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "data",
-            "isObject": true
+            "value": "data"
           }
         }
       },
@@ -93,16 +89,14 @@
           "pathname": "/components",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "service",
-            "isObject": true
+            "value": "service"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "service",
-            "isObject": true
+            "value": "service"
           }
         }
       }
