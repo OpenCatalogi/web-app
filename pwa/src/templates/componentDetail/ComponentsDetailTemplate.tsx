@@ -64,6 +64,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
+  const rating = _getComponent.data?.embedded?.rating;
+
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground.layerType));
   const _categories =
     layer &&
@@ -284,8 +286,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <>
                       <RatingIndicatorTemplate
                         layoutClassName={styles.ratingIndicatorContainer}
-                        maxRating={_getComponent.data.embedded?.rating?.maxRating}
-                        rating={_getComponent.data.embedded?.rating?.rating}
+                        maxRating={rating.maxRating}
+                        rating={rating.rating}
                       />
                       <span className={styles.link}>
                         <Link onClick={show}>
@@ -297,9 +299,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       </span>
                     </>
                   )}
-                  {!_getComponent.data.embedded?.rating && (
-                    <div className={styles.noRatingStyle}>{t("No rating available")}</div>
-                  )}
+                  {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
                 </>
               }
               layoutClassName={styles.infoCard}
@@ -308,8 +308,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.overlay}>
                 <NotificationPopUp
                   {...{ hide, isVisible }}
-                  title="Rating"
-                  description={<RatingOverview getComponent={_getComponent} />}
+                  title={`Rating (${rating?.rating}/${rating?.maxRating})`}
+                  description={<RatingOverview {...{ rating }} />}
                   primaryButton={{
                     label: t("Score calculation"),
                     handleClick: () => {
