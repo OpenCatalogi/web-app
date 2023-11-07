@@ -11,7 +11,7 @@ export default class Component {
   }
 
   public getOne = async (id: string): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components/${id}`);
+    const { data } = await Send(this._instance, "GET", `/components/${id}?extend[]=all`);
 
     return data;
   };
