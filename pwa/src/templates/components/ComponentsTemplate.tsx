@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import { Container, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
 import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
@@ -34,7 +34,7 @@ export const ComponentsTemplate: React.FC = () => {
   ); // Ensure no refetch on resultDisplayLayout change
 
   const _useComponents = useComponent(queryClient);
-  const componentsCount = _useComponents.getCount(defaultFiltersContext);
+  const componentsCount = _useComponents.getCount(filters);
 
   React.useEffect(() => {
     setPagination({ ...pagination, componentsCurrentPage: 1 });
