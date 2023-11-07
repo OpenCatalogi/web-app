@@ -1,51 +1,59 @@
 import * as React from "react";
 import * as styles from "./RatingOverview.module.css";
-import { QueryObserverSuccessResult } from "react-query";
-import { t } from "i18next";
-import { UnorderedList } from "@utrecht/component-library-react/dist/css-module";
+import {
+  StatusBadge,
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableHeaderCell,
+  TableRow,
+} from "@utrecht/component-library-react";
 
 interface RatingOverviewProps {
-  getComponent: QueryObserverSuccessResult<any, Error>;
+  rating: any;
 }
 
-export const RatingOverview: React.FC<RatingOverviewProps> = ({ getComponent }) => {
+export const RatingOverview: React.FC<RatingOverviewProps> = ({ rating }) => {
+  const [acceptedRatings, setAcceptedRatings] = React.useState<string[]>([]);
+  const [rejectedRatings, setRejectedRatings] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    setAcceptedRatings(rating.results.filter((rating: string) => !rating.includes("Cannot rate the")));
+    setRejectedRatings(rating.results.filter((rating: string) => rating.includes("Cannot rate the")));
+  }, [rating]);
+
   return (
-    <>
-      {getComponent.data.embedded?.rating?.rating && (
-        <span>{`${getComponent.data.embedded?.rating?.rating}/${getComponent.data.embedded?.rating?.maxRating}`}</span>
-      )}
-      {!getComponent.data.embedded?.rating?.rating && <span>{t("No rating available")}</span>}
+    <Table className={styles.container}>
+      <TableHeader className={styles.header}>
+        <TableRow>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Message</TableHeaderCell>
+          <TableHeaderCell>Points</TableHeaderCell>
+        </TableRow>
+      </TableHeader>
 
-      <div className={styles.popupDescription}>
-        <UnorderedList>
-          {getComponent.data.embedded?.rating?.rating >= 1 && (
-            <>
-              <li>Behaalde punten</li>
+      <TableBody>
+        {acceptedRatings.map((acceptedRating, idx) => (
+          <TableRow key={idx}>
+            <TableCell>
+              <StatusBadge status="safe">Passed</StatusBadge>
+            </TableCell>
+            <TableCell>{acceptedRating}</TableCell>
+            <TableCell>1</TableCell>
+          </TableRow>
+        ))}
 
-              {getComponent.data.embedded?.rating?.results
-                .filter((result: string) => !/^Cannot rate the/.test(result))
-                .map((result: string) => (
-                  <ul>
-                    <li>{result}</li>
-                  </ul>
-                ))}
-            </>
-          )}
-          {getComponent.data.embedded?.rating?.rating !== getComponent.data.embedded?.rating?.maxRating && (
-            <>
-              <li>Onbehaalde punten</li>
-
-              {getComponent.data.embedded?.rating?.results
-                .filter((result: string) => /^Cannot rate the/.test(result))
-                .map((result: string) => (
-                  <ul>
-                    <li>{result}</li>
-                  </ul>
-                ))}
-            </>
-          )}
-        </UnorderedList>
-      </div>
-    </>
+        {rejectedRatings.map((rejectedRating, idx) => (
+          <TableRow key={idx}>
+            <TableCell>
+              <StatusBadge status="danger">Failed</StatusBadge>
+            </TableCell>
+            <TableCell>{rejectedRating}</TableCell>
+            <TableCell>0</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
