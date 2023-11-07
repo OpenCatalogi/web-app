@@ -2,10 +2,8 @@
   {
     "label": "Home",
     "type": "internal",
-
     "current": {
-      "pathname": "/",
-      "operator": "equals"
+      "pathname": "/"
     },
     "handleClick": {
       "link": "/"
@@ -15,8 +13,7 @@
     "label": "Categories",
     "type": "internal",
     "current": {
-      "pathname": "/categories",
-      "operator": "includes"
+      "pathname": "/categories"
     },
     "handleClick": {
       "link": "/categories"
@@ -26,8 +23,7 @@
     "label": "Applications",
     "type": "internal",
     "current": {
-      "pathname": "/applications",
-      "operator": "includes"
+      "pathname": "/applications"
     },
     "handleClick": {
       "link": "/applications"
@@ -36,16 +32,14 @@
   {
     "label": "Components",
     "current": {
-      "pathname": "/components",
-      "operator": "includes"
+      "pathname": "/components"
     },
     "subItems": [
       {
         "label": "All components",
         "type": "internal",
         "current": {
-          "pathname": "/components",
-          "operator": "includes"
+          "pathname": "/components"
         },
         "handleClick": {
           "link": "/components"
@@ -56,11 +50,9 @@
         "type": "internal",
         "current": {
           "pathname": "/components",
-          "operator": "includes",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "process",
-            "isObject": true
+            "value": "process"
           }
         },
         "handleClick": {
@@ -68,8 +60,7 @@
           "type": "internal",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "process",
-            "isObject": true
+            "value": "process"
           }
         }
       },
@@ -78,19 +69,16 @@
         "type": "internal",
         "current": {
           "pathname": "/components",
-          "operator": "includes",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "data",
-            "isObject": true
+            "value": "data"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "data",
-            "isObject": true
+            "value": "data"
           }
         }
       },
@@ -99,19 +87,16 @@
         "type": "internal",
         "current": {
           "pathname": "/components",
-          "operator": "includes",
           "filterCondition": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "service",
-            "isObject": true
+            "value": "service"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
             "filter": "embedded.nl.embedded.commonground.layerType",
-            "value": "service",
-            "isObject": true
+            "value": "service"
           }
         }
       }
@@ -121,8 +106,7 @@
     "label": "Organizations",
     "type": "internal",
     "current": {
-      "pathname": "/organizations",
-      "operator": "includes"
+      "pathname": "/organizations"
     },
     "handleClick": {
       "link": "/organizations"
@@ -133,11 +117,9 @@
     "type": "internal",
     "current": {
       "pathname": "/components",
-      "operator": "includes",
       "filterCondition": {
         "filter": "developmentStatus",
-        "value": "concept",
-        "isObject": true
+        "value": "concept"
       }
     },
     "handleClick": {
@@ -151,16 +133,14 @@
   {
     "label": "Documentatie",
     "current": {
-      "pathname": "/documentation",
-      "operator": "includes"
+      "pathname": "/documentation"
     },
     "subItems": [
       {
         "label": "About",
         "type": "internal",
         "current": {
-          "pathname": "/documentation/about",
-          "operator": "equals"
+          "pathname": "/documentation/about"
         },
         "handleClick": {
           "link": "/documentation/about"
@@ -170,8 +150,7 @@
         "label": "Use",
         "type": "internal",
         "current": {
-          "pathname": "/documentation/usage",
-          "operator": "equals"
+          "pathname": "/documentation/usage"
         },
         "handleClick": {
           "link": "/documentation/usage"
