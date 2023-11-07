@@ -35,8 +35,8 @@ export const useOrganization = (queryClient: QueryClient) => {
       },
     });
 
-  const getCount = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["organizations_count", filters], () => API?.Organization.getCount(filters), {
+  const getCount = () =>
+    useQuery<any, Error>(["organizations_count"], () => API?.Organization.getCount(), {
       onError: (error) => {
         throw new Error(error.message);
       },

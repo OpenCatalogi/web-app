@@ -12,7 +12,11 @@ export const Head: React.FC = () => {
         class: process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME,
       }}
     >
-      <title>OpenCatalogi</title>
+      <title>
+        {process.env.GATSBY_PAGE_TITLE && process.env.GATSBY_PAGE_TITLE !== ""
+          ? process.env.GATSBY_PAGE_TITLE
+          : "OpenCatalogi"}
+      </title>
     </Helmet>
   );
 };

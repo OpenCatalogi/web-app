@@ -1,25 +1,48 @@
 import * as React from "react";
 import * as styles from "./LandingTemplate.module.css";
-import { Container, DetailsCard, ImageAndDetailsCard } from "@conduction/components";
+import { Container, DetailsCard, DisplaySwitch, ImageAndDetailsCard } from "@conduction/components";
 import { FeedbackTemplate } from "../templateParts/feedback/FeedbackTemplate";
 import overOpenCatalogiImage from "./../../assets/svgs/SpotAPI.svg";
 import aanDeSlagMetOpenCatalogiImage from "./../../assets/svgs/SpotForum.svg";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { LandingDisplayTemplate } from "../templateParts/landingDisplayTemplates/LandingDisplayTemplate";
 import { useGatsbyContext } from "../../context/gatsby";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 import { MarkdownContentTemplate } from "../markdown/MarkdownContentTemplate";
+import { useTranslation } from "react-i18next";
 
 interface LandingTemplateProps {
   params: any;
 }
 export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
-  const { filters } = useFiltersContext();
+  const { t } = useTranslation();
   const { screenSize } = useGatsbyContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const detailPageSlug = params.detailPageSlug;
   const pageSlug = params.pageSlug;
+
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Layer"),
+      pressed: resultDisplayLayout.landingDisplayLayout === "layer",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, landingDisplayLayout: "layer" }),
+      icon: {
+        name: "layer-group",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Cards"),
+      pressed: resultDisplayLayout.landingDisplayLayout === "cards",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, landingDisplayLayout: "cards" }),
+      icon: {
+        name: "grip-vertical",
+        prefix: "fas",
+      },
+    },
+  ];
 
   return (
     <Container layoutClassName={styles.container}>
@@ -32,12 +55,9 @@ export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
       {(!process.env.GATSBY_OPTIONAL_START_PAGE || process.env.GATSBY_OPTIONAL_START_PAGE === "false") && (
         <>
           <section className={styles.section}>
-            <ResultsDisplaySwitch
-              resultsDisplayType="landingDisplayLayout"
-              layoutClassName={styles.landingDisplaySwitchButtons}
-            />
+            <DisplaySwitch buttons={displaySwitchButtons} layoutClassName={styles.landingDisplaySwitchButtons} />
 
-            <LandingDisplayTemplate type={filters.landingDisplayLayout} />
+            <LandingDisplayTemplate type={resultDisplayLayout.landingDisplayLayout} />
           </section>
 
           <section className={styles.section}>

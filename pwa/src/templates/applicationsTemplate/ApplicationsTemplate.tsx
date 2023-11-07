@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as styles from "./ApplicationsTemplate.module.css";
+import clsx from "clsx";
+import Skeleton from "react-loading-skeleton";
 import { Heading, Paragraph, Icon, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container, Pagination } from "@conduction/components";
 import { useFiltersContext } from "../../context/filters";
@@ -7,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import { ApplicationCard } from "../../components/applicationCard/ApplicationCard";
 import { QueryClient } from "react-query";
 import { useApplications } from "../../hooks/applications";
-import Skeleton from "react-loading-skeleton";
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
@@ -40,9 +41,17 @@ export const ApplicationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={styles.title}>
-            {t("Applications")} {applicationsCount.data >= 0 && `(${applicationsCount.data})`}
+          <Heading level={2} className={clsx(styles.title, !applicationsCount.isSuccess && styles.loading)}>
+            {t("Applications")}{" "}
+            {applicationsCount.data >= 0 ? (
+              `(${applicationsCount.data})`
+            ) : (
+              <>
+                (<Skeleton height="1ch" width="1ch" />)
+              </>
+            )}
           </Heading>
+
           <Paragraph className={styles.description}>
             Totaal oplossing op basis van een set componenten. Het gaat om werkende software die een oplossing biedt
             voor een bepaalde{" "}

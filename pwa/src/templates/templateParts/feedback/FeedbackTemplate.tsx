@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./FeedbackTemplate.module.css";
 import clsx from "clsx";
-import { ButtonLink } from "../../../components";
+import { ButtonLink } from "@utrecht/component-library-react/dist/css-module";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,6 +25,7 @@ export const FeedbackTemplate: React.FC<FeedbackTemplateProps> = ({ layoutClassN
           <FontAwesomeIcon icon={faExternalLink} />
           Wens of opmerking indienen op GitHub
         </ButtonLink>
+
         <ButtonLink target="_blank" href="https://github.com/orgs/OpenCatalogi/projects/1">
           <FontAwesomeIcon icon={faExternalLink} />
           Roadmap bekijken

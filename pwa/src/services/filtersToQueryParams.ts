@@ -57,7 +57,7 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
       if (value === null || value === undefined || value === "" || (Array.isArray(value) && _.isEmpty(value)))
         return null;
 
-      if (pathname === "/components" || pathname === "/components/") {
+      if (pathname === "/components" || pathname === "/components/" || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
         if (key === "dependenciesDisplayLayout") return null;
         if (key === "catagoryDisplayLayout") return null;

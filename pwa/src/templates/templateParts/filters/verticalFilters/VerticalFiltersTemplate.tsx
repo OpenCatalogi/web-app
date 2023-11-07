@@ -36,6 +36,7 @@ import { useGatsbyContext } from "../../../../context/gatsby";
 import { navigate } from "gatsby";
 import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
 import { usePaginationContext } from "../../../../context/pagination";
+import { useResultDisplayLayoutContext } from "../../../../context/resultDisplayLayout";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -46,6 +47,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const { filters, setFilters } = useFiltersContext();
   const { screenSize, location } = useGatsbyContext();
   const { pagination, setPagination } = usePaginationContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
 
@@ -100,9 +102,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     const allFilters = { ...filters, ...pagination };
     if (_.isEqual(allFilters, queryParams)) return;
 
-    setQueryParams({ ...filters, ...pagination });
-    navigate(filtersToUrlQueryParams({ ...filters, ...pagination }, location.pathname));
-  }, [filters, pagination]);
+    setQueryParams({ ...filters, ...pagination, ...resultDisplayLayout });
+    navigate(filtersToUrlQueryParams({ ...filters, ...pagination, ...resultDisplayLayout }, location.pathname));
+  }, [filters, pagination, resultDisplayLayout]);
 
   const handleLayerChange = (layer: any, e: any) => {
     const currentFilters = filters["embedded.nl.embedded.commonground.layerType"] ?? [];
@@ -238,6 +240,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           ...pagination,
           componentsCurrentPage: 1,
         });
+        setResultDisplayLayout({
+          ...resultDisplayLayout,
+          componentsDisplayLayout: resultDisplayLayout.componentsDisplayLayout,
+        });
       },
     );
 
@@ -308,7 +314,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const handleSetFormValuesFromParams = (params: any): void => {
     setFilters({
       ...filters,
-      resultDisplayLayout: params.resultDisplayLayout !== undefined ? params.resultDisplayLayout : "table",
       isForked: params.isForked ? params.isForked : false,
       softwareType: params.softwareType ? params.softwareType : "",
       developmentStatus: params.developmentStatus ? params.developmentStatus : "",
@@ -336,6 +341,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setPagination({
       ...pagination,
       componentsCurrentPage: params.componentsCurrentPage ? _.toNumber(params.componentsCurrentPage) : 1,
+    });
+    setResultDisplayLayout({
+      ...resultDisplayLayout,
+      componentsDisplayLayout: params.componentsDisplayLayout !== undefined ? params.componentsDisplayLayout : "table",
     });
   };
 

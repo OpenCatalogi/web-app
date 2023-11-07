@@ -10,10 +10,6 @@
   margin-block-end: var(--web-app-size-lg);
 }
 
-.resultsDisplaySwitchButtons {
-  align-items: center;
-}
-
 .filtersAndResultsContainer {
   display: flex;
   flex-direction: column;
@@ -60,6 +56,10 @@
   justify-content: unset;
   justify-items: center;
   margin-block-start: var(--web-app-size-lg);
+}
+
+.loading > span > br {
+  display: none;
 }
 
 @media only screen and (min-width: 992px) {
