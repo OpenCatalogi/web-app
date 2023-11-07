@@ -490,76 +490,84 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             {...{ sizeKb }}
           />
 
-          <div>
-            <h2 className={styles.title}>Meer informatie</h2>
+          {gemma?.applicatiefunctie ||
+            gemma?.bedrijfsfuncties ||
+            gemma?.bedrijfsservices ||
+            gemma?.model ||
+            gemma?.referentiecomponenten?.length > 0 ||
+            legal?.license ||
+            (_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+              <section>
+                <h2 className={styles.title}>Meer informatie</h2>
 
-            <Table>
-              <TableBody>
-                {gemma?.applicatiefunctie && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Applicatiefunctie</TableCell>
-                    <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
-                  </TableRow>
-                )}
+                <Table>
+                  <TableBody>
+                    {gemma?.applicatiefunctie && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Applicatiefunctie</TableCell>
+                        <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
+                      </TableRow>
+                    )}
 
-                {gemma?.bedrijfsfuncties && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
-                    <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
-                  </TableRow>
-                )}
+                    {gemma?.bedrijfsfuncties && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
+                        <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
+                      </TableRow>
+                    )}
 
-                {gemma?.bedrijfsservices && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Bedrijfsservices</TableCell>
-                    <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
-                  </TableRow>
-                )}
+                    {gemma?.bedrijfsservices && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Bedrijfsservices</TableCell>
+                        <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
+                      </TableRow>
+                    )}
 
-                {gemma?.model && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Model</TableCell>
-                    <TableCell className={styles.description}>{gemma.model}</TableCell>
-                  </TableRow>
-                )}
+                    {gemma?.model && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Model</TableCell>
+                        <TableCell className={styles.description}>{gemma.model}</TableCell>
+                      </TableRow>
+                    )}
 
-                {gemma?.referentieComponenten?.length > 0 && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Referentie componenten</TableCell>
-                    <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
-                  </TableRow>
-                )}
+                    {gemma?.referentieComponenten?.length > 0 && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Referentie componenten</TableCell>
+                        <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
+                      </TableRow>
+                    )}
 
-                {legal?.license && (
-                  <TableRow>
-                    <TableCell className={styles.title}>Licentie</TableCell>
-                    <TableCell className={styles.description}>{legal.license}</TableCell>
-                  </TableRow>
-                )}
+                    {legal?.license && (
+                      <TableRow>
+                        <TableCell className={styles.title}>Licentie</TableCell>
+                        <TableCell className={styles.description}>{legal.license}</TableCell>
+                      </TableRow>
+                    )}
 
-                {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
-                  <TableRow>
-                    <TableCell className={styles.title}>{t("Products")}</TableCell>
-                    <TableCell>
-                      {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                        <span key={idx}>
-                          <Link
-                            target="_new"
-                            href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
-                          >
-                            <Icon>
-                              <IconExternalLink />
-                            </Icon>
-                            {product},{" "}
-                          </Link>
-                        </span>
-                      ))}
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
+                    {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+                      <TableRow>
+                        <TableCell className={styles.title}>{t("Products")}</TableCell>
+                        <TableCell>
+                          {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
+                            <span key={idx}>
+                              <Link
+                                target="_new"
+                                href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                              >
+                                <Icon>
+                                  <IconExternalLink />
+                                </Icon>
+                                {product},{" "}
+                              </Link>
+                            </span>
+                          ))}
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </section>
+            ))}
         </>
       )}
       {_getComponent.isLoading && <Skeleton height="200px" />}
