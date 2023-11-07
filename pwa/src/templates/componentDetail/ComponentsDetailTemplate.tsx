@@ -239,16 +239,19 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </Button> */}
 
               {_getComponent.data.embedded?.url?.url && (
-                <Button
-                  appearance="secondary-action-button"
-                  onClick={() => open(_getComponent.data.embedded?.url?.url)}
-                >
+                <Button appearance="primary-action-button" onClick={() => open(_getComponent.data.embedded?.url?.url)}>
                   <Icon>
                     <GitHubLogo />
                   </Icon>{" "}
                   {t("View Repository")}
                 </Button>
               )}
+
+              {_getComponent.data._self?.synchronizations?.map((synchronization: any) => (
+                <Button appearance="secondary-action-button" onClick={() => open(synchronization.source.location)}>
+                  {synchronization.source.name}
+                </Button>
+              ))}
             </div>
           </div>
 
