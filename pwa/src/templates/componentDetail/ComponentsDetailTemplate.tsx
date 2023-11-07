@@ -72,6 +72,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       });
     });
 
+  const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
+  const legal = _getComponent.data?.embedded?.legal;
+
   if (_getComponent.isError) return <>Something went wrong...</>;
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
@@ -492,15 +495,53 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
             <Table>
               <TableBody>
-                <TableRow>
-                  <TableCell className={styles.title}>Gemma</TableCell>
-                  <TableCell className={styles.description}>Op dit moment is er geen gemma data beschikbaar.</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className={styles.title}>{t("Products")}</TableCell>
-                  <TableCell>
-                    {_getComponent.data.embedded?.nl?.upl &&
-                      _getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
+                {gemma?.applicatiefunctie && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Applicatiefunctie</TableCell>
+                    <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
+                  </TableRow>
+                )}
+
+                {gemma?.bedrijfsfuncties && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
+                    <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
+                  </TableRow>
+                )}
+
+                {gemma?.bedrijfsservices && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Bedrijfsservices</TableCell>
+                    <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
+                  </TableRow>
+                )}
+
+                {gemma?.model && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Model</TableCell>
+                    <TableCell className={styles.description}>{gemma.model}</TableCell>
+                  </TableRow>
+                )}
+
+                {gemma?.referentieComponenten?.length > 0 && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Referentie componenten</TableCell>
+                    <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
+                  </TableRow>
+                )}
+
+                {legal?.license && (
+                  <TableRow>
+                    <TableCell className={styles.title}>Licentie</TableCell>
+                    <TableCell className={styles.description}>{legal.license}</TableCell>
+                  </TableRow>
+                )}
+
+                {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+                  <TableRow>
+                    <TableCell className={styles.title}>{t("Products")}</TableCell>
+                    <TableCell>
+                      {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
                         <span key={idx}>
                           <Link
                             target="_new"
@@ -513,23 +554,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           </Link>
                         </span>
                       ))}
-                    {(!_getComponent.data.embedded?.nl?.upl || !_getComponent.data.embedded?.nl?.upl.length) && (
-                      <span className={styles.description}>Op dit moment zijn er geen producten beschikbaar.</span>
-                    )}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className={styles.title}>Standaarden</TableCell>
-                  <TableCell className={styles.description}>
-                    Op dit moment zijn er geen standaarden beschikbaar.
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className={styles.title}>Wet en regelgeving</TableCell>
-                  <TableCell className={styles.description}>
-                    Op dit moment zijn er geen wetten en regelgevingen beschikbaar.
-                  </TableCell>
-                </TableRow>
+                    </TableCell>
+                  </TableRow>
+                )}
               </TableBody>
             </Table>
           </div>
