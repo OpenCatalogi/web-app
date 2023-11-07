@@ -13,11 +13,12 @@ import { PageHeader } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
-import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../context/filters";
+import { useFiltersContext } from "../../../context/filters";
 import { useHeaderContent } from "../../../hooks/headerContent";
+import { useHeaderTopNavItems } from "../../../hooks/useHeaderTopNavItems";
 
 export const DEFAULT_HEADER_CONTENT_URL =
-  "https://raw.githubusercontent.com/OpenCatalogi/web-app/348679b7537b20e51767dfdc6086349602afe219/pwa/src/templates/templateParts/header/HeaderContent.json";
+  "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json";
 
 interface HeaderTemplateProps {
   layoutClassName?: string;
@@ -25,7 +26,13 @@ interface HeaderTemplateProps {
 
 export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName }) => {
   const { t } = useTranslation();
+  const { filters } = useFiltersContext();
   const [topNavItems, setTopNavItems] = React.useState<ITopNavItem[]>([]);
+
+  const _useHeaderContent = useHeaderContent();
+  const getHeaderContent = _useHeaderContent.getContent();
+
+  const { headerTopNavItems } = useHeaderTopNavItems(getHeaderContent.data);
 
   const {
     pageContext: {
@@ -35,7 +42,6 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     screenSize,
   } = useGatsbyContext();
 
-  const { filters, setFilters } = useFiltersContext();
   const secondaryTopNavItemsMobile: ITopNavItem[] = [
     {
       label: t("Login"),
@@ -60,117 +66,15 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
     },
   ];
 
-  const _useHeaderContent = useHeaderContent();
-  const getHeaderContent = _useHeaderContent.getContent();
-
   React.useEffect(() => {
-    const itemsArray: ITopNavItem[] = [];
-
-    getHeaderContent.isSuccess &&
-      getHeaderContent.data.map((item: any) => {
-        const isCurrent = (current: any) => {
-          if (current && !current.filterCondition) {
-            switch (current.operator) {
-              case "equals":
-                if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
-                  return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}`;
-                } else {
-                  return pathname === current.pathname;
-                }
-
-              case "includes":
-                return pathname.includes(current.pathname);
-            }
-          }
-          if (current && current.filterCondition) {
-            switch (current.operator) {
-              case "equals":
-                if (process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true") {
-                  return pathname === `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}` &&
-                    current.filterCondition?.isObject === true
-                    ? filters[current.filterCondition.filter as keyof IFiltersContext]
-                        ?.toString()
-                        .includes(current.filterCondition.value)
-                    : filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterConditon.value;
-                } else {
-                  return pathname === current.pathname && current.filterCondition?.isObject === true
-                    ? filters[current.filterCondition.filter as keyof IFiltersContext]
-                        ?.toString()
-                        ?.includes(current.filterCondition.value)
-                    : filters[current.filterCondition.filter as keyof IFiltersContext] === current.filterConditon.value;
-                }
-
-              case "includes":
-                return current.filterCondition?.isObject === true
-                  ? pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFiltersContext]
-                        ?.toString()
-                        ?.includes(current.filterCondition?.value)
-                  : pathname.includes(current.pathname) &&
-                      filters[current.filterCondition.filter as keyof IFiltersContext] ===
-                        current.filterCondition?.value;
-            }
-          }
-        };
-
-        const getOnClick = (onClick: any, type: "readme" | "internal" | "external", label: string) => {
-          if (!onClick || !type || !label) return;
-
-          if (onClick.link && !onClick.setFilter) {
-            if (type === "internal") {
-              navigate(onClick.link);
-            }
-            if (type === "external") {
-              open(onClick.link);
-            }
-            if (type === "readme") {
-              navigate(`/github/${label.replaceAll(" ", "_")}/?link=${onClick.link}`);
-            }
-          }
-          if (onClick.link && onClick.setFilter && type === "internal") {
-            onClick.setFilter?.isObject === true
-              ? setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: [onClick.setFilter!.value] })
-              : setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filter]: onClick.setFilter!.value });
-            navigate(onClick.link);
-          }
-        };
-
-        const setSubItems = (subItems: ITopNavItem[]) => {
-          if (!subItems) return;
-          const subItemsArray: ITopNavItem[] = [];
-
-          subItems.map((item: any) => {
-            subItemsArray.push({
-              label: t(item.label),
-              type: item.type,
-              current: isCurrent(item.current),
-              handleClick: () => getOnClick(item.handleClick, item.type, item.label),
-            });
-          });
-
-          const subItemsObject = Object.assign(subItemsArray);
-
-          return subItemsObject;
-        };
-
-        itemsArray.push({
-          label: t(item.label),
-          type: item.type,
-          current: isCurrent(item.current),
-          handleClick: () => getOnClick(item.handleClick, item.type, item.label),
-          subItems: setSubItems(item.subItems),
-        });
-      });
-
     if (screenSize === "desktop") {
-      setTopNavItems(itemsArray);
-
+      setTopNavItems(headerTopNavItems);
       return;
     }
 
     process.env.GATSBY_HEADER_SHOW_LOGIN === "true"
-      ? setTopNavItems([...itemsArray, ...secondaryTopNavItemsMobile])
-      : setTopNavItems(itemsArray);
+      ? setTopNavItems([...headerTopNavItems, ...secondaryTopNavItemsMobile])
+      : setTopNavItems(headerTopNavItems);
   }, [screenSize, pathname, crumbs, filters, getHeaderContent.isSuccess]);
 
   return (
