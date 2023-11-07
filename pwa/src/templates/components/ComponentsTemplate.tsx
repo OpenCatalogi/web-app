@@ -2,8 +2,8 @@ import * as React from "react";
 import * as styles from "./ComponentsTemplate.module.css";
 import Skeleton from "react-loading-skeleton";
 import clsx from "clsx";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Container, Pagination } from "@conduction/components";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
+import { Container, DisplaySwitch, Pagination } from "@conduction/components";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
@@ -24,9 +24,9 @@ import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout
 export const ComponentsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
-  const { resultDisplayLayout } = useResultDisplayLayoutContext();
   const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
   const _useSearch = useSearch(queryClient);
@@ -42,6 +42,36 @@ export const ComponentsTemplate: React.FC = () => {
   React.useEffect(() => {
     setPagination({ ...pagination, componentsCurrentPage: 1 });
   }, [queryLimit.componentsSearchQueryLimit]);
+
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Table"),
+      pressed: resultDisplayLayout.componentsDisplayLayout === "table",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "table" }),
+      icon: {
+        name: "table",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Cards"),
+      pressed: resultDisplayLayout.componentsDisplayLayout === "cards",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "cards" }),
+      icon: {
+        name: "grip-vertical",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Layer"),
+      pressed: resultDisplayLayout.componentsDisplayLayout === "layer",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "layer" }),
+      icon: {
+        name: "layer-group",
+        prefix: "fas",
+      },
+    },
+  ];
 
   return (
     <Container layoutClassName={styles.container}>
@@ -59,7 +89,7 @@ export const ComponentsTemplate: React.FC = () => {
           </Heading>
         </div>
 
-        <ResultsDisplaySwitch resultsDisplayType="componentsDisplayLayout" />
+        <DisplaySwitch buttons={displaySwitchButtons} />
       </div>
 
       <div className={styles.filtersAndResultsContainer}>

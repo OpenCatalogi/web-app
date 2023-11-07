@@ -10,6 +10,7 @@ import {
   Tab,
   TabPanel,
   NotificationPopUp as _NotificationPopUp,
+  DisplaySwitch,
 } from "@conduction/components";
 import { navigate } from "gatsby";
 import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
@@ -41,7 +42,7 @@ import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 
@@ -52,7 +53,7 @@ interface ComponentsDetailTemplateProps {
 
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
-  const { resultDisplayLayout } = useResultDisplayLayoutContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -84,6 +85,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       return false;
     }
   };
+
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Layer"),
+      pressed: resultDisplayLayout.dependenciesDisplayLayout === "layer",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, dependenciesDisplayLayout: "layer" }),
+      icon: {
+        name: "layer-group",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Relations"),
+      pressed: resultDisplayLayout.dependenciesDisplayLayout === "relations",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, dependenciesDisplayLayout: "relations" }),
+      icon: {
+        name: "circle-nodes",
+        prefix: "fas",
+      },
+    },
+  ];
 
   return (
     <Container layoutClassName={styles.container}>
@@ -334,8 +356,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <TabPanel>
                 <div className={styles.components}>
                   {_getComponent.data.embedded?.dependsOn?.embedded.open && (
-                    <ResultsDisplaySwitch
-                      resultsDisplayType="dependenciesDisplayLayout"
+                    <DisplaySwitch
+                      buttons={displaySwitchButtons}
                       layoutClassName={styles.dependenciesDisplaySwitchButtons}
                     />
                   )}

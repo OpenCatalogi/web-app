@@ -2,8 +2,8 @@ import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
 import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
-import { Container, Pagination } from "@conduction/components";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
+import { Container, DisplaySwitch, Pagination } from "@conduction/components";
 import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
@@ -19,9 +19,9 @@ import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout
 export const OrganizationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
-  const { resultDisplayLayout } = useResultDisplayLayoutContext();
   const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
@@ -32,6 +32,27 @@ export const OrganizationsTemplate: React.FC = () => {
   );
 
   const organizationCount = _useOrganisation.getCount();
+
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Table"),
+      pressed: resultDisplayLayout.organizationsResultDisplayLayout === "table",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, organizationsResultDisplayLayout: "table" }),
+      icon: {
+        name: "table",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Cards"),
+      pressed: resultDisplayLayout.organizationsResultDisplayLayout === "cards",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, organizationsResultDisplayLayout: "cards" }),
+      icon: {
+        name: "grip-vertical",
+        prefix: "fas",
+      },
+    },
+  ];
 
   React.useEffect(() => {
     setPagination({ ...pagination, organizationCurrentPage: 1 });
@@ -53,7 +74,7 @@ export const OrganizationsTemplate: React.FC = () => {
           </Heading>
         </div>
 
-        <ResultsDisplaySwitch resultsDisplayType="organizationsResultDisplayLayout" />
+        <DisplaySwitch buttons={displaySwitchButtons} />
       </div>
 
       <div>

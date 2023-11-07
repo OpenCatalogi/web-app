@@ -10,10 +10,6 @@
   margin-block-end: var(--web-app-size-lg);
 }
 
-.resultsDisplaySwitchButtons {
-  align-items: center;
-}
-
 .filtersAndResultsContainer {
   display: flex;
   flex-direction: column;
