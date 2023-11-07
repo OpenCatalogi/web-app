@@ -106,7 +106,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
         subItemsArray.push({
           label: t(item.label),
           type: item.type,
-          current: isCurrent(item.current),
+          current: item.current ? isCurrent(item.current) : false,
           handleClick: () => getOnClick(item.handleClick, item.type, item.label),
         });
       });
