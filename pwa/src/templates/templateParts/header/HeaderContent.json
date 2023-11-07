@@ -51,7 +51,7 @@
         "current": {
           "pathname": "/components",
           "filterCondition": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "process"
           }
         },
@@ -59,7 +59,7 @@
           "link": "/components",
           "type": "internal",
           "setFilter": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "process"
           }
         }
@@ -70,14 +70,14 @@
         "current": {
           "pathname": "/components",
           "filterCondition": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "data"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "data"
           }
         }
@@ -88,14 +88,14 @@
         "current": {
           "pathname": "/components",
           "filterCondition": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "service"
           }
         },
         "handleClick": {
           "link": "/components",
           "setFilter": {
-            "filter": "embedded.nl.embedded.commonground.layerType",
+            "filterKey": "embedded.nl.embedded.commonground.layerType",
             "value": "service"
           }
         }
@@ -118,14 +118,14 @@
     "current": {
       "pathname": "/components",
       "filterCondition": {
-        "filter": "developmentStatus",
+        "filterKey": "developmentStatus",
         "value": "concept"
       }
     },
     "handleClick": {
       "link": "/components",
       "setFilter": {
-        "filter": "developmentStatus",
+        "filterKey": "developmentStatus",
         "value": "concept"
       }
     }
