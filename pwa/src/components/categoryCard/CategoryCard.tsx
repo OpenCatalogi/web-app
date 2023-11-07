@@ -12,11 +12,12 @@ export interface CategoryCardProps {
   description: string | JSX.Element;
   icon: JSX.Element;
   domain?: boolean;
+  titleHrefOnly?: boolean;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain, titleHrefOnly }) => {
   return (
-    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
+    <CardWrapper className={styles.container} onClick={() => !titleHrefOnly && navigate(title.href)}>
       <CardHeader>
         <CardHeaderTitle>
           <Link className={styles.titleLink} onClick={() => navigate(title.href)}>

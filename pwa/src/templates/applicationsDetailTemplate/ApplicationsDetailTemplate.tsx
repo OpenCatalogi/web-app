@@ -36,7 +36,13 @@ export const ApplicationsDetailTemplate: React.FC<ApplicationsDetailTemplateProp
 
   return (
     <Container layoutClassName={styles.container}>
-      <Link className={styles.backButton} onClick={() => navigate("/applications")}>
+      <Link
+        className={styles.backButton}
+        onClick={(e) => {
+          e.preventDefault(), navigate("/applications");
+        }}
+        href="/applications"
+      >
         <Icon>
           <FontAwesomeIcon icon={faArrowLeft} />
         </Icon>

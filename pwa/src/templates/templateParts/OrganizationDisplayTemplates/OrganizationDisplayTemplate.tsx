@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TOrganizationsResultDisplayLayout } from "../../../context/filters";
+import { TOrganizationsResultDisplayLayout } from "../../../context/resultDisplayLayout";
 import { CardsOrganizationDisplayTemplate } from "./cards/CardsOrganizationDisplayTemplate";
 import { TableOrganizationDisplayTemplate } from "./table/TableOrganizationDisplayTemplate";
 

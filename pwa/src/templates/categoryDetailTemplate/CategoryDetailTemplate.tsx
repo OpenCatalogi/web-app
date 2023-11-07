@@ -1,33 +1,26 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import {
-  BadgeCounter,
-  Heading,
-  Icon,
-  Button,
-  ButtonGroup,
-  DataBadge,
-  Link,
-} from "@utrecht/component-library-react/dist/css-module";
-import { Container } from "@conduction/components";
+import { BadgeCounter, Heading, Icon, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
+import { Container, DisplaySwitch } from "@conduction/components";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
 import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGripVertical, faLayerGroup, faTable, faTags } from "@fortawesome/free-solid-svg-icons";
-import { useFiltersContext } from "../../context/filters";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { navigate } from "gatsby-link";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 
 interface CategoryDetailTemplateProps {
   categoryId: string;
 }
 
 export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ categoryId }) => {
-  const { filters, setFilters } = useFiltersContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
   const { t } = useTranslation();
 
   const portfolio = TEMPORARY_PORTFOLIOS.find((category) => {
@@ -39,14 +32,45 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       return domain.title === portfolio.domain;
     });
 
-  React.useEffect(() => {
-    setFilters({ ...filters, catagoryDisplayLayout: "table" });
-  }, []);
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Table"),
+      pressed: resultDisplayLayout.catagoryDisplayLayout === "table",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "table" }),
+      icon: {
+        name: "table",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Cards"),
+      pressed: resultDisplayLayout.catagoryDisplayLayout === "cards",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "cards" }),
+      icon: {
+        name: "grip-vertical",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Layer"),
+      pressed: resultDisplayLayout.catagoryDisplayLayout === "layer",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, catagoryDisplayLayout: "layer" }),
+      icon: {
+        name: "layer-group",
+        prefix: "fas",
+      },
+    },
+  ];
 
   return (
     <Container layoutClassName={styles.container}>
       <div className={styles.backButton}>
-        <Link onClick={() => navigate("/categories")}>
+        <Link
+          onClick={(e) => {
+            e.preventDefault(), navigate("/categories");
+          }}
+          href="/categories"
+        >
           <Icon>
             <IconArrowLeft />
           </Icon>
@@ -69,7 +93,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
         </div>
       )}
 
-      {filters.catagoryDisplayLayout && (
+      {resultDisplayLayout.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
             <span className={0 >= 100 && styles.maxNumber}>
@@ -81,42 +105,11 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
               </div>
             </span>
 
-            <ButtonGroup className={styles.resultsDisplaySwitchButtons}>
-              <Button
-                pressed={filters.catagoryDisplayLayout === "table"}
-                appearance={filters.catagoryDisplayLayout === "table" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "table" })}
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faTable} />
-                </Icon>{" "}
-                {t("Table")}
-              </Button>
-              <Button
-                pressed={filters.catagoryDisplayLayout === "cards"}
-                appearance={filters.catagoryDisplayLayout === "cards" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "cards" })}
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faGripVertical} />
-                </Icon>{" "}
-                {t("Cards")}
-              </Button>
-              <Button
-                pressed={filters.catagoryDisplayLayout === "layer"}
-                appearance={filters.catagoryDisplayLayout === "layer" ? "secondary-action-button" : "subtle-button"}
-                onClick={() => setFilters({ ...filters, catagoryDisplayLayout: "layer" })}
-              >
-                <Icon>
-                  <FontAwesomeIcon icon={faLayerGroup} />
-                </Icon>{" "}
-                {t("Layers")}
-              </Button>
-            </ButtonGroup>
+            <DisplaySwitch buttons={displaySwitchButtons} />
           </div>
 
           <div className={styles.results}>
-            <ComponentResultTemplate components={[]} type={filters.catagoryDisplayLayout} />
+            <ComponentResultTemplate components={[]} type={resultDisplayLayout.catagoryDisplayLayout} />
           </div>
         </div>
       )}

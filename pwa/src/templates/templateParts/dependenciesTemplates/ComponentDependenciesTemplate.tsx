@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as _ from "lodash";
-import { TComponentDependenciesLayout } from "../../../context/filters";
+import { TComponentDependenciesLayout } from "../../../context/resultDisplayLayout";
 import { RelationsDependenciesTemplate } from "./relationsDependenciesTemplate/RelationsDependenciesTemplate";
 import { LayerDependenciesTemplate } from "./layerDependenciesTemplate/LayerDependenciesTemplate";
 import { LayerAccordionFiltersTemplate } from "../layerAccordion/filters/LayerAccordionFiltersTemplate";

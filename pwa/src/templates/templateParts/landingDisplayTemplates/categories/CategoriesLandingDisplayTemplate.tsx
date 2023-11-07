@@ -41,6 +41,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
           <CategoryCard
             key={index}
             title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
+            titleHrefOnly
             description={
               <div>
                 {categories
@@ -49,7 +50,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                   .map((_category, idx) => (
                     <div key={idx}>
                       <div>
-                        <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                        <Link
+                          onClick={(e: any) => {
+                            e.preventDefault(), navigate(`/categories/${_category.id}`);
+                          }}
+                          href={`/categories/${_category.id}`}
+                        >
                           <Icon>
                             <IconArrowRight />
                           </Icon>
@@ -67,7 +73,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                     .map((_category, idx) => (
                       <div key={idx}>
                         <div>
-                          <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                          <Link
+                            onClick={(e: any) => {
+                              e.preventDefault(), navigate(`/categories/${_category.id}`);
+                            }}
+                            href={`/categories/${_category.id}`}
+                          >
                             <Icon>
                               <IconArrowRight />
                             </Icon>
@@ -86,7 +97,12 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
                           .map((_category, idx) => (
                             <div key={idx}>
                               <div>
-                                <Link onClick={() => navigate(`/categories/${_category.id}`)}>
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), navigate(`/categories/${_category.id}`);
+                                  }}
+                                  href={`/categories/${_category.id}`}
+                                >
                                   <Icon>
                                     <IconArrowRight />
                                   </Icon>

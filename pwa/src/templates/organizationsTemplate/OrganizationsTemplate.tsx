@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as styles from "./OrganizationsTemplate.module.css";
-import { Container, Pagination } from "@conduction/components";
+import clsx from "clsx";
+import Skeleton from "react-loading-skeleton";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
+import { Container, DisplaySwitch, Pagination } from "@conduction/components";
 import { useFiltersContext } from "../../context/filters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
-import Skeleton from "react-loading-skeleton";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
 import { Heading } from "@utrecht/component-library-react/dist/css-module";
 import { useOrganization } from "../../hooks/organization";
 import { OrganizationSearchFiltersTemplate } from "../templateParts/filters/organizationSearchFilterTemplate/OrganizationSearchFilterTemplate";
@@ -13,20 +14,45 @@ import { OrganizationDisplayTemplate } from "../templateParts/OrganizationDispla
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 
 export const OrganizationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
   const { queryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
   const getOrganisations = _useOrganisation.getAll(
-    { ...filters, organizationsResultDisplayLayout: "cards" },
+    { ...filters },
     pagination.organizationCurrentPage,
     queryLimit.organizationsQueryLimit,
   );
+
+  const organizationCount = _useOrganisation.getCount();
+
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Table"),
+      pressed: resultDisplayLayout.organizationsResultDisplayLayout === "table",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, organizationsResultDisplayLayout: "table" }),
+      icon: {
+        name: "table",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Cards"),
+      pressed: resultDisplayLayout.organizationsResultDisplayLayout === "cards",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, organizationsResultDisplayLayout: "cards" }),
+      icon: {
+        name: "grip-vertical",
+        prefix: "fas",
+      },
+    },
+  ];
 
   React.useEffect(() => {
     setPagination({ ...pagination, organizationCurrentPage: 1 });
@@ -36,12 +62,19 @@ export const OrganizationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={styles.title}>
-            {t("Organizations")}
+          <Heading level={2} className={clsx(styles.title, !organizationCount.isSuccess && styles.loading)}>
+            {t("Organizations")}{" "}
+            {organizationCount.data >= 0 ? (
+              `(${organizationCount.data})`
+            ) : (
+              <>
+                (<Skeleton height="1ch" width="1ch" />)
+              </>
+            )}
           </Heading>
         </div>
 
-        <ResultsDisplaySwitch resultsDisplayType="organizationsResultDisplayLayout" />
+        <DisplaySwitch buttons={displaySwitchButtons} />
       </div>
 
       <div>
@@ -56,7 +89,7 @@ export const OrganizationsTemplate: React.FC = () => {
             <>
               <OrganizationDisplayTemplate
                 organizations={getOrganisations.data.results}
-                type={filters.organizationsResultDisplayLayout}
+                type={resultDisplayLayout.organizationsResultDisplayLayout}
               />
 
               {getOrganisations.data.results.length && (

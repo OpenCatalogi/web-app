@@ -10,6 +10,7 @@ import {
   Tab,
   TabPanel,
   NotificationPopUp as _NotificationPopUp,
+  DisplaySwitch,
 } from "@conduction/components";
 import { navigate } from "gatsby";
 import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
@@ -37,11 +38,11 @@ import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
-import { useFiltersContext } from "../../context/filters";
+import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
-import ResultsDisplaySwitch from "../../components/resultsDisplaySwitch/ResultsDisplaySwitch";
+import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 
@@ -52,7 +53,7 @@ interface ComponentsDetailTemplateProps {
 
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
   const { t } = useTranslation();
-  const { filters } = useFiltersContext();
+  const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -85,9 +86,36 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     }
   };
 
+  const displaySwitchButtons: IDisplaySwitchButton[] = [
+    {
+      label: t("Layer"),
+      pressed: resultDisplayLayout.dependenciesDisplayLayout === "layer",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, dependenciesDisplayLayout: "layer" }),
+      icon: {
+        name: "layer-group",
+        prefix: "fas",
+      },
+    },
+    {
+      label: t("Relations"),
+      pressed: resultDisplayLayout.dependenciesDisplayLayout === "relations",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, dependenciesDisplayLayout: "relations" }),
+      icon: {
+        name: "circle-nodes",
+        prefix: "fas",
+      },
+    },
+  ];
+
   return (
     <Container layoutClassName={styles.container}>
-      <Link className={styles.backButton} onClick={() => navigate("/components")}>
+      <Link
+        className={styles.backButton}
+        onClick={(e) => {
+          e.preventDefault(), navigate("/components");
+        }}
+        href="/components"
+      >
         <Icon>
           <IconArrowLeft />
         </Icon>
@@ -328,14 +356,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <TabPanel>
                 <div className={styles.components}>
                   {_getComponent.data.embedded?.dependsOn?.embedded.open && (
-                    <ResultsDisplaySwitch
-                      resultsDisplayType="dependenciesDisplayLayout"
+                    <DisplaySwitch
+                      buttons={displaySwitchButtons}
                       layoutClassName={styles.dependenciesDisplaySwitchButtons}
                     />
                   )}
 
                   <DependenciesTemplate
-                    type={filters.dependenciesDisplayLayout}
+                    type={resultDisplayLayout.dependenciesDisplayLayout}
                     components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                     mainComponent={{
                       id: componentId,
