@@ -66,7 +66,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
       }
     };
 
-    const getOnClick = (onClick: any, type: "markdown" | "internal" | "external", label: string) => {
+    const getOnClick = (onClick: any, type: "markdown" | "readme" | "internal" | "external", label: string) => {
       if (!onClick || !type || !label) return;
 
       if (onClick.link && !onClick.setFilter) {
@@ -78,7 +78,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
           open(onClick.link);
         }
 
-        if (type === "markdown") {
+        if (type === "markdown" || type === "readme") {
           navigate(`/github/${label.replaceAll(" ", "_")}/?link=${onClick.link}`);
         }
       }
