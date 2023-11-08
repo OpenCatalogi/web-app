@@ -1,3 +1,7 @@
 export const getTokenValue = (tokenKey: string) => {
-  return getComputedStyle(document.documentElement).getPropertyValue(tokenKey);
+  const body = document.querySelector("body");
+  const bodyToken = getComputedStyle(body!).getPropertyValue(tokenKey);
+  const rootToken = getComputedStyle(document.documentElement).getPropertyValue(tokenKey);
+
+  return bodyToken !== "" ? bodyToken : rootToken;
 };
