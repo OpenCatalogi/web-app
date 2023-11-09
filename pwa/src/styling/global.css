@@ -91,4 +91,9 @@ body {
   --web-app-component-rating-indicator-height: 160px;
   --web-app-organization-card-logo-height: 100px;
   --web-app-organization-card-logo-width: 100px;
+  --open-catalogi-rating-font-family: Arial, sans-serif;
+  --open-catalogi-rating-font-size: var(--web-app-size-md);
+  --open-catalogi-rating-rating-bar-color: green;
+  --open-catalogi-rating-rating-bar-background-color: #bfbfbf;
+  --web-app-overlay-background: rgba(0, 0, 0, 0.3);
 }

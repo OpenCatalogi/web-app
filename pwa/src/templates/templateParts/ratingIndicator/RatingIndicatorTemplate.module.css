@@ -1,8 +1,8 @@
 :export {
-  ratingFontFamily: --web-app-primary-font-family;
-  ratingFontSize: --web-app-font-size-xl;
-  ratingActiveColor: --web-app-rating-active-color;
-  ratingDisabledColor: --web-app-rating-disable-color;
+  ratingFontFamily: --open-catalogi-rating-font-family;
+  ratingFontSize: --open-catalogi-rating-font-size;
+  ratingBarActiveColor: --open-catalogi-rating-rating-bar-color;
+  ratingBarBackgroundColor: --open-catalogi-rating-rating-bar-background-color;
 }
 .container {
   display: flex;
