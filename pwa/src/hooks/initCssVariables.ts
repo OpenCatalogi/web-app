@@ -1,11 +1,10 @@
 import * as React from "react";
 
-export const useInitCssVariables = () => {
-  const THEME: string = process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME ?? "";
-  const THEME_NAME: string = THEME.replace("-theme", "");
+export const useInitCssVariables = (theme: string) => {
+  const themeName: string = theme.replace("-theme", "");
 
   React.useEffect(() => {
-    const themeVariables = document.querySelector(`.${THEME}`);
+    const themeVariables = document.querySelector(`.${theme}`);
 
     if (!themeVariables) return; // theme is not yet available
 
@@ -18,7 +17,7 @@ export const useInitCssVariables = () => {
     const setSize = (size: string) => {
       document.documentElement.style.setProperty(
         `--web-app-size-${size}`,
-        styles.getPropertyValue(`--${THEME_NAME}-size-${size}`).trim(),
+        styles.getPropertyValue(`--${themeName}-size-${size}`).trim(),
       );
     };
 
