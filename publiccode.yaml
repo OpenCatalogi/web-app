@@ -12,7 +12,7 @@ description:
     screenshots: []
     shortDescription: ''
     videos: []
-developmentStatus: development
+developmentStatus: stable
 landingURL: ''
 legal:
   authorsFile: ''
@@ -30,7 +30,8 @@ maintenance:
 name: web-app
 nl:
   vng:
-    commonground: []
+    commonground:
+      layerType: interface
     gemma: []
 organisation:
   description: "E\xE9n centrale plek voor hergebruik van informatietechnologie binnen\
