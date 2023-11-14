@@ -45,6 +45,7 @@ dependsOn:
     
 nl:
   gemma:
+    layerType: interface
     bedrijfsfuncties:
       - Algemene content publicatie
       - Aanbesteding
