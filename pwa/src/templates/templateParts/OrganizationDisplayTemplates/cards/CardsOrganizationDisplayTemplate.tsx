@@ -11,10 +11,11 @@ export const CardsOrganizationDisplayTemplate: React.FC<CardsOrganizationDisplay
 }) => {
   return (
     <div className={styles.componentsGrid}>
-      {organizations.map((organization) => (
-        <>
-          {organization._self.schema.ref.includes("organisation.schema.json") && (
+      {organizations.map(
+        (organization) =>
+          organization._self.schema.ref.includes("organisation.schema.json") && (
             <OrganizationCard
+              key={organization._self?.id}
               title={{
                 label: organization.name,
                 href: `/organizations/${organization.id}`,
@@ -31,9 +32,8 @@ export const CardsOrganizationDisplayTemplate: React.FC<CardsOrganizationDisplay
               gitLab={organization.gitlab}
               type={organization.type}
             />
-          )}
-        </>
-      ))}
+          ),
+      )}
     </div>
   );
 };

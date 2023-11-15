@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
+import clsx from "clsx";
+import Skeleton from "react-loading-skeleton";
 import { BadgeCounter, Heading, Icon, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container, DisplaySwitch } from "@conduction/components";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { TEMPORARY_PORTFOLIOS } from "../../data/portfolio";
-import Skeleton from "react-loading-skeleton";
 import { TEMPORARY_DOMAINS } from "../../data/domains";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
@@ -96,7 +97,7 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       {resultDisplayLayout.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            <span className={0 >= 100 && styles.maxNumber}>
+            <span className={clsx(0 >= 100 && styles.maxNumber)}>
               <div className={styles.categoryTitle}>
                 <Heading level={3} className={styles.title}>
                   {t("Solutions")}

@@ -148,7 +148,6 @@
 
 .popup {
   position: fixed;
-  max-width: var(--web-app-download-popup-width);
   z-index: 700;
   outline: 0;
   top: 50px;

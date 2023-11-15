@@ -42,7 +42,7 @@ export const CategoriesLandingDisplayTemplate = (): JSX.Element => {
             key={index}
             title={{ label: t(domain.title), href: `/categories#${domain.title}` }}
             titleHrefOnly
-            description={
+            customContent={
               <div>
                 {categories
                   .filter((category) => category.domain === domain.title)

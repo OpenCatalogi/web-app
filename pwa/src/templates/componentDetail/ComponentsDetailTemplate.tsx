@@ -348,6 +348,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Tab>
                 <Tab>
                   <span>{t("Reuse")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.usedBy?.length ?? 0}
+                  </BadgeCounter>
                 </Tab>
                 <Tab>
                   <span>{t("Schema's")}</span>
@@ -476,14 +479,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
               <TabPanel>
                 <>
-                  {_getComponent.data?.usedBy?.length > 0 && (
+                  {_getComponent.data?.embedded?.usedBy?.length > 0 && (
                     <div className={styles.organizations}>
-                      {_getComponent.data.usedBy.map((organization: any) => (
+                      {_getComponent.data?.embedded?.usedBy?.map((organization: any) => (
                         <OrganizationCard
-                          key={organization.id}
+                          key={organization._self.id}
                           title={{
                             label: organization?.name,
-                            href: `#`,
+                            href: `/organizations/${organization._self.id}`,
                           }}
                           description={organization?.description}
                           website={organization?.website}
