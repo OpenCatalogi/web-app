@@ -44,7 +44,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
               <TableHeaderCell>{t("Software type")}</TableHeaderCell>
               <TableHeaderCell>{t("Status")}</TableHeaderCell>
-              <TableHeader />
+              <TableHeaderCell />
             </TableRow>
           </TableHeader>
         )}

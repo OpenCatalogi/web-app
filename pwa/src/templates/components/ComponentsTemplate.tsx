@@ -15,7 +15,6 @@ import { useSearch } from "../../hooks/search";
 import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { useComponent } from "../../hooks/components";
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
@@ -35,9 +34,7 @@ export const ComponentsTemplate: React.FC = () => {
     pagination.componentsCurrentPage,
     queryLimit.componentsSearchQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
-
-  const _useComponents = useComponent(queryClient);
-  const componentsCount = _useComponents.getCount(filters);
+  const searchCount = _useSearch.getCount(filters);
 
   React.useEffect(() => {
     if (queryLimit.previousComponentsSearchQueryLimit === queryLimit.componentsSearchQueryLimit) return;
@@ -80,10 +77,10 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={clsx(styles.title, !componentsCount.isSuccess && styles.loading)}>
+          <Heading level={2} className={clsx(styles.title, !searchCount.isSuccess && styles.loading)}>
             {t("Components")}{" "}
-            {componentsCount.data >= 0 ? (
-              `(${componentsCount.data})`
+            {searchCount.data >= 0 ? (
+              `(${searchCount.data})`
             ) : (
               <>
                 (<Skeleton height="1ch" width="1ch" />)
