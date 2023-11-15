@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as styles from "./CategoryCard.module.css";
+import clsx from "clsx";
 import { Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 import { navigate } from "gatsby-link";
@@ -9,13 +10,21 @@ export interface CategoryCardProps {
     label: string;
     href: string;
   };
-  description: string | JSX.Element;
+  description?: string;
+  customContent?: JSX.Element;
   icon: JSX.Element;
   domain?: boolean;
   titleHrefOnly?: boolean;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, icon, domain, titleHrefOnly }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({
+  title,
+  description,
+  icon,
+  domain,
+  titleHrefOnly,
+  customContent,
+}) => {
   return (
     <CardWrapper className={styles.container} onClick={() => !titleHrefOnly && navigate(title.href)}>
       <CardHeader>
@@ -26,7 +35,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({ title, description, 
           </Link>
         </CardHeaderTitle>
       </CardHeader>
-      <Paragraph className={domain ?? styles.description}>{description}</Paragraph>
+      {description && <Paragraph className={clsx(domain ?? styles.description)}>{description}</Paragraph>}
+      {customContent && <div className={clsx(domain ?? styles.description, "utrecht-paragraph")}>{customContent}</div>}
     </CardWrapper>
   );
 };

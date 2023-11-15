@@ -52,7 +52,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
               </TableHeaderCell>
               <TableHeaderCell>{t("Website")}</TableHeaderCell>
               <TableHeaderCell>{t("GitHub/Gitlab")}</TableHeaderCell>
-              <TableHeader />
+              <TableHeaderCell />
             </TableRow>
           </TableHeader>
         )}
