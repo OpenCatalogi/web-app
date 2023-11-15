@@ -18,7 +18,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
   # GITHUB_ORGANIZATION_URL: ""
   FAVICON_URL: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
-  GATSBY_PAGE_TITLE: "DevOpenCatalogi"
+  PAGE_TITLE: "DevOpenCatalogi"
 
   HEADER_LOGO_URL: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
   HEADER_SHOW_LOGIN: "false"
