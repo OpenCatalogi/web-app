@@ -4,7 +4,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   GITHUB_PAGES_BRANCH: gh-pages
 
   # options: "true" | "false"
-  USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX: "true"
+  USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX: "false"
 
   GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
 
