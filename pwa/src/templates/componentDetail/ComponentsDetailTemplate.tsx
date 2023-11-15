@@ -66,7 +66,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const rating = _getComponent.data?.embedded?.rating;
 
-  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground.layerType));
+  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground?.layerType));
   const _categories =
     layer &&
     _getComponent.data?.categories.map((category: any) => {
@@ -146,13 +146,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={
                     styles[
                       _.camelCase(
-                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
+                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`),
                       )
                     ]
                   }
                 >
                   <FontAwesomeIcon icon={faLayerGroup} />
-                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"))}
                 </DataBadge>
 
                 {_getComponent.data?.categories &&
@@ -166,7 +166,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           className={
                             styles[
                               _.camelCase(
-                                `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
+                                `${_getComponent.data.embedded?.nl.embedded?.commonground?.layerType} category`,
                               )
                             ]
                           }
@@ -371,7 +371,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     mainComponent={{
                       id: componentId,
                       name: _getComponent.data.name,
-                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground?.layerType,
                     }}
                   />
                 </div>
@@ -518,13 +518,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             {...{ sizeKb }}
           />
 
-          {gemma?.applicatiefunctie ||
+          {(gemma?.applicatiefunctie ||
             gemma?.bedrijfsfuncties ||
             gemma?.bedrijfsservices ||
             gemma?.model ||
             gemma?.referentiecomponenten?.length > 0 ||
             legal?.license ||
-            (_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+          _getComponent.data.embedded?.nl?.upl?.length > 0) && (
               <section>
                 <h2 className={styles.title}>Meer informatie</h2>
 
@@ -595,7 +595,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </TableBody>
                 </Table>
               </section>
-            ))}
+            )}
         </>
       )}
       {_getComponent.isLoading && <Skeleton height="200px" />}
