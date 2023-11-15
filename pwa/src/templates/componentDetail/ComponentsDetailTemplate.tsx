@@ -1,7 +1,16 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading, Icon, Button, DataBadge, BadgeCounter, Link } from "@utrecht/component-library-react/dist/css-module";
+import {
+  Heading,
+  Icon,
+  Button,
+  DataBadge,
+  BadgeCounter,
+  Link,
+  TableHeader,
+  TableHeaderCell,
+} from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -24,11 +33,15 @@ import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/Rating
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
+  faAt,
   faDatabase,
+  faEnvelope,
+  faGlobe,
   faHouse,
   faInfoCircle,
   faLaptop,
   faLayerGroup,
+  faPhone,
   faRepeat,
   faScroll,
   faWrench,
@@ -345,6 +358,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Tab>
                 <Tab>
                   <span>{t("Suppliers")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.usedBy?.length ?? 0}
+                  </BadgeCounter>
                 </Tab>
                 <Tab>
                   <span>{t("Reuse")}</span>
@@ -386,96 +402,83 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </div>
               </TabPanel>
               <TabPanel>
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>Gemeente Rotterdam</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          010 - 123 456 7
-                        </Link>
-                      </TableCell>
+                {_getComponent.data.embedded?.supportedBy?.length > 0 && (
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHeaderCell>{t("Name")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Type of support")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Email")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Website")}</TableHeaderCell>
+                        <TableHeaderCell />
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
+                        <TableRow key={organization?._self.id}>
+                          <TableCell>{organization?.name}</TableCell>
+                          <TableCell>
+                            {organization?.type && organization?.type !== "" ? organization?.type : t("Unavailable")}
+                          </TableCell>
 
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableCell>Conduction</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          020 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableCell>Gemeente Utrecht</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          030 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                          <TableCell>
+                            {organization?.email && organization?.email !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), navigate(`mailto:${organization?.email}`);
+                                }}
+                                href={`mailto:${organization?.email}`}
+                                aria-label={`${t("Email")}, ${organization?.email}`}
+                              >
+                                {organization?.email}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {organization?.phone && organization?.phone !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), navigate(`tel:${organization?.phone}`);
+                                }}
+                                href={`tel:${organization?.phone}`}
+                                aria-label={`${t("Phone number")}, ${organization?.phone}`}
+                              >
+                                {organization?.phone}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {organization?.phone && organization?.phone !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), open(organization?.website ?? "");
+                                }}
+                                href={organization?.website ?? ""}
+                                aria-label={
+                                  organization?.website
+                                    ? `${t("Website")}, ${organization?.website
+                                        .replace("https://", "www.")
+                                        .replace("/", "")}, ${t("Opens a new window")}`
+                                    : ""
+                                }
+                              >
+                                {organization?.website.replace("https://", "www.").replace("/", "")}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                )}
+                {!_getComponent.data?.embedded?.supportedBy && <>Er zijn geen leveranciers van dit component.</>}
               </TabPanel>
               <TabPanel>
                 <>
