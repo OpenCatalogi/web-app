@@ -86,7 +86,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                       {t(
                         _.upperFirst(
                           component._self.schema.ref.includes("component.schema.json")
-                            ? component.embedded?.nl?.embedded?.commonground.layerType ?? t("Unknown")
+                            ? component.embedded?.nl?.embedded?.commonground?.layerType ?? t("Unknown")
                             : "N.V.T.",
                         ),
                       )}

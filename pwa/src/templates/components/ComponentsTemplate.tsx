@@ -24,7 +24,7 @@ import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout
 export const ComponentsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
-  const { queryLimit } = useQueryLimitContext();
+  const { queryLimit, setQueryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
@@ -40,7 +40,10 @@ export const ComponentsTemplate: React.FC = () => {
   const componentsCount = _useComponents.getCount(filters);
 
   React.useEffect(() => {
+    if (queryLimit.previousComponentsSearchQueryLimit === queryLimit.componentsSearchQueryLimit) return;
+
     setPagination({ ...pagination, componentsCurrentPage: 1 });
+    setQueryLimit({ ...queryLimit, previousComponentsSearchQueryLimit: queryLimit.componentsSearchQueryLimit });
   }, [queryLimit.componentsSearchQueryLimit]);
 
   const displaySwitchButtons: IDisplaySwitchButton[] = [

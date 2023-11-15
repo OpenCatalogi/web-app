@@ -27,9 +27,10 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
   return (
     <div className={styles.ComponentsGrid}>
       {_components.map((component) => (
-        <>
+        <React.Fragment key={component.id}>
           {component._self.schema.ref.includes("organisation.schema.json") && (
             <OrganizationCard
+              key={component.id}
               title={{
                 label: component.name,
                 href: `/organizations/${component.id}`,
@@ -72,12 +73,12 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               title={{ label: component.name, href: `/applications/${component.id}` }}
               description={component.shortDescription}
               tags={{
-                organization: component?.embedded?.owner.fullName,
+                organization: component?.embedded?.owner?.fullName,
                 githubLink: component?.demoUrl,
               }}
             />
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

@@ -24,13 +24,17 @@ export const HorizontalFiltersTemplate: React.FC = () => {
   const watchName = watch("name");
 
   React.useEffect(() => {
+    if (watchName === undefined || watchName === filters._search) return;
+
     if (searchTimeout.current) clearTimeout(searchTimeout.current);
+
     searchTimeout.current = setTimeout(() => {
       setFilters({
         ...filters,
         _search: watchName === undefined ? "" : watchName, //This check is important for the react lifecycle
-      }),
-        setPagination({ ...pagination, componentsCurrentPage: 1 });
+      });
+
+      setPagination({ ...pagination, componentsCurrentPage: 1 });
     }, 500);
   }, [watchName]);
 
@@ -42,7 +46,12 @@ export const HorizontalFiltersTemplate: React.FC = () => {
     >
       <FormField>
         <FormLabel htmlFor={"componentSearchFormInput"}>Zoek op naam</FormLabel>
-        <Textbox id="componentSearchFormInput" {...register("name", { required: true })} invalid={errors["name"]} />
+        <Textbox
+          id="componentSearchFormInput"
+          defaultValue=""
+          {...register("name", { required: true })}
+          invalid={errors["name"]}
+        />
       </FormField>
     </form>
   );
