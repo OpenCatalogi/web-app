@@ -27,4 +27,20 @@ export default class Search {
 
     return data;
   };
+
+  public getCount = async (filters: IFiltersContext): Promise<any> => {
+    let endpoint = `/search?limit=1${filtersToQueryParams(filters)}`;
+
+    if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
+      endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
+    }
+
+    if (filters.isForked === true) {
+      endpoint += `&isBasedOn=IS NULL`;
+    }
+
+    const { data } = await Send(this._instance, "GET", endpoint);
+
+    return data.total;
+  };
 }
