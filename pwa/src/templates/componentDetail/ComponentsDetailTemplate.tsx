@@ -324,6 +324,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   secondaryButton={{
                     label: t("Close"),
                     icon: <FontAwesomeIcon icon={faArrowLeft} />,
+                    href: `${_getComponent.data.id}`,
                     // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}
