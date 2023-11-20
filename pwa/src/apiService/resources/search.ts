@@ -19,10 +19,6 @@ export default class Search {
       endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
     }
 
-    if (filters.isForked === true) {
-      endpoint += `&isBasedOn=IS NULL`;
-    }
-
     const { data } = await Send(this._instance, "GET", endpoint);
 
     return data;
@@ -33,10 +29,6 @@ export default class Search {
 
     if (process.env.GATSBY_GITHUB_ORGANIZATION_URL) {
       endpoint += `&embedded.url.embedded.organisation.github=${process.env.GATSBY_GITHUB_ORGANIZATION_URL}`;
-    }
-
-    if (filters.isForked === true) {
-      endpoint += `&isBasedOn=IS NULL`;
     }
 
     const { data } = await Send(this._instance, "GET", endpoint);
