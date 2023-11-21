@@ -18,7 +18,7 @@ export const filtersToQueryParams = (filters: any): string => {
           value === "hideObsolete" ? (params += `&developmentStatus[ne]=obsolete`) : (params += `&${key}=${value}`);
           break;
         case "isForked":
-          params += "";
+          params += "&isBasedOn=IS NULL";
           break;
         case "componentsCurrentPage":
           params += "";

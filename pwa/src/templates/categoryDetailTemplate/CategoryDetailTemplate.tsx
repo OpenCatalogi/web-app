@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as styles from "./CategoryDetailTemplate.module.css";
-import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import { BadgeCounter, Heading, Icon, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
 import { Container, DisplaySwitch } from "@conduction/components";
@@ -97,7 +96,8 @@ export const CategoryDetailTemplate: React.FC<CategoryDetailTemplateProps> = ({ 
       {resultDisplayLayout.catagoryDisplayLayout && (
         <div className={styles.solutions}>
           <div className={styles.solutionsHeader}>
-            <span className={clsx(0 >= 100 && styles.maxNumber)}>
+            <span>
+              {/* When actual data is used we this span must have a classname called maxNumber if the amount of solutions is equal or greater then 100 */}
               <div className={styles.categoryTitle}>
                 <Heading level={3} className={styles.title}>
                   {t("Solutions")}
