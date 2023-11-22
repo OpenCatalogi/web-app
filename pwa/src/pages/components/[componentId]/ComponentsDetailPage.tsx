@@ -1,6 +1,6 @@
-import { PageProps } from "gatsby";
-import _ from "lodash";
 import * as React from "react";
+import _ from "lodash";
+import { PageProps } from "gatsby";
 import { ComponentsDetailTemplate } from "../../../templates/componentDetail/ComponentsDetailTemplate";
 
 const ComponentsDetailPage: React.FC<PageProps> = (props: PageProps) => {
