@@ -210,6 +210,7 @@
 .interactionCategory,
 .interfaceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
+  --utrecht-badge-color: #000000
 }
 
 .processLayer,
@@ -219,6 +220,7 @@
 .procesCategory,
 .processCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
+  --utrecht-badge-color: #000000
 }
 
 .integrationLayer {
@@ -226,6 +228,7 @@
 }
 .integrationCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
+  --utrecht-badge-color: #000000
 }
 
 .servicesLayer,
@@ -236,6 +239,7 @@
 .servicesCategory,
 .serviceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
+  --utrecht-badge-color: #000000
 }
 
 .dataLayer {
@@ -243,6 +247,7 @@
 }
 .dataCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+  --utrecht-badge-color: #000000
 }
 
 .unknownLayer {
@@ -250,6 +255,7 @@
 }
 .unknownCategory {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --utrecht-badge-color: #000000
 }
 
 .icon {

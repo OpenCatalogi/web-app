@@ -55,6 +55,7 @@ export const categories = {
     { title: "Functie autorisatie", icon: <FontAwesomeIcon icon={faLock} />, value: "function authorization" },
     { title: "Doel en grondslag", icon: <FontAwesomeIcon icon={faBullseye} />, value: "purpose limitation" },
     { title: "Audit logging", icon: <FontAwesomeIcon icon={faMagnifyingGlassDollar} />, value: "audit log" },
+    { title: "Wet & regelgeving", icon: <FontAwesomeIcon icon={faGavel} />, value: "law & regulations" },
   ],
   Integratie: [
     { title: "Netwerk", icon: <FontAwesomeIcon icon={faNetworkWired} />, value: "network" },

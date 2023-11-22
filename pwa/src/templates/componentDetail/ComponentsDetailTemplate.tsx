@@ -79,9 +79,17 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _categories =
     layer &&
     _getComponent.data?.categories.map((category: any) => {
-      return categories[layer]?.find((_category) => {
+      const result = categories[layer]?.find((_category) => {
         return _category.value === category;
       });
+
+      if (result === undefined) {
+        return {
+          title: category,
+        };
+      } else {
+        return result;
+      }
     });
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
@@ -167,9 +175,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data?.categories &&
                   _categories &&
                   _categories.map(
-                    (category: any) =>
+                    (category: any, idx: number) =>
                       category && (
                         <DataBadge
+                          key={idx}
                           data-tooltip-id={TOOLTIP_ID}
                           data-tooltip-content="Categorie"
                           className={
