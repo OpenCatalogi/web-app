@@ -1,6 +1,9 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
+import _ from "lodash";
+import Skeleton from "react-loading-skeleton";
+import componentPlacholderLogo from "../../assets/images/grey.png";
 import {
   Heading,
   Icon,
@@ -22,31 +25,24 @@ import {
   DisplaySwitch,
 } from "@conduction/components";
 import { navigate } from "gatsby";
-import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
+import { IconExternalLink, IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
-import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
-  faAt,
   faDatabase,
-  faEnvelope,
-  faGlobe,
   faHouse,
   faInfoCircle,
   faLaptop,
   faLayerGroup,
-  faPhone,
   faRepeat,
   faScroll,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
-import _ from "lodash";
 import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -359,7 +355,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab>
                   <span>{t("Suppliers")}</span>
                   <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.usedBy?.length ?? 0}
+                    {_getComponent.data.embedded?.supportedBy?.length ?? 0}
                   </BadgeCounter>
                 </Tab>
                 <Tab>
@@ -407,7 +403,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     <TableHeader>
                       <TableRow>
                         <TableHeaderCell>{t("Name")}</TableHeaderCell>
-                        <TableHeaderCell>{t("Type of support")}</TableHeaderCell>
+                        {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                        {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
                         <TableHeaderCell>{t("Email")}</TableHeaderCell>
                         <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
                         <TableHeaderCell>{t("Website")}</TableHeaderCell>
@@ -418,9 +415,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
                         <TableRow key={organization?._self.id}>
                           <TableCell>{organization?.name}</TableCell>
-                          <TableCell>
-                            {organization?.type && organization?.type !== "" ? organization?.type : t("Unavailable")}
-                          </TableCell>
+                          {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                          {/* <TableCell>
+                            {organization?.maintenanceType && organization?.maintenanceType !== ""
+                              ? organization?.maintenanceType
+                              : t("Unavailable")}
+                          </TableCell> */}
 
                           <TableCell>
                             {organization?.email && organization?.email !== "" ? (
@@ -453,7 +453,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                             )}
                           </TableCell>
                           <TableCell>
-                            {organization?.phone && organization?.phone !== "" ? (
+                            {organization?.website && organization?.website !== "" ? (
                               <Link
                                 onClick={(e: any) => {
                                   e.preventDefault(), open(organization?.website ?? "");
