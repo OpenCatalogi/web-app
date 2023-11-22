@@ -70,6 +70,8 @@ export const nl = {
   Usage: "Gebruik",
   Page: "Pagina",
   Limit: "Limiet",
+  Email: "E-mail",
+  Unavailable: "Niet beschikbaar",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -146,5 +148,6 @@ export const nl = {
   "No results available": "Geen resultaten beschikbaar",
   "Results per page": "Resultaten per pagina",
   "Select result limit": "Selecteer resultaten limiet",
-  "Business function": "Bedrijfsfunctie"
+  "Business function": "Bedrijfsfunctie",
+  "Type of support": "Type ondersteuning",
 };

@@ -68,6 +68,9 @@ export const en = {
   Usage: "Usage",
   Breadcrumbs: "Breadcrumbs",
   Page: "Page",
+  Limit: "Limit",
+  Email: "E-mail",
+  Unavailable: "Unavailable",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -144,4 +147,5 @@ export const en = {
   "No results available": "No results available",
   "Results per page": "Results per page",
   "Select result limit": "Select result limit",
+  "Type of support": "Type of support",
 };

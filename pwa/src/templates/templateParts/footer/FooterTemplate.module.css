@@ -83,10 +83,7 @@
 }
 
 .logoAndConduction {
-  margin-top: 38px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: block;
 }
 
 .iconLeft {
@@ -105,10 +102,24 @@
   .contentGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .logoAndConduction {
+    margin-top: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   .contentGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .logoAndConduction {
+    margin-top: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 }
