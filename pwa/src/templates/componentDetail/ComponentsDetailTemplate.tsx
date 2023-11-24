@@ -1,7 +1,19 @@
 /* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
-import { Heading, Icon, Button, DataBadge, BadgeCounter, Link } from "@utrecht/component-library-react/dist/css-module";
+import _ from "lodash";
+import Skeleton from "react-loading-skeleton";
+import componentPlacholderLogo from "../../assets/images/grey.png";
+import {
+  Heading,
+  Icon,
+  Button,
+  DataBadge,
+  BadgeCounter,
+  Link,
+  TableHeader,
+  TableHeaderCell,
+} from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
   InfoCard,
@@ -13,13 +25,11 @@ import {
   DisplaySwitch,
 } from "@conduction/components";
 import { navigate } from "gatsby";
-import { IconExternalLink, IconArrowLeft, IconArrowRight, IconPhone } from "@tabler/icons-react";
+import { IconExternalLink, IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
-import componentPlacholderLogo from "../../assets/images/grey.png";
 import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
-import Skeleton from "react-loading-skeleton";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,7 +43,6 @@ import {
   faScroll,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
-import _ from "lodash";
 import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -66,7 +75,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const rating = _getComponent.data?.embedded?.rating;
 
-  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground.layerType));
+  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground?.layerType));
   const _categories =
     layer &&
     _getComponent.data?.categories.map((category: any) => {
@@ -146,13 +155,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   className={
                     styles[
                       _.camelCase(
-                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"} layer`),
+                        t(`${_getComponent.data.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`),
                       )
                     ]
                   }
                 >
                   <FontAwesomeIcon icon={faLayerGroup} />
-                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground.layerType ?? "Unknown"))}
+                  {t(_.upperFirst(_getComponent.data.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"))}
                 </DataBadge>
 
                 {_getComponent.data?.categories &&
@@ -166,7 +175,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           className={
                             styles[
                               _.camelCase(
-                                `${_getComponent.data.embedded?.nl.embedded?.commonground.layerType} category`,
+                                `${_getComponent.data.embedded?.nl.embedded?.commonground?.layerType} category`,
                               )
                             ]
                           }
@@ -290,7 +299,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         rating={rating.rating}
                       />
                       <span className={styles.link}>
-                        <Link onClick={show}>
+                        <Link
+                          onClick={(e) => {
+                            e.preventDefault(), show();
+                          }}
+                          href={`${_getComponent.data.id}/?openratingpopup`}
+                        >
                           <Icon>
                             <IconArrowRight />
                           </Icon>
@@ -319,6 +333,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   secondaryButton={{
                     label: t("Close"),
                     icon: <FontAwesomeIcon icon={faArrowLeft} />,
+                    href: `${_getComponent.data.id}`,
                     // eslint-disable-next-line @typescript-eslint/no-empty-function
                     handleClick: () => {},
                   }}
@@ -339,9 +354,15 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 </Tab>
                 <Tab>
                   <span>{t("Suppliers")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.supportedBy?.length ?? 0}
+                  </BadgeCounter>
                 </Tab>
                 <Tab>
                   <span>{t("Reuse")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.embedded?.usedBy?.length ?? 0}
+                  </BadgeCounter>
                 </Tab>
                 <Tab>
                   <span>{t("Schema's")}</span>
@@ -371,113 +392,104 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     mainComponent={{
                       id: componentId,
                       name: _getComponent.data.name,
-                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground.layerType,
+                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground?.layerType,
                     }}
                   />
                 </div>
               </TabPanel>
               <TabPanel>
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>Gemeente Rotterdam</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          010 - 123 456 7
-                        </Link>
-                      </TableCell>
+                {_getComponent.data.embedded?.supportedBy?.length > 0 && (
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHeaderCell>{t("Name")}</TableHeaderCell>
+                        {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                        {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
+                        <TableHeaderCell>{t("Email")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
+                        <TableHeaderCell>{t("Website")}</TableHeaderCell>
+                        <TableHeaderCell />
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
+                        <TableRow key={organization?._self.id}>
+                          <TableCell>{organization?.name}</TableCell>
+                          {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                          {/* <TableCell>
+                            {organization?.maintenanceType && organization?.maintenanceType !== ""
+                              ? organization?.maintenanceType
+                              : t("Unavailable")}
+                          </TableCell> */}
 
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableCell>Conduction</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          020 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-
-                    <TableRow>
-                      <TableCell>Gemeente Utrecht</TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <GitHubLogo />
-                          </Icon>
-                          Componenten GitHub
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <Link>
-                          <Icon>
-                            <IconPhone />
-                          </Icon>
-                          030 - 123 456 7
-                        </Link>
-                      </TableCell>
-
-                      <TableCell>
-                        <Link onClick={() => navigate("/organizations/5b9e0b17-00ca-433c-961b-913270643e6d")}>
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Details")}
-                        </Link>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                          <TableCell>
+                            {organization?.email && organization?.email !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), navigate(`mailto:${organization?.email}`);
+                                }}
+                                href={`mailto:${organization?.email}`}
+                                aria-label={`${t("Email")}, ${organization?.email}`}
+                              >
+                                {organization?.email}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {organization?.phone && organization?.phone !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), navigate(`tel:${organization?.phone}`);
+                                }}
+                                href={`tel:${organization?.phone}`}
+                                aria-label={`${t("Phone number")}, ${organization?.phone}`}
+                              >
+                                {organization?.phone}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {organization?.website && organization?.website !== "" ? (
+                              <Link
+                                onClick={(e: any) => {
+                                  e.preventDefault(), open(organization?.website ?? "");
+                                }}
+                                href={organization?.website ?? ""}
+                                aria-label={
+                                  organization?.website
+                                    ? `${t("Website")}, ${organization?.website
+                                        .replace("https://", "www.")
+                                        .replace("/", "")}, ${t("Opens a new window")}`
+                                    : ""
+                                }
+                              >
+                                {organization?.website.replace("https://", "www.").replace("/", "")}
+                              </Link>
+                            ) : (
+                              t("Unavailable")
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                )}
+                {!_getComponent.data?.embedded?.supportedBy && <>Er zijn geen leveranciers van dit component.</>}
               </TabPanel>
               <TabPanel>
                 <>
-                  {_getComponent.data?.usedBy?.length > 0 && (
+                  {_getComponent.data?.embedded?.usedBy?.length > 0 && (
                     <div className={styles.organizations}>
-                      {_getComponent.data.usedBy.map((organization: any) => (
+                      {_getComponent.data?.embedded?.usedBy?.map((organization: any) => (
                         <OrganizationCard
-                          key={organization.id}
+                          key={organization._self.id}
                           title={{
                             label: organization?.name,
-                            href: `#`,
+                            href: `/organizations/${organization._self.id}`,
                           }}
                           description={organization?.description}
                           website={organization?.website}
@@ -518,84 +530,84 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             {...{ sizeKb }}
           />
 
-          {gemma?.applicatiefunctie ||
+          {(gemma?.applicatiefunctie ||
             gemma?.bedrijfsfuncties ||
             gemma?.bedrijfsservices ||
             gemma?.model ||
             gemma?.referentiecomponenten?.length > 0 ||
             legal?.license ||
-            (_getComponent.data.embedded?.nl?.upl?.length > 0 && (
-              <section>
-                <h2 className={styles.title}>Meer informatie</h2>
+            _getComponent.data.embedded?.nl?.upl?.length > 0) && (
+            <section>
+              <h2 className={styles.title}>Meer informatie</h2>
 
-                <Table>
-                  <TableBody>
-                    {gemma?.applicatiefunctie && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Applicatiefunctie</TableCell>
-                        <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
-                      </TableRow>
-                    )}
+              <Table>
+                <TableBody>
+                  {gemma?.applicatiefunctie && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Applicatiefunctie</TableCell>
+                      <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {gemma?.bedrijfsfuncties && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
-                        <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
-                      </TableRow>
-                    )}
+                  {gemma?.bedrijfsfuncties && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
+                      <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {gemma?.bedrijfsservices && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Bedrijfsservices</TableCell>
-                        <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
-                      </TableRow>
-                    )}
+                  {gemma?.bedrijfsservices && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Bedrijfsservices</TableCell>
+                      <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {gemma?.model && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Model</TableCell>
-                        <TableCell className={styles.description}>{gemma.model}</TableCell>
-                      </TableRow>
-                    )}
+                  {gemma?.model && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Model</TableCell>
+                      <TableCell className={styles.description}>{gemma.model}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {gemma?.referentieComponenten?.length > 0 && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Referentie componenten</TableCell>
-                        <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
-                      </TableRow>
-                    )}
+                  {gemma?.referentieComponenten?.length > 0 && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Referentie componenten</TableCell>
+                      <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {legal?.license && (
-                      <TableRow>
-                        <TableCell className={styles.title}>Licentie</TableCell>
-                        <TableCell className={styles.description}>{legal.license}</TableCell>
-                      </TableRow>
-                    )}
+                  {legal?.license && (
+                    <TableRow>
+                      <TableCell className={styles.title}>Licentie</TableCell>
+                      <TableCell className={styles.description}>{legal.license}</TableCell>
+                    </TableRow>
+                  )}
 
-                    {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
-                      <TableRow>
-                        <TableCell className={styles.title}>{t("Products")}</TableCell>
-                        <TableCell>
-                          {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                            <span key={idx}>
-                              <Link
-                                target="_new"
-                                href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
-                              >
-                                <Icon>
-                                  <IconExternalLink />
-                                </Icon>
-                                {product},{" "}
-                              </Link>
-                            </span>
-                          ))}
-                        </TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </section>
-            ))}
+                  {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+                    <TableRow>
+                      <TableCell className={styles.title}>{t("Products")}</TableCell>
+                      <TableCell>
+                        {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
+                          <span key={idx}>
+                            <Link
+                              target="_new"
+                              href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                            >
+                              <Icon>
+                                <IconExternalLink />
+                              </Icon>
+                              {product},{" "}
+                            </Link>
+                          </span>
+                        ))}
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </section>
+          )}
         </>
       )}
       {_getComponent.isLoading && <Skeleton height="200px" />}

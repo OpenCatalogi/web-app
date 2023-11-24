@@ -9,3 +9,7 @@
   position: sticky;
   background-color: var(--web-app-color-grey) !important;
 }
+
+.statusBadge {
+  user-select: none;
+}

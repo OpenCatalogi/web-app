@@ -242,7 +242,7 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
     <div className={styles.ComponentsGrid}>
       {components.map((component) => (
         <ComponentCard
-          key={component.id}
+          key={component._self?.id}
           title={{ label: component.name, href: `/components/${component.id ?? component._self.id}` }}
           description={component.embedded?.description?.shortDescription}
           layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
