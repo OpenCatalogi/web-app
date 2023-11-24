@@ -34,7 +34,6 @@ import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/Rating
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
-  faDatabase,
   faHouse,
   faInfoCircle,
   faLaptop,
@@ -49,7 +48,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
+import { DownloadProps, DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
@@ -57,10 +56,9 @@ import { TOOLTIP_ID } from "../../layout/Layout";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
-  sizeKb: string;
 }
 
-export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId, sizeKb }) => {
+export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId }) => {
   const { t } = useTranslation();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
@@ -128,6 +126,13 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       },
     },
   ];
+
+  const downloads: DownloadProps[] = _getComponent?.data?.embedded?.downloads?.map((download: any) => ({
+    label: download.naam,
+    size: download.grootte,
+    type: download.type,
+    downloadLink: download.url,
+  }));
 
   return (
     <Container layoutClassName={styles.container}>
@@ -332,7 +337,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <NotificationPopUp
                   {...{ hide, isVisible }}
                   title={`Rating (${rating?.rating}/${rating?.maxRating})`}
-                  description={<RatingOverview {...{ rating }} />}
+                  customContent={<RatingOverview {...{ rating }} />}
                   primaryButton={{
                     label: t("Score calculation"),
                     handleClick: () => {
@@ -343,8 +348,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     label: t("Close"),
                     icon: <FontAwesomeIcon icon={faArrowLeft} />,
                     href: `${_getComponent.data.id}`,
-                    // eslint-disable-next-line @typescript-eslint/no-empty-function
-                    handleClick: () => {},
+                    handleClick: () => ({}),
                   }}
                   layoutClassName={styles.popup}
                 />
@@ -533,11 +537,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </Tabs>
           </div>
 
-          <DownloadTemplate
-            label={_getComponent.data.name}
-            icon={<FontAwesomeIcon icon={faDatabase} />}
-            {...{ sizeKb }}
-          />
+          {_getComponent.data.embedded?.downloads && downloads && (
+            <DownloadTemplate items={downloads} backUrl={`/components/${_getComponent.data.id}`} />
+          )}
 
           {(gemma?.applicatiefunctie ||
             gemma?.bedrijfsfuncties ||
