@@ -38,8 +38,8 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backU
 
   return (
     <div className={clsx([layoutClassName && layoutClassName], screenSize === "mobile" && styles.downloadName)}>
-      {items.map(({ label, size, type, downloadLink }) => (
-        <>
+      {items.map(({ label, size, type, downloadLink }, idx) => (
+        <React.Fragment key={idx}>
           <DownloadCard
             label={label ?? downloadLink}
             type={type ?? downloadLink.substring(downloadLink.lastIndexOf(".") + 1)}
@@ -73,7 +73,7 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backU
               />
             </div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );
