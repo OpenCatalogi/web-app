@@ -23,8 +23,8 @@
     "prepare": "cd .. && husky install"
   },
   "dependencies": {
-    "@conduction/components": "2.2.32",
-    "@conduction/theme": "1.0.55",
+    "@conduction/components": "2.2.36",
+    "@conduction/theme": "1.0.56",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "6.4.2",
     "@fortawesome/free-regular-svg-icons": "6.4.2",
@@ -33,7 +33,7 @@
     "@parcel/watcher": "2.3.0",
     "@tabler/icons-react": "2.42.0",
     "@types/qs": "6.9.10",
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "@types/showdown": "2.0.6",
     "axios": "^1.6.2",
@@ -61,7 +61,7 @@
     "react-query": "^3.39.3",
     "react-select": "^5.8.0",
     "showdown": "2.1.0",
-    "vis-data": "^7.1.8",
+    "vis-data": "^7.1.9",
     "vis-network": "^9.1.9"
   },
   "devDependencies": {
@@ -71,10 +71,10 @@
     "@nl-design-system-unstable/rotterdam-design-tokens": "1.0.0-alpha.121",
     "@types/dateformat": "^5.0.2",
     "@types/dedent": "^0.7.2",
-    "@types/node": "^20.9.4",
+    "@types/node": "^20.10.0",
     "@types/react-helmet": "^6.1.9",
-    "@typescript-eslint/eslint-plugin": "^6.12.0",
-    "@typescript-eslint/parser": "^6.12.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
     "@utrecht/component-library-react": "2.0.0",
     "@utrecht/design-tokens": "1.0.0-alpha.607",
     "eslint": "^8.54.0",
