@@ -4,9 +4,7 @@
   "private": true,
   "description": "skeleton-pip",
   "author": "Conduction",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -59,7 +57,7 @@
     "react-dom": "^18.2.0",
     "react-favicon": "^1.0.1",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "7.29.0",
+    "react-hook-form": "7.48.2",
     "react-i18next": "^11.16.6",
     "react-loading-skeleton": "^3.1.0",
     "react-minimal-pie-chart": "^8.3.0",
