@@ -22,6 +22,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { useEnvironment } from "../hooks/useEnvironment";
+import { ThemeSwitcherTopBar } from "../templates/templateParts/themeSwitcherTopBar/ThemeSwitcherTopBar";
 
 export const TOOLTIP_ID = "cb8f47c3-7151-4a46-954d-784a531b01e6";
 
@@ -90,6 +91,8 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
               <ToolTip id={TOOLTIP_ID} />
 
               <Favicon url={process.env.GATSBY_FAVICON_URL ?? Logo} />
+
+              <ThemeSwitcherTopBar />
 
               <HeaderTemplate layoutClassName={styles.header} />
 
