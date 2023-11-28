@@ -90,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
             <Document>
               <ToolTip id={TOOLTIP_ID} />
 
-              <Favicon url={process.env.GATSBY_FAVICON_URL ?? Logo} />
+              <Favicon url={window.sessionStorage.getItem("FAVICON_URL") ?? Logo} />
 
               <ThemeSwitcherTopBar />
 
