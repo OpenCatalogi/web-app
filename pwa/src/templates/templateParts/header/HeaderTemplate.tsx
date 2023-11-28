@@ -48,7 +48,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       type: "external",
       current: pathname === "/login",
       handleClick: () => {
-        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
+        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
@@ -60,7 +60,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       type: "external",
       current: pathname === "/login",
       handleClick: () => {
-        open(process.env.ADMIN_DASHBOARD_URL ?? "#");
+        open(window.sessionStorage.getItem("ADMIN_DASHBOARD_URL") ?? "#");
       },
       icon: <FontAwesomeIcon icon={faCircleUser} />,
     },
@@ -72,14 +72,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       return;
     }
 
-    process.env.GATSBY_HEADER_SHOW_LOGIN === "true"
+    window.sessionStorage.getItem("HEADER_SHOW_LOGIN") === "true"
       ? setTopNavItems([...headerTopNavItems, ...secondaryTopNavItemsMobile])
       : setTopNavItems(headerTopNavItems);
   }, [screenSize, pathname, crumbs, filters, getHeaderContent.isSuccess]);
 
   return (
     <PageHeader className={clsx(styles.headerContainer, layoutClassName && layoutClassName)}>
-      {process.env.GATSBY_HEADER_SHOW_LOGIN === "true" && (
+      {window.sessionStorage.getItem("HEADER_SHOW_LOGIN") === "true" && (
         <div className={styles.headerTopBar}>
           <Container layoutClassName={styles.secondaryNavContainer}>
             <SecondaryTopNav items={secondaryTopNavItems} />
@@ -89,12 +89,18 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
+            <img
+              onClick={() => navigate("/")}
+              src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
+            />
           </div>
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                <img onClick={() => navigate("/")} src={process.env.GATSBY_HEADER_LOGO_URL ?? LogoRotterdam} />
+                <img
+                  onClick={() => navigate("/")}
+                  src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
+                />
               </div>
             }
             layoutClassName={styles.textColor}
@@ -105,49 +111,28 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
 
       {isHomepage(pathname) && (
         <Jumbotron
-          title={
-            process.env.GATSBY_JUMBOTRON_TITLE && process.env.GATSBY_JUMBOTRON_TITLE !== ""
-              ? process.env.GATSBY_JUMBOTRON_TITLE
-              : t("Open Catalogs")
-          }
+          title={window.sessionStorage.getItem("JUMBOTRON_TITLE") || t("Open Catalogs")}
           ariaLabel={{ container: t("Jumbotron"), card: t("Jumbotron card") }}
           role="contentinfo"
-          isCard={
-            process.env.GATSBY_JUMBOTRON_ISCARD && process.env.GATSBY_JUMBOTRON_ISCARD !== ""
-              ? process.env.GATSBY_JUMBOTRON_ISCARD === "true" && true
-              : false
-          }
-          container={
-            process.env.GATSBY_JUMBOTRON_CONTAINER && process.env.GATSBY_JUMBOTRON_CONTAINER !== ""
-              ? process.env.GATSBY_JUMBOTRON_CONTAINER === "true" && true
-              : false
-          }
-          subTitle={process.env.GATSBY_JUMBOTRON_SUBTITLE && process.env.GATSBY_JUMBOTRON_SUBTITLE}
+          isCard={window.sessionStorage.getItem("JUMBOTRON_ISCARD") === "true"}
+          container={window.sessionStorage.getItem("JUMBOTRON_CONTAINER") === "true"}
+          subTitle={window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") ?? ""}
           description={
-            process.env.GATSBY_JUMBOTRON_DESCRIPTION && process.env.GATSBY_JUMBOTRON_DESCRIPTION !== ""
-              ? process.env.GATSBY_JUMBOTRON_DESCRIPTION
-              : t("One central place for reuse of information technology within the government")
+            window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") ||
+            t("One central place for reuse of information technology within the government")
           }
           searchForm={{
             element: <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />,
-            show:
-              process.env.GATSBY_JUMBOTRON_SEARCHFORM && process.env.GATSBY_JUMBOTRON_SEARCHFORM !== ""
-                ? process.env.GATSBY_JUMBOTRON_SEARCHFORM === "true" && true
-                : false,
+            show: window.sessionStorage.getItem("JUMBOTRON_SEARCHFORM") === "true",
           }}
           image={{
             placement:
-              process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT && process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT !== ""
-                ? process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT === "background"
-                  ? "background"
-                  : process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT === "right"
-                  ? "right"
-                  : "false"
+              window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "background"
+                ? "background"
+                : window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "right"
+                ? "right"
                 : "false",
-            url:
-              process.env.GATSBY_JUMBOTRON_IMAGE_URL && process.env.GATSBY_JUMBOTRON_IMAGE_URL !== ""
-                ? process.env.GATSBY_JUMBOTRON_IMAGE_URL
-                : "",
+            url: window.sessionStorage.getItem("JUMBOTRON_IMAGE_URL") ?? "",
           }}
         />
       )}
