@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { useGatsbyContext } from "../../../context/gatsby";
+import { TOOLTIP_ID } from "../../../layout/Layout";
 
 interface DownloadTemplateProps {
   items: DownloadProps[];
@@ -41,7 +42,8 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backU
       {items.map(({ label, size, type, downloadLink }, idx) => (
         <React.Fragment key={idx}>
           <DownloadCard
-            label={label ?? downloadLink}
+            label={label ?? downloadLink.substring(downloadLink.lastIndexOf("/") + 1)}
+            labelTooltip={{ id: TOOLTIP_ID, tooltip: downloadLink }}
             type={type ?? downloadLink.substring(downloadLink.lastIndexOf(".") + 1)}
             {...{ size, icon }}
             handleClick={() => {

@@ -81,7 +81,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         return _category.value === category;
       });
 
-      if (result === undefined) {
+      if (!result) {
         return {
           title: category,
         };
@@ -412,8 +412,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
               <TabPanel>
                 {_getComponent.data.embedded?.supportedBy?.length > 0 && (
-                  <Table>
-                    <TableHeader>
+                  <Table className={styles.table}>
+                    <TableHeader className={styles.tableHeader}>
                       <TableRow>
                         <TableHeaderCell>{t("Name")}</TableHeaderCell>
                         {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
@@ -421,12 +421,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         <TableHeaderCell>{t("Email")}</TableHeaderCell>
                         <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
                         <TableHeaderCell>{t("Website")}</TableHeaderCell>
-                        <TableHeaderCell />
                       </TableRow>
                     </TableHeader>
-                    <TableBody>
+                    <TableBody className={styles.tableBody}>
                       {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
-                        <TableRow key={organization?._self.id}>
+                        <TableRow className={styles.tableRow} key={organization?._self.id}>
                           <TableCell>{organization?.name}</TableCell>
                           {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
                           {/* <TableCell>
