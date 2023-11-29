@@ -50,7 +50,7 @@ export const HorizontalFiltersTemplate: React.FC = () => {
           id="componentSearchFormInput"
           defaultValue=""
           {...register("name", { required: true })}
-          invalid={errors["name"]}
+          invalid={!!errors["name"]}
         />
       </FormField>
     </form>
