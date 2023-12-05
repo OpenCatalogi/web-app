@@ -147,11 +147,13 @@
 }
 
 .popup {
+  margin: 0 auto;
   position: fixed;
+  left: 45%;
+  top: 25%;
+  margin-left: -250px;
+  margin-top: -250px;
   z-index: 700;
-  outline: 0;
-  top: 50px;
-  left: 25%;
 }
 
 .organizations {
@@ -170,6 +172,51 @@
 
 .badgeLayout {
   margin-inline-start: var(--web-app-size-xs);
+}
+
+.table {
+  background-color: var(--utrecht-table-background-color);
+  border-collapse: var(--utrecht-table-border-collapse);
+}
+
+.tableHeader > * {
+  border-block-end: var(--utrecht-table-header-border-block-end-width) solid var(--utrecht-table-header-border-block-end-color);
+}
+
+.tableHeader {
+  font-family: var(--utrecht-table-header-font-family);
+}
+
+.tableRow > * {
+  vertical-align: middle !important;
+}
+
+.tableRow:hover {
+  cursor: pointer;
+  background-color: var(--utrecht-table-row-hover-background-color);
+}
+
+.tableBody {
+  border: var(--utrecht-table-body-border);
+}
+
+.tableBody .tableRow:nth-child(odd) {
+  background-color: var(--utrecht-table-row-alternate-odd-background-color);
+  color: var(--utrecht-table-row-alternate-odd-color);
+}
+
+.tableBody .tableRow:nth-child(odd):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
+}
+
+.tableBody .tableRow:nth-child(even) {
+  background-color: var(--utrecht-table-row-alternate-even-background-color);
+  color: var(--utrecht-table-row-alternate-even-color);
+}
+.tableBody .tableRow:nth-child(even):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
 }
 
 @media only screen and (min-width: 576px) {
@@ -206,50 +253,62 @@
 .interactionLayer,
 .interfaceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
+  --utrecht-badge-color: #ffffff;
 }
 .interactionCategory,
 .interfaceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
+  --utrecht-badge-color: #000000;
 }
 
 .processLayer,
 .processsLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-process);
+  --utrecht-badge-color: #ffffff;
 }
 .procesCategory,
 .processCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
+  --utrecht-badge-color: #000000;
 }
 
 .integrationLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-integration);
+  --utrecht-badge-color: #ffffff;
 }
 .integrationCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
+  --utrecht-badge-color: #000000;
 }
 
 .servicesLayer,
 .serviceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-services);
+  --utrecht-badge-color: #ffffff;
 }
 
 .servicesCategory,
 .serviceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
+  --utrecht-badge-color: #000000;
 }
 
 .dataLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-data);
+  --utrecht-badge-color: #ffffff;
 }
 .dataCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+  --utrecht-badge-color: #000000;
 }
 
 .unknownLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --utrecht-badge-color: #ffffff;
 }
 .unknownCategory {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --utrecht-badge-color: #000000;
 }
 
 .icon {
