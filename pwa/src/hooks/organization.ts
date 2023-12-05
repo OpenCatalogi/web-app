@@ -35,16 +35,5 @@ export const useOrganization = (queryClient: QueryClient) => {
       },
     });
 
-  const getCount = () =>
-    useQuery<any, Error>(["organizations_count"], () => API?.Organization.getCount(), {
-      onError: (error) => {
-        throw new Error(error.message);
-      },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: false,
-      staleTime: 60 * 10 * 1000, // 10 minutes
-    });
-
-  return { getOne, getAll, getCount, filtersGetAll };
+  return { getOne, getAll, filtersGetAll };
 };
