@@ -9,37 +9,36 @@ import { useGatsbyContext } from "../../../context/gatsby";
 import { TOOLTIP_ID } from "../../../layout/Layout";
 
 interface DownloadTemplateProps {
-  items: DownloadProps[];
+  downloads: TDownloadableItem[];
   backUrl: string;
   icon?: JSX.Element;
   layoutClassName?: string;
 }
 
-export interface DownloadProps {
+type TDownloadableItem = {
   label: string;
   type: string;
   size: string;
   downloadLink: string;
-}
+};
 
-export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backUrl, icon, layoutClassName }) => {
+export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ downloads, backUrl, icon, layoutClassName }) => {
   const { t } = useTranslation();
   const { screenSize } = useGatsbyContext();
-  const [isVisible, setIsVisible] = React.useState<any>({});
-
-  const toggleVisibility = (label: string) => {
-    setIsVisible({
-      [label]: {
-        value: true,
-      },
-    });
-  };
+  const [visibleItemIdx, setVisibleItemIdx] = React.useState<number>(-1);
 
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
+  const convertedDownloads: TDownloadableItem[] = downloads.map((download: any) => ({
+    label: download.naam,
+    size: download.grootte,
+    type: download.type,
+    downloadLink: download.url,
+  }));
+
   return (
     <div className={clsx([layoutClassName && layoutClassName], screenSize === "mobile" && styles.downloadName)}>
-      {items.map(({ label, size, type, downloadLink }, idx) => (
+      {convertedDownloads.map(({ label, size, type, downloadLink }, idx) => (
         <React.Fragment key={idx}>
           <DownloadCard
             label={label ?? downloadLink.substring(downloadLink.lastIndexOf("/") + 1)}
@@ -47,15 +46,15 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backU
             type={type ?? downloadLink.substring(downloadLink.lastIndexOf(".") + 1)}
             {...{ size, icon }}
             handleClick={() => {
-              toggleVisibility(label ?? downloadLink);
+              setVisibleItemIdx(idx);
             }}
           />
 
-          {isVisible[label ?? downloadLink]?.value && (
+          {visibleItemIdx === idx && (
             <div className={styles.overlay}>
               <NotificationPopUp
-                isVisible={isVisible[label ?? downloadLink]?.value}
-                hide={() => setIsVisible(false)}
+                isVisible
+                hide={() => setVisibleItemIdx(-1)}
                 title={`${t("Warning")}!`}
                 description={t(
                   "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?",
@@ -68,7 +67,7 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ items, backU
                 secondaryButton={{
                   label: t("Go back"),
                   icon: <FontAwesomeIcon icon={faArrowLeft} />,
-                  href: `${backUrl}`,
+                  href: backUrl,
                   handleClick: () => ({}),
                 }}
                 layoutClassName={styles.popup}

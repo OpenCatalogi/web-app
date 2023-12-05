@@ -48,7 +48,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
 import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
-import { DownloadProps, DownloadTemplate } from "../templateParts/download/DownloadTemplate";
+import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
@@ -126,13 +126,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       },
     },
   ];
-
-  const downloads: DownloadProps[] = _getComponent?.data?.embedded?.downloads?.map((download: any) => ({
-    label: download.naam,
-    size: download.grootte,
-    type: download.type,
-    downloadLink: download.url,
-  }));
 
   return (
     <Container layoutClassName={styles.container}>
@@ -536,8 +529,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </Tabs>
           </div>
 
-          {_getComponent.data.embedded?.downloads && downloads && (
-            <DownloadTemplate items={downloads} backUrl={`/components/${_getComponent.data.id}`} />
+          {_getComponent.data.embedded?.downloads && (
+            <DownloadTemplate
+              downloads={_getComponent?.data?.embedded?.downloads}
+              backUrl={`/components/${_getComponent.data.id}`}
+            />
           )}
 
           {(gemma?.applicatiefunctie ||

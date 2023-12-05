@@ -5,8 +5,8 @@
   left: 50%;
   z-index: 700;
   margin: 0 auto;
-  margin-left: -250px;
-  margin-top: -250px;
+  margin-inline-start: calc(var(--web-app-download-popup-width) / 2 * -1);
+  margin-block-start: calc(var(--web-app-download-popup-width) / 2 * -1);
 }
 
 .overlay {
