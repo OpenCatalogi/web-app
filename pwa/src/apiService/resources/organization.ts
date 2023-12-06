@@ -32,10 +32,4 @@ export default class Organization {
 
     return data;
   };
-
-  public getCount = async (): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/organizations?limit=1`);
-
-    return data.total;
-  };
 }

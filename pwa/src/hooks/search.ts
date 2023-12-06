@@ -18,16 +18,5 @@ export const useSearch = (_: QueryClient) => {
       },
     );
 
-  const getCount = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["search_count", filters], () => API?.Search.getCount(filters), {
-      onError: (error) => {
-        throw new Error(error.message);
-      },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: false,
-      staleTime: 60 * 10 * 1000, // 10 minutes
-    });
-
-  return { getSearch, getCount };
+  return { getSearch };
 };
