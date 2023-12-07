@@ -8,6 +8,8 @@ COPY package.json package-lock.json ./
 # install node modules and build assets
 RUN npm install
 
+RUN npm install @parcel/watcher
+
 COPY . .
 
 RUN npm run build

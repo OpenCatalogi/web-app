@@ -103,10 +103,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Install dependencies
         run: cd pwa && npm install
+
+      - name: Install parcel/watcher
+        run: cd pwa && npm install @parcel/watcher
 
       - name: Remove old Gatsby cache
         run: rm -rf pwa/.cache

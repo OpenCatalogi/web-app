@@ -34,7 +34,6 @@ export const ComponentsTemplate: React.FC = () => {
     pagination.componentsCurrentPage,
     queryLimit.componentsSearchQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
-  const searchCount = _useSearch.getCount(filters);
 
   React.useEffect(() => {
     if (queryLimit.previousComponentsSearchQueryLimit === queryLimit.componentsSearchQueryLimit) return;
@@ -77,10 +76,10 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={clsx(styles.title, !searchCount.isSuccess && styles.loading)}>
+          <Heading level={2} className={clsx(styles.title, !getComponents.isSuccess && styles.loading)}>
             {t("Components")}{" "}
-            {searchCount.data >= 0 ? (
-              `(${searchCount.data})`
+            {getComponents.data?.total >= 0 ? (
+              `(${getComponents.data.total})`
             ) : (
               <>
                 (<Skeleton height="1ch" width="1ch" />)

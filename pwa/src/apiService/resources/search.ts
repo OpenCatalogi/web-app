@@ -25,18 +25,4 @@ export default class Search {
 
     return data;
   };
-
-  public getCount = async (filters: IFiltersContext): Promise<any> => {
-    let endpoint = `/search?limit=1${filtersToQueryParams(filters)}`;
-
-    if (window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "") {
-      endpoint += `&embedded.url.embedded.organisation.github=${window.sessionStorage.getItem(
-        "GITHUB_ORGANIZATION_URL",
-      )}`;
-    }
-
-    const { data } = await Send(this._instance, "GET", endpoint);
-
-    return data.total;
-  };
 }

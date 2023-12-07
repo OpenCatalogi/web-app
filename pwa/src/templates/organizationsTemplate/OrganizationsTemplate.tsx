@@ -31,8 +31,6 @@ export const OrganizationsTemplate: React.FC = () => {
     queryLimit.organizationsQueryLimit,
   );
 
-  const organizationCount = _useOrganisation.getCount();
-
   const displaySwitchButtons: IDisplaySwitchButton[] = [
     {
       label: t("Table"),
@@ -62,10 +60,10 @@ export const OrganizationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={clsx(styles.title, !organizationCount.isSuccess && styles.loading)}>
+          <Heading level={2} className={clsx(styles.title, !getOrganisations.isSuccess && styles.loading)}>
             {t("Organizations")}{" "}
-            {organizationCount.data >= 0 ? (
-              `(${organizationCount.data})`
+            {getOrganisations.data?.total >= 0 ? (
+              `(${getOrganisations.data?.total})`
             ) : (
               <>
                 (<Skeleton height="1ch" width="1ch" />)

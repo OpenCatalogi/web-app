@@ -24,16 +24,5 @@ export const useComponent = (queryClient: QueryClient) => {
       },
     });
 
-  const getCount = (filters: IFiltersContext) =>
-    useQuery<any, Error>(["components_count", filters], () => API?.Component.getCount(filters), {
-      onError: (error) => {
-        throw new Error(error.message);
-      },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: false,
-      staleTime: 60 * 10 * 1000, // 10 minutes
-    });
-
-  return { getOne, getAll, getCount };
+  return { getOne, getAll };
 };

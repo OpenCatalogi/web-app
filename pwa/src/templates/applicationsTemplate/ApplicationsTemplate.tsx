@@ -31,8 +31,6 @@ export const ApplicationsTemplate: React.FC = () => {
     queryLimit.applicationsQueryLimit,
   );
 
-  const applicationsCount = _useApplications.getCount();
-
   React.useEffect(() => {
     setPagination({ ...pagination, applicationCurrentPage: 1 });
   }, [queryLimit.applicationsQueryLimit]);
@@ -41,10 +39,10 @@ export const ApplicationsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={clsx(styles.title, !applicationsCount.isSuccess && styles.loading)}>
+          <Heading level={2} className={clsx(styles.title, !getApplications.isSuccess && styles.loading)}>
             {t("Applications")}{" "}
-            {applicationsCount.data >= 0 ? (
-              `(${applicationsCount.data})`
+            {getApplications.data?.total >= 0 ? (
+              `(${getApplications.data?.total})`
             ) : (
               <>
                 (<Skeleton height="1ch" width="1ch" />)

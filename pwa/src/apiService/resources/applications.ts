@@ -19,10 +19,4 @@ export default class Applications {
 
     return data;
   };
-
-  public getCount = async (): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/applications?limit=1`);
-
-    return data.total;
-  };
 }
