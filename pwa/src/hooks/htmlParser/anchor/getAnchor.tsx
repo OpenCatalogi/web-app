@@ -89,7 +89,7 @@ const handleInternalLinks = (props: any, targetFile: string, location: string, d
     if (!directoryFound) {
       const hrefWithLeadingSlash = !props.href.startsWith("/") ? `/${props.href}` : props.href;
 
-      open(`${process.env.GATSBY_GITHUB_REPOSITORY_URL}/blob/master${hrefWithLeadingSlash}`);
+      open(`${window.sessionStorage.getItem("GITHUB_REPOSITORY_URL")}/blob/master${hrefWithLeadingSlash}`);
     }
 
     return; // ensure no other flow is triggered

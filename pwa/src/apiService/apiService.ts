@@ -38,7 +38,7 @@ export default class APIService {
     const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
 
     return axios.create({
-      baseURL: process.env.GATSBY_API_URL ?? undefined,
+      baseURL: window.sessionStorage.getItem("API_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default class APIService {
 
   public get LoginClient(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.GATSBY_API_URL ?? undefined,
+      baseURL: window.sessionStorage.getItem("API_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export default class APIService {
 
   public get BaseClient(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.GATSBY_BASE_URL ?? undefined,
+      baseURL: window.sessionStorage.getItem("BASE_URL") ?? undefined,
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export default class APIService {
 
   public get MarkdownClient(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.GATSBY_BASE_URL ?? undefined,
+      baseURL: window.sessionStorage.getItem("BASE_URL") ?? undefined,
       headers: {
         Accept: "application/vnd.github.html",
       },
@@ -79,21 +79,13 @@ export default class APIService {
 
   public get FooterContentClient(): AxiosInstance {
     return axios.create({
-      baseURL: removeFileNameFromUrl(
-        process.env.GATSBY_FOOTER_CONTENT !== undefined && process.env.GATSBY_FOOTER_CONTENT.length !== 0
-          ? process.env.GATSBY_FOOTER_CONTENT
-          : DEFAULT_FOOTER_CONTENT_URL,
-      ),
+      baseURL: removeFileNameFromUrl(window.sessionStorage.getItem("FOOTER_CONTENT") ?? DEFAULT_FOOTER_CONTENT_URL),
     });
   }
 
   public get HeaderContentClient(): AxiosInstance {
     return axios.create({
-      baseURL: removeFileNameFromUrl(
-        process.env.GATSBY_HEADER_CONTENT !== undefined && process.env.GATSBY_HEADER_CONTENT.length !== 0
-          ? process.env.GATSBY_HEADER_CONTENT
-          : DEFAULT_HEADER_CONTENT_URL,
-      ),
+      baseURL: removeFileNameFromUrl(window.sessionStorage.getItem("HEADER_CONTENT") ?? DEFAULT_HEADER_CONTENT_URL),
     });
   }
 

@@ -4,20 +4,18 @@ import { Helmet } from "react-helmet";
 import { useInitCssVariables } from "../hooks/initCssVariables";
 
 export const Head: React.FC = () => {
-  const theme = process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME ?? "conduction-theme";
+  const [theme] = React.useState<string>(
+    window.sessionStorage.getItem("NL_DESIGN_THEME_CLASSNAME") ?? "conduction-theme",
+  );
+
   useInitCssVariables(theme);
 
   return (
     <Helmet
+      title={window.sessionStorage.getItem("PAGE_TITLE") ?? "OpenCatalogi"}
       bodyAttributes={{
-        class: theme,
+        class: window.sessionStorage.getItem("NL_DESIGN_THEME_CLASSNAME") ?? "conduction-theme",
       }}
-    >
-      <title>
-        {process.env.GATSBY_PAGE_TITLE && process.env.GATSBY_PAGE_TITLE !== ""
-          ? process.env.GATSBY_PAGE_TITLE
-          : "OpenCatalogi"}
-      </title>
-    </Helmet>
+    />
   );
 };

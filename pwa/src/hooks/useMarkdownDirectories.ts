@@ -9,7 +9,8 @@ export const useMarkdownDirectories = () => {
   const [directories, setDirectories] = React.useState<TMarkdownDirectory[]>([]);
 
   React.useEffect(() => {
-    const markdownDirectoryPathsString: string | undefined = process.env.GATSBY_GITHUB_DOCS_DIRECTORY_PATHS;
+    const markdownDirectoryPathsString: string | undefined =
+      window.sessionStorage.getItem("GITHUB_DOCS_DIRECTORY_PATHS") ?? "";
 
     if (!markdownDirectoryPathsString) return;
 

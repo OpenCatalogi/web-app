@@ -8,11 +8,7 @@ import { DEFAULT_FOOTER_CONTENT_URL } from "../templates/templateParts/footer/Fo
 export const useFooterContent = () => {
   const API: APIService | null = React.useContext(APIContext);
 
-  const fileName = getFileNameFromUrl(
-    process.env.GATSBY_FOOTER_CONTENT !== undefined && process.env.GATSBY_FOOTER_CONTENT.length !== 0
-      ? process.env.GATSBY_FOOTER_CONTENT
-      : DEFAULT_FOOTER_CONTENT_URL,
-  );
+  const fileName = getFileNameFromUrl(window.sessionStorage.getItem("FOOTER_CONTENT") ?? DEFAULT_FOOTER_CONTENT_URL);
 
   const getContent = () =>
     useQuery<any, Error>(["contents", fileName], () => API?.FooterContent.getContent(fileName), {
