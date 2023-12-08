@@ -73,9 +73,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
     <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <div className={styles.container}>
         <div className={styles.contentGrid}>
-          {footerContent?.map((content, idx) => (
-            <DynamicSection key={idx} {...{ content }} />
-          ))}
+          {footerContent?.map((content, idx) => <DynamicSection key={idx} {...{ content }} />)}
         </div>
 
         <div className={styles.logoAndConduction}>

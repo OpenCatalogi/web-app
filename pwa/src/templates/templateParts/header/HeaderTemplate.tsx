@@ -4,7 +4,7 @@ import clsx from "clsx";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, Jumbotron, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
+import { Container, Jumbotron, Logo, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useGatsbyContext } from "../../../context/gatsby";
@@ -89,18 +89,26 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            <img
-              onClick={() => navigate("/")}
-              src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
-            />
+            {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+              <img
+                onClick={() => navigate("/")}
+                src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
+              />
+            ) : (
+              <Logo variant="navbar" />
+            )}
           </div>
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                <img
-                  onClick={() => navigate("/")}
-                  src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
-                />
+                {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+                  <img
+                    onClick={() => navigate("/")}
+                    src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
+                  />
+                ) : (
+                  <Logo variant="navbar" />
+                )}
               </div>
             }
             layoutClassName={styles.textColor}
@@ -130,8 +138,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
               window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "background"
                 ? "background"
                 : window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "right"
-                ? "right"
-                : "false",
+                  ? "right"
+                  : "false",
             url: window.sessionStorage.getItem("JUMBOTRON_IMAGE_URL") ?? "",
           }}
         />

@@ -1,5 +1,5 @@
 {
-  "GATSBY_SHOW_THEME_SWITCHER": "true",
+  "GATSBY_SHOW_THEME_SWITCHER": "false",
 
   "GATSBY_GITHUB_REPOSITORY_NAME": "web-app",
   "GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX": "false",
@@ -13,7 +13,7 @@
 
   "GATSBY_PAGE_TITLE": "Conduction's Catalogi",
 
-  "GATSBY_HEADER_LOGO_URL": "https://conduction.nl/wp-content/uploads/2021/07/cropped-conductionlogo-1.png",
+  "GATSBY_HEADER_LOGO_URL": "",
   "GATSBY_HEADER_SHOW_LOGIN": "false",
   "GATSBY_HEADER_CONTENT": "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json",
 

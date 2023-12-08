@@ -36,6 +36,8 @@
 
 .logoDesktop {
   display: none;
+  padding-inline-start: var(--web-app-size-xs);
+  padding-inline-end: var(--web-app-size-xs);
 }
 
 .logoMobile {
