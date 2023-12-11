@@ -44,6 +44,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageContext, location }) => {
     if (process.env.GATSBY_ENV_VARS_SET === "true") {
       initiateFromEnv();
     } else {
+      console.log(window.location.hostname);
       initiateFromJSON(window.location.hostname);
     }
   }, []);
