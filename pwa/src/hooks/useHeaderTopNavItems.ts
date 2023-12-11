@@ -35,8 +35,8 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
   data?.map((item: any) => {
     const isCurrent = (current: any) => {
       const prefixedPathname =
-        process.env.GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX === "true"
-          ? `/${process.env.GATSBY_GITHUB_REPOSITORY_NAME}${current.pathname}`
+        window.sessionStorage.getItem("USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX") === "true"
+          ? `/${window.sessionStorage.getItem("GITHUB_REPOSITORY_NAME")}${current.pathname}`
           : current.pathname;
 
       const isCurrentRoute = (): boolean => {

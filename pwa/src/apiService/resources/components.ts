@@ -25,10 +25,4 @@ export default class Component {
 
     return data;
   };
-
-  public getCount = async (filters: IFiltersContext): Promise<any> => {
-    const { data } = await Send(this._instance, "GET", `/components?limit=1${filtersToQueryParams(filters)}`);
-
-    return data.total;
-  };
 }
