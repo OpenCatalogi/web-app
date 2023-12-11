@@ -8,10 +8,13 @@ import Noordwijk from "./../../static/configFiles/noordwijk.json";
 import Leiden from "./../../static/configFiles/leiden.json";
 import Dimpact from "./../../static/configFiles/dimpact.json";
 import OpenWebconcept from "./../../static/configFiles/open-webconcept.json";
+import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
 
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
     // case "localhost": // development purposes
+    case "opencatalogi.nl":
+      return OpenCatalogi;
     case "commonground-theme":
       return CommonGround;
     case "rotterdam-theme":
