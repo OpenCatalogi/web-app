@@ -14,6 +14,8 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
   switch (themeOrDomainName) {
     // case "localhost": // development purposes
     case "opencatalogi.nl":
+    case "dev.opencatalogi.nl":
+    case "opencatalogi-theme":
       return OpenCatalogi;
     case "commonground-theme":
       return CommonGround;
@@ -41,6 +43,7 @@ export const availableThemes: TGroupedSelectOption[] = [
   {
     label: "Alle overheidsorganisaties",
     options: [
+      { label: "OpenCatalogi", value: "opencatalogi-theme" },
       { label: "Common Ground", value: "commonground-theme" },
       { label: "Conduction", value: "conduction-theme" },
       { label: "Rotterdam", value: "rotterdam-theme" },
