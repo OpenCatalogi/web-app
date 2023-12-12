@@ -13,6 +13,8 @@ import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
     // case "localhost": // development purposes
+    case "opencatalogi.nl":
+      return OpenCatalogi;
     case "commonground-theme":
       return CommonGround;
     case "rotterdam-theme":
@@ -29,9 +31,6 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
       return Dimpact;
     case "open-webconcept-theme":
       return OpenWebconcept;
-    case "opencatalogi.nl":
-    case "dev.opencatalogi.nl":
-      return OpenCatalogi;
 
     default:
       return CommonGround;
