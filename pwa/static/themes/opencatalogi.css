@@ -49,14 +49,12 @@
   --web-app-header-logo-container-border-radius: 0;
   --web-app-header-logo-container-height: 44px;
   --web-app-header-organization-logo-width: 202px;
-  --web-app-header-organization-logo-src: url("../images/Logorotterdam.svg");
 
   --web-app-footer-logo-container-background-color: unset;
   --web-app-footer-logo-container-padding: unset;
   --web-app-footer-logo-container-border-radius: 0;
   --web-app-footer-logo-container-height: 50px;
   --web-app-footer-organization-logo-width: 230px;
-  --web-app-footer-organization-logo-src: url("../images/Logorotterdam.svg");
   --web-app-footer-forum-standaardisatie-icon-path-fill: var(--web-app-color-background-footer);
 
   --web-app-rating-active-color: var(--opencatalogi-color-green);
