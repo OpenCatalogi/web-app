@@ -151,7 +151,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </Heading>
 
               <ExpandableLeadParagraph
-                description={_getComponent.data.embedded?.description?.longDescription ?? t("No description available")}
+                description={
+                  _getComponent.data.embedded?.description?.longDescription ??
+                  _getComponent.data.embedded?.description?.shortDescription ??
+                  t("No description available")
+                }
               />
 
               <div className={styles.layerAndCategoryContainer}>
