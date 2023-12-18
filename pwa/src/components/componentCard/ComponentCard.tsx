@@ -18,7 +18,7 @@ export interface ComponentCardProps {
     href: string;
   };
   description: string;
-  layer: TCategories;
+  layer?: TCategories;
   categories: string[];
   tags: {
     status?: string;
@@ -60,27 +60,29 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       </CardHeader>
 
       <Paragraph className={styles.description}>{description}</Paragraph>
-      <div className={styles.layerTags}>
-        <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Laag">
-            <FontAwesomeIcon icon={faLayerGroup} />
-            {t(_.upperFirst(layer ?? "unknown"))}
-          </DataBadge>
-        </div>
+      {layer && (
+        <div className={styles.layerTags}>
+          <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
+            <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Laag">
+              <FontAwesomeIcon icon={faLayerGroup} />
+              {t(_.upperFirst(layer ?? "unknown"))}
+            </DataBadge>
+          </div>
 
-        <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
-          {!!__categories &&
-            __categories.map(
-              (category: any, idx: number) =>
-                category && (
-                  <DataBadge key={idx} data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Categorie">
-                    {category?.icon}
-                    {_.upperFirst(category?.title)}
-                  </DataBadge>
-                ),
-            )}
+          <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
+            {!!__categories &&
+              __categories.map(
+                (category: any, idx: number) =>
+                  category && (
+                    <DataBadge key={idx} data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Categorie">
+                      {category?.icon}
+                      {_.upperFirst(category?.title)}
+                    </DataBadge>
+                  ),
+              )}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={styles.tags}>
         {tags.status && (

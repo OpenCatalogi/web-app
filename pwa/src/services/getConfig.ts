@@ -8,10 +8,15 @@ import Noordwijk from "./../../static/configFiles/noordwijk.json";
 import Leiden from "./../../static/configFiles/leiden.json";
 import Dimpact from "./../../static/configFiles/dimpact.json";
 import OpenWebconcept from "./../../static/configFiles/open-webconcept.json";
+import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
 
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
     // case "localhost": // development purposes
+    case "opencatalogi.nl":
+    case "dev.opencatalogi.nl":
+    case "opencatalogi-theme":
+      return OpenCatalogi;
     case "commonground-theme":
       return CommonGround;
     case "rotterdam-theme":
@@ -38,6 +43,7 @@ export const availableThemes: TGroupedSelectOption[] = [
   {
     label: "Alle overheidsorganisaties",
     options: [
+      { label: "OpenCatalogi", value: "opencatalogi-theme" },
       { label: "Common Ground", value: "commonground-theme" },
       { label: "Conduction", value: "conduction-theme" },
       { label: "Rotterdam", value: "rotterdam-theme" },

@@ -7,17 +7,17 @@
   "GATSBY_API_URL": "https://api.opencatalogi.nl/api",
   "GATSBY_BASE_URL": "https://api.opencatalogi.nl",
 
-  "GATSBY_NL_DESIGN_THEME_CLASSNAME": "rotterdam-theme",
+  "GATSBY_NL_DESIGN_THEME_CLASSNAME": "opencatalogi-theme",
 
-  "GATSBY_FAVICON_URL": "https://www.rotterdam.nl/favicon.ico?v=2",
+  "GATSBY_FAVICON_URL": "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png",
 
-  "GATSBY_PAGE_TITLE": "Rotterdam's Catalogi",
+  "GATSBY_PAGE_TITLE": "OpenCatalogi",
 
   "GATSBY_HEADER_LOGO_URL": "",
   "GATSBY_HEADER_SHOW_LOGIN": "false",
   "GATSBY_HEADER_CONTENT": "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json",
 
-  "GATSBY_JUMBOTRON_TITLE": "",
+  "GATSBY_JUMBOTRON_TITLE": "OpenCatalogi",
   "GATSBY_JUMBOTRON_SUBTITLE": "",
   "GATSBY_JUMBOTRON_IMAGE_PLACEMENT": "false",
   "GATSBY_JUMBOTRON_IMAGE_URL": "",
