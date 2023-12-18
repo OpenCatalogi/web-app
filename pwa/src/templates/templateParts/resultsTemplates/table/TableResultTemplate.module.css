@@ -22,6 +22,7 @@
 
 .tableBody {
   border: var(--utrecht-table-body-border);
+  border-block-end: var(--utrecht-table-body-border-block-end-width) solid var(--utrecht-table-body-border-block-end-color);
 }
 
 .tableBody .tableRow:nth-child(odd) {

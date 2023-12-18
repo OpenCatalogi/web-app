@@ -7,6 +7,11 @@
   padding-inline-end: var(--utrecht-page-margin-inline-end);
 }
 
+.container > * {
+  font-size: var(--utrecht-page-footer-font-size, var(--utrecht-document-font-size));
+  font-family: var(--utrecht-page-footer-font-family, var(--utrecht-document-font-family));
+}
+
 .footer {
   display: flex;
   align-items: center;
@@ -115,7 +120,7 @@
   .contentGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   .logoAndConduction {
     margin-top: 38px;
     display: flex;

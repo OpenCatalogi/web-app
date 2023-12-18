@@ -9,6 +9,7 @@ import Leiden from "./../../static/configFiles/leiden.json";
 import Dimpact from "./../../static/configFiles/dimpact.json";
 import OpenWebconcept from "./../../static/configFiles/open-webconcept.json";
 import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
+import Zutphen from "./../../static/configFiles/zutphen.json";
 
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
@@ -33,6 +34,8 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
       return Dimpact;
     case "open-webconcept-theme":
       return OpenWebconcept;
+    case "zutphen-theme":
+      return Zutphen;
 
     default:
       return CommonGround;
@@ -41,17 +44,23 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
 
 export const availableThemes: TGroupedSelectOption[] = [
   {
-    label: "Alle overheidsorganisaties",
+    label: "Alle organisaties",
     options: [
       { label: "OpenCatalogi", value: "opencatalogi-theme" },
       { label: "Common Ground", value: "commonground-theme" },
       { label: "Conduction", value: "conduction-theme" },
-      { label: "Rotterdam", value: "rotterdam-theme" },
-      { label: "Epe", value: "epe-theme" },
-      { label: "Noordwijk", value: "noordwijk-theme" },
-      { label: "Leiden", value: "leiden-theme" },
-      { label: "Dimpact", value: "dimpact-theme" },
       { label: "OpenWebconcept", value: "open-webconcept-theme" },
+      { label: "Dimpact", value: "dimpact-theme" },
+    ],
+  },
+  {
+    label: "Gemeenten",
+    options: [
+      { label: "Epe", value: "epe-theme" },
+      { label: "Leiden", value: "leiden-theme" },
+      { label: "Noordwijk", value: "noordwijk-theme" },
+      { label: "Rotterdam", value: "rotterdam-theme" },
+      { label: "Zutphen", value: "zutphen-theme" },
     ],
   },
 ];
