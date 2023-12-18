@@ -46,7 +46,7 @@ export const ThemeSwitcherTopBar: React.FC = () => {
     return (
       <section className={clsx(styles.container, "open-webconcept-theme")}>
         <div>
-          <Heading3>Open Catalogi organisatie switcher</Heading3>
+          <Heading3>OpenCatalogi organisatie switcher</Heading3>
 
           <Paragraph>Verander van overheidsorganisatie om andere catalogi te bekijken</Paragraph>
         </div>
