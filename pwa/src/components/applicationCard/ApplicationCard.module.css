@@ -36,3 +36,7 @@
 .tags > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
 }
+
+.container:hover .description {
+  color: var(--conduction-card-wrapper-hover-color, var(--conduction-card-wrapper-color)) !important;
+}
