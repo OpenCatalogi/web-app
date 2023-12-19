@@ -32,6 +32,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("API_URL", process.env.GATSBY_API_URL ?? "");
     window.sessionStorage.setItem("BASE_URL", process.env.GATSBY_BASE_URL ?? "");
     window.sessionStorage.setItem("NL_DESIGN_THEME_CLASSNAME", process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME ?? "");
+    window.sessionStorage.setItem("GITHUB_ORGANIZATION_URL", process.env.GATSBY_GITHUB_ORGANIZATION_URL ?? "");
     window.sessionStorage.setItem("FAVICON_URL", process.env.GATSBY_FAVICON_URL ?? "");
     window.sessionStorage.setItem("PAGE_TITLE", process.env.GATSBY_PAGE_TITLE ?? "");
     window.sessionStorage.setItem("HEADER_LOGO_URL", process.env.GATSBY_HEADER_LOGO_URL ?? "");
@@ -68,6 +69,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("API_URL", config.GATSBY_API_URL ?? "");
     window.sessionStorage.setItem("BASE_URL", config.GATSBY_BASE_URL ?? "");
     window.sessionStorage.setItem("NL_DESIGN_THEME_CLASSNAME", config.GATSBY_NL_DESIGN_THEME_CLASSNAME ?? "");
+    window.sessionStorage.setItem("GITHUB_ORGANIZATION_URL", config.GATSBY_GITHUB_ORGANIZATION_URL ?? "");
     window.sessionStorage.setItem("FAVICON_URL", config.GATSBY_FAVICON_URL ?? "");
     window.sessionStorage.setItem("PAGE_TITLE", config.GATSBY_PAGE_TITLE ?? "");
     window.sessionStorage.setItem("HEADER_LOGO_URL", config.GATSBY_HEADER_LOGO_URL ?? "");
