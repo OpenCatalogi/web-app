@@ -389,7 +389,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabList>
               <TabPanel>
                 <div className={styles.components}>
-                  {_getComponent.data.embedded?.dependsOn?.embedded.open && (
+                  {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
                     <DisplaySwitch
                       buttons={displaySwitchButtons}
                       layoutClassName={styles.dependenciesDisplaySwitchButtons}
