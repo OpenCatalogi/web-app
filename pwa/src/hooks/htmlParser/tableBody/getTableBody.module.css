@@ -2,9 +2,8 @@
   border: var(--utrecht-table-body-border);
 }
 
-.tableBody > tr > td { 
-  border-inline-end-width: var(--utrecht-table-cell-border-inline-end-width); 
-  border-inline-end-style: var(--utrecht-table-cell-border-inline-end-style); 
-  border-inline-end-color: var(--utrecht-table-cell-border-inline-end-color); 
-} 
- 
+.tableBody > tr > td {
+  border-inline-end-width: var(--utrecht-table-cell-border-inline-end-width);
+  border-inline-end-style: var(--utrecht-table-cell-border-inline-end-style);
+  border-inline-end-color: var(--utrecht-table-cell-border-inline-end-color);
+}
