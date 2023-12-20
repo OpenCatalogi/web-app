@@ -3,7 +3,6 @@
   margin: auto;
   box-sizing: border-box;
   max-inline-size: var(--utrecht-page-max-inline-size);
-  padding-inline-start: var(--utrecht-page-margin-inline-start);
   padding-inline-end: var(--utrecht-page-margin-inline-end);
 }
 
@@ -104,6 +103,10 @@
 }
 
 @media only screen and (min-width: 576px) {
+  .container {
+    padding-inline-start: var(--utrecht-page-margin-inline-start);
+  }
+
   .contentGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

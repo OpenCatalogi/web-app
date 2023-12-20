@@ -160,24 +160,26 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.owns?.map((component: any) => (
-                      <ComponentCard
-                        key={component._self.id}
-                        title={{ label: component.name, href: `/components/${component._self.id}` }}
-                        description={component?.description?.shortDescription}
-                        categories={component?.categories}
-                        tags={{
-                          status: component?.developmentStatus,
-                          installations: component?.usedBy?.length.toString() ?? "0",
-                          organization: {
-                            name: component?.url?.organisation?.name,
-                            website: component?.url?.organisation?.website,
-                          },
-                          licence: component?.legal?.license,
-                          githubLink: component?.url?.url,
-                        }}
-                      />
-                    ))}
+                    {_getOrganization.data?.embedded?.owns?.length &&
+                      _getOrganization.data?.embedded?.owns?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.owns?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>
@@ -185,24 +187,26 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.supports?.map((component: any) => (
-                      <ComponentCard
-                        key={component._self.id}
-                        title={{ label: component.name, href: `/components/${component._self.id}` }}
-                        description={component?.description?.shortDescription}
-                        categories={component?.categories}
-                        tags={{
-                          status: component?.developmentStatus,
-                          installations: component?.usedBy?.length.toString() ?? "0",
-                          organization: {
-                            name: component?.url?.organisation?.name,
-                            website: component?.url?.organisation?.website,
-                          },
-                          licence: component?.legal?.license,
-                          githubLink: component?.url?.url,
-                        }}
-                      />
-                    ))}
+                    {_getOrganization.data?.embedded?.supports?.length &&
+                      _getOrganization.data?.embedded?.supports?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.supports?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>
@@ -210,24 +214,26 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.uses?.map((component: any) => (
-                      <ComponentCard
-                        key={component._self.id}
-                        title={{ label: component.name, href: `/components/${component._self.id}` }}
-                        description={component?.description?.shortDescription}
-                        categories={component?.categories}
-                        tags={{
-                          status: component?.developmentStatus,
-                          installations: component?.usedBy?.length.toString() ?? "0",
-                          organization: {
-                            name: component?.url?.organisation?.name,
-                            website: component?.url?.organisation?.website,
-                          },
-                          licence: component?.legal?.license,
-                          githubLink: component?.url?.url,
-                        }}
-                      />
-                    ))}
+                    {_getOrganization.data?.embedded?.uses?.length &&
+                      _getOrganization.data?.embedded?.uses?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.uses?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>
