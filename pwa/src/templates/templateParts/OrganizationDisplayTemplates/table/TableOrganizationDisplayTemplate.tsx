@@ -36,9 +36,9 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
     <HorizontalOverflowWrapper
       ariaLabels={{ scrollLeftButton: t("Scroll left"), scrollRightButton: t("Scroll right") }}
     >
-      <Table>
+      <Table className={styles.table}>
         {!hideTableHead && (
-          <TableHeader>
+          <TableHeader className={styles.tableHeader}>
             <TableRow>
               <TableHeaderCell>{t("Name")}</TableHeaderCell>
               <TableHeaderCell>{t("Sources")}</TableHeaderCell>
@@ -57,7 +57,7 @@ export const TableOrganizationDisplayTemplate: React.FC<TableOrganizationDisplay
           </TableHeader>
         )}
 
-        <TableBody>
+        <TableBody className={styles.tableBody}>
           {organizations.length > 0 &&
             organizations.map((organization) => (
               <TableRow

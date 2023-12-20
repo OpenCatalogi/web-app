@@ -148,4 +148,5 @@ export const en = {
   "Results per page": "Results per page",
   "Select result limit": "Select result limit",
   "Type of support": "Type of support",
+  "Unknown size": "Unknown size",
 };

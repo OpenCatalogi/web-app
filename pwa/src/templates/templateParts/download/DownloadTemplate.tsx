@@ -29,9 +29,14 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ downloads, b
 
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
+  const getSize = (size: number): string => {
+    if (size < 0) return t("Unknown size");
+    return `${size / 1000}kB`;
+  };
+
   const convertedDownloads: TDownloadableItem[] = downloads.map((download: any) => ({
     label: download.naam,
-    size: download.grootte,
+    size: getSize(download.grootte),
     type: download.type,
     downloadLink: download.url,
   }));

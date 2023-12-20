@@ -36,6 +36,10 @@
   text-overflow: ellipsis;
 }
 
+.container:hover .description {
+  color: var(--conduction-card-wrapper-hover-color, var(--conduction-card-wrapper-color)) !important;
+}
+
 .tagsContainer {
   display: flex;
   flex-wrap: wrap;
