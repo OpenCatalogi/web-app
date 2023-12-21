@@ -10,6 +10,7 @@ import Dimpact from "./../../static/configFiles/dimpact.json";
 import OpenWebconcept from "./../../static/configFiles/open-webconcept.json";
 import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
 import Zutphen from "./../../static/configFiles/zutphen.json";
+import Gouda from "./../../static/configFiles/gouda.json";
 
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
@@ -36,6 +37,8 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
       return OpenWebconcept;
     case "zutphen-theme":
       return Zutphen;
+    case "gouda-theme":
+      return Gouda;
 
     default:
       return CommonGround;
@@ -57,6 +60,7 @@ export const availableThemes: TGroupedSelectOption[] = [
     label: "Gemeenten",
     options: [
       { label: "Epe", value: "epe-theme" },
+      { label: "Gouda", value: "gouda-theme" },
       { label: "Leiden", value: "leiden-theme" },
       { label: "Noordwijk", value: "noordwijk-theme" },
       { label: "Rotterdam", value: "rotterdam-theme" },
