@@ -45,7 +45,7 @@ dependsOn:
     
 nl:
   commonground:
-  - layerType: "interface"
+    layerType: interface
   gemma:
     bedrijfsfuncties:
       - Algemene content publicatie
