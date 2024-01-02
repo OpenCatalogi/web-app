@@ -132,30 +132,12 @@
   },
   {
     "label": "Documentatie",
+    "type": "external",
     "current": {
       "pathname": "/documentation"
     },
-    "subItems": [
-      {
-        "label": "About",
-        "type": "internal",
-        "current": {
-          "pathname": "/documentation/about"
-        },
-        "handleClick": {
-          "link": "/documentation/about"
-        }
-      },
-      {
-        "label": "Use",
-        "type": "internal",
-        "current": {
-          "pathname": "/documentation/usage"
-        },
-        "handleClick": {
-          "link": "/documentation/usage"
-        }
-      }
-    ]
+    "handleClick": {
+          "link": "https://documentatie.opencatalogi.nl/"
+    }
   }
 ]
