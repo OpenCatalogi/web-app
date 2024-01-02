@@ -9,7 +9,8 @@ export const useGitHubDirectories = () => {
   const [directories, setDirectories] = React.useState<TGitHubDirectory[]>([]);
 
   React.useEffect(() => {
-    const gitHubDirectoryPathsString: string | undefined = process.env.GATSBY_GITHUB_DOCS_DIRECTORY_PATHS;
+    const gitHubDirectoryPathsString: string | undefined =
+      window.sessionStorage.getItem("GITHUB_DOCS_DIRECTORY_PATHS") ?? "";
 
     if (!gitHubDirectoryPathsString) return;
 

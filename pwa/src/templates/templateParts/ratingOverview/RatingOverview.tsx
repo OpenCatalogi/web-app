@@ -25,7 +25,7 @@ export const RatingOverview: React.FC<RatingOverviewProps> = ({ rating }) => {
 
   return (
     <Table className={styles.container}>
-      <TableHeader className={styles.header}>
+      <TableHeader className={styles.tableHeader}>
         <TableRow>
           <TableHeaderCell>Status</TableHeaderCell>
           <TableHeaderCell>Message</TableHeaderCell>
@@ -33,9 +33,9 @@ export const RatingOverview: React.FC<RatingOverviewProps> = ({ rating }) => {
         </TableRow>
       </TableHeader>
 
-      <TableBody>
+      <TableBody className={styles.tableBody}>
         {acceptedRatings.map((acceptedRating, idx) => (
-          <TableRow key={idx}>
+          <TableRow className={styles.tableRow} key={idx}>
             <TableCell>
               <StatusBadge status="safe" className={styles.statusBadge}>
                 Passed
@@ -47,7 +47,7 @@ export const RatingOverview: React.FC<RatingOverviewProps> = ({ rating }) => {
         ))}
 
         {rejectedRatings.map((rejectedRating, idx) => (
-          <TableRow key={idx}>
+          <TableRow className={styles.tableRow} key={idx}>
             <TableCell>
               <StatusBadge status="danger" className={styles.statusBadge}>
                 Failed

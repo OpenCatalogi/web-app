@@ -16,11 +16,16 @@
 }
 
 .description {
+  color: var(--conduction-card-wrapper-color) !important;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.container:hover .description {
+  color: var(--conduction-card-wrapper-hover-color, var(--conduction-card-wrapper-color)) !important;
 }
 
 .layerTags {
@@ -42,48 +47,60 @@
 .interactionLayer,
 .interfaceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-interaction);
+  --utrecht-badge-color: #ffffff;
 }
 .interactionCategory,
 .interfaceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-interaction);
+  --utrecht-badge-color: #000000;
 }
 
 .processLayer,
 .processsLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-process);
+  --utrecht-badge-color: #ffffff;
 }
 .procesCategory,
 .processCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-process);
+  --utrecht-badge-color: #000000;
 }
 
 .integrationLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-integration);
+  --utrecht-badge-color: #ffffff;
 }
 .integrationCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-integration);
+  --utrecht-badge-color: #000000;
 }
 
 .servicesLayer,
 .serviceLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-services);
+  --utrecht-badge-color: #ffffff;
 }
 
 .servicesCategory,
 .serviceCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-services);
+  --utrecht-badge-color: #000000;
 }
 
 .dataLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-data);
+  --utrecht-badge-color: #ffffff;
 }
 .dataCategory {
   --utrecht-badge-background-color: var(--web-app-layer-category-color-data);
+  --utrecht-badge-color: #000000;
 }
 
 .unknownLayer {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --utrecht-badge-color: #ffffff;
 }
 .unknownCategory {
   --utrecht-badge-background-color: var(--web-app-layer-color-unknown);
+  --utrecht-badge-color: #000000;
 }

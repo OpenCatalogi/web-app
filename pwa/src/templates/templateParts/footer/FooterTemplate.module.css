@@ -3,8 +3,12 @@
   margin: auto;
   box-sizing: border-box;
   max-inline-size: var(--utrecht-page-max-inline-size);
-  padding-inline-start: var(--utrecht-page-margin-inline-start);
   padding-inline-end: var(--utrecht-page-margin-inline-end);
+}
+
+.container > * {
+  font-size: var(--utrecht-page-footer-font-size, var(--utrecht-document-font-size));
+  font-family: var(--utrecht-page-footer-font-family, var(--utrecht-document-font-family));
 }
 
 .footer {
@@ -99,6 +103,10 @@
 }
 
 @media only screen and (min-width: 576px) {
+  .container {
+    padding-inline-start: var(--utrecht-page-margin-inline-start);
+  }
+
   .contentGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -115,7 +123,7 @@
   .contentGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   .logoAndConduction {
     margin-top: 38px;
     display: flex;

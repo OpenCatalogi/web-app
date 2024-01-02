@@ -150,4 +150,5 @@ export const nl = {
   "Select result limit": "Selecteer resultaten limiet",
   "Business function": "Bedrijfsfunctie",
   "Type of support": "Type ondersteuning",
+  "Unknown size": "Onbekende grootte",
 };

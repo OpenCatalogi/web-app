@@ -1,9 +1,11 @@
 .headerTopBar {
   display: none;
 }
+
 .headerMiddleBar {
   background-color: var(--conduction-primary-top-nav-background-color, inherit);
   box-shadow: 0px 10px 13px -14px #000000;
+  margin-block-end: 20px;
 }
 
 .secondaryNavContainer {
@@ -36,6 +38,8 @@
 
 .logoDesktop {
   display: none;
+  padding-inline-start: var(--web-app-size-xs);
+  padding-inline-end: var(--web-app-size-xs);
 }
 
 .logoMobile {

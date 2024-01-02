@@ -51,7 +51,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
         <Textbox
           id="searchComponentFormTextBox"
           {...register("name")}
-          invalid={errors["name"]}
+          invalid={!!errors["name"]}
           placeholder={t("Search all components")}
         />
       </FormField>
@@ -66,6 +66,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
           onClick={() => {
             navigate("/components"), clearFilters();
           }}
+          className={styles.button}
         >
           <FontAwesomeIcon icon={faArrowRight} />
           {t("View all components")}

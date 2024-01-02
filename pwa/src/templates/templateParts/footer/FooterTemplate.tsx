@@ -19,6 +19,7 @@ import { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useFooterContent } from "../../../hooks/footerContent";
+import { Logo as LogoComponent } from "@conduction/components";
 
 export const DEFAULT_FOOTER_CONTENT_URL =
   "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/templates/templateParts/footer/FooterContent.json";
@@ -73,9 +74,7 @@ export const FooterTemplate: React.FC<FooterTemplateProps> = ({ layoutClassName 
     <PageFooter className={clsx(styles.footer, layoutClassName && layoutClassName)}>
       <div className={styles.container}>
         <div className={styles.contentGrid}>
-          {footerContent?.map((content, idx) => (
-            <DynamicSection key={idx} {...{ content }} />
-          ))}
+          {footerContent?.map((content, idx) => <DynamicSection key={idx} {...{ content }} />)}
         </div>
 
         <div className={styles.logoAndConduction}>
@@ -92,7 +91,7 @@ const DynamicSection: React.FC<{ content: TDynamicContentItem }> = ({ content })
 
   return (
     <section>
-      <DynamicSectionHeading heading={process.env.GATSBY_FOOTER_CONTENT_HEADER} {...{ content }} />
+      <DynamicSectionHeading heading={window.sessionStorage.getItem("FOOTER_CONTENT_HEADER") ?? ""} {...{ content }} />
 
       {content.items.map((item, idx) => (
         <div key={idx} className={styles.dynamicSectionContent}>
@@ -137,25 +136,28 @@ const DynamicSectionHeading: React.FC<{ content: TDynamicContentItem; heading?: 
 };
 
 const Logo: React.FC = () => {
-  if (process.env.GATSBY_FOOTER_LOGO_URL === "false") return <></>;
+  if (window.sessionStorage.getItem("FOOTER_LOGO_URL") === "false") return <></>;
+
   const { t } = useTranslation();
 
   return (
     <div className={styles.imageContainer}>
-      <img
-        className={styles.image}
-        onClick={() => (process.env.GATSBY_FOOTER_LOGO_URL ? open(process.env.GATSBY_FOOTER_LOGO_URL) : navigate("/"))}
-        src={process.env.GATSBY_FOOTER_LOGO_URL}
-        alt={t("Footer-logo")}
+      <LogoComponent
+        layoutClassName={styles.image}
+        onClick={() =>
+          window.sessionStorage.getItem("FOOTER_LOGO_URL")
+            ? open(window.sessionStorage.getItem("FOOTER_LOGO_URL") ?? "/")
+            : navigate("/")
+        }
         aria-label={`${t("Footer-logo")}, ${t("Can open a new window")}`}
-        tabIndex={0}
+        variant="footer"
       />
     </div>
   );
 };
 
 const WithLoveByConduction: React.FC = () => {
-  if (process.env.GATSBY_FOOTER_SHOW_CREATOR === "false") return <></>;
+  if (window.sessionStorage.getItem("FOOTER_SHOW_CREATOR") === "false") return <></>;
 
   const { t } = useTranslation();
 

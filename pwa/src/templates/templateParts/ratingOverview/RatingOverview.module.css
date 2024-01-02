@@ -2,14 +2,65 @@
   display: block;
   max-height: 60vh;
   overflow-y: scroll;
-}
-
-.header {
-  top: 0;
-  position: sticky;
-  background-color: var(--web-app-color-grey) !important;
+  background-color: var(--utrecht-table-background-color);
+  border-collapse: var(--utrecht-table-border-collapse);
 }
 
 .statusBadge {
   user-select: none;
+}
+
+.tableHeader > * {
+  border-block-end: var(--utrecht-table-header-border-block-end-width) solid var(--utrecht-table-header-border-block-end-color);
+}
+
+.tableHeader {
+  top: 0;
+  position: sticky;
+  background-color: var(--web-app-color-grey) !important;
+  font-family: var(--utrecht-table-header-font-family);
+}
+
+.tableHeader > tr > th {
+  border-inline-end-width: var(--utrecht-table-header-cell-border-inline-end-width);
+  border-inline-end-style: var(--utrecht-table-header-cell-border-inline-end-style);
+  border-inline-end-color: var(--utrecht-table-header-cell-border-inline-end-color);
+}
+
+.tableRow > * {
+  vertical-align: middle !important;
+}
+
+.tableRow:hover {
+  cursor: pointer;
+  background-color: var(--utrecht-table-row-hover-background-color);
+}
+
+.tableBody {
+  border: var(--utrecht-table-body-border);
+}
+
+.tableBody > tr > td {
+  border-inline-end-width: var(--utrecht-table-cell-border-inline-end-width);
+  border-inline-end-style: var(--utrecht-table-cell-border-inline-end-style);
+  border-inline-end-color: var(--utrecht-table-cell-border-inline-end-color);
+}
+
+.tableBody .tableRow:nth-child(odd) {
+  background-color: var(--utrecht-table-row-alternate-odd-background-color);
+  color: var(--utrecht-table-row-alternate-odd-color);
+}
+
+.tableBody .tableRow:nth-child(odd):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
+}
+
+.tableBody .tableRow:nth-child(even) {
+  background-color: var(--utrecht-table-row-alternate-even-background-color);
+  color: var(--utrecht-table-row-alternate-even-color);
+}
+.tableBody .tableRow:nth-child(even):hover {
+  background-color: var(--utrecht-table-row-hover-background-color);
+  color: var(--utrecht-table-row-hover-color);
 }

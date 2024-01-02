@@ -3,7 +3,7 @@ import * as styles from "./DownloadTemplate.module.css";
 import clsx from "clsx";
 import { DownloadCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faArrowLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 import { useGatsbyContext } from "../../../context/gatsby";
 import { TOOLTIP_ID } from "../../../layout/Layout";
@@ -11,7 +11,7 @@ import { TOOLTIP_ID } from "../../../layout/Layout";
 interface DownloadTemplateProps {
   downloads: TDownloadableItem[];
   backUrl: string;
-  icon?: JSX.Element;
+  icon?: IconDefinition;
   layoutClassName?: string;
 }
 
@@ -29,9 +29,14 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ downloads, b
 
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
+  const getSize = (size: number): string => {
+    if (size < 0) return t("Unknown size");
+    return `${size / 1000}kB`;
+  };
+
   const convertedDownloads: TDownloadableItem[] = downloads.map((download: any) => ({
     label: download.naam,
-    size: download.grootte,
+    size: getSize(download.grootte),
     type: download.type,
     downloadLink: download.url,
   }));

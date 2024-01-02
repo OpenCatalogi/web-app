@@ -16,6 +16,7 @@
 }
 
 .description {
+  color: var(--conduction-card-wrapper-color) !important;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -34,4 +35,8 @@
 
 .tags > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
+}
+
+.container:hover .description {
+  color: var(--conduction-card-wrapper-hover-color, var(--conduction-card-wrapper-color)) !important;
 }
