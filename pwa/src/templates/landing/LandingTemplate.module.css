@@ -17,11 +17,6 @@
   max-width: 800px;
 }
 
-.landingDisplaySwitchButtons {
-  align-items: center;
-  justify-content: flex-end;
-}
-
 .filtersAndResultsContainer {
   display: flex;
   gap: var(--web-app-size-lg);
@@ -34,5 +29,10 @@
 @media only screen and (min-width: 576px) {
   .cards {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .landingDisplaySwitchButtons {
+    align-items: center;
+    justify-content: flex-end;
   }
 }

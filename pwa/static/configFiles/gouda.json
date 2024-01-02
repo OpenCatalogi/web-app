@@ -7,18 +7,18 @@
   "GATSBY_API_URL": "https://api.opencatalogi.nl/api",
   "GATSBY_BASE_URL": "https://api.opencatalogi.nl",
 
-  "GATSBY_NL_DESIGN_THEME_CLASSNAME": "opencatalogi-theme",
+  "GATSBY_NL_DESIGN_THEME_CLASSNAME": "gouda-theme",
 
   "GATSBY_GITHUB_ORGANIZATION_URL": "",
-  "GATSBY_FAVICON_URL": "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png",
+  "GATSBY_FAVICON_URL": "https://www.gouda.nl/wp-content/uploads/2023/01/cropped-favicon-32x32.png",
 
-  "GATSBY_PAGE_TITLE": "OpenCatalogi",
+  "GATSBY_PAGE_TITLE": "Gouda's Catalogi",
 
   "GATSBY_HEADER_LOGO_URL": "",
   "GATSBY_HEADER_SHOW_LOGIN": "false",
   "GATSBY_HEADER_CONTENT": "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json",
 
-  "GATSBY_JUMBOTRON_TITLE": "OpenCatalogi",
+  "GATSBY_JUMBOTRON_TITLE": "",
   "GATSBY_JUMBOTRON_SUBTITLE": "",
   "GATSBY_JUMBOTRON_IMAGE_PLACEMENT": "false",
   "GATSBY_JUMBOTRON_IMAGE_URL": "",
@@ -28,9 +28,9 @@
   "GATSBY_JUMBOTRON_CONTAINER": "true",
 
   "GATSBY_FOOTER_SHOW_CREATOR": "false",
-  "GATSBY_FOOTER_LOGO_URL": "false",
+  "GATSBY_FOOTER_LOGO_URL": "https://www.gouda.nl/",
   "GATSBY_FOOTER_CONTENT": "https://raw.githubusercontent.com/OpenCatalogi/web-app/25995205e1dbb043822d1c58c5c23f8e6f77ff7e/pwa/src/templates/templateParts/footer/FooterContent.json",
-  "GATSBY_FOOTER_CONTENT_HEADER": "",
+  "GATSBY_FOOTER_CONTENT_HEADER": "heading-4",
 
   "GATSBY_OPTIONAL_START_PAGE": ""
 }

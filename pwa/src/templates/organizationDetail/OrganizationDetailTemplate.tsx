@@ -10,7 +10,6 @@ import {
   BadgeCounter,
   Link,
 } from "@utrecht/component-library-react/dist/css-module";
-import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { QueryClient } from "react-query";
@@ -161,8 +160,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.owns.map(
-                      (component: any) =>
+                    {_getOrganization.data?.embedded?.owns?.length &&
+                      _getOrganization.data?.embedded?.owns?.map((component: any) => (
                         <ComponentCard
                           key={component._self.id}
                           title={{ label: component.name, href: `/components/${component._self.id}` }}
@@ -179,7 +178,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                             githubLink: component?.url?.url,
                           }}
                         />
-                    )}
+                      ))}
+                    {!_getOrganization.data?.embedded?.owns?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>
@@ -187,8 +187,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.supports.map(
-                      (component: any) =>
+                    {_getOrganization.data?.embedded?.supports?.length &&
+                      _getOrganization.data?.embedded?.supports?.map((component: any) => (
                         <ComponentCard
                           key={component._self.id}
                           title={{ label: component.name, href: `/components/${component._self.id}` }}
@@ -205,7 +205,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                             githubLink: component?.url?.url,
                           }}
                         />
-                    )}
+                      ))}
+                    {!_getOrganization.data?.embedded?.supports?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>
@@ -213,8 +214,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                 <div className={styles.components}>
                   {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} /> */}
                   <div className={styles.componentsGrid}>
-                    {_getOrganization.data?.embedded?.uses.map(
-                      (component: any) =>
+                    {_getOrganization.data?.embedded?.uses?.length &&
+                      _getOrganization.data?.embedded?.uses?.map((component: any) => (
                         <ComponentCard
                           key={component._self.id}
                           title={{ label: component.name, href: `/components/${component._self.id}` }}
@@ -231,7 +232,8 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
                             githubLink: component?.url?.url,
                           }}
                         />
-                    )}
+                      ))}
+                    {!_getOrganization.data?.embedded?.uses?.length && <>Geen resultaten gevonden.</>}
                   </div>
                 </div>
               </TabPanel>

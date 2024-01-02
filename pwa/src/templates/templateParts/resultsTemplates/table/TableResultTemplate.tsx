@@ -58,7 +58,9 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                 onClick={() => navigate(`/${getResultsUrl(component._self?.schema.ref)}/${component.id}`)}
               >
                 <TableCell>
-                  <span className={styles.name}>{component.name}</span>
+                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={component.name} className={styles.name}>
+                    {component.name}
+                  </span>
                 </TableCell>
                 <TableCell>{t(_.upperFirst(getTypeFromSchemaRef(component._self?.schema.ref)))}</TableCell>
                 <TableCell>

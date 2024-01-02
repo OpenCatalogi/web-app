@@ -389,7 +389,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabList>
               <TabPanel>
                 <div className={styles.components}>
-                  {_getComponent.data.embedded?.dependsOn?.embedded.open && (
+                  {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
                     <DisplaySwitch
                       buttons={displaySwitchButtons}
                       layoutClassName={styles.dependenciesDisplaySwitchButtons}
@@ -551,51 +551,51 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <h2 className={styles.title}>Meer informatie</h2>
 
               <Table>
-                <TableBody>
+                <TableBody className={styles.tableBody}>
                   {gemma?.applicatiefunctie && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Applicatiefunctie</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Applicatiefunctie:</TableCell>
                       <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
                     </TableRow>
                   )}
 
                   {gemma?.bedrijfsfuncties && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Bedrijfsfuncties</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Bedrijfsfuncties:</TableCell>
                       <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
                     </TableRow>
                   )}
 
                   {gemma?.bedrijfsservices && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Bedrijfsservices</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Bedrijfsservices:</TableCell>
                       <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
                     </TableRow>
                   )}
 
                   {gemma?.model && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Model</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Model:</TableCell>
                       <TableCell className={styles.description}>{gemma.model}</TableCell>
                     </TableRow>
                   )}
 
                   {gemma?.referentieComponenten?.length > 0 && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Referentie componenten</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Referentie componenten:</TableCell>
                       <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
                     </TableRow>
                   )}
 
                   {legal?.license && (
-                    <TableRow>
-                      <TableCell className={styles.title}>Licentie</TableCell>
+                    <TableRow className={styles.tableRow}>
+                      <TableCell className={styles.title}>Licentie:</TableCell>
                       <TableCell className={styles.description}>{legal.license}</TableCell>
                     </TableRow>
                   )}
 
                   {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
-                    <TableRow>
+                    <TableRow className={styles.tableRow}>
                       <TableCell className={styles.title}>{t("Products")}</TableCell>
                       <TableCell>
                         {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
