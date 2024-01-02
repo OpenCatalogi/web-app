@@ -44,6 +44,8 @@ dependsOn:
     - versionMin: 1.0.0
     
 nl:
+  commonground:
+    layerType: interface
   gemma:
     layerType: interface
     bedrijfsfuncties:
