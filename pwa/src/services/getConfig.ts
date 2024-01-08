@@ -11,6 +11,7 @@ import OpenWebconcept from "./../../static/configFiles/open-webconcept.json";
 import OpenCatalogi from "./../../static/configFiles/opencatalogi.json";
 import Zutphen from "./../../static/configFiles/zutphen.json";
 import Gouda from "./../../static/configFiles/gouda.json";
+import Zuiddrecht from "./../../static/configFiles/zuiddrecht.json";
 
 export const getConfig = (themeOrDomainName: string): Record<string, any> | undefined => {
   switch (themeOrDomainName) {
@@ -39,6 +40,8 @@ export const getConfig = (themeOrDomainName: string): Record<string, any> | unde
       return Zutphen;
     case "gouda-theme":
       return Gouda;
+    case "zuiddrecht-theme":
+      return Zuiddrecht;
 
     default:
       return CommonGround;
@@ -64,6 +67,7 @@ export const availableThemes: TGroupedSelectOption[] = [
       { label: "Leiden", value: "leiden-theme" },
       { label: "Noordwijk", value: "noordwijk-theme" },
       { label: "Rotterdam", value: "rotterdam-theme" },
+      { label: "Zuiddrecht", value: "zuiddrecht-theme" },
       { label: "Zutphen", value: "zutphen-theme" },
     ],
   },
