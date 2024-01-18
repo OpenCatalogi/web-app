@@ -552,7 +552,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onChange={() => setStatusRadioFilter(status.value)}
                   key={status.value}
                 >
-                  <RadioButton className={styles.radioButton} value={status.value} checked={filters.developmentStatus === status.value} />
+                  <RadioButton
+                    className={styles.radioButton}
+                    value={status.value}
+                    checked={filters.developmentStatus === status.value}
+                  />
                   <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
                     {t(status.label)}
                   </span>
@@ -589,7 +593,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                   key={maintenanceType.value}
                 >
-                  <RadioButton className={styles.radioButton}
+                  <RadioButton
+                    className={styles.radioButton}
                     value={maintenanceType.value}
                     checked={filters["embedded.maintenance.type"] === maintenanceType.value}
                   />
@@ -668,7 +673,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                   key={softwareType.value}
                 >
-                  <RadioButton className={styles.radioButton} value={softwareType.value} checked={filters.softwareType === softwareType.value} />
+                  <RadioButton
+                    className={styles.radioButton}
+                    value={softwareType.value}
+                    checked={filters.softwareType === softwareType.value}
+                  />
                   <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
                     {softwareType.label}
                   </span>
