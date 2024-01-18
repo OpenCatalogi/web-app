@@ -29,7 +29,7 @@ export const defaultFiltersContext: IFiltersContext = {
   _search: "",
   organizationSearch: "",
   isForked: true,
-  developmentStatus: "hideObsolete",
+  developmentStatus: "stable",
 };
 
 export const useFiltersContext = () => {
