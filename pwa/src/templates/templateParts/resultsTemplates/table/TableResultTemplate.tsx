@@ -17,7 +17,7 @@ import clsx from "clsx";
 import { getResultsUrl } from "../../../../services/getResultsUrl";
 import { getTypeFromSchemaRef } from "../../../../services/getTypeFromSchemaRef";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faLayerGroup, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../../layout/Layout";
 import { getStatusColor } from "../../../../services/getStatusColor";
 import { HorizontalOverflowWrapper } from "@conduction/components";
