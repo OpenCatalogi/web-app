@@ -13,6 +13,7 @@ import {
   Link,
   TableHeader,
   TableHeaderCell,
+  StatusBadge,
 } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
@@ -53,6 +54,7 @@ import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
+import { getStatusColor } from "../../services/getStatusColor";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -127,6 +129,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     },
   ];
 
+  const openModal = (): void => {
+    show();
+    setTimeout(() => {
+      const element = document.querySelectorAll('[class*="NotificationPopUp"]').item(0) as HTMLElement;
+      const elementRect = element.getBoundingClientRect();
+      const newWidth =
+        Math.ceil(elementRect.width) % 2 === 0 ? Math.ceil(elementRect.width) : Math.ceil(elementRect.width) + 1;
+      element.style.width = `${newWidth}px`;
+      element.style.maxWidth = `${newWidth}px`;
+    }, 210); // Give the modal some time to finish animating
+  };
+
   return (
     <Container layoutClassName={styles.container}>
       <Link
@@ -200,10 +214,15 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
-                    <FontAwesomeIcon icon={faInfoCircle} />
+                  <StatusBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Status"
+                    status={getStatusColor(_.upperFirst(_getComponent.data.developmentStatus) ?? "Onbekend")}
+                    className={styles.tagWidth}
+                  >
+                    <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
                     {t(_.upperFirst(_getComponent.data.developmentStatus))}
-                  </DataBadge>
+                  </StatusBadge>
                 )}
                 <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
                   <FontAwesomeIcon icon={faRepeat} />
@@ -244,9 +263,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.logoContainer}>
                 <img
                   src={
-                    imageHasValidSource(_getComponent.data?.logo)
-                      ? _getComponent.data?.logo
-                      : componentPlacholderLogo
+                    imageHasValidSource(_getComponent.data?.logo) ? _getComponent.data?.logo : componentPlacholderLogo
                   }
                   className={styles.logo}
                 />
@@ -312,7 +329,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                       <span className={styles.link}>
                         <Link
                           onClick={(e) => {
-                            e.preventDefault(), show();
+                            e.preventDefault(), openModal();
                           }}
                           href={`${_getComponent.data.id}/?openratingpopup`}
                         >
@@ -329,6 +346,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               }
               layoutClassName={styles.infoCard}
             />
+
             {isVisible && (
               <div className={styles.overlay}>
                 <NotificationPopUp
