@@ -244,8 +244,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.logoContainer}>
                 <img
                   src={
-                    imageHasValidSource(_getComponent.data?.embedded?.url?.embedded?.component?.logo)
-                      ? _getComponent.data?.embedded?.url?.embedded?.component?.logo
+                    imageHasValidSource(_getComponent.data?.logo)
+                      ? _getComponent.data?.logo
                       : componentPlacholderLogo
                   }
                   className={styles.logo}
@@ -319,7 +319,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           <Icon>
                             <IconArrowRight />
                           </Icon>
-                          Rating
+                          {t("Rating")}
                         </Link>
                       </span>
                     </>
@@ -333,7 +333,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.overlay}>
                 <NotificationPopUp
                   {...{ hide, isVisible }}
-                  title={`Rating (${rating?.rating}/${rating?.maxRating})`}
+                  title={`${t("Rating")} (${rating?.rating}/${rating?.maxRating})`}
                   customContent={<RatingOverview {...{ rating }} />}
                   primaryButton={{
                     label: t("Score calculation"),

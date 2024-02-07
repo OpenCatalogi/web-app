@@ -6,7 +6,7 @@ import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight } from "@tabler/icons-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faInfoCircle, faLayerGroup, faRepeat, faScroll, faStar } from "@fortawesome/free-solid-svg-icons";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
@@ -21,6 +21,7 @@ export interface ComponentCardProps {
   layer?: TCategories;
   categories: string[];
   tags: {
+    rating?: string;
     status?: string;
     installations: string;
     organization: {
@@ -85,6 +86,13 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       )}
 
       <div className={styles.tags}>
+        {tags.rating && (
+          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Rating")}>
+            <FontAwesomeIcon icon={faStar} />
+            {t(_.upperFirst(tags.rating))}
+          </DataBadge>
+        )}
+
         {tags.status && (
           <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
             <FontAwesomeIcon icon={faInfoCircle} />

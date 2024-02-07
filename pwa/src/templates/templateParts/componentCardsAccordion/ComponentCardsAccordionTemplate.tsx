@@ -248,6 +248,7 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
           layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
           categories={component.categories}
           tags={{
+            rating: component?.embedded?.rating?.rating ?? "Unknown",
             status: component.developmentStatus,
             installations: component.usedBy?.length.toString() ?? "0",
             organization: {

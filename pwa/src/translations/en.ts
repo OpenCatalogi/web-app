@@ -71,6 +71,8 @@ export const en = {
   Limit: "Limit",
   Email: "E-mail",
   Unavailable: "Unavailable",
+  Rating: "Rating",
+  Description: "Description",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",

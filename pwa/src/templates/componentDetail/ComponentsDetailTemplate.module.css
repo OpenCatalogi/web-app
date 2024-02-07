@@ -147,13 +147,16 @@
 }
 
 .popup {
-  margin: 0 auto;
+  width: 75vw;
   position: fixed;
-  left: 45%;
-  top: 25%;
-  margin-left: -250px;
-  margin-top: -250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 700;
+}
+
+.popup > h3 {
+  word-break: break-word;
 }
 
 .organizations {
@@ -258,6 +261,15 @@
     padding-block-start: unset;
     padding-inline-end: unset;
     padding-inline-start: unset;
+  }
+
+  .popup {
+    width: unset;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 700;
   }
 }
 
