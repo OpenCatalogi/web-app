@@ -155,4 +155,6 @@ export const nl = {
   "Type of support": "Type ondersteuning",
   "Unknown size": "Onbekende grootte",
   "Order by rating": "Sorteren op beoordeling",
+  "Left scroll button": "Linker scrollknop",
+  "Right scroll button": "Rechter scrollknop",
 };

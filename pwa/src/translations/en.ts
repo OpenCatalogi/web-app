@@ -152,4 +152,6 @@ export const en = {
   "Type of support": "Type of support",
   "Unknown size": "Unknown size",
   "Order by rating": "Order by rating",
+  "Left scroll button": "Left scroll button",
+  "Right scroll button": "Right scroll button",
 };
