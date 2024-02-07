@@ -107,7 +107,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
                     src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
                   />
                 ) : (
-                  <Logo variant="navbar" />
+                  <Logo onClick={() => navigate("/")} variant="navbar" />
                 )}
               </div>
             }

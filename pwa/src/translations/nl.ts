@@ -72,6 +72,9 @@ export const nl = {
   Limit: "Limiet",
   Email: "E-mail",
   Unavailable: "Niet beschikbaar",
+  Rating: "Beoordeling",
+  Points: "Punten",
+  Description: "Beschrijving",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -151,4 +154,7 @@ export const nl = {
   "Business function": "Bedrijfsfunctie",
   "Type of support": "Type ondersteuning",
   "Unknown size": "Onbekende grootte",
+  "Order by rating": "Sorteren op beoordeling",
+  "Left scroll button": "Linker scrollknop",
+  "Right scroll button": "Rechter scrollknop",
 };

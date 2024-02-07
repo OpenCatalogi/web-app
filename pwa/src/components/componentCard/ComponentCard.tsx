@@ -11,6 +11,7 @@ import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 import { navigate } from "gatsby";
+import { RatingIndicatorTemplate } from "../../templates/templateParts/ratingIndicator/RatingIndicatorTemplate";
 
 export interface ComponentCardProps {
   title: {
@@ -21,6 +22,10 @@ export interface ComponentCardProps {
   layer?: TCategories;
   categories: string[];
   tags: {
+    rating?: {
+      rating: number;
+      maxRating: number;
+    };
     status?: string;
     installations: string;
     organization: {
@@ -60,86 +65,98 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
       </CardHeader>
 
       <Paragraph className={styles.description}>{description}</Paragraph>
-      {layer && (
-        <div className={styles.layerTags}>
-          <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
-            <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Laag">
-              <FontAwesomeIcon icon={faLayerGroup} />
-              {t(_.upperFirst(layer ?? "unknown"))}
-            </DataBadge>
-          </div>
+      <div className={styles.content}>
+        <div className={styles.tagsContainer}>
+          {layer && (
+            <div className={styles.layerTags}>
+              <div className={styles[_.camelCase(t(_.upperFirst(`${layer ?? "unknown"} layer`)))]}>
+                <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Laag">
+                  <FontAwesomeIcon icon={faLayerGroup} />
+                  {t(_.upperFirst(layer ?? "unknown"))}
+                </DataBadge>
+              </div>
 
-          <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
-            {!!__categories &&
-              __categories.map(
-                (category: any, idx: number) =>
-                  category && (
-                    <DataBadge key={idx} data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Categorie">
-                      {category?.icon}
-                      {_.upperFirst(category?.title)}
-                    </DataBadge>
-                  ),
-              )}
-          </div>
-        </div>
-      )}
-
-      <div className={styles.tags}>
-        {tags.status && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
-            <FontAwesomeIcon icon={faInfoCircle} />
-            {t(_.upperFirst(tags.status))}
-          </DataBadge>
-        )}
-
-        <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal installaties">
-          <FontAwesomeIcon icon={faRepeat} />
-          {tags.installations}
-        </DataBadge>
-
-        {tags.organization?.name && (
-          <>
-            {!tags.organization.website && (
-              <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
-                <FontAwesomeIcon icon={faHouse} />
-                {tags.organization.name}
+              <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
+                {!!__categories &&
+                  __categories.map(
+                    (category: any, idx: number) =>
+                      category && (
+                        <DataBadge key={idx} data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Categorie">
+                          {category?.icon}
+                          {_.upperFirst(category?.title)}
+                        </DataBadge>
+                      ),
+                  )}
+              </div>
+            </div>
+          )}
+          <div className={styles.tags}>
+            {tags.status && (
+              <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
+                <FontAwesomeIcon icon={faInfoCircle} />
+                {t(_.upperFirst(tags.status))}
               </DataBadge>
             )}
 
-            {tags.organization.website && (
+            <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal installaties">
+              <FontAwesomeIcon icon={faRepeat} />
+              {tags.installations}
+            </DataBadge>
+
+            {tags.organization?.name && (
+              <>
+                {!tags.organization.website && (
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+                    <FontAwesomeIcon icon={faHouse} />
+                    {tags.organization.name}
+                  </DataBadge>
+                )}
+
+                {tags.organization.website && (
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Organisatie"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      open(tags?.organization?.website);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faHouse} />
+                    {tags.organization.name}
+                  </DataBadge>
+                )}
+              </>
+            )}
+            {tags.licence && (
+              <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
+                <FontAwesomeIcon icon={faScroll} />
+                {tags.licence}
+              </DataBadge>
+            )}
+            {tags.githubLink && (
               <DataBadge
                 data-tooltip-id={TOOLTIP_ID}
-                data-tooltip-content="Organisatie"
+                data-tooltip-content="GitHub"
                 onClick={(e) => {
                   e.stopPropagation();
-                  open(tags?.organization?.website);
+                  open(tags.githubLink);
                 }}
               >
-                <FontAwesomeIcon icon={faHouse} />
-                {tags.organization.name}
+                <GitHubLogo />
+                {t("Repository")}
               </DataBadge>
             )}
-          </>
-        )}
-        {tags.licence && (
-          <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
-            <FontAwesomeIcon icon={faScroll} />
-            {tags.licence}
-          </DataBadge>
-        )}
-        {tags.githubLink && (
-          <DataBadge
-            data-tooltip-id={TOOLTIP_ID}
-            data-tooltip-content="GitHub"
-            onClick={(e) => {
-              e.stopPropagation();
-              open(tags.githubLink);
-            }}
-          >
-            <GitHubLogo />
-            {t("Repository")}
-          </DataBadge>
-        )}
+          </div>
+        </div>
+        <div className={styles.ratingContainer}>
+          {tags.rating && (
+            <RatingIndicatorTemplate
+              layoutClassName={styles.ratingIndicatorContainer}
+              maxRating={tags.rating?.maxRating}
+              rating={tags.rating?.rating}
+            />
+          )}
+        </div>
       </div>
     </CardWrapper>
   );

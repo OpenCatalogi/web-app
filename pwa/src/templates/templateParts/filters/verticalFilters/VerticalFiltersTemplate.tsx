@@ -97,6 +97,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     }
   };
 
+  const isOrdered = (status: boolean) => {
+    if (status) {
+      setFilters({ ...filters, orderRating: false });
+    }
+    if (!status) {
+      setFilters({ ...filters, orderRating: true });
+    }
+  };
+
   React.useEffect(() => {
     //Prevents loop that puts user at top of page after scroll
     const allFilters = { ...filters, ...pagination };
@@ -138,6 +147,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const handleSetFormValues = (): void => {
     setValue("hideForks", filters.isForked);
+    setValue("orderRating", filters.orderRating);
   };
 
   React.useEffect(() => {
@@ -291,6 +301,16 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.isForked]);
 
   React.useEffect(() => {
+    if (filters.orderRating === true) return;
+    if (filters.orderRating === false) {
+      const checkBox = document.getElementById(`checkboxorderRating`) as HTMLInputElement | null;
+      if (checkBox && checkBox.checked === true) {
+        checkBox.click();
+      }
+    }
+  }, [filters.orderRating]);
+
+  React.useEffect(() => {
     if (filters.developmentStatus === statusRadioFilter) return;
     if (filters.developmentStatus === undefined) {
       setStatusRadioFilter("");
@@ -315,6 +335,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setFilters({
       ...filters,
       isForked: params.isForked ? params.isForked : false,
+      orderRating: params.orderRating ? params.orderRating : false,
       softwareType: params.softwareType ? params.softwareType : "",
       developmentStatus: params.developmentStatus ? params.developmentStatus : "",
       platforms: params.platforms ? [...params.platforms] : [],
@@ -401,6 +422,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             >
               <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
                 <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
+              </div>
+              <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
+                <InputCheckbox label={t("Order by rating")} name={"orderRating"} {...{ errors, control, register }} />
               </div>
             </Collapsible>
           </FormField>

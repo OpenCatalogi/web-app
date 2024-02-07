@@ -56,6 +56,22 @@
   color: var(--utrecht-table-row-hover-color);
 }
 
+.ratingIndicatorContainer {
+  height: 55px;
+  width: fit-content;
+}
+
+.ratingIndicatorContainer > svg {
+  margin-block-end: 0;
+}
+.ratingIndicatorContainer > svg > text {
+  font-size: 23px !important;
+}
+
+.ratingTableCell {
+  padding-block: 5px;
+}
+
 .name {
   display: block;
   width: 180px;
