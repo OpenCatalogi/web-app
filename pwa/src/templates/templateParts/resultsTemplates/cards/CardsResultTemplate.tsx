@@ -56,7 +56,10 @@ export const CardsResultTemplate: React.FC<CardsResultTemplateProps> = ({ compon
               layer={component.embedded.nl?.embedded?.commonground?.layerType ?? "Unknown"}
               categories={component.categories}
               tags={{
-                rating: component?.embedded?.rating?.rating ?? "Unknown",
+                rating: {
+                  rating: component.embedded?.rating?.rating,
+                  maxRating: component.embedded?.rating?.maxRating,
+                },
                 status: component.developmentStatus,
                 installations: component.usedBy?.length.toString() ?? "0",
                 organization: {

@@ -21,6 +21,7 @@ import { faInfoCircle, faLayerGroup, faStar } from "@fortawesome/free-solid-svg-
 import { TOOLTIP_ID } from "../../../../layout/Layout";
 import { getStatusColor } from "../../../../services/getStatusColor";
 import { HorizontalOverflowWrapper } from "@conduction/components";
+import { RatingIndicatorTemplate } from "../../ratingIndicator/RatingIndicatorTemplate";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -143,23 +144,20 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                   </StatusBadge>
                 </TableCell>
 
-                <TableCell>
-                  <DataBadge
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={t("Rating")}
-                    className={styles.tagWidth}
-                  >
-                    {component._self.schema.ref.includes("component.schema.json") ? (
-                      <>
-                        <span className={styles.icon}>
-                          <FontAwesomeIcon icon={faStar} />
-                        </span>
-                        {_.upperFirst(component.embedded?.rating?.rating ?? "Onbekend")}
-                      </>
+                <TableCell className={styles.ratingTableCell}>
+                  {component._self.schema.ref.includes("component.schema.json") ? (
+                    component.embedded?.rating?.rating ? (
+                      <RatingIndicatorTemplate
+                        layoutClassName={styles.ratingIndicatorContainer}
+                        maxRating={component.embedded?.rating?.maxRating}
+                        rating={component.embedded?.rating?.rating}
+                      />
                     ) : (
-                      "N.V.T."
-                    )}
-                  </DataBadge>
+                      t("No rating available")
+                    )
+                  ) : (
+                    "N.V.T."
+                  )}
                 </TableCell>
                 <TableCell>
                   <Link
