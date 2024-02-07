@@ -3,6 +3,7 @@ import { GlobalContext } from "./global";
 
 export interface IFiltersContext {
   isForked: boolean;
+  orderRating: boolean;
   organizationSearch?: string;
 
   _search?: string;
@@ -29,6 +30,7 @@ export const defaultFiltersContext: IFiltersContext = {
   _search: "",
   organizationSearch: "",
   isForked: true,
+  orderRating: true,
   developmentStatus: "stable",
 };
 

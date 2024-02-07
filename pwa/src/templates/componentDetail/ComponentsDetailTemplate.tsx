@@ -134,10 +134,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     setTimeout(() => {
       const element = document.querySelectorAll('[class*="NotificationPopUp"]').item(0) as HTMLElement;
       const elementRect = element.getBoundingClientRect();
+      const newHeight =
+        Math.ceil(elementRect.height) % 2 === 0 ? Math.ceil(elementRect.height) : Math.ceil(elementRect.height) + 1;
+      element.style.height = `${newHeight}px`;
+      element.style.maxHeight = `${newHeight}px`;
       const newWidth =
         Math.ceil(elementRect.width) % 2 === 0 ? Math.ceil(elementRect.width) : Math.ceil(elementRect.width) + 1;
       element.style.width = `${newWidth}px`;
-      element.style.maxWidth = `${newWidth}px`;
+      element.style.maxWidth = newWidth < 1170 ? `${newWidth}px` : `${1170}px`;
     }, 210); // Give the modal some time to finish animating
   };
 

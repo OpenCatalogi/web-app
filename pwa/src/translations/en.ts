@@ -151,4 +151,5 @@ export const en = {
   "Select result limit": "Select result limit",
   "Type of support": "Type of support",
   "Unknown size": "Unknown size",
+  "Order by rating": "Order by rating",
 };

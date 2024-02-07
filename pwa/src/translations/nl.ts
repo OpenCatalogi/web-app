@@ -154,4 +154,5 @@ export const nl = {
   "Business function": "Bedrijfsfunctie",
   "Type of support": "Type ondersteuning",
   "Unknown size": "Onbekende grootte",
+  "Order by rating": "Sorteren op beoordeling",
 };

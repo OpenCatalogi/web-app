@@ -153,6 +153,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 700;
+  max-width: 1170px !important;
 }
 
 .popup > h3 {
