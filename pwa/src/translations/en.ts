@@ -71,6 +71,8 @@ export const en = {
   Limit: "Limit",
   Email: "E-mail",
   Unavailable: "Unavailable",
+  Rating: "Rating",
+  Description: "Description",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -149,4 +151,7 @@ export const en = {
   "Select result limit": "Select result limit",
   "Type of support": "Type of support",
   "Unknown size": "Unknown size",
+  "Order by rating": "Order by rating",
+  "Left scroll button": "Left scroll button",
+  "Right scroll button": "Right scroll button",
 };
