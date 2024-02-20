@@ -39,7 +39,7 @@ spec:
                 name: {{ include "api-platform.fullname" . }}
                 items:
                     - key: "properties"
-                      path: "env.js"
+                      path: "common-ground.json"
 
       containers:
         - name: {{ .Chart.Name }}-pwa
@@ -49,8 +49,8 @@ spec:
           imagePullPolicy: {{ .Values.pwa.image.pullPolicy }}
           volumeMounts:
               -   name: env
-                  mountPath: "/usr/share/nginx/html/env.js"
-                  subPath: "env.js"
+                  mountPath: "/usr/share/nginx/html/configFiles/common-ground.json"
+                  subPath: "common-ground.json"
               -   mountPath: /var/cache/nginx/client_temp
                   name: tmpfs
               -   mountPath: /var/run

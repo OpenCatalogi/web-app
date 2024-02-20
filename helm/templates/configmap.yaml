@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "api-platform.fullname" . }}
+  labels:
+  {{- include "api-platform.labels" . | nindent 4 }}
+data:
+  {{- if .Values.gateway.enabled }}
+  gateway-location: https://{{ .Values.ingress.hostname }}
+  {{- else }}
+  gateway-location: {{ .Values.gateway.location }}
+  {{- end }}
+  properties: |-
+    {
+      "GATSBY_SHOW_THEME_SWITCHER": "false",
+
+      "GATSBY_GITHUB_REPOSITORY_NAME": "{{.Values.pwa.gatsby.repoName}}",
+      "GATSBY_USE_GITHUB_REPOSITORY_NAME_AS_PATH_PREFIX": "{{.Values.pwa.gatsby.repoNameAsPrefix}}",
+
+      "GATSBY_API_URL": "{{.Values.pwa.apiUrl}}",
+      "GATSBY_BASE_URL": "{{.Values.pwa.baseUrl}}",
+
+      "GATSBY_NL_DESIGN_THEME_CLASSNAME": "{{.Values.pwa.gatsby.theme}}",
+
+      "GATSBY_GITHUB_ORGANIZATION_URL": "{{.Values.pwa.gatsby.organizationUrl}}",
+      "GATSBY_FAVICON_URL": "{{.Values.pwa.gatsby.faviconUrl}}",
+
+      "GATSBY_PAGE_TITLE": "{{.Values.pwa.gatsby.pageTitle}}",
+
+      "GATSBY_HEADER_LOGO_URL": "",
+      "GATSBY_HEADER_SHOW_LOGIN": "{{.Values.pwa.gatsby.header.showLogin}}",
+      "GATSBY_HEADER_CONTENT": "{{.Values.pwa.gatsby.header.content}}",
+
+      "GATSBY_JUMBOTRON_TITLE": "{{.Values.pwa.jumbotron.title}}",
+      "GATSBY_JUMBOTRON_SUBTITLE": "{{.Values.pwa.jumbotron.subtitle}}",
+      "GATSBY_JUMBOTRON_IMAGE_PLACEMENT": "{{.Values.pwa.jumbotron.imagePlacement}}",
+      "GATSBY_JUMBOTRON_IMAGE_URL": "{{.Values.pwa.jumbotron.imageUrl}}",
+      "GATSBY_JUMBOTRON_DESCRIPTION": "{{.Values.pwa.jumbotron.description}}",
+      "GATSBY_JUMBOTRON_ISCARD": "{{.Values.pwa.jumbotron.isCard}}",
+      "GATSBY_JUMBOTRON_SEARCHFORM": "{{.Values.pwa.jumbotron.searchForm}}",
+      "GATSBY_JUMBOTRON_CONTAINER": "{{.Values.pwa.jumbotron.container}}",
+
+      "GATSBY_FOOTER_SHOW_CREATOR": "{{.Values.pwa.gatsby.footer.showCreator}}",
+      "GATSBY_FOOTER_SHOW_LOGO": "{{.Values.pwa.gatsby.footer.showLogo}}",
+      "GATSBY_FOOTER_LOGO_HREF": "{{.Values.pwa.gatsby.footer.logoHref}}",
+      "GATSBY_FOOTER_CONTENT": "{{.Values.pwa.gatsby.footer.content}}",
+      "GATSBY_FOOTER_CONTENT_HEADER": "{{.Values.pwa.gatsby.footer.contentHeader}}",
+
+      "GATSBY_OPTIONAL_START_PAGE": ""
+    }
