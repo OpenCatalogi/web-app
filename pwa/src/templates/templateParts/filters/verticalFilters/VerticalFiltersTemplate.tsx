@@ -56,7 +56,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
 
-  const [ratingFilter, setRatingFilter] = React.useState<number>(20);
+  const [ratingFilter, setRatingFilter] = React.useState<number>(16);
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
