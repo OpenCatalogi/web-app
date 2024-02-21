@@ -30,7 +30,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useOrganization } from "../../../../hooks/organization";
 import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
-import { FormField, FormLabel, RadioButton, Separator } from "@utrecht/component-library-react";
+import { FormField, FormLabel, RadioButton, Separator, Textbox } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
 import { useGatsbyContext } from "../../../../context/gatsby";
 import { navigate } from "gatsby";
@@ -44,6 +44,7 @@ interface VerticalFiltersTemplateProps {
 }
 
 export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = ({ filterSet, layoutClassName }) => {
+  const { t } = useTranslation();
   const { filters, setFilters } = useFiltersContext();
   const { screenSize, location } = useGatsbyContext();
   const { pagination, setPagination } = usePaginationContext();
@@ -55,7 +56,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
 
-  const { t } = useTranslation();
+  const [ratingFilter, setRatingFilter] = React.useState<number>(20);
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -65,6 +66,9 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpenMaintenanceType, setIsOpenMaintenanceType] = React.useState<boolean>(true);
   const [isOpenPlatforms, setIsOpenPlatforms] = React.useState<boolean>(true);
   const [isOpenSoftwareTypes, setIsOpenSoftwareTypes] = React.useState<boolean>(true);
+  const [isOpenRating, setIsOpenRating] = React.useState<boolean>(true);
+
+  const ratingFilterTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
@@ -358,6 +362,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
         : [],
       "embedded.nl.embedded.upl": params["embedded.nl.embedded.upl"] ? [...params["embedded.nl.embedded.upl"]] : [],
+      rating: params.rating ? params.rating : 20,
     });
     setPagination({
       ...pagination,
@@ -367,6 +372,20 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       ...resultDisplayLayout,
       componentsDisplayLayout: params.componentsDisplayLayout !== undefined ? params.componentsDisplayLayout : "table",
     });
+    setRatingFilter(params.rating);
+  };
+
+  const changeRatingFilter = (e: any) => {
+    setRatingFilter(e.target.value);
+
+    if (ratingFilterTimeout.current) clearTimeout(ratingFilterTimeout.current);
+
+    ratingFilterTimeout.current = setTimeout(() => {
+      setFilters({
+        ...filters,
+        rating: e.target.value,
+      });
+    }, 500);
   };
 
   const url = location.search;
@@ -423,8 +442,58 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
                 <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
               </div>
-              <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
-                <InputCheckbox label={t("Order by rating")} name={"orderRating"} {...{ errors, control, register }} />
+            </Collapsible>
+          </FormField>
+          <FormField>
+            <Collapsible
+              className={styles.collapsible}
+              openedClassName={styles.collapsible}
+              triggerClassName={styles.title}
+              triggerOpenedClassName={styles.title}
+              trigger={
+                <div className={styles.trigger}>
+                  <span className={styles.filterTitle}>
+                    {t("Rating")} <span className={styles.filterCountIndicator}></span>
+                  </span>
+                  <FontAwesomeIcon
+                    className={clsx(styles.toggleIcon, isOpenRating && styles.isOpen)}
+                    icon={faChevronRight}
+                  />
+                </div>
+              }
+              open={isOpenRating}
+              transitionTime={100}
+              onOpening={() => setIsOpenRating(true)}
+              onClosing={() => setIsOpenRating(false)}
+            >
+              <div className={styles.ratingContainer}>
+                <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
+                  <InputCheckbox label={t("Order by rating")} name={"orderRating"} {...{ errors, control, register }} />
+                </div>
+                <div>
+                  <span>
+                    {t("Rating")}: <span>{ratingFilter}</span>
+                  </span>
+                  <div className={styles.ratingSliderContainer}>
+                    <Textbox
+                      className={styles.ratingSlider}
+                      type="range"
+                      onChange={(e) => changeRatingFilter(e)}
+                      min={0}
+                      max={24}
+                      list="ratingDataList"
+                      value={ratingFilter}
+                      id="ratingSlider"
+                    />
+                    <datalist className={styles.dataList} id="ratingDataList">
+                      <option value="0" label="0"></option>
+                      <option value="6" label="6"></option>
+                      <option value="12" label="12"></option>
+                      <option value="18" label="18"></option>
+                      <option value="24" label="24"></option>
+                    </datalist>
+                  </div>
+                </div>
               </div>
             </Collapsible>
           </FormField>

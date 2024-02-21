@@ -23,7 +23,7 @@
 }
 
 .results {
-  flex: 3;
+  flex: 4;
 
   --utrecht-heading-4-font-weight: normal;
   --utrecht-heading-4-font-size: var(--web-app-font-size-md);
