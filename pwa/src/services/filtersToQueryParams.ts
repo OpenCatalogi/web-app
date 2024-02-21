@@ -20,7 +20,13 @@ export const filtersToQueryParams = (filters: any): string => {
         case "isForked":
           params += "&isBasedOn=IS NULL";
           break;
+        case "orderRating":
+          params += "&order[embedded.rating.rating]=desc";
+          break;
         case "componentsCurrentPage":
+          params += "";
+          break;
+        case "rating":
           params += "";
           break;
 
@@ -56,6 +62,7 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
     .map(([key, value]) => {
       if (value === null || value === undefined || value === "" || (Array.isArray(value) && _.isEmpty(value)))
         return null;
+      if (key === "embedded.rating.rating[>%3D]") return `rating=${value}`;
 
       if (pathname === "/components" || pathname === "/components/" || pathname === "/") {
         if (key === "landingDisplayLayout") return null;

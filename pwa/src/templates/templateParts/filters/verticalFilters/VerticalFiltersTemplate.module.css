@@ -93,6 +93,27 @@
   min-inline-size: var(--utrecht-radio-button-min-inline-size) !important;
 }
 
+.ratingContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.ratingSliderContainer {
+  margin-inline-start: 5px;
+}
+
+.ratingSlider {
+  accent-color: var(--open-catalogi-rating-rating-bar-color);
+  padding: 0px !important;
+  margin: 0px;
+  min-width: -webkit-fill-available;
+}
+
+.dataList {
+  display: flex;
+  justify-content: space-between;
+  writing-mode: horizontal-tb;
+}
+
 input[type="radio"]:disabled:checked {
   --_utrecht-radio-button-border-color: var(--utrecht-radio-button-checked-disabled-border-color) !important;
   --_utrecht-radio-button-border-width: var(--utrecht-radio-button-checked-disabled-border-width) !important;
