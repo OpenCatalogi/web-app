@@ -1,48 +1,58 @@
----
+publiccodeYmlVersion: "0.3"
 name: "OpenCatalogi web-app"
-url: "https://github.com/OpenCatalogi/web-app"
-landingURL: "https://github.com/OpenCatalogi/web-app"
-logo: "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/assets/images/logo_OpenCatalogi.png"
-
-publiccodeYmlVersion: 1.0
+url: https://github.com/OpenCatalogi/web-app
+platforms:
+  - web
+releaseDate: 2022-10-31
+categories:
+  - application-development
+developmentStatus: stable
 softwareType: "standalone/web"
-softwareVersion: 1.0
-developmentStatus: 'stable'
-releaseDate: '31/10/2022'
-applicationSuite: "opencatalogi"
-
-inputTypes: 
-  - application/json
-  - application/ld+json
-  - application/hal+json
-
-outputTypes:
-  - application/json
-  - application/ld+json
-  - application/hal+json
-
-platforms: 
-  - "web"
-categories: 
-  - "application-development"
-
-description: 
-  nl:
-    localisedName: "OpenCatalogi applicatie"
-    shortDescription: "Front-end applicatie voor de federatieve catalogus"
-    longDescription: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."    
-    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
+description:
   en:
     localisedName: "OpenCatalogi application"
     shortDescription: "Front-end application for the federative catalogues"
-    longDescription: "Een federative catalogues ‘OpenCatalogi’, fitting to the new information landscape of Common Ground. The OpenCatalogi concept offers an overview per chosen (individual) municipality and aggregated information from participating municipalities. Each participating municipality installs the OpenCatalogi software for filling the individual part. Municipalities use the publishing function of the individual part to publish reusable and exchangeable parts so that this becomes transparent for other participants of OpenCatalogi."    
+    longDescription: "Een federative catalogues ‘OpenCatalogi’, fitting to the new information landscape of Common Ground. The OpenCatalogi concept offers an overview per chosen (individual) municipality and aggregated information from participating municipalities. Each participating municipality installs the OpenCatalogi software for filling the individual part. Municipalities use the publishing function of the individual part to publish reusable and exchangeable parts so that this becomes transparent for other participants of OpenCatalogi."
     documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
-
-dependsOn:
-  open:
-    - name: common-gateway
-    - versionMin: 1.0.0
-    
+    features:
+      - Just one feature
+  nl:
+    localisedName: "OpenCatalogi applicatie"
+    shortDescription: "Front-end applicatie voor de federatieve catalogus"
+    longDescription: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."
+    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
+    features:
+      - Just one feature
+intendedAudience:
+  countries:
+    - nl
+  scope:
+    - government
+    - local-authorities
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: legal/authorsFile
+  repoOwner: OpenCatalogi
+maintenance:
+  type: internal
+  contractors:
+    - name: Conduction
+      until: 2035-01-01
+      email: info@conduction.nl
+      website: https://www.conduction.nl
+  contacts:
+    - name: Ruben van der Linde
+      email: info@conduction.nl
+      phone: 085 303 6840
+      affiliation: Conduction
+    - name: Remko Huisman
+      email: remko@conduction.nl
+      affiliation: Conduction
+localisation:
+  localisationReady: true
+  availableLanguages:
+    - en
+    - nl
 nl:
   commonground:
     layerType: interface
@@ -54,3 +64,15 @@ nl:
     bedrijfsservices:
       - Aanvraag advies
       - Bedrijfsservice Vergunningverlening
+dependsOn:
+  open:
+    - name: common-gateway
+    - versionMin: 1.0.0
+inputTypes:
+  - application/json
+  - application/ld+json
+  - application/hal+json
+outputTypes:
+  - application/json
+  - application/ld+json
+  - application/hal+json
