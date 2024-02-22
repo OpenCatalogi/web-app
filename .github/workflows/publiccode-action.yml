@@ -1,0 +1,17 @@
+name: My PublicCode Workflow
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update publiccode.yaml
+        uses: OpenCatalogi/publiccode-action@latest
