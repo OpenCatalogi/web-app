@@ -1,6 +1,12 @@
 publiccodeYmlVersion: "0.3"
 name: "OpenCatalogi web-app"
+applicationSuite: "opencatalogi"
 url: https://github.com/OpenCatalogi/web-app
+landingURL: "https://github.com/OpenCatalogi/web-app"
+isBasedOn: null
+softwareVersion: 1.0
+logo: "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/assets/images/logo_OpenCatalogi.png"
+monochromeLogo: null
 platforms:
   - web
 releaseDate: 2022-10-31
@@ -11,21 +17,32 @@ softwareType: "standalone/web"
 description:
   en:
     localisedName: "OpenCatalogi application"
+    genericName: "OpenCatalogi"
     shortDescription: "Front-end application for the federative catalogues"
     longDescription: "Een federative catalogues ‘OpenCatalogi’, fitting to the new information landscape of Common Ground. The OpenCatalogi concept offers an overview per chosen (individual) municipality and aggregated information from participating municipalities. Each participating municipality installs the OpenCatalogi software for filling the individual part. Municipalities use the publishing function of the individual part to publish reusable and exchangeable parts so that this becomes transparent for other participants of OpenCatalogi."
-    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
+    documentation: "https://documentatie.opencatalogi.nl/"
+    apiDocumentation: https://github.com/OpenCatalogi/api/blob/master/OAS.yaml
     features:
       - Just one feature
+    screenshots: []
+    videos: []
+    awards: []
   nl:
     localisedName: "OpenCatalogi applicatie"
+    genericName: "OpenCatalogi"
     shortDescription: "Front-end applicatie voor de federatieve catalogus"
     longDescription: "Een federatieve catalogus ‘OpenCatalogi’, passend in het nieuwe informatielandschap Common Ground. Het concept OpenCatalogi biedt overzicht per gekozen (individuele) gemeente en geaggregeerde informatie van deelnemende gemeenten. Elke deelnemende gemeente installeert de OpenCatalogi software ten behoeve van vulling van het individuele deel. Gemeenten gebruiken de publicatiefunctie van het individuele deel om herbruikbare en uitwisselbare onderdelen te publiceren zodat dit inzichtelijk wordt voor andere deelnemers van OpenCatalogi."
-    documentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
+    documentation: "https://documentatie.opencatalogi.nl/"
+    apiDocumentation: "https://github.com/OpenCatalogi/api/blob/master/OAS.yaml"
     features:
       - Just one feature
+    screenshots: []
+    videos: []
+    awards: []
 intendedAudience:
   countries:
     - nl
+  unsupportedCountries: []
   scope:
     - government
     - local-authorities
@@ -33,6 +50,7 @@ legal:
   license: EUPL-1.2
   mainCopyrightOwner: legal/authorsFile
   repoOwner: OpenCatalogi
+  authorsFile: null
 maintenance:
   type: internal
   contractors:
@@ -54,7 +72,10 @@ localisation:
     - en
     - nl
 nl:
+  countryExtensionVersion: null
   commonground:
+    intendedOrganisations: []
+    installationType: null
     layerType: interface
   gemma:
     layerType: interface
@@ -64,6 +85,10 @@ nl:
     bedrijfsservices:
       - Aanvraag advies
       - Bedrijfsservice Vergunningverlening
+    applicatiefunctie: null
+    model: null
+  upl: []
+roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
 dependsOn:
   open:
     - name: common-gateway
@@ -76,3 +101,5 @@ outputTypes:
   - application/json
   - application/ld+json
   - application/hal+json
+downloadUrls:
+  - https://github.com/OpenCatalogi/web-app/archive/refs/heads/main.zip
