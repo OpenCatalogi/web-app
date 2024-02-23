@@ -11,7 +11,9 @@ export default class Search {
   }
 
   public getSearch = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
-    let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
+    let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(
+      filters,
+    )}&embedded.rating.rating[>%3D]=${filters.rating}`;
 
     if (filters.orderRating === true) {
       endpoint += "&order[embedded.rating.rating]=desc";

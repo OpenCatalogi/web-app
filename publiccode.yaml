@@ -73,21 +73,21 @@ localisation:
     - nl
 nl:
   countryExtensionVersion: null
-  commonground:
-    intendedOrganisations: []
-    installationType: null
-    layerType: interface
-  gemma:
-    layerType: interface
-    bedrijfsfuncties:
-      - Algemene content publicatie
-      - Aanbesteding
-    bedrijfsservices:
-      - Aanvraag advies
-      - Bedrijfsservice Vergunningverlening
-    applicatiefunctie: null
-    model: null
-  upl: []
+  vng:
+    commonground:
+      intendedOrganisations: []
+      installationType: null
+      layerType: interface
+    gemma:
+      bedrijfsfuncties:
+        - Algemene content publicatie
+        - Aanbesteding
+      bedrijfsservices:
+        - Aanvraag advies
+        - Bedrijfsservice Vergunningverlening
+      applicatiefunctie: null
+      model: null
+    upl: []
 roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
 dependsOn:
   open:
