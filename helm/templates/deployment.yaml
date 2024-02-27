@@ -51,7 +51,7 @@ spec:
               -   name: env
                   mountPath: "/usr/share/nginx/html/env.js"
                   subPath: "env.js"
-              -   mountPath: /var/cache/nginx/client_temp
+              -   mountPath: /var/cache/nginx
                   name: tmpfs
               -   mountPath: /var/run
                   name: tmpfs2
