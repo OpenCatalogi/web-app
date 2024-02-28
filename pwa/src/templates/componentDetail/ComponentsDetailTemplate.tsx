@@ -297,9 +297,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
           </div>
           <div className={styles.cardsHeaderContainer}>
-            <Heading3 className={styles.test}>{t("Application")}</Heading3>
-            <Heading3 className={styles.test}>{t("Organization")}</Heading3>
-            <Heading3 className={styles.test}>{t("Rating")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("Application")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("Rating")}</Heading3>
           </div>
 
           <div className={styles.cardsContainer}>
