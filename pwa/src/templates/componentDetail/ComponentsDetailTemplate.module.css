@@ -74,14 +74,14 @@
 }
 
 .organizationCardContainer {
-  flex: 5;
+  flex: 1;
 }
 
 .noOrganizationCardAvailable {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 5;
+  flex: 1;
   background-color: var(--web-app-color-grey);
   padding-block-end: 50px;
   padding-block-start: 50px;
@@ -90,7 +90,7 @@
 }
 
 .infoCard {
-  flex: 2;
+  flex: 1;
 }
 .ratingIndicatorContainer {
   height: var(--web-app-component-rating-indicator-height);

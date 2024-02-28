@@ -55,6 +55,7 @@ import { IDisplaySwitchButton } from "@conduction/components/lib/components/disp
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
+import { ApplicationCard } from "../../components";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -98,6 +99,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   if (_getComponent.isError) return <>Something went wrong...</>;
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
+  const application = _getComponent?.data?.embedded?.applicationSuite;
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -222,7 +224,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Status"
                     status={getStatusColor(_.upperFirst(_getComponent.data.developmentStatus) ?? "Onbekend")}
-                    className={styles.tagWidth}
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
                     {t(_.upperFirst(_getComponent.data.developmentStatus))}
@@ -296,6 +297,22 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
+            {application && (
+              <ApplicationCard
+                key={application._self.id}
+                title={{ label: application.name, href: `/applications/${application._self.id}` }}
+                description={application.shortDescription}
+                tags={{
+                  organization: application?.embedded?.owner?.fullName,
+                  githubLink: application?.demoUrl,
+                }}
+                layoutClassName={styles.organizationCardContainer}
+              />
+            )}
+            {!_getComponent?.data?.embedded?.url?.embedded?.application && (
+              <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
+            )}
+
             {organisation && (
               <OrganizationCard
                 title={{

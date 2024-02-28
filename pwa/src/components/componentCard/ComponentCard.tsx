@@ -149,7 +149,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </div>
         </div>
         <div className={styles.ratingContainer}>
-          {tags.rating && (
+          {tags.rating && tags.rating?.rating && (
             <RatingIndicatorTemplate
               layoutClassName={styles.ratingIndicatorContainer}
               maxRating={tags.rating?.maxRating}

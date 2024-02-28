@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as styles from "./ApplicationCard.module.css";
+import clsx from "clsx";
 import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -19,13 +20,17 @@ export interface ApplicationCardProps {
     organization?: string;
     githubLink?: string;
   };
+  layoutClassName?: string;
 }
 
-export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, description, tags }) => {
+export const ApplicationCard: React.FC<ApplicationCardProps> = ({ title, description, tags, layoutClassName }) => {
   const { t } = useTranslation();
 
   return (
-    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
+    <CardWrapper
+      className={clsx([styles.container, layoutClassName && layoutClassName])}
+      onClick={() => navigate(title.href)}
+    >
       <CardHeader className={styles.cardHeader}>
         <CardHeaderTitle>
           <Link className={styles.titleLink} onClick={() => navigate(title.href)}>

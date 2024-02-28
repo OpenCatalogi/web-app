@@ -154,4 +154,5 @@ export const en = {
   "Order by rating": "Order by rating",
   "Left scroll button": "Left scroll button",
   "Right scroll button": "Right scroll button",
+  "No application found": "No application found",
 };

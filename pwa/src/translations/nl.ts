@@ -157,4 +157,5 @@ export const nl = {
   "Order by rating": "Sorteren op beoordeling",
   "Left scroll button": "Linker scrollknop",
   "Right scroll button": "Rechter scrollknop",
+  "No application found": "Geen applicatie gevonden",
 };
