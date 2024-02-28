@@ -166,11 +166,24 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.test {
+  flex: 1;
+}
+
 .cardsContainer {
   grid-template-columns: 1fr 1fr;
 }
 
 .cardsContainer > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.cardsHeaderContainer {
+  grid-template-columns: 1fr 1fr;
+  margin-block-end: var(--web-app-size-md) !important;
+}
+
+.cardsHeaderContainer > :not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
@@ -253,7 +266,16 @@
     gap: var(--web-app-size-xl);
   }
 
+  .cardsHeaderContainer {
+    display: flex;
+    gap: var(--web-app-size-xl);
+  }
+
   .cardsContainer > :not(:last-child) {
+    margin-block-end: 0;
+  }
+
+  .cardsHeaderContainer > :not(:last-child) {
     margin-block-end: 0;
   }
 

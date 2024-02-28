@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableHeaderCell,
   StatusBadge,
+  Heading3,
 } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
@@ -295,6 +296,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               )}
             </div>
           </div>
+          <div className={styles.cardsHeaderContainer}>
+            <Heading3 className={styles.test}>{t("Application")}</Heading3>
+            <Heading3 className={styles.test}>{t("Organization")}</Heading3>
+            <Heading3 className={styles.test}>{t("Rating")}</Heading3>
+          </div>
 
           <div className={styles.cardsContainer}>
             {application && (
@@ -309,7 +315,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 layoutClassName={styles.organizationCardContainer}
               />
             )}
-            {!_getComponent?.data?.embedded?.url?.embedded?.application && (
+            {!_getComponent?.data?.embedded?.applicationSuite && (
               <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
             )}
 
