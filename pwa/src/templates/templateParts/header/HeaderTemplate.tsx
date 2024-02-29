@@ -123,7 +123,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           ariaLabel={{ container: t("Jumbotron"), card: t("Jumbotron card") }}
           role="contentinfo"
           isCard={window.sessionStorage.getItem("JUMBOTRON_ISCARD") === "true"}
-          container={window.sessionStorage.getItem("JUMBOTRON_CONTAINER") === "true"}
+          container={true}
           subTitle={window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") ?? ""}
           description={
             window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") ||
