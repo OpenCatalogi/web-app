@@ -89,7 +89,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+            {window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
               <img
                 onClick={() => navigate("/")}
                 src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
@@ -123,7 +123,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           ariaLabel={{ container: t("Jumbotron"), card: t("Jumbotron card") }}
           role="contentinfo"
           isCard={window.sessionStorage.getItem("JUMBOTRON_ISCARD") === "true"}
-          container={window.sessionStorage.getItem("JUMBOTRON_CONTAINER") === "true"}
+          container={true}
           subTitle={window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") ?? ""}
           description={
             window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") ||
