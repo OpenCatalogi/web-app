@@ -37,6 +37,7 @@ import { navigate } from "gatsby";
 import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
 import { usePaginationContext } from "../../../../context/pagination";
 import { useResultDisplayLayoutContext } from "../../../../context/resultDisplayLayout";
+import { getCommongroundRating } from "../../../../services/getCommongroundRating";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -57,6 +58,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
 
   const [ratingFilter, setRatingFilter] = React.useState<number>(16);
+  const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<number>(1);
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -388,6 +390,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     }, 500);
   };
 
+  const changeCommongroundRatingFilter = (e: any) => {
+    setRatingFilterCommonground(e.target.value);
+
+    if (ratingFilterTimeout.current) clearTimeout(ratingFilterTimeout.current);
+
+    ratingFilterTimeout.current = setTimeout(() => {
+      setFilters({
+        ...filters,
+        ratingCommonground: e.target.value,
+      });
+    }, 500);
+  };
+
   const url = location.search;
   const [, params] = url.split("?");
   const parsedParams = qs.parse(params);
@@ -470,30 +485,55 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
                   <InputCheckbox label={t("Order by rating")} name={"orderRating"} {...{ errors, control, register }} />
                 </div>
-                <div>
-                  <span>
-                    {t("Rating")}: <span>{ratingFilter}</span>
-                  </span>
-                  <div className={styles.ratingSliderContainer}>
-                    <Textbox
-                      className={styles.ratingSlider}
-                      type="range"
-                      onChange={(e) => changeRatingFilter(e)}
-                      min={0}
-                      max={24}
-                      list="ratingDataList"
-                      value={ratingFilter}
-                      id="ratingSlider"
-                    />
-                    <datalist className={styles.dataList} id="ratingDataList">
-                      <option value="0" label="0"></option>
-                      <option value="6" label="6"></option>
-                      <option value="12" label="12"></option>
-                      <option value="18" label="18"></option>
-                      <option value="24" label="24"></option>
-                    </datalist>
+
+                {window.sessionStorage.getItem("FILTER_RATING") === "OpenCatalogi" && (
+                  <div>
+                    <span>
+                      {t("Rating")}: <span>{ratingFilter}</span>
+                    </span>
+                    <div className={styles.ratingSliderContainer}>
+                      <Textbox
+                        className={styles.ratingSlider}
+                        type="range"
+                        onChange={(e) => changeRatingFilter(e)}
+                        min={0}
+                        max={24}
+                        list="ratingDataList"
+                        value={ratingFilter}
+                        id="ratingSlider"
+                      />
+                      <datalist className={styles.dataList} id="ratingDataList">
+                        <option value="0" label="0"></option>
+                        <option value="6" label="6"></option>
+                        <option value="12" label="12"></option>
+                        <option value="18" label="18"></option>
+                        <option value="24" label="24"></option>
+                      </datalist>
+                    </div>
                   </div>
-                </div>
+                )}
+                {window.sessionStorage.getItem("FILTER_RATING") === "Commonground" && (
+                  <div>
+                    <div className={styles.ratingSliderContainer}>
+                      <Textbox
+                        className={styles.ratingSlider}
+                        type="range"
+                        onChange={(e) => changeCommongroundRatingFilter(e)}
+                        min={0}
+                        max={3}
+                        list="ratingDataList"
+                        value={ratingFilterCommonground}
+                        id="ratingSlider"
+                      />
+                      <datalist className={styles.dataList} id="ratingDataList">
+                        <option value="0" label="N.V.T."></option>
+                        <option value="1" label={t("Bronze")}></option>
+                        <option value="2" label={t("Silver")}></option>
+                        <option value="3" label={t("Gold")}></option>
+                      </datalist>
+                    </div>
+                  </div>
+                )}
               </div>
             </Collapsible>
           </FormField>

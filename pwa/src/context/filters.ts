@@ -6,6 +6,7 @@ export interface IFiltersContext {
   orderRating: boolean;
   rating: number;
   organizationSearch?: string;
+  ratingCommonground: number;
 
   _search?: string;
   softwareType?: string;
@@ -34,6 +35,7 @@ export const defaultFiltersContext: IFiltersContext = {
   orderRating: true,
   developmentStatus: "stable",
   rating: 16,
+  ratingCommonground: 1,
 };
 
 export const useFiltersContext = () => {

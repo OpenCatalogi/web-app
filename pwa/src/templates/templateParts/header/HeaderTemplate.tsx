@@ -89,7 +89,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            {window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
+            {window.sessionStorage.getItem("HEADER_LOGO_URL") &&
+            window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
               <img
                 onClick={() => navigate("/")}
                 src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}

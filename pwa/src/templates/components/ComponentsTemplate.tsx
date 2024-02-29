@@ -25,6 +25,7 @@ export const ComponentsTemplate: React.FC = () => {
   const { filters } = useFiltersContext();
   const { queryLimit, setQueryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
+  const [ratingFilter, setRatingFilter] = React.useState<string>("");
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
@@ -33,7 +34,12 @@ export const ComponentsTemplate: React.FC = () => {
     { ...filters, organizationSearch: "" },
     pagination.componentsCurrentPage,
     queryLimit.componentsSearchQueryLimit,
+    ratingFilter,
   ); // Ensure no refetch on resultDisplayLayout change
+
+  React.useEffect(() => {
+    setRatingFilter(window.sessionStorage.getItem("FILTER_RATING") ?? "OpenCatalogi");
+  }, []);
 
   React.useEffect(() => {
     if (queryLimit.previousComponentsSearchQueryLimit === queryLimit.componentsSearchQueryLimit) return;

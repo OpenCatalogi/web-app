@@ -39,11 +39,9 @@
 
 .layerAndCategoryContainer {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
   margin-block-end: var(--web-app-size-xs);
-}
-
-.layerAndCategoryContainer > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .tags {
@@ -74,14 +72,14 @@
 }
 
 .organizationCardContainer {
-  flex: 5;
+  flex: 1;
 }
 
 .noOrganizationCardAvailable {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 5;
+  flex: 1;
   background-color: var(--web-app-color-grey);
   padding-block-end: 50px;
   padding-block-start: 50px;
@@ -90,8 +88,14 @@
 }
 
 .infoCard {
-  flex: 2;
+  flex: 1;
 }
+
+.infoCardCommonground {
+  display: flex;
+  justify-content: center;
+}
+
 .ratingIndicatorContainer {
   height: var(--web-app-component-rating-indicator-height);
 }
@@ -166,11 +170,24 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.cardsHeading {
+  flex: 1;
+}
+
 .cardsContainer {
   grid-template-columns: 1fr 1fr;
 }
 
 .cardsContainer > :not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.cardsHeaderContainer {
+  grid-template-columns: 1fr 1fr;
+  margin-block-end: var(--web-app-size-md) !important;
+}
+
+.cardsHeaderContainer > :not(:last-child) {
   margin-block-end: var(--web-app-size-md);
 }
 
@@ -253,7 +270,16 @@
     gap: var(--web-app-size-xl);
   }
 
+  .cardsHeaderContainer {
+    display: flex;
+    gap: var(--web-app-size-xl);
+  }
+
   .cardsContainer > :not(:last-child) {
+    margin-block-end: 0;
+  }
+
+  .cardsHeaderContainer > :not(:last-child) {
     margin-block-end: 0;
   }
 
@@ -272,6 +298,35 @@
     transform: translate(-50%, -50%);
     z-index: 700;
   }
+}
+
+.commongroundRating {
+  border-radius: 50%;
+  height: var(--web-app-component-rating-indicator-height);
+  width: var(--web-app-component-rating-indicator-height);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Colors of commonground rating */
+
+.goldRating {
+  background-color: #d4af37;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
+}
+
+.silverRating {
+  background: #bcc6cc;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
+}
+
+.bronzeRating {
+  background: #a97142;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
 }
 
 /* Colors of the 5 layers */
