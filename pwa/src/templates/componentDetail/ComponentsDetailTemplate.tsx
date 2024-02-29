@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import _ from "lodash";
+import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import {
@@ -57,6 +58,7 @@ import { ExpandableLeadParagraph } from "../../components/expandableLeadParagrap
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
 import { ApplicationCard } from "../../components";
+import { getCommongroundRating } from "../../services/getCommongroundRating";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -147,6 +149,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
       element.style.maxWidth = newWidth < 1170 ? `${newWidth}px` : `${1170}px`;
     }, 300); // Give the modal some time to finish animating
   };
+
+  const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
 
   return (
     <Container layoutClassName={styles.container}>
@@ -296,6 +300,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               )}
             </div>
           </div>
+
           <div className={styles.cardsHeaderContainer}>
             <Heading3 className={styles.cardsHeading}>{t("Application")}</Heading3>
             <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
@@ -346,32 +351,54 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title=""
               content={
                 <>
-                  {_getComponent.data.embedded?.rating && (
+                  {ratingFilter === "OpenCatalogi" && (
                     <>
-                      <RatingIndicatorTemplate
-                        layoutClassName={styles.ratingIndicatorContainer}
-                        maxRating={rating.maxRating}
-                        rating={rating.rating}
-                      />
-                      <span className={styles.link}>
-                        <Link
-                          onClick={(e) => {
-                            e.preventDefault(), openModal();
-                          }}
-                          href={`${_getComponent.data.id}/?openratingpopup`}
-                        >
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Rating")}
-                        </Link>
-                      </span>
+                      {_getComponent.data.embedded?.rating && (
+                        <>
+                          <RatingIndicatorTemplate
+                            layoutClassName={styles.ratingIndicatorContainer}
+                            maxRating={rating.maxRating}
+                            rating={rating.rating}
+                          />
+                          <span className={styles.link}>
+                            <Link
+                              onClick={(e) => {
+                                e.preventDefault(), openModal();
+                              }}
+                              href={`${_getComponent.data.id}/?openratingpopup`}
+                            >
+                              <Icon>
+                                <IconArrowRight />
+                              </Icon>
+                              {t("Rating")}
+                            </Link>
+                          </span>
+                        </>
+                      )}
+                      {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
                     </>
                   )}
-                  {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
+                  {ratingFilter === "Commonground" && (
+                    <div
+                      className={clsx(
+                        styles[
+                          _.camelCase(
+                            t(
+                              `${getCommongroundRating(
+                                _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                              )} rating`,
+                            ),
+                          )
+                        ],
+                        styles.commongroundRating,
+                      )}
+                    >
+                      {t(getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating))}
+                    </div>
+                  )}
                 </>
               }
-              layoutClassName={styles.infoCard}
+              layoutClassName={clsx(styles.infoCard, ratingFilter === "Commonground" && styles.infoCardCommonground)}
             />
 
             {isVisible && (

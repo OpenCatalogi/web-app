@@ -75,6 +75,9 @@ export const nl = {
   Rating: "Beoordeling",
   Points: "Punten",
   Description: "Beschrijving",
+  Gold: "Goud",
+  Silver: "Zilver",
+  Bronze: "Brons",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -158,4 +161,6 @@ export const nl = {
   "Left scroll button": "Linker scrollknop",
   "Right scroll button": "Rechter scrollknop",
   "No application found": "Geen applicatie gevonden",
+  "Commonground rating": "Commonground beoordeling",
+  "No rating": "Geen beoordeling",
 };

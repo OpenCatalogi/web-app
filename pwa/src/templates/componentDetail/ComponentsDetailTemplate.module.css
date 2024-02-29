@@ -90,6 +90,12 @@
 .infoCard {
   flex: 1;
 }
+
+.infoCardCommonground {
+  display: flex;
+  justify-content: center;
+}
+
 .ratingIndicatorContainer {
   height: var(--web-app-component-rating-indicator-height);
 }
@@ -292,6 +298,35 @@
     transform: translate(-50%, -50%);
     z-index: 700;
   }
+}
+
+.commongroundRating {
+  border-radius: 50%;
+  height: var(--web-app-component-rating-indicator-height);
+  width: var(--web-app-component-rating-indicator-height);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Colors of commonground rating */
+
+.goldRating {
+  background-color: #d4af37;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
+}
+
+.silverRating {
+  background: #bcc6cc;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
+}
+
+.bronzeRating {
+  background: #a97142;
+  color: #ffffff;
+  font-size: var(--web-app-size-lg);
 }
 
 /* Colors of the 5 layers */

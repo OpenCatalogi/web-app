@@ -73,6 +73,9 @@ export const en = {
   Unavailable: "Unavailable",
   Rating: "Rating",
   Description: "Description",
+  Gold: "Gold",
+  Silver: "Silver",
+  Bronze: "Bronze",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -155,4 +158,6 @@ export const en = {
   "Left scroll button": "Left scroll button",
   "Right scroll button": "Right scroll button",
   "No application found": "No application found",
+  "Commonground rating": "Commonground rating",
+  "No rating": "No rating",
 };

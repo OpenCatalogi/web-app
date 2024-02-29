@@ -21,12 +21,17 @@ export const filtersToQueryParams = (filters: any): string => {
           params += "&isBasedOn=IS NULL";
           break;
         case "orderRating":
-          params += "&order[embedded.rating.rating]=desc";
+          window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
+            ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
+            : (params += "&order[embedded.rating.rating]=desc");
           break;
         case "componentsCurrentPage":
           params += "";
           break;
         case "rating":
+          params += "";
+          break;
+        case "ratingCommonground":
           params += "";
           break;
 

@@ -77,7 +77,12 @@
     align-self: center;
     flex: 1;
   }
+
   .ratingIndicatorContainer {
+    min-height: 55px;
+  }
+
+  .commongroundRating {
     min-height: 55px;
   }
 }
@@ -97,9 +102,40 @@
     align-self: center;
     flex: 1;
   }
+
   .ratingIndicatorContainer {
     min-height: 55px;
   }
+
+  .commongroundRating {
+    min-height: 55px;
+  }
+}
+
+.commongroundRating {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* Colors of commonground rating */
+
+.goldRating {
+  background-color: #d4af37;
+  color: #ffffff;
+}
+
+.silverRating {
+  background: #bcc6cc;
+  color: #ffffff;
+}
+
+.bronzeRating {
+  background: #a97142;
+  color: #ffffff;
 }
 
 /* Colors of the 5 layers */

@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
-import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import _ from "lodash";
+import clsx from "clsx";
+import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
 import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -12,6 +13,7 @@ import { TOOLTIP_ID } from "../../layout/Layout";
 import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components";
 import { navigate } from "gatsby";
 import { RatingIndicatorTemplate } from "../../templates/templateParts/ratingIndicator/RatingIndicatorTemplate";
+import { getCommongroundRating } from "../../services/getCommongroundRating";
 
 export interface ComponentCardProps {
   title: {
@@ -26,6 +28,9 @@ export interface ComponentCardProps {
       rating: number;
       maxRating: number;
     };
+    ratingCommonground?: {
+      rating: number;
+    };
     status?: string;
     installations: string;
     organization: {
@@ -39,6 +44,8 @@ export interface ComponentCardProps {
 
 export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, categories, description, tags }) => {
   const { t } = useTranslation();
+
+  const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
 
   const _layer: TCategories = t(_.upperFirst(layer));
 
@@ -149,13 +156,33 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           </div>
         </div>
         <div className={styles.ratingContainer}>
-          {tags.rating && tags.rating?.rating && (
-            <RatingIndicatorTemplate
-              layoutClassName={styles.ratingIndicatorContainer}
-              maxRating={tags.rating?.maxRating}
-              rating={tags.rating?.rating}
-            />
-          )}
+          <>
+            {ratingFilter === "OpenCatalogi" && (
+              <>
+                {tags.rating && tags.rating?.rating && (
+                  <RatingIndicatorTemplate
+                    layoutClassName={styles.ratingIndicatorContainer}
+                    maxRating={tags.rating?.maxRating}
+                    rating={tags.rating?.rating}
+                  />
+                )}
+              </>
+            )}
+            {ratingFilter === "Commonground" && (
+              <>
+                {tags.ratingCommonground && tags.ratingCommonground?.rating && (
+                  <div
+                    className={clsx(
+                      styles[_.camelCase(t(`${getCommongroundRating(tags.ratingCommonground.rating ?? "0")} rating`))],
+                      styles.commongroundRating,
+                    )}
+                  >
+                    {t(getCommongroundRating(tags.ratingCommonground.rating))}
+                  </div>
+                )}
+              </>
+            )}
+          </>
         </div>
       </div>
     </CardWrapper>

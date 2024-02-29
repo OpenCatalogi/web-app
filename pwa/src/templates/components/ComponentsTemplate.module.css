@@ -24,7 +24,7 @@
 
 .results {
   flex: 4;
-
+  min-width: 0;
   --utrecht-heading-4-font-weight: normal;
   --utrecht-heading-4-font-size: var(--web-app-font-size-md);
   --utrecht-heading-4-distanced-margin-block-end: var(--web-app-size-2xs);
