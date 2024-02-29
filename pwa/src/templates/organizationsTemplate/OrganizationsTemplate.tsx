@@ -19,14 +19,14 @@ import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout
 export const OrganizationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
-  const { queryLimit } = useQueryLimitContext();
+  const { queryLimit, setQueryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
   const _useOrganisation = useOrganization(queryClient);
   const getOrganisations = _useOrganisation.getAll(
-    { ...filters },
+    { ...filters, _search: "" },
     pagination.organizationCurrentPage,
     queryLimit.organizationsQueryLimit,
   );
@@ -53,7 +53,10 @@ export const OrganizationsTemplate: React.FC = () => {
   ];
 
   React.useEffect(() => {
+    if (queryLimit.previousOrganizationsQueryLimit === queryLimit.organizationsQueryLimit) return;
+
     setPagination({ ...pagination, organizationCurrentPage: 1 });
+    setQueryLimit({ ...queryLimit, previousOrganizationsQueryLimit: queryLimit.organizationsQueryLimit });
   }, [queryLimit.organizationsQueryLimit]);
 
   return (

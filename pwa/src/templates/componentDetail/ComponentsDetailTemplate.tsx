@@ -145,7 +145,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         Math.ceil(elementRect.width) % 2 === 0 ? Math.ceil(elementRect.width) : Math.ceil(elementRect.width) + 1;
       element.style.width = `${newWidth}px`;
       element.style.maxWidth = newWidth < 1170 ? `${newWidth}px` : `${1170}px`;
-    }, 210); // Give the modal some time to finish animating
+    }, 300); // Give the modal some time to finish animating
   };
 
   return (

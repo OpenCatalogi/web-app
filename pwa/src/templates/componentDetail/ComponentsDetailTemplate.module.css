@@ -39,11 +39,9 @@
 
 .layerAndCategoryContainer {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
   margin-block-end: var(--web-app-size-xs);
-}
-
-.layerAndCategoryContainer > *:not(:last-child) {
-  margin-inline-end: var(--web-app-size-xs);
 }
 
 .tags {
