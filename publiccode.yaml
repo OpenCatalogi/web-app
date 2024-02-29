@@ -1,6 +1,6 @@
 publiccodeYmlVersion: "0.3"
 name: "OpenCatalogi web-app"
-applicationSuite: "opencatalogi"
+applicationSuite: "OpenCatalogi Applicatie"
 url: https://github.com/OpenCatalogi/web-app
 landingURL: "https://github.com/OpenCatalogi/web-app"
 isBasedOn: null
