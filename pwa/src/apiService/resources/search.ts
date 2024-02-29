@@ -23,7 +23,7 @@ export default class Search {
       endpoint += "&isBasedOn=IS NULL";
     }
 
-    if (window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" || window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "false") {
+    if (window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" && window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "false") {
       endpoint += `&embedded.url.embedded.organisation.github=${window.sessionStorage.getItem(
         "GITHUB_ORGANIZATION_URL",
       )}`;
