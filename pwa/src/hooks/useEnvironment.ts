@@ -51,7 +51,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FOOTER_CONTENT", process.env.GATSBY_FOOTER_CONTENT ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT_HEADER", process.env.GATSBY_FOOTER_CONTENT_HEADER ?? "");
     window.sessionStorage.setItem("OPTIONAL_START_PAGE", process.env.GATSBY_OPTIONAL_START_PAGE ?? "");
-    window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "Commonground");
+    window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "OpenCatalogi");
 
     updateSessionStorage();
   };
