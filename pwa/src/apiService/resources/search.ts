@@ -18,7 +18,7 @@ export default class Search {
   ): Promise<any> => {
     let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
 
-    if (ratingFilter === "OpenCatalogi") {
+    if (ratingFilter !== "false" && ratingFilter === "OpenCatalogi") {
       endpoint += `&embedded.rating.rating[>%3D]=${filters.rating}`;
     }
 
@@ -26,7 +26,7 @@ export default class Search {
       endpoint += "&order[embedded.rating.rating]=desc";
     }
 
-    if (ratingFilter === "Commonground") {
+    if (ratingFilter !== "false" && ratingFilter === "Commonground") {
       endpoint += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`;
     }
 

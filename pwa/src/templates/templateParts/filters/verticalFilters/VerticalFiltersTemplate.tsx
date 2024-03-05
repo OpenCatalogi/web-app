@@ -37,7 +37,6 @@ import { navigate } from "gatsby";
 import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryParams";
 import { usePaginationContext } from "../../../../context/pagination";
 import { useResultDisplayLayoutContext } from "../../../../context/resultDisplayLayout";
-import { getCommongroundRating } from "../../../../services/getCommongroundRating";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -152,8 +151,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   };
 
   const handleSetFormValues = (): void => {
-    setValue("hideForks", filters.isForked);
-    setValue("orderRating", filters.orderRating);
+    window.sessionStorage.getItem("FILTER_FORKS") !== "false" && setValue("hideForks", filters.isForked);
+    window.sessionStorage.getItem("FILTER_RATING") !== "false" && setValue("orderRating", filters.orderRating);
   };
 
   React.useEffect(() => {
@@ -340,31 +339,62 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const handleSetFormValuesFromParams = (params: any): void => {
     setFilters({
       ...filters,
-      isForked: params.isForked ? params.isForked : false,
-      orderRating: params.orderRating ? params.orderRating : false,
-      softwareType: params.softwareType ? params.softwareType : "",
-      developmentStatus: params.developmentStatus ? params.developmentStatus : "",
-      platforms: params.platforms ? [...params.platforms] : [],
-      category: params.category ? params.category : "",
-      "embedded.nl.embedded.commonground.layerType": params["embedded.nl.embedded.commonground.layerType"]
-        ? [...params["embedded.nl.embedded.commonground.layerType"]]
-        : [],
-      "embedded.url.embedded.organisation.name": params["embedded.url.embedded.organisation.name"]
-        ? params["embedded.url.embedded.organisation.name"]
-        : undefined,
-      "embedded.maintenance.type": params["embedded.maintenance.type"] ? params["embedded.maintenance.type"] : "",
-      "embedded.legal.license": params["embedded.legal.license"] ? params["embedded.legal.license"] : "",
-      "embedded.nl.embedded.gemma.bedrijfsfuncties": params["embedded.nl.embedded.gemma.bedrijfsfuncties"]
-        ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
-        : [],
-      "embedded.nl.embedded.gemma.bedrijfsservices": params["embedded.nl.embedded.gemma.bedrijfsservices"]
-        ? [...params["embedded.nl.embedded.gemma.bedrijfsservices"]]
-        : [],
-      "embedded.nl.embedded.gemma.referentieComponenten": params["embedded.nl.embedded.gemma.referentieComponenten"]
-        ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
-        : [],
-      "embedded.nl.embedded.upl": params["embedded.nl.embedded.upl"] ? [...params["embedded.nl.embedded.upl"]] : [],
-      rating: params.rating ? params.rating : 20,
+      isForked: window.sessionStorage.getItem("FILTER_FORKS") !== "false" && params.isForked ? params.isForked : false,
+      orderRating:
+        window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.orderRating ? params.orderRating : false,
+      rating: window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.rating ? params.rating : 16,
+      ratingCommonground:
+        window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.ratingCommonground
+          ? params.ratingCommonground
+          : 1,
+      "embedded.nl.embedded.commonground.layerType":
+        window.sessionStorage.getItem("FILTER_LAYER") !== "false" &&
+        params["embedded.nl.embedded.commonground.layerType"]
+          ? [...params["embedded.nl.embedded.commonground.layerType"]]
+          : [],
+      "embedded.nl.embedded.upl":
+        window.sessionStorage.getItem("FILTER_UPL") !== "false" && params["embedded.nl.embedded.upl"]
+          ? [...params["embedded.nl.embedded.upl"]]
+          : [],
+      "embedded.url.embedded.organisation.name":
+        window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" &&
+        params["embedded.url.embedded.organisation.name"]
+          ? params["embedded.url.embedded.organisation.name"]
+          : undefined,
+      category: window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && params.category ? params.category : "",
+      platforms:
+        window.sessionStorage.getItem("FILTER_PLATFORMS") !== "false" && params.platforms ? [...params.platforms] : [],
+      developmentStatus:
+        window.sessionStorage.getItem("FILTER_STATUS") !== "false" && params.developmentStatus
+          ? params.developmentStatus
+          : "",
+      "embedded.maintenance.type":
+        window.sessionStorage.getItem("FILTER_MAINTENANCE_TYPES") !== "false" && params["embedded.maintenance.type"]
+          ? params["embedded.maintenance.type"]
+          : "",
+      "embedded.legal.license":
+        window.sessionStorage.getItem("FILTER_LICENSE") !== "false" && params["embedded.legal.license"]
+          ? params["embedded.legal.license"]
+          : "",
+      "embedded.nl.embedded.gemma.bedrijfsfuncties":
+        window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" &&
+        params["embedded.nl.embedded.gemma.bedrijfsfuncties"]
+          ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
+          : [],
+      softwareType:
+        window.sessionStorage.getItem("FILTER_SOFTWARE_TYPES") !== "false" && params.softwareType
+          ? params.softwareType
+          : "",
+      "embedded.nl.embedded.gemma.bedrijfsservices":
+        window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false" &&
+        params["embedded.nl.embedded.gemma.bedrijfsservices"]
+          ? [...params["embedded.nl.embedded.gemma.bedrijfsservices"]]
+          : [],
+      "embedded.nl.embedded.gemma.referentieComponenten":
+        window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false" &&
+        params["embedded.nl.embedded.gemma.referentieComponenten"]
+          ? [...params["embedded.nl.embedded.gemma.referentieComponenten"]]
+          : [],
     });
     setPagination({
       ...pagination,
@@ -434,425 +464,458 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         <Separator className={styles.separator} />
 
         <form className={styles.form}>
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>Extra</span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenExtra && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
+          {window.sessionStorage.getItem("FILTER_FORKS") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>Extra</span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenExtra && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenExtra}
+                transitionTime={100}
+                onOpening={() => setIsOpenExtra(true)}
+                onClosing={() => setIsOpenExtra(false)}
+              >
+                <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
+                  <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
                 </div>
-              }
-              open={isOpenExtra}
-              transitionTime={100}
-              onOpening={() => setIsOpenExtra(true)}
-              onClosing={() => setIsOpenExtra(false)}
-            >
-              <div className={styles.radioContainer} onChange={() => isForked(filters.isForked)}>
-                <InputCheckbox label={t("Hide forks")} name={"hideForks"} {...{ errors, control, register }} />
-              </div>
-            </Collapsible>
-          </FormField>
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    {t("Rating")} <span className={styles.filterCountIndicator}></span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenRating && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
-                </div>
-              }
-              open={isOpenRating}
-              transitionTime={100}
-              onOpening={() => setIsOpenRating(true)}
-              onClosing={() => setIsOpenRating(false)}
-            >
-              <div className={styles.ratingContainer}>
-                <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
-                  <InputCheckbox label={t("Order by rating")} name={"orderRating"} {...{ errors, control, register }} />
-                </div>
+              </Collapsible>
+            </FormField>
+          )}
 
-                {window.sessionStorage.getItem("FILTER_RATING") === "OpenCatalogi" && (
-                  <div>
-                    <span>
-                      {t("Rating")}: <span>{ratingFilter}</span>
+          {window.sessionStorage.getItem("FILTER_RATING") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      {t("Rating")} <span className={styles.filterCountIndicator}></span>
                     </span>
-                    <div className={styles.ratingSliderContainer}>
-                      <Textbox
-                        className={styles.ratingSlider}
-                        type="range"
-                        onChange={(e) => changeRatingFilter(e)}
-                        min={0}
-                        max={24}
-                        list="ratingDataList"
-                        value={ratingFilter}
-                        id="ratingSlider"
-                      />
-                      <datalist className={styles.dataList} id="ratingDataList">
-                        <option value="0" label="0"></option>
-                        <option value="6" label="6"></option>
-                        <option value="12" label="12"></option>
-                        <option value="18" label="18"></option>
-                        <option value="24" label="24"></option>
-                      </datalist>
-                    </div>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenRating && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
                   </div>
-                )}
-                {window.sessionStorage.getItem("FILTER_RATING") === "Commonground" && (
-                  <div>
-                    <div className={styles.ratingSliderContainer}>
-                      <Textbox
-                        className={styles.ratingSlider}
-                        type="range"
-                        onChange={(e) => changeCommongroundRatingFilter(e)}
-                        min={0}
-                        max={3}
-                        list="ratingDataList"
-                        value={ratingFilterCommonground}
-                        id="ratingSlider"
-                      />
-                      <datalist className={styles.dataList} id="ratingDataList">
-                        <option value="0" label="N.V.T."></option>
-                        <option value="1" label={t("Bronze")}></option>
-                        <option value="2" label={t("Silver")}></option>
-                        <option value="3" label={t("Gold")}></option>
-                      </datalist>
-                    </div>
+                }
+                open={isOpenRating}
+                transitionTime={100}
+                onOpening={() => setIsOpenRating(true)}
+                onClosing={() => setIsOpenRating(false)}
+              >
+                <div className={styles.ratingContainer}>
+                  <div className={styles.radioContainer} onChange={() => isOrdered(filters.orderRating)}>
+                    <InputCheckbox
+                      label={t("Order by rating")}
+                      name={"orderRating"}
+                      {...{ errors, control, register }}
+                    />
                   </div>
-                )}
-              </div>
-            </Collapsible>
-          </FormField>
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
+
+                  {window.sessionStorage.getItem("FILTER_RATING") === "Commonground" ? (
+                    <div>
+                      <div className={styles.ratingSliderContainer}>
+                        <Textbox
+                          className={styles.ratingSlider}
+                          type="range"
+                          onChange={(e) => changeCommongroundRatingFilter(e)}
+                          min={0}
+                          max={3}
+                          list="ratingDataList"
+                          value={ratingFilterCommonground}
+                          id="ratingSlider"
+                        />
+                        <datalist className={styles.dataList} id="ratingDataList">
+                          <option value="0" label="N.V.T."></option>
+                          <option value="1" label={t("Bronze")}></option>
+                          <option value="2" label={t("Silver")}></option>
+                          <option value="3" label={t("Gold")}></option>
+                        </datalist>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <span>
+                        {t("Rating")}: <span>{ratingFilter}</span>
+                      </span>
+                      <div className={styles.ratingSliderContainer}>
+                        <Textbox
+                          className={styles.ratingSlider}
+                          type="range"
+                          onChange={(e) => changeRatingFilter(e)}
+                          min={0}
+                          max={24}
+                          list="ratingDataList"
+                          value={ratingFilter}
+                          id="ratingSlider"
+                        />
+                        <datalist className={styles.dataList} id="ratingDataList">
+                          <option value="0" label="0"></option>
+                          <option value="6" label="6"></option>
+                          <option value="12" label="12"></option>
+                          <option value="18" label="18"></option>
+                          <option value="24" label="24"></option>
+                        </datalist>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              }
-              open={isOpenLayer}
-              transitionTime={100}
-              onOpening={() => setIsOpenLayer(true)}
-              onClosing={() => setIsOpenLayer(false)}
-            >
-              <div>
-                {layers.map((layer) => (
-                  <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
-                    <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+              </Collapsible>
+            </FormField>
+          )}
+
+          {window.sessionStorage.getItem("FILTER_LAYER") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
                   </div>
-                ))}
+                }
+                open={isOpenLayer}
+                transitionTime={100}
+                onOpening={() => setIsOpenLayer(true)}
+                onClosing={() => setIsOpenLayer(false)}
+              >
+                <div>
+                  {layers.map((layer) => (
+                    <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
+                      <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                    </div>
+                  ))}
+                </div>
+              </Collapsible>
+            </FormField>
+          )}
+
+          {window.sessionStorage.getItem("FILTER_UPL") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormULP"}>
+                <span className={styles.filterTitle}>
+                  UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+                </span>
+              </FormLabel>
+
+              <div className={styles.selectBorder}>
+                <SelectMultiple
+                  id="sortFormULP"
+                  name="upl"
+                  options={upls}
+                  {...{ errors, control, register }}
+                  ariaLabel={t("Select UPL")}
+                />
               </div>
-            </Collapsible>
-          </FormField>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormULP"}>
-              <span className={styles.filterTitle}>
-                UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
-              </span>
-            </FormLabel>
+          {window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormOrginisation"}>
+                <span className={styles.filterTitle}>
+                  Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
+                {getOrganisations.isLoading && <Skeleton height="50px" />}
 
-            <div className={styles.selectBorder}>
-              <SelectMultiple
-                id="sortFormULP"
-                name="upl"
-                options={upls}
-                {...{ errors, control, register }}
-                ariaLabel={t("Select UPL")}
-              />
-            </div>
-          </FormField>
+                {getOrganisations.isSuccess && (
+                  <SelectSingle
+                    id="sortFormOrginisation"
+                    isClearable
+                    options={organizations}
+                    name="organization"
+                    ariaLabel={t("Select organization")}
+                    {...{ errors, control, register }}
+                  />
+                )}
+              </div>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormOrginisation"}>
-              <span className={styles.filterTitle}>
-                Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              {getOrganisations.isLoading && <Skeleton height="50px" />}
-
-              {getOrganisations.isSuccess && (
+          {window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormCategory"}>
+                <span className={styles.filterTitle}>
+                  Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
                 <SelectSingle
-                  id="sortFormOrginisation"
+                  id="sortFormCategory"
                   isClearable
-                  options={organizations}
-                  name="organization"
-                  ariaLabel={t("Select organization")}
+                  name="category"
+                  options={categories}
+                  ariaLabel={t("Select category")}
                   {...{ errors, control, register }}
                 />
-              )}
-            </div>
-          </FormField>
+              </div>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormCategory"}>
-              <span className={styles.filterTitle}>
-                Categorie <span className={styles.filterCountIndicator}>({categories.length})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle
-                id="sortFormCategory"
-                isClearable
-                name="category"
-                options={categories}
-                ariaLabel={t("Select category")}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormField>
+          {window.sessionStorage.getItem("FILTER_PLATFORMS") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenPlatforms}
+                transitionTime={100}
+                onOpening={() => setIsOpenPlatforms(true)}
+                onClosing={() => setIsOpenPlatforms(false)}
+              >
+                {platforms.map((platform) => (
+                  <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
+                    <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
+                  </div>
+                ))}
+              </Collapsible>
+            </FormField>
+          )}
 
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
-                </div>
-              }
-              open={isOpenPlatforms}
-              transitionTime={100}
-              onOpening={() => setIsOpenPlatforms(true)}
-              onClosing={() => setIsOpenPlatforms(false)}
-            >
-              {platforms.map((platform) => (
-                <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
-                  <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
-                </div>
-              ))}
-            </Collapsible>
-          </FormField>
-
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
-                </div>
-              }
-              open={isOpenStatus}
-              transitionTime={100}
-              onOpening={() => setIsOpenStatus(true)}
-              onClosing={() => setIsOpenStatus(false)}
-            >
-              {statuses.map((status) => (
-                <div
-                  className={styles.radioContainer}
-                  onChange={() => setStatusRadioFilter(status.value)}
-                  key={status.value}
-                >
-                  <RadioButton
-                    className={styles.radioButton}
-                    value={status.value}
-                    checked={filters.developmentStatus === status.value}
-                  />
-                  <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
-                    {t(status.label)}
-                  </span>
-                </div>
-              ))}
-            </Collapsible>
-          </FormField>
-
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
-                </div>
-              }
-              open={isOpenMaintenanceType}
-              transitionTime={100}
-              onOpening={() => setIsOpenMaintenanceType(true)}
-              onClosing={() => setIsOpenMaintenanceType(false)}
-            >
-              {maintenanceTypes.map((maintenanceType) => (
-                <div
-                  className={styles.radioContainer}
-                  onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
-                  key={maintenanceType.value}
-                >
-                  <RadioButton
-                    className={styles.radioButton}
-                    value={maintenanceType.value}
-                    checked={filters["embedded.maintenance.type"] === maintenanceType.value}
-                  />
-
-                  <span
-                    className={styles.radioLabel}
-                    onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+          {window.sessionStorage.getItem("FILTER_STATUS") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Status <span className={styles.filterCountIndicator}>({statuses.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenStatus && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenStatus}
+                transitionTime={100}
+                onOpening={() => setIsOpenStatus(true)}
+                onClosing={() => setIsOpenStatus(false)}
+              >
+                {statuses.map((status) => (
+                  <div
+                    className={styles.radioContainer}
+                    onChange={() => setStatusRadioFilter(status.value)}
+                    key={status.value}
                   >
-                    {maintenanceType.label}
-                  </span>
-                </div>
-              ))}
-            </Collapsible>
-          </FormField>
+                    <RadioButton
+                      className={styles.radioButton}
+                      value={status.value}
+                      checked={filters.developmentStatus === status.value}
+                    />
+                    <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
+                      {t(status.label)}
+                    </span>
+                  </div>
+                ))}
+              </Collapsible>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormLicense"}>
-              <span className={styles.filterTitle}>
-                Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              <SelectSingle
-                id="sortFormLicense"
-                isClearable
-                name="license"
-                options={licenses}
-                ariaLabel={t("Select license")}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormField>
+          {window.sessionStorage.getItem("FILTER_MAINTENANCE_TYPES") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenMaintenanceType}
+                transitionTime={100}
+                onOpening={() => setIsOpenMaintenanceType(true)}
+                onClosing={() => setIsOpenMaintenanceType(false)}
+              >
+                {maintenanceTypes.map((maintenanceType) => (
+                  <div
+                    className={styles.radioContainer}
+                    onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    key={maintenanceType.value}
+                  >
+                    <RadioButton
+                      className={styles.radioButton}
+                      value={maintenanceType.value}
+                      checked={filters["embedded.maintenance.type"] === maintenanceType.value}
+                    />
 
-          <FormField id="sortFormCompanyFunction">
-            <FormLabel htmlFor={"sortFormCompanyFunction"}>
-              <span className={styles.filterTitle}>
-                Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple
-                id="sortFormLicense"
-                name="bedrijfsfuncties"
-                options={bedrijfsfuncties}
-                ariaLabel={t("Select business function")}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormField>
+                    <span
+                      className={styles.radioLabel}
+                      onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    >
+                      {maintenanceType.label}
+                    </span>
+                  </div>
+                ))}
+              </Collapsible>
+            </FormField>
+          )}
 
-          <FormField>
-            <Collapsible
-              className={styles.collapsible}
-              openedClassName={styles.collapsible}
-              triggerClassName={styles.title}
-              triggerOpenedClassName={styles.title}
-              trigger={
-                <div className={styles.trigger}>
-                  <span className={styles.filterTitle}>
-                    Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
-                  </span>
-                  <FontAwesomeIcon
-                    className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
-                    icon={faChevronRight}
-                  />
-                </div>
-              }
-              open={isOpenSoftwareTypes}
-              transitionTime={100}
-              onOpening={() => setIsOpenSoftwareTypes(true)}
-              onClosing={() => setIsOpenSoftwareTypes(false)}
-            >
-              {softwareTypes.map((softwareType) => (
-                <div
-                  className={styles.radioContainer}
-                  onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
-                  key={softwareType.value}
-                >
-                  <RadioButton
-                    className={styles.radioButton}
-                    value={softwareType.value}
-                    checked={filters.softwareType === softwareType.value}
-                  />
-                  <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
-                    {softwareType.label}
-                  </span>
-                </div>
-              ))}
-            </Collapsible>
-          </FormField>
+          {window.sessionStorage.getItem("FILTER_LICENSE") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormLicense"}>
+                <span className={styles.filterTitle}>
+                  Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
+                <SelectSingle
+                  id="sortFormLicense"
+                  isClearable
+                  name="license"
+                  options={licenses}
+                  ariaLabel={t("Select license")}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormServices"}>
-              <span className={styles.filterTitle}>
-                Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple
-                id="sortFormServices"
-                name="bedrijfsservices"
-                options={bedrijfsservices}
-                ariaLabel={t("Select business services")}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormField>
+          {window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" && (
+            <FormField id="sortFormCompanyFunction">
+              <FormLabel htmlFor={"sortFormCompanyFunction"}>
+                <span className={styles.filterTitle}>
+                  Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple
+                  id="sortFormLicense"
+                  name="bedrijfsfuncties"
+                  options={bedrijfsfuncties}
+                  ariaLabel={t("Select business function")}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormField>
+          )}
 
-          <FormField>
-            <FormLabel htmlFor={"sortFormReference"}>
-              <span className={styles.filterTitle}>
-                Referentie componenten
-                <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
-              </span>
-            </FormLabel>
-            <div className={styles.selectBorder}>
-              <SelectMultiple
-                id="sortFormReference"
-                name="referentieComponenten"
-                options={referentieComponenten}
-                ariaLabel={t("Select reference components")}
-                {...{ errors, control, register }}
-              />
-            </div>
-          </FormField>
+          {window.sessionStorage.getItem("FILTER_SOFTWARE_TYPES") !== "false" && (
+            <FormField>
+              <Collapsible
+                className={styles.collapsible}
+                openedClassName={styles.collapsible}
+                triggerClassName={styles.title}
+                triggerOpenedClassName={styles.title}
+                trigger={
+                  <div className={styles.trigger}>
+                    <span className={styles.filterTitle}>
+                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                    </span>
+                    <FontAwesomeIcon
+                      className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
+                      icon={faChevronRight}
+                    />
+                  </div>
+                }
+                open={isOpenSoftwareTypes}
+                transitionTime={100}
+                onOpening={() => setIsOpenSoftwareTypes(true)}
+                onClosing={() => setIsOpenSoftwareTypes(false)}
+              >
+                {softwareTypes.map((softwareType) => (
+                  <div
+                    className={styles.radioContainer}
+                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
+                    key={softwareType.value}
+                  >
+                    <RadioButton
+                      className={styles.radioButton}
+                      value={softwareType.value}
+                      checked={filters.softwareType === softwareType.value}
+                    />
+                    <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                      {softwareType.label}
+                    </span>
+                  </div>
+                ))}
+              </Collapsible>
+            </FormField>
+          )}
+
+          {window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormServices"}>
+                <span className={styles.filterTitle}>
+                  Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple
+                  id="sortFormServices"
+                  name="bedrijfsservices"
+                  options={bedrijfsservices}
+                  ariaLabel={t("Select business services")}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormField>
+          )}
+
+          {window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false" && (
+            <FormField>
+              <FormLabel htmlFor={"sortFormReference"}>
+                <span className={styles.filterTitle}>
+                  Referentie componenten
+                  <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
+                </span>
+              </FormLabel>
+              <div className={styles.selectBorder}>
+                <SelectMultiple
+                  id="sortFormReference"
+                  name="referentieComponenten"
+                  options={referentieComponenten}
+                  ariaLabel={t("Select reference components")}
+                  {...{ errors, control, register }}
+                />
+              </div>
+            </FormField>
+          )}
         </form>
       </Collapsible>
     </div>
