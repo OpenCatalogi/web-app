@@ -18,7 +18,7 @@ export const filtersToQueryParams = (filters: any): string => {
           value === "hideObsolete" ? (params += `&developmentStatus[ne]=obsolete`) : (params += `&${key}=${value}`);
           break;
         case "isForked":
-          params += "&isBasedOn=IS NULL";
+          window.sessionStorage.getItem("FILTER_FORKS") !== "false" ? (params += "&isBasedOn=IS NULL") : (params += "");
           break;
         case "orderRating":
           window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
@@ -76,6 +76,12 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
         if (key === "organizationsResultDisplayLayout") return null;
         if (key === "applicationCurrentPage") return null;
         if (key === "organizationCurrentPage") return null;
+
+        if (key === "isForked" && window.sessionStorage.getItem("FILTER_FORKS") === "false") return null;
+        if (key === "orderRating" && window.sessionStorage.getItem("FILTER_RATING") === "false") return null;
+        if (key === "rating" && window.sessionStorage.getItem("FILTER_RATING") !== "OpenCatalogi") return null;
+        if (key === "ratingCommonground" && window.sessionStorage.getItem("FILTER_RATING") !== "Commonground")
+          return null;
       }
 
       const formattedValue = Array.isArray(value)

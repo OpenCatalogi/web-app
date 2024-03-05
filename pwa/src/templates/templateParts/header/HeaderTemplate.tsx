@@ -102,13 +102,14 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+                {window.sessionStorage.getItem("HEADER_LOGO_URL") &&
+                window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
                   <img
                     onClick={() => navigate("/")}
                     src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
                   />
                 ) : (
-                  <Logo onClick={() => navigate("/")} variant="navbar" />
+                  <Logo variant="navbar" />
                 )}
               </div>
             }

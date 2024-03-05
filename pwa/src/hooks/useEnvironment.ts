@@ -51,7 +51,21 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FOOTER_CONTENT", process.env.GATSBY_FOOTER_CONTENT ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT_HEADER", process.env.GATSBY_FOOTER_CONTENT_HEADER ?? "");
     window.sessionStorage.setItem("OPTIONAL_START_PAGE", process.env.GATSBY_OPTIONAL_START_PAGE ?? "");
+
+    window.sessionStorage.setItem("FILTER_FORKS", process.env.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "OpenCatalogi");
+    window.sessionStorage.setItem("FILTER_LAYER", process.env.GATSBY_FILTER_LAYER ?? "");
+    window.sessionStorage.setItem("FILTER_UPL", process.env.GATSBY_FILTER_UPL ?? "");
+    window.sessionStorage.setItem("FILTER_ORGANISATION", process.env.GATSBY_FILTER_ORGANISATION ?? "");
+    window.sessionStorage.setItem("FILTER_CATEGORY", process.env.GATSBY_FILTER_CATEGORY ?? "");
+    window.sessionStorage.setItem("FILTER_PLATFORMS", process.env.GATSBY_FILTER_PLATFORMS ?? "");
+    window.sessionStorage.setItem("FILTER_STATUS", process.env.GATSBY_FILTER_STATUS ?? "");
+    window.sessionStorage.setItem("FILTER_MAINTENANCE_TYPES", process.env.GATSBY_FILTER_MAINTENANCE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_LICENSE", process.env.GATSBY_FILTER_LICENSE ?? "");
+    window.sessionStorage.setItem("FILTER_BUSINESS_FUNCTIONS", process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "");
+    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPES", process.env.GATSBY_FILTER_SOFTWARE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_BUSINESS_SERVICES", process.env.GATSBY_FILTER_BUSINESS_SERVICES ?? "");
+    window.sessionStorage.setItem("FILTER_REFERENCE_COMPONENTS", process.env.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "");
 
     updateSessionStorage();
   };
@@ -89,8 +103,21 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FOOTER_CONTENT", config.GATSBY_FOOTER_CONTENT ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT_HEADER", config.GATSBY_FOOTER_CONTENT_HEADER ?? "");
     window.sessionStorage.setItem("OPTIONAL_START_PAGE", config.GATSBY_OPTIONAL_START_PAGE ?? "");
-    window.sessionStorage.setItem("FILTER_RATING", config.GATSBY_FILTER_RATING ?? "OpenCatalogi");
 
+    window.sessionStorage.setItem("FILTER_FORKS", config.GATSBY_FILTER_FORKS ?? "");
+    window.sessionStorage.setItem("FILTER_RATING", config.GATSBY_FILTER_RATING ?? "OpenCatalogi");
+    window.sessionStorage.setItem("FILTER_LAYER", config.GATSBY_FILTER_LAYER ?? "");
+    window.sessionStorage.setItem("FILTER_UPL", config.GATSBY_FILTER_UPL ?? "");
+    window.sessionStorage.setItem("FILTER_ORGANISATION", config.GATSBY_FILTER_ORGANISATION ?? "");
+    window.sessionStorage.setItem("FILTER_CATEGORY", config.GATSBY_FILTER_CATEGORY ?? "");
+    window.sessionStorage.setItem("FILTER_PLATFORMS", config.GATSBY_FILTER_PLATFORMS ?? "");
+    window.sessionStorage.setItem("FILTER_STATUS", config.GATSBY_FILTER_STATUS ?? "");
+    window.sessionStorage.setItem("FILTER_MAINTENANCE_TYPES", config.GATSBY_FILTER_MAINTENANCE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_LICENSE", config.GATSBY_FILTER_LICENSE ?? "");
+    window.sessionStorage.setItem("FILTER_BUSINESS_FUNCTIONS", config.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "");
+    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPES", config.GATSBY_FILTER_SOFTWARE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_BUSINESS_SERVICES", config.GATSBY_FILTER_BUSINESS_SERVICES ?? "");
+    window.sessionStorage.setItem("FILTER_REFERENCE_COMPONENTS", config.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "");
     updateSessionStorage();
   };
 
