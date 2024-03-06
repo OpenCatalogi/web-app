@@ -93,21 +93,24 @@
   margin-block-end: var(--web-app-size-2xl);
 }
 
-.title {
-  color: var(--web-app-color-text-grey) !important;
+.title.title,
+.description,
+.subTitle,
+.textColor {
+  color: var(--utrecht-page-header-color) !important;
 }
 
 .subTitle {
-  color: var(--web-app-color-text-grey) !important;
+  position: relative;
+  font-style: italic;
+  display: block;
+  margin-block-end: var(--utrecht-space-block-md);
+  font-size: var(--utrecht-document-font-size);
 }
 
 .searchFormContainer {
   width: 100%;
   max-width: 650px;
-}
-
-.textColor {
-  color: var(--web-app-color-text-grey) !important;
 }
 
 .denhaag-link__icon {
