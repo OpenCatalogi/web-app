@@ -1,4 +1,4 @@
-name: Deploy the Product Page to GitHub Pages
+name: Deploy dev.opencatalogi.nl to GitHub Pages
 
 env: # Change these to your preferences any image url can also be a base encoded image
   GITHUB_PAGES_BRANCH: gh-pages
@@ -17,7 +17,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   LOGIN_REDIRECT: "vault"
   ADMIN_DASHBOARD_URL: "https://admin.opencatalogi.nl"
 
-  NL_DESIGN_THEME_CLASSNAME: rotterdam-theme
+  NL_DESIGN_THEME_CLASSNAME: opencatalogi-theme
   # GITHUB_ORGANIZATION_URL: ""
   FAVICON_URL: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
   PAGE_TITLE: "DevOpenCatalogi"
@@ -42,9 +42,27 @@ env: # Change these to your preferences any image url can also be a base encoded
   FOOTER_SHOW_CREATOR: "true"
   FOOTER_LOGO_URL: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
   FOOTER_CONTENT: "https://raw.githubusercontent.com/OpenCatalogi/web-app/25995205e1dbb043822d1c58c5c23f8e6f77ff7e/pwa/src/templates/templateParts/footer/FooterContent.json"
-  # options: "heading-1" | "heading-2" | "heading-3" | "heading-4" | "heading-5" 
-  # FOOTER_CONTENT_HEADER: "" 
-  
+  # options: "heading-1" | "heading-2" | "heading-3" | "heading-4" | "heading-5"
+  # FOOTER_CONTENT_HEADER: ""
+
+  FILTER_FORKS: "true"
+  # options: "false" | "OpenCatalogi" | "Commonground", default = "OpenCatalogi"
+  FILTER_RATING: "OpenCatalogi"
+  # options: "OpenCatalogi: (0-24)" | "Commonground": (0-4), default: "0"
+  FILTER_RATING_DEFAULT: "16"
+  # FILTER_LAYER: " "
+  # FILTER_UPL: " "
+  # FILTER_ORGANISATION: " "
+  # FILTER_CATEGORY: " "
+  # FILTER_PLATFORMS: " "
+  FILTER_STATUS: "stable"
+  # FILTER_MAINTENANCE_TYPES: " "
+  # FILTER_LICENSE: " "
+  # FILTER_BUSINESS_FUNCTIONS: " "
+  # FILTER_SOFTWARE_TYPE: " "
+  # FILTER_BUSINESS_SERVICES: " "
+  # FILTER_REFERENCE_COMPONENTS: " "
+
   OPTIONAL_START_PAGE: "false"
 
 on:
@@ -81,22 +99,37 @@ jobs:
           envkey_GATSBY_NL_DESIGN_THEME_CLASSNAME: ${{ env.NL_DESIGN_THEME_CLASSNAME }}
           # envkey_GATSBY_GITHUB_ORGANIZATION_URL: ${{ env.GITHUB_ORGANIZATION_URL }}
           envkey_GATSBY_FAVICON_URL: ${{ env.FAVICON_URL }}
-          envkey_GATSBY_PAGE_TITLE : ${{ env.PAGE_TITLE }}
+          envkey_GATSBY_PAGE_TITLE: ${{ env.PAGE_TITLE }}
           envkey_GATSBY_HEADER_LOGO_URL: ${{ env.HEADER_LOGO_URL }}
-          envkey_GATSBY_HEADER_SHOW_LOGIN : ${{ env.HEADER_SHOW_LOGIN }}
-          envkey_GATSBY_HEADER_CONTENT : ${{ env.HEADER_CONTENT }}
+          envkey_GATSBY_HEADER_SHOW_LOGIN: ${{ env.HEADER_SHOW_LOGIN }}
+          envkey_GATSBY_HEADER_CONTENT: ${{ env.HEADER_CONTENT }}
           # envkey_GATSBY_JUMBOTRON_TITLE: ${{ env.JUMBOTRON_TITLE }}
           # envkey_GATSBY_JUMBOTRON_SUBTITLE: ${{ env.JUMBOTRON_SUBTITLE }}
-          envkey_GATSBY_JUMBOTRON_IMAGE_PLACEMENT : ${{ env.JUMBOTRON_IMAGE_PLACEMENT }}
+          envkey_GATSBY_JUMBOTRON_IMAGE_PLACEMENT: ${{ env.JUMBOTRON_IMAGE_PLACEMENT }}
           # envkey_GATSBY_JUMBOTRON_IMAGE_URL : ${{ env.JUMBOTRON_IMAGE_URL }}
           # envkey_GATSBY_JUMBOTRON_DESCRIPTION : ${{ env.JUMBOTRON_DESCRIPTION }}
-          envkey_GATSBY_JUMBOTRON_ISCARD : ${{ env.JUMBOTRON_ISCARD }}
-          envkey_GATSBY_JUMBOTRON_SEARCHFORM : ${{ env.JUMBOTRON_SEARCHFORM }}
-          envkey_GATSBY_JUMBOTRON_CONTAINER : ${{ env.JUMBOTRON_CONTAINER }}
-          envkey_GATSBY_FOOTER_SHOW_CREATOR : ${{ env.FOOTER_SHOW_CREATOR }}
-          envkey_GATSBY_FOOTER_LOGO_URL : ${{ env.FOOTER_LOGO_URL }}
-          envkey_GATSBY_FOOTER_CONTENT : ${{ env.FOOTER_CONTENT }}
+          envkey_GATSBY_JUMBOTRON_ISCARD: ${{ env.JUMBOTRON_ISCARD }}
+          envkey_GATSBY_JUMBOTRON_SEARCHFORM: ${{ env.JUMBOTRON_SEARCHFORM }}
+          envkey_GATSBY_JUMBOTRON_CONTAINER: ${{ env.JUMBOTRON_CONTAINER }}
+          envkey_GATSBY_FOOTER_SHOW_CREATOR: ${{ env.FOOTER_SHOW_CREATOR }}
+          envkey_GATSBY_FOOTER_LOGO_URL: ${{ env.FOOTER_LOGO_URL }}
+          envkey_GATSBY_FOOTER_CONTENT: ${{ env.FOOTER_CONTENT }}
           # envkey_GATSBY_FOOTER_CONTENT_HEADER : ${{ env.FOOTER_CONTENT_HEADER }}
+          envkey_GATSBY_FILTER_FORKS: ${{ env.FILTER_FORKS }}
+          envkey_GATSBY_FILTER_RATING: ${{ env.FILTER_RATING }}
+          envkey_GATSBY_FILTER_RATING_DEFAULT: ${{ env.FILTER_RATING_DEFAULT }}
+          # envkey_GATSBY_FILTER_LAYER: ${{ env.FILTER_LAYER }}
+          # envkey_GATSBY_FILTER_UPL: ${{ env.FILTER_UPL }}
+          # envkey_GATSBY_FILTER_ORGANISATION: ${{ env.FILTER_ORGANISATION }}
+          # envkey_GATSBY_FILTER_CATEGORY: ${{ env.FILTER_CATEGORY }}
+          # envkey_GATSBY_FILTER_PLATFORMS: ${{ env.FILTER_PLATFORMS }}
+          envkey_GATSBY_FILTER_STATUS: ${{ env.FILTER_STATUS }}
+          # envkey_GATSBY_FILTER_MAINTENANCE_TYPES: ${{ env.FILTER_MAINTENANCE_TYPES }}
+          # envkey_GATSBY_FILTER_LICENSE: ${{ env.FILTER_LICENSE }}
+          # envkey_GATSBY_FILTER_BUSINESS_FUNCTIONS: ${{ env.FILTER_BUSINESS_FUNCTIONS }}
+          # envkey_GATSBY_FILTER_SOFTWARE_TYPE: ${{ env.FILTER_SOFTWARE_TYPE }}
+          # envkey_GATSBY_FILTER_BUSINESS_SERVICES: ${{ env.FILTER_BUSINESS_SERVICES }}
+          # envkey_GATSBY_FILTER_REFERENCE_COMPONENTS: ${{ env.FILTER_REFERENCE_COMPONENTS }}
           envkey_GATSBY_OPTIONAL_START_PAGE: ${{ env.OPTIONAL_START_PAGE }}
           directory: pwa/static
           file_name: .env.production

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import qs from "qs";
 import _ from "lodash";
 import { useForm } from "react-hook-form";
-import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../../../../context/filters";
+import { IFiltersContext, defaultFiltersContext, ratingDefault, useFiltersContext } from "../../../../context/filters";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import {
   upls,
@@ -54,10 +54,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
-  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
+  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>(
+    window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") ?? "",
+  );
 
-  const [ratingFilter, setRatingFilter] = React.useState<number>(16);
-  const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<number>(1);
+  const [ratingFilter, setRatingFilter] = React.useState<number>(ratingDefault);
+  const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<number>(ratingDefault);
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -342,11 +344,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       isForked: window.sessionStorage.getItem("FILTER_FORKS") !== "false" && params.isForked ? params.isForked : false,
       orderRating:
         window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.orderRating ? params.orderRating : false,
-      rating: window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.rating ? params.rating : 16,
+      rating:
+        window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.rating ? params.rating : ratingDefault,
       ratingCommonground:
         window.sessionStorage.getItem("FILTER_RATING") !== "false" && params.ratingCommonground
           ? params.ratingCommonground
-          : 1,
+          : ratingDefault,
       "embedded.nl.embedded.commonground.layerType":
         window.sessionStorage.getItem("FILTER_LAYER") !== "false" &&
         params["embedded.nl.embedded.commonground.layerType"]
@@ -382,7 +385,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
           : [],
       softwareType:
-        window.sessionStorage.getItem("FILTER_SOFTWARE_TYPES") !== "false" && params.softwareType
+        window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" && params.softwareType
           ? params.softwareType
           : "",
       "embedded.nl.embedded.gemma.bedrijfsservices":
@@ -835,7 +838,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             </FormField>
           )}
 
-          {window.sessionStorage.getItem("FILTER_SOFTWARE_TYPES") !== "false" && (
+          {window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") !== "false" && (
             <FormField>
               <Collapsible
                 className={styles.collapsible}
@@ -845,7 +848,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 trigger={
                   <div className={styles.trigger}>
                     <span className={styles.filterTitle}>
-                      Softwaretypes <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                      {filters.softwareType} Softwaretypes{" "}
+                      <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
                     </span>
                     <FontAwesomeIcon
                       className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
