@@ -27,17 +27,9 @@ env: # Change these to your preferences any image url can also be a base encoded
   HEADER_CONTENT: https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json
 
   # JUMBOTRON_TITLE: ""
-  # JUMBOTRON_SUBTITLE: ""
-  # options: "false" | "background" | "right"
-  JUMBOTRON_IMAGE_PLACEMENT: "false"
-  # JUMBOTRON_IMAGE_URL=
-  # JUMBOTRON_DESCRIPTION=
-  # options: "true" | "false"
-  JUMBOTRON_ISCARD: "false"
-  # options: "true" | "false"
-  JUMBOTRON_SEARCHFORM: "true"
-  # options: "true" | "false"
-  JUMBOTRON_CONTAINER: "true"
+  JUMBOTRON_SUBTITLE: "false"
+  # JUMBOTRON_DESCRIPTION: ""
+
 
   FOOTER_SHOW_CREATOR: "true"
   FOOTER_LOGO_URL: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
@@ -105,13 +97,8 @@ jobs:
           envkey_GATSBY_HEADER_SHOW_LOGIN: ${{ env.HEADER_SHOW_LOGIN }}
           envkey_GATSBY_HEADER_CONTENT: ${{ env.HEADER_CONTENT }}
           # envkey_GATSBY_JUMBOTRON_TITLE: ${{ env.JUMBOTRON_TITLE }}
-          # envkey_GATSBY_JUMBOTRON_SUBTITLE: ${{ env.JUMBOTRON_SUBTITLE }}
-          envkey_GATSBY_JUMBOTRON_IMAGE_PLACEMENT: ${{ env.JUMBOTRON_IMAGE_PLACEMENT }}
-          # envkey_GATSBY_JUMBOTRON_IMAGE_URL : ${{ env.JUMBOTRON_IMAGE_URL }}
+          envkey_GATSBY_JUMBOTRON_SUBTITLE: ${{ env.JUMBOTRON_SUBTITLE }}
           # envkey_GATSBY_JUMBOTRON_DESCRIPTION : ${{ env.JUMBOTRON_DESCRIPTION }}
-          envkey_GATSBY_JUMBOTRON_ISCARD: ${{ env.JUMBOTRON_ISCARD }}
-          envkey_GATSBY_JUMBOTRON_SEARCHFORM: ${{ env.JUMBOTRON_SEARCHFORM }}
-          envkey_GATSBY_JUMBOTRON_CONTAINER: ${{ env.JUMBOTRON_CONTAINER }}
           envkey_GATSBY_FOOTER_SHOW_CREATOR: ${{ env.FOOTER_SHOW_CREATOR }}
           envkey_GATSBY_FOOTER_LOGO_URL: ${{ env.FOOTER_LOGO_URL }}
           envkey_GATSBY_FOOTER_CONTENT: ${{ env.FOOTER_CONTENT }}
