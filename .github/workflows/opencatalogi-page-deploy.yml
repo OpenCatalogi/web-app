@@ -64,6 +64,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   # FILTER_REFERENCE_COMPONENTS: " "
 
   OPTIONAL_START_PAGE: "false"
+  ENV_VARS_SET: "true"
 
 on:
   push:
@@ -131,6 +132,7 @@ jobs:
           # envkey_GATSBY_FILTER_BUSINESS_SERVICES: ${{ env.FILTER_BUSINESS_SERVICES }}
           # envkey_GATSBY_FILTER_REFERENCE_COMPONENTS: ${{ env.FILTER_REFERENCE_COMPONENTS }}
           envkey_GATSBY_OPTIONAL_START_PAGE: ${{ env.OPTIONAL_START_PAGE }}
+          envkey_GATSBY_ENV_VARS_SET: ${{ env.ENV_VARS_SET }}
           directory: pwa/static
           file_name: .env.production
           fail_on_empty: true
