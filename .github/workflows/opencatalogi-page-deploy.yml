@@ -48,7 +48,7 @@ env: # Change these to your preferences any image url can also be a base encoded
   FILTER_FORKS: "true"
   # options: "false" | "OpenCatalogi" | "Commonground", default = "OpenCatalogi"
   FILTER_RATING: "OpenCatalogi"
-  # options: "OpenCatalogi: (0-24)" | "Commonground": (0-4), default: "16"
+  # options: "OpenCatalogi: (0-24)" | "Commonground": (0-4), default: "0"
   FILTER_RATING_DEFAULT: "16"
   # FILTER_LAYER: " "
   # FILTER_UPL: " "
