@@ -54,6 +54,7 @@ export const useEnvironment = () => {
 
     window.sessionStorage.setItem("FILTER_FORKS", process.env.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "OpenCatalogi");
+    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", process.env.FILTER_RATING_DEFAULT ?? "16");
     window.sessionStorage.setItem("FILTER_LAYER", process.env.GATSBY_FILTER_LAYER ?? "");
     window.sessionStorage.setItem("FILTER_UPL", process.env.GATSBY_FILTER_UPL ?? "");
     window.sessionStorage.setItem("FILTER_ORGANISATION", process.env.GATSBY_FILTER_ORGANISATION ?? "");
@@ -63,7 +64,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FILTER_MAINTENANCE_TYPES", process.env.GATSBY_FILTER_MAINTENANCE_TYPES ?? "");
     window.sessionStorage.setItem("FILTER_LICENSE", process.env.GATSBY_FILTER_LICENSE ?? "");
     window.sessionStorage.setItem("FILTER_BUSINESS_FUNCTIONS", process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "");
-    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPES", process.env.GATSBY_FILTER_SOFTWARE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPE", process.env.GATSBY_FILTER_SOFTWARE_TYPE ?? "");
     window.sessionStorage.setItem("FILTER_BUSINESS_SERVICES", process.env.GATSBY_FILTER_BUSINESS_SERVICES ?? "");
     window.sessionStorage.setItem("FILTER_REFERENCE_COMPONENTS", process.env.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "");
 
@@ -106,6 +107,7 @@ export const useEnvironment = () => {
 
     window.sessionStorage.setItem("FILTER_FORKS", config.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", config.GATSBY_FILTER_RATING ?? "OpenCatalogi");
+    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", config.FILTER_RATING_DEFAULT ?? "16");
     window.sessionStorage.setItem("FILTER_LAYER", config.GATSBY_FILTER_LAYER ?? "");
     window.sessionStorage.setItem("FILTER_UPL", config.GATSBY_FILTER_UPL ?? "");
     window.sessionStorage.setItem("FILTER_ORGANISATION", config.GATSBY_FILTER_ORGANISATION ?? "");
@@ -115,7 +117,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FILTER_MAINTENANCE_TYPES", config.GATSBY_FILTER_MAINTENANCE_TYPES ?? "");
     window.sessionStorage.setItem("FILTER_LICENSE", config.GATSBY_FILTER_LICENSE ?? "");
     window.sessionStorage.setItem("FILTER_BUSINESS_FUNCTIONS", config.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "");
-    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPES", config.GATSBY_FILTER_SOFTWARE_TYPES ?? "");
+    window.sessionStorage.setItem("FILTER_SOFTWARE_TYPE", config.GATSBY_FILTER_SOFTWARE_TYPE ?? "");
     window.sessionStorage.setItem("FILTER_BUSINESS_SERVICES", config.GATSBY_FILTER_BUSINESS_SERVICES ?? "");
     window.sessionStorage.setItem("FILTER_REFERENCE_COMPONENTS", config.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "");
     updateSessionStorage();
