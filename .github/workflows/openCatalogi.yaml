@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - development
+      - action-update
 
 permissions:
   contents: write
