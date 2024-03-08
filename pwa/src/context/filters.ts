@@ -104,13 +104,17 @@ export const defaultFiltersContext: IFiltersContext = {
       ? window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false"
         ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") ?? "")]
         : []
-      : [],
+      : process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS
+        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "")]
+        : [],
   "embedded.nl.embedded.gemma.bedrijfsservices":
     isWindow && window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES")
       ? window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false"
         ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") ?? "")]
         : []
-      : [],
+      : process.env.GATSBY_FILTER_BUSINESS_SERVICES
+        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_SERVICES ?? "")]
+        : [],
   "embedded.nl.embedded.gemma.referentieComponenten":
     isWindow && window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS")
       ? window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false"
