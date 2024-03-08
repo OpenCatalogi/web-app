@@ -18,25 +18,6 @@ export default class Search {
   ): Promise<any> => {
     let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
 
-    if (ratingFilter !== "false" && ratingFilter === "OpenCatalogi") {
-      endpoint += `&embedded.rating.rating[>%3D]=${filters.rating}`;
-    }
-
-    if (filters.orderRating === true && ratingFilter === "OpenCatalogi") {
-      endpoint += "&order[embedded.rating.rating]=desc";
-    }
-
-    if (ratingFilter !== "false" && ratingFilter === "Commonground") {
-      endpoint += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`;
-    }
-
-    if (filters.orderRating === true && ratingFilter === "Commonground") {
-      endpoint += "&order[embedded.nl.embedded.commonground.rating]=desc";
-    }
-
-    if (filters.isForked === true) {
-      endpoint += "&isBasedOn=IS NULL";
-    }
 
     if (
       window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" &&

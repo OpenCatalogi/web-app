@@ -2,7 +2,7 @@ import * as React from "react";
 import * as styles from "./ComponentCard.module.css";
 import _ from "lodash";
 import clsx from "clsx";
-import { DataBadge, Icon, Link, Paragraph } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge, Icon, Link, Paragraph, StatusBadge } from "@utrecht/component-library-react/dist/css-module";
 import { categories as _categories, TCategories } from "../../data/categories";
 import { useTranslation } from "react-i18next";
 import { IconArrowRight } from "@tabler/icons-react";
@@ -14,6 +14,7 @@ import { CardHeader, CardHeaderTitle, CardWrapper } from "@conduction/components
 import { navigate } from "gatsby";
 import { RatingIndicatorTemplate } from "../../templates/templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
+import { getStatusColor } from "../../services/getStatusColor";
 
 export interface ComponentCardProps {
   title: {
@@ -99,10 +100,18 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
           )}
           <div className={styles.tags}>
             {tags.status && (
-              <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Status">
-                <FontAwesomeIcon icon={faInfoCircle} />
-                {t(_.upperFirst(tags.status))}
-              </DataBadge>
+              <>
+                <StatusBadge
+                  data-tooltip-id={TOOLTIP_ID}
+                  data-tooltip-content="Status"
+                  status={getStatusColor(_.upperFirst(tags.status) ?? "Onbekend")}
+                >
+                  <span className={styles.icon}>
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                  </span>
+                  {t(_.upperFirst(tags.status ?? "Unknown"))}
+                </StatusBadge>
+              </>
             )}
 
             <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Aantal installaties">

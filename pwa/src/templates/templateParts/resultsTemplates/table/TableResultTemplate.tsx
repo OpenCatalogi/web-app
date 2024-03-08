@@ -102,10 +102,12 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
 
                 <TableCell>
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Component Type">
-                    {_.upperFirst(
-                      component._self.schema.ref.includes("component.schema.json")
-                        ? component.softwareType ?? "Onbekend"
-                        : "N.V.T.",
+                    {t(
+                      _.upperFirst(
+                        component._self.schema.ref.includes("component.schema.json")
+                          ? component.softwareType ?? "Unknown"
+                          : "N.V.T.",
+                      ),
                     )}
                   </DataBadge>
                 </TableCell>
@@ -122,7 +124,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                         <span className={styles.icon}>
                           <FontAwesomeIcon icon={faInfoCircle} />
                         </span>
-                        {_.upperFirst(component.developmentStatus ?? "Onbekend")}
+                        {t(_.upperFirst(component.developmentStatus ?? "Unknown"))}
                       </>
                     ) : (
                       "N.V.T."
