@@ -22,6 +22,7 @@ jobs:
         uses: OpenCatalogi/opencatalogi-action@latest
         with:
           github_repository_name_as_prefix: false
+          github_organization_url: "false"
           nl_design_theme_classname: "opencatalogi-theme"
           pull_from_branche: "development"
           start_page: "false"
