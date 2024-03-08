@@ -61,8 +61,7 @@ env: # Change these to your preferences any image url can also be a base encoded
 on:
   push:
     branches:
-      - main
-      - development
+      - never
 
 jobs:
   build:
