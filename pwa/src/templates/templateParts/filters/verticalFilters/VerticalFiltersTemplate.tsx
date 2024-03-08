@@ -848,7 +848,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 trigger={
                   <div className={styles.trigger}>
                     <span className={styles.filterTitle}>
-                      {filters.softwareType} Softwaretypes{" "}
+                      Softwaretypes
                       <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
                     </span>
                     <FontAwesomeIcon
