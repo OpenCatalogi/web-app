@@ -40,12 +40,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("HEADER_CONTENT", process.env.GATSBY_HEADER_CONTENT ?? "");
     window.sessionStorage.setItem("JUMBOTRON_TITLE", process.env.GATSBY_JUMBOTRON_TITLE ?? "");
     window.sessionStorage.setItem("JUMBOTRON_SUBTITLE", process.env.GATSBY_JUMBOTRON_SUBTITLE ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_IMAGE_PLACEMENT", process.env.GATSBY_JUMBOTRON_IMAGE_PLACEMENT ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_IMAGE_URL", process.env.GATSBY_JUMBOTRON_IMAGE_URL ?? "");
     window.sessionStorage.setItem("JUMBOTRON_DESCRIPTION", process.env.GATSBY_JUMBOTRON_DESCRIPTION ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_ISCARD", process.env.GATSBY_JUMBOTRON_ISCARD ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_SEARCHFORM", process.env.GATSBY_JUMBOTRON_SEARCHFORM ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_CONTAINER", process.env.GATSBY_JUMBOTRON_CONTAINER ?? "");
     window.sessionStorage.setItem("FOOTER_SHOW_CREATOR", process.env.GATSBY_FOOTER_SHOW_CREATOR ?? "");
     window.sessionStorage.setItem("FOOTER_LOGO_URL", process.env.GATSBY_FOOTER_LOGO_URL ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT", process.env.GATSBY_FOOTER_CONTENT ?? "");
@@ -54,7 +49,7 @@ export const useEnvironment = () => {
 
     window.sessionStorage.setItem("FILTER_FORKS", process.env.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "OpenCatalogi");
-    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", process.env.FILTER_RATING_DEFAULT ?? "16");
+    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", process.env.FILTER_RATING_DEFAULT ?? "");
     window.sessionStorage.setItem("FILTER_LAYER", process.env.GATSBY_FILTER_LAYER ?? "");
     window.sessionStorage.setItem("FILTER_UPL", process.env.GATSBY_FILTER_UPL ?? "");
     window.sessionStorage.setItem("FILTER_ORGANISATION", process.env.GATSBY_FILTER_ORGANISATION ?? "");
@@ -93,12 +88,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("HEADER_CONTENT", config.GATSBY_HEADER_CONTENT ?? "");
     window.sessionStorage.setItem("JUMBOTRON_TITLE", config.GATSBY_JUMBOTRON_TITLE ?? "");
     window.sessionStorage.setItem("JUMBOTRON_SUBTITLE", config.GATSBY_JUMBOTRON_SUBTITLE ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_IMAGE_PLACEMENT", config.GATSBY_JUMBOTRON_IMAGE_PLACEMENT ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_IMAGE_URL", config.GATSBY_JUMBOTRON_IMAGE_URL ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_DESCRIPTION", config.GATSBY_JUMBOTRON_DESCRIPTION ?? "");
     window.sessionStorage.setItem("JUMBOTRON_ISCARD", config.GATSBY_JUMBOTRON_ISCARD ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_SEARCHFORM", config.GATSBY_JUMBOTRON_SEARCHFORM ?? "");
-    window.sessionStorage.setItem("JUMBOTRON_CONTAINER", config.GATSBY_JUMBOTRON_CONTAINER ?? "");
     window.sessionStorage.setItem("FOOTER_SHOW_CREATOR", config.GATSBY_FOOTER_SHOW_CREATOR ?? "");
     window.sessionStorage.setItem("FOOTER_LOGO_URL", config.GATSBY_FOOTER_LOGO_URL ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT", config.GATSBY_FOOTER_CONTENT ?? "");
@@ -107,7 +97,7 @@ export const useEnvironment = () => {
 
     window.sessionStorage.setItem("FILTER_FORKS", config.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", config.GATSBY_FILTER_RATING ?? "OpenCatalogi");
-    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", config.FILTER_RATING_DEFAULT ?? "16");
+    window.sessionStorage.setItem("FILTER_RATING_DEFAULT", config.FILTER_RATING_DEFAULT ?? "");
     window.sessionStorage.setItem("FILTER_LAYER", config.GATSBY_FILTER_LAYER ?? "");
     window.sessionStorage.setItem("FILTER_UPL", config.GATSBY_FILTER_UPL ?? "");
     window.sessionStorage.setItem("FILTER_ORGANISATION", config.GATSBY_FILTER_ORGANISATION ?? "");

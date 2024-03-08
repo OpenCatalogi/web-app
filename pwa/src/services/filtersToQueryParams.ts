@@ -17,6 +17,19 @@ export const filtersToQueryParams = (filters: any): string => {
         case "developmentStatus":
           value === "hideObsolete" ? (params += `&developmentStatus[ne]=obsolete`) : (params += `&${key}=${value}`);
           break;
+        case "componentsCurrentPage":
+          params += "";
+          break;
+        case "rating":
+          window.sessionStorage.getItem("FILTER_RATING") === "OpenCatalogi"
+            ? (params += `&embedded.rating.rating[>%3D]=${filters.rating}`)
+            : (params += "");
+          break;
+        case "ratingCommonground":
+          window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
+            ? (params += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`)
+            : (params += "");
+          break;
         case "isForked":
           window.sessionStorage.getItem("FILTER_FORKS") !== "false" ? (params += "&isBasedOn=IS NULL") : (params += "");
           break;
@@ -25,16 +38,22 @@ export const filtersToQueryParams = (filters: any): string => {
             ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
             : (params += "&order[embedded.rating.rating]=desc");
           break;
-        case "componentsCurrentPage":
-          params += "";
+        default:
+          params += `&${key}=${value}`;
           break;
-        case "rating":
-          params += "";
-          break;
-        case "ratingCommonground":
-          params += "";
-          break;
+      }
+    }
 
+    if (typeof value === "boolean") {
+      switch (key) {
+        case "isForked":
+          window.sessionStorage.getItem("FILTER_FORKS") !== "false" ? (params += "&isBasedOn=IS NULL") : (params += "");
+          break;
+        case "orderRating":
+          window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
+            ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
+            : (params += "&order[embedded.rating.rating]=desc");
+          break;
         default:
           params += `&${key}=${value}`;
           break;

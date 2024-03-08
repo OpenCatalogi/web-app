@@ -62,6 +62,10 @@
   font-size: 23px !important;
 }
 
+.icon {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
 @media only screen and (min-width: 992px) {
   /* Desktop */
   .content {
