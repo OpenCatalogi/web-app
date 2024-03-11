@@ -10,20 +10,19 @@ export default class Search {
     this._instance = _instance;
   }
 
-  public getSearch = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
-    let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(
-      filters,
-    )}&embedded.rating.rating[>%3D]=${filters.rating}`;
+  public getSearch = async (
+    filters: IFiltersContext,
+    currentPage: number,
+    limit: number,
+    ratingFilter: string,
+  ): Promise<any> => {
+    let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
 
-    if (filters.orderRating === true) {
-      endpoint += "&order[embedded.rating.rating]=desc";
-    }
 
-    if (filters.isForked === true) {
-      endpoint += "&isBasedOn=IS NULL";
-    }
-
-    if (window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "") {
+    if (
+      window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" &&
+      window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "false"
+    ) {
       endpoint += `&embedded.url.embedded.organisation.github=${window.sessionStorage.getItem(
         "GITHUB_ORGANIZATION_URL",
       )}`;
