@@ -252,6 +252,9 @@ const Components: React.FC<ComponentsProps> = ({ components }) => {
               rating: component.embedded?.rating?.rating,
               maxRating: component.embedded?.rating?.maxRating,
             },
+            ratingCommonground: {
+              rating: component.embedded?.nl?.embedded?.commonground?.rating,
+            },
             status: component.developmentStatus,
             installations: component.usedBy?.length.toString() ?? "0",
             organization: {

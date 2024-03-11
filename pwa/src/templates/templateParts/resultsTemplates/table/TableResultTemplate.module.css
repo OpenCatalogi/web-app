@@ -91,6 +91,21 @@
 .icon {
   margin-inline-end: var(--web-app-size-2xs);
 }
+/* Colors of commonground rating */
+.goldRating {
+  --utrecht-badge-background-color: #d4af37;
+  --utrecht-badge-color: #ffffff;
+}
+
+.silverRating {
+  --utrecht-badge-background-color: #bcc6cc;
+  --utrecht-badge-color: #ffffff;
+}
+
+.bronzeRating {
+  --utrecht-badge-background-color: #a97142;
+  --utrecht-badge-color: #ffffff;
+}
 
 /* Colors of the 5 layers */
 .interactionLayer,

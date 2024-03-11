@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import _ from "lodash";
+import clsx from "clsx";
 import Skeleton from "react-loading-skeleton";
 import componentPlacholderLogo from "../../assets/images/grey.png";
 import {
@@ -14,6 +15,7 @@ import {
   TableHeader,
   TableHeaderCell,
   StatusBadge,
+  Heading3,
 } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
@@ -55,6 +57,8 @@ import { IDisplaySwitchButton } from "@conduction/components/lib/components/disp
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
+import { ApplicationCard } from "../../components";
+import { getCommongroundRating } from "../../services/getCommongroundRating";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -98,6 +102,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   if (_getComponent.isError) return <>Something went wrong...</>;
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
+  const application = _getComponent?.data?.embedded?.applicationSuite;
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -142,8 +147,10 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
         Math.ceil(elementRect.width) % 2 === 0 ? Math.ceil(elementRect.width) : Math.ceil(elementRect.width) + 1;
       element.style.width = `${newWidth}px`;
       element.style.maxWidth = newWidth < 1170 ? `${newWidth}px` : `${1170}px`;
-    }, 210); // Give the modal some time to finish animating
+    }, 300); // Give the modal some time to finish animating
   };
+
+  const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
 
   return (
     <Container layoutClassName={styles.container}>
@@ -222,7 +229,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Status"
                     status={getStatusColor(_.upperFirst(_getComponent.data.developmentStatus) ?? "Onbekend")}
-                    className={styles.tagWidth}
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
                     {t(_.upperFirst(_getComponent.data.developmentStatus))}
@@ -295,7 +301,29 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             </div>
           </div>
 
+          <div className={styles.cardsHeaderContainer}>
+            <Heading3 className={styles.cardsHeading}>{t("Application")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("Rating")}</Heading3>
+          </div>
+
           <div className={styles.cardsContainer}>
+            {application && (
+              <ApplicationCard
+                key={application._self.id}
+                title={{ label: application.name, href: `/applications/${application._self.id}` }}
+                description={application.shortDescription}
+                tags={{
+                  organization: application?.embedded?.owner?.fullName,
+                  githubLink: application?.demoUrl,
+                }}
+                layoutClassName={styles.organizationCardContainer}
+              />
+            )}
+            {!_getComponent?.data?.embedded?.applicationSuite && (
+              <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
+            )}
+
             {organisation && (
               <OrganizationCard
                 title={{
@@ -323,32 +351,54 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title=""
               content={
                 <>
-                  {_getComponent.data.embedded?.rating && (
+                  {(ratingFilter === "OpenCatalogi" || ratingFilter === "false") && (
                     <>
-                      <RatingIndicatorTemplate
-                        layoutClassName={styles.ratingIndicatorContainer}
-                        maxRating={rating.maxRating}
-                        rating={rating.rating}
-                      />
-                      <span className={styles.link}>
-                        <Link
-                          onClick={(e) => {
-                            e.preventDefault(), openModal();
-                          }}
-                          href={`${_getComponent.data.id}/?openratingpopup`}
-                        >
-                          <Icon>
-                            <IconArrowRight />
-                          </Icon>
-                          {t("Rating")}
-                        </Link>
-                      </span>
+                      {_getComponent.data.embedded?.rating && (
+                        <>
+                          <RatingIndicatorTemplate
+                            layoutClassName={styles.ratingIndicatorContainer}
+                            maxRating={rating.maxRating}
+                            rating={rating.rating}
+                          />
+                          <span className={styles.link}>
+                            <Link
+                              onClick={(e) => {
+                                e.preventDefault(), openModal();
+                              }}
+                              href={`${_getComponent.data.id}/?openratingpopup`}
+                            >
+                              <Icon>
+                                <IconArrowRight />
+                              </Icon>
+                              {t("Rating")}
+                            </Link>
+                          </span>
+                        </>
+                      )}
+                      {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
                     </>
                   )}
-                  {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
+                  {ratingFilter === "Commonground" && (
+                    <div
+                      className={clsx(
+                        styles[
+                          _.camelCase(
+                            t(
+                              `${getCommongroundRating(
+                                _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                              )} rating`,
+                            ),
+                          )
+                        ],
+                        styles.commongroundRating,
+                      )}
+                    >
+                      {t(getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating))}
+                    </div>
+                  )}
                 </>
               }
-              layoutClassName={styles.infoCard}
+              layoutClassName={clsx(styles.infoCard, ratingFilter === "Commonground" && styles.infoCardCommonground)}
             />
 
             {isVisible && (
