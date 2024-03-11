@@ -25,11 +25,19 @@
   min-width: fit-content !important;
 }
 
-.customErrorMessage {
+.customErrorMessage,
+.customSuccessMessage {
   display: block;
   margin-block-start: var(--web-app-size-xs);
-  color: var(--web-app-color-invalid);
   font-size: var(--web-app-font-size-sm);
+}
+
+.customErrorMessage {
+  color: var(--web-app-color-invalid);
+}
+
+.customSuccessMessage {
+  color: var(--web-app-color-success);
 }
 
 .submitButtonLoading:disabled svg {

@@ -163,4 +163,5 @@ export const nl = {
   "No application found": "Geen applicatie gevonden",
   "Commonground rating": "Commonground beoordeling",
   "No rating": "Geen beoordeling",
+  "The repository has been submitted successfully.": "De repository is met success verzonden."
 };

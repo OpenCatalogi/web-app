@@ -72,6 +72,11 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
                 )}
               </span>
             )}
+            {postRepository.isSuccess && (
+              <span className={styles.customSuccessMessage}>
+                {t("The repository has been submitted successfully.")}
+              </span>
+            )}
           </FormField>
 
           <Button

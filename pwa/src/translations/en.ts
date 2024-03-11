@@ -160,4 +160,5 @@ export const en = {
   "No application found": "No application found",
   "Commonground rating": "Commonground rating",
   "No rating": "No rating",
+  "The repository has been submitted successfully.": "The repository has been submitted successfully.",
 };
