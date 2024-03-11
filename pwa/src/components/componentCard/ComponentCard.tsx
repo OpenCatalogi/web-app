@@ -15,6 +15,7 @@ import { navigate } from "gatsby";
 import { RatingIndicatorTemplate } from "../../templates/templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
 import { getStatusColor } from "../../services/getStatusColor";
+import { CommongroundRatingBronze, CommongroundRatingGold, CommongroundRatingSilver } from "../../assets/svgs/CommongroundRatingImages";
 
 export interface ComponentCardProps {
   title: {
@@ -58,6 +59,21 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
         return _category.value === category;
       });
     });
+
+    const getCommongroundImage = (rating: number) => {
+      switch (rating) {
+        case 0:
+          return <CommongroundRatingBronze />;
+        case 1:
+          return <CommongroundRatingBronze />;
+        case 2:
+          return <CommongroundRatingSilver />;
+        case 3:
+          return <CommongroundRatingGold />;
+        default:
+          return <CommongroundRatingBronze />;
+      }
+    };
 
   return (
     <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
@@ -181,13 +197,21 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
               <>
                 {tags.ratingCommonground && tags.ratingCommonground?.rating && (
                   <div
-                    className={clsx(
-                      styles[_.camelCase(t(`${getCommongroundRating(tags.ratingCommonground.rating ?? "0")} rating`))],
-                      styles.commongroundRating,
-                    )}
-                  >
-                    {t(getCommongroundRating(tags.ratingCommonground.rating))}
-                  </div>
+                  className={clsx(
+                    styles[
+                      _.camelCase(
+                        t(
+                          `${getCommongroundRating(
+                            tags.ratingCommonground.rating ?? "0",
+                          )} rating`,
+                        ),
+                      )
+                    ],
+                    styles.commongroundRating,
+                  )}
+                >
+                  {getCommongroundImage(tags.ratingCommonground.rating ?? "0")}
+                </div>
                 )}
               </>
             )}

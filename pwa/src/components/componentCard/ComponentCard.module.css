@@ -116,30 +116,21 @@
   }
 }
 
-.commongroundRating {
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.commongroundRating > * {
+  height: 100px;
 }
 
 /* Colors of commonground rating */
-
-.goldRating {
-  background-color: #d4af37;
-  color: #ffffff;
+.goldRating > svg > g {
+  fill: #d4af37;
 }
 
-.silverRating {
-  background: #bcc6cc;
-  color: #ffffff;
+.silverRating > svg > g {
+  fill: #bcc6cc;
 }
 
-.bronzeRating {
-  background: #a97142;
-  color: #ffffff;
+.bronzeRating > svg > g {
+  fill: #a97142;
 }
 
 /* Colors of the 5 layers */
