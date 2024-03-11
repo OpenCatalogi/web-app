@@ -88,10 +88,10 @@ export const defaultFiltersContext: IFiltersContext = {
   platforms:
     isWindow && window.sessionStorage.getItem("FILTER_PLATFORMS")
       ? window.sessionStorage.getItem("FILTER_PLATFORMS") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_PLATFORMS") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_PLATFORMS") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_PLATFORMS !== "false" && process.env.GATSBY_FILTER_PLATFORMS !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_PLATFORMS ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_PLATFORMS ?? "null")]
         : [],
   category:
     isWindow && window.sessionStorage.getItem("FILTER_CATEGORY")
@@ -104,44 +104,44 @@ export const defaultFiltersContext: IFiltersContext = {
   "embedded.nl.embedded.commonground.layerType":
     isWindow && window.sessionStorage.getItem("FILTER_LAYER")
       ? window.sessionStorage.getItem("FILTER_LAYER") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_LAYER") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_LAYER") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_LAYER !== "false" && process.env.GATSBY_FILTER_LAYER !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_LAYER ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_LAYER ?? "null")]
         : [],
   "embedded.nl.embedded.gemma.bedrijfsfuncties":
     isWindow && window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS")
       ? window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS !== "false" && process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_FUNCTIONS ?? "null")]
         : [],
   "embedded.nl.embedded.gemma.bedrijfsservices":
     isWindow && window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES")
       ? window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_BUSINESS_SERVICES !== "false" && process.env.GATSBY_FILTER_BUSINESS_SERVICES !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_SERVICES ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_BUSINESS_SERVICES ?? "null")]
         : [],
   "embedded.nl.embedded.gemma.referentieComponenten":
     isWindow && window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS")
       ? window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_REFERENCE_COMPONENTS !== "false" &&
           process.env.GATSBY_FILTER_REFERENCE_COMPONENTS !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_REFERENCE_COMPONENTS ?? "null")]
         : [],
   "embedded.nl.embedded.gemma.applicatiefunctie": "",
   "embedded.nl.embedded.upl":
     isWindow && window.sessionStorage.getItem("FILTER_UPL")
       ? window.sessionStorage.getItem("FILTER_UPL") !== "false"
-        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_UPL") ?? "{}")]
+        ? [...JSON.parse(window.sessionStorage.getItem("FILTER_UPL") ?? "null")]
         : []
       : process.env.GATSBY_FILTER_UPL !== "false" && process.env.GATSBY_FILTER_UPL !== ""
-        ? [...JSON.parse(process.env.GATSBY_FILTER_UPL ?? "{}")]
+        ? [...JSON.parse(process.env.GATSBY_FILTER_UPL ?? "null")]
         : [],
   "embedded.maintenance.type":
     isWindow && window.sessionStorage.getItem("FILTER_MAINTENANCE_TYPES")
