@@ -59,6 +59,11 @@ import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
 import { ApplicationCard } from "../../components";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
+import {
+  CommongroundRatingGold,
+  CommongroundRatingSilver,
+  CommongroundRatingBronze,
+} from "../../assets/svgs/CommongroundRatingImages";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -151,6 +156,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   };
 
   const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
+
+  const getCommongroundImage = (rating: number) => {
+    switch (rating) {
+      case 0:
+        return <CommongroundRatingBronze />;
+      case 1:
+        return <CommongroundRatingBronze />;
+      case 2:
+        return <CommongroundRatingSilver />;
+      case 3:
+        return <CommongroundRatingGold />;
+      default:
+        return <CommongroundRatingBronze />;
+    }
+  };
 
   return (
     <Container layoutClassName={styles.container}>
@@ -379,22 +399,24 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </>
                   )}
                   {ratingFilter === "Commonground" && (
-                    <div
-                      className={clsx(
-                        styles[
-                          _.camelCase(
-                            t(
-                              `${getCommongroundRating(
-                                _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
-                              )} rating`,
-                            ),
-                          )
-                        ],
-                        styles.commongroundRating,
-                      )}
-                    >
-                      {t(getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating))}
-                    </div>
+                    <>
+                      <div
+                        className={clsx(
+                          styles[
+                            _.camelCase(
+                              t(
+                                `${getCommongroundRating(
+                                  _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                                )} rating`,
+                              ),
+                            )
+                          ],
+                          styles.commongroundRating,
+                        )}
+                      >
+                        {getCommongroundImage(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0")}
+                      </div>
+                    </>
                   )}
                 </>
               }
