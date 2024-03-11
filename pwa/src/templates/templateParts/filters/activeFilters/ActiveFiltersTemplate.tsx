@@ -31,7 +31,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
   });
 
   const softwareType = softwareTypes.find((softwareType) => {
-    return softwareType.value === filters.softwareType;
+    return softwareType.value === filters?.softwareType;
   });
 
   const licence = licenses.find((licence) => {
@@ -155,7 +155,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.softwareType && (
           <DataBadge onClick={() => setFilters({ ...filters, softwareType: undefined })}>
-            {softwareType?.label ?? ""}
+            {t(softwareType?.label ?? "")}
           </DataBadge>
         )}
 

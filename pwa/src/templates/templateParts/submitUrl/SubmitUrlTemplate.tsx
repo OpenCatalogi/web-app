@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as styles from "./SubmitUrlTemplate.module.css";
+import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useQueryClient } from "react-query";
 import { useGithub } from "../../../hooks/github";
 import { Button } from "@utrecht/component-library-react";
@@ -71,10 +72,19 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
                 )}
               </span>
             )}
+            {postRepository.isSuccess && (
+              <span className={styles.customSuccessMessage}>
+                {t("The repository has been submitted successfully.")}
+              </span>
+            )}
           </FormField>
 
-          <Button className={styles.submitButton} type="submit" disabled={loading || !watchInputUrl}>
-            <FontAwesomeIcon icon={faPaperPlane} />
+          <Button
+            className={clsx(styles.submitButton, loading && styles.submitButtonLoading)}
+            type="submit"
+            disabled={loading || !watchInputUrl}
+          >
+            <FontAwesomeIcon icon={!loading ? faPaperPlane : faSpinner} />
             {buttonLabel ?? t("Send")}
           </Button>
         </div>

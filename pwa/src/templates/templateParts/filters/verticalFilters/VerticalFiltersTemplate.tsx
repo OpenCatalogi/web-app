@@ -54,12 +54,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
-  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>(
-    window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") ?? "",
-  );
+  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
 
-  const [ratingFilter, setRatingFilter] = React.useState<number>(ratingDefault);
-  const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<number>(ratingDefault);
+  const [ratingFilter, setRatingFilter] = React.useState<string>(ratingDefault);
+  const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<string>(ratingDefault);
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -95,21 +93,21 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     formState: { errors },
   } = useForm();
 
-  const isForked = (status: boolean) => {
+  const isForked = (status: string) => {
     if (status) {
-      setFilters({ ...filters, isForked: false });
+      setFilters({ ...filters, isForked: "false" });
     }
     if (!status) {
-      setFilters({ ...filters, isForked: true });
+      setFilters({ ...filters, isForked: "true" });
     }
   };
 
-  const isOrdered = (status: boolean) => {
+  const isOrdered = (status: string) => {
     if (status) {
-      setFilters({ ...filters, orderRating: false });
+      setFilters({ ...filters, orderRating: "false" });
     }
     if (!status) {
-      setFilters({ ...filters, orderRating: true });
+      setFilters({ ...filters, orderRating: "true" });
     }
   };
 
@@ -298,8 +296,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.platforms]);
 
   React.useEffect(() => {
-    if (filters.isForked === true) return;
-    if (filters.isForked === false) {
+    if (filters.isForked === "true") return;
+    if (filters.isForked === "false") {
       const checkBox = document.getElementById(`checkboxhideForks`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -308,8 +306,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.isForked]);
 
   React.useEffect(() => {
-    if (filters.orderRating === true) return;
-    if (filters.orderRating === false) {
+    if (filters.orderRating === "true") return;
+    if (filters.orderRating === "false") {
       const checkBox = document.getElementById(`checkboxorderRating`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -332,7 +330,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters["embedded.maintenance.type"]]);
 
   React.useEffect(() => {
-    if (filters.softwareType === softwareTypeRadioFilter) return;
+      if (filters.softwareType === softwareTypeRadioFilter) return;
     if (filters.softwareType === undefined) {
       setSoftwareTypeRadioFilter("");
     }
@@ -848,7 +846,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 trigger={
                   <div className={styles.trigger}>
                     <span className={styles.filterTitle}>
-                      Softwaretypes
+                      Softwaretype
                       <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
                     </span>
                     <FontAwesomeIcon
@@ -874,7 +872,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                       checked={filters.softwareType === softwareType.value}
                     />
                     <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
-                      {softwareType.label}
+                      {t(softwareType.label)}
                     </span>
                   </div>
                 ))}

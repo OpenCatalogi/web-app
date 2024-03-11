@@ -25,11 +25,35 @@
   min-width: fit-content !important;
 }
 
-.customErrorMessage {
+.customErrorMessage,
+.customSuccessMessage {
   display: block;
   margin-block-start: var(--web-app-size-xs);
-  color: var(--web-app-color-invalid);
   font-size: var(--web-app-font-size-sm);
+}
+
+.customErrorMessage {
+  color: var(--web-app-color-invalid);
+}
+
+.customSuccessMessage {
+  color: var(--web-app-color-success);
+}
+
+.submitButtonLoading:disabled svg {
+  animation-name: spinner;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 1060px) {
