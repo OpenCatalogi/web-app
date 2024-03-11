@@ -41,4 +41,3 @@ jobs:
           filter_rating: "OpenCatalogi"
           filter_rating_default: "16"
           filter_status: "stable"
-          
