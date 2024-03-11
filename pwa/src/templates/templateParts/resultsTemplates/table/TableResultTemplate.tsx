@@ -45,7 +45,9 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
               <TableHeaderCell>{t("Layer")}</TableHeaderCell>
               <TableHeaderCell>{t("Software type")}</TableHeaderCell>
               <TableHeaderCell>{t("Status")}</TableHeaderCell>
-              <TableHeaderCell>{t("Rating")}</TableHeaderCell>
+              {window.sessionStorage.getItem("FILTER_RATING") !== "false" && (
+                <TableHeaderCell>{t("Rating")}</TableHeaderCell>
+              )}
               <TableHeaderCell />
             </TableRow>
           </TableHeader>
@@ -132,46 +134,48 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                   </StatusBadge>
                 </TableCell>
 
-                {window.sessionStorage.getItem("FILTER_RATING") === "OpenCatalogi" && (
-                  <TableCell className={styles.ratingTableCell}>
-                    {component._self.schema.ref.includes("component.schema.json") ? (
-                      component.embedded?.rating?.rating ? (
-                        <RatingIndicatorTemplate
-                          layoutClassName={styles.ratingIndicatorContainer}
-                          maxRating={component.embedded?.rating?.maxRating}
-                          rating={component.embedded?.rating?.rating}
-                        />
+                {window.sessionStorage.getItem("FILTER_RATING") !== "false" &&
+                  window.sessionStorage.getItem("FILTER_RATING") === "OpenCatalogi" && (
+                    <TableCell className={styles.ratingTableCell}>
+                      {component._self.schema.ref.includes("component.schema.json") ? (
+                        component.embedded?.rating?.rating ? (
+                          <RatingIndicatorTemplate
+                            layoutClassName={styles.ratingIndicatorContainer}
+                            maxRating={component.embedded?.rating?.maxRating}
+                            rating={component.embedded?.rating?.rating}
+                          />
+                        ) : (
+                          t("No rating available")
+                        )
                       ) : (
-                        t("No rating available")
-                      )
-                    ) : (
-                      "N.V.T."
-                    )}
-                  </TableCell>
-                )}
+                        "N.V.T."
+                      )}
+                    </TableCell>
+                  )}
 
-                {window.sessionStorage.getItem("FILTER_RATING") === "Commonground" && (
-                  <TableCell>
-                    <DataBadge
-                      data-tooltip-id={TOOLTIP_ID}
-                      data-tooltip-content={t("Commonground rating")}
-                      className={
-                        styles[
-                          _.camelCase(
-                            t(
-                              `${getCommongroundRating(
-                                component.embedded?.nl?.embedded?.commonground?.rating ?? "0",
-                              )} rating`,
-                            ),
-                          )
-                        ]
-                      }
-                    >
-                      <FontAwesomeIcon icon={faMedal} />
-                      {t(getCommongroundRating(component.embedded?.nl?.embedded?.commonground?.rating))}
-                    </DataBadge>
-                  </TableCell>
-                )}
+                {window.sessionStorage.getItem("FILTER_RATING") !== "false" &&
+                  window.sessionStorage.getItem("FILTER_RATING") === "Commonground" && (
+                    <TableCell>
+                      <DataBadge
+                        data-tooltip-id={TOOLTIP_ID}
+                        data-tooltip-content={t("Commonground rating")}
+                        className={
+                          styles[
+                            _.camelCase(
+                              t(
+                                `${getCommongroundRating(
+                                  component.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                                )} rating`,
+                              ),
+                            )
+                          ]
+                        }
+                      >
+                        <FontAwesomeIcon icon={faMedal} />
+                        {t(getCommongroundRating(component.embedded?.nl?.embedded?.commonground?.rating))}
+                      </DataBadge>
+                    </TableCell>
+                  )}
 
                 <TableCell>
                   <Link

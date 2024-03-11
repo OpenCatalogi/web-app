@@ -351,7 +351,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               title=""
               content={
                 <>
-                  {ratingFilter === "OpenCatalogi" && (
+                  {(ratingFilter === "OpenCatalogi" || ratingFilter === "false") && (
                     <>
                       {_getComponent.data.embedded?.rating && (
                         <>
