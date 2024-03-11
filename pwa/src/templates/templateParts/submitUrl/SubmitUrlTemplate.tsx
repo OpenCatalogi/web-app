@@ -59,7 +59,7 @@ export const SubmitUrlTemplate: React.FC<SubmitUrlTemplateProps> = ({ title, pla
             <Textbox
               id="submitUrlTextBox"
               {...register("html_url")}
-              invalid={errors["html_url"]}
+              invalid={!!errors["html_url"]}
               placeholder={t(placeholder)}
               disabled={loading}
               type="url"
