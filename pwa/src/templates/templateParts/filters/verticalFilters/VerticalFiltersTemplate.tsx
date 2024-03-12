@@ -92,21 +92,21 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     formState: { errors },
   } = useForm();
 
-  const isForked = (status: string) => {
+  const isForked = (status: boolean) => {
     if (status) {
-      setFilters({ ...filters, isForked: "false" });
+      setFilters({ ...filters, isForked: false });
     }
     if (!status) {
-      setFilters({ ...filters, isForked: "true" });
+      setFilters({ ...filters, isForked: true });
     }
   };
 
-  const isOrdered = (status: string) => {
+  const isOrdered = (status: boolean) => {
     if (status) {
-      setFilters({ ...filters, orderRating: "false" });
+      setFilters({ ...filters, orderRating: false });
     }
     if (!status) {
-      setFilters({ ...filters, orderRating: "true" });
+      setFilters({ ...filters, orderRating: true });
     }
   };
 
@@ -295,8 +295,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.platforms]);
 
   React.useEffect(() => {
-    if (filters.isForked === "true") return;
-    if (filters.isForked === "false") {
+    if (filters.isForked === true) return;
+    if (filters.isForked === false) {
       const checkBox = document.getElementById(`checkboxhideForks`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -305,8 +305,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.isForked]);
 
   React.useEffect(() => {
-    if (filters.orderRating === "true") return;
-    if (filters.orderRating === "false") {
+    if (filters.orderRating === true) return;
+    if (filters.orderRating === false) {
       const checkBox = document.getElementById(`checkboxorderRating`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
