@@ -57,7 +57,7 @@ import { IDisplaySwitchButton } from "@conduction/components/lib/components/disp
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
-import { ApplicationCard } from "../../components";
+import { ApplicationCard, ComponentCard } from "../../components";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
 import {
   CommongroundRatingGold,
@@ -480,6 +480,15 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
                   </BadgeCounter>
                 </Tab>
+                <Tab>
+                  <span>{t("Configurations")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {_getComponent.data.softwareType !== "configurationFiles" &&
+                    _getComponent.data.softwareType === "standalone/web"
+                      ? _getComponent.data?.embedded?.url?.embedded?.components?.length - 1 ?? 0
+                      : 0}
+                  </BadgeCounter>
+                </Tab>
               </TabList>
               <TabPanel>
                 <div className={styles.components}>
@@ -623,6 +632,51 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <ComponentCardsAccordionTemplate
                   components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                 />
+              </TabPanel>
+              <TabPanel>
+                <>
+                  {_getComponent.data?.embedded?.url?.embedded?.components?.length - 1 > 0 && (
+                    <div className={styles.organizations}>
+                      {_getComponent.data?.embedded?.url?.embedded?.components?.map((component: any) => {
+                        return component._self?.id !== _getComponent.data.id &&
+                          _getComponent.data.softwareType !== "configurationFiles" &&
+                          _getComponent.data.softwareType === "standalone/web" ? (
+                          <ComponentCard
+                            key={component._self?.id}
+                            title={{ label: component.name, href: `/components/${component.id ?? component._self.id}` }}
+                            description={component.embedded?.description?.shortDescription}
+                            layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+                            categories={component.categories}
+                            tags={{
+                              rating: {
+                                rating: component.embedded?.rating?.rating,
+                                maxRating: component.embedded?.rating?.maxRating,
+                              },
+                              ratingCommonground: {
+                                rating: component.embedded?.nl?.embedded?.commonground?.rating,
+                              },
+                              status: component.developmentStatus,
+                              installations: component.usedBy?.length.toString() ?? "0",
+                              organization: {
+                                name: component.embedded?.url?.embedded?.organisation?.name,
+                                website: component.embedded?.url?.embedded?.organisation?.website,
+                              },
+                              licence: component.embedded?.legal?.license,
+                              githubLink: component.embedded?.url?.url,
+                            }}
+                          />
+                        ) : (
+                          <></>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {(_getComponent.data?.embedded?.url?.embedded?.components?.length - 1 < 1 ||
+                    _getComponent.data.softwareType === "configurationFiles") && (
+                    <>Er zijn geen configuraties van dit component.</>
+                  )}
+                </>
               </TabPanel>
             </Tabs>
           </div>
