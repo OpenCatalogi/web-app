@@ -54,7 +54,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
-  const [softwareTypeRadioFilter, setSoftwareTypeRadioFilter] = React.useState<string>("");
 
   const [ratingFilter, setRatingFilter] = React.useState<string>(ratingDefault);
   const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<string>(ratingDefault);
@@ -93,27 +92,34 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     formState: { errors },
   } = useForm();
 
-  const isForked = (status: string) => {
+  const isForked = (status: boolean) => {
     if (status) {
-      setFilters({ ...filters, isForked: "false" });
+      setFilters({ ...filters, isForked: false });
     }
     if (!status) {
-      setFilters({ ...filters, isForked: "true" });
+      setFilters({ ...filters, isForked: true });
     }
   };
 
-  const isOrdered = (status: string) => {
+  const isOrdered = (status: boolean) => {
     if (status) {
-      setFilters({ ...filters, orderRating: "false" });
+      setFilters({ ...filters, orderRating: false });
     }
     if (!status) {
-      setFilters({ ...filters, orderRating: "true" });
+      setFilters({ ...filters, orderRating: true });
     }
+  };
+
+  const resetPaginationOnFilter = () => {
+    setPagination({
+      ...pagination,
+      componentsCurrentPage: 1,
+    });
   };
 
   React.useEffect(() => {
     //Prevents loop that puts user at top of page after scroll
-    const allFilters = { ...filters, ...pagination };
+    const allFilters = { ...filters, ...pagination, ...resultDisplayLayout };
     if (_.isEqual(allFilters, queryParams)) return;
 
     setQueryParams({ ...filters, ...pagination, ...resultDisplayLayout });
@@ -172,13 +178,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       "embedded.maintenance.type": maintenanceTypeRadioFilter,
     });
   }, [maintenanceTypeRadioFilter]);
-
-  React.useEffect(() => {
-    setFilters({
-      ...filters,
-      softwareType: softwareTypeRadioFilter,
-    });
-  }, [softwareTypeRadioFilter]);
 
   React.useEffect(() => {
     reset({
@@ -296,8 +295,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.platforms]);
 
   React.useEffect(() => {
-    if (filters.isForked === "true") return;
-    if (filters.isForked === "false") {
+    if (filters.isForked === true) return;
+    if (filters.isForked === false) {
       const checkBox = document.getElementById(`checkboxhideForks`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -306,8 +305,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters.isForked]);
 
   React.useEffect(() => {
-    if (filters.orderRating === "true") return;
-    if (filters.orderRating === "false") {
+    if (filters.orderRating === true) return;
+    if (filters.orderRating === false) {
       const checkBox = document.getElementById(`checkboxorderRating`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
@@ -328,13 +327,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       setMaintenanceTypeRadioFilter("");
     }
   }, [filters["embedded.maintenance.type"]]);
-
-  React.useEffect(() => {
-      if (filters.softwareType === softwareTypeRadioFilter) return;
-    if (filters.softwareType === undefined) {
-      setSoftwareTypeRadioFilter("");
-    }
-  }, [filters.softwareType]);
 
   const handleSetFormValuesFromParams = (params: any): void => {
     setFilters({
@@ -383,7 +375,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
           ? [...params["embedded.nl.embedded.gemma.bedrijfsfuncties"]]
           : [],
       softwareType:
-        window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" && params.softwareType
+        window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") !== "false" && params.softwareType
           ? params.softwareType
           : "",
       "embedded.nl.embedded.gemma.bedrijfsservices":
@@ -734,6 +726,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div
                     className={styles.radioContainer}
                     onChange={() => setStatusRadioFilter(status.value)}
+                    onClick={() => resetPaginationOnFilter()}
                     key={status.value}
                   >
                     <RadioButton
@@ -777,6 +770,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div
                     className={styles.radioContainer}
                     onChange={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
+                    onClick={() => resetPaginationOnFilter()}
                     key={maintenanceType.value}
                   >
                     <RadioButton
@@ -863,15 +857,23 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                 {softwareTypes.map((softwareType) => (
                   <div
                     className={styles.radioContainer}
-                    onChange={() => setSoftwareTypeRadioFilter(softwareType.value)}
                     key={softwareType.value}
+                    onClick={() => resetPaginationOnFilter()}
                   >
                     <RadioButton
                       className={styles.radioButton}
                       value={softwareType.value}
                       checked={filters.softwareType === softwareType.value}
                     />
-                    <span className={styles.radioLabel} onClick={() => setSoftwareTypeRadioFilter(softwareType.value)}>
+                    <span
+                      className={styles.radioLabel}
+                      onClick={() =>
+                        setFilters({
+                          ...filters,
+                          softwareType: softwareType.value,
+                        })
+                      }
+                    >
                       {t(softwareType.label)}
                     </span>
                   </div>
