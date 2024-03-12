@@ -90,7 +90,7 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
         return null;
       if (key === "embedded.rating.rating[>%3D]") return `rating=${value}`;
 
-      if (pathname === "/components" || pathname === "/components/" || pathname === "/") {
+      if (pathname.includes("/components") || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
         if (key === "dependenciesDisplayLayout") return null;
         if (key === "catagoryDisplayLayout") return null;
