@@ -76,6 +76,7 @@ export const en = {
   Gold: "Gold",
   Silver: "Silver",
   Bronze: "Bronze",
+  Configurations: "Configurations",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",

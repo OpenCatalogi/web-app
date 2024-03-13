@@ -25,4 +25,20 @@ export default class Component {
 
     return data;
   };
+
+  public getAllConfig = async (applicationName: string): Promise<any> => {
+    const { data } = await Send(
+      this._instance,
+      "GET",
+      `/components?extend[]=all&softwareType=configurationFiles&embedded.applicationSuite.name=${applicationName}`,
+    );
+
+    return data;
+  };
+
+  public getApplicationComponent = async (applicationName: string): Promise<any> => {
+    const { data } = await Send(this._instance, "GET", `/components?extend[]=all&name=${applicationName}`);
+
+    return data;
+  };
 }
