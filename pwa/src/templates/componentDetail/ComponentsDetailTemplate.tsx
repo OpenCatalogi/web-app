@@ -82,6 +82,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
 
+  const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
+  const getApplicationComponent = _useComponent.getApplicationComponent(
+    _getComponent?.data?.embedded?.applicationSuite?.name,
+  );
+
   const rating = _getComponent.data?.embedded?.rating;
 
   const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground?.layerType));
@@ -108,6 +113,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
   const application = _getComponent?.data?.embedded?.applicationSuite;
+  const applicationComponent = getApplicationComponent?.data?.results[0];
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -328,19 +334,56 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {application && (
-              <ApplicationCard
-                key={application._self.id}
-                title={{ label: application.name, href: `/applications/${application._self.id}` }}
-                description={application.shortDescription}
-                tags={{
-                  organization: application?.embedded?.owner?.fullName,
-                  githubLink: application?.demoUrl,
-                }}
-                layoutClassName={styles.organizationCardContainer}
-              />
+            {getApplicationComponent.isLoading && (
+              <div className={styles.organizationCardContainer}>
+                <Skeleton height="232px" />
+              </div>
             )}
-            {!_getComponent?.data?.embedded?.applicationSuite && (
+            {getApplicationComponent.isSuccess &&
+              (applicationComponent && applicationComponent.name !== _getComponent.data.name ? (
+                <ComponentCard
+                  key={applicationComponent._self?.id}
+                  title={{
+                    label: applicationComponent.name,
+                    href: `/components/${applicationComponent.id ?? applicationComponent._self.id}`,
+                  }}
+                  description={applicationComponent.embedded?.description?.shortDescription}
+                  layer={applicationComponent.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+                  categories={applicationComponent.categories}
+                  tags={{
+                    rating: {
+                      rating: applicationComponent.embedded?.rating?.rating,
+                      maxRating: applicationComponent.embedded?.rating?.maxRating,
+                    },
+                    ratingCommonground: {
+                      rating: applicationComponent.embedded?.nl?.embedded?.commonground?.rating,
+                    },
+                    status: applicationComponent.developmentStatus,
+                    installations: applicationComponent.usedBy?.length.toString() ?? "0",
+                    organization: {
+                      name: applicationComponent.embedded?.url?.embedded?.organisation?.name,
+                      website: applicationComponent.embedded?.url?.embedded?.organisation?.website,
+                    },
+                    licence: applicationComponent.embedded?.legal?.license,
+                    githubLink: applicationComponent.embedded?.url?.url,
+                  }}
+                  layoutClassName={styles.organizationCardContainer}
+                />
+              ) : (
+                application && (
+                  <ApplicationCard
+                    key={application._self.id}
+                    title={{ label: application.name, href: `/applications/${application._self.id}` }}
+                    description={application.shortDescription}
+                    tags={{
+                      organization: application?.embedded?.owner?.fullName,
+                      githubLink: application?.demoUrl,
+                    }}
+                    layoutClassName={styles.organizationCardContainer}
+                  />
+                )
+              ))}
+            {!getApplicationComponent.isLoading && !_getComponent?.data?.embedded?.applicationSuite && (
               <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
             )}
 
@@ -483,10 +526,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <Tab>
                   <span>{t("Configurations")}</span>
                   <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.softwareType !== "configurationFiles" &&
-                    _getComponent.data.softwareType === "standalone/web"
-                      ? _getComponent.data?.embedded?.url?.embedded?.components?.length - 1 ?? 0
-                      : 0}
+                    {getConfigComponents.data?.results?.length ?? 0}
                   </BadgeCounter>
                 </Tab>
               </TabList>
@@ -635,15 +675,16 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </TabPanel>
               <TabPanel>
                 <>
-                  {_getComponent.data?.embedded?.url?.embedded?.components?.length - 1 > 0 && (
+                  {getConfigComponents.data?.results?.length > 0 && (
                     <div className={styles.organizations}>
-                      {_getComponent.data?.embedded?.url?.embedded?.components?.map((component: any) => {
-                        return component._self?.id !== _getComponent.data.id &&
-                          _getComponent.data.softwareType !== "configurationFiles" &&
-                          _getComponent.data.softwareType === "standalone/web" ? (
+                      {getConfigComponents.data?.results?.map((component: any) => {
+                        return (
                           <ComponentCard
                             key={component._self?.id}
-                            title={{ label: component.name, href: `/components/${component.id ?? component._self.id}` }}
+                            title={{
+                              label: component.name,
+                              href: `/components/${component.id ?? component._self.id}`,
+                            }}
                             description={component.embedded?.description?.shortDescription}
                             layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
                             categories={component.categories}
@@ -665,17 +706,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                               githubLink: component.embedded?.url?.url,
                             }}
                           />
-                        ) : (
-                          <></>
                         );
                       })}
                     </div>
                   )}
 
-                  {(_getComponent.data?.embedded?.url?.embedded?.components?.length - 1 < 1 ||
-                    _getComponent.data.softwareType === "configurationFiles") && (
-                    <>Er zijn geen configuraties van dit component.</>
-                  )}
+                  {getConfigComponents.data?.results?.length < 1 && <>Er zijn geen configuraties van dit component.</>}
                 </>
               </TabPanel>
             </Tabs>

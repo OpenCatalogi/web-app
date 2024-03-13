@@ -78,6 +78,7 @@ export const nl = {
   Gold: "Goud",
   Silver: "Zilver",
   Bronze: "Brons",
+  Configurations: "Configuraties",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -163,5 +164,5 @@ export const nl = {
   "No application found": "Geen applicatie gevonden",
   "Commonground rating": "Commonground beoordeling",
   "No rating": "Geen beoordeling",
-  "The repository has been submitted successfully.": "De repository is met success verzonden."
+  "The repository has been submitted successfully.": "De repository is met success verzonden.",
 };

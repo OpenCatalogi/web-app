@@ -15,7 +15,11 @@ import { navigate } from "gatsby";
 import { RatingIndicatorTemplate } from "../../templates/templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
 import { getStatusColor } from "../../services/getStatusColor";
-import { CommongroundRatingBronze, CommongroundRatingGold, CommongroundRatingSilver } from "../../assets/svgs/CommongroundRatingImages";
+import {
+  CommongroundRatingBronze,
+  CommongroundRatingGold,
+  CommongroundRatingSilver,
+} from "../../assets/svgs/CommongroundRatingImages";
 
 export interface ComponentCardProps {
   title: {
@@ -42,9 +46,17 @@ export interface ComponentCardProps {
     licence?: string;
     githubLink?: string;
   };
+  layoutClassName?: string;
 }
 
-export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, categories, description, tags }) => {
+export const ComponentCard: React.FC<ComponentCardProps> = ({
+  title,
+  layer,
+  categories,
+  description,
+  tags,
+  layoutClassName,
+}) => {
   const { t } = useTranslation();
 
   const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
@@ -55,28 +67,39 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
     layer &&
     categories?.length &&
     categories.map((category: any) => {
-      return _categories[_layer]?.find((_category: any) => {
+      const result = _categories[_layer]?.find((_category: any) => {
         return _category.value === category;
       });
+
+      if (!result) {
+        return {
+          title: category,
+        };
+      } else {
+        return result;
+      }
     });
 
-    const getCommongroundImage = (rating: number) => {
-      switch (rating) {
-        case 0:
-          return <CommongroundRatingBronze />;
-        case 1:
-          return <CommongroundRatingBronze />;
-        case 2:
-          return <CommongroundRatingSilver />;
-        case 3:
-          return <CommongroundRatingGold />;
-        default:
-          return <CommongroundRatingBronze />;
-      }
-    };
+  const getCommongroundImage = (rating: number) => {
+    switch (rating) {
+      case 0:
+        return <CommongroundRatingBronze />;
+      case 1:
+        return <CommongroundRatingBronze />;
+      case 2:
+        return <CommongroundRatingSilver />;
+      case 3:
+        return <CommongroundRatingGold />;
+      default:
+        return <CommongroundRatingBronze />;
+    }
+  };
 
   return (
-    <CardWrapper className={styles.container} onClick={() => navigate(title.href)}>
+    <CardWrapper
+      className={clsx([styles.container, layoutClassName && layoutClassName])}
+      onClick={() => navigate(title.href)}
+    >
       <CardHeader>
         <CardHeaderTitle>
           <Link className={styles.title} onClick={() => navigate(title.href)}>
@@ -197,21 +220,13 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({ title, layer, cate
               <>
                 {tags.ratingCommonground && tags.ratingCommonground?.rating && (
                   <div
-                  className={clsx(
-                    styles[
-                      _.camelCase(
-                        t(
-                          `${getCommongroundRating(
-                            tags.ratingCommonground.rating ?? "0",
-                          )} rating`,
-                        ),
-                      )
-                    ],
-                    styles.commongroundRating,
-                  )}
-                >
-                  {getCommongroundImage(tags.ratingCommonground.rating ?? "0")}
-                </div>
+                    className={clsx(
+                      styles[_.camelCase(t(`${getCommongroundRating(tags.ratingCommonground.rating ?? "0")} rating`))],
+                      styles.commongroundRating,
+                    )}
+                  >
+                    {getCommongroundImage(tags.ratingCommonground.rating ?? "0")}
+                  </div>
                 )}
               </>
             )}

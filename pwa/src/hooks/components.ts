@@ -24,5 +24,23 @@ export const useComponent = (queryClient: QueryClient) => {
       },
     });
 
-  return { getOne, getAll };
+  const getAllConfig = (applicationName: string) =>
+    useQuery<any, Error>(["configComponents", applicationName], () => API?.Component.getAllConfig(applicationName), {
+      onError: (error) => {
+        throw new Error(error.message);
+      },
+    });
+
+  const getApplicationComponent = (applicationName: string) =>
+    useQuery<any, Error>(
+      ["applicationComponent", applicationName],
+      () => API?.Component.getApplicationComponent(applicationName),
+      {
+        onError: (error) => {
+          throw new Error(error.message);
+        },
+      },
+    );
+
+  return { getOne, getAll, getAllConfig, getApplicationComponent };
 };
