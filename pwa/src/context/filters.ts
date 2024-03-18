@@ -2,8 +2,8 @@ import * as React from "react";
 import { GlobalContext } from "./global";
 
 export interface IFiltersContext {
-  isForked: string;
-  orderRating: string;
+  isForked: boolean;
+  orderRating: boolean;
   rating: string;
   ratingCommonground: string;
 
@@ -39,16 +39,20 @@ export const defaultFiltersContext: IFiltersContext = {
   isForked:
     isWindow && window.sessionStorage.getItem("FILTER_FORKS")
       ? window.sessionStorage.getItem("FILTER_FORKS") === "true"
-        ? "true"
-        : "false"
-      : process.env.GATSBY_FILTER_FORKS ?? "false",
+        ? true
+        : false
+      : process.env.GATSBY_FILTER_FORKS === "true"
+        ? true
+        : false,
 
   orderRating:
     isWindow && window.sessionStorage.getItem("FILTER_RATING")
       ? window.sessionStorage.getItem("FILTER_RATING") !== "false"
-        ? "true"
-        : "false"
-      : process.env.GATSBY_RATING ?? "false",
+        ? true
+        : false
+      : process.env.GATSBY_RATING === "true"
+        ? true
+        : false,
   rating:
     isWindow && window.sessionStorage.getItem("FILTER_RATING")
       ? window.sessionStorage.getItem("FILTER_RATING") !== "false"

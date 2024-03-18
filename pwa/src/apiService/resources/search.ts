@@ -14,7 +14,6 @@ export default class Search {
     filters: IFiltersContext,
     currentPage: number,
     limit: number,
-    ratingFilter: string,
   ): Promise<any> => {
     let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
 

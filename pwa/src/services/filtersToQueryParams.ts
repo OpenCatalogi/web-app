@@ -52,9 +52,11 @@ export const filtersToQueryParams = (filters: any): string => {
           window.sessionStorage.getItem("FILTER_FORKS") !== "false" ? (params += "&isBasedOn=IS NULL") : (params += "");
           break;
         case "orderRating":
-          window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
-            ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
-            : (params += "&order[embedded.rating.rating]=desc");
+          window.sessionStorage.getItem("FILTER_RATING") !== "false"
+            ? window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
+              ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
+              : (params += "&order[embedded.rating.rating]=desc")
+            : (params += "");
           break;
         default:
           params += `&${key}=${value}`;
@@ -90,7 +92,7 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
         return null;
       if (key === "embedded.rating.rating[>%3D]") return `rating=${value}`;
 
-      if (pathname === "/components" || pathname === "/components/" || pathname === "/") {
+      if (pathname.includes("/components") || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
         if (key === "dependenciesDisplayLayout") return null;
         if (key === "catagoryDisplayLayout") return null;

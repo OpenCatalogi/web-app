@@ -76,6 +76,7 @@ export const en = {
   Gold: "Gold",
   Silver: "Silver",
   Bronze: "Bronze",
+  Configurations: "Configurations",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -160,4 +161,5 @@ export const en = {
   "No application found": "No application found",
   "Commonground rating": "Commonground rating",
   "No rating": "No rating",
+  "The repository has been submitted successfully.": "The repository has been submitted successfully.",
 };

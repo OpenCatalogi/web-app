@@ -3,6 +3,7 @@ import { useGatsbyContext } from "../context/gatsby";
 import { IFiltersContext, defaultFiltersContext, useFiltersContext } from "../context/filters";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
+import { usePaginationContext } from "../context/pagination";
 
 type THeaderTopNavItem = {
   label: string;
@@ -29,6 +30,7 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
   } = useGatsbyContext();
   const { t } = useTranslation();
   const { filters, setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const headerTopNavItems: ITopNavItem[] = [];
 
@@ -88,10 +90,18 @@ export const useHeaderTopNavItems = (data: THeaderTopNavItem[]) => {
 
         if (typeof onClickFilter === "object") {
           setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filterKey]: [onClick.setFilter!.value] });
+          setPagination({
+            ...pagination,
+            componentsCurrentPage: 1,
+          });
         }
 
         if (typeof onClickFilter === "string") {
           setFilters({ ...defaultFiltersContext, [onClick.setFilter!.filterKey]: onClick.setFilter!.value });
+          setPagination({
+            ...pagination,
+            componentsCurrentPage: 1,
+          });
         }
 
         navigate(onClick.link);

@@ -57,8 +57,13 @@ import { IDisplaySwitchButton } from "@conduction/components/lib/components/disp
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
-import { ApplicationCard } from "../../components";
+import { ApplicationCard, ComponentCard } from "../../components";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
+import {
+  CommongroundRatingGold,
+  CommongroundRatingSilver,
+  CommongroundRatingBronze,
+} from "../../assets/svgs/CommongroundRatingImages";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -76,6 +81,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   const _getComponent = _useComponent.getOne(componentId);
+
+  const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
+  const getApplicationComponent = _useComponent.getApplicationComponent(
+    _getComponent?.data?.embedded?.applicationSuite?.name,
+  );
 
   const rating = _getComponent.data?.embedded?.rating;
 
@@ -103,6 +113,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
   const application = _getComponent?.data?.embedded?.applicationSuite;
+  const applicationComponent = getApplicationComponent?.data?.results[0];
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -151,6 +162,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   };
 
   const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
+
+  const getCommongroundImage = (rating: number) => {
+    switch (rating) {
+      case 0:
+        return <CommongroundRatingBronze />;
+      case 1:
+        return <CommongroundRatingBronze />;
+      case 2:
+        return <CommongroundRatingSilver />;
+      case 3:
+        return <CommongroundRatingGold />;
+      default:
+        return <CommongroundRatingBronze />;
+    }
+  };
 
   return (
     <Container layoutClassName={styles.container}>
@@ -308,19 +334,56 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
           </div>
 
           <div className={styles.cardsContainer}>
-            {application && (
-              <ApplicationCard
-                key={application._self.id}
-                title={{ label: application.name, href: `/applications/${application._self.id}` }}
-                description={application.shortDescription}
-                tags={{
-                  organization: application?.embedded?.owner?.fullName,
-                  githubLink: application?.demoUrl,
-                }}
-                layoutClassName={styles.organizationCardContainer}
-              />
+            {getApplicationComponent.isLoading && (
+              <div className={styles.organizationCardContainer}>
+                <Skeleton height="232px" />
+              </div>
             )}
-            {!_getComponent?.data?.embedded?.applicationSuite && (
+            {getApplicationComponent.isSuccess &&
+              (applicationComponent && applicationComponent.name !== _getComponent.data.name ? (
+                <ComponentCard
+                  key={applicationComponent._self?.id}
+                  title={{
+                    label: applicationComponent.name,
+                    href: `/components/${applicationComponent.id ?? applicationComponent._self.id}`,
+                  }}
+                  description={applicationComponent.embedded?.description?.shortDescription}
+                  layer={applicationComponent.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+                  categories={applicationComponent.categories}
+                  tags={{
+                    rating: {
+                      rating: applicationComponent.embedded?.rating?.rating,
+                      maxRating: applicationComponent.embedded?.rating?.maxRating,
+                    },
+                    ratingCommonground: {
+                      rating: applicationComponent.embedded?.nl?.embedded?.commonground?.rating,
+                    },
+                    status: applicationComponent.developmentStatus,
+                    installations: applicationComponent.usedBy?.length.toString() ?? "0",
+                    organization: {
+                      name: applicationComponent.embedded?.url?.embedded?.organisation?.name,
+                      website: applicationComponent.embedded?.url?.embedded?.organisation?.website,
+                    },
+                    licence: applicationComponent.embedded?.legal?.license,
+                    githubLink: applicationComponent.embedded?.url?.url,
+                  }}
+                  layoutClassName={styles.organizationCardContainer}
+                />
+              ) : (
+                application && (
+                  <ApplicationCard
+                    key={application._self.id}
+                    title={{ label: application.name, href: `/applications/${application._self.id}` }}
+                    description={application.shortDescription}
+                    tags={{
+                      organization: application?.embedded?.owner?.fullName,
+                      githubLink: application?.demoUrl,
+                    }}
+                    layoutClassName={styles.organizationCardContainer}
+                  />
+                )
+              ))}
+            {!getApplicationComponent.isLoading && !_getComponent?.data?.embedded?.applicationSuite && (
               <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
             )}
 
@@ -379,22 +442,24 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     </>
                   )}
                   {ratingFilter === "Commonground" && (
-                    <div
-                      className={clsx(
-                        styles[
-                          _.camelCase(
-                            t(
-                              `${getCommongroundRating(
-                                _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
-                              )} rating`,
-                            ),
-                          )
-                        ],
-                        styles.commongroundRating,
-                      )}
-                    >
-                      {t(getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating))}
-                    </div>
+                    <>
+                      <div
+                        className={clsx(
+                          styles[
+                            _.camelCase(
+                              t(
+                                `${getCommongroundRating(
+                                  _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                                )} rating`,
+                              ),
+                            )
+                          ],
+                          styles.commongroundRating,
+                        )}
+                      >
+                        {getCommongroundImage(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? "0")}
+                      </div>
+                    </>
                   )}
                 </>
               }
@@ -456,6 +521,12 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <span>{t("Processes")}</span>
                   <BadgeCounter className={styles.badgeLayout}>
                     {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                  </BadgeCounter>
+                </Tab>
+                <Tab>
+                  <span>{t("Configurations")}</span>
+                  <BadgeCounter className={styles.badgeLayout}>
+                    {getConfigComponents.data?.results?.length ?? 0}
                   </BadgeCounter>
                 </Tab>
               </TabList>
@@ -601,6 +672,47 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 <ComponentCardsAccordionTemplate
                   components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
                 />
+              </TabPanel>
+              <TabPanel>
+                <>
+                  {getConfigComponents.data?.results?.length > 0 && (
+                    <div className={styles.organizations}>
+                      {getConfigComponents.data?.results?.map((component: any) => {
+                        return (
+                          <ComponentCard
+                            key={component._self?.id}
+                            title={{
+                              label: component.name,
+                              href: `/components/${component.id ?? component._self.id}`,
+                            }}
+                            description={component.embedded?.description?.shortDescription}
+                            layer={component.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
+                            categories={component.categories}
+                            tags={{
+                              rating: {
+                                rating: component.embedded?.rating?.rating,
+                                maxRating: component.embedded?.rating?.maxRating,
+                              },
+                              ratingCommonground: {
+                                rating: component.embedded?.nl?.embedded?.commonground?.rating,
+                              },
+                              status: component.developmentStatus,
+                              installations: component.usedBy?.length.toString() ?? "0",
+                              organization: {
+                                name: component.embedded?.url?.embedded?.organisation?.name,
+                                website: component.embedded?.url?.embedded?.organisation?.website,
+                              },
+                              licence: component.embedded?.legal?.license,
+                              githubLink: component.embedded?.url?.url,
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {getConfigComponents.data?.results?.length < 1 && <>Er zijn geen configuraties van dit component.</>}
+                </>
               </TabPanel>
             </Tabs>
           </div>

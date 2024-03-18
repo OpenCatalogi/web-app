@@ -92,6 +92,7 @@
 }
 
 .infoCardCommonground {
+  align-self: center;
   display: flex;
   justify-content: center;
 }
@@ -300,33 +301,21 @@
   }
 }
 
-.commongroundRating {
-  border-radius: 50%;
-  height: var(--web-app-component-rating-indicator-height);
-  width: var(--web-app-component-rating-indicator-height);
-  justify-content: center;
-  align-items: center;
-  display: flex;
+.commongroundRating > * {
+  max-height: var(--web-app-component-rating-indicator-height);
 }
 
 /* Colors of commonground rating */
-
-.goldRating {
-  background-color: #d4af37;
-  color: #ffffff;
-  font-size: var(--web-app-size-lg);
+.goldRating > svg > g {
+  fill: #d4af37;
 }
 
-.silverRating {
-  background: #bcc6cc;
-  color: #ffffff;
-  font-size: var(--web-app-size-lg);
+.silverRating > svg > g {
+  fill: #bcc6cc;
 }
 
-.bronzeRating {
-  background: #a97142;
-  color: #ffffff;
-  font-size: var(--web-app-size-lg);
+.bronzeRating > svg > g {
+  fill: #a97142;
 }
 
 /* Colors of the 5 layers */
