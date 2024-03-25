@@ -124,8 +124,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <section className={clsx(styles.headerSearchForm, styles.section)}>
             <div>
               <Heading1 className={styles.title}>
-                {process.env.GATSBY_JUMBOTRON_TITLE && process.env.GATSBY_JUMBOTRON_TITLE !== ""
-                  ? process.env.GATSBY_JUMBOTRON_TITLE
+                {window.sessionStorage.getItem("JUMBOTRON_TITLE") && window.sessionStorage.getItem("JUMBOTRON_TITLE") !== ""
+                  ? window.sessionStorage.getItem("JUMBOTRON_TITLE")
                   : t("Open Catalogs")}
               </Heading1>
               {window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") !== "false" && (
