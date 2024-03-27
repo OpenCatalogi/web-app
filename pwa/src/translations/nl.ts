@@ -165,4 +165,6 @@ export const nl = {
   "Commonground rating": "Commonground beoordeling",
   "No rating": "Geen beoordeling",
   "The repository has been submitted successfully.": "De repository is met success verzonden.",
+  "Show Percentages": "Toon Percentages",
+  "Show Total": "Toon Aantal",
 };
