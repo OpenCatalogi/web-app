@@ -162,4 +162,6 @@ export const en = {
   "Commonground rating": "Commonground rating",
   "No rating": "No rating",
   "The repository has been submitted successfully.": "The repository has been submitted successfully.",
+  "Show Percentages": "Show Percentages",
+  "Show Total": "Show Total",
 };
