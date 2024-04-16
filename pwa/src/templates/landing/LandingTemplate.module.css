@@ -26,6 +26,15 @@
   color: var(--web-app-color-text-grey) !important;
 }
 
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.chart {
+  text-align: center;
+}
+
 @media only screen and (min-width: 576px) {
   .cards {
     grid-template-columns: 1fr 1fr;

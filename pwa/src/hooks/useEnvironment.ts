@@ -47,6 +47,8 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FOOTER_CONTENT_HEADER", process.env.GATSBY_FOOTER_CONTENT_HEADER ?? "");
     window.sessionStorage.setItem("OPTIONAL_START_PAGE", process.env.GATSBY_OPTIONAL_START_PAGE ?? "");
 
+    window.sessionStorage.setItem("COMMONGROUND_CHARTS", process.env.GATSBY_COMMONGROUND_CHARTS ?? "false");
+
     window.sessionStorage.setItem("FILTER_FORKS", process.env.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", process.env.GATSBY_FILTER_RATING ?? "OpenCatalogi");
     window.sessionStorage.setItem("FILTER_RATING_DEFAULT", process.env.FILTER_RATING_DEFAULT ?? "");
@@ -94,6 +96,8 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("FOOTER_CONTENT", config.GATSBY_FOOTER_CONTENT ?? "");
     window.sessionStorage.setItem("FOOTER_CONTENT_HEADER", config.GATSBY_FOOTER_CONTENT_HEADER ?? "");
     window.sessionStorage.setItem("OPTIONAL_START_PAGE", config.GATSBY_OPTIONAL_START_PAGE ?? "");
+
+    window.sessionStorage.setItem("COMMONGROUND_CHARTS", config.GATSBY_COMMONGROUND_CHARTS ?? "false");
 
     window.sessionStorage.setItem("FILTER_FORKS", config.GATSBY_FILTER_FORKS ?? "");
     window.sessionStorage.setItem("FILTER_RATING", config.GATSBY_FILTER_RATING ?? "OpenCatalogi");
