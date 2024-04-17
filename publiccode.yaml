@@ -90,7 +90,7 @@ nl:
 roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
 dependsOn:
   open:
-    - name: common-gateway
+    - name: commonground-gateway
     - versionMin: 1.0.0
 inputTypes:
   - application/json
