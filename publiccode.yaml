@@ -72,21 +72,22 @@ localisation:
     - en
     - nl
 nl:
-  countryExtensionVersion: null
-  commonground:
-    intendedOrganisations: []
-    installationType: self
-    layerType: interface
-  gemma:
-    bedrijfsfuncties:
-      - Algemene content publicatie
-      - Aanbesteding
-    bedrijfsservices:
-      - Aanvraag advies
-      - Bedrijfsservice Vergunningverlening
-    applicatiefunctie: null
-    model: null
-  upl: []
+  vng:
+    countryExtensionVersion: null
+    commonground:
+      intendedOrganisations: []
+      installationType: self
+      layerType: interface
+    gemma:
+      bedrijfsfuncties:
+        - Algemene content publicatie
+        - Aanbesteding
+      bedrijfsservices:
+        - Aanvraag advies
+        - Bedrijfsservice Vergunningverlening
+      applicatiefunctie: null
+      model: null
+    upl: []
 roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
 softwareUsed:
   - https://github.com/ConductionNL/conduction-components
