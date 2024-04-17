@@ -88,6 +88,8 @@ nl:
     model: null
   upl: []
 roadmap: "https://github.com/orgs/OpenCatalogi/projects/1"
+softwareUsed:
+  - https://github.com/ConductionNL/conduction-components
 dependsOn:
   open:
     - name: commonground-gateway
