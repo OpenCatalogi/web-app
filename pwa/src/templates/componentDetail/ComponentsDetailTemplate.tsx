@@ -499,12 +499,14 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
                   </BadgeCounter>
                 </Tab>
-                <Tab>
-                  <span>{t("Suppliers")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.supportedBy?.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
+                {_getComponent.data?.embedded?.supportedBy && (
+                  <Tab>
+                    <span>{t("Suppliers")}</span>
+                    <BadgeCounter className={styles.badgeLayout}>
+                      {_getComponent.data.embedded?.supportedBy?.length ?? 0}
+                    </BadgeCounter>
+                  </Tab>
+                )}
                 <Tab>
                   <span>{t("Reuse")}</span>
                   <BadgeCounter className={styles.badgeLayout}>
@@ -550,88 +552,90 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   />
                 </div>
               </TabPanel>
-              <TabPanel>
-                {_getComponent.data.embedded?.supportedBy?.length > 0 && (
-                  <Table className={styles.table}>
-                    <TableHeader className={styles.tableHeader}>
-                      <TableRow>
-                        <TableHeaderCell>{t("Name")}</TableHeaderCell>
-                        {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
-                        {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
-                        <TableHeaderCell>{t("Email")}</TableHeaderCell>
-                        <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
-                        <TableHeaderCell>{t("Website")}</TableHeaderCell>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody className={styles.tableBody}>
-                      {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
-                        <TableRow className={styles.tableRow} key={organization?._self.id}>
-                          <TableCell>{organization?.name}</TableCell>
+              {_getComponent.data?.embedded?.supportedBy && (
+                <TabPanel>
+                  {_getComponent.data.embedded?.supportedBy?.length > 0 && (
+                    <Table className={styles.table}>
+                      <TableHeader className={styles.tableHeader}>
+                        <TableRow>
+                          <TableHeaderCell>{t("Name")}</TableHeaderCell>
                           {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
-                          {/* <TableCell>
+                          {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
+                          <TableHeaderCell>{t("Email")}</TableHeaderCell>
+                          <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
+                          <TableHeaderCell>{t("Website")}</TableHeaderCell>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody className={styles.tableBody}>
+                        {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
+                          <TableRow className={styles.tableRow} key={organization?._self.id}>
+                            <TableCell>{organization?.name}</TableCell>
+                            {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                            {/* <TableCell>
                             {organization?.maintenanceType && organization?.maintenanceType !== ""
                               ? organization?.maintenanceType
                               : t("Unavailable")}
                           </TableCell> */}
 
-                          <TableCell>
-                            {organization?.email && organization?.email !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), navigate(`mailto:${organization?.email}`);
-                                }}
-                                href={`mailto:${organization?.email}`}
-                                aria-label={`${t("Email")}, ${organization?.email}`}
-                              >
-                                {organization?.email}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            {organization?.phone && organization?.phone !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), navigate(`tel:${organization?.phone}`);
-                                }}
-                                href={`tel:${organization?.phone}`}
-                                aria-label={`${t("Phone number")}, ${organization?.phone}`}
-                              >
-                                {organization?.phone}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            {organization?.website && organization?.website !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), open(organization?.website ?? "");
-                                }}
-                                href={organization?.website ?? ""}
-                                aria-label={
-                                  organization?.website
-                                    ? `${t("Website")}, ${organization?.website
-                                        .replace("https://", "www.")
-                                        .replace("/", "")}, ${t("Opens a new window")}`
-                                    : ""
-                                }
-                              >
-                                {organization?.website.replace("https://", "www.").replace("/", "")}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                )}
-                {!_getComponent.data?.embedded?.supportedBy && <>Er zijn geen leveranciers van dit component.</>}
-              </TabPanel>
+                            <TableCell>
+                              {organization?.email && organization?.email !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), navigate(`mailto:${organization?.email}`);
+                                  }}
+                                  href={`mailto:${organization?.email}`}
+                                  aria-label={`${t("Email")}, ${organization?.email}`}
+                                >
+                                  {organization?.email}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {organization?.phone && organization?.phone !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), navigate(`tel:${organization?.phone}`);
+                                  }}
+                                  href={`tel:${organization?.phone}`}
+                                  aria-label={`${t("Phone number")}, ${organization?.phone}`}
+                                >
+                                  {organization?.phone}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {organization?.website && organization?.website !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), open(organization?.website ?? "");
+                                  }}
+                                  href={organization?.website ?? ""}
+                                  aria-label={
+                                    organization?.website
+                                      ? `${t("Website")}, ${organization?.website
+                                          .replace("https://", "www.")
+                                          .replace("/", "")}, ${t("Opens a new window")}`
+                                      : ""
+                                  }
+                                >
+                                  {organization?.website.replace("https://", "www.").replace("/", "")}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  )}
+                  {!_getComponent.data?.embedded?.supportedBy && <>Er zijn geen leveranciers van dit component.</>}
+                </TabPanel>
+              )}
               <TabPanel>
                 <>
                   {_getComponent.data?.embedded?.usedBy?.length > 0 && (
