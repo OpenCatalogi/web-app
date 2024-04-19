@@ -607,152 +607,168 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </div>
             )}
           </div>
-
-          <div>
-            <Tabs>
-              <TabList>
-                <Tab>
-                  <span>Componenten & Afhankelijkheden</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-                <Tab>
-                  <span>{t("Suppliers")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.supportedBy?.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-                <Tab>
-                  <span>{t("Reuse")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.usedBy?.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-                <Tab>
-                  <span>{t("Schema's")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-                <Tab>
-                  <span>{t("Processes")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-                <Tab>
-                  <span>{t("Configurations")}</span>
-                  <BadgeCounter className={styles.badgeLayout}>
-                    {getConfigComponents.data?.results?.length ?? 0}
-                  </BadgeCounter>
-                </Tab>
-              </TabList>
-              <TabPanel>
-                <div className={styles.components}>
+          {(_getComponent.data?.embedded?.dependsOn?.embedded?.open ||
+            getConfigComponents.data?.results?.length > 0 ||
+            _getComponent.data?.embedded?.supportedBy?.length > 0 ||
+            _getComponent.data?.embedded?.usedBy?.length > 0 ||
+            getConfigComponents.data?.results?.length > 0) && (
+            <div>
+              <Tabs>
+                <TabList>
                   {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
-                    <DisplaySwitch
-                      buttons={displaySwitchButtons}
-                      layoutClassName={styles.dependenciesDisplaySwitchButtons}
-                    />
+                    <Tab>
+                      <span>Componenten & Afhankelijkheden</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
                   )}
+                  {_getComponent.data?.embedded?.supportedBy && (
+                    <Tab>
+                      <span>{t("Suppliers")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getComponent.data.embedded?.supportedBy?.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                  {_getComponent.data.embedded?.usedBy && (
+                    <Tab>
+                      <span>{t("Reuse")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getComponent.data.embedded?.usedBy?.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                  {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
+                    <Tab>
+                      <span>{t("Schema's")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                  {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
+                    <Tab>
+                      <span>{t("Processes")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getComponent.data.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                  {getConfigComponents.data?.results?.length > 0 && (
+                    <Tab>
+                      <span>{t("Configurations")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {getConfigComponents.data?.results?.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                </TabList>
+                {_getComponent.data.embedded?.dependsOn && (
+                  <TabPanel>
+                    <div className={styles.components}>
+                      {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
+                        <DisplaySwitch
+                          buttons={displaySwitchButtons}
+                          layoutClassName={styles.dependenciesDisplaySwitchButtons}
+                        />
+                      )}
 
-                  <DependenciesTemplate
-                    type={resultDisplayLayout.dependenciesDisplayLayout}
-                    components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                    mainComponent={{
-                      id: componentId,
-                      name: _getComponent.data.name,
-                      layer: _getComponent.data.embedded?.nl?.embedded?.commonground?.layerType,
-                    }}
-                  />
-                </div>
-              </TabPanel>
-              <TabPanel>
+                      <DependenciesTemplate
+                        type={resultDisplayLayout.dependenciesDisplayLayout}
+                        components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
+                        mainComponent={{
+                          id: componentId,
+                          name: _getComponent.data.name,
+                          layer: _getComponent.data.embedded?.nl?.embedded?.commonground?.layerType,
+                        }}
+                      />
+                    </div>
+                  </TabPanel>
+                )}
                 {_getComponent.data.embedded?.supportedBy?.length > 0 && (
-                  <Table className={styles.table}>
-                    <TableHeader className={styles.tableHeader}>
-                      <TableRow>
-                        <TableHeaderCell>{t("Name")}</TableHeaderCell>
-                        {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
-                        {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
-                        <TableHeaderCell>{t("Email")}</TableHeaderCell>
-                        <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
-                        <TableHeaderCell>{t("Website")}</TableHeaderCell>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody className={styles.tableBody}>
-                      {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
-                        <TableRow className={styles.tableRow} key={organization?._self.id}>
-                          <TableCell>{organization?.name}</TableCell>
+                  <TabPanel>
+                    <Table className={styles.table}>
+                      <TableHeader className={styles.tableHeader}>
+                        <TableRow>
+                          <TableHeaderCell>{t("Name")}</TableHeaderCell>
                           {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
-                          {/* <TableCell>
+                          {/* <TableHeaderCell>{t("Type of support")}</TableHeaderCell>  */}
+                          <TableHeaderCell>{t("Email")}</TableHeaderCell>
+                          <TableHeaderCell>{t("Phone number")}</TableHeaderCell>
+                          <TableHeaderCell>{t("Website")}</TableHeaderCell>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody className={styles.tableBody}>
+                        {_getComponent.data?.embedded?.supportedBy?.map((organization: any) => (
+                          <TableRow className={styles.tableRow} key={organization?._self.id}>
+                            <TableCell>{organization?.name}</TableCell>
+                            {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
+                            {/* <TableCell>
                             {organization?.maintenanceType && organization?.maintenanceType !== ""
                               ? organization?.maintenanceType
                               : t("Unavailable")}
                           </TableCell> */}
 
-                          <TableCell>
-                            {organization?.email && organization?.email !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), navigate(`mailto:${organization?.email}`);
-                                }}
-                                href={`mailto:${organization?.email}`}
-                                aria-label={`${t("Email")}, ${organization?.email}`}
-                              >
-                                {organization?.email}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            {organization?.phone && organization?.phone !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), navigate(`tel:${organization?.phone}`);
-                                }}
-                                href={`tel:${organization?.phone}`}
-                                aria-label={`${t("Phone number")}, ${organization?.phone}`}
-                              >
-                                {organization?.phone}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            {organization?.website && organization?.website !== "" ? (
-                              <Link
-                                onClick={(e: any) => {
-                                  e.preventDefault(), open(organization?.website ?? "");
-                                }}
-                                href={organization?.website ?? ""}
-                                aria-label={
-                                  organization?.website
-                                    ? `${t("Website")}, ${organization?.website
-                                        .replace("https://", "www.")
-                                        .replace("/", "")}, ${t("Opens a new window")}`
-                                    : ""
-                                }
-                              >
-                                {organization?.website.replace("https://", "www.").replace("/", "")}
-                              </Link>
-                            ) : (
-                              t("Unavailable")
-                            )}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
+                            <TableCell>
+                              {organization?.email && organization?.email !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), navigate(`mailto:${organization?.email}`);
+                                  }}
+                                  href={`mailto:${organization?.email}`}
+                                  aria-label={`${t("Email")}, ${organization?.email}`}
+                                >
+                                  {organization?.email}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {organization?.phone && organization?.phone !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), navigate(`tel:${organization?.phone}`);
+                                  }}
+                                  href={`tel:${organization?.phone}`}
+                                  aria-label={`${t("Phone number")}, ${organization?.phone}`}
+                                >
+                                  {organization?.phone}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {organization?.website && organization?.website !== "" ? (
+                                <Link
+                                  onClick={(e: any) => {
+                                    e.preventDefault(), open(organization?.website ?? "");
+                                  }}
+                                  href={organization?.website ?? ""}
+                                  aria-label={
+                                    organization?.website
+                                      ? `${t("Website")}, ${organization?.website
+                                          .replace("https://", "www.")
+                                          .replace("/", "")}, ${t("Opens a new window")}`
+                                      : ""
+                                  }
+                                >
+                                  {organization?.website.replace("https://", "www.").replace("/", "")}
+                                </Link>
+                              ) : (
+                                t("Unavailable")
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TabPanel>
                 )}
-                {!_getComponent.data?.embedded?.supportedBy && <>Er zijn geen leveranciers van dit component.</>}
-              </TabPanel>
-              <TabPanel>
-                <>
-                  {_getComponent.data?.embedded?.usedBy?.length > 0 && (
+                {_getComponent.data?.embedded?.usedBy?.length > 0 && (
+                  <TabPanel>
                     <div className={styles.organizations}>
                       {_getComponent.data?.embedded?.usedBy?.map((organization: any) => (
                         <OrganizationCard
@@ -776,24 +792,24 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         />
                       ))}
                     </div>
-                  )}
-
-                  {_getComponent.data?.usedBy?.length < 1 && <>Er zijn geen hergebruikers van dit component.</>}
-                </>
-              </TabPanel>
-              <TabPanel>
-                <ComponentCardsAccordionTemplate
-                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                />
-              </TabPanel>
-              <TabPanel>
-                <ComponentCardsAccordionTemplate
-                  components={_getComponent.data.embedded?.dependsOn?.embedded?.open ?? []}
-                />
-              </TabPanel>
-              <TabPanel>
-                <>
-                  {getConfigComponents.data?.results?.length > 0 && (
+                  </TabPanel>
+                )}
+                {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
+                  <TabPanel>
+                    <ComponentCardsAccordionTemplate
+                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open}
+                    />
+                  </TabPanel>
+                )}
+                {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
+                  <TabPanel>
+                    <ComponentCardsAccordionTemplate
+                      components={_getComponent.data.embedded?.dependsOn?.embedded?.open}
+                    />
+                  </TabPanel>
+                )}
+                {getConfigComponents.data?.results?.length > 0 && (
+                  <TabPanel>
                     <div className={styles.organizations}>
                       {getConfigComponents.data?.results?.map((component: any) => {
                         return (
@@ -827,13 +843,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         );
                       })}
                     </div>
-                  )}
-
-                  {getConfigComponents.data?.results?.length < 1 && <>Er zijn geen configuraties van dit component.</>}
-                </>
-              </TabPanel>
-            </Tabs>
-          </div>
+                  </TabPanel>
+                )}
+              </Tabs>
+            </div>
+          )}
         </>
       )}
       {_getComponent.isLoading && <Skeleton height="200px" />}
