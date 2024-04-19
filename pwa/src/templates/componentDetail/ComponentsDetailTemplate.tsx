@@ -489,7 +489,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               </div>
             )}
           </div>
-
+          {_getComponent.data?.embedded?.dependsOn?.embedded?.open || getConfigComponents.data?.results?.length > 0 || _getComponent.data?.embedded?.supportedBy?.length > 0 || _getComponent.data?.embedded?.usedBy?.length > 0 || getConfigComponents.data?.results?.length > 0 &&  (
           <div>
             <Tabs>
               <TabList>
