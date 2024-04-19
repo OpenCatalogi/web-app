@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as React from "react";
 import * as styles from "./ComponentsDetailTemplate.module.css";
 import _ from "lodash";
@@ -64,6 +63,8 @@ import {
   CommongroundRatingSilver,
   CommongroundRatingBronze,
 } from "../../assets/svgs/CommongroundRatingImages";
+import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
+import { usePaginationContext } from "../../context/pagination";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -75,6 +76,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
+
+  const { filters, setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
 
   const { isVisible, show, hide } = NotificationPopUpController();
 
@@ -252,21 +256,45 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               <div className={styles.tags}>
                 {_getComponent.data.developmentStatus && (
                   <StatusBadge
+                    className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Status"
                     status={getStatusColor(_.upperFirst(_getComponent.data.developmentStatus) ?? "Onbekend")}
+                    onClick={() => {
+                      setFilters({
+                        ...defaultFiltersContext,
+                        ["developmentStatus"]: _getComponent.data.developmentStatus,
+                      });
+                      setPagination({
+                        ...pagination,
+                        componentsCurrentPage: 1,
+                      });
+
+                      navigate("/components");
+                    }}
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
                     {t(_.upperFirst(_getComponent.data.developmentStatus))}
                   </StatusBadge>
                 )}
-                <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
-                  <FontAwesomeIcon icon={faRepeat} />
-                  {_.toString(_getComponent.data.usedBy?.length ?? "0")}
-                </DataBadge>
+
+                {_getComponent.data.usedBy?.length > 0 && (
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
+                    <FontAwesomeIcon icon={faRepeat} />
+                    {_.toString(_getComponent.data.usedBy?.length ?? "0")}
+                  </DataBadge>
+                )}
 
                 {organisation?.name && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Organisatie">
+                  <DataBadge
+                    className={styles.clickableBadge}
+                    onClick={() => {
+                      console.log(organisation);
+                      navigate("/organizations/" + organisation._self?.id);
+                    }}
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Organisatie"
+                  >
                     <FontAwesomeIcon icon={faHouse} />
                     {organisation.name}
                   </DataBadge>
@@ -280,14 +308,46 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 )}
 
                 {_getComponent.data.softwareType && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Software type">
+                  <DataBadge
+                    className={styles.clickableBadge}
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Software type"
+                    onClick={() => {
+                      setFilters({
+                        ...defaultFiltersContext,
+                        ["softwareType"]: _getComponent.data.softwareType,
+                      });
+                      setPagination({
+                        ...pagination,
+                        componentsCurrentPage: 1,
+                      });
+
+                      navigate("/components");
+                    }}
+                  >
                     <FontAwesomeIcon icon={faLaptop} />
                     {_getComponent.data.softwareType}
                   </DataBadge>
                 )}
 
                 {_getComponent.data.embedded?.maintenance?.type && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Onderhoudstype">
+                  <DataBadge
+                    className={styles.clickableBadge}
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Onderhoudstype"
+                    onClick={() => {
+                      setFilters({
+                        ...defaultFiltersContext,
+                        ["embedded.maintenance.type"]: "internal",
+                      });
+                      setPagination({
+                        ...pagination,
+                        componentsCurrentPage: 1,
+                      });
+
+                      navigate("/components");
+                    }}
+                  >
                     <FontAwesomeIcon icon={faWrench} />
                     {_getComponent.data.embedded.maintenance.type}
                   </DataBadge>
