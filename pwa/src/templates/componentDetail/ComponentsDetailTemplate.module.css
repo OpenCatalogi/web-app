@@ -44,6 +44,12 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.headerButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -197,6 +203,8 @@
 }
 
 .table {
+  display: block;
+  max-height: 60vh;
   background-color: var(--utrecht-table-background-color);
   border-collapse: var(--utrecht-table-border-collapse);
 }

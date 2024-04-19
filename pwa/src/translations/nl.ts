@@ -99,7 +99,7 @@ export const nl = {
   "API's": "API's",
   "About OpenCatalogi": "Over OpenCatalogi",
   "This file comes from a 3rd party and can potentially be harmfull for your PC. Are you sure you want to download this?":
-    "Dit bestand is afkomstig van een derde partij en kan schadelijk zijn voor uw computer. Weet u zeker dat u dit wilt downloaden",
+    "Dit bestand is afkomstig van een derde partij en kan schadelijk zijn voor uw computer. Weet u zeker dat u dit wilt downloaden?",
   "Go back": "Ga terug",
   "Management organization": "Beheerorganisatie",
   "No rating available": "Geen beoordeling beschikbaar",
@@ -167,4 +167,5 @@ export const nl = {
   "The repository has been submitted successfully.": "De repository is met success verzonden.",
   "Show Percentages": "Toon Percentages",
   "Show Total": "Toon Aantal",
+  "More information": "Meer informatie",
 };
