@@ -7,7 +7,6 @@ import { addNewLineToString } from "../../../../services/addNewLineToString";
 import { navigate } from "gatsby";
 import "vis-network/styles/vis-network.css";
 import { renderToStaticMarkup } from "react-dom/server";
-import { TOOLTIP_ID } from "../../../../layout/Layout";
 
 interface RelationsDependenciesTemplateProps {
   components: any[];
@@ -24,10 +23,7 @@ export const RelationsDependenciesTemplate: React.FC<RelationsDependenciesTempla
 }) => {
   const ToolTipElement = document.createElement("div");
   const staticToolTipElement = renderToStaticMarkup(
-    <div
-      data-tooltip-id={TOOLTIP_ID}
-      data-tooltip-content="Dubbelklik het component om naar het component te gaan"
-    ></div>,
+    <div className={styles.tooltip}>Dubbelklik het component om naar het component te gaan</div>,
   );
   ToolTipElement.innerHTML = `${staticToolTipElement}`;
 

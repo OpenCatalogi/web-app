@@ -167,4 +167,5 @@ export const nl = {
   "The repository has been submitted successfully.": "De repository is met success verzonden.",
   "Show Percentages": "Toon Percentages",
   "Show Total": "Toon Aantal",
+  "More information": "Meer informatie",
 };

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./DownloadTemplate.module.css";
 import clsx from "clsx";
-import { DownloadCard, NotificationPopUp as _NotificationPopUp } from "@conduction/components";
+import { NotificationPopUp as _NotificationPopUp } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   IconDefinition,
@@ -93,16 +93,6 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ downloads, b
     <div className={clsx([layoutClassName && layoutClassName], screenSize === "mobile" && styles.downloadName)}>
       {convertedDownloads.map(({ label, size, type, downloadLink }, idx) => (
         <React.Fragment key={idx}>
-          {/* <DownloadCard
-            label={label ?? downloadLink.substring(downloadLink.lastIndexOf("/") + 1)}
-            labelTooltip={{ id: TOOLTIP_ID, tooltip: downloadLink }}
-            type={type ?? downloadLink.substring(downloadLink.lastIndexOf(".") + 1)}
-            {...{ size, icon }}
-            handleClick={() => {
-              setVisibleItemIdx(idx);
-            }}
-          /> */}
-
           <Button appearance="secondary-action-button" onClick={() => setVisibleItemIdx(idx)}>
             <FontAwesomeIcon icon={faDownload} />
             {t("Download")} {label ?? downloadLink.substring(downloadLink.lastIndexOf("/") + 1)}

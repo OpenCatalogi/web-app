@@ -26,6 +26,7 @@ import {
   TabPanel,
   NotificationPopUp as _NotificationPopUp,
   DisplaySwitch,
+  HorizontalOverflowWrapper,
 } from "@conduction/components";
 import { navigate } from "gatsby";
 import { IconExternalLink, IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
@@ -72,6 +73,7 @@ interface ComponentsDetailTemplateProps {
 export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> = ({ componentId }) => {
   const { t } = useTranslation();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
+  const [moreInformationVisible, setMoreInformationVisible] = React.useState<boolean>(false);
 
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
@@ -107,7 +109,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     });
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
-  const legal = _getComponent.data?.embedded?.legal;
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
@@ -145,8 +146,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     },
   ];
 
-  const openModal = (): void => {
-    show();
+  const openModal = (onClick: () => any): void => {
+    onClick();
     setTimeout(() => {
       const element = document.querySelectorAll('[class*="NotificationPopUp"]').item(0) as HTMLElement;
       const elementRect = element.getBoundingClientRect();
@@ -292,11 +293,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     {_getComponent.data.embedded.maintenance.type}
                   </DataBadge>
                 )}
-
-                <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Onderhoudstype">
-                  <FontAwesomeIcon icon={faWrench} />
-                  {gemma.bedrijfsfuncties.join(", ")}
-                </DataBadge>
               </div>
             </div>
 
@@ -310,111 +306,142 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 />
               </div>
 
-              {/* This button should only be visible for authenticated users; feature will come in the future. */}
-              {/* <Button>
+              <div className={styles.headerButtonsContainer}>
+                {/* This button should only be visible for authenticated users; feature will come in the future. */}
+                {/* <Button>
                 <Icon>
                   <IconExternalLink />
                 </Icon>{" "}
                 Toevoegen aan catalogus
               </Button> */}
 
-              {_getComponent.data.embedded?.url?.url && (
-                <Button
-                  appearance="secondary-action-button"
-                  onClick={() => open(_getComponent.data.embedded?.url?.url)}
-                >
-                  <Icon>
-                    <GitHubLogo />
-                  </Icon>{" "}
-                  {t("View Repository")}
-                </Button>
-              )}
+                {_getComponent.data.embedded?.url?.url && (
+                  <Button
+                    appearance="secondary-action-button"
+                    onClick={() => open(_getComponent.data.embedded?.url?.url)}
+                  >
+                    <Icon>
+                      <GitHubLogo />
+                    </Icon>{" "}
+                    {t("View Repository")}
+                  </Button>
+                )}
 
-              {_getComponent.data.embedded?.downloads && (
-                <DownloadTemplate
-                  downloads={_getComponent?.data?.embedded?.downloads}
-                  backUrl={`/components/${_getComponent.data.id}`}
-                />
-              )}
+                {_getComponent.data.embedded?.downloads && (
+                  <DownloadTemplate
+                    downloads={_getComponent?.data?.embedded?.downloads}
+                    backUrl={`/components/${_getComponent.data.id}`}
+                  />
+                )}
 
-              {(gemma?.applicatiefunctie ||
-                gemma?.bedrijfsfuncties ||
-                gemma?.bedrijfsservices ||
-                gemma?.model ||
-                gemma?.referentiecomponenten?.length > 0 ||
-                legal?.license ||
-                _getComponent.data.embedded?.nl?.upl?.length > 0) && (
-                <section>
-                  <h2 className={styles.title}>Meer informatie</h2>
+                {(gemma?.applicatiefunctie ||
+                  gemma?.bedrijfsfuncties ||
+                  gemma?.bedrijfsservices ||
+                  gemma?.model ||
+                  gemma?.referentiecomponenten?.length > 0 ||
+                  _getComponent.data.embedded?.nl?.upl?.length > 0) && (
+                  <>
+                    <Button
+                      appearance="secondary-action-button"
+                      onClick={(e) => {
+                        e.preventDefault(), openModal(() => setMoreInformationVisible(true));
+                      }}
+                    >
+                      {t("More information")}
+                    </Button>
 
-                  <Table>
-                    <TableBody className={styles.tableBody}>
-                      {gemma?.applicatiefunctie && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Applicatiefunctie:</TableCell>
-                          <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
-                        </TableRow>
-                      )}
+                    {moreInformationVisible && (
+                      <div className={styles.overlay}>
+                        <NotificationPopUp
+                          isVisible
+                          hide={() => setMoreInformationVisible(false)}
+                          title={`${t("More information")}:`}
+                          customContent={
+                            <HorizontalOverflowWrapper
+                              ariaLabels={{
+                                scrollLeftButton: t("Left scroll button"),
+                                scrollRightButton: t("Right scroll button"),
+                              }}
+                            >
+                              <Table className={styles.table}>
+                                <TableBody className={styles.tableBody}>
+                                  {gemma?.applicatiefunctie && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>Applicatiefunctie:</TableCell>
+                                      <TableCell className={styles.description}>{gemma.applicatiefunctie}</TableCell>
+                                    </TableRow>
+                                  )}
 
-                      {gemma?.bedrijfsfuncties && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Bedrijfsfuncties:</TableCell>
-                          <TableCell className={styles.description}>{gemma.bedrijfsfuncties.join(", ")}</TableCell>
-                        </TableRow>
-                      )}
+                                  {gemma?.bedrijfsfuncties && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>Bedrijfsfuncties:</TableCell>
+                                      <TableCell className={styles.description}>
+                                        {gemma.bedrijfsfuncties.join(", ")}
+                                      </TableCell>
+                                    </TableRow>
+                                  )}
 
-                      {gemma?.bedrijfsservices && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Bedrijfsservices:</TableCell>
-                          <TableCell className={styles.description}>{gemma.bedrijfsservices.join(", ")}</TableCell>
-                        </TableRow>
-                      )}
+                                  {gemma?.bedrijfsservices && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>Bedrijfsservices:</TableCell>
+                                      <TableCell className={styles.description}>
+                                        {gemma.bedrijfsservices.join(", ")}
+                                      </TableCell>
+                                    </TableRow>
+                                  )}
 
-                      {gemma?.model && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Model:</TableCell>
-                          <TableCell className={styles.description}>{gemma.model}</TableCell>
-                        </TableRow>
-                      )}
+                                  {gemma?.model && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>Model:</TableCell>
+                                      <TableCell className={styles.description}>{gemma.model}</TableCell>
+                                    </TableRow>
+                                  )}
 
-                      {gemma?.referentieComponenten?.length > 0 && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Referentie componenten:</TableCell>
-                          <TableCell className={styles.description}>{gemma.referentieComponenten.join(", ")}</TableCell>
-                        </TableRow>
-                      )}
+                                  {gemma?.referentiecomponenten?.length > 0 && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>Referentie componenten:</TableCell>
+                                      <TableCell className={styles.description}>
+                                        {gemma.referentiecomponenten.join(", ")}
+                                      </TableCell>
+                                    </TableRow>
+                                  )}
 
-                      {legal?.license && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>Licentie:</TableCell>
-                          <TableCell className={styles.description}>{legal.license}</TableCell>
-                        </TableRow>
-                      )}
-
-                      {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
-                        <TableRow className={styles.tableRow}>
-                          <TableCell className={styles.title}>{t("Products")}</TableCell>
-                          <TableCell>
-                            {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
-                              <span key={idx}>
-                                <Link
-                                  target="_new"
-                                  href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
-                                >
-                                  <Icon>
-                                    <IconExternalLink />
-                                  </Icon>
-                                  {product},{" "}
-                                </Link>
-                              </span>
-                            ))}
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </section>
-              )}
+                                  {_getComponent.data.embedded?.nl?.upl?.length > 0 && (
+                                    <TableRow className={styles.tableRow}>
+                                      <TableCell className={styles.title}>{t("Products")}</TableCell>
+                                      <TableCell>
+                                        {_getComponent.data.embedded?.nl?.upl.map((product: string, idx: number) => (
+                                          <span key={idx}>
+                                            <Link
+                                              target="_new"
+                                              href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                                            >
+                                              <Icon>
+                                                <IconExternalLink />
+                                              </Icon>
+                                              {product},{" "}
+                                            </Link>
+                                          </span>
+                                        ))}
+                                      </TableCell>
+                                    </TableRow>
+                                  )}
+                                </TableBody>
+                              </Table>
+                            </HorizontalOverflowWrapper>
+                          }
+                          primaryButton={{
+                            label: t("Close"),
+                            icon: <FontAwesomeIcon icon={faArrowLeft} />,
+                            handleClick: () => ({}),
+                          }}
+                          layoutClassName={styles.popup}
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
@@ -517,7 +544,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                           <span className={styles.link}>
                             <Link
                               onClick={(e) => {
-                                e.preventDefault(), openModal();
+                                e.preventDefault(), openModal(() => show());
                               }}
                               href={`${_getComponent.data.id}/?openratingpopup`}
                             >
@@ -621,7 +648,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   </BadgeCounter>
                 </Tab>
               </TabList>
-              {/* <TabPanel>
+              <TabPanel>
                 <div className={styles.components}>
                   {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
                     <DisplaySwitch
@@ -640,7 +667,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   />
                 </div>
-              </TabPanel> */}
+              </TabPanel>
               <TabPanel>
                 {_getComponent.data.embedded?.supportedBy?.length > 0 && (
                   <Table className={styles.table}>
