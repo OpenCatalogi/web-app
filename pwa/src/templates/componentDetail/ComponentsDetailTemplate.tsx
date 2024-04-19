@@ -725,6 +725,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
               )}
             </Tabs>
           </div>
+          )}
 
           {_getComponent.data.embedded?.downloads && (
             <DownloadTemplate
