@@ -310,6 +310,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
 
                 {_getComponent.data.usedBy?.length > 0 && (
                   <DataBadge
+                  className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Installaties"
                     onClick={() => viewReuse()}
