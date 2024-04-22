@@ -1,5 +1,5 @@
 .breadcrumbsContainer {
-  margin-block-start: var(--web-app-size-sm);
+  margin-block-start: var(--web-app-size-4xl);
   padding-block-start: var(--web-app-size-sm);
   padding-block-end: var(--web-app-size-sm);
 }
@@ -24,4 +24,12 @@
 
 .breadcrumbs > ol {
   align-items: baseline;
+}
+
+@media only screen and (min-width: 992px) {
+  .breadcrumbsContainer {
+    margin-block-start: var(--web-app-size-sm);
+    padding-block-start: var(--web-app-size-sm);
+    padding-block-end: var(--web-app-size-sm);
+  }
 }

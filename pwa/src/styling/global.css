@@ -59,6 +59,9 @@ body {
   --web-app-disabled-opacity: 0.15;
   --web-app-inactive-opacity: 0.65;
 
+  --web-app-color-invalid: #dc3545;
+  --web-app-color-success: #28a745;
+
   --web-app-layer-color-interaction: #1a75ff;
   --web-app-layer-color-process: #dd3c49;
   --web-app-layer-color-integration: #efc025;

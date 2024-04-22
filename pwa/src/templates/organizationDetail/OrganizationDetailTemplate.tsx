@@ -10,7 +10,6 @@ import {
   BadgeCounter,
   Link,
 } from "@utrecht/component-library-react/dist/css-module";
-import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
 import { QueryClient } from "react-query";
@@ -23,6 +22,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCertificate, faEnvelope, faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
+import { ComponentCard } from "../../components";
 
 interface OrganizationDetailTemplateProps {
   organizationId: string;
@@ -137,7 +137,7 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
 
           <div className={styles.section}>
             <Heading level={2} className={styles.title}>
-              Componenten
+              {t("Components")}
             </Heading>
             <Tabs>
               <TabList>
@@ -158,59 +158,86 @@ export const OrganizationDetailTemplate: React.FC<OrganizationDetailTemplateProp
               </TabList>
               <TabPanel>
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
+                  {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} /> */}
+                  <div className={styles.componentsGrid}>
+                    {_getOrganization.data?.embedded?.owns?.length &&
+                      _getOrganization.data?.embedded?.owns?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.owns?.length && <>Geen resultaten gevonden.</>}
+                  </div>
                 </div>
               </TabPanel>
               <TabPanel>
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
+                  {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} /> */}
+                  <div className={styles.componentsGrid}>
+                    {_getOrganization.data?.embedded?.supports?.length &&
+                      _getOrganization.data?.embedded?.supports?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.supports?.length && <>Geen resultaten gevonden.</>}
+                  </div>
                 </div>
               </TabPanel>
               <TabPanel>
                 <div className={styles.components}>
-                  <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
+                  {/* <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} /> */}
+                  <div className={styles.componentsGrid}>
+                    {_getOrganization.data?.embedded?.uses?.length &&
+                      _getOrganization.data?.embedded?.uses?.map((component: any) => (
+                        <ComponentCard
+                          key={component._self.id}
+                          title={{ label: component.name, href: `/components/${component._self.id}` }}
+                          description={component?.description?.shortDescription}
+                          categories={component?.categories}
+                          tags={{
+                            status: component?.developmentStatus,
+                            installations: component?.usedBy?.length.toString() ?? "0",
+                            organization: {
+                              name: component?.url?.organisation?.name,
+                              website: component?.url?.organisation?.website,
+                            },
+                            licence: component?.legal?.license,
+                            githubLink: component?.url?.url,
+                          }}
+                        />
+                      ))}
+                    {!_getOrganization.data?.embedded?.uses?.length && <>Geen resultaten gevonden.</>}
+                  </div>
                 </div>
               </TabPanel>
             </Tabs>
-            {/* <TabContext
-              tabs={[
-                {
-                  name: "Eigen componenten",
-                  badge: _getOrganization.data?.owns?.length ?? 0,
-                },
-                {
-                  name: "Ondersteunde componenten",
-                  badge: _getOrganization.data?.supports?.length ?? 0,
-                },
-                {
-                  name: "Gebruikte componenten",
-                  badge: _getOrganization.data?.uses?.length ?? 0,
-                },
-              ]}
-              tabContent={[
-                {
-                  content: (
-                    <div className={styles.components}>
-                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.owns ?? []} />
-                    </div>
-                  ),
-                },
-                {
-                  content: (
-                    <div className={styles.components}>
-                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.supports ?? []} />
-                    </div>
-                  ),
-                },
-                {
-                  content: (
-                    <div className={styles.components}>
-                      <ComponentCardsAccordionTemplate components={_getOrganization.data?.embedded?.uses ?? []} />
-                    </div>
-                  ),
-                },
-              ]}
-            /> */}
           </div>
         </>
       )}

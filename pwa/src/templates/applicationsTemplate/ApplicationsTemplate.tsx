@@ -18,7 +18,7 @@ import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 export const ApplicationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
-  const { queryLimit } = useQueryLimitContext();
+  const { queryLimit, setQueryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
 
   const queryClient = new QueryClient();
@@ -32,7 +32,10 @@ export const ApplicationsTemplate: React.FC = () => {
   );
 
   React.useEffect(() => {
+    if (queryLimit.previousApplicationsQueryLimit === queryLimit.applicationsQueryLimit) return;
+
     setPagination({ ...pagination, applicationCurrentPage: 1 });
+    setQueryLimit({ ...queryLimit, previousApplicationsQueryLimit: queryLimit.applicationsQueryLimit });
   }, [queryLimit.applicationsQueryLimit]);
 
   return (

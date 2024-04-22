@@ -19,6 +19,7 @@ import { IconPrefix, IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useFooterContent } from "../../../hooks/footerContent";
+import { Logo as LogoComponent } from "@conduction/components";
 
 export const DEFAULT_FOOTER_CONTENT_URL =
   "https://raw.githubusercontent.com/OpenCatalogi/web-app/development/pwa/src/templates/templateParts/footer/FooterContent.json";
@@ -141,17 +142,15 @@ const Logo: React.FC = () => {
 
   return (
     <div className={styles.imageContainer}>
-      <img
-        className={styles.image}
+      <LogoComponent
+        layoutClassName={styles.image}
         onClick={() =>
           window.sessionStorage.getItem("FOOTER_LOGO_URL")
             ? open(window.sessionStorage.getItem("FOOTER_LOGO_URL") ?? "/")
             : navigate("/")
         }
-        src={window.sessionStorage.getItem("FOOTER_LOGO_URL") ?? ""}
-        alt={t("Footer-logo")}
         aria-label={`${t("Footer-logo")}, ${t("Can open a new window")}`}
-        tabIndex={0}
+        variant="footer"
       />
     </div>
   );

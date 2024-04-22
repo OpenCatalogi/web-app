@@ -4,12 +4,12 @@ import clsx from "clsx";
 import LogoRotterdam from "../../../assets/svgs/LogoRotterdam.svg";
 import { useTranslation } from "react-i18next";
 import { navigate } from "gatsby";
-import { Container, Jumbotron, Logo, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
+import { Container, Logo, PrimaryTopNav, SecondaryTopNav } from "@conduction/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useGatsbyContext } from "../../../context/gatsby";
 import { SearchComponentTemplate } from "../searchComponent/SearchComponentTemplate";
-import { PageHeader } from "@utrecht/component-library-react";
+import { Heading1, PageHeader, Paragraph } from "@utrecht/component-library-react";
 import { isHomepage } from "../../../services/isHomepage";
 import { Breadcrumbs } from "../../../components/breadcrumbs/Breadcrumbs";
 import { ITopNavItem } from "@conduction/components/lib/components/topNav/primaryTopNav/PrimaryTopNav";
@@ -89,7 +89,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       <div className={styles.headerMiddleBar}>
         <Container layoutClassName={styles.primaryNavContainer}>
           <div className={clsx(styles.logoContainer, styles.logoDesktop)}>
-            {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+            {window.sessionStorage.getItem("HEADER_LOGO_URL") &&
+            window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
               <img
                 onClick={() => navigate("/")}
                 src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
@@ -101,7 +102,8 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
           <PrimaryTopNav
             mobileLogo={
               <div className={clsx(styles.logoContainer, styles.logoMobile)}>
-                {window.sessionStorage.getItem("HEADER_LOGO_URL") ? (
+                {window.sessionStorage.getItem("HEADER_LOGO_URL") &&
+                window.sessionStorage.getItem("HEADER_LOGO_URL") !== "false" ? (
                   <img
                     onClick={() => navigate("/")}
                     src={window.sessionStorage.getItem("HEADER_LOGO_URL") ?? LogoRotterdam}
@@ -118,31 +120,35 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({ layoutClassName 
       </div>
 
       {isHomepage(pathname) && (
-        <Jumbotron
-          title={window.sessionStorage.getItem("JUMBOTRON_TITLE") || t("Open Catalogs")}
-          ariaLabel={{ container: t("Jumbotron"), card: t("Jumbotron card") }}
-          role="contentinfo"
-          isCard={window.sessionStorage.getItem("JUMBOTRON_ISCARD") === "true"}
-          container={window.sessionStorage.getItem("JUMBOTRON_CONTAINER") === "true"}
-          subTitle={window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") ?? ""}
-          description={
-            window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") ||
-            t("One central place for reuse of information technology within the government")
-          }
-          searchForm={{
-            element: <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />,
-            show: window.sessionStorage.getItem("JUMBOTRON_SEARCHFORM") === "true",
-          }}
-          image={{
-            placement:
-              window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "background"
-                ? "background"
-                : window.sessionStorage.getItem("JUMBOTRON_IMAGE_PLACEMENT") === "right"
-                  ? "right"
-                  : "false",
-            url: window.sessionStorage.getItem("JUMBOTRON_IMAGE_URL") ?? "",
-          }}
-        />
+        <Container layoutClassName={styles.headerContent}>
+          <section className={clsx(styles.headerSearchForm, styles.section)}>
+            <div>
+              <Heading1 className={styles.title}>
+                {window.sessionStorage.getItem("JUMBOTRON_TITLE") && window.sessionStorage.getItem("JUMBOTRON_TITLE") !== ""
+                  ? window.sessionStorage.getItem("JUMBOTRON_TITLE")
+                  : t("Open Catalogs")}
+              </Heading1>
+              {window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") !== "false" && (
+                <span className={styles.subTitle}>
+                  {window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") &&
+                  window.sessionStorage.getItem("JUMBOTRON_SUBTITLE") !== ""
+                    ? window.sessionStorage.getItem("JUMBOTRON_SUBTITLE")
+                    : t("One central place for reuse of information technology within the government")}
+                </span>
+              )}
+
+              {window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") !== "false" && (
+                <Paragraph className={styles.description}>
+                  {window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") &&
+                  window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION") !== ""
+                    ? window.sessionStorage.getItem("JUMBOTRON_DESCRIPTION")
+                    : t("One central place for reuse of information technology within the government")}
+                </Paragraph>
+              )}
+            </div>
+            <SearchComponentTemplate layoutClassName={styles.searchFormContainer} />
+          </section>
+        </Container>
       )}
 
       <Breadcrumbs />

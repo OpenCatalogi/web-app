@@ -9,7 +9,8 @@
 
   "GATSBY_NL_DESIGN_THEME_CLASSNAME": "conduction-theme",
 
-  "GATSBY_FAVICON_URL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAACqVBMVEX////+/v/2+P/p7//q8P/3+f/+///5+//n7v++0P6Jqf2OrP3E0/76/P/8/f/t8v/M2v6Sr/1hjPxNffxOfvxljvyYtP3R3v7w9P/9/v/z9v/Y4/6iu/1rk/xQgPxGePxJe/xIevxSgfxwl/2owP3c5f709//i6v6yx/53nP1Wg/xHefxciPx6nv12m/xZhvxJevxYhfx9oP24zP7k7P/4+v/6+//C0/6Gp/1Vg/x3nf2zyP7e5/6tw/1zmf1TgvxLe/xfivyMq/3I1/7r8f/7/P/9/f/v8//Q3P6Wsv1kjvzx9f/2+f/U4P6ct/1nkPxokfydt/2swv1vlv1HePxMfPxijPzs8f/1+P/l7P/H1v5Ke/xUgvx0mf21yf7y9v/h6f5wlvxIefyCpP3n7f/r8P+NrP1jjfzu8//k6/+5y/58oP1WhPxLfPxEdvyju/3V4P5PfvxFd/xFePxSgPxvlfynvv3b5f7a5P6Xs/1xl/1difzO2/75+v/q7/+wxf5Pf/yDpP3L2f5ah/zA0f5pkfyLqv1Qf/zE1f7y9f+1yf1DdvxRgPyKqv3J1/7m7f/C0v6sw/1mkPzS3v5slP1pkv1Ed/xcifzk6/7J2P7Z4/66zf1gi/yRrv3F1f6HqP1jjvzU3/6Epv1YhvxgivxymP23y/7E1P6qwf1Tgfx4nf1Xhfzf6P5zmPyxxv7T3v6atf1mj/yjvP1rlPzj6/6Fpv3B0v7o7v+Usf2btv3l7f+7zv5/ov2Qrv2kvP1slPyVsf3P3P7u8v/19//K2P6Prf3f6P/N2/6TsP1ijfxMffxulfylvv3a5f7X4f6fuf1pkvxNfvxlj/yZtf2/0f6Dpf16n/2sw/51m/3F1P7g6P5Ug/xXhPy2yf7j6v/W4f5tlf2mvv2Vsv1ioRD2AAACTklEQVQ4y2NgoC5gZGJmYWXEKc3GzsHJxc3DzItDno9fQFBIWERUTFyCD4u0pJS0jKycvIKivJKyiqqaJLrlrOoamlraCjq6evoGioZGxiamKE4xYza30FHQtrSytlG1tbPXdnB0cnZxhUu7uXt4egnLy8nKSHv7sEr4+vmLyIsEBPp6w+yRCApWCgkNExQIj4iMEmBmYolycozWjomNi4f6LiExSV4/mTMlItU5Ld3f0yMjIjMrO0c+NzsS6kAbr7yYfBs1iYLAgMKi4pLSsnIpqYrKEu0qdYSC6prauvrYGHn5BmF5bcPGJlYfzmYUBY4Fai3+isUNrYJt6e36jU2sph06aAo6uwy7e3r7mPsneE4sV5PEqqBo0mRTRkbW8E4+BgasCoqnJMDDBruCqaqMDAyM7Hy4FEybHpdiyjpj5iwJPiwKpGZXT0uaM3ce5/wFdkGZfBgKFrL6LlqcVNy+REe4WGTpMinT5agKmlskImxWVK2UnzZNO2dVXIpZuMZqhII1/tOi165LUHNfv2Fju9KUTbM6pWxWbDbQttsC9VLK1hxtA52t27ZH1M3bsbOGP2LX7j36iorNe+tgyaV83345eeH0AwcPHXbhZwo/cnROrraS8opj8CTDd+j4iZOn5HtOnznbKXHu/IUG+YuXLk9GTrpsZtuvXG02SFp97brKDUvt6Gqumyy86FnmVv2N29rROZYGSXd0794zxcw+bp33z19oKCruefCwAiPVQ4Br+JGj6RsfHczgw5n3avudBbab4c29prVolgMAwXbN77JRtJ0AAAAASUVORK5CYII=",
+  "GATSBY_GITHUB_ORGANIZATION_URL": "https://github.com/ConductionNL",
+  "GATSBY_FAVICON_URL": "data:image/svg+xml,%3Csvg id='Laag_1' data-name='Laag 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 259.81 300'%3E%3Cpath d='M129.9,0,0,75V225l129.9,75,129.91-75V75Zm96.8,205.89-96.8,55.88L33.1,205.89V94.11l96.8-55.89,96.8,55.89Z' style='fill:%234376fc'/%3E%3Cpolygon points='129.59 112.23 160.01 129.79 195.41 109.35 129.59 71.35 61.47 110.67 61.47 189.33 129.59 228.65 195.41 190.65 160.01 170.21 129.59 187.77 96.88 168.88 96.88 131.12 129.59 112.23' style='fill:%234376fc'/%3E%3C/svg%3E",
 
   "GATSBY_PAGE_TITLE": "Conduction's Catalogi",
 
@@ -19,12 +20,7 @@
 
   "GATSBY_JUMBOTRON_TITLE": "",
   "GATSBY_JUMBOTRON_SUBTITLE": "",
-  "GATSBY_JUMBOTRON_IMAGE_PLACEMENT": "false",
-  "GATSBY_JUMBOTRON_IMAGE_URL": "",
   "GATSBY_JUMBOTRON_DESCRIPTION": "",
-  "GATSBY_JUMBOTRON_ISCARD": "false",
-  "GATSBY_JUMBOTRON_SEARCHFORM": "true",
-  "GATSBY_JUMBOTRON_CONTAINER": "true",
 
   "GATSBY_FOOTER_SHOW_CREATOR": "true",
   "GATSBY_FOOTER_LOGO_URL": "false",

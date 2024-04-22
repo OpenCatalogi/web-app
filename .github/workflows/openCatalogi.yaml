@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - development
 
 permissions:
@@ -13,18 +12,31 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:              
+    steps:
       - name: Create or Update publiccode.yaml
-        uses: OpenCatalogi/publiccode-action@1.0.1
+        uses: OpenCatalogi/publiccode-action@latest
         with:
           opencatalogi: true
-      - name: Create an Open Catalogi page
-        uses: OpenCatalogi/opencatalogi-action@1.0.0
+      - name: Create or Update an Open Catalogi page
+        uses: OpenCatalogi/opencatalogi-action@latest
         with:
           github_repository_name_as_prefix: false
-          nl_design_theme_classname: 'rotterdam-theme'
-          pull_from_branche: 'development'
-          start_page: 'https://github.com/OpenCatalogi/.github/blob/main/docs/Catalogi.md'
-          favicon_logo: 'https://www.rotterdam.nl/images/logo-base.svg'
-          navbar_logo: 'https://www.rotterdam.nl/images/logo-base.svg'
-          footer_logo: 'https://www.rotterdam.nl/images/logo-base.svg'
+          github_organization_url: "false"
+          nl_design_theme_classname: "opencatalogi-theme"
+          pull_from_branche: "development"
+          start_page: "false"
+          favicon_logo: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
+          page_title: "DevOpenCatalogi"
+          navbar_show_login: "false"
+          navbar_logo: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
+          navbar_content: "https://raw.githubusercontent.com/OpenCatalogi/web-app/main/pwa/src/templates/templateParts/header/HeaderContent.json"
+          footer_logo: "https://dev.opencatalogi.nl/static/logo_OpenCatalogi-8b1b0a001c3f37dae4d3f69b5964ec72.png"
+          footer_content: "https://raw.githubusercontent.com/OpenCatalogi/web-app/25995205e1dbb043822d1c58c5c23f8e6f77ff7e/pwa/src/templates/templateParts/footer/FooterContent.json"
+          footer_show_creator: "true"
+          jumbotron_title: "OpenCatalogi"
+          jumbotron_subtitle: "false"
+          jumbotron_description: "Eén centrale plek voor hergebruik van informatietechnologie binnen de overheid"
+          filter_forks: "true"
+          filter_rating: "OpenCatalogi"
+          filter_rating_default: "16"
+          filter_status: "stable"
