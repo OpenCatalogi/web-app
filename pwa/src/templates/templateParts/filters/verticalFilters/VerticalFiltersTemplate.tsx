@@ -53,7 +53,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
-  const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>("");
+  const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>(filters["embedded.maintenance.type"] ?? "");
 
   const [ratingFilter, setRatingFilter] = React.useState<string>(ratingDefault);
   const [ratingFilterCommonground, setRatingFilterCommonground] = React.useState<string>(ratingDefault);

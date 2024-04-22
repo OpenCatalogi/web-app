@@ -65,6 +65,7 @@ import {
 } from "../../assets/svgs/CommongroundRatingImages";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { usePaginationContext } from "../../context/pagination";
+import { licenses, maintenanceTypes, softwareTypes } from "../../data/filters";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -74,6 +75,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { t } = useTranslation();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
+  const [tabIndex, setTabIndex] = React.useState(0);
+
   const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
@@ -81,6 +84,21 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const { pagination, setPagination } = usePaginationContext();
 
   const { isVisible, show, hide } = NotificationPopUpController();
+
+  const tabsRef: any = React.useRef();
+  const viewTabs = () => {
+    tabsRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
+  };
+
+  const viewReuse = () => {
+    viewTabs();
+
+    let reuseIndex = 0;
+    if (_getComponent.data.embedded?.dependsOn?.embedded?.open) reuseIndex = reuseIndex + 1;
+    if (_getComponent.data?.embedded?.supportedBy) reuseIndex = reuseIndex + 1;
+
+    setTabIndex(reuseIndex);
+  };
 
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
@@ -90,6 +108,18 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const getApplicationComponent = _useComponent.getApplicationComponent(
     _getComponent?.data?.embedded?.applicationSuite?.name,
   );
+
+  const maintenanceType = maintenanceTypes.find((maintenanceType) => {
+    return maintenanceType.value === _getComponent.data.embedded?.maintenance?.type;
+  });
+
+  const softwareType = softwareTypes.find((softwareType) => {
+    return softwareType.value === _getComponent.data.softwareType;
+  });
+
+  const licence = licenses.find((licence) => {
+    return licence.value === _getComponent.data.embedded?.legal.license;
+  });
 
   const rating = _getComponent.data?.embedded?.rating;
 
@@ -279,7 +309,11 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 )}
 
                 {_getComponent.data.usedBy?.length > 0 && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Installaties">
+                  <DataBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Installaties"
+                    onClick={() => viewReuse()}
+                  >
                     <FontAwesomeIcon icon={faRepeat} />
                     {_.toString(_getComponent.data.usedBy?.length ?? "0")}
                   </DataBadge>
@@ -289,7 +323,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                   <DataBadge
                     className={styles.clickableBadge}
                     onClick={() => {
-                      console.log(organisation);
                       navigate("/organizations/" + organisation._self?.id);
                     }}
                     data-tooltip-id={TOOLTIP_ID}
@@ -303,7 +336,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal?.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
                     <FontAwesomeIcon icon={faScroll} />
-                    {_getComponent.data.embedded?.legal.license}
+                    {licence?.label ?? _getComponent.data.embedded?.legal.license}
                   </DataBadge>
                 )}
 
@@ -314,7 +347,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     data-tooltip-content="Software type"
                     onClick={() => {
                       setFilters({
-                        ...defaultFiltersContext,
+                        ...filters,
                         ["softwareType"]: _getComponent.data.softwareType,
                       });
                       setPagination({
@@ -326,7 +359,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   >
                     <FontAwesomeIcon icon={faLaptop} />
-                    {_getComponent.data.softwareType}
+                    {softwareType?.label}
                   </DataBadge>
                 )}
 
@@ -337,8 +370,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     data-tooltip-content="Onderhoudstype"
                     onClick={() => {
                       setFilters({
-                        ...defaultFiltersContext,
-                        ["embedded.maintenance.type"]: "internal",
+                        ...filters,
+                        ["embedded.maintenance.type"]: _getComponent.data.embedded?.maintenance?.type,
                       });
                       setPagination({
                         ...pagination,
@@ -349,7 +382,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   >
                     <FontAwesomeIcon icon={faWrench} />
-                    {_getComponent.data.embedded.maintenance.type}
+                    {maintenanceType?.label}
                   </DataBadge>
                 )}
               </div>
@@ -554,8 +587,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
             _getComponent.data?.embedded?.supportedBy?.length > 0 ||
             _getComponent.data?.embedded?.usedBy?.length > 0 ||
             getConfigComponents.data?.results?.length > 0) && (
-            <div>
-              <Tabs>
+            <div id="Tabs" ref={tabsRef}>
+              <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                   {_getComponent.data.embedded?.dependsOn?.embedded?.open && (
                     <Tab>
