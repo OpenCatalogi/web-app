@@ -111,17 +111,27 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     _getComponent?.data?.embedded?.applicationSuite?.name,
   );
 
-  const maintenanceType = maintenanceTypes.find((maintenanceType) => {
-    return maintenanceType.value === _getComponent.data.embedded?.maintenance?.type;
-  });
+  const getMaintenanceType = (maintenanceType: string) => {
+    const _maintenanceType = maintenanceTypes.find((__maintenanceType) => {
+      return __maintenanceType.value === maintenanceType;
+    });
 
-  const softwareType = softwareTypes.find((softwareType) => {
-    return softwareType.value === _getComponent.data.softwareType;
-  });
+    return _maintenanceType?.label ?? "";
+  };
 
-  const licence = licenses.find((licence) => {
-    return licence.value === _getComponent.data.embedded?.legal.license;
-  });
+  const getSoftwareType = (softwareType: string) => {
+    const _softwareType = softwareTypes.find((__softwareType) => {
+      return __softwareType.value === softwareType;
+    });
+    return _softwareType?.label;
+  };
+
+  const getLicence = (licence: string) => {
+    const _licence = licenses.find((__licence) => {
+      return __licence.value === licence;
+    });
+    return _licence?.label ?? licence;
+  };
 
   const rating = _getComponent.data?.embedded?.rating;
 
@@ -338,7 +348,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal?.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
                     <FontAwesomeIcon icon={faScroll} />
-                    {licence?.label ?? _getComponent.data.embedded?.legal.license}
+                    {getLicence(_getComponent.data.embedded?.legal.license)}
                   </DataBadge>
                 )}
 
@@ -361,7 +371,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   >
                     <FontAwesomeIcon icon={faLaptop} />
-                    {softwareType?.label}
+                    {getSoftwareType(_getComponent.data.softwareType)}
                   </DataBadge>
                 )}
 
@@ -384,7 +394,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   >
                     <FontAwesomeIcon icon={faWrench} />
-                    {maintenanceType?.label}
+                    {getMaintenanceType(_getComponent.data.embedded?.maintenance?.type)}
                   </DataBadge>
                 )}
               </div>
