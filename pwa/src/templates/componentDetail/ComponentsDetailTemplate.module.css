@@ -395,3 +395,7 @@
 .backButton:hover {
   cursor: pointer;
 }
+
+.clickableBadge:hover {
+  cursor: pointer;
+}
