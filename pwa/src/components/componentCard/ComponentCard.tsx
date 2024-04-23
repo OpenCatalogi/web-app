@@ -123,7 +123,7 @@ export const ComponentCard: React.FC<ComponentCardProps> = ({
                 </DataBadge>
               </div>
 
-              <div className={styles[_.camelCase(`${layer ?? "unknown"} category`)]}>
+              <div className={clsx(styles.categorieTags, styles[_.camelCase(`${layer ?? "unknown"} category`)])}>
                 {!!__categories &&
                   __categories.map(
                     (category: any, idx: number) =>
