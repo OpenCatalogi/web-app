@@ -17,6 +17,9 @@ export const filtersToQueryParams = (filters: any): string => {
         case "developmentStatus":
           value === "hideObsolete" ? (params += `&developmentStatus[ne]=obsolete`) : (params += `&${key}=${value}`);
           break;
+        case "softwareType":
+          value === "standalone" ? (params += `&softwareType[regex]=${value}`) : (params += `&${key}=${value}`);
+          break;
         case "componentsCurrentPage":
           params += "";
           break;
@@ -27,7 +30,12 @@ export const filtersToQueryParams = (filters: any): string => {
           break;
         case "ratingCommonground":
           window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
-            ? (params += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`)
+            ? value.includes("exact")
+              ? (params += `&embedded.nl.embedded.commonground.rating[int_compare]=${filters.ratingCommonground.replace(
+                  "exact",
+                  "",
+                )}`)
+              : (params += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`)
             : (params += "");
           break;
         case "isForked":
@@ -39,6 +47,9 @@ export const filtersToQueryParams = (filters: any): string => {
               ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
               : (params += "&order[embedded.rating.rating]=desc")
             : (params += "");
+          break;
+        case "category":
+          params += `&categories=${value}`;
           break;
         default:
           params += `&${key}=${value}`;
