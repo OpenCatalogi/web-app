@@ -5,7 +5,7 @@ import Skeleton from "react-loading-skeleton";
 import { useAvailableFilters } from "../../hooks/availableFilters";
 import { useTranslation } from "react-i18next";
 import { statisticsColors } from "../../data/statisticsColors";
-import { Button, Heading3, Icon } from "@utrecht/component-library-react";
+import { Button, Heading3 } from "@utrecht/component-library-react";
 import { PieChart } from "react-minimal-pie-chart";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquare } from "@fortawesome/free-solid-svg-icons";
@@ -501,7 +501,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
                 onClick={(_, index) => {
                   setFilters({
                     ...defaultFiltersContext,
-                    category: dataRating[index].id,
+                    category: dataDomein[index].title,
                   });
                   setPagination({
                     ...pagination,

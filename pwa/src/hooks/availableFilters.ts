@@ -7,11 +7,18 @@ export const useAvailableFilters = () => {
   const API: APIService | null = React.useContext(APIContext);
 
   const getStatistics = () =>
-    useQuery<any, Error>(["available_catagories"], () => API?.AvailableFilters.getStatistics(), {
+    useQuery<any, Error>(["get_statistics"], () => API?.AvailableFilters.getStatistics(), {
       onError: (error) => {
         console.warn(error.message);
       },
     });
 
-  return { getStatistics };
+    const getFilterOptions = () => 
+    useQuery<any, Error>(["available_catagories"], () => API?.AvailableFilters.getFilterOptions(), { 
+      onError: (error) => { 
+        console.warn(error.message); 
+      }, 
+    }); 
+
+  return { getStatistics, getFilterOptions };
 };

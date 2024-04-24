@@ -48,6 +48,9 @@ export const filtersToQueryParams = (filters: any): string => {
               : (params += "&order[embedded.rating.rating]=desc")
             : (params += "");
           break;
+        case "category":
+          params += `&categories=${value}`;
+          break;
         default:
           params += `&${key}=${value}`;
           break;
