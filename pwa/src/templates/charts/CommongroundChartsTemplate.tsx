@@ -1,11 +1,18 @@
 import * as React from "react";
 import * as styles from "./CommongroundChartsTemplate.module.css";
+import _ from "lodash";
 import Skeleton from "react-loading-skeleton";
 import { useAvailableFilters } from "../../hooks/availableFilters";
 import { useTranslation } from "react-i18next";
 import { statisticsColors } from "../../data/statisticsColors";
-import { Button, Heading3 } from "@utrecht/component-library-react";
+import { Button, Heading3, Icon } from "@utrecht/component-library-react";
 import { PieChart } from "react-minimal-pie-chart";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSquare } from "@fortawesome/free-solid-svg-icons";
+import { TOOLTIP_ID } from "../../layout/Layout";
+import { navigate } from "gatsby";
+import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
+import { usePaginationContext } from "../../context/pagination";
 
 interface dataProps {
   title: string;
@@ -15,11 +22,9 @@ interface dataProps {
 
 export const CommongroundCartsTemplate: React.FC = () => {
   const { t } = useTranslation();
+  const { setFilters } = useFiltersContext();
+  const { pagination, setPagination } = usePaginationContext();
 
-  const [selectedOntwikkelingsfases, setSelectedOntwikkelingsfases] = React.useState<number | undefined>(0);
-  const [selectedInitiatieven, setSelectedInitiatieven] = React.useState<number | undefined>(0);
-  const [selectedDomein, setSelectedDomein] = React.useState<number | undefined>(0);
-  const [selectedRating, setSelectedRating] = React.useState<number | undefined>(0);
   const [hoveredOntwikkelingsfases, setHoveredOntwikkelingsfases] = React.useState<number | undefined>(undefined);
   const [hoveredInitiatieven, setHoveredInitiatieven] = React.useState<number | undefined>(undefined);
   const [hoveredDomein, setHoveredDomein] = React.useState<number | undefined>(undefined);
@@ -77,6 +82,12 @@ export const CommongroundCartsTemplate: React.FC = () => {
       return option._id === "softwareAddon";
     });
 
+  const dataSoftwareTypeAPI =
+    getStatistics.isSuccess &&
+    getStatistics.data.softwareType.find((option: any) => {
+      return option._id === "api";
+    });
+
   const dataRatingBronze =
     getStatistics.isSuccess &&
     getStatistics.data["embedded.nl.embedded.commonground.rating"].find((option: any) => {
@@ -95,6 +106,25 @@ export const CommongroundCartsTemplate: React.FC = () => {
       return option._id === 3;
     });
 
+  const ontwikkelingsfasesLegend = [
+    { title: "Doorontwikkeling en beheer", color: "#118dff" },
+    { title: "Opschaling", color: "#12239e" },
+    { title: "Realisatie", color: "#e66c37" },
+    { title: "Initiatie", color: "#6b007b" },
+  ];
+
+  const initiatievenLegend = [
+    { title: "Toepassing", color: "#118dff" },
+    { title: "Component", color: "#12239e" },
+    { title: "Standaard", color: "#e66c37" },
+  ];
+
+  const RatingLegend = [
+    { title: t("Gold"), color: "#d4af37" },
+    { title: t("Silver"), color: "#bcc6cc" },
+    { title: t("Bronze"), color: "#a97142" },
+  ];
+
   React.useEffect(() => {
     if (!getStatistics.isSuccess) return;
 
@@ -105,6 +135,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Doorontwikkeling en beheer",
         value: dataDevelopmentStatusStable?.count ?? 0,
         color: "#118dff",
+        filter: "stable",
       });
 
     dataDevelopmentStatusBeta?.count &&
@@ -113,6 +144,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Opschaling",
         value: dataDevelopmentStatusBeta?.count ?? 0,
         color: "#12239e",
+        filter: "beta",
       });
 
     dataDevelopmentStatusDevelopment?.count &&
@@ -121,6 +153,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Realisatie",
         value: dataDevelopmentStatusDevelopment?.count ?? 0,
         color: "#e66c37",
+        filter: "development",
       });
 
     dataDevelopmentStatusConcept?.count &&
@@ -129,6 +162,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Initiatie",
         value: dataDevelopmentStatusConcept?.count ?? 0,
         color: "#6b007b",
+        filter: "concept",
       });
 
     const dataInitiatieven: any[] = [];
@@ -140,6 +174,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Toepassing (Bruikbare oplossing)",
         value: dataSoftwareTypeStandalone?.count ?? 0,
         color: "#118dff",
+        filter: "standalone",
       });
 
     dataSoftwareTypeSoftwareAddon?.count &&
@@ -148,6 +183,16 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: "Component (Deel van toepassing)",
         value: dataSoftwareTypeSoftwareAddon?.count ?? 0,
         color: "#12239e",
+        filter: "softwareAddon",
+      });
+
+    dataSoftwareTypeAPI?.count &&
+      dataSoftwareTypeAPI?.count !== 0 &&
+      dataInitiatieven.push({
+        title: "Standaard",
+        value: dataSoftwareTypeAPI?.count ?? 0,
+        color: "#e66c37",
+        filter: "api",
       });
 
     const dataRating: any[] = [];
@@ -158,6 +203,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: t("Bronze"),
         value: dataRatingBronze?.count ?? 0,
         color: "#a97142",
+        filter: "exact1",
       });
 
     dataRatingSilver?.count &&
@@ -166,6 +212,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: t("Silver"),
         value: dataRatingSilver?.count ?? 0,
         color: "#bcc6cc",
+        filter: "exact2",
       });
 
     dataRatingGold?.count &&
@@ -174,6 +221,7 @@ export const CommongroundCartsTemplate: React.FC = () => {
         title: t("Gold"),
         value: dataRatingGold?.count ?? 0,
         color: "#d4af37",
+        filter: "exact3",
       });
 
     const dataDomein: any[] =
@@ -251,35 +299,59 @@ export const CommongroundCartsTemplate: React.FC = () => {
         <div className={styles.chart}>
           <Heading3>Verdeling over ontwikkelingsfases</Heading3>
           {getStatistics.isSuccess && (
-            <PieChart
-              data={convertDataOntwikkelingsfases(dataOntwikkelingsfases)}
-              style={{
-                fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                fontSize: "6px",
-              }}
-              radius={50 - 6}
-              lineWidth={60}
-              segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-              segmentsShift={(index) => (index === selectedOntwikkelingsfases ? 6 : 1)}
-              animate
-              label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
-              labelPosition={100 - 60 / 2}
-              labelStyle={{
-                fill: "#fff",
-                opacity: 0.75,
-                pointerEvents: "none",
-              }}
-              onClick={(_, index) => {
-                setSelectedOntwikkelingsfases(index === selectedOntwikkelingsfases ? undefined : index);
-              }}
-              onMouseOver={(_, index) => {
-                setHoveredOntwikkelingsfases(index);
-              }}
-              onMouseOut={() => {
-                setHoveredOntwikkelingsfases(undefined);
-              }}
-              startAngle={270}
-            />
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataOntwikkelingsfases(dataOntwikkelingsfases)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    developmentStatus: dataOntwikkelingsfases[index].filter,
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredOntwikkelingsfases(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredOntwikkelingsfases(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {ontwikkelingsfasesLegend.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={option.title}
+                      className={styles.legendTitle}
+                    >
+                      {option.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>
@@ -287,35 +359,59 @@ export const CommongroundCartsTemplate: React.FC = () => {
         <div className={styles.chart}>
           <Heading3>Verdeling type initiatieven</Heading3>
           {getStatistics.isSuccess && (
-            <PieChart
-              data={convertDataInitiatieven(dataInitiatieven)}
-              style={{
-                fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                fontSize: "6px",
-              }}
-              radius={50 - 6}
-              lineWidth={60}
-              segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-              segmentsShift={(index) => (index === selectedInitiatieven ? 6 : 1)}
-              animate
-              label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
-              labelPosition={100 - 60 / 2}
-              labelStyle={{
-                fill: "#fff",
-                opacity: 0.75,
-                pointerEvents: "none",
-              }}
-              onClick={(_, index) => {
-                setSelectedInitiatieven(index === selectedInitiatieven ? undefined : index);
-              }}
-              onMouseOver={(_, index) => {
-                setHoveredInitiatieven(index);
-              }}
-              onMouseOut={() => {
-                setHoveredInitiatieven(undefined);
-              }}
-              startAngle={270}
-            />
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataInitiatieven(dataInitiatieven)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    softwareType: dataInitiatieven[index].filter,
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredInitiatieven(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredInitiatieven(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {initiatievenLegend.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={option.title}
+                      className={styles.legendTitle}
+                    >
+                      {option.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>
@@ -323,35 +419,59 @@ export const CommongroundCartsTemplate: React.FC = () => {
         <div className={styles.chart}>
           <Heading3>Verdeling CG portfoliofases</Heading3>
           {getStatistics.isSuccess && (
-            <PieChart
-              data={convertDataRating(dataRating)}
-              style={{
-                fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                fontSize: "6px",
-              }}
-              radius={50 - 6}
-              lineWidth={60}
-              segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-              segmentsShift={(index) => (index === selectedRating ? 6 : 1)}
-              animate
-              label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
-              labelPosition={100 - 60 / 2}
-              labelStyle={{
-                fill: "#fff",
-                opacity: 0.75,
-                pointerEvents: "none",
-              }}
-              onClick={(_, index) => {
-                setSelectedRating(index === selectedRating ? undefined : index);
-              }}
-              onMouseOver={(_, index) => {
-                setHoveredRating(index);
-              }}
-              onMouseOut={() => {
-                setHoveredRating(undefined);
-              }}
-              startAngle={270}
-            />
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataRating(dataRating)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    ratingCommonground: dataRating[index].filter,
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredRating(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredRating(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {RatingLegend.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={option.title}
+                      className={styles.legendTitle}
+                    >
+                      {option.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>
@@ -359,35 +479,59 @@ export const CommongroundCartsTemplate: React.FC = () => {
         <div className={styles.chart}>
           <Heading3>Verdeling per domein</Heading3>
           {getStatistics.isSuccess && (
-            <PieChart
-              data={convertDataDomein(dataDomein)}
-              style={{
-                fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
-                fontSize: "6px",
-              }}
-              radius={50 - 6}
-              lineWidth={60}
-              segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-              segmentsShift={(index) => (index === selectedDomein ? 6 : 1)}
-              animate
-              label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
-              labelPosition={100 - 60 / 2}
-              labelStyle={{
-                fill: "#fff",
-                opacity: 0.75,
-                pointerEvents: "none",
-              }}
-              onClick={(_, index) => {
-                setSelectedDomein(index === selectedDomein ? undefined : index);
-              }}
-              onMouseOver={(_, index) => {
-                setHoveredDomein(index);
-              }}
-              onMouseOut={() => {
-                setHoveredDomein(undefined);
-              }}
-              startAngle={270}
-            />
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataDomein(dataDomein)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    category: dataRating[index].id,
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredDomein(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredDomein(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {dataDomein.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={_.upperFirst(option.title)}
+                      className={styles.legendTitle}
+                    >
+                      {_.upperFirst(option.title)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>

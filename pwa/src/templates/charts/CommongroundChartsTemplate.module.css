@@ -6,8 +6,30 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: var(--web-app-size-xl);
+  column-gap: var(--web-app-size-md);
 }
 
 .chart {
   text-align: center;
+}
+
+.chartLegendContainer {
+  display: flex;
+  gap: var(--web-app-size-md);
+  align-items: center;
+}
+
+.legendTitle {
+  display: block;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+.legend {
+  display: flex;
+  gap: 5px;
+  text-align: left;
 }
