@@ -11,6 +11,7 @@ import Search from "./resources/search";
 import Github from "./resources/github";
 import Markdown from "./resources/markdown";
 import FooterContent from "./resources/footerContent";
+import AvailableFilters from "./resources/availableFilters";
 
 import Login from "./services/login";
 import Me from "./services/me";
@@ -77,6 +78,16 @@ export default class APIService {
     });
   }
 
+  public get AvailableFiltersClient(): AxiosInstance {
+    return axios.create({
+      baseURL: window.sessionStorage.getItem("API_URL") ?? "",
+      headers: {
+        Accept: "application/json+aggregations",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   public get FooterContentClient(): AxiosInstance {
     return axios.create({
       baseURL: removeFileNameFromUrl(window.sessionStorage.getItem("FOOTER_CONTENT") ?? DEFAULT_FOOTER_CONTENT_URL),
@@ -116,6 +127,10 @@ export default class APIService {
 
   public get Github(): Github {
     return new Github(this.apiClient);
+  }
+
+  public get AvailableFilters(): AvailableFilters {
+    return new AvailableFilters(this.AvailableFiltersClient);
   }
 
   public get Markdown(): Markdown {

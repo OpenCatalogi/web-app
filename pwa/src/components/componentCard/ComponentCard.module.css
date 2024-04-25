@@ -31,10 +31,18 @@
 .layerTags {
   display: flex;
   margin-block-end: var(--web-app-size-xs);
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
 }
 
 .layerTags > *:not(:last-child) {
   margin-inline-end: var(--web-app-size-xs);
+}
+
+.categorieTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
 }
 
 .tags {

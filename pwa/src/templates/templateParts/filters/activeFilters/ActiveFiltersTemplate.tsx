@@ -9,7 +9,6 @@ import {
   statuses,
   applicatiefuncties,
   referentieComponenten,
-  categories,
 } from "../../../../data/filters";
 import { useTranslation } from "react-i18next";
 import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-module";
@@ -17,10 +16,6 @@ import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-mo
 export const ActiveFiltersTemplate: React.FC = () => {
   const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
-
-  const category = categories.find((category) => {
-    return category.value === filters?.category;
-  });
 
   const status = statuses.find((status) => {
     return status.value === filters?.developmentStatus;
@@ -123,7 +118,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.category && (
           <DataBadge onClick={() => setFilters({ ...filters, category: undefined })}>
-            {category?.label ?? ""}{" "}
+            {filters.category ?? ""}
           </DataBadge>
         )}
 

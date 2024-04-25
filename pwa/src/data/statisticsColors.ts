@@ -1,0 +1,15 @@
+export const statisticsColors = [
+  { id: 0, color: "#118dff" },
+  { id: 1, color: "#12239e" },
+  { id: 2, color: "#e66c37" },
+  { id: 3, color: "#6b007b" },
+  { id: 4, color: "#e044a7" },
+  { id: 5, color: "#744ec2" },
+  { id: 6, color: "#d9b300" },
+  { id: 7, color: "#d64550" },
+  { id: 8, color: "#197278" },
+  { id: 9, color: "#1aab40" },
+  { id: 10, color: "#47c7b1" },
+  { id: 11, color: "#4092ff" },
+  { id: 12, color: "#ffa058" },
+];
