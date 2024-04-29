@@ -28,12 +28,16 @@ export const CommongroundCartsTemplate: React.FC = () => {
   const [hoveredOntwikkelingsfases, setHoveredOntwikkelingsfases] = React.useState<number | undefined>(undefined);
   const [hoveredInitiatieven, setHoveredInitiatieven] = React.useState<number | undefined>(undefined);
   const [hoveredDomein, setHoveredDomein] = React.useState<number | undefined>(undefined);
+  const [hoveredLayer, setHoveredLayer] = React.useState<number | undefined>(undefined);
   const [hoveredRating, setHoveredRating] = React.useState<number | undefined>(undefined);
+  const [hoveredOrganization, setHoveredOrganization] = React.useState<number | undefined>(undefined);
   const [showPrecentages, setShowPrecentages] = React.useState<boolean>(false);
   const [dataOntwikkelingsfases, setDataOntwikkelingsfases] = React.useState<any>([]);
   const [dataInitiatieven, setDataInitiatieven] = React.useState<any>([]);
   const [dataRating, setDataRating] = React.useState<any>([]);
   const [dataDomein, setDataDomein] = React.useState<any>([]);
+  const [dataOrganization, setDataOrganization] = React.useState<any>([]);
+  const [dataLayer, setDataLayer] = React.useState<any>([]);
   const _useFilters = useAvailableFilters();
   const getStatistics = _useFilters.getStatistics();
 
@@ -59,6 +63,32 @@ export const CommongroundCartsTemplate: React.FC = () => {
     getStatistics.isSuccess &&
     getStatistics.data.developmentStatus.find((option: any) => {
       return option._id === "development";
+    });
+
+  const dataLayersInterface =
+    getStatistics.isSuccess &&
+    getStatistics.data["embedded.nl.embedded.commonground.layerType"].find((option: any) => {
+      return option._id === "interface";
+    });
+  const dataLayersProcess =
+    getStatistics.isSuccess &&
+    getStatistics.data["embedded.nl.embedded.commonground.layerType"].find((option: any) => {
+      return option._id === "process";
+    });
+  const dataLayersIntegration =
+    getStatistics.isSuccess &&
+    getStatistics.data["embedded.nl.embedded.commonground.layerType"].find((option: any) => {
+      return option._id === "integration";
+    });
+  const dataLayersService =
+    getStatistics.isSuccess &&
+    getStatistics.data["embedded.nl.embedded.commonground.layerType"].find((option: any) => {
+      return option._id === "service";
+    });
+  const dataLayersData =
+    getStatistics.isSuccess &&
+    getStatistics.data["embedded.nl.embedded.commonground.layerType"].find((option: any) => {
+      return option._id === "data";
     });
 
   const getDataSoftwareTypeStandalone = () => {
@@ -123,6 +153,14 @@ export const CommongroundCartsTemplate: React.FC = () => {
     { title: t("Gold"), color: "#d4af37" },
     { title: t("Silver"), color: "#bcc6cc" },
     { title: t("Bronze"), color: "#a97142" },
+  ];
+
+  const LayerLegend = [
+    { title: t("Interface"), color: "#1a75ff" },
+    { title: t("Process"), color: "#dd3c49" },
+    { title: t("Intergration"), color: "#efc025" },
+    { title: t("Service"), color: "#69b090" },
+    { title: t("Data"), color: "#7a51c8" },
   ];
 
   React.useEffect(() => {
@@ -237,10 +275,71 @@ export const CommongroundCartsTemplate: React.FC = () => {
         };
       });
 
+    const dataLayer: any[] = [];
+    dataLayersInterface?.count &&
+      dataLayersInterface?.count !== 0 &&
+      dataLayer.push({
+        title: t("Interface"),
+        value: dataLayersInterface?.count ?? 0,
+        color: "#1a75ff",
+        filter: "interface",
+      });
+
+    dataLayersProcess?.count &&
+      dataLayersProcess?.count !== 0 &&
+      dataLayer.push({
+        title: t("Process"),
+        value: dataLayersProcess?.count ?? 0,
+        color: "#dd3c49",
+        filter: "process",
+      });
+
+    dataLayersIntegration?.count &&
+      dataLayersIntegration?.count !== 0 &&
+      dataLayer.push({
+        title: t("Integration"),
+        value: dataLayersIntegration?.count ?? 0,
+        color: "#efc025",
+        filter: "integration",
+      });
+
+    dataLayersService?.count &&
+      dataLayersService?.count !== 0 &&
+      dataLayer.push({
+        title: t("Service"),
+        value: dataLayersService?.count ?? 0,
+        color: "#69b090",
+        filter: "service",
+      });
+
+    dataLayersData?.count &&
+      dataLayersData?.count !== 0 &&
+      dataLayer.push({
+        title: t("Data"),
+        value: dataLayersData?.count ?? 0,
+        color: "#7a51c8",
+        filter: "data",
+      });
+
+    const dataOrganization: any[] =
+      getStatistics.isSuccess &&
+      getStatistics.data["embedded.url.embedded.organisation.name"].map((option: any, idx: number) => {
+        const color = statisticsColors.find((color) => {
+          return color.id === idx;
+        });
+        return {
+          title: option._id,
+          value: option.count ?? 0,
+          color: color?.color ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        };
+      });
+
     setDataOntwikkelingsfases(dataOntwikkelingsfases);
     setDataInitiatieven(dataInitiatieven);
     setDataRating(dataRating);
     setDataDomein(dataDomein);
+    setDataLayer(dataLayer);
+    setDataOrganization(dataOrganization);
   }, [getStatistics.isSuccess]);
 
   const convertDataOntwikkelingsfases = (data: any): dataProps[] => {
@@ -280,6 +379,30 @@ export const CommongroundCartsTemplate: React.FC = () => {
   const convertDataDomein = (data: any): dataProps[] => {
     return data.map((entry: dataProps, i: number) => {
       if (hoveredDomein === i) {
+        return {
+          ...entry,
+          color: "grey",
+        };
+      }
+      return entry;
+    });
+  };
+
+  const convertDataLayer = (data: any): dataProps[] => {
+    return data.map((entry: dataProps, i: number) => {
+      if (hoveredLayer === i) {
+        return {
+          ...entry,
+          color: "grey",
+        };
+      }
+      return entry;
+    });
+  };
+
+  const convertDataOrganization = (data: any): dataProps[] => {
+    return data.map((entry: dataProps, i: number) => {
+      if (hoveredOrganization === i) {
         return {
           ...entry,
           color: "grey",
@@ -519,6 +642,124 @@ export const CommongroundCartsTemplate: React.FC = () => {
               />
               <div>
                 {dataDomein.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={_.upperFirst(option.title)}
+                      className={styles.legendTitle}
+                    >
+                      {_.upperFirst(option.title)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {getStatistics.isLoading && <Skeleton height="300px" />}
+        </div>
+        <div className={styles.chart}>
+          <Heading3>Verdeling per laag</Heading3>
+          {getStatistics.isSuccess && (
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataLayer(dataLayer)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    "embedded.nl.embedded.commonground.layerType": [dataLayer[index].filter],
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredLayer(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredLayer(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {LayerLegend.map((option: any) => (
+                  <div className={styles.legend}>
+                    <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
+                    <span
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={option.title}
+                      className={styles.legendTitle}
+                    >
+                      {option.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {getStatistics.isLoading && <Skeleton height="300px" />}
+        </div>
+        <div className={styles.chart}>
+          <Heading3>Verdeling per organisatie</Heading3>
+          {getStatistics.isSuccess && (
+            <div className={styles.chartLegendContainer}>
+              <PieChart
+                data={convertDataOrganization(dataOrganization)}
+                style={{
+                  fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
+                  fontSize: "6px",
+                }}
+                radius={50 - 6}
+                lineWidth={60}
+                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                segmentsShift={1}
+                animate
+                label={({ dataEntry }) => (showPrecentages ? Math.round(dataEntry.percentage) + "%" : dataEntry.value)}
+                labelPosition={100 - 60 / 2}
+                labelStyle={{
+                  fill: "#fff",
+                  opacity: 0.75,
+                  pointerEvents: "none",
+                }}
+                onClick={(_, index) => {
+                  setFilters({
+                    ...defaultFiltersContext,
+                    "embedded.url.embedded.organisation.name": dataOrganization[index].title,
+                  });
+                  setPagination({
+                    ...pagination,
+                    componentsCurrentPage: 1,
+                  });
+                  navigate("/components");
+                }}
+                onMouseOver={(_, index) => {
+                  setHoveredOrganization(index);
+                }}
+                onMouseOut={() => {
+                  setHoveredOrganization(undefined);
+                }}
+                startAngle={270}
+              />
+              <div>
+                {dataOrganization.map((option: any) => (
                   <div className={styles.legend}>
                     <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
                     <span
