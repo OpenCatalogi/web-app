@@ -118,7 +118,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.category && (
           <DataBadge onClick={() => setFilters({ ...filters, category: undefined })}>
-            {filters.category ?? ""}
+            {_.upperFirst(filters.category) ?? ""}
           </DataBadge>
         )}
 

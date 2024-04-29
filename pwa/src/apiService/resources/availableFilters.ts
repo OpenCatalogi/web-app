@@ -18,7 +18,7 @@ export default class AvailableFilters {
   };
 
   public getFilterOptions = async (): Promise<any> => {
-    const endpoint = "/search?_queries[]=categories";
+    const endpoint = "/search?_queries[]=embedded.nl.embedded.commonground.layerType&_queries[]=embedded.nl.embedded.upl&_queries[]=embedded.url.embedded.organisation.name&_queries[]=categories&_queries[]=platforms&_queries[]=developmentStatus";
 
     const { data } = await Send(this._instance, "GET", endpoint);
 

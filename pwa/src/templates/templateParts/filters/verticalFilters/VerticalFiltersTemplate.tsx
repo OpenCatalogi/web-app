@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { IFiltersContext, defaultFiltersContext, ratingDefault, useFiltersContext } from "../../../../context/filters";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import {
-  upls,
   platforms,
   maintenanceTypes,
   softwareTypes,
@@ -27,8 +26,6 @@ import {
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useOrganization } from "../../../../hooks/organization";
-import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator, Textbox } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
@@ -51,9 +48,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const { pagination, setPagination } = usePaginationContext();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
-  const [categoriesOptions, setCategoriesOptions] = React.useState<any>();
-
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
+
+  const [categoriesOptions, setCategoriesOptions] = React.useState<any>();
+  const [organizationOptions, setOrganizationOptions] = React.useState<any>();
+  const [uplOptions, setUplOptions] = React.useState<any>();
+  const [platformsOptions, setPlatformsOptions] = React.useState<any>();
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>(
@@ -74,17 +74,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpenRating, setIsOpenRating] = React.useState<boolean>(true);
 
   const ratingFilterTimeout = React.useRef<NodeJS.Timeout | null>(null);
-
-  const queryClient = new QueryClient();
-  const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.filtersGetAll();
-
-  const organizations =
-    getOrganisations.isSuccess &&
-    getOrganisations.data?.results?.map((organisation: any) => ({
-      label: organisation.name,
-      value: organisation.name,
-    }));
 
   React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
@@ -187,7 +176,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     reset({
       layerType: getSelectedItemsFromFilters(layers, filters["embedded.nl.embedded.commonground.layerType"]),
-      upl: getSelectedItemsFromFilters(upls, filters["embedded.nl.embedded.upl"]),
+      upl: getSelectedItemsFromFilters(uplOptions, filters["embedded.nl.embedded.upl"]),
       platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
       category: getSelectedItemFromFilters(categoriesOptions ?? categories, filters.category),
       bedrijfsfuncties: getSelectedItemsFromFilters(
@@ -211,7 +200,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["embedded.maintenance.type"]),
       license: getSelectedItemFromFilters(licenses, filters["embedded.legal.license"]),
       organization:
-        organizations && getSelectedItemFromFilters(organizations, filters["embedded.url.embedded.organisation.name"]),
+        organizationOptions &&
+        getSelectedItemFromFilters(organizationOptions, filters["embedded.url.embedded.organisation.name"]),
       interface: filters["embedded.nl.embedded.commonground.layerType"]?.includes("interface"),
       process: filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
       integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
@@ -445,21 +435,78 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   // Availible Filters
   const _useFilters = useAvailableFilters();
   const getFilterOptions = _useFilters.getFilterOptions();
+  const layerOptions =
+    getFilterOptions.isSuccess &&
+    getFilterOptions.data["embedded.nl.embedded.commonground.layerType"].map((layer: any) => layer._id);
 
   const handleSetSelectFormValues = (params: any): void => {
     getFilterOptions.isSuccess &&
-      setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
+      setValue(
+        "organization",
+        organizationOptions?.find(
+          (option: any) => option.value === params["embedded.url.embedded.organisation.name"]?.toLowerCase(),
+        ),
+      );
+
+    setValue(
+      "upl",
+      uplOptions?.find((option: any) => option.value === params["embedded.nl.embedded.upl"]?.toLowerCase()),
+    );
+
+    setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
+  };
+  React.useEffect(() => {
+    if (_.isEmpty(organizationOptions)) return;
+    if (_.isEmpty(parsedParams)) return;
+
+    handleSetSelectFormValues(parsedParams);
+  }, [organizationOptions, uplOptions]);
+
+  const getCount = (filterData: string, label: string) => {
+    const result = getFilterOptions.data[filterData].find((option: any) => {
+      return option._id === label;
+    });
+
+    return result?.count ?? "0";
   };
 
   React.useEffect(() => {
     if (!getFilterOptions.isSuccess) return;
 
+    // Organizations
+    const organizationsWithData = getFilterOptions.data["embedded.url.embedded.organisation.name"].map(
+      (organization: any) => ({
+        label: organization._id,
+        value: organization._id,
+      }),
+    );
+    const uniqueOrganizationOptions: any[] = _.orderBy(_.uniqBy(organizationsWithData, "value"), "label", "asc");
+    setOrganizationOptions(uniqueOrganizationOptions);
+
+    // Upl
+    const uplWithData = getFilterOptions.data["embedded.nl.embedded.upl"].map((upl: any) => ({
+      label: upl._id,
+      value: upl._id,
+    }));
+    const uniqueUplOptions: any[] = _.orderBy(_.uniqBy(uplWithData, "value"), "label", "asc");
+    setUplOptions(uniqueUplOptions);
+
+    // Categories
     const categoriesWithData = getFilterOptions.data.categories.map((category: any) => ({
-      label: category._id,
+      label: _.upperFirst(category._id),
       value: category._id,
     }));
     const uniqueCategoriesOptions: any[] = _.orderBy(_.uniqBy(categoriesWithData, "value"), "label", "asc");
     setCategoriesOptions(uniqueCategoriesOptions);
+
+    // Platforms
+    const platformsWithData = getFilterOptions.data.platforms.map((category: any) => ({
+      label: _.upperFirst(category._id),
+      value: category._id,
+    }));
+
+    const uniquePlatformsOptions: any[] = _.orderBy(_.uniqBy(platformsWithData, "value"), "label", "asc");
+    setPlatformsOptions(uniquePlatformsOptions);
   }, [getFilterOptions.isSuccess]);
 
   return (
@@ -604,9 +651,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   triggerOpenedClassName={styles.title}
                   trigger={
                     <div className={styles.trigger}>
-                      <span className={styles.filterTitle}>
-                        Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
-                      </span>
+                      <span className={styles.filterTitle}>Laag</span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
                         icon={faChevronRight}
@@ -621,7 +666,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div>
                     {layers.map((layer) => (
                       <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
-                        <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                        <InputCheckbox
+                          disabled={!layerOptions.includes(_.toLower(layer.value))}
+                          label={`${layer.label} (${getCount(
+                            "embedded.nl.embedded.commonground.layerType",
+                            layer.value,
+                          )})`}
+                          name={layer.value}
+                          {...{ errors, control, register }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -629,11 +682,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_UPL") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_UPL") !== "false" && uplOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormULP"}>
                   <span className={styles.filterTitle}>
-                    UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+                    UPL <span className={styles.filterCountIndicator}>({uplOptions?.length ?? "0"})</span>
                   </span>
                 </FormLabel>
 
@@ -641,7 +694,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <SelectMultiple
                     id="sortFormULP"
                     name="upl"
-                    options={upls}
+                    options={uplOptions}
                     {...{ errors, control, register }}
                     ariaLabel={t("Select UPL")}
                   />
@@ -649,21 +702,22 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" && organizationOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormOrginisation"}>
                   <span className={styles.filterTitle}>
-                    Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
+                    Organisatie{" "}
+                    <span className={styles.filterCountIndicator}>({organizationOptions?.length ?? "0"})</span>
                   </span>
                 </FormLabel>
                 <div className={styles.selectBorder}>
-                  {getOrganisations.isLoading && <Skeleton height="50px" />}
+                  {getFilterOptions.isLoading && <Skeleton height="50px" />}
 
-                  {getOrganisations.isSuccess && (
+                  {organizationOptions && (
                     <SelectSingle
                       id="sortFormOrginisation"
                       isClearable
-                      options={organizations}
+                      options={organizationOptions}
                       name="organization"
                       ariaLabel={t("Select organization")}
                       {...{ errors, control, register }}
@@ -673,7 +727,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && categoriesOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormCategory"}>
                   <span className={styles.filterTitle}>
@@ -703,7 +757,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   trigger={
                     <div className={styles.trigger}>
                       <span className={styles.filterTitle}>
-                        Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                        Platforms <span className={styles.filterCountIndicator}>({platformsOptions?.length})</span>
                       </span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
@@ -716,9 +770,13 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onOpening={() => setIsOpenPlatforms(true)}
                   onClosing={() => setIsOpenPlatforms(false)}
                 >
-                  {platforms.map((platform) => (
+                  {platformsOptions?.map((platform: any) => (
                     <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
-                      <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
+                      <InputCheckbox
+                        label={`${platform.label} (${getCount("platforms", platform.value)})`}
+                        name={platform.value}
+                        {...{ errors, control, register }}
+                      />
                     </div>
                   ))}
                 </Collapsible>
@@ -948,6 +1006,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
             )}
           </form>
         )}
+        {getFilterOptions.isLoading && <Skeleton height="1000px" />}
       </Collapsible>
     </div>
   );
