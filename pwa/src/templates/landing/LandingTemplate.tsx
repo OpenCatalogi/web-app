@@ -11,7 +11,7 @@ import { IDisplaySwitchButton } from "@conduction/components/lib/components/disp
 import { Heading, Separator } from "@utrecht/component-library-react/dist/css-module";
 import { MarkdownContentTemplate } from "../markdown/MarkdownContentTemplate";
 import { useTranslation } from "react-i18next";
-import { CommongroundCartsTemplate } from "../charts/CommongroundChartsTemplate";
+import { CommongroundChartsTemplate } from "../charts/CommongroundChartsTemplate";
 
 interface LandingTemplateProps {
   params: any;
@@ -48,7 +48,7 @@ export const LandingTemplate: React.FC<LandingTemplateProps> = ({ params }) => {
 
   return (
     <Container layoutClassName={styles.container}>
-      {window.sessionStorage.getItem("COMMONGROUND_CHARTS") === "true" && <CommongroundCartsTemplate />}
+      {window.sessionStorage.getItem("COMMONGROUND_CHARTS") === "true" && <CommongroundChartsTemplate />}
       {window.sessionStorage.getItem("OPTIONAL_START_PAGE") &&
         window.sessionStorage.getItem("OPTIONAL_START_PAGE") !== "false" &&
         window.sessionStorage.getItem("OPTIONAL_START_PAGE") !== undefined && (

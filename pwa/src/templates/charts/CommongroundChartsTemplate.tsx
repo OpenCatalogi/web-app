@@ -29,7 +29,7 @@ interface hoverProps {
   organization?: number | undefined;
 }
 
-export const CommongroundCartsTemplate: React.FC = () => {
+export const CommongroundChartsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { setFilters } = useFiltersContext();
   const { pagination, setPagination } = usePaginationContext();
