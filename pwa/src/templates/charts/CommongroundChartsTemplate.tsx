@@ -14,6 +14,7 @@ import { navigate } from "gatsby";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { usePaginationContext } from "../../context/pagination";
 import { getStatusDiagramColor } from "../../services/getStatusColor";
+import { getSoftwareTypeLabel } from "../../services/getSoftwareTypeLabel";
 
 interface dataProps {
   title: string;
@@ -93,7 +94,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
       });
 
       return {
-        title: option._id,
+        title: getSoftwareTypeLabel(option._id),
         value: option.count ?? 0,
         color: color?.color ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         filter: option._id,
@@ -133,9 +134,10 @@ export const CommongroundChartsTemplate: React.FC = () => {
           return color.id === idx;
         });
         return {
-          title: option._id,
+          title: _.upperFirst(option._id),
           value: option.count ?? 0,
           color: color?.color ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+          filter: option._id,
         };
       });
 
@@ -400,7 +402,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
                 onClick={(_, index) => {
                   setFilters({
                     ...defaultFiltersContext,
-                    category: dataCategory[index].title,
+                    category: dataCategory[index].filter,
                   });
                   setPagination({
                     ...pagination,

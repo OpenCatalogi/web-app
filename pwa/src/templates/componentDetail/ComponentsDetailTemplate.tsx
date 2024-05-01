@@ -66,7 +66,8 @@ import {
 } from "../../assets/svgs/CommongroundRatingImages";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { usePaginationContext } from "../../context/pagination";
-import { licenses, maintenanceTypes, softwareTypes } from "../../data/filters";
+import { maintenanceTypes } from "../../data/filters";
+import { getSoftwareTypeLabel } from "../../services/getSoftwareTypeLabel";
 
 interface ComponentsDetailTemplateProps {
   componentId: string;
@@ -117,20 +118,6 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
     });
 
     return _maintenanceType?.label ?? "";
-  };
-
-  const getSoftwareType = (softwareType: string) => {
-    const _softwareType = softwareTypes.find((__softwareType) => {
-      return __softwareType.value === softwareType;
-    });
-    return _softwareType?.label;
-  };
-
-  const getLicence = (licence: string) => {
-    const _licence = licenses.find((__licence) => {
-      return __licence.value === licence;
-    });
-    return _licence?.label ?? licence;
   };
 
   const rating = _getComponent.data?.embedded?.rating;
@@ -348,7 +335,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                 {_getComponent.data.embedded?.legal?.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
                     <FontAwesomeIcon icon={faScroll} />
-                    {getLicence(_getComponent.data.embedded?.legal.license)}
+                    {_getComponent.data.embedded?.legal.license}
                   </DataBadge>
                 )}
 
@@ -371,32 +358,33 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     }}
                   >
                     <FontAwesomeIcon icon={faLaptop} />
-                    {getSoftwareType(_getComponent.data.softwareType)}
+                    {getSoftwareTypeLabel(_getComponent.data.softwareType)}
                   </DataBadge>
                 )}
 
-                {_getComponent.data.embedded?.maintenance?.type && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Onderhoudstype"
-                    onClick={() => {
-                      setFilters({
-                        ...filters,
-                        ["embedded.maintenance.type"]: _getComponent.data.embedded?.maintenance?.type,
-                      });
-                      setPagination({
-                        ...pagination,
-                        componentsCurrentPage: 1,
-                      });
+                {_getComponent.data.embedded?.maintenance?.type &&
+                  _getComponent.data.embedded?.maintenance?.type !== "none" && (
+                    <DataBadge
+                      className={styles.clickableBadge}
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="Onderhoudstype"
+                      onClick={() => {
+                        setFilters({
+                          ...filters,
+                          ["embedded.maintenance.type"]: _getComponent.data.embedded?.maintenance?.type,
+                        });
+                        setPagination({
+                          ...pagination,
+                          componentsCurrentPage: 1,
+                        });
 
-                      navigate("/components");
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faWrench} />
-                    {getMaintenanceType(_getComponent.data.embedded?.maintenance?.type)}
-                  </DataBadge>
-                )}
+                        navigate("/components");
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faWrench} />
+                      {getMaintenanceType(_getComponent.data.embedded?.maintenance?.type)}
+                    </DataBadge>
+                  )}
               </div>
             </div>
 

@@ -23,6 +23,7 @@ import { getStatusColor } from "../../../../services/getStatusColor";
 import { HorizontalOverflowWrapper } from "@conduction/components";
 import { RatingIndicatorTemplate } from "../../ratingIndicator/RatingIndicatorTemplate";
 import { getCommongroundRating } from "../../../../services/getCommongroundRating";
+import { getSoftwareTypeLabel } from "../../../../services/getSoftwareTypeLabel";
 
 interface TableResultTemplateProps {
   components: any[];
@@ -107,7 +108,7 @@ export const TableResultTemplate: React.FC<TableResultTemplateProps> = ({ compon
                     {t(
                       _.upperFirst(
                         component._self.schema.ref.includes("component.schema.json")
-                          ? component.softwareType ?? "Unknown"
+                          ? getSoftwareTypeLabel(component.softwareType) ?? "Unknown"
                           : "N.V.T.",
                       ),
                     )}

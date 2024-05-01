@@ -18,8 +18,12 @@ export default class AvailableFilters {
   };
 
   public getFilterOptions = async (): Promise<any> => {
-    const endpoint = "/search?_queries[]=embedded.nl.embedded.commonground.layerType&_queries[]=embedded.nl.embedded.upl&_queries[]=embedded.url.embedded.organisation.name&_queries[]=categories&_queries[]=platforms&_queries[]=developmentStatus";
+    let endpoint =
+      "/search?_queries[]=embedded.nl.embedded.commonground.layerType&_queries[]=embedded.nl.embedded.upl&_queries[]=embedded.url.embedded.organisation.name&_queries[]=categories&_queries[]=platforms&_queries[]=developmentStatus&_queries[]=embedded.maintenance.type&_queries[]=embedded.legal.license&_queries[]=embedded.nl.embedded.gemma.bedrijfsfuncties&_queries[]=softwareType&_queries[]=embedded.nl.embedded.gemma.bedrijfsservices&_queries[]=embedded.nl.embedded.gemma.referentieComponenten";
 
+    if (process.env.GATSBY_FILTER_RATING === "Commonground") {
+      endpoint += `&embedded.nl.embedded.commonground.rating[%3E%3D]=1`;
+    }
     const { data } = await Send(this._instance, "GET", endpoint);
 
     return data;
