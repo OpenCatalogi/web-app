@@ -28,6 +28,12 @@
   user-select: none;
 }
 
+.legendContainer {
+  overflow-y: auto;
+  max-height: 180px;
+  min-width: 125px;
+}
+
 .legend {
   display: flex;
   gap: 5px;

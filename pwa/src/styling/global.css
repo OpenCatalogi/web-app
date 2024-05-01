@@ -100,8 +100,10 @@ body {
   --open-catalogi-rating-rating-bar-background-color: #bfbfbf;
   --web-app-overlay-background: rgba(0, 0, 0, 0.3);
   --web-app-download-popup-width: 500px;
-  --utrecht-feedback-safe-fill-background-color: hsla(139, 81%, 35%, 1);
-  --utrecht-feedback-warning-fill-background-color: hsla(41, 100%, 43%, 1);
-  --utrecht-feedback-danger-fill-background-color: hsla(7, 60%, 52%, 1);
-  --utrecht-feedback-neutral-fill-background-color: hsla(201, 100%, 36%, 1);
+  --utrecht-feedback-safe-fill-background-color: #11a23f;
+  --utrecht-feedback-warning-fill-background-color: #db9600;
+  --utrecht-feedback-error-fill-background-color: #ce4c3b;
+  --utrecht-feedback-neutral-fill-background-color: #0077b8;
+  --utrecht-feedback-active-fill-background-color: #12239e;
+  --utrecht-feedback-invalid-fill-background-color: #000000;
 }
