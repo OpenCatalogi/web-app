@@ -13,6 +13,7 @@ import { TOOLTIP_ID } from "../../layout/Layout";
 import { navigate } from "gatsby";
 import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
 import { usePaginationContext } from "../../context/pagination";
+import { getStatusDiagramColor } from "../../services/getStatusColor";
 
 interface dataProps {
   title: string;
@@ -21,9 +22,9 @@ interface dataProps {
 }
 
 interface hoverProps {
-  ontwikkelingsfases?: number | undefined;
-  initiatieven?: number | undefined;
-  domein?: number | undefined;
+  developementStatus?: number | undefined;
+  softwareTypes?: number | undefined;
+  category?: number | undefined;
   layer?: number | undefined;
   rating?: number | undefined;
   organization?: number | undefined;
@@ -37,42 +38,22 @@ export const CommongroundChartsTemplate: React.FC = () => {
   const [hovered, setHovered] = React.useState<hoverProps>();
 
   const [showPrecentages, setShowPrecentages] = React.useState<boolean>(false);
-  const [dataOntwikkelingsfases, setDataOntwikkelingsfases] = React.useState<any>([]);
-  const [dataInitiatieven, setDataInitiatieven] = React.useState<any>([]);
+  const [dataDevelopmentStatus, setDataDevelopmentStatus] = React.useState<any>([]);
+  const [dataSoftwareTypes, setDataSoftwareTypes] = React.useState<any>([]);
   const [dataRating, setDataRating] = React.useState<any>([]);
-  const [dataDomein, setDataDomein] = React.useState<any>([]);
+  const [dataCategory, setDataCategory] = React.useState<any>([]);
   const [dataOrganization, setDataOrganization] = React.useState<any>([]);
   const [dataLayer, setDataLayer] = React.useState<any>([]);
 
   const _useFilters = useAvailableFilters();
   const getStatistics = _useFilters.getStatistics();
 
-  const getDataSoftwareTypeStandalone = () => {
-    if (!getStatistics.isSuccess) return;
-    let sum = 0;
-
-    const filter = getStatistics.data.softwareType.filter((option: any) => {
-      return option._id.includes("standalone");
-    });
-
-    filter.forEach((element: any) => {
-      sum += element.count;
-    });
-
-    return { _id: "standalone", count: sum };
-  };
-
-  const ontwikkelingsfasesLegend = [
-    { title: "Doorontwikkeling en beheer", color: "#118dff" },
-    { title: "Opschaling", color: "#12239e" },
-    { title: "Realisatie", color: "#e66c37" },
-    { title: "Initiatie", color: "#6b007b" },
-  ];
-
-  const initiatievenLegend = [
-    { title: "Toepassing", color: "#118dff" },
-    { title: "Component", color: "#12239e" },
-    { title: "Standaard", color: "#e66c37" },
+  const developmentStatusLegend = [
+    { title: t("Stable"), color: "#11a23f" },
+    { title: t("Beta"), color: "#0077b8" },
+    { title: t("Development"), color: "#db9600" },
+    { title: t("Concept"), color: "#12239e" },
+    { title: t("Obsolete"), color: "#ce4c3b" },
   ];
 
   const RatingLegend = [
@@ -92,51 +73,27 @@ export const CommongroundChartsTemplate: React.FC = () => {
   React.useEffect(() => {
     if (!getStatistics.isSuccess) return;
 
-    const dataOntwikkelingsfases: any[] = getStatistics.data.developmentStatus.map((option: any) => {
-      const getTitle = (id: string) => {
-        switch (id) {
-          case "stable":
-            return "Doorontwikkeling en beheer";
-          case "beta":
-            return "Opschaling";
-          case "development":
-            return "Realisatie";
-          case "concept":
-            return "Initatie";
-        }
-      };
-      const color = ontwikkelingsfasesLegend.find((_option) => {
-        return _option.title === getTitle(option._id);
-      });
+    const sortDevelopmentStatusList = ["stable", "bruikbaar", "beta", "development", "concept", "obsolete"];
+    const sortedDevelopmentStatus = getStatistics.data.developmentStatus.sort((a: any, b: any) => {
+      return sortDevelopmentStatusList.indexOf(a._id) - sortDevelopmentStatusList.indexOf(b._id);
+    });
+    const dataDevelopmentStatus: any[] = sortedDevelopmentStatus.map((option: any) => {
       return {
-        title: getTitle(option._id),
+        title: t(_.upperFirst(option._id)),
         value: option.count ?? 0,
-        color: color?.color ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        color:
+          getStatusDiagramColor(_.upperFirst(option._id)) ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         filter: option._id,
       };
     });
 
-    const dataSoftwareTypeStandalone = getDataSoftwareTypeStandalone();
-    const dataSoftwareTypeNoStandalone = getStatistics.data.softwareType.filter((option: any) => {
-      return !option._id.includes("standalone");
-    });
-    const dataSoftwareTypes = [dataSoftwareTypeStandalone, ...dataSoftwareTypeNoStandalone];
-    const dataInitiatieven: any[] = dataSoftwareTypes.map((option: any) => {
-      const getTitle = (id: string) => {
-        switch (id) {
-          case "standalone":
-            return "Toepassing";
-          case "softwareAddon":
-            return "Component";
-          case "api":
-            return "Standaard";
-        }
-      };
-      const color = initiatievenLegend.find((_option) => {
-        return _option.title === getTitle(option._id);
+    const dataSoftwareTypes: any[] = getStatistics.data.softwareType.map((option: any, idx: number) => {
+      const color = statisticsColors.find((color) => {
+        return color.id === idx;
       });
+
       return {
-        title: getTitle(option._id),
+        title: option._id,
         value: option.count ?? 0,
         color: color?.color ?? `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         filter: option._id,
@@ -169,7 +126,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
       };
     });
 
-    const dataDomein: any[] =
+    const dataCategory: any[] =
       getStatistics.isSuccess &&
       getStatistics.data.categories.map((option: any, idx: number) => {
         const color = statisticsColors.find((color) => {
@@ -211,10 +168,10 @@ export const CommongroundChartsTemplate: React.FC = () => {
         };
       });
 
-    setDataOntwikkelingsfases(dataOntwikkelingsfases);
-    setDataInitiatieven(dataInitiatieven);
+    setDataDevelopmentStatus(dataDevelopmentStatus);
+    setDataSoftwareTypes(dataSoftwareTypes);
     setDataRating(dataRating);
-    setDataDomein(dataDomein);
+    setDataCategory(dataCategory);
     setDataLayer(dataLayer);
     setDataOrganization(dataOrganization);
   }, [getStatistics.isSuccess]);
@@ -239,11 +196,11 @@ export const CommongroundChartsTemplate: React.FC = () => {
 
       <div className={styles.charts}>
         <div className={styles.chart}>
-          <Heading3>Verdeling over ontwikkelingsfases</Heading3>
+          <Heading3>Ontwikkelings Status</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
-                data={convertHover(dataOntwikkelingsfases, hovered?.ontwikkelingsfases)}
+                data={convertHover(dataDevelopmentStatus, hovered?.developementStatus)}
                 style={{
                   fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
                   fontSize: "6px",
@@ -263,7 +220,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
                 onClick={(_, index) => {
                   setFilters({
                     ...defaultFiltersContext,
-                    developmentStatus: dataOntwikkelingsfases[index].filter,
+                    developmentStatus: dataDevelopmentStatus[index].filter,
                   });
                   setPagination({
                     ...pagination,
@@ -272,23 +229,23 @@ export const CommongroundChartsTemplate: React.FC = () => {
                   navigate("/components");
                 }}
                 onMouseOver={(_, index) => {
-                  setHovered({ ontwikkelingsfases: index });
+                  setHovered({ developementStatus: index });
                 }}
                 onMouseOut={() => {
-                  setHovered({ ontwikkelingsfases: undefined });
+                  setHovered({ developementStatus: undefined });
                 }}
                 startAngle={270}
               />
               <div>
-                {ontwikkelingsfasesLegend.map((option: any, idx: number) => (
+                {developmentStatusLegend.map((option: any, idx: number) => (
                   <div key={idx} className={styles.legend}>
                     <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
                     <span
                       data-tooltip-id={TOOLTIP_ID}
-                      data-tooltip-content={option.title}
+                      data-tooltip-content={_.upperFirst(option.title)}
                       className={styles.legendTitle}
                     >
-                      {option.title}
+                      {_.upperFirst(option.title)}
                     </span>
                   </div>
                 ))}
@@ -299,11 +256,11 @@ export const CommongroundChartsTemplate: React.FC = () => {
         </div>
 
         <div className={styles.chart}>
-          <Heading3>Verdeling type initiatieven</Heading3>
+          <Heading3>Software Types</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
-                data={convertHover(dataInitiatieven, hovered?.initiatieven)}
+                data={convertHover(dataSoftwareTypes, hovered?.softwareTypes)}
                 style={{
                   fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
                   fontSize: "6px",
@@ -323,7 +280,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
                 onClick={(_, index) => {
                   setFilters({
                     ...defaultFiltersContext,
-                    softwareType: dataInitiatieven[index].filter,
+                    softwareType: dataSoftwareTypes[index].filter,
                   });
                   setPagination({
                     ...pagination,
@@ -332,15 +289,15 @@ export const CommongroundChartsTemplate: React.FC = () => {
                   navigate("/components");
                 }}
                 onMouseOver={(_, index) => {
-                  setHovered({ initiatieven: index });
+                  setHovered({ softwareTypes: index });
                 }}
                 onMouseOut={() => {
-                  setHovered({ initiatieven: undefined });
+                  setHovered({ softwareTypes: undefined });
                 }}
                 startAngle={270}
               />
               <div>
-                {initiatievenLegend.map((option: any, idx: number) => (
+                {dataSoftwareTypes.map((option: any, idx: number) => (
                   <div key={idx} className={styles.legend}>
                     <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
                     <span
@@ -359,7 +316,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
         </div>
 
         <div className={styles.chart}>
-          <Heading3>Verdeling CG portfoliofases</Heading3>
+          <Heading3>Common Ground Beoordeling</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
@@ -419,11 +376,11 @@ export const CommongroundChartsTemplate: React.FC = () => {
         </div>
 
         <div className={styles.chart}>
-          <Heading3>Verdeling per domein</Heading3>
+          <Heading3>{t("Category")}</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
-                data={convertHover(dataDomein, hovered?.domein)}
+                data={convertHover(dataCategory, hovered?.category)}
                 style={{
                   fontFamily: '"Nunito Sans", -apple-system, Helvetica, Arial, sans-serif',
                   fontSize: "6px",
@@ -443,7 +400,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
                 onClick={(_, index) => {
                   setFilters({
                     ...defaultFiltersContext,
-                    category: dataDomein[index].title,
+                    category: dataCategory[index].title,
                   });
                   setPagination({
                     ...pagination,
@@ -452,15 +409,15 @@ export const CommongroundChartsTemplate: React.FC = () => {
                   navigate("/components");
                 }}
                 onMouseOver={(_, index) => {
-                  setHovered({ domein: index });
+                  setHovered({ category: index });
                 }}
                 onMouseOut={() => {
-                  setHovered({ domein: undefined });
+                  setHovered({ category: undefined });
                 }}
                 startAngle={270}
               />
-              <div>
-                {dataDomein.map((option: any, idx: number) => (
+              <div className={styles.legendContainer}>
+                {dataCategory.map((option: any, idx: number) => (
                   <div key={idx} className={styles.legend}>
                     <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}
                     <span
@@ -478,7 +435,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>
         <div className={styles.chart}>
-          <Heading3>Verdeling per laag</Heading3>
+          <Heading3>Architectuurlaag</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
@@ -537,7 +494,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
           {getStatistics.isLoading && <Skeleton height="300px" />}
         </div>
         <div className={styles.chart}>
-          <Heading3>Verdeling per organisatie</Heading3>
+          <Heading3>Organisatie</Heading3>
           {getStatistics.isSuccess && (
             <div className={styles.chartLegendContainer}>
               <PieChart
@@ -577,7 +534,7 @@ export const CommongroundChartsTemplate: React.FC = () => {
                 }}
                 startAngle={270}
               />
-              <div>
+              <div className={styles.legendContainer}>
                 {dataOrganization.map((option: any, idx: number) => (
                   <div key={idx} className={styles.legend}>
                     <FontAwesomeIcon style={{ color: option.color }} icon={faSquare} />{" "}

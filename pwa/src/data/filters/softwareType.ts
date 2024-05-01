@@ -1,5 +1,4 @@
 export const softwareTypes = [
-  { label: "Standalone", value: "standalone" },
   { label: "Standalone Mobile", value: "standalone/mobile" },
   { label: "Standalone IoT", value: "standalone/iot" },
   { label: "Standalone Desktop", value: "standalone/desktop" },
