@@ -16,6 +16,7 @@ import {
   referentieComponenten,
   categories,
   layers,
+  bedrijfsfuncties,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
@@ -178,14 +179,24 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [maintenanceTypeRadioFilter]);
 
   React.useEffect(() => {
+    const platformObject: any = {};
+    const setPlatformObject = () =>
+      platformsOptions &&
+      platformsOptions.map((platform: any) => {
+        platformObject[platform.value] = filters.platforms?.includes(platform.value);
+      });
+
+    setPlatformObject();
+
     reset({
       layerType: getSelectedItemsFromFilters(layers, filters["embedded.nl.embedded.commonground.layerType"]),
       upl: getSelectedItemsFromFilters(uplOptions, filters["embedded.nl.embedded.upl"]),
-      platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      platforms: platformsOptions && getSelectedItemsFromFilters(platformsOptions ?? platforms, filters.platforms),
       category: getSelectedItemFromFilters(categoriesOptions ?? categories, filters.category),
-      bedrijfsfuncties:
-        businessFunctionsOptions &&
-        getSelectedItemsFromFilters(businessFunctionsOptions, filters["embedded.nl.embedded.gemma.bedrijfsfuncties"]),
+      bedrijfsfuncties: getSelectedItemsFromFilters(
+        businessFunctionsOptions ?? bedrijfsfuncties,
+        filters["embedded.nl.embedded.gemma.bedrijfsfuncties"],
+      ),
       bedrijfsservices: getSelectedItemsFromFilters(
         bedrijfsservices,
         filters["embedded.nl.embedded.gemma.bedrijfsservices"],
@@ -198,7 +209,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         applicatiefuncties,
         filters["embedded.nl.embedded.gemma.applicatiefunctie"],
       ),
-      softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
+      softwareType: getSelectedItemFromFilters(softwareTypeOptions ?? softwareTypes, filters.softwareType),
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["embedded.maintenance.type"]),
       license: licenseOptions && getSelectedItemFromFilters(licenseOptions, filters["embedded.legal.license"]),
@@ -210,12 +221,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
       service: filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
       data: filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
-      web: filters.platforms?.includes("web"),
-      windows: filters.platforms?.includes("windows"),
-      mac: filters.platforms?.includes("mac"),
-      linux: filters.platforms?.includes("linux"),
-      ios: filters.platforms?.includes("ios"),
-      android: filters.platforms?.includes("android"),
+      ...platformObject,
     });
   }, [filters]);
 
@@ -280,17 +286,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters["embedded.nl.embedded.commonground.layerType"]]);
 
   React.useEffect(() => {
-    const unsetPlatformsFilter = platforms.filter(
-      (platform) => filters.platforms && !filters.platforms.includes(platform.value),
+    if (_.isEmpty(platformsOptions)) return;
+
+    const unsetPlatformsFilter = platformsOptions?.filter(
+      (platform: any) => filters.platforms && !filters.platforms.includes(platform.value),
     );
 
     unsetPlatformsFilter.map((platform: any) => {
-      const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${platform.value}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
     });
-  }, [filters.platforms]);
+  }, [filters.platforms, platformsOptions]);
 
   React.useEffect(() => {
     if (filters.isForked === true) return;
@@ -429,20 +437,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const parsedParams = qs.parse(params);
 
   React.useEffect(() => {
-    setFilters({
-      ...filters,
-      "embedded.url.embedded.organisation.name": "Common Gateway",
-    });
-
     if (_.isEmpty(parsedParams)) return;
-
     handleSetFormValuesFromParams(parsedParams);
-    handleSetSelectFormValues(parsedParams);
   }, []);
 
   // Availible Filters
   const _useFilters = useAvailableFilters();
   const getFilterOptions = _useFilters.getFilterOptions();
+
   const layerOptions =
     getFilterOptions.isSuccess &&
     getFilterOptions.data["embedded.nl.embedded.commonground.layerType"].map((layer: any) => layer._id);
@@ -451,15 +453,8 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     getFilterOptions.isSuccess &&
       setValue(
         "organization",
-        organizationOptions?.find(
-          (option: any) => option.value === params["embedded.url.embedded.organisation.name"]?.toLowerCase(),
-        ),
+        organizationOptions?.find((option: any) => option.value === params["embedded.url.embedded.organisation.name"]),
       );
-
-    setValue(
-      "upl",
-      uplOptions?.find((option: any) => option.value === params["embedded.nl.embedded.upl"]?.toLowerCase()),
-    );
 
     setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
 
@@ -468,19 +463,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       licenseOptions?.find((option: any) => option.value === params["embedded.legal.license"]?.toLowerCase()),
     );
 
-    setValue(
-      "bedrijfsfuncties",
-      businessFunctionsOptions?.find(
-        (option: any) => option.value === params["embedded.nl.embedded.gemma.bedrijfsfuncties"]?.toLowerCase(),
-      ),
-    );
+    setValue("softwareType", softwareTypeOptions?.find((option: any) => option.value === params.softwareType));
   };
   React.useEffect(() => {
     if (_.isEmpty(organizationOptions)) return;
     if (_.isEmpty(parsedParams)) return;
+    if (_.isEmpty(businessFunctionsOptions)) return;
 
     handleSetSelectFormValues(parsedParams);
-  }, [organizationOptions, uplOptions]);
+  }, [organizationOptions, uplOptions, businessFunctionsOptions]);
 
   const getCount = (filterData: string, label: string) => {
     const result = getFilterOptions.data[filterData].find((option: any) => {
