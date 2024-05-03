@@ -168,4 +168,5 @@ export const nl = {
   "Show Percentages": "Toon Percentages",
   "Show Total": "Toon Aantal",
   "More information": "Meer informatie",
+  "Common Ground rating": "Common Ground beoordeling",
 };
