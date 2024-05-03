@@ -21,6 +21,7 @@ import {
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
+  getSelectedItemsFromFiltersMultiSelect,
 } from "../../../../services/getSelectedItemsFromFilters";
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,6 +50,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
+  const [parsedParamsFilters, setParsedParamsFilters] = React.useState<any>();
 
   const [categoriesOptions, setCategoriesOptions] = React.useState<any>();
   const [organizationOptions, setOrganizationOptions] = React.useState<any>();
@@ -193,12 +195,12 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
       upl: getSelectedItemsFromFilters(uplOptions, filters["embedded.nl.embedded.upl"]),
       platforms: platformsOptions && getSelectedItemsFromFilters(platformsOptions ?? platforms, filters.platforms),
       category: getSelectedItemFromFilters(categoriesOptions ?? categories, filters.category),
-      bedrijfsfuncties: getSelectedItemsFromFilters(
+      bedrijfsfuncties: getSelectedItemsFromFiltersMultiSelect(
         businessFunctionsOptions ?? bedrijfsfuncties,
         filters["embedded.nl.embedded.gemma.bedrijfsfuncties"],
       ),
-      bedrijfsservices: getSelectedItemsFromFilters(
-        bedrijfsservices,
+      bedrijfsservices: getSelectedItemsFromFiltersMultiSelect(
+        businessFunctionsOptions ?? bedrijfsservices,
         filters["embedded.nl.embedded.gemma.bedrijfsservices"],
       ),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -439,6 +441,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   React.useEffect(() => {
     if (_.isEmpty(parsedParams)) return;
     handleSetFormValuesFromParams(parsedParams);
+    setParsedParamsFilters(parsedParams);
   }, []);
 
   // Availible Filters
@@ -450,11 +453,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     getFilterOptions.data["embedded.nl.embedded.commonground.layerType"].map((layer: any) => layer._id);
 
   const handleSetSelectFormValues = (params: any): void => {
-    getFilterOptions.isSuccess &&
-      setValue(
-        "organization",
-        organizationOptions?.find((option: any) => option.value === params["embedded.url.embedded.organisation.name"]),
-      );
+    setValue(
+      "organization",
+      organizationOptions?.find((option: any) => option.value === params["embedded.url.embedded.organisation.name"]),
+    );
 
     setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
 
@@ -466,12 +468,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setValue("softwareType", softwareTypeOptions?.find((option: any) => option.value === params.softwareType));
   };
   React.useEffect(() => {
+    if (_.isEmpty(parsedParamsFilters)) return;
     if (_.isEmpty(organizationOptions)) return;
-    if (_.isEmpty(parsedParams)) return;
-    if (_.isEmpty(businessFunctionsOptions)) return;
+    if (_.isEmpty(categoriesOptions)) return;
+    if (_.isEmpty(licenseOptions)) return;
+    if (_.isEmpty(softwareTypeOptions)) return;
 
-    handleSetSelectFormValues(parsedParams);
-  }, [organizationOptions, uplOptions, businessFunctionsOptions]);
+    handleSetSelectFormValues(parsedParamsFilters);
+  }, [organizationOptions, categoriesOptions, licenseOptions, softwareTypeOptions]);
 
   const getCount = (filterData: string, label: string) => {
     const result = getFilterOptions.data[filterData].find((option: any) => {
@@ -481,17 +485,32 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     return result?.count ?? "0";
   };
 
+  const filterOutUndifined = (array: any) => {
+    return array.filter(function (el: any) {
+      return el != null;
+    });
+  };
+
   React.useEffect(() => {
     if (!getFilterOptions.isSuccess) return;
 
     // Organizations
     const organizationsWithData = getFilterOptions.data["embedded.url.embedded.organisation.name"].map(
-      (organization: any) => ({
-        label: organization._id,
-        value: organization._id,
-      }),
+      (organization: any) => {
+        if (organization._id === "" || organization._id === " ") return;
+
+        return {
+          label: organization._id,
+          value: organization._id,
+        };
+      },
     );
-    const uniqueOrganizationOptions: any[] = _.orderBy(_.uniqBy(organizationsWithData, "value"), "label", "asc");
+
+    const uniqueOrganizationOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(organizationsWithData), "value"),
+      "label",
+      "asc",
+    );
     setOrganizationOptions(uniqueOrganizationOptions);
 
     // Upl
@@ -503,11 +522,20 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setUplOptions(uniqueUplOptions);
 
     // Categories
-    const categoriesWithData = getFilterOptions.data.categories.map((category: any) => ({
-      label: _.upperFirst(category._id),
-      value: category._id,
-    }));
-    const uniqueCategoriesOptions: any[] = _.orderBy(_.uniqBy(categoriesWithData, "value"), "label", "asc");
+    const categoriesWithData = getFilterOptions.data.categories.map((category: any) => {
+      if (category._id === "" || category._id === " ") return;
+
+      return {
+        label: _.upperFirst(category._id),
+        value: category._id,
+      };
+    });
+
+    const uniqueCategoriesOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(categoriesWithData), "value"),
+      "label",
+      "asc",
+    );
     setCategoriesOptions(uniqueCategoriesOptions);
 
     // Platforms
@@ -519,22 +547,34 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
     setPlatformsOptions(uniquePlatformsOptions);
 
     // Licenses
-    const licensesWithData = getFilterOptions.data["embedded.legal.license"].map((license: any) => ({
-      label: _.upperFirst(license._id),
-      value: _.toLower(license._id),
-    }));
-    const uniqueLicenseOptions: any[] = _.orderBy(_.uniqBy(licensesWithData, "value"), "label", "asc");
+    const licensesWithData = getFilterOptions.data["embedded.legal.license"].map((license: any) => {
+      if (license._id === "" || license._id === " ") return;
+
+      return {
+        label: _.upperFirst(license._id),
+        value: _.toLower(license._id),
+      };
+    });
+    const uniqueLicenseOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(licensesWithData), "value"),
+      "label",
+      "asc",
+    );
     setLicenseOptions(uniqueLicenseOptions);
 
     // Business Functions
     const businessFunctionsWithData = getFilterOptions.data["embedded.nl.embedded.gemma.bedrijfsfuncties"].map(
-      (businessFunction: any) => ({
-        label: businessFunction._id,
-        value: businessFunction._id,
-      }),
+      (businessFunction: any) => {
+        if (businessFunction._id === "" || businessFunction._id === " ") return;
+
+        return {
+          label: businessFunction._id,
+          value: businessFunction._id,
+        };
+      },
     );
     const uniqueBusinessFunctionsOptions: any[] = _.orderBy(
-      _.uniqBy(businessFunctionsWithData, "value"),
+      _.uniqBy(filterOutUndifined(businessFunctionsWithData), "value"),
       "label",
       "asc",
     );
@@ -550,12 +590,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
     // Business Services
     const businessServicesWithData = getFilterOptions.data["embedded.nl.embedded.gemma.bedrijfsservices"].map(
-      (businessService: any) => ({
-        label: businessService._id,
-        value: businessService._id,
-      }),
+      (businessService: any) => {
+        if (businessService._id === "" || businessService._id === " ") return;
+        return {
+          label: businessService._id,
+          value: businessService._id,
+        };
+      },
     );
-    const uniquBusinessServicesOptions: any[] = _.orderBy(_.uniqBy(businessServicesWithData, "value"), "label", "asc");
+    const uniquBusinessServicesOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(businessServicesWithData), "value"),
+      "label",
+      "asc",
+    );
     setBusinessServicesOptions(uniquBusinessServicesOptions);
 
     // Reference Components
