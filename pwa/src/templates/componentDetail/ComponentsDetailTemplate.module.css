@@ -326,6 +326,42 @@
   fill: #a97142;
 }
 
+.goldRatingButton > span > svg > g,
+.silverRatingButton > span > svg > g,
+.bronzeRatingButton > span > svg > g {
+  fill: var(--utrecht-button-color);
+}
+
+.goldRatingButton {
+  background-color: #d4af37;
+}
+.goldRatingButton:hover,
+.goldRatingButton:active,
+.goldRatingButton:focus {
+  cursor: default;
+  background-color: #d4af37 !important;
+}
+
+.silverRatingButton {
+  background-color: #bcc6cc;
+}
+.silverRatingButton:hover,
+.silverRatingButton:active,
+.silverRatingButton:focus {
+  cursor: default;
+  background-color: #bcc6cc !important;
+}
+
+.bronzeRatingButton {
+  background-color: #a97142;
+}
+.bronzeRatingButton:hover,
+.bronzeRatingButton:active,
+.bronzeRatingButton:focus {
+  cursor: default;
+  background-color: #a97142 !important;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {

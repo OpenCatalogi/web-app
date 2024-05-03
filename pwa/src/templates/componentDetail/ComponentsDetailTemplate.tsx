@@ -533,6 +533,36 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     )}
                   </>
                 )}
+                {_getComponent.data.embedded.nl.embedded.commonground.rating &&
+                  _getComponent.data.embedded.nl.embedded.commonground.rating !== 0 && (
+                    <Button
+                      tabIndex={-1}
+                      className={clsx(
+                        styles[
+                          _.camelCase(
+                            t(
+                              `${getCommongroundRating(
+                                _getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0,
+                              )} ratingButton`,
+                            ),
+                          )
+                        ],
+                        styles.commongroundRating,
+                      )}
+                      onClick={(e) => {
+                        e.preventDefault();
+                      }}
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content={t(
+                        getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0),
+                      )}
+                    >
+                      <Icon>
+                        {getCommongroundImage(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0)}
+                      </Icon>
+                      {t("Common Ground rating")}
+                    </Button>
+                  )}
               </div>
             </div>
           </div>

@@ -164,5 +164,6 @@ export const en = {
   "The repository has been submitted successfully.": "The repository has been submitted successfully.",
   "Show Percentages": "Show Percentages",
   "Show Total": "Show Total",
-  "More information": "More information"
+  "More information": "More information",
+  "Common Ground rating": "Common Ground rating",
 };
