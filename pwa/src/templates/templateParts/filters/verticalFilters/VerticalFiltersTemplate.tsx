@@ -7,28 +7,25 @@ import { useForm } from "react-hook-form";
 import { IFiltersContext, defaultFiltersContext, ratingDefault, useFiltersContext } from "../../../../context/filters";
 import { InputCheckbox, SelectMultiple, SelectSingle } from "@conduction/components";
 import {
-  upls,
   platforms,
   maintenanceTypes,
   softwareTypes,
-  licenses,
   statuses,
-  bedrijfsfuncties,
   bedrijfsservices,
   applicatiefuncties,
   referentieComponenten,
   categories,
   layers,
+  bedrijfsfuncties,
 } from "./../../../../data/filters";
 import {
   getSelectedItemFromFilters,
   getSelectedItemsFromFilters,
+  getSelectedItemsFromFiltersMultiSelect,
 } from "../../../../services/getSelectedItemsFromFilters";
 import Collapsible from "react-collapsible";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useOrganization } from "../../../../hooks/organization";
-import { QueryClient } from "react-query";
 import Skeleton from "react-loading-skeleton";
 import { FormField, FormLabel, RadioButton, Separator, Textbox } from "@utrecht/component-library-react";
 import { useTranslation } from "react-i18next";
@@ -38,6 +35,7 @@ import { filtersToUrlQueryParams } from "../../../../services/filtersToQueryPara
 import { usePaginationContext } from "../../../../context/pagination";
 import { useResultDisplayLayoutContext } from "../../../../context/resultDisplayLayout";
 import { useAvailableFilters } from "../../../../hooks/availableFilters";
+import { getSoftwareTypeLabel } from "../../../../services/getSoftwareTypeLabel";
 
 interface VerticalFiltersTemplateProps {
   filterSet: any[];
@@ -51,9 +49,18 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const { pagination, setPagination } = usePaginationContext();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
-  const [categoriesOptions, setCategoriesOptions] = React.useState<any>();
-
   const [queryParams, setQueryParams] = React.useState<IFiltersContext>(defaultFiltersContext);
+  const [parsedParamsFilters, setParsedParamsFilters] = React.useState<any>();
+
+  const [categoriesOptions, setCategoriesOptions] = React.useState<any>();
+  const [organizationOptions, setOrganizationOptions] = React.useState<any>();
+  const [uplOptions, setUplOptions] = React.useState<any>();
+  const [platformsOptions, setPlatformsOptions] = React.useState<any>();
+  const [licenseOptions, setLicenseOptions] = React.useState<any>();
+  const [businessFunctionsOptions, setBusinessFunctionsOptions] = React.useState<any>();
+  const [softwareTypeOptions, setSoftwareTypeOptions] = React.useState<any>();
+  const [businessServicesOptions, setBusinessServicesOptions] = React.useState<any>();
+  const [referenceComponentsOptions, setReferenceComponentsOptions] = React.useState<any>();
 
   const [statusRadioFilter, setStatusRadioFilter] = React.useState<string>("");
   const [maintenanceTypeRadioFilter, setMaintenanceTypeRadioFilter] = React.useState<string>(
@@ -74,17 +81,6 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   const [isOpenRating, setIsOpenRating] = React.useState<boolean>(true);
 
   const ratingFilterTimeout = React.useRef<NodeJS.Timeout | null>(null);
-
-  const queryClient = new QueryClient();
-  const _useOrganisation = useOrganization(queryClient);
-  const getOrganisations = _useOrganisation.filtersGetAll();
-
-  const organizations =
-    getOrganisations.isSuccess &&
-    getOrganisations.data?.results?.map((organisation: any) => ({
-      label: organisation.name,
-      value: organisation.name,
-    }));
 
   React.useEffect(() => setIsOpen(screenSize === "desktop"), [screenSize]);
 
@@ -185,17 +181,26 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [maintenanceTypeRadioFilter]);
 
   React.useEffect(() => {
+    const platformObject: any = {};
+    const setPlatformObject = () =>
+      platformsOptions &&
+      platformsOptions.map((platform: any) => {
+        platformObject[platform.value] = filters.platforms?.includes(platform.value);
+      });
+
+    setPlatformObject();
+
     reset({
       layerType: getSelectedItemsFromFilters(layers, filters["embedded.nl.embedded.commonground.layerType"]),
-      upl: getSelectedItemsFromFilters(upls, filters["embedded.nl.embedded.upl"]),
-      platforms: getSelectedItemsFromFilters(platforms, filters.platforms),
+      upl: getSelectedItemsFromFilters(uplOptions, filters["embedded.nl.embedded.upl"]),
+      platforms: platformsOptions && getSelectedItemsFromFilters(platformsOptions ?? platforms, filters.platforms),
       category: getSelectedItemFromFilters(categoriesOptions ?? categories, filters.category),
-      bedrijfsfuncties: getSelectedItemsFromFilters(
-        bedrijfsfuncties,
+      bedrijfsfuncties: getSelectedItemsFromFiltersMultiSelect(
+        businessFunctionsOptions ?? bedrijfsfuncties,
         filters["embedded.nl.embedded.gemma.bedrijfsfuncties"],
       ),
-      bedrijfsservices: getSelectedItemsFromFilters(
-        bedrijfsservices,
+      bedrijfsservices: getSelectedItemsFromFiltersMultiSelect(
+        businessFunctionsOptions ?? bedrijfsservices,
         filters["embedded.nl.embedded.gemma.bedrijfsservices"],
       ),
       referentieComponenten: getSelectedItemsFromFilters(
@@ -206,23 +211,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
         applicatiefuncties,
         filters["embedded.nl.embedded.gemma.applicatiefunctie"],
       ),
-      softwareType: getSelectedItemFromFilters(softwareTypes, filters.softwareType),
+      softwareType: getSelectedItemFromFilters(softwareTypeOptions ?? softwareTypes, filters.softwareType),
       status: getSelectedItemFromFilters(statuses, filters.developmentStatus),
       maintenanceType: getSelectedItemFromFilters(maintenanceTypes, filters["embedded.maintenance.type"]),
-      license: getSelectedItemFromFilters(licenses, filters["embedded.legal.license"]),
+      license: licenseOptions && getSelectedItemFromFilters(licenseOptions, filters["embedded.legal.license"]),
       organization:
-        organizations && getSelectedItemFromFilters(organizations, filters["embedded.url.embedded.organisation.name"]),
+        organizationOptions &&
+        getSelectedItemFromFilters(organizationOptions, filters["embedded.url.embedded.organisation.name"]),
       interface: filters["embedded.nl.embedded.commonground.layerType"]?.includes("interface"),
       process: filters["embedded.nl.embedded.commonground.layerType"]?.includes("process"),
       integration: filters["embedded.nl.embedded.commonground.layerType"]?.includes("integration"),
       service: filters["embedded.nl.embedded.commonground.layerType"]?.includes("service"),
       data: filters["embedded.nl.embedded.commonground.layerType"]?.includes("data"),
-      web: filters.platforms?.includes("web"),
-      windows: filters.platforms?.includes("windows"),
-      mac: filters.platforms?.includes("mac"),
-      linux: filters.platforms?.includes("linux"),
-      ios: filters.platforms?.includes("ios"),
-      android: filters.platforms?.includes("android"),
+      ...platformObject,
     });
   }, [filters]);
 
@@ -287,17 +288,19 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
   }, [filters["embedded.nl.embedded.commonground.layerType"]]);
 
   React.useEffect(() => {
-    const unsetPlatformsFilter = platforms.filter(
-      (platform) => filters.platforms && !filters.platforms.includes(platform.value),
+    if (_.isEmpty(platformsOptions)) return;
+
+    const unsetPlatformsFilter = platformsOptions?.filter(
+      (platform: any) => filters.platforms && !filters.platforms.includes(platform.value),
     );
 
     unsetPlatformsFilter.map((platform: any) => {
-      const checkBox = document.getElementById(`checkbox${platform.label}`) as HTMLInputElement | null;
+      const checkBox = document.getElementById(`checkbox${platform.value}`) as HTMLInputElement | null;
       if (checkBox && checkBox.checked === true) {
         checkBox.click();
       }
     });
-  }, [filters.platforms]);
+  }, [filters.platforms, platformsOptions]);
 
   React.useEffect(() => {
     if (filters.isForked === true) return;
@@ -437,29 +440,184 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
 
   React.useEffect(() => {
     if (_.isEmpty(parsedParams)) return;
-
     handleSetFormValuesFromParams(parsedParams);
-    handleSetSelectFormValues(parsedParams);
+    setParsedParamsFilters(parsedParams);
   }, []);
 
   // Availible Filters
   const _useFilters = useAvailableFilters();
   const getFilterOptions = _useFilters.getFilterOptions();
 
-  const handleSetSelectFormValues = (params: any): void => {
+  const layerOptions =
     getFilterOptions.isSuccess &&
-      setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
+    getFilterOptions.data["embedded.nl.embedded.commonground.layerType"].map((layer: any) => layer._id);
+
+  const handleSetSelectFormValues = (params: any): void => {
+    setValue(
+      "organization",
+      organizationOptions?.find((option: any) => option.value === params["embedded.url.embedded.organisation.name"]),
+    );
+
+    setValue("category", categoriesOptions?.find((option: any) => option.value === params.category?.toLowerCase()));
+
+    setValue(
+      "license",
+      licenseOptions?.find((option: any) => option.value === params["embedded.legal.license"]?.toLowerCase()),
+    );
+
+    setValue("softwareType", softwareTypeOptions?.find((option: any) => option.value === params.softwareType));
+  };
+  React.useEffect(() => {
+    if (_.isEmpty(parsedParamsFilters)) return;
+    if (_.isEmpty(organizationOptions)) return;
+    if (_.isEmpty(categoriesOptions)) return;
+    if (_.isEmpty(licenseOptions)) return;
+    if (_.isEmpty(softwareTypeOptions)) return;
+
+    handleSetSelectFormValues(parsedParamsFilters);
+  }, [organizationOptions, categoriesOptions, licenseOptions, softwareTypeOptions]);
+
+  const getCount = (filterData: string, label: string) => {
+    const result = getFilterOptions.data[filterData].find((option: any) => {
+      return option._id === label;
+    });
+
+    return result?.count ?? "0";
+  };
+
+  const filterOutUndifined = (array: any) => {
+    return array.filter(function (el: any) {
+      return el != null;
+    });
   };
 
   React.useEffect(() => {
     if (!getFilterOptions.isSuccess) return;
 
-    const categoriesWithData = getFilterOptions.data.categories.map((category: any) => ({
-      label: category._id,
+    // Organizations
+    const organizationsWithData = getFilterOptions.data["embedded.url.embedded.organisation.name"].map(
+      (organization: any) => {
+        if (organization._id === "" || organization._id === " ") return;
+
+        return {
+          label: organization._id,
+          value: organization._id,
+        };
+      },
+    );
+
+    const uniqueOrganizationOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(organizationsWithData), "value"),
+      "label",
+      "asc",
+    );
+    setOrganizationOptions(uniqueOrganizationOptions);
+
+    // Upl
+    const uplWithData = getFilterOptions.data["embedded.nl.embedded.upl"].map((upl: any) => ({
+      label: upl._id,
+      value: upl._id,
+    }));
+    const uniqueUplOptions: any[] = _.orderBy(_.uniqBy(uplWithData, "value"), "label", "asc");
+    setUplOptions(uniqueUplOptions);
+
+    // Categories
+    const categoriesWithData = getFilterOptions.data.categories.map((category: any) => {
+      if (category._id === "" || category._id === " ") return;
+
+      return {
+        label: _.upperFirst(category._id),
+        value: category._id,
+      };
+    });
+
+    const uniqueCategoriesOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(categoriesWithData), "value"),
+      "label",
+      "asc",
+    );
+    setCategoriesOptions(uniqueCategoriesOptions);
+
+    // Platforms
+    const platformsWithData = getFilterOptions.data.platforms.map((category: any) => ({
+      label: _.upperFirst(category._id),
       value: category._id,
     }));
-    const uniqueCategoriesOptions: any[] = _.orderBy(_.uniqBy(categoriesWithData, "value"), "label", "asc");
-    setCategoriesOptions(uniqueCategoriesOptions);
+    const uniquePlatformsOptions: any[] = _.orderBy(_.uniqBy(platformsWithData, "value"), "label", "asc");
+    setPlatformsOptions(uniquePlatformsOptions);
+
+    // Licenses
+    const licensesWithData = getFilterOptions.data["embedded.legal.license"].map((license: any) => {
+      if (license._id === "" || license._id === " ") return;
+
+      return {
+        label: _.upperFirst(license._id),
+        value: _.toLower(license._id),
+      };
+    });
+    const uniqueLicenseOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(licensesWithData), "value"),
+      "label",
+      "asc",
+    );
+    setLicenseOptions(uniqueLicenseOptions);
+
+    // Business Functions
+    const businessFunctionsWithData = getFilterOptions.data["embedded.nl.embedded.gemma.bedrijfsfuncties"].map(
+      (businessFunction: any) => {
+        if (businessFunction._id === "" || businessFunction._id === " ") return;
+
+        return {
+          label: businessFunction._id,
+          value: businessFunction._id,
+        };
+      },
+    );
+    const uniqueBusinessFunctionsOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(businessFunctionsWithData), "value"),
+      "label",
+      "asc",
+    );
+    setBusinessFunctionsOptions(uniqueBusinessFunctionsOptions);
+
+    // Softwaretype
+    const softwareTypeWithData = getFilterOptions.data.softwareType.map((softwareType: any) => ({
+      label: getSoftwareTypeLabel(softwareType._id),
+      value: softwareType._id,
+    }));
+    const uniqueSoftwaretypeOptions: any[] = _.orderBy(_.uniqBy(softwareTypeWithData, "value"), "label", "asc");
+    setSoftwareTypeOptions(uniqueSoftwaretypeOptions);
+
+    // Business Services
+    const businessServicesWithData = getFilterOptions.data["embedded.nl.embedded.gemma.bedrijfsservices"].map(
+      (businessService: any) => {
+        if (businessService._id === "" || businessService._id === " ") return;
+        return {
+          label: businessService._id,
+          value: businessService._id,
+        };
+      },
+    );
+    const uniquBusinessServicesOptions: any[] = _.orderBy(
+      _.uniqBy(filterOutUndifined(businessServicesWithData), "value"),
+      "label",
+      "asc",
+    );
+    setBusinessServicesOptions(uniquBusinessServicesOptions);
+
+    // Reference Components
+    const referenceComponentsWithData = getFilterOptions.data["embedded.nl.embedded.gemma.referentieComponenten"].map(
+      (referenceComponent: any) => ({
+        label: referenceComponent._id,
+        value: referenceComponent._id,
+      }),
+    );
+    const uniquReferenceComponentsOptions: any[] = _.orderBy(
+      _.uniqBy(referenceComponentsWithData, "value"),
+      "label",
+      "asc",
+    );
+    setReferenceComponentsOptions(uniquReferenceComponentsOptions);
   }, [getFilterOptions.isSuccess]);
 
   return (
@@ -604,9 +762,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   triggerOpenedClassName={styles.title}
                   trigger={
                     <div className={styles.trigger}>
-                      <span className={styles.filterTitle}>
-                        Laag <span className={styles.filterCountIndicator}>({layers.length})</span>
-                      </span>
+                      <span className={styles.filterTitle}>Laag</span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenLayer && styles.isOpen)}
                         icon={faChevronRight}
@@ -621,7 +777,15 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <div>
                     {layers.map((layer) => (
                       <div onChange={(e) => handleLayerChange(layer, e)} key={layer.value}>
-                        <InputCheckbox label={layer.label} name={layer.value} {...{ errors, control, register }} />
+                        <InputCheckbox
+                          disabled={!layerOptions.includes(_.toLower(layer.value))}
+                          label={`${layer.label} (${getCount(
+                            "embedded.nl.embedded.commonground.layerType",
+                            layer.value,
+                          )})`}
+                          name={layer.value}
+                          {...{ errors, control, register }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -629,11 +793,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_UPL") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_UPL") !== "false" && uplOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormULP"}>
                   <span className={styles.filterTitle}>
-                    UPL <span className={styles.filterCountIndicator}>({upls.length})</span>
+                    UPL <span className={styles.filterCountIndicator}>({uplOptions?.length ?? "0"})</span>
                   </span>
                 </FormLabel>
 
@@ -641,7 +805,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   <SelectMultiple
                     id="sortFormULP"
                     name="upl"
-                    options={upls}
+                    options={uplOptions}
                     {...{ errors, control, register }}
                     ariaLabel={t("Select UPL")}
                   />
@@ -649,21 +813,22 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_ORGANISATION") !== "false" && organizationOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormOrginisation"}>
                   <span className={styles.filterTitle}>
-                    Organisatie <span className={styles.filterCountIndicator}>({organizations?.length ?? "-"})</span>
+                    Organisatie{" "}
+                    <span className={styles.filterCountIndicator}>({organizationOptions?.length ?? "0"})</span>
                   </span>
                 </FormLabel>
                 <div className={styles.selectBorder}>
-                  {getOrganisations.isLoading && <Skeleton height="50px" />}
+                  {getFilterOptions.isLoading && <Skeleton height="50px" />}
 
-                  {getOrganisations.isSuccess && (
+                  {organizationOptions && (
                     <SelectSingle
                       id="sortFormOrginisation"
                       isClearable
-                      options={organizations}
+                      options={organizationOptions}
                       name="organization"
                       ariaLabel={t("Select organization")}
                       {...{ errors, control, register }}
@@ -673,7 +838,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_CATEGORY") !== "false" && categoriesOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormCategory"}>
                   <span className={styles.filterTitle}>
@@ -693,7 +858,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_PLATFORMS") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_PLATFORMS") !== "false" && platformsOptions?.length > 0 && (
               <FormField>
                 <Collapsible
                   className={styles.collapsible}
@@ -703,7 +868,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   trigger={
                     <div className={styles.trigger}>
                       <span className={styles.filterTitle}>
-                        Platforms <span className={styles.filterCountIndicator}>({platforms.length})</span>
+                        Platforms <span className={styles.filterCountIndicator}>({platformsOptions?.length})</span>
                       </span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenPlatforms && styles.isOpen)}
@@ -716,16 +881,20 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onOpening={() => setIsOpenPlatforms(true)}
                   onClosing={() => setIsOpenPlatforms(false)}
                 >
-                  {platforms.map((platform) => (
+                  {platformsOptions?.map((platform: any) => (
                     <div onChange={(e) => handlePlatformChange(platform, e)} key={platform.value}>
-                      <InputCheckbox label={platform.label} name={platform.value} {...{ errors, control, register }} />
+                      <InputCheckbox
+                        label={`${platform.label} (${getCount("platforms", platform.value)})`}
+                        name={platform.value}
+                        {...{ errors, control, register }}
+                      />
                     </div>
                   ))}
                 </Collapsible>
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_STATUS") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_STATUS") !== "false" && platformsOptions?.length > 0 && (
               <FormField>
                 <Collapsible
                   className={styles.collapsible}
@@ -759,9 +928,10 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                         className={styles.radioButton}
                         value={status.value}
                         checked={filters.developmentStatus === status.value}
+                        disabled={getCount("developmentStatus", status.value) === "0"}
                       />
                       <span className={styles.radioLabel} onClick={() => setStatusRadioFilter(status.value)}>
-                        {t(status.label)}
+                        {t(status.label)} {`(${getCount("developmentStatus", status.value)})`}
                       </span>
                     </div>
                   ))}
@@ -769,7 +939,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_MAINTENANCE_TYPES") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_MAINTENANCE_TYPES") !== "false" && maintenanceTypes?.length > 0 && (
               <FormField>
                 <Collapsible
                   className={styles.collapsible}
@@ -778,9 +948,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   triggerOpenedClassName={styles.title}
                   trigger={
                     <div className={styles.trigger}>
-                      <span className={styles.filterTitle}>
-                        Onderhoudstypes <span className={styles.filterCountIndicator}>({maintenanceTypes.length})</span>
-                      </span>
+                      <span className={styles.filterTitle}>Onderhoudstypes</span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenMaintenanceType && styles.isOpen)}
                         icon={faChevronRight}
@@ -803,13 +971,14 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                         className={styles.radioButton}
                         value={maintenanceType.value}
                         checked={filters["embedded.maintenance.type"] === maintenanceType.value}
+                        disabled={getCount("embedded.maintenance.type", maintenanceType.value) === "0"}
                       />
 
                       <span
                         className={styles.radioLabel}
                         onClick={() => setMaintenanceTypeRadioFilter(maintenanceType.value)}
                       >
-                        {maintenanceType.label}
+                        {maintenanceType.label} {`(${getCount("embedded.maintenance.type", maintenanceType.value)})`}
                       </span>
                     </div>
                   ))}
@@ -817,11 +986,11 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_LICENSE") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_LICENSE") !== "false" && licenseOptions?.length > 0 && (
               <FormField>
                 <FormLabel htmlFor={"sortFormLicense"}>
                   <span className={styles.filterTitle}>
-                    Licentie <span className={styles.filterCountIndicator}>({licenses.length})</span>
+                    Licentie <span className={styles.filterCountIndicator}>({licenseOptions?.length})</span>
                   </span>
                 </FormLabel>
                 <div className={styles.selectBorder}>
@@ -829,7 +998,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     id="sortFormLicense"
                     isClearable
                     name="license"
-                    options={licenses}
+                    options={licenseOptions}
                     ariaLabel={t("Select license")}
                     {...{ errors, control, register }}
                   />
@@ -837,26 +1006,28 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" && (
-              <FormField id="sortFormCompanyFunction">
-                <FormLabel htmlFor={"sortFormCompanyFunction"}>
-                  <span className={styles.filterTitle}>
-                    Bedrijfsfuncties <span className={styles.filterCountIndicator}>({bedrijfsfuncties.length})</span>
-                  </span>
-                </FormLabel>
-                <div className={styles.selectBorder}>
-                  <SelectMultiple
-                    id="sortFormLicense"
-                    name="bedrijfsfuncties"
-                    options={bedrijfsfuncties}
-                    ariaLabel={t("Select business function")}
-                    {...{ errors, control, register }}
-                  />
-                </div>
-              </FormField>
-            )}
+            {window.sessionStorage.getItem("FILTER_BUSINESS_FUNCTIONS") !== "false" &&
+              businessFunctionsOptions?.length > 0 && (
+                <FormField id="sortFormCompanyFunction">
+                  <FormLabel htmlFor={"sortFormCompanyFunction"}>
+                    <span className={styles.filterTitle}>
+                      Bedrijfsfuncties{" "}
+                      <span className={styles.filterCountIndicator}>({businessFunctionsOptions?.length})</span>
+                    </span>
+                  </FormLabel>
+                  <div className={styles.selectBorder}>
+                    <SelectMultiple
+                      id="sortFormCompanyFunction"
+                      name="bedrijfsfuncties"
+                      options={businessFunctionsOptions}
+                      ariaLabel={t("Select business function")}
+                      {...{ errors, control, register }}
+                    />
+                  </div>
+                </FormField>
+              )}
 
-            {window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") !== "false" && (
+            {window.sessionStorage.getItem("FILTER_SOFTWARE_TYPE") !== "false" && softwareTypeOptions?.length > 0 && (
               <FormField>
                 <Collapsible
                   className={styles.collapsible}
@@ -867,7 +1038,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                     <div className={styles.trigger}>
                       <span className={styles.filterTitle}>
                         Softwaretype
-                        <span className={styles.filterCountIndicator}>({softwareTypes.length})</span>
+                        <span className={styles.filterCountIndicator}> ({softwareTypeOptions?.length})</span>
                       </span>
                       <FontAwesomeIcon
                         className={clsx(styles.toggleIcon, isOpenSoftwareTypes && styles.isOpen)}
@@ -880,7 +1051,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                   onOpening={() => setIsOpenSoftwareTypes(true)}
                   onClosing={() => setIsOpenSoftwareTypes(false)}
                 >
-                  {softwareTypes.map((softwareType) => (
+                  {softwareTypeOptions?.map((softwareType: any) => (
                     <div
                       className={styles.radioContainer}
                       key={softwareType.value}
@@ -900,7 +1071,7 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
                           })
                         }
                       >
-                        {t(softwareType.label)}
+                        {t(softwareType.label)} {`(${getCount("softwareType", softwareType.value)})`}
                       </span>
                     </div>
                   ))}
@@ -908,46 +1079,50 @@ export const VerticalFiltersTemplate: React.FC<VerticalFiltersTemplateProps> = (
               </FormField>
             )}
 
-            {window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false" && (
-              <FormField>
-                <FormLabel htmlFor={"sortFormServices"}>
-                  <span className={styles.filterTitle}>
-                    Bedrijfsservices <span className={styles.filterCountIndicator}>({bedrijfsservices.length})</span>
-                  </span>
-                </FormLabel>
-                <div className={styles.selectBorder}>
-                  <SelectMultiple
-                    id="sortFormServices"
-                    name="bedrijfsservices"
-                    options={bedrijfsservices}
-                    ariaLabel={t("Select business services")}
-                    {...{ errors, control, register }}
-                  />
-                </div>
-              </FormField>
-            )}
+            {window.sessionStorage.getItem("FILTER_BUSINESS_SERVICES") !== "false" &&
+              businessServicesOptions?.length > 0 && (
+                <FormField>
+                  <FormLabel htmlFor={"sortFormServices"}>
+                    <span className={styles.filterTitle}>
+                      Bedrijfsservices{" "}
+                      <span className={styles.filterCountIndicator}>({businessServicesOptions?.length})</span>
+                    </span>
+                  </FormLabel>
+                  <div className={styles.selectBorder}>
+                    <SelectMultiple
+                      id="sortFormServices"
+                      name="bedrijfsservices"
+                      options={businessServicesOptions}
+                      ariaLabel={t("Select business services")}
+                      {...{ errors, control, register }}
+                    />
+                  </div>
+                </FormField>
+              )}
 
-            {window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false" && (
-              <FormField>
-                <FormLabel htmlFor={"sortFormReference"}>
-                  <span className={styles.filterTitle}>
-                    Referentie componenten
-                    <span className={styles.filterCountIndicator}>({referentieComponenten.length})</span>
-                  </span>
-                </FormLabel>
-                <div className={styles.selectBorder}>
-                  <SelectMultiple
-                    id="sortFormReference"
-                    name="referentieComponenten"
-                    options={referentieComponenten}
-                    ariaLabel={t("Select reference components")}
-                    {...{ errors, control, register }}
-                  />
-                </div>
-              </FormField>
-            )}
+            {window.sessionStorage.getItem("FILTER_REFERENCE_COMPONENTS") !== "false" &&
+              referenceComponentsOptions?.length > 0 && (
+                <FormField>
+                  <FormLabel htmlFor={"sortFormReference"}>
+                    <span className={styles.filterTitle}>
+                      Referentie componenten
+                      <span className={styles.filterCountIndicator}> ({referenceComponentsOptions?.length})</span>
+                    </span>
+                  </FormLabel>
+                  <div className={styles.selectBorder}>
+                    <SelectMultiple
+                      id="sortFormReference"
+                      name="referentieComponenten"
+                      options={referenceComponentsOptions}
+                      ariaLabel={t("Select reference components")}
+                      {...{ errors, control, register }}
+                    />
+                  </div>
+                </FormField>
+              )}
           </form>
         )}
+        {getFilterOptions.isLoading && <Skeleton height="1000px" />}
       </Collapsible>
     </div>
   );

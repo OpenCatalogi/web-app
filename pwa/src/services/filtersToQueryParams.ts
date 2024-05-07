@@ -17,9 +17,9 @@ export const filtersToQueryParams = (filters: any): string => {
         case "developmentStatus":
           value === "hideObsolete" ? (params += `&developmentStatus[ne]=obsolete`) : (params += `&${key}=${value}`);
           break;
-        case "softwareType":
-          value === "standalone" ? (params += `&softwareType[regex]=${value}`) : (params += `&${key}=${value}`);
-          break;
+        // case "softwareType":
+        //   value === "standalone" ? (params += `&softwareType[regex]=${value}`) : (params += `&${key}=${value}`);
+        //   break;
         case "componentsCurrentPage":
           params += "";
           break;
