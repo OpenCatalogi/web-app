@@ -169,4 +169,5 @@ export const nl = {
   "Show Total": "Toon Aantal",
   "More information": "Meer informatie",
   "Common Ground rating": "Common Ground beoordeling",
+  "This component has a rating of": "Dit component is beoordeeld met de status",
 };

@@ -333,7 +333,7 @@
 }
 
 .goldRatingButton {
-  background-color: #d4af37;
+  background-color: #d4af37 !important;
 }
 .goldRatingButton:hover,
 .goldRatingButton:active,
@@ -343,7 +343,7 @@
 }
 
 .silverRatingButton {
-  background-color: #bcc6cc;
+  background-color: #bcc6cc !important;
 }
 .silverRatingButton:hover,
 .silverRatingButton:active,
@@ -353,7 +353,7 @@
 }
 
 .bronzeRatingButton {
-  background-color: #a97142;
+  background-color: #a97142 !important;
 }
 .bronzeRatingButton:hover,
 .bronzeRatingButton:active,
