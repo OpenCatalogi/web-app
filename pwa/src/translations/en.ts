@@ -166,4 +166,5 @@ export const en = {
   "Show Total": "Show Total",
   "More information": "More information",
   "Common Ground rating": "Common Ground rating",
+  "This component has a rating of": "This component has a rating of",
 };
