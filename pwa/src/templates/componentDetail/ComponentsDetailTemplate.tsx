@@ -533,8 +533,8 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                     )}
                   </>
                 )}
-                {_getComponent.data.embedded.nl.embedded.commonground.rating &&
-                  _getComponent.data.embedded.nl.embedded.commonground.rating !== 0 && (
+                {_getComponent.data.embedded?.nl?.embedded?.commonground?.rating &&
+                  _getComponent.data.embedded?.nl?.embedded?.commonground?.rating !== 0 && (
                     <Button
                       tabIndex={-1}
                       className={clsx(
@@ -553,8 +553,9 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
                         e.preventDefault();
                       }}
                       data-tooltip-id={TOOLTIP_ID}
-                      data-tooltip-content={`${t("This component has a rating of")} ${t(getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0))}`
-                      }
+                      data-tooltip-content={`${t("This component has a rating of")} ${t(
+                        getCommongroundRating(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0),
+                      )}`}
                     >
                       <Icon>
                         {getCommongroundImage(_getComponent.data.embedded?.nl?.embedded?.commonground?.rating ?? 0)}
