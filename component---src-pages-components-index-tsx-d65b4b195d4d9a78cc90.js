@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkskeleton_pip=self.webpackChunkskeleton_pip||[]).push([[545,3263],{25223:function(e,t,u){u.r(t);var n=u(18951),s=u(85893);t.default=()=>(0,s.jsx)(n.T,{})},15336:function(e,t,u){u.r(t);var n=u(25223);t.default=n.default}}]);
+//# sourceMappingURL=component---src-pages-components-index-tsx-d65b4b195d4d9a78cc90.js.map
