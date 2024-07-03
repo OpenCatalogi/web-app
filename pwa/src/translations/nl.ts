@@ -170,4 +170,5 @@ export const nl = {
   "More information": "Meer informatie",
   "Common Ground rating": "Common Ground beoordeling",
   "This component has a rating of": "Dit component is beoordeeld met de status",
+  "Back to publications": "Terug naar publicaties",
 };
