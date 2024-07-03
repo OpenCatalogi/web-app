@@ -17,6 +17,7 @@ import Login from "./services/login";
 import Me from "./services/me";
 import { DEFAULT_HEADER_CONTENT_URL } from "../templates/templateParts/header/HeaderTemplate";
 import HeaderContent from "./resources/headerContent";
+import Publication from "./resources/publication";
 
 export default class APIService {
   public JWT?: string;
@@ -100,6 +101,14 @@ export default class APIService {
     });
   }
 
+  public get PublicationClient(): AxiosInstance {
+    return axios.create({
+      baseURL: removeFileNameFromUrl(
+        "https://raw.githubusercontent.com/ConductionNL/OpenCatalogApp/feature/AQ212-8/publicatie-modal/docs/dcat_example.json",
+      ),
+    });
+  }
+
   // Resources
   public get Case(): Case {
     return new Case(this.apiClient);
@@ -143,6 +152,10 @@ export default class APIService {
 
   public get HeaderContent(): HeaderContent {
     return new HeaderContent(this.HeaderContentClient);
+  }
+
+  public get Publication(): Publication {
+    return new Publication(this.PublicationClient);
   }
 
   // Services

@@ -63,6 +63,10 @@ module.exports = {
             pathname: "/github/[md]",
             crumbLabel: "Markdown file",
           },
+          {
+            pathname: "/publications/[publicationId]",
+            crumbLabel: "Publication",
+          },
         ],
       },
     },
