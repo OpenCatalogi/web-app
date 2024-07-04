@@ -44,6 +44,10 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.date {
+  text-wrap: nowrap;
+}
+
 .headerButtonsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -54,6 +58,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--web-app-size-xs);
+}
+
+.tagWidth {
+  width: max-content !important;
 }
 
 .addToCatalogusContainer {
@@ -261,6 +269,15 @@
   color: var(--utrecht-table-row-hover-color);
 }
 
+.commongroundRating > * {
+  max-height: var(--web-app-component-rating-indicator-height);
+}
+
+.publicationDataContact {
+  display: flex;
+  flex-direction: column;
+}
+
 @media only screen and (min-width: 576px) {
   .container > .headingContainer {
     grid-template-columns: 2fr var(--web-app-component-detail-logo-width);
@@ -307,10 +324,6 @@
     transform: translate(-50%, -50%);
     z-index: 700;
   }
-}
-
-.commongroundRating > * {
-  max-height: var(--web-app-component-rating-indicator-height);
 }
 
 /* Colors of commonground rating */

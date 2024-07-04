@@ -37,12 +37,16 @@ import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/Rating
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
+  faCircle,
+  faDownload,
+  faGear,
   faHouse,
   faInfoCircle,
   faLaptop,
   faLayerGroup,
   faRepeat,
   faScroll,
+  faUpload,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import { categories, TCategories } from "../../data/categories";
@@ -144,10 +148,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
     });
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
+  const publicationData = _getPublication.data?.data;
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
-  const organisation = _getComponent?.data?.embedded?.url?.embedded?.organisation;
+  const organisation = _getPublication?.data?.organization;
   const application = _getComponent?.data?.embedded?.applicationSuite;
   const applicationComponent = getApplicationComponent?.data?.results[0];
 
@@ -264,7 +269,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 {_getPublication.data?.category && (
                   <DataBadge
                     data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Categorie"
+                    data-tooltip-content={t("Category")}
                     className={
                       styles[
                         _.camelCase(
@@ -281,30 +286,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               </div>
 
               <div className={styles.tags}>
-                {_getPublication.data?.developmentStatus && (
-                  <StatusBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Status"
-                    status={getStatusColor(_.upperFirst(_getPublication.data?.developmentStatus) ?? "Onbekend")}
-                    onClick={() => {
-                      setFilters({
-                        ...defaultFiltersContext,
-                        ["developmentStatus"]: _getPublication.data?.developmentStatus,
-                      });
-                      setPagination({
-                        ...pagination,
-                        componentsCurrentPage: 1,
-                      });
-
-                      navigate("/components");
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
-                    {t(_.upperFirst(_getPublication.data?.developmentStatus))}
-                  </StatusBadge>
-                )}
-
                 {_getPublication.data?.usedBy?.length > 0 && (
                   <DataBadge
                     className={styles.clickableBadge}
@@ -317,24 +298,70 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   </DataBadge>
                 )}
 
-                {organisation?.name && (
+                {organisation?.title && (
                   <DataBadge
                     className={styles.clickableBadge}
-                    onClick={() => {
-                      navigate("/organizations/" + organisation._self?.id);
-                    }}
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Organisatie"
                   >
                     <FontAwesomeIcon icon={faHouse} />
-                    {organisation.name}
+                    {organisation.title}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.embedded?.legal?.license && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
+                {_getPublication.data?.license && (
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("License")}>
                     <FontAwesomeIcon icon={faScroll} />
-                    {_getPublication.data?.embedded?.legal.license}
+                    {_getPublication.data?.license}
+                  </DataBadge>
+                )}
+
+                {_getPublication.data?.status && (
+                  <StatusBadge
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content="Status"
+                    status={getStatusColor(_.upperFirst(_getPublication.data?.developmentStatus) ?? "Onbekend")}
+                  >
+                    <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
+                    {t(_.upperFirst(_getPublication.data?.status))}
+                  </StatusBadge>
+                )}
+
+                {_getPublication.data?.published && (
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Published")}>
+                    <FontAwesomeIcon icon={faUpload} />
+                    {_getPublication.data?.published}
+                  </DataBadge>
+                )}
+
+                {_getPublication.data?.modified && (
+                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Modified")}>
+                    <FontAwesomeIcon icon={faGear} />
+                    {_getPublication.data?.modified}
+                  </DataBadge>
+                )}
+
+                {_getPublication.data?.portal && (
+                  <DataBadge
+                    className={styles.clickableBadge}
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content={_getPublication?.data?.portal}
+                    onClick={() => open(_getPublication?.data?.portal)}
+                  >
+                    <FontAwesomeIcon icon={faCircle} />
+                    {t("Portal")}
+                  </DataBadge>
+                )}
+
+                {_getPublication.data?.reference && (
+                  <DataBadge
+                    className={styles.clickableBadge}
+                    data-tooltip-id={TOOLTIP_ID}
+                    data-tooltip-content={_getPublication.data?.reference}
+                    onClick={() => open(_getPublication?.data?.reference)}
+                  >
+                    <FontAwesomeIcon icon={faGear} />
+                    {t("Reference")}
                   </DataBadge>
                 )}
 
@@ -384,6 +411,18 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       {getMaintenanceType(_getPublication.data?.embedded?.maintenance?.type)}
                     </DataBadge>
                   )}
+              </div>
+              <div className={styles.tags}>
+                {_getPublication.data?.themes &&
+                  _getPublication.data?.themes.map((theme: string) => (
+                    <DataBadge
+                      className={styles.clickableBadge}
+                      data-tooltip-id={TOOLTIP_ID}
+                      data-tooltip-content="Thema"
+                    >
+                      {theme}
+                    </DataBadge>
+                  ))}
               </div>
             </div>
 
@@ -631,12 +670,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
             {organisation && (
               <OrganizationCard
                 title={{
-                  label: organisation.name,
-                  href: `/organizations/${organisation._self.id}`,
+                  label: organisation.title,
+                  href: `/organizations/${organisation?.id}`,
                 }}
                 description={organisation.description}
                 website={organisation.website}
-                logo={organisation.logo}
+                logo={organisation.image}
                 components={{
                   owned: organisation.owns?.length.toString() ?? "0",
                   supported: organisation.supports?.length.toString() ?? "0",
@@ -644,11 +683,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 }}
                 gitHub={organisation.github}
                 gitLab={organisation.gitlab}
-                type={organisation.type}
+                type={"Organization"}
                 layoutClassName={styles.organizationCardContainer}
               />
             )}
-            {!_getPublication?.data?.embedded?.url?.embedded?.organisation && (
+            {!_getPublication?.data?.organization && (
               <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
             )}
             <InfoCard
@@ -736,7 +775,9 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
             getConfigComponents.data?.results?.length > 0 ||
             _getPublication.data?.embedded?.supportedBy?.length > 0 ||
             _getPublication.data?.embedded?.usedBy?.length > 0 ||
-            getConfigComponents.data?.results?.length > 0) && (
+            getConfigComponents.data?.results?.length > 0 ||
+            _getPublication.data?.attachments ||
+            _getPublication.data?.data) && (
             <div id="Tabs" ref={tabsRef}>
               <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
@@ -786,6 +827,19 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       <BadgeCounter className={styles.badgeLayout}>
                         {getConfigComponents.data?.results?.length ?? 0}
                       </BadgeCounter>
+                    </Tab>
+                  )}
+                  {_getPublication.data?.attachments?.length > 0 && (
+                    <Tab>
+                      <span>{t("Attachments")}</span>
+                      <BadgeCounter className={styles.badgeLayout}>
+                        {_getPublication.data?.attachments?.length ?? 0}
+                      </BadgeCounter>
+                    </Tab>
+                  )}
+                  {_getPublication.data?.data && (
+                    <Tab>
+                      <span>{t("Data")}</span>
                     </Tab>
                   )}
                 </TabList>
@@ -968,6 +1022,140 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                         );
                       })}
                     </div>
+                  </TabPanel>
+                )}
+                {_getPublication.data?.attachments?.length > 0 && (
+                  <TabPanel>
+                    <HorizontalOverflowWrapper
+                      ariaLabels={{
+                        scrollLeftButton: t("Left scroll button"),
+                        scrollRightButton: t("Right scroll button"),
+                      }}
+                    >
+                      <Table className={styles.table}>
+                        <TableHeader className={styles.tableHeader}>
+                          <TableRow>
+                            <TableHeaderCell>{t("Name")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Description")}</TableHeaderCell>
+                            <TableHeaderCell>{t("License")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Type")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Published")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Modified")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Download")}</TableHeaderCell>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody className={styles.tableBody}>
+                          {_getPublication?.data?.attachments.map((attachement: any) => {
+                            return (
+                              <TableRow className={styles.tableRow}>
+                                <TableCell className={styles.title}>{attachement.title}</TableCell>
+                                <TableCell className={styles.description}>
+                                  <div
+                                    data-tooltip-id={attachement.description.length > 100 && TOOLTIP_ID}
+                                    data-tooltip-content={attachement.description}
+                                  >
+                                    {attachement.description.length > 100
+                                      ? `${attachement.description.substring(0, 100)}...`
+                                      : attachement.description}
+                                  </div>
+                                </TableCell>
+                                <TableCell className={styles.license}>
+                                  <DataBadge
+                                    className={styles.tagWidth}
+                                    data-tooltip-id={TOOLTIP_ID}
+                                    data-tooltip-content={t("License")}
+                                  >
+                                    <FontAwesomeIcon icon={faScroll} />
+                                    {attachement.license}
+                                  </DataBadge>
+                                </TableCell>
+                                <TableCell className={styles.type}>{attachement.type}</TableCell>
+                                <TableCell className={styles.published}>
+                                  <span className={styles.date}>{attachement.published}</span>
+                                </TableCell>
+                                <TableCell className={styles.modified}>
+                                  <span className={styles.date}>{attachement.modified}</span>
+                                </TableCell>
+                                <TableCell className={styles.downloadUrl}>
+                                  <Link
+                                    onClick={(e) => {
+                                      e.preventDefault(), open(attachement.downloadURL);
+                                    }}
+                                    href={`/publications/${_getPublication.data?.id}`}
+                                  >
+                                    <Icon>
+                                      <FontAwesomeIcon icon={faDownload} />
+                                    </Icon>
+                                    {t("Download")}
+                                  </Link>
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </HorizontalOverflowWrapper>
+                  </TabPanel>
+                )}
+                {publicationData && (
+                  <TabPanel>
+                    <HorizontalOverflowWrapper
+                      ariaLabels={{
+                        scrollLeftButton: t("Left scroll button"),
+                        scrollRightButton: t("Right scroll button"),
+                      }}
+                    >
+                      <Table className={styles.table}>
+                        <TableBody className={styles.tableBody}>
+                          {publicationData?.contactPoint && (
+                            <TableRow className={styles.tableRow}>
+                              <TableCell className={styles.title}>Contact:</TableCell>
+                              <TableCell>
+                                <div className={styles.publicationDataContact}>
+                                  <span>{`${t("Name")}: ${publicationData?.contactPoint?.name}`}</span>
+                                  <span>{`${t("Email")}: ${publicationData?.contactPoint?.email}`}</span>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          )}
+
+                          {publicationData?.qualifiedAttribution && (
+                            <TableRow className={styles.tableRow}>
+                              <TableCell className={styles.title}>Toeschrijving:</TableCell>
+                              <TableCell>
+                                <div className={styles.publicationDataContact}>
+                                  <span>{`${t("Name")}: ${publicationData?.contactPoint?.name}`}</span>
+                                  <span>{`${t("Email")}: ${publicationData?.contactPoint?.email}`}</span>
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          )}
+
+                          {publicationData?.bedrijfsservices && (
+                            <TableRow className={styles.tableRow}>
+                              <TableCell className={styles.title}>Bedrijfsservices:</TableCell>
+                              <TableCell className={styles.description}>
+                                {publicationData.bedrijfsservices.join(", ")}
+                              </TableCell>
+                            </TableRow>
+                          )}
+
+                          {publicationData?.model && (
+                            <TableRow className={styles.tableRow}>
+                              <TableCell className={styles.title}>Model:</TableCell>
+                              <TableCell className={styles.description}>{publicationData.model}</TableCell>
+                            </TableRow>
+                          )}
+
+                          {publicationData?.spatial > 0 && (
+                            <TableRow className={styles.tableRow}>
+                              <TableCell className={styles.title}>Referentie componenten:</TableCell>
+                              <TableCell className={styles.description}>{publicationData.spatial.join(", ")}</TableCell>
+                            </TableRow>
+                          )}
+                        </TableBody>
+                      </Table>
+                    </HorizontalOverflowWrapper>
                   </TabPanel>
                 )}
               </Tabs>
