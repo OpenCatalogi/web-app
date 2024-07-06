@@ -82,6 +82,7 @@ export const en = {
   Modified: "Modified",
   Portal: "Portal",
   Reference: "Reference",
+  Pagination: "Pagination",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",

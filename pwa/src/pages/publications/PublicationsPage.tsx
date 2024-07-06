@@ -1,9 +1,9 @@
 import * as React from "react";
 import { PageProps } from "gatsby";
-import { ComponentsTemplate } from "../../templates/components/ComponentsTemplate";
+import { PublicationsTemplate } from "../../templates/publications/PublicationsTemplate";
 
 const PublicationsPage: React.FC<PageProps> = () => {
-  return <ComponentsTemplate />;
+  return <PublicationsTemplate />;
 };
 
 export default PublicationsPage;

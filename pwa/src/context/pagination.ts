@@ -5,12 +5,14 @@ export interface IPaginationContext {
   componentsCurrentPage: number;
   organizationCurrentPage: number;
   applicationCurrentPage: number;
+  publicationCurrentPage: number;
 }
 
 export const defaultPaginationContext: IPaginationContext = {
   componentsCurrentPage: 1,
   organizationCurrentPage: 1,
   applicationCurrentPage: 1,
+  publicationCurrentPage: 1,
 };
 
 export const usePaginationContext = () => {

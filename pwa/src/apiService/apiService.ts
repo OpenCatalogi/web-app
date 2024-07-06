@@ -102,10 +102,15 @@ export default class APIService {
   }
 
   public get PublicationClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
     return axios.create({
-      baseURL: removeFileNameFromUrl(
-        "https://raw.githubusercontent.com/ConductionNL/OpenCatalogApp/feature/AQ212-8/publicatie-modal/docs/dcat_example.json",
-      ),
+      baseURL: "https://nextcloud.test.commonground.nu/index.php/apps/opencatalog/api",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      ...authorization,
     });
   }
 

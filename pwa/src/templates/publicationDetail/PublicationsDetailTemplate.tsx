@@ -108,12 +108,15 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
     setTabIndex(reuseIndex);
   };
 
+  // console.log(publicationId);
+
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
-  const _getComponent = _useComponent.getOne(publicationId);
+  //@ts-ignore
+  const _getComponent = _useComponent.getOne(undefined);
 
-  const _usePublication = usePublication();
-  const _getPublication = _usePublication.getContent();
+  const _usePublication = usePublication(queryClient);
+  const _getPublication = _usePublication.getOne(publicationId);
 
   const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
   const getApplicationComponent = _useComponent.getApplicationComponent(
@@ -148,11 +151,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
     });
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
-  const publicationData = _getPublication.data?.data;
+  const publicationData = _getPublication.data?.data?.data;
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
-  const organisation = _getPublication?.data?.organization;
+  const organisation = _getPublication?.data?.data?.organization;
   const application = _getComponent?.data?.embedded?.applicationSuite;
   const applicationComponent = getApplicationComponent?.data?.results[0];
 
@@ -239,12 +242,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
               <Heading level={1} className={styles.componentName}>
-                {_getPublication.data?.title}
+                {_getPublication.data?.data?.title}
               </Heading>
 
               <ExpandableLeadParagraph
                 description={
-                  _getPublication.data?.description ?? _getPublication.data?.summary ?? t("No description available")
+                  _getPublication.data?.data?.description ?? _getPublication.data?.data?.summary ?? t("No description available")
                 }
               />
 
@@ -256,17 +259,17 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     styles[
                       _.camelCase(
                         t(
-                          `${_getPublication.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`,
+                          `${_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`,
                         ),
                       )
                     ]
                   }
                 >
                   <FontAwesomeIcon icon={faLayerGroup} />
-                  {t(_.upperFirst(_getPublication.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"))}
+                  {t(_.upperFirst(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"))}
                 </DataBadge>
 
-                {_getPublication.data?.category && (
+                {_getPublication.data?.data?.category && (
                   <DataBadge
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content={t("Category")}
@@ -274,19 +277,19 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       styles[
                         _.camelCase(
                           `${
-                            _getPublication.data?.embedded?.nl.embedded?.commonground?.layerType ?? "Unknown"
+                            _getPublication.data?.data?.embedded?.nl.embedded?.commonground?.layerType ?? "Unknown"
                           } category`,
                         )
                       ]
                     }
                   >
-                    {_.upperFirst(_getPublication.data?.category)}
+                    {_.upperFirst(_getPublication.data?.data?.category)}
                   </DataBadge>
                 )}
               </div>
 
               <div className={styles.tags}>
-                {_getPublication.data?.usedBy?.length > 0 && (
+                {_getPublication.data?.data?.usedBy?.length > 0 && (
                   <DataBadge
                     className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
@@ -294,7 +297,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     onClick={() => viewReuse()}
                   >
                     <FontAwesomeIcon icon={faRepeat} />
-                    {_.toString(_getPublication.data?.usedBy?.length ?? "0")}
+                    {_.toString(_getPublication.data?.data?.usedBy?.length ?? "0")}
                   </DataBadge>
                 )}
 
@@ -309,63 +312,63 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.license && (
+                {_getPublication.data?.data?.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("License")}>
                     <FontAwesomeIcon icon={faScroll} />
-                    {_getPublication.data?.license}
+                    {_getPublication.data?.data?.license}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.status && (
+                {_getPublication.data?.data?.status && (
                   <StatusBadge
                     data-tooltip-id={TOOLTIP_ID}
                     data-tooltip-content="Status"
-                    status={getStatusColor(_.upperFirst(_getPublication.data?.developmentStatus) ?? "Onbekend")}
+                    status={getStatusColor(_.upperFirst(_getPublication.data?.data?.developmentStatus) ?? "Onbekend")}
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
-                    {t(_.upperFirst(_getPublication.data?.status))}
+                    {t(_.upperFirst(_getPublication.data?.data?.status))}
                   </StatusBadge>
                 )}
 
-                {_getPublication.data?.published && (
+                {_getPublication.data?.data?.published && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Published")}>
                     <FontAwesomeIcon icon={faUpload} />
-                    {_getPublication.data?.published}
+                    {_getPublication.data?.data?.published}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.modified && (
+                {_getPublication.data?.data?.modified && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Modified")}>
                     <FontAwesomeIcon icon={faGear} />
-                    {_getPublication.data?.modified}
+                    {_getPublication.data?.data?.modified}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.portal && (
+                {_getPublication.data?.data?.portal && (
                   <DataBadge
                     className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={_getPublication?.data?.portal}
-                    onClick={() => open(_getPublication?.data?.portal)}
+                    data-tooltip-content={_getPublication?.data?.data?.portal}
+                    onClick={() => open(_getPublication?.data?.data?.portal)}
                   >
                     <FontAwesomeIcon icon={faCircle} />
                     {t("Portal")}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.reference && (
+                {_getPublication.data?.data?.reference && (
                   <DataBadge
                     className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={_getPublication.data?.reference}
-                    onClick={() => open(_getPublication?.data?.reference)}
+                    data-tooltip-content={_getPublication.data?.data?.reference}
+                    onClick={() => open(_getPublication?.data?.data?.reference)}
                   >
                     <FontAwesomeIcon icon={faGear} />
                     {t("Reference")}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.softwareType && (
+                {_getPublication.data?.data?.softwareType && (
                   <DataBadge
                     className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
@@ -373,7 +376,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     onClick={() => {
                       setFilters({
                         ...filters,
-                        ["softwareType"]: _getPublication.data?.softwareType,
+                        ["softwareType"]: _getPublication.data?.data?.softwareType,
                       });
                       setPagination({
                         ...pagination,
@@ -384,12 +387,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     }}
                   >
                     <FontAwesomeIcon icon={faLaptop} />
-                    {getSoftwareTypeLabel(_getPublication.data?.softwareType)}
+                    {getSoftwareTypeLabel(_getPublication.data?.data?.softwareType)}
                   </DataBadge>
                 )}
 
-                {_getPublication.data?.embedded?.maintenance?.type &&
-                  _getPublication.data?.embedded?.maintenance?.type !== "none" && (
+                {_getPublication.data?.data?.embedded?.maintenance?.type &&
+                  _getPublication.data?.data?.embedded?.maintenance?.type !== "none" && (
                     <DataBadge
                       className={styles.clickableBadge}
                       data-tooltip-id={TOOLTIP_ID}
@@ -397,7 +400,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       onClick={() => {
                         setFilters({
                           ...filters,
-                          ["embedded.maintenance.type"]: _getPublication.data?.embedded?.maintenance?.type,
+                          ["embedded.maintenance.type"]: _getPublication.data?.data?.embedded?.maintenance?.type,
                         });
                         setPagination({
                           ...pagination,
@@ -408,13 +411,13 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       }}
                     >
                       <FontAwesomeIcon icon={faWrench} />
-                      {getMaintenanceType(_getPublication.data?.embedded?.maintenance?.type)}
+                      {getMaintenanceType(_getPublication.data?.data?.embedded?.maintenance?.type)}
                     </DataBadge>
                   )}
               </div>
               <div className={styles.tags}>
-                {_getPublication.data?.themes &&
-                  _getPublication.data?.themes.map((theme: string) => (
+                {_getPublication.data?.data?.themes &&
+                  _getPublication.data?.data?.themes.map((theme: string) => (
                     <DataBadge
                       className={styles.clickableBadge}
                       data-tooltip-id={TOOLTIP_ID}
@@ -430,8 +433,8 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               <div className={styles.logoContainer}>
                 <img
                   src={
-                    imageHasValidSource(_getPublication.data?.logo)
-                      ? _getPublication.data?.logo
+                    imageHasValidSource(_getPublication.data?.data?.logo)
+                      ? _getPublication.data?.data?.logo
                       : componentPlacholderLogo
                   }
                   className={styles.logo}
@@ -447,10 +450,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 Toevoegen aan catalogus
               </Button> */}
 
-                {_getPublication.data?.embedded?.url?.url && (
+                {_getPublication.data?.data?.embedded?.url?.url && (
                   <Button
                     appearance="secondary-action-button"
-                    onClick={() => open(_getPublication.data?.embedded?.url?.url)}
+                    onClick={() => open(_getPublication.data?.data?.embedded?.url?.url)}
                   >
                     <Icon>
                       <GitHubLogo />
@@ -459,10 +462,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   </Button>
                 )}
 
-                {_getPublication.data?.embedded?.downloads && (
+                {_getPublication.data?.data?.embedded?.downloads && (
                   <DownloadTemplate
-                    downloads={_getPublication?.data?.embedded?.downloads}
-                    backUrl={`/components/${_getPublication.data?.id}`}
+                    downloads={_getPublication?.data?.data?.embedded?.downloads}
+                    backUrl={`/components/${_getPublication.data?.data?.id}`}
                   />
                 )}
 
@@ -471,7 +474,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   gemma?.bedrijfsservices ||
                   gemma?.model ||
                   gemma?.referentiecomponenten?.length > 0 ||
-                  _getPublication.data?.embedded?.nl?.upl?.length > 0) && (
+                  _getPublication.data?.data?.embedded?.nl?.upl?.length > 0) && (
                   <>
                     <Button
                       appearance="secondary-action-button"
@@ -538,11 +541,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     </TableRow>
                                   )}
 
-                                  {_getPublication.data?.embedded?.nl?.upl?.length > 0 && (
+                                  {_getPublication.data?.data?.embedded?.nl?.upl?.length > 0 && (
                                     <TableRow className={styles.tableRow}>
                                       <TableCell className={styles.title}>{t("Products")}</TableCell>
                                       <TableCell>
-                                        {_getPublication.data?.embedded?.nl?.upl.map((product: string, idx: number) => (
+                                        {_getPublication.data?.data?.embedded?.nl?.upl.map((product: string, idx: number) => (
                                           <span key={idx}>
                                             <Link
                                               target="_new"
@@ -573,8 +576,8 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     )}
                   </>
                 )}
-                {_getPublication.data?.embedded?.nl?.embedded?.commonground?.rating &&
-                  _getPublication.data?.embedded?.nl?.embedded?.commonground?.rating !== 0 && (
+                {_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating &&
+                  _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating !== 0 && (
                     <Button
                       tabIndex={-1}
                       className={clsx(
@@ -582,7 +585,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                           _.camelCase(
                             t(
                               `${getCommongroundRating(
-                                _getPublication.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0,
+                                _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0,
                               )} ratingButton`,
                             ),
                           )
@@ -594,11 +597,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       }}
                       data-tooltip-id={TOOLTIP_ID}
                       data-tooltip-content={`${t("This component has a rating of")} ${t(
-                        getCommongroundRating(_getPublication.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0),
+                        getCommongroundRating(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0),
                       )}`}
                     >
                       <Icon>
-                        {getCommongroundImage(_getPublication.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0)}
+                        {getCommongroundImage(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0)}
                       </Icon>
                       {t("Common Ground rating")}
                     </Button>
@@ -620,7 +623,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               </div>
             )}
             {getApplicationComponent.isSuccess &&
-              (applicationComponent && applicationComponent.name !== _getPublication.data?.name ? (
+              (applicationComponent && applicationComponent.name !== _getPublication.data?.data?.name ? (
                 <ComponentCard
                   key={applicationComponent._self?.id}
                   title={{
@@ -663,7 +666,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   />
                 )
               ))}
-            {!getApplicationComponent.isLoading && !_getPublication?.data?.embedded?.applicationSuite && (
+            {!getApplicationComponent.isLoading && !_getPublication?.data?.data?.embedded?.applicationSuite && (
               <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
             )}
 
@@ -687,7 +690,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 layoutClassName={styles.organizationCardContainer}
               />
             )}
-            {!_getPublication?.data?.organization && (
+            {!_getPublication?.data?.data?.organization && (
               <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
             )}
             <InfoCard
@@ -696,7 +699,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 <>
                   {(ratingFilter === "OpenCatalogi" || ratingFilter === "false") && (
                     <>
-                      {_getPublication.data?.embedded?.rating && (
+                      {_getPublication.data?.data?.embedded?.rating && (
                         <>
                           <RatingIndicatorTemplate
                             layoutClassName={styles.ratingIndicatorContainer}
@@ -708,7 +711,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                               onClick={(e) => {
                                 e.preventDefault(), openModal(() => show());
                               }}
-                              href={`${_getPublication.data?.id}/?openratingpopup`}
+                              href={`${_getPublication.data?.data?.id}/?openratingpopup`}
                             >
                               <Icon>
                                 <IconArrowRight />
@@ -729,7 +732,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                             _.camelCase(
                               t(
                                 `${getCommongroundRating(
-                                  _getPublication.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                                  _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
                                 )} rating`,
                               ),
                             )
@@ -738,7 +741,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                         )}
                       >
                         {getCommongroundImage(
-                          _getPublication.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
+                          _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
                         )}
                       </div>
                     </>
@@ -763,7 +766,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   secondaryButton={{
                     label: t("Close"),
                     icon: <FontAwesomeIcon icon={faArrowLeft} />,
-                    href: `${_getPublication.data?.id}`,
+                    href: `${_getPublication.data?.data?.id}`,
                     handleClick: () => ({}),
                   }}
                   layoutClassName={styles.popup}
@@ -771,53 +774,53 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               </div>
             )}
           </div>
-          {(_getPublication.data?.embedded?.dependsOn?.embedded?.open ||
+          {(_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open ||
             getConfigComponents.data?.results?.length > 0 ||
-            _getPublication.data?.embedded?.supportedBy?.length > 0 ||
-            _getPublication.data?.embedded?.usedBy?.length > 0 ||
+            _getPublication.data?.data?.embedded?.supportedBy?.length > 0 ||
+            _getPublication.data?.data?.embedded?.usedBy?.length > 0 ||
             getConfigComponents.data?.results?.length > 0 ||
-            _getPublication.data?.attachments ||
-            _getPublication.data?.data) && (
+            _getPublication.data?.data?.attachments ||
+            _getPublication.data?.data?.data) && (
             <div id="Tabs" ref={tabsRef}>
               <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                  {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                  {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                     <Tab>
                       <span>Componenten & Afhankelijkheden</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.embedded?.supportedBy && (
+                  {_getPublication.data?.data?.embedded?.supportedBy && (
                     <Tab>
                       <span>{t("Suppliers")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.embedded?.supportedBy?.length ?? 0}
+                        {_getPublication.data?.data?.embedded?.supportedBy?.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.embedded?.usedBy && (
+                  {_getPublication.data?.data?.embedded?.usedBy && (
                     <Tab>
                       <span>{t("Reuse")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.embedded?.usedBy?.length ?? 0}
+                        {_getPublication.data?.data?.embedded?.usedBy?.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                  {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                     <Tab>
                       <span>{t("Schema's")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                  {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                     <Tab>
                       <span>{t("Processes")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
+                        {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
@@ -829,24 +832,24 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.attachments?.length > 0 && (
+                  {_getPublication.data?.data?.attachments?.length > 0 && (
                     <Tab>
                       <span>{t("Attachments")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.attachments?.length ?? 0}
+                        {_getPublication.data?.data?.attachments?.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.data && (
+                  {_getPublication.data?.data?.data && (
                     <Tab>
                       <span>{t("Data")}</span>
                     </Tab>
                   )}
                 </TabList>
-                {_getPublication.data?.embedded?.dependsOn && (
+                {_getPublication.data?.data?.embedded?.dependsOn && (
                   <TabPanel>
                     <div className={styles.components}>
-                      {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                      {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                         <DisplaySwitch
                           buttons={displaySwitchButtons}
                           layoutClassName={styles.dependenciesDisplaySwitchButtons}
@@ -855,17 +858,17 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
                       <DependenciesTemplate
                         type={resultDisplayLayout.dependenciesDisplayLayout}
-                        components={_getPublication.data?.embedded?.dependsOn?.embedded?.open ?? []}
+                        components={_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open ?? []}
                         mainComponent={{
                           id: publicationId,
-                          name: _getPublication.data?.name,
-                          layer: _getPublication.data?.embedded?.nl?.embedded?.commonground?.layerType,
+                          name: _getPublication.data?.data?.name,
+                          layer: _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType,
                         }}
                       />
                     </div>
                   </TabPanel>
                 )}
-                {_getPublication.data?.embedded?.supportedBy?.length > 0 && (
+                {_getPublication.data?.data?.embedded?.supportedBy?.length > 0 && (
                   <TabPanel>
                     <Table className={styles.table}>
                       <TableHeader className={styles.tableHeader}>
@@ -879,7 +882,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                         </TableRow>
                       </TableHeader>
                       <TableBody className={styles.tableBody}>
-                        {_getPublication.data?.embedded?.supportedBy?.map((organization: any) => (
+                        {_getPublication.data?.data?.embedded?.supportedBy?.map((organization: any) => (
                           <TableRow className={styles.tableRow} key={organization?._self.id}>
                             <TableCell>{organization?.name}</TableCell>
                             {/* This table row should be visible when the organization has a maintenanceType. feature will come in the future. */}
@@ -946,10 +949,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </Table>
                   </TabPanel>
                 )}
-                {_getPublication.data?.embedded?.usedBy?.length > 0 && (
+                {_getPublication.data?.data?.embedded?.usedBy?.length > 0 && (
                   <TabPanel>
                     <div className={styles.organizations}>
-                      {_getPublication.data?.embedded?.usedBy?.map((organization: any) => (
+                      {_getPublication.data?.data?.embedded?.usedBy?.map((organization: any) => (
                         <OrganizationCard
                           key={organization._self.id}
                           title={{
@@ -973,17 +976,17 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </div>
                   </TabPanel>
                 )}
-                {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                   <TabPanel>
                     <ComponentCardsAccordionTemplate
-                      components={_getPublication.data?.embedded?.dependsOn?.embedded?.open}
+                      components={_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open}
                     />
                   </TabPanel>
                 )}
-                {_getPublication.data?.embedded?.dependsOn?.embedded?.open && (
+                {_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open && (
                   <TabPanel>
                     <ComponentCardsAccordionTemplate
-                      components={_getPublication.data?.embedded?.dependsOn?.embedded?.open}
+                      components={_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open}
                     />
                   </TabPanel>
                 )}
@@ -1024,7 +1027,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </div>
                   </TabPanel>
                 )}
-                {_getPublication.data?.attachments?.length > 0 && (
+                {_getPublication.data?.data?.attachments?.length > 0 && (
                   <TabPanel>
                     <HorizontalOverflowWrapper
                       ariaLabels={{
@@ -1045,7 +1048,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                           </TableRow>
                         </TableHeader>
                         <TableBody className={styles.tableBody}>
-                          {_getPublication?.data?.attachments.map((attachement: any) => {
+                          {_getPublication?.data?.data?.attachments.map((attachement: any) => {
                             return (
                               <TableRow className={styles.tableRow}>
                                 <TableCell className={styles.title}>{attachement.title}</TableCell>
@@ -1081,7 +1084,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     onClick={(e) => {
                                       e.preventDefault(), open(attachement.downloadURL);
                                     }}
-                                    href={`/publications/${_getPublication.data?.id}`}
+                                    href={`/publications/${_getPublication.data?.data?.id}`}
                                   >
                                     <Icon>
                                       <FontAwesomeIcon icon={faDownload} />
