@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-publications-index-tsx-766d0ef862b0ef338c5b.js","mappings":"yIAEA,UAAeA,EAAgB,O","sources":["webpack://skeleton-pip/./src/pages/publications/index.tsx"],"sourcesContent":["import PublicationsPage from \"./PublicationsPage\";\n\nexport default PublicationsPage;\n"],"names":["PublicationsPage"],"sourceRoot":""}
