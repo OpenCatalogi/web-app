@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as styles from "./ComponentsTemplate.module.css";
+import * as styles from "./PublicationsTemplate.module.css";
 import Skeleton from "react-loading-skeleton";
 import clsx from "clsx";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
@@ -19,8 +19,10 @@ import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
 import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
+import { usePublication } from "../../hooks/publication";
+import { PublicationsTableTemplate } from "../templateParts/publicationsTable/PublicationsTableTemplate";
 
-export const ComponentsTemplate: React.FC = () => {
+export const PublicationsTemplate: React.FC = () => {
   const { t } = useTranslation();
   const { filters } = useFiltersContext();
   const { queryLimit, setQueryLimit } = useQueryLimitContext();
@@ -28,45 +30,27 @@ export const ComponentsTemplate: React.FC = () => {
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
 
   const queryClient = new QueryClient();
-  const _useSearch = useSearch(queryClient);
-  const getComponents = _useSearch.getSearch(
+  const _usePublications = usePublication(queryClient);
+  const getPublications = _usePublications.getSearch(
     { ...filters, organizationSearch: "" },
-    pagination.componentsCurrentPage,
-    queryLimit.componentsSearchQueryLimit,
+    pagination.publicationCurrentPage,
+    queryLimit.publicationsQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
 
   React.useEffect(() => {
-    if (queryLimit.previousComponentsSearchQueryLimit === queryLimit.componentsSearchQueryLimit) return;
+    if (queryLimit.previousPublicationsQueryLimit === queryLimit.publicationsQueryLimit) return;
 
-    setPagination({ ...pagination, componentsCurrentPage: 1 });
-    setQueryLimit({ ...queryLimit, previousComponentsSearchQueryLimit: queryLimit.componentsSearchQueryLimit });
-  }, [queryLimit.componentsSearchQueryLimit]);
+    setPagination({ ...pagination, publicationCurrentPage: 1 });
+    setQueryLimit({ ...queryLimit, previousPublicationsQueryLimit: queryLimit.publicationsQueryLimit });
+  }, [queryLimit.publicationsQueryLimit]);
 
   const displaySwitchButtons: IDisplaySwitchButton[] = [
     {
       label: t("Table"),
-      pressed: resultDisplayLayout.componentsDisplayLayout === "table",
-      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "table" }),
+      pressed: resultDisplayLayout.publicationsResultDisplayLayout === "table",
+      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, publicationsResultDisplayLayout: "table" }),
       icon: {
         name: "table",
-        prefix: "fas",
-      },
-    },
-    {
-      label: t("Cards"),
-      pressed: resultDisplayLayout.componentsDisplayLayout === "cards",
-      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "cards" }),
-      icon: {
-        name: "grip-vertical",
-        prefix: "fas",
-      },
-    },
-    {
-      label: t("Layer"),
-      pressed: resultDisplayLayout.componentsDisplayLayout === "layer",
-      handleClick: () => setResultDisplayLayout({ ...resultDisplayLayout, componentsDisplayLayout: "layer" }),
-      icon: {
-        name: "layer-group",
         prefix: "fas",
       },
     },
@@ -76,10 +60,10 @@ export const ComponentsTemplate: React.FC = () => {
     <Container layoutClassName={styles.container}>
       <div className={styles.header}>
         <div>
-          <Heading level={2} className={clsx(styles.title, !getComponents.isSuccess && styles.loading)}>
-            {t("Components")}{" "}
-            {getComponents.data?.total >= 0 ? (
-              `(${getComponents.data.total})`
+          <Heading level={2} className={clsx(styles.title, !getPublications.isSuccess && styles.loading)}>
+            {t("Publications")}{" "}
+            {getPublications.data?.results.length >= 0 ? (
+              `(${getPublications.data.results.length})`
             ) : (
               <>
                 (<Skeleton height="1ch" width="1ch" />)
@@ -96,65 +80,30 @@ export const ComponentsTemplate: React.FC = () => {
 
         <div className={styles.results}>
           <HorizontalFiltersTemplate />
-          {resultDisplayLayout.componentsDisplayLayout === "table" && (
-            <Alert
-              type="info"
-              icon={
-                <Icon>
-                  <IconInfoCircle />
-                </Icon>
-              }
-            >
-              <Paragraph>Op deze pagina worden alle resultaten weergegeven</Paragraph>
-            </Alert>
-          )}
-
-          {resultDisplayLayout.componentsDisplayLayout === "cards" && (
-            <Alert
-              type="info"
-              icon={
-                <Icon>
-                  <IconInfoCircle />
-                </Icon>
-              }
-            >
-              <Paragraph>Op deze pagina staan alleen applicaties, organisaties en componenten</Paragraph>
-            </Alert>
-          )}
-          {resultDisplayLayout.componentsDisplayLayout === "layer" && (
-            <Alert
-              type="info"
-              icon={
-                <Icon>
-                  <IconInfoCircle />
-                </Icon>
-              }
-            >
-              <Paragraph>Op deze pagina staan alleen componenten met een laag</Paragraph>
-            </Alert>
-          )}
 
           <ActiveFiltersTemplate />
 
-          {getComponents.data?.results?.length === 0 && !getComponents.isLoading && (
+          {getPublications.data?.results?.length === 0 && !getPublications.isLoading && (
             <span>{t("No components found with active filters")}</span>
           )}
 
-          {getComponents.data?.results && getComponents.data?.results?.length > 0 && (
+          {getPublications.data?.results && getPublications.data?.results?.length > 0 && (
             <>
-              <ComponentResultTemplate
-                components={getComponents.data.results}
+              {/* <ComponentResultTemplate
+                components={getPublications.data.results}
                 type={resultDisplayLayout.componentsDisplayLayout}
-              />
+              /> */}
+
+              <PublicationsTableTemplate publications={getPublications.data.results} />
 
               <SubmitComponentTemplate />
-              {getComponents.data.results.length && (
+              {getPublications.data.results.length && (
                 <div className={styles.pagination}>
                   <Pagination
                     layoutClassName={styles.paginationContainer}
-                    totalPages={getComponents.data.pages}
-                    currentPage={getComponents.data.page}
-                    setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
+                    totalPages={Math.ceil(getPublications.data.results.length / queryLimit.publicationsQueryLimit)}
+                    currentPage={pagination.publicationCurrentPage}
+                    setCurrentPage={(page: any) => setPagination({ ...pagination, publicationCurrentPage: page })}
                     ariaLabels={{
                       pagination: t("Pagination"),
                       nextPage: t("Next page"),
@@ -162,12 +111,12 @@ export const ComponentsTemplate: React.FC = () => {
                       page: t("Page"),
                     }}
                   />
-                  <PaginationLimitSelectComponent queryLimitName={"componentsSearchQueryLimit"} />
+                  <PaginationLimitSelectComponent queryLimitName={"publicationsQueryLimit"} />
                 </div>
               )}
             </>
           )}
-          {getComponents.isLoading && <Skeleton height="200px" />}
+          {getPublications.isLoading && <Skeleton height="200px" />}
         </div>
       </div>
     </Container>

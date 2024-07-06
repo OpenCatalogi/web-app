@@ -6,6 +6,7 @@ export type TComponentDependenciesLayout = "layer" | "relations";
 export type TLandingDisplayLayout = "layer" | "cards";
 export type TCatagoryDisplayLayout = "table" | "cards" | "layer";
 export type TOrganizationsResultDisplayLayout = "table" | "cards";
+export type TPublicationsResultDisplayLayout = "table";
 
 export interface IResultDisplayLayoutContext {
   componentsDisplayLayout: TComponentResultsLayout;
@@ -13,6 +14,7 @@ export interface IResultDisplayLayoutContext {
   landingDisplayLayout: TLandingDisplayLayout;
   catagoryDisplayLayout: TCatagoryDisplayLayout;
   organizationsResultDisplayLayout: TOrganizationsResultDisplayLayout;
+  publicationsResultDisplayLayout: TPublicationsResultDisplayLayout;
 }
 
 export const defaultResultDisplayLayoutContext: IResultDisplayLayoutContext = {
@@ -21,6 +23,7 @@ export const defaultResultDisplayLayoutContext: IResultDisplayLayoutContext = {
   landingDisplayLayout: "cards",
   catagoryDisplayLayout: "table",
   organizationsResultDisplayLayout: "cards",
+  publicationsResultDisplayLayout: "table",
 };
 
 export const useResultDisplayLayoutContext = () => {
