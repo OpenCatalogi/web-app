@@ -4,27 +4,25 @@ import Skeleton from "react-loading-skeleton";
 import clsx from "clsx";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { Container, DisplaySwitch, Pagination } from "@conduction/components";
-import { ComponentResultTemplate } from "../templateParts/resultsTemplates/ComponentResultsTemplate";
-import { useFiltersContext } from "../../context/filters";
+import { usePublicationFiltersContext } from "../../context/publicationFilters";
 import { useTranslation } from "react-i18next";
 import { QueryClient } from "react-query";
-import { VerticalFiltersTemplate } from "../templateParts/filters/verticalFilters/VerticalFiltersTemplate";
-import { HorizontalFiltersTemplate } from "../templateParts/filters/horizontalFilters/HorizontalFiltersTemplate";
+import { VerticalFiltersPublicationsTemplate } from "../templateParts/filters/verticalFiltersPublications/VerticalFiltersPublicationsTemplate";
 import { SubmitComponentTemplate } from "../templateParts/submitComponent/SubmitComponentTemplate";
 import { useSearch } from "../../hooks/search";
-import { ActiveFiltersTemplate } from "../templateParts/filters/activeFilters/ActiveFiltersTemplate";
+import { ActiveFiltersPublicationsTemplate } from "../templateParts/filters/activeFiltersPublications/ActiveFiltersPublicationsTemplate";
 import { Alert, Heading, Icon, Paragraph } from "@utrecht/component-library-react/dist/css-module";
-import { IconInfoCircle } from "@tabler/icons-react";
 import { usePaginationContext } from "../../context/pagination";
 import { PaginationLimitSelectComponent } from "../../components/paginationLimitSelect/PaginationLimitSelect";
 import { useQueryLimitContext } from "../../context/queryLimit";
 import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { usePublication } from "../../hooks/publication";
 import { PublicationsTableTemplate } from "../templateParts/publicationsTable/PublicationsTableTemplate";
+import { HorizontalFiltersPublicationsTemplate } from "../templateParts/filters/horizontalFiltersPublications/HorizontalFiltersPublicationsTemplate";
 
 export const PublicationsTemplate: React.FC = () => {
   const { t } = useTranslation();
-  const { filters } = useFiltersContext();
+  const { publicationFilters } = usePublicationFiltersContext();
   const { queryLimit, setQueryLimit } = useQueryLimitContext();
   const { pagination, setPagination } = usePaginationContext();
   const { resultDisplayLayout, setResultDisplayLayout } = useResultDisplayLayoutContext();
@@ -32,7 +30,7 @@ export const PublicationsTemplate: React.FC = () => {
   const queryClient = new QueryClient();
   const _usePublications = usePublication(queryClient);
   const getPublications = _usePublications.getSearch(
-    { ...filters, organizationSearch: "" },
+    { ...publicationFilters },
     pagination.publicationCurrentPage,
     queryLimit.publicationsQueryLimit,
   ); // Ensure no refetch on resultDisplayLayout change
@@ -76,12 +74,15 @@ export const PublicationsTemplate: React.FC = () => {
       </div>
 
       <div className={styles.filtersAndResultsContainer}>
-        <VerticalFiltersTemplate filterSet={[filters]} layoutClassName={styles.verticalFilters} />
+        <VerticalFiltersPublicationsTemplate
+          filterSet={[publicationFilters]}
+          layoutClassName={styles.verticalFilters}
+        />
 
         <div className={styles.results}>
-          <HorizontalFiltersTemplate />
+          <HorizontalFiltersPublicationsTemplate />
 
-          <ActiveFiltersTemplate />
+          <ActiveFiltersPublicationsTemplate />
 
           {getPublications.data?.results?.length === 0 && !getPublications.isLoading && (
             <span>{t("No components found with active filters")}</span>
@@ -89,11 +90,6 @@ export const PublicationsTemplate: React.FC = () => {
 
           {getPublications.data?.results && getPublications.data?.results?.length > 0 && (
             <>
-              {/* <ComponentResultTemplate
-                components={getPublications.data.results}
-                type={resultDisplayLayout.componentsDisplayLayout}
-              /> */}
-
               <PublicationsTableTemplate publications={getPublications.data.results} />
 
               <SubmitComponentTemplate />

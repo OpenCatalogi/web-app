@@ -101,21 +101,17 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
     .map(([key, value]) => {
       if (value === null || value === undefined || value === "" || (Array.isArray(value) && _.isEmpty(value)))
         return null;
-      if (key === "embedded.rating.rating[>%3D]") return `rating=${value}`;
 
-      if (pathname.includes("/components") || pathname === "/") {
+      if (pathname.includes("/publications") || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
         if (key === "dependenciesDisplayLayout") return null;
         if (key === "catagoryDisplayLayout") return null;
         if (key === "organizationsResultDisplayLayout") return null;
         if (key === "applicationCurrentPage") return null;
         if (key === "organizationCurrentPage") return null;
+        if (key === "organizationCurrentPage") return null;
 
-        if (key === "isForked" && window.sessionStorage.getItem("FILTER_FORKS") === "false") return null;
-        if (key === "orderRating" && window.sessionStorage.getItem("FILTER_RATING") === "false") return null;
-        if (key === "rating" && window.sessionStorage.getItem("FILTER_RATING") !== "OpenCatalogi") return null;
-        if (key === "ratingCommonground" && window.sessionStorage.getItem("FILTER_RATING") !== "Commonground")
-          return null;
+        return null;
       }
 
       const formattedValue = Array.isArray(value)

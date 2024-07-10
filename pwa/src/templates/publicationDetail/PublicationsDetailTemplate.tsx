@@ -247,7 +247,9 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
               <ExpandableLeadParagraph
                 description={
-                  _getPublication.data?.data?.description ?? _getPublication.data?.data?.summary ?? t("No description available")
+                  _getPublication.data?.data?.description ??
+                  _getPublication.data?.data?.summary ??
+                  t("No description available")
                 }
               />
 
@@ -259,14 +261,20 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     styles[
                       _.camelCase(
                         t(
-                          `${_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"} layer`,
+                          `${
+                            _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"
+                          } layer`,
                         ),
                       )
                     ]
                   }
                 >
                   <FontAwesomeIcon icon={faLayerGroup} />
-                  {t(_.upperFirst(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"))}
+                  {t(
+                    _.upperFirst(
+                      _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown",
+                    ),
+                  )}
                 </DataBadge>
 
                 {_getPublication.data?.data?.category && (
@@ -545,19 +553,21 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     <TableRow className={styles.tableRow}>
                                       <TableCell className={styles.title}>{t("Products")}</TableCell>
                                       <TableCell>
-                                        {_getPublication.data?.data?.embedded?.nl?.upl.map((product: string, idx: number) => (
-                                          <span key={idx}>
-                                            <Link
-                                              target="_new"
-                                              href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
-                                            >
-                                              <Icon>
-                                                <IconExternalLink />
-                                              </Icon>
-                                              {product},{" "}
-                                            </Link>
-                                          </span>
-                                        ))}
+                                        {_getPublication.data?.data?.embedded?.nl?.upl.map(
+                                          (product: string, idx: number) => (
+                                            <span key={idx}>
+                                              <Link
+                                                target="_new"
+                                                href="http://standaarden.overheid.nl/owms/terms/AangifteVertrekBuitenland"
+                                              >
+                                                <Icon>
+                                                  <IconExternalLink />
+                                                </Icon>
+                                                {product},{" "}
+                                              </Link>
+                                            </span>
+                                          ),
+                                        )}
                                       </TableCell>
                                     </TableRow>
                                   )}
@@ -597,11 +607,15 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       }}
                       data-tooltip-id={TOOLTIP_ID}
                       data-tooltip-content={`${t("This component has a rating of")} ${t(
-                        getCommongroundRating(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0),
+                        getCommongroundRating(
+                          _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0,
+                        ),
                       )}`}
                     >
                       <Icon>
-                        {getCommongroundImage(_getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0)}
+                        {getCommongroundImage(
+                          _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? 0,
+                        )}
                       </Icon>
                       {t("Common Ground rating")}
                     </Button>
@@ -1062,7 +1076,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                       : attachement.description}
                                   </div>
                                 </TableCell>
-                                <TableCell className={styles.license}>
+                                <TableCell>
                                   <DataBadge
                                     className={styles.tagWidth}
                                     data-tooltip-id={TOOLTIP_ID}
@@ -1072,24 +1086,22 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     {attachement.license}
                                   </DataBadge>
                                 </TableCell>
-                                <TableCell className={styles.type}>{attachement.type}</TableCell>
-                                <TableCell className={styles.published}>
+                                <TableCell>{attachement.type}</TableCell>
+                                <TableCell>
                                   <span className={styles.date}>{attachement.published}</span>
                                 </TableCell>
-                                <TableCell className={styles.modified}>
+                                <TableCell>
                                   <span className={styles.date}>{attachement.modified}</span>
                                 </TableCell>
-                                <TableCell className={styles.downloadUrl}>
+                                <TableCell>
                                   <Link
                                     onClick={(e) => {
                                       e.preventDefault(), open(attachement.downloadURL);
                                     }}
                                     href={`/publications/${_getPublication.data?.data?.id}`}
+                                    className={styles.tagWidth}
                                   >
-                                    <Icon>
-                                      <FontAwesomeIcon icon={faDownload} />
-                                    </Icon>
-                                    {t("Download")}
+                                    {t("Toegangs url")}
                                   </Link>
                                 </TableCell>
                               </TableRow>
