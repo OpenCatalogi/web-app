@@ -1,7 +1,7 @@
 import { Send } from "../apiService";
 import { AxiosInstance } from "axios";
-import { IFiltersContext } from "../../context/filters";
-import { filtersToQueryParams } from "../../services/filtersToQueryParams";
+import { IPublicationFiltersContext } from "../../context/publicationFilters";
+import { filtersToPublicationsQueryParams } from "../../services/filtersToPublicationsQueryParams";
 
 export default class Publication {
   private _instance: AxiosInstance;
@@ -16,8 +16,8 @@ export default class Publication {
     return data;
   };
 
-  public getSearch = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
-    let endpoint = `/search`;
+  public getSearch = async (filters: IPublicationFiltersContext, currentPage: number, limit: number): Promise<any> => {
+    let endpoint = `/search${filtersToPublicationsQueryParams(filters)}`;
 
     if (
       window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" &&
@@ -27,6 +27,14 @@ export default class Publication {
         "GITHUB_ORGANIZATION_URL",
       )}`;
     }
+
+    const { data } = await Send(this._instance, "GET", endpoint);
+
+    return data;
+  };
+
+  public getFilterOptions = async (): Promise<any> => {
+    let endpoint = "/search?_queries[]=data.status";
 
     const { data } = await Send(this._instance, "GET", endpoint);
 

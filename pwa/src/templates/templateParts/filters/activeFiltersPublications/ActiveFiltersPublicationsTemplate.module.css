@@ -1,0 +1,25 @@
+.activeFiltersHeader {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.activeFiltersHeader > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.activeFilters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.activeFilters > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.activeFilters > * {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.activeFilters > *:hover,
+.onClickActiveFiltersButton:hover {
+  cursor: pointer;
+}

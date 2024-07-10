@@ -2,7 +2,7 @@ import * as React from "react";
 import { QueryClient, useQuery } from "react-query";
 import APIService from "../apiService/apiService";
 import APIContext from "../apiService/apiContext";
-import { IFiltersContext } from "../context/filters";
+import { IPublicationFiltersContext } from "../context/publicationFilters";
 
 export const usePublication = (queryClient: QueryClient) => {
   const API: APIService | null = React.useContext(APIContext);
@@ -17,7 +17,7 @@ export const usePublication = (queryClient: QueryClient) => {
       enabled: !!publicationId,
     });
 
-  const getSearch = (filters: IFiltersContext, currentPage: number, limit: number) =>
+  const getSearch = (filters: IPublicationFiltersContext, currentPage: number, limit: number) =>
     useQuery<any, Error>(
       ["publications", filters, currentPage, limit],
       () => API?.Publication.getSearch(filters, currentPage, limit),
@@ -28,5 +28,12 @@ export const usePublication = (queryClient: QueryClient) => {
       },
     );
 
-  return { getOne, getSearch };
+  const getFilterOptions = () =>
+    useQuery<any, Error>(["available_publication_catagories"], () => API?.Publication.getFilterOptions(), {
+      onError: (error) => {
+        console.warn(error.message);
+      },
+    });
+
+  return { getOne, getSearch, getFilterOptions };
 };
