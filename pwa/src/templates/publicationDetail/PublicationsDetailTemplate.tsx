@@ -823,11 +823,11 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       </BadgeCounter>
                     </Tab>
                   )}
-                  {_getPublication.data?.data?.attachments?.length > 0 && (
+                  {_getPublication.data?.attachments?.length > 0 && (
                     <Tab>
                       <span>{t("Attachments")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.data?.data?.attachments?.length ?? 0}
+                        {_getPublication.data?.attachments?.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
@@ -1018,7 +1018,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </div>
                   </TabPanel>
                 )}
-                {_getPublication.data?.data?.attachments?.length > 0 && (
+                {_getPublication.data?.attachments?.length > 0 && (
                   <TabPanel>
                     <HorizontalOverflowWrapper
                       ariaLabels={{
@@ -1039,20 +1039,20 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                           </TableRow>
                         </TableHeader>
                         <TableBody className={styles.tableBody}>
-                          {_getPublication?.data?.attachments.map((attachement: any) => {
-                            return attachement.published === "false" ? (
+                          {_getPublication?.data?.attachments.map((attachment: any) => {
+                            return attachment.published === "false" ? (
                               <></>
                             ) : (
                               <TableRow className={styles.tableRow}>
-                                <TableCell className={styles.title}>{attachement.title}</TableCell>
+                                <TableCell className={styles.title}>{attachment.title}</TableCell>
                                 <TableCell className={styles.description}>
                                   <div
-                                    data-tooltip-id={attachement.description.length > 100 && TOOLTIP_ID}
-                                    data-tooltip-content={attachement.description}
+                                    data-tooltip-id={attachment.description.length > 100 && TOOLTIP_ID}
+                                    data-tooltip-content={attachment.description}
                                   >
-                                    {attachement.description.length > 100
-                                      ? `${attachement.description.substring(0, 100)}...`
-                                      : attachement.description}
+                                    {attachment.description.length > 100
+                                      ? `${attachment.description.substring(0, 100)}...`
+                                      : attachment.description}
                                   </div>
                                 </TableCell>
                                 <TableCell>
@@ -1062,20 +1062,20 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     data-tooltip-content={t("License")}
                                   >
                                     <FontAwesomeIcon icon={faScroll} />
-                                    {attachement.license}
+                                    {attachment.license}
                                   </DataBadge>
                                 </TableCell>
-                                <TableCell>{attachement.type}</TableCell>
+                                <TableCell>{attachment.type}</TableCell>
                                 <TableCell>
-                                  <span className={styles.date}>{attachement.published}</span>
+                                  <span className={styles.date}>{attachment.published}</span>
                                 </TableCell>
                                 <TableCell>
-                                  <span className={styles.date}>{attachement.modified}</span>
+                                  <span className={styles.date}>{attachment.modified}</span>
                                 </TableCell>
                                 <TableCell>
                                   <Link
                                     onClick={(e) => {
-                                      e.preventDefault(), open(attachement.downloadURL);
+                                      e.preventDefault(), open(attachment.downloadURL);
                                     }}
                                     href={`/publications/${_getPublication.data?.data?.id}`}
                                     className={styles.tagWidth}
