@@ -8,7 +8,7 @@ export const filtersToPublicationsQueryParams = (filters: any): string => {
     });
 
   let params = "";
-  let index = 0;
+  const index = 0;
 
   for (const [key, value] of Object.entries(filters)) {
     if (!value) continue;
@@ -42,8 +42,6 @@ export const filtersToPublicationsQueryParams = (filters: any): string => {
       params += arrayParams;
     }
   }
-
-  console.log(params);
 
   return params;
 };

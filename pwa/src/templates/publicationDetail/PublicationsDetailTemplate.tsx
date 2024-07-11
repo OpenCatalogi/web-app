@@ -38,7 +38,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faCircle,
-  faDownload,
   faGear,
   faHouse,
   faInfoCircle,
@@ -49,7 +48,6 @@ import {
   faUpload,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
-import { categories, TCategories } from "../../data/categories";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
 import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/ComponentDependenciesTemplate";
@@ -68,7 +66,7 @@ import {
   CommongroundRatingSilver,
   CommongroundRatingBronze,
 } from "../../assets/svgs/CommongroundRatingImages";
-import { defaultFiltersContext, useFiltersContext } from "../../context/filters";
+import { useFiltersContext } from "../../context/filters";
 import { usePaginationContext } from "../../context/pagination";
 import { maintenanceTypes } from "../../data/filters";
 import { getSoftwareTypeLabel } from "../../services/getSoftwareTypeLabel";
@@ -108,11 +106,9 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
     setTabIndex(reuseIndex);
   };
 
-  // console.log(publicationId);
-
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
-  //@ts-ignore
+  // @ts-expect-error because
   const _getComponent = _useComponent.getOne(undefined);
 
   const _usePublication = usePublication(queryClient);
@@ -132,23 +128,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   };
 
   const rating = _getComponent.data?.embedded?.rating;
-
-  const layer: TCategories = t(_.upperFirst(_getComponent.data?.embedded?.nl?.embedded?.commonground?.layerType));
-  const _categories =
-    layer &&
-    _getComponent.data?.categories.map((category: any) => {
-      const result = categories[layer]?.find((_category) => {
-        return _category.value === category;
-      });
-
-      if (!result) {
-        return {
-          title: category,
-        };
-      } else {
-        return result;
-      }
-    });
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
   const publicationData = _getPublication.data?.data?.data;
@@ -242,14 +221,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
               <Heading level={1} className={styles.componentName}>
-                {_getPublication.data?.data?.title}
+                {_getPublication.data?.title}
               </Heading>
 
               <ExpandableLeadParagraph
                 description={
-                  _getPublication.data?.data?.description ??
-                  _getPublication.data?.data?.summary ??
-                  t("No description available")
+                  _getPublication.data?.description ?? _getPublication.data?.summary ?? t("No description available")
                 }
               />
 
@@ -291,7 +268,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                       ]
                     }
                   >
-                    {_.upperFirst(_getPublication.data?.data?.category)}
+                    {_.upperFirst(_getPublication.data?.category)}
                   </DataBadge>
                 )}
               </div>
@@ -323,7 +300,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 {_getPublication.data?.data?.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("License")}>
                     <FontAwesomeIcon icon={faScroll} />
-                    {_getPublication.data?.data?.license}
+                    {_getPublication.data?.license}
                   </DataBadge>
                 )}
 
@@ -334,7 +311,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     status={getStatusColor(_.upperFirst(_getPublication.data?.data?.developmentStatus) ?? "Onbekend")}
                   >
                     <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
-                    {t(_.upperFirst(_getPublication.data?.data?.status))}
+                    {t(_.upperFirst(_getPublication.data?.status))}
                   </StatusBadge>
                 )}
 
@@ -356,8 +333,8 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   <DataBadge
                     className={styles.clickableBadge}
                     data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={_getPublication?.data?.data?.portal}
-                    onClick={() => open(_getPublication?.data?.data?.portal)}
+                    data-tooltip-content={_getPublication?.data?.portal}
+                    onClick={() => open(_getPublication?.data?.portal)}
                   >
                     <FontAwesomeIcon icon={faCircle} />
                     {t("Portal")}
@@ -441,8 +418,8 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               <div className={styles.logoContainer}>
                 <img
                   src={
-                    imageHasValidSource(_getPublication.data?.data?.logo)
-                      ? _getPublication.data?.data?.logo
+                    imageHasValidSource(_getPublication.data?.image)
+                      ? _getPublication.data?.image
                       : componentPlacholderLogo
                   }
                   className={styles.logo}
@@ -1062,8 +1039,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                           </TableRow>
                         </TableHeader>
                         <TableBody className={styles.tableBody}>
-                          {_getPublication?.data?.data?.attachments.map((attachement: any) => {
-                            return (
+                          {_getPublication?.data?.attachments.map((attachement: any) => {
+                            return attachement.published === "false" ? (
+                              <></>
+                            ) : (
                               <TableRow className={styles.tableRow}>
                                 <TableCell className={styles.title}>{attachement.title}</TableCell>
                                 <TableCell className={styles.description}>
