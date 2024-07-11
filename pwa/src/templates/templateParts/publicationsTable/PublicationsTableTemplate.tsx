@@ -77,7 +77,7 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
 
                 <TableCell>
                   <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("MetaData")} className={styles.name}>
-                    {t(_.upperFirst(publication.metaData?.name))}
+                    {t(_.upperFirst(publication.metaData?.name ?? publication.metaData?.title))}
                   </span>
                 </TableCell>
 
