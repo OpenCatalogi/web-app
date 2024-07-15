@@ -142,10 +142,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
   const [isMetaDataVisible, setMetaDataIsVisible] = React.useState(false);
 
-  const toggleMetaDataVisibility = () => {
-    setMetaDataIsVisible(!isMetaDataVisible);
-  };
-
   const imageHasValidSource = (src: string): boolean => {
     try {
       const url = new URL(src);
@@ -424,7 +420,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
               {_getPublication.data?.metaData &&
                 <div>
-                  <Button  onClick={toggleMetaDataVisibility}>
+                  <Button onClick={() => {setMetaDataIsVisible(!isMetaDataVisible)}}>
                     <FontAwesomeIcon icon={isMetaDataVisible ? faMinus : faArrowDown } />
                     {isMetaDataVisible ? t("Hide metadata") : t("Show metadata")}
                   </Button>
