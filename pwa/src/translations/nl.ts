@@ -86,6 +86,7 @@ export const nl = {
   Portal: "Portaal",
   Reference: "Referentie",
   Pagination: "Paginering",
+  Extensions: "Extensies",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -93,6 +94,9 @@ export const nl = {
   "Privacy declaration": "Privacyverklaring",
   "All Open Catalog components": "Alle OpenCatalogi componenten",
   "View all components": "Bekijk alle componenten",
+  "Show metadata": "Toon metadata",
+  "Hide metadata": "Verberg metadata",
+  "Access url": "Toegangsurl",
   "One central place for reuse of information technology within the government":
     "Eén centrale plek voor hergebruik van informatietechnologie binnen de overheid",
   "No components found with active filters": "Geen componenten gevonden met actieve filters",

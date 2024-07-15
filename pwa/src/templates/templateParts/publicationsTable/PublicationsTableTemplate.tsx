@@ -64,8 +64,8 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
                 onClick={() => navigate(`/publications/${publication.id}`)}
               >
                 <TableCell>
-                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication.title} className={styles.name}>
-                    {publication.title}
+                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication?.data?.title} className={styles.name}>
+                    {publication?.data?.title}
                   </span>
                 </TableCell>
 
