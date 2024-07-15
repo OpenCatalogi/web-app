@@ -878,7 +878,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   )}
                   {_getPublication.data?.data?.data && (
                     <Tab>
-                      <span>{t("Extensies")}</span>
+                      <span>{t("Extensions")}</span>
                     </Tab>
                   )}
                 </TabList>
@@ -1146,18 +1146,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     >
                       <Table className={styles.table}>
                         <TableBody className={styles.tableBody}>
-                          {/* Keep commented out for reverting purposes */}
-                          {/* {publicationData?.contactPoint && (
-                            <TableRow className={styles.tableRow}>
-                              <TableCell className={styles.title}>Contact:</TableCell>
-                              <TableCell>
-                                <div className={styles.publicationDataContact}>
-                                  <span>{`${t("Name")}: ${publicationData?.contactPoint?.name}`}</span>
-                                  <span>{`${t("Email")}: ${publicationData?.contactPoint?.email}`}</span>
-                                </div>
-                              </TableCell>
-                            </TableRow>
-                          )} */}
 
                           {publicationData?.qualifiedAttribution && (
                             <TableRow className={styles.tableRow}>

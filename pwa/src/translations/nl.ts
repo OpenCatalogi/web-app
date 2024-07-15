@@ -86,6 +86,7 @@ export const nl = {
   Portal: "Portaal",
   Reference: "Referentie",
   Pagination: "Paginering",
+  Extensions: "Extensies",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
