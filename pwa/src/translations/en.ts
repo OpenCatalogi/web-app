@@ -92,6 +92,9 @@ export const en = {
   "Privacy declaration": "Privacy declaration",
   "All Open Catalog components": "All Open Catalog components",
   "View all components": "View all components",
+  "Show metadata": "Show metadata",
+  "Access url": "Access url",
+  "Hide metadata": "Hide metadata",
   "One central place for reuse of information technology within the government":
     "One central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",

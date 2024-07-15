@@ -36,6 +36,8 @@ import { useComponent } from "../../hooks/components";
 import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faMinus,
+  faArrowDown,
   faArrowLeft,
   faCircle,
   faGear,
@@ -138,6 +140,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const application = _getComponent?.data?.embedded?.applicationSuite;
   const applicationComponent = getApplicationComponent?.data?.results[0];
 
+  const [isMetaDataVisible, setMetaDataIsVisible] = React.useState(false);
+
+  const toggleMetaDataVisibility = () => {
+    setMetaDataIsVisible(!isMetaDataVisible);
+  };
+
   const imageHasValidSource = (src: string): boolean => {
     try {
       const url = new URL(src);
@@ -221,12 +229,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
               <Heading level={1} className={styles.componentName}>
-                {_getPublication.data?.title}
+                {_getPublication?.data?.data?.title}
               </Heading>
 
               <ExpandableLeadParagraph
                 description={
-                  _getPublication.data?.description ?? _getPublication.data?.summary ?? t("No description available")
+                  _getPublication?.data?.data?.summary ?? t("No description available")
                 }
               />
 
@@ -412,6 +420,46 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </DataBadge>
                   ))}
               </div>
+
+
+              {_getPublication.data?.metaData &&
+                <div>
+                  <Button  onClick={toggleMetaDataVisibility}>
+                    <FontAwesomeIcon icon={isMetaDataVisible ? faMinus : faArrowDown } />
+                    {isMetaDataVisible ? t("Hide metadata") : t("Show metadata")}
+                  </Button>
+                  {isMetaDataVisible &&
+                    <Table>
+                      <TableBody>
+                        {_getPublication.data.metaData?.title &&
+                          <TableRow>
+                            <TableCell>{t("Title")}</TableCell>
+                            <TableCell>{_getPublication.data.metaData.title}</TableCell>
+                          </TableRow>
+                        }
+                        {_getPublication.data.metaData?.version &&
+                          <TableRow>
+                            <TableCell>{t("Version")}</TableCell>
+                            <TableCell>{_getPublication.data.metaData.version}</TableCell>
+                          </TableRow>
+                        }
+                        {_getPublication.data.metaData?.description &&
+                          <TableRow>
+                            <TableCell>{t("Description")}</TableCell>
+                            <TableCell>{_getPublication.data.metaData.description}</TableCell>
+                          </TableRow>
+                        }
+                        {_getPublication.data.metaData?.properties &&
+                          <TableRow>
+                            <TableCell>{t("Properties")}</TableCell>
+                            <TableCell>{_getPublication.data.metaData.properties}</TableCell>
+                          </TableRow>
+                        }
+                      </TableBody>
+                    </Table>
+                  }
+                </div>
+              }
             </div>
 
             <div className={styles.addToCatalogusContainer}>
@@ -679,6 +727,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 gitLab={organisation.gitlab}
                 type={"Organization"}
                 layoutClassName={styles.organizationCardContainer}
+                contactInfo={publicationData?.contactPoint}
               />
             )}
             {!_getPublication?.data?.data?.organization && (
@@ -833,7 +882,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   )}
                   {_getPublication.data?.data?.data && (
                     <Tab>
-                      <span>{t("Data")}</span>
+                      <span>{t("Extensies")}</span>
                     </Tab>
                   )}
                 </TabList>
@@ -1035,7 +1084,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                             <TableHeaderCell>{t("Type")}</TableHeaderCell>
                             <TableHeaderCell>{t("Published")}</TableHeaderCell>
                             <TableHeaderCell>{t("Modified")}</TableHeaderCell>
-                            <TableHeaderCell>{t("Download")}</TableHeaderCell>
+                            <TableHeaderCell>{t("Access url")}</TableHeaderCell>
                           </TableRow>
                         </TableHeader>
                         <TableBody className={styles.tableBody}>
@@ -1080,7 +1129,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     href={`/publications/${_getPublication.data?.data?.id}`}
                                     className={styles.tagWidth}
                                   >
-                                    {t("Toegangs url")}
+                                    {t("Access url")}
                                   </Link>
                                 </TableCell>
                               </TableRow>
@@ -1101,7 +1150,8 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     >
                       <Table className={styles.table}>
                         <TableBody className={styles.tableBody}>
-                          {publicationData?.contactPoint && (
+                          {/* Keep commented out for reverting purposes */}
+                          {/* {publicationData?.contactPoint && (
                             <TableRow className={styles.tableRow}>
                               <TableCell className={styles.title}>Contact:</TableCell>
                               <TableCell>
@@ -1111,7 +1161,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                 </div>
                               </TableCell>
                             </TableRow>
-                          )}
+                          )} */}
 
                           {publicationData?.qualifiedAttribution && (
                             <TableRow className={styles.tableRow}>
