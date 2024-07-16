@@ -225,12 +225,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
               <Heading level={1} className={styles.componentName}>
-                {_getPublication?.data?.data?.title}
+                {_getPublication?.data?.title}
               </Heading>
 
               <ExpandableLeadParagraph
                 description={
-                  _getPublication?.data?.data?.summary ?? t("No description available")
+                  _getPublication?.data?.description ?? t("No description available")
                 }
               />
 
@@ -416,46 +416,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     </DataBadge>
                   ))}
               </div>
-
-
-              {_getPublication.data?.metaData &&
-                <div>
-                  <Button onClick={() => {setMetaDataIsVisible(!isMetaDataVisible)}}>
-                    <FontAwesomeIcon icon={isMetaDataVisible ? faMinus : faArrowDown } />
-                    {isMetaDataVisible ? t("Hide metadata") : t("Show metadata")}
-                  </Button>
-                  {isMetaDataVisible &&
-                    <Table>
-                      <TableBody>
-                        {_getPublication.data.metaData?.title &&
-                          <TableRow>
-                            <TableCell>{t("Title")}</TableCell>
-                            <TableCell>{_getPublication.data.metaData.title}</TableCell>
-                          </TableRow>
-                        }
-                        {_getPublication.data.metaData?.version &&
-                          <TableRow>
-                            <TableCell>{t("Version")}</TableCell>
-                            <TableCell>{_getPublication.data.metaData.version}</TableCell>
-                          </TableRow>
-                        }
-                        {_getPublication.data.metaData?.description &&
-                          <TableRow>
-                            <TableCell>{t("Description")}</TableCell>
-                            <TableCell>{_getPublication.data.metaData.description}</TableCell>
-                          </TableRow>
-                        }
-                        {_getPublication.data.metaData?.properties &&
-                          <TableRow>
-                            <TableCell>{t("Properties")}</TableCell>
-                            <TableCell>{_getPublication.data.metaData.properties}</TableCell>
-                          </TableRow>
-                        }
-                      </TableBody>
-                    </Table>
-                  }
-                </div>
-              }
             </div>
 
             <div className={styles.addToCatalogusContainer}>
@@ -646,64 +606,35 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           </div>
 
           <div className={styles.cardsHeaderContainer}>
-            <Heading3 className={styles.cardsHeading}>{t("Application")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("MetaData")}</Heading3>
             <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
-            <Heading3 className={styles.cardsHeading}>{t("Rating")}</Heading3>
           </div>
 
           <div className={styles.cardsContainer}>
-            {getApplicationComponent.isLoading && (
-              <div className={styles.organizationCardContainer}>
-                <Skeleton height="232px" />
-              </div>
-            )}
-            {getApplicationComponent.isSuccess &&
-              (applicationComponent && applicationComponent.name !== _getPublication.data?.data?.name ? (
-                <ComponentCard
-                  key={applicationComponent._self?.id}
-                  title={{
-                    label: applicationComponent.name,
-                    href: `/components/${applicationComponent.id ?? applicationComponent._self.id}`,
-                  }}
-                  description={applicationComponent.embedded?.description?.shortDescription}
-                  layer={applicationComponent.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"}
-                  categories={applicationComponent.categories}
-                  tags={{
-                    rating: {
-                      rating: applicationComponent.embedded?.rating?.rating,
-                      maxRating: applicationComponent.embedded?.rating?.maxRating,
-                    },
-                    ratingCommonground: {
-                      rating: applicationComponent.embedded?.nl?.embedded?.commonground?.rating,
-                    },
-                    status: applicationComponent.developmentStatus,
-                    installations: applicationComponent.usedBy?.length.toString() ?? "0",
-                    organization: {
-                      name: applicationComponent.embedded?.url?.embedded?.organisation?.name,
-                      website: applicationComponent.embedded?.url?.embedded?.organisation?.website,
-                    },
-                    licence: applicationComponent.embedded?.legal?.license,
-                    githubLink: applicationComponent.embedded?.url?.url,
-                  }}
-                  layoutClassName={styles.organizationCardContainer}
-                />
-              ) : (
-                application && (
-                  <ApplicationCard
-                    key={application._self.id}
-                    title={{ label: application.name, href: `/applications/${application._self.id}` }}
-                    description={application.shortDescription}
-                    tags={{
-                      organization: application?.embedded?.owner?.fullName,
-                      githubLink: application?.demoUrl,
-                    }}
-                    layoutClassName={styles.organizationCardContainer}
-                  />
-                )
-              ))}
-            {!getApplicationComponent.isLoading && !_getPublication?.data?.data?.embedded?.applicationSuite && (
-              <span className={styles.noOrganizationCardAvailable}>{t("No application found")}</span>
-            )}
+          {_getPublication.data?.metaData &&
+            <Table>
+              <TableBody>
+                {_getPublication.data.metaData?.title &&
+                  <TableRow>
+                    <TableCell>{t("Title")}</TableCell>
+                    <TableCell>{_getPublication.data.metaData.title ?? t("No title known")}</TableCell>
+                  </TableRow>
+                }
+                {_getPublication.data.metaData?.version &&
+                  <TableRow>
+                    <TableCell>{t("Version")}</TableCell>
+                    <TableCell>{_getPublication.data.metaData.version ?? t("No version known") }</TableCell>
+                  </TableRow>
+                }
+                {_getPublication.data.metaData?.description &&
+                  <TableRow>
+                    <TableCell>{t("Description")}</TableCell>
+                    <TableCell>{_getPublication.data.metaData.description ?? t("No description known") }</TableCell>
+                  </TableRow>
+                }
+              </TableBody>
+            </Table>
+          }
 
             {organisation && (
               <OrganizationCard
@@ -729,7 +660,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
             {!_getPublication?.data?.data?.organization && (
               <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
             )}
-            <InfoCard
+            {/* <InfoCard
               title=""
               content={
                 <>
@@ -785,9 +716,9 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 </>
               }
               layoutClassName={clsx(styles.infoCard, ratingFilter === "Commonground" && styles.infoCardCommonground)}
-            />
+            /> */}
 
-            {isVisible && (
+            {/* {isVisible && (
               <div className={styles.overlay}>
                 <NotificationPopUp
                   {...{ hide, isVisible }}
@@ -808,7 +739,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   layoutClassName={styles.popup}
                 />
               </div>
-            )}
+            )} */}
           </div>
           {(_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open ||
             getConfigComponents.data?.results?.length > 0 ||

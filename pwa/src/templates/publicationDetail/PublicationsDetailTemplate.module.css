@@ -185,12 +185,13 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.cardsHeading {
-  flex: 1;
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.cardsContainer {
-  grid-template-columns: 1fr 1fr;
+.cardsHeading {
+  flex: 1;
 }
 
 .cardsContainer > :not(:last-child) {
@@ -292,7 +293,7 @@
   }
 
   .cardsContainer {
-    display: flex;
+    display: grid;
     gap: var(--web-app-size-xl);
   }
 
