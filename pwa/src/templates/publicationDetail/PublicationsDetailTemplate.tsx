@@ -18,7 +18,6 @@ import {
 } from "@utrecht/component-library-react/dist/css-module";
 import {
   Container,
-  InfoCard,
   Tabs,
   TabList,
   Tab,
@@ -28,16 +27,13 @@ import {
   HorizontalOverflowWrapper,
 } from "@conduction/components";
 import { navigate } from "gatsby";
-import { IconExternalLink, IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { IconExternalLink, IconArrowLeft } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableRow } from "@utrecht/component-library-react/dist/css-module";
 import { QueryClient } from "react-query";
 import { useComponent } from "../../hooks/components";
-import { RatingIndicatorTemplate } from "../templateParts/ratingIndicator/RatingIndicatorTemplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMinus,
-  faArrowDown,
   faArrowLeft,
   faCircle,
   faGear,
@@ -56,12 +52,11 @@ import { DependenciesTemplate } from "../templateParts/dependenciesTemplates/Com
 import { useResultDisplayLayoutContext } from "../../context/resultDisplayLayout";
 import { ComponentCardsAccordionTemplate } from "../templateParts/componentCardsAccordion/ComponentCardsAccordionTemplate";
 import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
-import { RatingOverview } from "../templateParts/ratingOverview/RatingOverview";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
 import { getStatusColor } from "../../services/getStatusColor";
-import { ApplicationCard, ComponentCard } from "../../components";
+import { ComponentCard } from "../../components";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
 import {
   CommongroundRatingGold,
@@ -85,13 +80,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
   const [tabIndex, setTabIndex] = React.useState(0);
 
-  const NotificationPopUpController = _NotificationPopUp.controller;
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
   const { filters, setFilters } = useFiltersContext();
   const { pagination, setPagination } = usePaginationContext();
-
-  const { isVisible, show, hide } = NotificationPopUpController();
 
   const tabsRef: any = React.useRef();
   const viewTabs = () => {
@@ -117,9 +109,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const _getPublication = _usePublication.getOne(publicationId);
 
   const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
-  const getApplicationComponent = _useComponent.getApplicationComponent(
-    _getComponent?.data?.embedded?.applicationSuite?.name,
-  );
 
   const getMaintenanceType = (maintenanceType: string) => {
     const _maintenanceType = maintenanceTypes.find((__maintenanceType) => {
@@ -129,18 +118,12 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
     return _maintenanceType?.label ?? "";
   };
 
-  const rating = _getComponent.data?.embedded?.rating;
-
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
   const publicationData = _getPublication.data?.data?.data;
 
   if (_getComponent.isError) return <>Something went wrong...</>;
 
   const organisation = _getPublication?.data?.data?.organization;
-  const application = _getComponent?.data?.embedded?.applicationSuite;
-  const applicationComponent = getApplicationComponent?.data?.results[0];
-
-  const [isMetaDataVisible, setMetaDataIsVisible] = React.useState(false);
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -187,8 +170,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
       element.style.maxWidth = newWidth < 1170 ? `${newWidth}px` : `${1170}px`;
     }, 300); // Give the modal some time to finish animating
   };
-
-  const ratingFilter = window.sessionStorage.getItem("FILTER_RATING");
 
   const getCommongroundImage = (rating: number) => {
     switch (rating) {
@@ -606,7 +587,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           </div>
 
           <div className={styles.cardsHeaderContainer}>
-            <Heading3 className={styles.cardsHeading}>{t("MetaData")}</Heading3>
+            <Heading3 className={styles.cardsHeading}>MetaData</Heading3>
             <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
           </div>
 
@@ -660,86 +641,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
             {!_getPublication?.data?.data?.organization && (
               <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>
             )}
-            {/* <InfoCard
-              title=""
-              content={
-                <>
-                  {(ratingFilter === "OpenCatalogi" || ratingFilter === "false") && (
-                    <>
-                      {_getPublication.data?.data?.embedded?.rating && (
-                        <>
-                          <RatingIndicatorTemplate
-                            layoutClassName={styles.ratingIndicatorContainer}
-                            maxRating={rating.maxRating}
-                            rating={rating.rating}
-                          />
-                          <span className={styles.link}>
-                            <Link
-                              onClick={(e) => {
-                                e.preventDefault(), openModal(() => show());
-                              }}
-                              href={`${_getPublication.data?.data?.id}/?openratingpopup`}
-                            >
-                              <Icon>
-                                <IconArrowRight />
-                              </Icon>
-                              {t("Rating")}
-                            </Link>
-                          </span>
-                        </>
-                      )}
-                      {!rating && <div className={styles.noRatingStyle}>{t("No rating available")}</div>}
-                    </>
-                  )}
-                  {ratingFilter === "Commonground" && (
-                    <>
-                      <div
-                        className={clsx(
-                          styles[
-                            _.camelCase(
-                              t(
-                                `${getCommongroundRating(
-                                  _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
-                                )} rating`,
-                              ),
-                            )
-                          ],
-                          styles.commongroundRating,
-                        )}
-                      >
-                        {getCommongroundImage(
-                          _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.rating ?? "0",
-                        )}
-                      </div>
-                    </>
-                  )}
-                </>
-              }
-              layoutClassName={clsx(styles.infoCard, ratingFilter === "Commonground" && styles.infoCardCommonground)}
-            /> */}
 
-            {/* {isVisible && (
-              <div className={styles.overlay}>
-                <NotificationPopUp
-                  {...{ hide, isVisible }}
-                  title={`${t("Rating")} (${rating?.rating}/${rating?.maxRating})`}
-                  customContent={<RatingOverview {...{ rating }} />}
-                  primaryButton={{
-                    label: t("Score calculation"),
-                    handleClick: () => {
-                      navigate("/documentation/about#score-calculation");
-                    },
-                  }}
-                  secondaryButton={{
-                    label: t("Close"),
-                    icon: <FontAwesomeIcon icon={faArrowLeft} />,
-                    href: `${_getPublication.data?.data?.id}`,
-                    handleClick: () => ({}),
-                  }}
-                  layoutClassName={styles.popup}
-                />
-              </div>
-            )} */}
           </div>
           {(_getPublication.data?.data?.embedded?.dependsOn?.embedded?.open ||
             getConfigComponents.data?.results?.length > 0 ||
