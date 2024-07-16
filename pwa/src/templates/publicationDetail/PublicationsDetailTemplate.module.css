@@ -190,6 +190,7 @@
 }
 
 .cardsContainer {
+  display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -292,7 +293,7 @@
   }
 
   .cardsContainer {
-    display: flex;
+    display: grid;
     gap: var(--web-app-size-xl);
   }
 

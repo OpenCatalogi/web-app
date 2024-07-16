@@ -96,6 +96,9 @@ export const nl = {
   "View all components": "Bekijk alle componenten",
   "Show metadata": "Toon metadata",
   "Hide metadata": "Verberg metadata",
+  "No title known": "Geen titel bekend",
+  "No description known": "Geen description bekend",
+  "No version known": "Geen version bekend",
   "Access url": "Toegangsurl",
   "One central place for reuse of information technology within the government":
     "Eén centrale plek voor hergebruik van informatietechnologie binnen de overheid",

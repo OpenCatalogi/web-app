@@ -96,6 +96,9 @@ export const en = {
   "Show metadata": "Show metadata",
   "Access url": "Access url",
   "Hide metadata": "Hide metadata",
+  "No title known": "No title known",
+  "No description known": "No description known",
+  "No version known": "No version known",
   "One central place for reuse of information technology within the government":
     "One central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",
