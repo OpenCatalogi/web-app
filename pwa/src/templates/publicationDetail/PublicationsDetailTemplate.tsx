@@ -13,7 +13,6 @@ import {
   Link,
   TableHeader,
   TableHeaderCell,
-  StatusBadge,
   Heading3,
 } from "@utrecht/component-library-react/dist/css-module";
 import {
@@ -35,16 +34,7 @@ import { useComponent } from "../../hooks/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
-  faCircle,
-  faGear,
-  faHouse,
-  faInfoCircle,
-  faLaptop,
-  faLayerGroup,
-  faRepeat,
   faScroll,
-  faUpload,
-  faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { GitHubLogo } from "../../assets/svgs/GitHub";
@@ -55,7 +45,6 @@ import { DownloadTemplate } from "../templateParts/download/DownloadTemplate";
 import { IDisplaySwitchButton } from "@conduction/components/lib/components/displaySwitch/DisplaySwitch";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
-import { getStatusColor } from "../../services/getStatusColor";
 import { ComponentCard } from "../../components";
 import { getCommongroundRating } from "../../services/getCommongroundRating";
 import {
@@ -63,10 +52,6 @@ import {
   CommongroundRatingSilver,
   CommongroundRatingBronze,
 } from "../../assets/svgs/CommongroundRatingImages";
-import { useFiltersContext } from "../../context/filters";
-import { usePaginationContext } from "../../context/pagination";
-import { maintenanceTypes } from "../../data/filters";
-import { getSoftwareTypeLabel } from "../../services/getSoftwareTypeLabel";
 import { usePublication } from "../../hooks/publication";
 
 interface PublicationsDetailTemplateProps {
@@ -82,24 +67,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
   const NotificationPopUp = _NotificationPopUp.NotificationPopUp;
 
-  const { filters, setFilters } = useFiltersContext();
-  const { pagination, setPagination } = usePaginationContext();
-
   const tabsRef: any = React.useRef();
-  const viewTabs = () => {
-    tabsRef.current.scrollIntoView({ behavior: "smooth", inline: "start" });
-  };
-
-  const viewReuse = () => {
-    viewTabs();
-
-    let reuseIndex = 0;
-    if (_getComponent.data?.embedded?.dependsOn?.embedded?.open) reuseIndex = reuseIndex + 1;
-    if (_getComponent.data?.embedded?.supportedBy) reuseIndex = reuseIndex + 1;
-
-    setTabIndex(reuseIndex);
-  };
-
   const queryClient = new QueryClient();
   const _useComponent = useComponent(queryClient);
   // @ts-expect-error because
@@ -109,14 +77,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const _getPublication = _usePublication.getOne(publicationId);
 
   const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
-
-  const getMaintenanceType = (maintenanceType: string) => {
-    const _maintenanceType = maintenanceTypes.find((__maintenanceType) => {
-      return __maintenanceType.value === maintenanceType;
-    });
-
-    return _maintenanceType?.label ?? "";
-  };
 
   const gemma = _getComponent.data?.embedded?.nl?.embedded?.gemma;
   const publicationData = _getPublication.data?.data?.data;
@@ -215,188 +175,55 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 }
               />
 
-              <div className={styles.layerAndCategoryContainer}>
-                <DataBadge
-                  data-tooltip-id={TOOLTIP_ID}
-                  data-tooltip-content="Laag"
-                  className={
-                    styles[
-                      _.camelCase(
-                        t(
-                          `${
-                            _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown"
-                          } layer`,
-                        ),
-                      )
-                    ]
-                  }
-                >
-                  <FontAwesomeIcon icon={faLayerGroup} />
-                  {t(
-                    _.upperFirst(
-                      _getPublication.data?.data?.embedded?.nl?.embedded?.commonground?.layerType ?? "Unknown",
-                    ),
-                  )}
-                </DataBadge>
 
-                {_getPublication.data?.data?.category && (
-                  <DataBadge
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={t("Category")}
-                    className={
-                      styles[
-                        _.camelCase(
-                          `${
-                            _getPublication.data?.data?.embedded?.nl.embedded?.commonground?.layerType ?? "Unknown"
-                          } category`,
-                        )
-                      ]
+              {_getPublication.data?.metaData &&
+                <Table>
+                  <TableBody>
+                    {_getPublication.data?.data?.reference &&
+                      <TableRow>
+                        <TableCell><b>{t("Reference")}</b></TableCell>
+                        <TableCell>{_getPublication.data.data.reference}</TableCell>
+                      </TableRow>
                     }
-                  >
-                    {_.upperFirst(_getPublication.data?.category)}
-                  </DataBadge>
-                )}
-              </div>
-
-              <div className={styles.tags}>
-                {_getPublication.data?.data?.usedBy?.length > 0 && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Installaties"
-                    onClick={() => viewReuse()}
-                  >
-                    <FontAwesomeIcon icon={faRepeat} />
-                    {_.toString(_getPublication.data?.data?.usedBy?.length ?? "0")}
-                  </DataBadge>
-                )}
-
-                {organisation?.title && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Organisatie"
-                  >
-                    <FontAwesomeIcon icon={faHouse} />
-                    {organisation.title}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.license && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("License")}>
-                    <FontAwesomeIcon icon={faScroll} />
-                    {_getPublication.data?.license}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.status && (
-                  <StatusBadge
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Status"
-                    status={getStatusColor(_.upperFirst(_getPublication.data?.data?.developmentStatus) ?? "Onbekend")}
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} className={styles.icon} />
-                    {t(_.upperFirst(_getPublication.data?.status))}
-                  </StatusBadge>
-                )}
-
-                {_getPublication.data?.data?.published && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Published")}>
-                    <FontAwesomeIcon icon={faUpload} />
-                    {_getPublication.data?.data?.published}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.modified && (
-                  <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Modified")}>
-                    <FontAwesomeIcon icon={faGear} />
-                    {_getPublication.data?.data?.modified}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.portal && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={_getPublication?.data?.portal}
-                    onClick={() => open(_getPublication?.data?.portal)}
-                  >
-                    <FontAwesomeIcon icon={faCircle} />
-                    {t("Portal")}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.reference && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={_getPublication.data?.data?.reference}
-                    onClick={() => open(_getPublication?.data?.data?.reference)}
-                  >
-                    <FontAwesomeIcon icon={faGear} />
-                    {t("Reference")}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.softwareType && (
-                  <DataBadge
-                    className={styles.clickableBadge}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Software type"
-                    onClick={() => {
-                      setFilters({
-                        ...filters,
-                        ["softwareType"]: _getPublication.data?.data?.softwareType,
-                      });
-                      setPagination({
-                        ...pagination,
-                        componentsCurrentPage: 1,
-                      });
-
-                      navigate("/components");
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faLaptop} />
-                    {getSoftwareTypeLabel(_getPublication.data?.data?.softwareType)}
-                  </DataBadge>
-                )}
-
-                {_getPublication.data?.data?.embedded?.maintenance?.type &&
-                  _getPublication.data?.data?.embedded?.maintenance?.type !== "none" && (
-                    <DataBadge
-                      className={styles.clickableBadge}
-                      data-tooltip-id={TOOLTIP_ID}
-                      data-tooltip-content="Onderhoudstype"
-                      onClick={() => {
-                        setFilters({
-                          ...filters,
-                          ["embedded.maintenance.type"]: _getPublication.data?.data?.embedded?.maintenance?.type,
-                        });
-                        setPagination({
-                          ...pagination,
-                          componentsCurrentPage: 1,
-                        });
-
-                        navigate("/components");
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faWrench} />
-                      {getMaintenanceType(_getPublication.data?.data?.embedded?.maintenance?.type)}
-                    </DataBadge>
-                  )}
-              </div>
-              <div className={styles.tags}>
-                {_getPublication.data?.data?.themes &&
-                  _getPublication.data?.data?.themes.map((theme: string) => (
-                    <DataBadge
-                      className={styles.clickableBadge}
-                      data-tooltip-id={TOOLTIP_ID}
-                      data-tooltip-content="Thema"
-                    >
-                      {theme}
-                    </DataBadge>
-                  ))}
-              </div>
+                    {_getPublication.data?.license &&
+                      <TableRow>
+                        <TableCell><b>{t("License")}</b></TableCell>
+                        <TableCell>{_getPublication.data.license}</TableCell>
+                      </TableRow>
+                    }
+                    {_getPublication.data?.category &&
+                      <TableRow>
+                        <TableCell><b>{t("Category")}</b></TableCell>
+                        <TableCell>{_getPublication.data.category}</TableCell>
+                      </TableRow>
+                    }
+                    {_getPublication.data?.data?.themes &&
+                      <TableRow>
+                        <TableCell><b>{t("Themas")}</b></TableCell>
+                        <TableCell>{_getPublication.data?.data?.themes.join(', ')}</TableCell>
+                      </TableRow>
+                    }
+                    {_getPublication.data?.status &&
+                      <TableRow>
+                        <TableCell><b>{t("Status")}</b></TableCell>
+                        <TableCell>{_getPublication.data.status}</TableCell>
+                      </TableRow>
+                    }
+                    {_getPublication.data?.published &&
+                      <TableRow>
+                        <TableCell><b>{t("Published")}</b></TableCell>
+                        <TableCell>{_getPublication.data.published}</TableCell>
+                      </TableRow>
+                    }
+                    {_getPublication.data?.modified &&
+                      <TableRow>
+                        <TableCell><b>{t("Modified")}</b></TableCell>
+                        <TableCell>{_getPublication.data.modified}</TableCell>
+                      </TableRow>
+                    }
+                  </TableBody>
+                </Table>
+              }
             </div>
 
             <div className={styles.addToCatalogusContainer}>
@@ -597,19 +424,19 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               <TableBody>
                 {_getPublication.data.metaData?.title &&
                   <TableRow>
-                    <TableCell>{t("Title")}</TableCell>
+                    <TableCell><b>{t("Title")}</b></TableCell>
                     <TableCell>{_getPublication.data.metaData.title ?? t("No title known")}</TableCell>
                   </TableRow>
                 }
                 {_getPublication.data.metaData?.version &&
                   <TableRow>
-                    <TableCell>{t("Version")}</TableCell>
+                    <TableCell><b>{t("Version")}</b></TableCell>
                     <TableCell>{_getPublication.data.metaData.version ?? t("No version known") }</TableCell>
                   </TableRow>
                 }
                 {_getPublication.data.metaData?.description &&
                   <TableRow>
-                    <TableCell>{t("Description")}</TableCell>
+                    <TableCell><b>{t("Description")}</b></TableCell>
                     <TableCell>{_getPublication.data.metaData.description ?? t("No description known") }</TableCell>
                   </TableRow>
                 }
@@ -964,6 +791,45 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                               </TableRow>
                             );
                           })}
+                          <TableRow className={styles.tableRow}>
+                            <TableCell className={styles.title}>Gegevenscatalogus</TableCell>
+                            <TableCell className={styles.description}>
+                              <div
+                                data-tooltip-id={TOOLTIP_ID}
+                                data-tooltip-content={"-"}
+                              >
+                                -
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <DataBadge
+                                className={styles.tagWidth}
+                                data-tooltip-id={TOOLTIP_ID}
+                                data-tooltip-content={t("License")}
+                              >
+                                <FontAwesomeIcon icon={faScroll} />
+                                {_getPublication.data?.license}
+                              </DataBadge>
+                            </TableCell>
+                            <TableCell>-</TableCell>
+                            <TableCell>
+                              <span className={styles.date}>{_getPublication.data?.published}</span>
+                            </TableCell>
+                            <TableCell>
+                              <span className={styles.date}>{_getPublication.data?.modified}</span>
+                            </TableCell>
+                            <TableCell>
+                              <Link
+                                onClick={(e) => {
+                                  e.preventDefault(), open(_getPublication.data?.portal);
+                                }}
+                                href={`/publications/${_getPublication.data?.id}`}
+                                className={styles.tagWidth}
+                              >
+                                {t("Access url")}
+                              </Link>
+                            </TableCell>
+                          </TableRow>
                         </TableBody>
                       </Table>
                     </HorizontalOverflowWrapper>
@@ -982,7 +848,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
                           {publicationData?.qualifiedAttribution && (
                             <TableRow className={styles.tableRow}>
-                              <TableCell className={styles.title}>Toeschrijving:</TableCell>
+                              <TableCell className={styles.title}><b>Toeschrijving:</b></TableCell>
                               <TableCell>
                                 <div className={styles.publicationDataContact}>
                                   <span>{`${t("Name")}: ${publicationData?.contactPoint?.name}`}</span>
@@ -994,7 +860,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
                           {publicationData?.bedrijfsservices && (
                             <TableRow className={styles.tableRow}>
-                              <TableCell className={styles.title}>Bedrijfsservices:</TableCell>
+                              <TableCell className={styles.title}><b>Bedrijfsservices:</b></TableCell>
                               <TableCell className={styles.description}>
                                 {publicationData.bedrijfsservices.join(", ")}
                               </TableCell>
@@ -1003,14 +869,14 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
                           {publicationData?.model && (
                             <TableRow className={styles.tableRow}>
-                              <TableCell className={styles.title}>Model:</TableCell>
+                              <TableCell className={styles.title}><b>Model:</b></TableCell>
                               <TableCell className={styles.description}>{publicationData.model}</TableCell>
                             </TableRow>
                           )}
 
                           {publicationData?.spatial > 0 && (
                             <TableRow className={styles.tableRow}>
-                              <TableCell className={styles.title}>Referentie componenten:</TableCell>
+                              <TableCell className={styles.title}><b>Referentie componenten:</b></TableCell>
                               <TableCell className={styles.description}>{publicationData.spatial.join(", ")}</TableCell>
                             </TableRow>
                           )}
