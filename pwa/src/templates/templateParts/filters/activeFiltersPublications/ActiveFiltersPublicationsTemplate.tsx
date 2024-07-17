@@ -14,6 +14,8 @@ export const ActiveFiltersPublicationsTemplate: React.FC = () => {
       ...publicationFilters,
       _search: "",
       status: undefined,
+      "data.themes": undefined,
+      "attachments.type": undefined,
     });
   };
 
@@ -34,6 +36,16 @@ export const ActiveFiltersPublicationsTemplate: React.FC = () => {
         {publicationFilters.status && (
           <DataBadge onClick={() => setPublicationFilters({ ...publicationFilters, status: undefined })}>
             {t(_.upperFirst(publicationFilters.status))}
+          </DataBadge>
+        )}
+        {publicationFilters["data.themes"] && (
+          <DataBadge onClick={() => setPublicationFilters({ ...publicationFilters, "data.themes": undefined })}>
+            {t(_.upperFirst(publicationFilters["data.themes"]))}
+          </DataBadge>
+        )}
+        {publicationFilters["attachments.type"] && (
+          <DataBadge onClick={() => setPublicationFilters({ ...publicationFilters, "attachments.type": undefined })}>
+            {t(_.upperFirst(publicationFilters["attachments.type"]))}
           </DataBadge>
         )}
       </div>

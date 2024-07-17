@@ -16,7 +16,7 @@ export default class Publication {
     return data;
   };
 
-  public getSearch = async (filters: IPublicationFiltersContext, currentPage: number, limit: number): Promise<any> => {
+  public getSearch = async (filters: IPublicationFiltersContext): Promise<any> => {
     let endpoint = `/search${filtersToPublicationsQueryParams(filters)}`;
 
     if (
@@ -34,7 +34,7 @@ export default class Publication {
   };
 
   public getFilterOptions = async (): Promise<any> => {
-    let endpoint = "/search?_queries[]=data.status";
+    const endpoint = "/search?_queries[]=data.status&_queries[]=data.themes&_queries[]=attachments.type";
 
     const { data } = await Send(this._instance, "GET", endpoint);
 
