@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as styles from "./PublicationsTableTemplate.module.css";
-import _ from "lodash";
-import { Icon, StatusBadge, DataBadge, Link } from "@utrecht/component-library-react/dist/css-module";
+import { DataBadge } from "@utrecht/component-library-react/dist/css-module";
 import { navigate } from "gatsby";
 import { useTranslation } from "react-i18next";
 import {
@@ -12,18 +11,10 @@ import {
   TableHeader,
   TableHeaderCell,
 } from "@utrecht/component-library-react/dist/css-module";
-import { IconArrowRight } from "@tabler/icons-react";
-import clsx from "clsx";
-import { getResultsUrl } from "../../../services/getResultsUrl";
-import { getTypeFromSchemaRef } from "../../../services/getTypeFromSchemaRef";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faInfoCircle, faLayerGroup, faMedal, faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../layout/Layout";
-import { getStatusColor } from "../../../services/getStatusColor";
 import { HorizontalOverflowWrapper } from "@conduction/components";
-import { RatingIndicatorTemplate } from "../ratingIndicator/RatingIndicatorTemplate";
-import { getCommongroundRating } from "../../../services/getCommongroundRating";
-import { getSoftwareTypeLabel } from "../../../services/getSoftwareTypeLabel";
 
 interface PublicationsTableTemplateProps {
   publications: any[];
@@ -44,13 +35,9 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
         {!hideTableHead && (
           <TableHeader className={styles.tableHeader}>
             <TableRow>
-              <TableHeaderCell>{t("Name")}</TableHeaderCell>
-              <TableHeaderCell>{t("Catalogi")}</TableHeaderCell>
-              <TableHeaderCell>{t("MetaData")}</TableHeaderCell>
-              <TableHeaderCell>{t("Status")}</TableHeaderCell>
+            <TableHeaderCell>{t("Name")}</TableHeaderCell>
+            <TableHeaderCell>{t("Description")}</TableHeaderCell>
               <TableHeaderCell>{t("Published")}</TableHeaderCell>
-              <TableHeaderCell>{t("Organization")}</TableHeaderCell>
-              <TableHeaderCell />
             </TableRow>
           </TableHeader>
         )}
@@ -70,26 +57,9 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
                 </TableCell>
 
                 <TableCell>
-                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Catalogi")} className={styles.name}>
-                    {t(_.upperFirst(publication.catalogi?.name))}
+                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication?.description} className={styles.name}>
+                    {publication?.description}
                   </span>
-                </TableCell>
-
-                <TableCell>
-                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("MetaData")} className={styles.name}>
-                    {t(_.upperFirst(publication.metaData?.name ?? publication.metaData?.title))}
-                  </span>
-                </TableCell>
-
-                <TableCell>
-                  <DataBadge
-                    className={styles.tagWidth}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content={t("Status")}
-                  >
-                    <FontAwesomeIcon icon={faInfoCircle} />
-                    {t(_.upperFirst(publication.data?.status))}
-                  </DataBadge>
                 </TableCell>
 
                 <TableCell>
@@ -103,25 +73,14 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
                   </DataBadge>
                 </TableCell>
 
-                <TableCell>
-                  <DataBadge
-                    className={styles.tagWidth}
-                    data-tooltip-id={TOOLTIP_ID}
-                    data-tooltip-content="Organisatie"
-                  >
-                    <FontAwesomeIcon icon={faHouse} />
-                    {publication.data?.organization?.title}
-                  </DataBadge>
-                </TableCell>
-
-                <TableCell>
+                {/* <TableCell>
                   <Link onClick={() => navigate(`/publications/${publication.id}`)} className={styles.detailsLink}>
                     <Icon>
                       <IconArrowRight />
                     </Icon>
                     {t("Details")}
                   </Link>
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             ))}
 

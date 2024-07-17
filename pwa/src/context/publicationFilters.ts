@@ -4,11 +4,15 @@ import { GlobalContext } from "./global";
 export interface IPublicationFiltersContext {
   _search?: string;
   status?: string;
+  "data.themes"?: string;
+  "attachments.type"?: string;
 }
 
 export const defaultPublicationFiltersContext: IPublicationFiltersContext = {
   _search: "",
   status: "",
+  "data.themes": "",
+  "attachments.type": "",
 };
 
 export const usePublicationFiltersContext = () => {
