@@ -149,18 +149,18 @@ export const VerticalFiltersPublicationsTemplate: React.FC<VerticalFiltersPublic
     if (!getFilterOptions.isSuccess) return;
 
     // Status
-    const statusWithData = getFilterOptions.data.facets["data.status"].map((status: any) => ({
+    const statusWithData = getFilterOptions.data.facets["data.status"]?.map((status: any) => ({
       label: _.upperFirst(status._id ?? "unknown"),
       value: status._id,
     }));
     // Themes
-    const themesWithData = getFilterOptions.data.facets["data.themes"].map((theme: any) => (
+    const themesWithData = getFilterOptions.data.facets["data.themes"]?.map((theme: any) => (
       {
       label: _.upperFirst(theme._id ?? "unknown"),
       value: theme._id,
     }));
     // Types (attachments.type)
-    const typesWithData = getFilterOptions.data.facets["attachments.type"].map((type: any) => (
+    const typesWithData = getFilterOptions.data.facets["attachments.type"]?.map((type: any) => (
       {
       label: _.upperFirst(type._id ?? "unknown"),
       value: type._id,
