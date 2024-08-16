@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkskeleton_pip=self.webpackChunkskeleton_pip||[]).push([[1418],{8517:function(e,p,s){s.r(p);var t=s(4874);p.default=t.default}}]);
+//# sourceMappingURL=component---src-pages-organizations-index-tsx-2d9cd08077c069c95f2a.js.map

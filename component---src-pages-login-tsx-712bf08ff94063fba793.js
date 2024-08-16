@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkskeleton_pip=self.webpackChunkskeleton_pip||[]).push([[4047],{2493:function(e,s,t){t.r(s);var n=t(7294),p=t(4160),u=t(5893);s.default=()=>(n.useEffect((()=>{(0,p.c4)("/")})),(0,u.jsx)(u.Fragment,{}))}}]);
+//# sourceMappingURL=component---src-pages-login-tsx-712bf08ff94063fba793.js.map

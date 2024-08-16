@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkskeleton_pip=self.webpackChunkskeleton_pip||[]).push([[9218],{32513:function(e,n,s){s.r(n);var p=s(85893);n.default=()=>(0,p.jsx)("span",{children:"404: Page not found"})}}]);
-//# sourceMappingURL=component---src-pages-404-tsx-6625fb9ebad51960285f.js.map

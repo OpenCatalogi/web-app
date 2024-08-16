@@ -1,1 +1,0 @@
-{"version":3,"file":"component---src-pages-categories-index-tsx-ef5998bf782ca5f36342.js","mappings":"yIAEA,UAAeA,EAAc,O","sources":["webpack://skeleton-pip/./src/pages/categories/index.tsx"],"sourcesContent":["import CategoriesPage from \"./CategoriesPage\";\n\nexport default CategoriesPage;\n"],"names":["CategoriesPage"],"sourceRoot":""}
