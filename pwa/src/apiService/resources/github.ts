@@ -11,7 +11,7 @@ export default class Github {
   public postRepository = async (variables: { payload: any }): Promise<any> => {
     const { payload } = variables;
 
-    const { data } = await Send(this._instance, "POST", "/github_events", payload);
+    const { data } = await Send(this._instance, "POST", "/form_input", payload);
     return data;
   };
 }

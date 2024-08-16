@@ -44,6 +44,12 @@
   margin-block-end: var(--web-app-size-xs);
 }
 
+.headerButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--web-app-size-xs);
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -197,6 +203,8 @@
 }
 
 .table {
+  display: block;
+  max-height: 60vh;
   background-color: var(--utrecht-table-background-color);
   border-collapse: var(--utrecht-table-border-collapse);
 }
@@ -318,6 +326,42 @@
   fill: #a97142;
 }
 
+.goldRatingButton > span > svg > g,
+.silverRatingButton > span > svg > g,
+.bronzeRatingButton > span > svg > g {
+  fill: var(--utrecht-button-color);
+}
+
+.goldRatingButton {
+  background-color: #d4af37 !important;
+}
+.goldRatingButton:hover,
+.goldRatingButton:active,
+.goldRatingButton:focus {
+  cursor: default;
+  background-color: #d4af37 !important;
+}
+
+.silverRatingButton {
+  background-color: #bcc6cc !important;
+}
+.silverRatingButton:hover,
+.silverRatingButton:active,
+.silverRatingButton:focus {
+  cursor: default;
+  background-color: #bcc6cc !important;
+}
+
+.bronzeRatingButton {
+  background-color: #a97142 !important;
+}
+.bronzeRatingButton:hover,
+.bronzeRatingButton:active,
+.bronzeRatingButton:focus {
+  cursor: default;
+  background-color: #a97142 !important;
+}
+
 /* Colors of the 5 layers */
 .interactionLayer,
 .interfaceLayer {
@@ -385,5 +429,9 @@
 }
 
 .backButton:hover {
+  cursor: pointer;
+}
+
+.clickableBadge:hover {
   cursor: pointer;
 }

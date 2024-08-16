@@ -1,0 +1,122 @@
+.container {
+  border-radius: var(--web-app-border-radius-md);
+  background-color: var(--web-app-color-background-light);
+  padding-inline-start: var(--web-app-size-lg);
+  padding-inline-end: var(--web-app-size-lg);
+  padding-block-start: var(--web-app-size-lg);
+  padding-block-end: var(--web-app-size-lg);
+
+  --denhaag-form-control-label-margin-block-end: var(--web-app-size-2xs);
+}
+
+.container > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.label {
+  font-weight: var(--web-app-font-weight-normal);
+  font-size: var(--web-app-size-md);
+}
+
+.trigger > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-md);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  display: block;
+  font-weight: var(--web-app-font-weight-bold);
+  font-size: var(--web-app-size-md);
+  cursor: pointer;
+}
+
+.filterCountIndicator {
+  font-weight: var(--web-app-font-weight-normal);
+}
+
+.toggleIcon {
+  position: relative;
+  top: calc(var(--web-app-size-2xs) * -1);
+  font-size: var(--web-app-font-size-md);
+  transition: transform 100ms ease-in-out;
+  margin-inline-start: var(--web-app-size-xs);
+}
+
+.toggleIcon.active {
+  font-size: var(--web-app-font-size-md);
+  transition: transform 100ms ease-in-out;
+}
+
+.toggleIcon.isOpen {
+  transform: rotate(90deg);
+}
+
+.collapsible .separator {
+  margin-block-start: var(--web-app-size-md);
+  margin-block-end: var(--web-app-size-md);
+}
+
+.form > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.selectBorder > div > div {
+  border-radius: 0;
+}
+
+.filterTitle {
+  display: block;
+  font-size: var(--web-app-font-size-md);
+  font-weight: var(--web-app-font-weight-bold);
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.filterTitle:not(:last-child) {
+  margin-inline-end: var(--web-app-size-2xs);
+}
+
+.radioLabel {
+  user-select: none;
+}
+
+.radioContainer {
+  display: flex;
+  gap: var(--web-app-size-2xs);
+}
+
+.radioButton {
+  min-block-size: var(--utrecht-radio-button-min-block-size) !important;
+  min-inline-size: var(--utrecht-radio-button-min-inline-size) !important;
+}
+
+.ratingContainer > *:not(:last-child) {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.ratingSliderContainer {
+  margin-inline-start: 5px;
+}
+
+.ratingSlider {
+  accent-color: var(--open-catalogi-rating-rating-bar-color);
+  padding: 0px !important;
+  margin: 0px;
+  min-width: -webkit-fill-available;
+}
+
+.dataList {
+  display: flex;
+  justify-content: space-between;
+  writing-mode: horizontal-tb;
+}
+
+input[type="radio"]:disabled:checked {
+  --_utrecht-radio-button-border-color: var(--utrecht-radio-button-checked-disabled-border-color) !important;
+  --_utrecht-radio-button-border-width: var(--utrecht-radio-button-checked-disabled-border-width) !important;
+  --_utrecht-radio-button-background-color: var(--utrecht-radio-button-checked-disabled-background-color) !important;
+  --_utrecht-radio-button-color: var(--utrecht-radio-button-checked-disabled-color) !important;
+}

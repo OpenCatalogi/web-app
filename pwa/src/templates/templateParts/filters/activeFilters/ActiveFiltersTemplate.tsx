@@ -2,25 +2,14 @@ import * as React from "react";
 import * as styles from "./ActiveFiltersTemplate.module.css";
 import { useFiltersContext } from "../../../../context/filters";
 import _ from "lodash";
-import {
-  maintenanceTypes,
-  softwareTypes,
-  licenses,
-  statuses,
-  applicatiefuncties,
-  referentieComponenten,
-  categories,
-} from "../../../../data/filters";
+import { maintenanceTypes, statuses, applicatiefuncties, referentieComponenten } from "../../../../data/filters";
 import { useTranslation } from "react-i18next";
 import { DataBadge, Heading } from "@utrecht/component-library-react/dist/css-module";
+import { getSoftwareTypeLabel } from "../../../../services/getSoftwareTypeLabel";
 
 export const ActiveFiltersTemplate: React.FC = () => {
   const { filters, setFilters } = useFiltersContext();
   const { t } = useTranslation();
-
-  const category = categories.find((category) => {
-    return category.value === filters?.category;
-  });
 
   const status = statuses.find((status) => {
     return status.value === filters?.developmentStatus;
@@ -28,14 +17,6 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
   const maintenanceType = maintenanceTypes.find((maintenanceType) => {
     return maintenanceType.value === filters["embedded.maintenance.type"];
-  });
-
-  const softwareType = softwareTypes.find((softwareType) => {
-    return softwareType.value === filters?.softwareType;
-  });
-
-  const licence = licenses.find((licence) => {
-    return licence.value === filters["embedded.legal.license"];
   });
 
   const applicatiefunctie = applicatiefuncties.find((applicatiefunctie) => {
@@ -123,7 +104,7 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.category && (
           <DataBadge onClick={() => setFilters({ ...filters, category: undefined })}>
-            {category?.label ?? ""}{" "}
+            {_.upperFirst(filters.category) ?? ""}
           </DataBadge>
         )}
 
@@ -155,13 +136,13 @@ export const ActiveFiltersTemplate: React.FC = () => {
 
         {filters.softwareType && (
           <DataBadge onClick={() => setFilters({ ...filters, softwareType: undefined })}>
-            {t(softwareType?.label ?? "")}
+            {getSoftwareTypeLabel(filters.softwareType)}
           </DataBadge>
         )}
 
         {filters["embedded.legal.license"] && (
           <DataBadge onClick={() => setFilters({ ...filters, "embedded.legal.license": undefined })}>
-            {licence?.label ?? ""}
+            {filters["embedded.legal.license"] ?? ""}
           </DataBadge>
         )}
 

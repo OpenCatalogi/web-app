@@ -11,11 +11,13 @@ import Search from "./resources/search";
 import Github from "./resources/github";
 import Markdown from "./resources/markdown";
 import FooterContent from "./resources/footerContent";
+import AvailableFilters from "./resources/availableFilters";
 
 import Login from "./services/login";
 import Me from "./services/me";
 import { DEFAULT_HEADER_CONTENT_URL } from "../templates/templateParts/header/HeaderTemplate";
 import HeaderContent from "./resources/headerContent";
+import Publication from "./resources/publication";
 
 export default class APIService {
   public JWT?: string;
@@ -77,6 +79,16 @@ export default class APIService {
     });
   }
 
+  public get AvailableFiltersClient(): AxiosInstance {
+    return axios.create({
+      baseURL: window.sessionStorage.getItem("API_URL") ?? "",
+      headers: {
+        Accept: "application/json+aggregations",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
   public get FooterContentClient(): AxiosInstance {
     return axios.create({
       baseURL: removeFileNameFromUrl(window.sessionStorage.getItem("FOOTER_CONTENT") ?? DEFAULT_FOOTER_CONTENT_URL),
@@ -86,6 +98,19 @@ export default class APIService {
   public get HeaderContentClient(): AxiosInstance {
     return axios.create({
       baseURL: removeFileNameFromUrl(window.sessionStorage.getItem("HEADER_CONTENT") ?? DEFAULT_HEADER_CONTENT_URL),
+    });
+  }
+
+  public get PublicationClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
+    return axios.create({
+      baseURL: "https://nextcloud.test.commonground.nu/index.php/apps/opencatalogi/api",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      ...authorization,
     });
   }
 
@@ -118,6 +143,10 @@ export default class APIService {
     return new Github(this.apiClient);
   }
 
+  public get AvailableFilters(): AvailableFilters {
+    return new AvailableFilters(this.AvailableFiltersClient);
+  }
+
   public get Markdown(): Markdown {
     return new Markdown(this.MarkdownClient);
   }
@@ -128,6 +157,10 @@ export default class APIService {
 
   public get HeaderContent(): HeaderContent {
     return new HeaderContent(this.HeaderContentClient);
+  }
+
+  public get Publication(): Publication {
+    return new Publication(this.PublicationClient);
   }
 
   // Services

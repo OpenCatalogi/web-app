@@ -27,7 +27,12 @@ export const filtersToQueryParams = (filters: any): string => {
           break;
         case "ratingCommonground":
           window.sessionStorage.getItem("FILTER_RATING") === "Commonground"
-            ? (params += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`)
+            ? value.includes("exact")
+              ? (params += `&embedded.nl.embedded.commonground.rating[int_compare]=${filters.ratingCommonground.replace(
+                  "exact",
+                  "",
+                )}`)
+              : (params += `&embedded.nl.embedded.commonground.rating[>%3D]=${filters.ratingCommonground}`)
             : (params += "");
           break;
         case "isForked":
@@ -39,6 +44,9 @@ export const filtersToQueryParams = (filters: any): string => {
               ? (params += "&order[embedded.nl.embedded.commonground.rating]=desc")
               : (params += "&order[embedded.rating.rating]=desc")
             : (params += "");
+          break;
+        case "category":
+          params += `&categories=${value}`;
           break;
         default:
           params += `&${key}=${value}`;
@@ -90,7 +98,6 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
     .map(([key, value]) => {
       if (value === null || value === undefined || value === "" || (Array.isArray(value) && _.isEmpty(value)))
         return null;
-      if (key === "embedded.rating.rating[>%3D]") return `rating=${value}`;
 
       if (pathname.includes("/components") || pathname === "/") {
         if (key === "landingDisplayLayout") return null;
@@ -99,12 +106,15 @@ export const filtersToUrlQueryParams = (filters: Record<string, any>, pathname: 
         if (key === "organizationsResultDisplayLayout") return null;
         if (key === "applicationCurrentPage") return null;
         if (key === "organizationCurrentPage") return null;
+        if (key === "publicationCurrentPage") return null;
+        if (key === "publicationsResultDisplayLayout") return null;
 
         if (key === "isForked" && window.sessionStorage.getItem("FILTER_FORKS") === "false") return null;
         if (key === "orderRating" && window.sessionStorage.getItem("FILTER_RATING") === "false") return null;
         if (key === "rating" && window.sessionStorage.getItem("FILTER_RATING") !== "OpenCatalogi") return null;
         if (key === "ratingCommonground" && window.sessionStorage.getItem("FILTER_RATING") !== "Commonground")
           return null;
+      
       }
 
       const formattedValue = Array.isArray(value)

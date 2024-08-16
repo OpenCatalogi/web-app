@@ -10,6 +10,8 @@ export interface IQueryLimitContext {
   organizationsQueryLimit: number;
   previousApplicationsQueryLimit: number;
   applicationsQueryLimit: number;
+  previousPublicationsQueryLimit: number;
+  publicationsQueryLimit: number;
 }
 
 export const defaultQueryLimitContext: IQueryLimitContext = {
@@ -19,6 +21,8 @@ export const defaultQueryLimitContext: IQueryLimitContext = {
   organizationsQueryLimit: QUERY_LIMIT_DEFAULT,
   previousApplicationsQueryLimit: QUERY_LIMIT_DEFAULT,
   applicationsQueryLimit: QUERY_LIMIT_DEFAULT,
+  previousPublicationsQueryLimit: QUERY_LIMIT_DEFAULT,
+  publicationsQueryLimit: QUERY_LIMIT_DEFAULT,
 };
 
 export const useQueryLimitContext = () => {

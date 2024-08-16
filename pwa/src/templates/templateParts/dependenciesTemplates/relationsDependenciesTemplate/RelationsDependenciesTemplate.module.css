@@ -21,3 +21,20 @@
   border: 0 !important;
   box-shadow: none !important;
 }
+
+.tooltip {
+  padding-inline-start: var(--conduction-tooltip-padding-inline-start);
+  padding-inline-end: var(--conduction-tooltip-padding-inline-end);
+  padding-block-start: var(--conduction-tooltip-padding-block-start);
+  padding-block-end: var(--conduction-tooltip-padding-block-end);
+
+  background-color: var(--conduction-tooltip-background-color) !important;
+  color: var(--conduction-tooltip-color) !important;
+
+  border-width: var(--conductino-tooltip-border-width);
+  border-color: var(--conduction-tooltip-border-color);
+  border-style: var(--conduction-tooltip-border-style);
+  border-radius: var(--conduction-tooltip-border-radius) !important;
+
+  z-index: var(--conduction-tooltip-z-index);
+}

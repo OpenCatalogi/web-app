@@ -54,15 +54,15 @@ jobs:
       - name: Print definitive APP_ENV
         run: echo "APP_ENV is now $APP_ENV and APP_BUILD is now $APP_BUILD"
       - name: Build the Docker image
-        run: docker-compose build --build-arg APP_ENV=$APP_ENV --build-arg APP_BUILD=$APP_BUILD --build-arg APP_BUILD_ALL_FIXTURES=true
+        run: docker compose build --build-arg APP_ENV=$APP_ENV --build-arg APP_BUILD=$APP_BUILD --build-arg APP_BUILD_ALL_FIXTURES=true
       - name: Run the docker image
-        run: docker-compose up -d
+        run: docker compose up -d
       - name: Taking some sleep (for containers to come up)
         run: sleep 20
       - name: Check if all containers are running
         run: docker ps
       - name: Dumping the logs
-        run: docker-compose logs
+        run: docker compose logs
       - name: Show all images
         run: docker images
       - name: Login to Container Registry
@@ -76,13 +76,13 @@ jobs:
          fi
       - if: steps.containerregistry-login.outputs.success == 'true' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/development' || github.ref == 'refs/heads/refinement-demo')
         name: Push to Container Registry
-        run: docker-compose push
+        run: docker compose push
 
       - if: steps.containerregistry-login.outputs.success == 'true' && github.ref == 'refs/heads/master'
         name: Push versioned containers to Container Registry
         id: version-push
         run: |
-          images=$(docker-compose images -q | xargs docker inspect --format='{{ index .RepoTags 0}}' | cut -d':' -f1 | grep $APP_NAME)
+          images=$(docker compose images -q | xargs docker inspect --format='{{ index .RepoTags 0}}' | cut -d':' -f1 | grep $APP_NAME)
           for image in $images
           do
             docker push "${image}":"${APP_BUILD}"
@@ -106,4 +106,4 @@ jobs:
           prerelease: false
       - name: Chores
         if: (success() || failure())
-        run: docker-compose down
+        run: docker compose down

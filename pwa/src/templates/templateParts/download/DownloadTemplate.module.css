@@ -9,6 +9,27 @@
   margin-block-start: calc(var(--web-app-download-popup-width) / 2 * -1);
 }
 
+.title {
+  color: var(--conduction-download-card-title-color) !important;
+  font-size: var(--conduction-download-card-title-font-size) !important;
+  font-weight: var(--conduction-download-card-title-font-weight) !important;
+  font-family: var(--conduction-download-card-title-font-family) !important;
+  margin-inline-end: var(--conduction-download-card-title-margin-inline-end) !important;
+  word-break: break-word;
+}
+
+.icon {
+  margin-inline-end: var(--conduction-download-card-icon-gap);
+  color: var(--conduction-download-card-icon-color);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .overlay {
   position: fixed;
   width: 100%;

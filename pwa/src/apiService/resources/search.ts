@@ -10,13 +10,8 @@ export default class Search {
     this._instance = _instance;
   }
 
-  public getSearch = async (
-    filters: IFiltersContext,
-    currentPage: number,
-    limit: number,
-  ): Promise<any> => {
+  public getSearch = async (filters: IFiltersContext, currentPage: number, limit: number): Promise<any> => {
     let endpoint = `/search?page=${currentPage}&limit=${limit}&extend[]=all${filtersToQueryParams(filters)}`;
-
 
     if (
       window.sessionStorage.getItem("GITHUB_ORGANIZATION_URL") !== "" &&

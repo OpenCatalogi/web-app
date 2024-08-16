@@ -30,6 +30,10 @@ export interface OrganizationCardProps {
   gitHub?: string;
   gitLab?: string;
   layoutClassName?: string;
+  contactInfo?: {
+    name?: string;
+    email?: string;
+  };
 }
 
 export const OrganizationCard: React.FC<OrganizationCardProps> = ({
@@ -42,6 +46,7 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
   gitHub,
   gitLab,
   layoutClassName,
+  contactInfo,
 }) => {
   const { t } = useTranslation();
 
@@ -61,7 +66,12 @@ export const OrganizationCard: React.FC<OrganizationCardProps> = ({
             </Link>
           </CardHeaderTitle>
 
-          <Paragraph className={styles.description}>{description}</Paragraph>
+          {contactInfo &&
+            <Paragraph className={styles.contactParagraph}>{contactInfo?.name}<br/>{contactInfo?.email}</Paragraph>
+          }
+          {!contactInfo &&
+            <Paragraph className={styles.description}>{description}</Paragraph>
+          }
         </div>
 
         {logo && (

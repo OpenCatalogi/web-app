@@ -155,7 +155,12 @@ export const ComponentsTemplate: React.FC = () => {
                     totalPages={getComponents.data.pages}
                     currentPage={getComponents.data.page}
                     setCurrentPage={(page: any) => setPagination({ ...pagination, componentsCurrentPage: page })}
-                    ariaLabels={{ nextPage: t("Next page"), previousPage: t("Previous page"), page: t("Page") }}
+                    ariaLabels={{
+                      pagination: t("Pagination"),
+                      nextPage: t("Next page"),
+                      previousPage: t("Previous page"),
+                      page: t("Page"),
+                    }}
                   />
                   <PaginationLimitSelectComponent queryLimitName={"componentsSearchQueryLimit"} />
                 </div>
