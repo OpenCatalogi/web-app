@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { TOOLTIP_ID } from "../../../layout/Layout";
 import { HorizontalOverflowWrapper } from "@conduction/components";
+import { translateDate } from "../../../services/dateFormat";
 
 interface PublicationsTableTemplateProps {
   publications: any[];
@@ -58,7 +59,8 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
 
                 <TableCell>
                   <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication?.description} className={styles.name}>
-                    {publication?.description}
+                    {publication?.description !== '' ? publication?.description : "Geen beschrijvingm"}
+  
                   </span>
                 </TableCell>
 
@@ -69,7 +71,7 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
                     data-tooltip-content={t("Published")}
                   >
                     <FontAwesomeIcon icon={faUpload} />
-                    {publication.data?.published}
+                    {translateDate('nl', publication.published)}
                   </DataBadge>
                 </TableCell>
 

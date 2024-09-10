@@ -53,6 +53,7 @@ import {
   CommongroundRatingBronze,
 } from "../../assets/svgs/CommongroundRatingImages";
 import { usePublication } from "../../hooks/publication";
+import { translateDate } from "../../services/dateFormat";
 
 interface PublicationsDetailTemplateProps {
   publicationId: string;
@@ -212,13 +213,13 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                     {_getPublication.data?.published &&
                       <TableRow>
                         <TableCell><b>{t("Published")}</b></TableCell>
-                        <TableCell>{_getPublication.data.published}</TableCell>
+                        <TableCell>{translateDate('nl', _getPublication.data.published)}</TableCell>
                       </TableRow>
                     }
                     {_getPublication.data?.modified &&
                       <TableRow>
                         <TableCell><b>{t("Modified")}</b></TableCell>
-                        <TableCell>{_getPublication.data.modified}</TableCell>
+                        <TableCell>{translateDate('nl',_getPublication.data.modified)}</TableCell>
                       </TableRow>
                     }
                   </TableBody>

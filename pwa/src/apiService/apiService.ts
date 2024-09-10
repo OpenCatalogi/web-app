@@ -105,7 +105,7 @@ export default class APIService {
     const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
 
     return axios.create({
-      baseURL: "https://nextcloud.test.commonground.nu/index.php/apps/opencatalogi/api",
+      baseURL: "http://localhost:8080/index.php/apps/opencatalogi/api",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

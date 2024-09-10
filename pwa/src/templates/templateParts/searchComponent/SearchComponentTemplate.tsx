@@ -34,7 +34,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       applicationCurrentPage: pagination.applicationCurrentPage,
     });
 
-    navigate("/components");
+    navigate("/publication");
   };
 
   const clearFilters = () => {
@@ -64,7 +64,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
 
         <Button
           onClick={() => {
-            navigate("/components"), clearFilters();
+            navigate("/publications"), clearFilters();
           }}
           className={styles.button}
         >
