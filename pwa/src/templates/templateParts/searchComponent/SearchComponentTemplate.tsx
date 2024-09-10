@@ -34,7 +34,7 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
       applicationCurrentPage: pagination.applicationCurrentPage,
     });
 
-    navigate("/publication");
+    navigate("/publications");
   };
 
   const clearFilters = () => {
