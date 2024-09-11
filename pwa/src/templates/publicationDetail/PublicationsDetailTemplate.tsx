@@ -52,8 +52,10 @@ import {
   CommongroundRatingSilver,
   CommongroundRatingBronze,
 } from "../../assets/svgs/CommongroundRatingImages";
-import { usePublication } from "../../hooks/publication";
+// TODO: uncomment
+// import { usePublication } from "../../hooks/publication";
 import { translateDate } from "../../services/dateFormat";
+import { TEMPORARY_PUBLICATION } from "../../data/publications";
 
 interface PublicationsDetailTemplateProps {
   publicationId: string;
@@ -74,8 +76,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   // @ts-expect-error because
   const _getComponent = _useComponent.getOne(undefined);
 
-  const _usePublication = usePublication(queryClient);
-  const _getPublication = _usePublication.getOne(publicationId);
+  // TODO: uncomment
+//   const _usePublication = usePublication(queryClient);
+//   const _getPublication = _usePublication.getOne(publicationId);
+    const _getPublication = TEMPORARY_PUBLICATION
 
   const getConfigComponents = _useComponent.getAllConfig(_getComponent.data?.name);
 
@@ -89,7 +93,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const imageHasValidSource = (src: string): boolean => {
     try {
       const url = new URL(src);
-      return url.protocol === "htpp:" || url.protocol === "https:";
+      return url.protocol === "http:" || url.protocol === "https:";
     } catch (_) {
       return false;
     }
