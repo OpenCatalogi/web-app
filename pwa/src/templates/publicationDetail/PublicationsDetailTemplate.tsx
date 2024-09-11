@@ -180,10 +180,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               {_getPublication.data?.metaData &&
                 <Table>
                   <TableBody>
-                    {_getPublication.data?.data?.reference &&
+                    {_getPublication.data?.reference &&
                       <TableRow>
                         <TableCell><b>{t("Reference")}</b></TableCell>
-                        <TableCell>{_getPublication.data.data.reference}</TableCell>
+                        <TableCell>{_getPublication.data.reference}</TableCell>
                       </TableRow>
                     }
                     {_getPublication.data?.license &&
