@@ -58,8 +58,8 @@ export const PublicationsTableTemplate: React.FC<PublicationsTableTemplateProps>
                 </TableCell>
 
                 <TableCell>
-                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication?.description} className={styles.name}>
-                    {publication?.description !== '' ? publication?.description : "Geen beschrijvingm"}
+                  <span data-tooltip-id={TOOLTIP_ID} data-tooltip-content={publication?.summary} className={styles.name}>
+                    {publication?.summary !== '' ? publication?.summary : "Geen beschrijving"}
   
                   </span>
                 </TableCell>
