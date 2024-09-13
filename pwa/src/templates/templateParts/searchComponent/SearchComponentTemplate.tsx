@@ -2,19 +2,19 @@ import * as React from "react";
 import * as styles from "./SearchComponentTemplate.module.css";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { IFiltersContext, useFiltersContext } from "../../../context/filters";
 import { navigate } from "gatsby";
 import { FormField, Textbox, ButtonGroup, Button } from "@utrecht/component-library-react/dist/css-module";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { usePaginationContext } from "../../../context/pagination";
+import { IPublicationFiltersContext, usePublicationFiltersContext } from "../../../context/publicationFilters";
 
 interface SearchComponentTemplateProps {
   layoutClassName?: string;
 }
 
 export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = ({ layoutClassName }) => {
-  const { setFilters } = useFiltersContext();
+  const { setPublicationFilters } = usePublicationFiltersContext();
   const { pagination, setPagination } = usePaginationContext();
   const { t } = useTranslation();
 
@@ -25,9 +25,9 @@ export const SearchComponentTemplate: React.FC<SearchComponentTemplateProps> = (
   } = useForm();
 
   const onSubmit = (data: any): void => {
-    setFilters({
+    setPublicationFilters({
       _search: data.name,
-    } as IFiltersContext);
+    } as IPublicationFiltersContext);
     setPagination({
       ...pagination,
       componentsCurrentPage: pagination.componentsCurrentPage,
