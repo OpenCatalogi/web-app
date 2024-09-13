@@ -150,7 +150,7 @@ export const ComponentsDetailTemplate: React.FC<ComponentsDetailTemplateProps> =
   const imageHasValidSource = (src: string): boolean => {
     try {
       const url = new URL(src);
-      return url.protocol === "htpp:" || url.protocol === "https:";
+      return url.protocol === "http:" || url.protocol === "https:";
     } catch (_) {
       return false;
     }

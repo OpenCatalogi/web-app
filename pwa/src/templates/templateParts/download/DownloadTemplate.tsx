@@ -49,10 +49,10 @@ export const DownloadTemplate: React.FC<DownloadTemplateProps> = ({ downloads, b
   };
 
   const convertedDownloads: TDownloadableItem[] = downloads.map((download: any) => ({
-    label: download.naam,
-    size: getSize(download.grootte),
+    label: download.naam ?? download.label,
+    size: getSize(download.grootte ?? download.size),
     type: download.type,
-    downloadLink: download.url,
+    downloadLink: download.url ?? download.downloadLink,
   }));
 
   const getIconFromType = (type: any) => {
