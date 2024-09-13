@@ -84,6 +84,7 @@ export const en = {
   Reference: "Reference",
   Pagination: "Pagination",
   Extensions: "Extensions",
+  Summary: "Summary",
   "Open Catalogs": "Open Catalogs",
   "Reusable components within the government": "Reusable components within the government",
   "Information Models": "Information Models",
@@ -100,6 +101,7 @@ export const en = {
   "No title known": "No title known",
   "No description known": "No description known",
   "No version known": "No version known",
+  "No summary known": "No summary known",
   "One central place for reuse of information technology within the government":
     "One central place for reuse of information technology within the government",
   "No components found with active filters": "No components found with active filters",

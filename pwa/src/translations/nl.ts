@@ -87,6 +87,7 @@ export const nl = {
   Reference: "Referentie",
   Pagination: "Paginering",
   Extensions: "Extensies",
+  Summary: "Samenvatting",
   "Open Catalogs": "OpenCatalogi",
   "Reusable components within the government": "Herbruikbare componenten binnen de overheid",
   "Information Models": "Informatiemodellen",
@@ -99,6 +100,7 @@ export const nl = {
   "No title known": "Geen titel bekend",
   "No description known": "Geen beschrijving bekend",
   "No version known": "Geen versie bekend",
+  "No summary known": "Geen samenvatting bekend",
   "Access url": "Toegangsurl",
   "Download url": "Downloadurl",
   "One central place for reuse of information technology within the government":

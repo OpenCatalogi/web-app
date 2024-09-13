@@ -23,10 +23,9 @@ import { faBrush, faClock, faHouse, faList, faScroll, faTag } from "@fortawesome
 import { OrganizationCard } from "../../components/organizationCard/OrganizationCard";
 import { ExpandableLeadParagraph } from "../../components/expandableLeadParagraph/ExpandableLeadParagraph";
 import { TOOLTIP_ID } from "../../layout/Layout";
-// TODO: uncomment
-// import { usePublication } from "../../hooks/publication";
+import { usePublication } from "../../hooks/publication";
 import { translateDate } from "../../services/dateFormat";
-import { TEMPORARY_PUBLICATION } from "../../data/publications";
+import { QueryClient } from "react-query";
 
 interface PublicationsDetailTemplateProps {
   publicationId: string;
@@ -38,12 +37,13 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const [tabIndex, setTabIndex] = React.useState(0);
 
   const tabsRef: any = React.useRef();
-  // TODO: uncomment
-  //   const _usePublication = usePublication(queryClient);
-  //   const _getPublication = _usePublication.getOne(publicationId);
-  const _getPublication = TEMPORARY_PUBLICATION;
 
-  const organisation = _getPublication?.catalogi?.organisation;
+  const queryClient = new QueryClient();
+  const _usePublication = usePublication(queryClient);
+  const _getPublication = _usePublication.getOne(publicationId);
+
+  const organisation =
+    _getPublication.data?.catalogi?.organisation?.title && _getPublication.data?.catalogi?.organisation;
 
   const imageHasValidSource = (src: string): boolean => {
     try {
@@ -69,21 +69,27 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
         {t("Back to publications")}
       </Link>
 
-      {_getPublication && (
+      {_getPublication.isSuccess && (
         <>
           <div className={styles.headingContainer}>
             <div className={styles.headingContent}>
               <Heading level={1} className={styles.componentName}>
-                {_getPublication?.title}
+                {_getPublication.data?.title}
               </Heading>
 
-              <ExpandableLeadParagraph description={_getPublication?.description ?? t("No description available")} />
+              <ExpandableLeadParagraph
+                description={_getPublication.data?.description ?? t("No description available")}
+              />
             </div>
 
             <div className={styles.addToCatalogusContainer}>
               <div className={styles.logoContainer}>
                 <img
-                  src={imageHasValidSource(_getPublication.image) ? _getPublication.image : componentPlacholderLogo}
+                  src={
+                    imageHasValidSource(_getPublication.data.image)
+                      ? _getPublication.data.image
+                      : componentPlacholderLogo
+                  }
                   className={styles.logo}
                 />
               </div>
@@ -102,43 +108,41 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                   </DataBadge>
                 )}
 
-                {_getPublication.reference && (
+                {_getPublication.data.reference && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Referentie">
                     <FontAwesomeIcon icon={faTag} />
-                    {_getPublication.reference}
+                    {_getPublication.data.reference}
                   </DataBadge>
                 )}
-                {_getPublication.category && (
+                {_getPublication.data.category && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Category">
                     <FontAwesomeIcon icon={faList} />
-                    {_.upperFirst(_getPublication.category)}
+                    {_.upperFirst(_getPublication.data.category)}
                   </DataBadge>
                 )}
-                {_getPublication.themes &&
-                  _getPublication.themes.map((theme, idx) => (
+                {_getPublication.data.themes &&
+                  _getPublication.data.themes.map((theme: any, idx: number) => (
                     <DataBadge key={idx} data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Theme">
                       <FontAwesomeIcon icon={faBrush} />
                       {_.upperFirst(theme)}
                     </DataBadge>
                   ))}
-                {_getPublication.license && (
+                {_getPublication.data.license && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content="Licentie">
                     <FontAwesomeIcon icon={faScroll} />
-                    {_getPublication.license}
+                    {_getPublication.data.license}
                   </DataBadge>
                 )}
-                {_getPublication.published && (
+                {_getPublication.data.published && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Published")}>
                     <FontAwesomeIcon icon={faClock} />
-                    {/*@ts-expect-error*/}
-                    {translateDate("nl", _getPublication.published)}
+                    {translateDate("nl", _getPublication.data.published)}
                   </DataBadge>
                 )}
-                {_getPublication.modified && (
+                {_getPublication.data.modified && (
                   <DataBadge data-tooltip-id={TOOLTIP_ID} data-tooltip-content={t("Modified")}>
                     <FontAwesomeIcon icon={faClock} />
-                    {/*@ts-expect-error*/}
-                    {translateDate("nl", _getPublication.modified)}
+                    {translateDate("nl", _getPublication.data.modified)}
                   </DataBadge>
                 )}
               </div>
@@ -147,46 +151,51 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
 
           <div className={styles.cardsHeaderContainer}>
             <Heading3 className={styles.cardsHeading}>{t("Catalogi")}</Heading3>
-            <Heading3 className={styles.cardsHeading}>MetaData</Heading3>
+            <Heading3 className={styles.cardsHeading}>{t("MetaData")}</Heading3>
             <Heading3 className={styles.cardsHeading}>{t("Organization")}</Heading3>
           </div>
 
           <div className={styles.cardsContainer}>
-            {!organisation && <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>}
-            {_getPublication.catalogi && (
+            {_getPublication.data.catalogi && (
               <Table>
                 <TableBody>
                   <TableRow>
                     <TableCell>
                       <b>{t("Title")}</b>
                     </TableCell>
-                    <TableCell>{_getPublication.catalogi.title ?? t("No title known")}</TableCell>
+                    <TableCell>{_getPublication.data.catalogi.title ?? t("No title known")}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <b>{t("Summary")}</b>
                     </TableCell>
-                    <TableCell>{_getPublication.catalogi.summary ?? t("No version known")}</TableCell>
+                    <TableCell>{_getPublication.data.catalogi.summary || t("No summary known")}</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <b>{t("Description")}</b>
                     </TableCell>
-                    <TableCell>{_getPublication.catalogi.description ?? t("No description known")}</TableCell>
+                    <TableCell>{_getPublication.data.catalogi.description || t("No description known")}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             )}
-            {!organisation && <span className={styles.noOrganizationCardAvailable}>{t("No catalogus found")}</span>}
-            {_getPublication.catalogi.metadata && (
+            {!_getPublication.data.catalogi && (
+              <span className={styles.noOrganizationCardAvailable}>{t("No catalogus found")}</span>
+            )}
+
+            {_getPublication.data.catalogi.metadata[0]?.id && (
               <Table>
                 <TableHeader>
-                  <TableHeaderCell>{t("Title")}</TableHeaderCell>
-                  <TableHeaderCell>{t("Version")}</TableHeaderCell>
-                  <TableHeaderCell>{t("Description")}</TableHeaderCell>
+                  <TableRow>
+                    <TableHeaderCell>{t("Title")}</TableHeaderCell>
+                    <TableHeaderCell>{t("Version")}</TableHeaderCell>
+                    <TableHeaderCell>{t("Description")}</TableHeaderCell>
+                  </TableRow>
                 </TableHeader>
+
                 <TableBody>
-                  {_getPublication.catalogi.metadata.map((data, idx) => (
+                  {_getPublication.data.catalogi.metadata.map((data: any, idx: number) => (
                     <TableRow key={`${data.id}-${idx}`}>
                       <TableCell>{data.title || t("No title known")}</TableCell>
                       <TableCell>{data.version || t("No version known")}</TableCell>
@@ -196,7 +205,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 </TableBody>
               </Table>
             )}
-            {!_getPublication.catalogi.metadata && (
+            {!_getPublication.data.catalogi.metadata[0]?.id && (
               <span className={styles.noOrganizationCardAvailable}>{t("No metadata found")}</span>
             )}
 
@@ -221,22 +230,24 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 contactInfo={organisation.contactInformation}
               />
             )}
+            {!organisation && <span className={styles.noOrganizationCardAvailable}>{t("No organization found")}</span>}
           </div>
-          {_getPublication.attachments && (
+
+          {_getPublication?.data?.attachments[0]?.title && (
             <div id="Tabs" ref={tabsRef}>
               <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                  {_getPublication.attachments?.length > 0 && (
+                  {_getPublication?.data?.attachments?.length > 0 && (
                     <Tab>
                       <span>{t("Attachments")}</span>
                       <BadgeCounter className={styles.badgeLayout}>
-                        {_getPublication.attachments?.length ?? 0}
+                        {_getPublication?.data?.attachments?.length ?? 0}
                       </BadgeCounter>
                     </Tab>
                   )}
                 </TabList>
 
-                {_getPublication.attachments?.length > 0 && (
+                {_getPublication?.data?.attachments?.length > 0 && (
                   <TabPanel>
                     <HorizontalOverflowWrapper
                       ariaLabels={{
@@ -258,20 +269,20 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                           </TableRow>
                         </TableHeader>
                         <TableBody className={styles.tableBody}>
-                          {_getPublication?.attachments.map((attachment: any) => {
-                            return attachment.published === "false" ? (
+                          {_getPublication?.data?.attachments.map((attachment: any) => {
+                            return attachment?.published === "false" || !attachment.published ? (
                               <></>
                             ) : (
                               <TableRow className={styles.tableRow}>
-                                <TableCell className={styles.title}>{attachment.title}</TableCell>
+                                <TableCell className={styles.title}>{attachment?.title}</TableCell>
                                 <TableCell className={styles.description}>
                                   <div
-                                    data-tooltip-id={attachment.description.length > 100 && TOOLTIP_ID}
-                                    data-tooltip-content={attachment.description}
+                                    data-tooltip-id={attachment?.description?.length > 100 && TOOLTIP_ID}
+                                    data-tooltip-content={attachment?.description}
                                   >
-                                    {attachment.description.length > 100
-                                      ? `${attachment.description.substring(0, 100)}...`
-                                      : attachment.description}
+                                    {attachment?.description.length > 100
+                                      ? `${attachment?.description.substring(0, 100)}...`
+                                      : attachment?.description}
                                   </div>
                                 </TableCell>
                                 <TableCell>
@@ -281,22 +292,22 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                     data-tooltip-content={t("License")}
                                   >
                                     <FontAwesomeIcon icon={faScroll} />
-                                    {attachment.license}
+                                    {attachment?.license}
                                   </DataBadge>
                                 </TableCell>
-                                <TableCell>{attachment.type}</TableCell>
+                                <TableCell>{attachment?.type}</TableCell>
                                 <TableCell>
-                                  <span className={styles.date}>{translateDate("nl", attachment.published)}</span>
+                                  <span className={styles.date}>{translateDate("nl", attachment?.published)}</span>
                                 </TableCell>
                                 <TableCell>
-                                  <span className={styles.date}>{translateDate("nl", attachment.modified)}</span>
+                                  <span className={styles.date}>{translateDate("nl", attachment?.modified)}</span>
                                 </TableCell>
                                 <TableCell>
                                   <Link
                                     onClick={(e) => {
-                                      e.preventDefault(), open(attachment.accessURL);
+                                      e.preventDefault(), open(attachment?.accessURL);
                                     }}
-                                    href={`/publications/${_getPublication.id}`}
+                                    href={`/publications/${_getPublication.data.id}`}
                                     className={styles.tagWidth}
                                   >
                                     {t("Access url")}
@@ -305,9 +316,9 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                                 <TableCell>
                                   <Link
                                     onClick={(e) => {
-                                      e.preventDefault(), open(attachment.downloadURL);
+                                      e.preventDefault(), open(attachment?.downloadURL);
                                     }}
-                                    href={`/publications/${_getPublication.id}`}
+                                    href={`/publications/${_getPublication.data.id}`}
                                     className={styles.tagWidth}
                                   >
                                     {t("Download url")}
@@ -326,7 +337,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
           )}
         </>
       )}
-      {/* @ts-expect-error */}
       {_getPublication.isLoading && <Skeleton height="200px" />}
     </Container>
   );
