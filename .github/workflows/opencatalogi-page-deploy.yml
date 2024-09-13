@@ -84,7 +84,7 @@ jobs:
           envkey_GATSBY_SHOW_THEME_SWITCHER: ${{ env.SHOW_THEME_SWITCHER }}
           envkey_GATSBY_ME_URL: ${{ env.ME_URL }}
           envkey_GATSBY_API_URL: ${{ env.API_URL }}
-          envkey_NEXTCLOUD_API_URL: ${{ env.NEXTCLOUD_API_URL }}
+          envkey_GATSBY_NEXTCLOUD_API_URL: ${{ env.NEXTCLOUD_API_URL }}
           envkey_GATSBY_ADMIN_URL: ${{ env.ADMIN_URL }}
           envkey_GATSBY_BASE_URL: ${{ env.BASE_URL }}
           envkey_GATSBY_FRONTEND_URL: ${{ env.FRONTEND_URL }}
