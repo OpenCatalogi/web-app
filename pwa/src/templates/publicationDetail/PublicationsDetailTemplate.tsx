@@ -45,6 +45,17 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
   const organisation =
     _getPublication.data?.catalogi?.organisation?.title && _getPublication.data?.catalogi?.organisation;
 
+  const metaData = _getPublication.data?.catalogi?.metadata
+    ? _getPublication.data?.catalogi?.metadata[0]?.id
+      ? _getPublication.data?.catalogi?.metadata
+      : []
+    : _getPublication.data?.metadata
+      ? _getPublication.data?.metadata[0]?.id
+        ? _getPublication.data?.metadata
+        : []
+      : _getPublication.data?.metaData
+        ? [_getPublication.data?.metaData]
+        : [];
   const imageHasValidSource = (src: string): boolean => {
     try {
       const url = new URL(src);
@@ -184,7 +195,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
               <span className={styles.noOrganizationCardAvailable}>{t("No catalogus found")}</span>
             )}
 
-            {_getPublication.data.catalogi.metadata[0]?.id && (
+            {metaData && (
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -195,7 +206,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 </TableHeader>
 
                 <TableBody>
-                  {_getPublication.data.catalogi.metadata.map((data: any, idx: number) => (
+                  {metaData.map((data: any, idx: number) => (
                     <TableRow key={`${data.id}-${idx}`}>
                       <TableCell>{data.title || t("No title known")}</TableCell>
                       <TableCell>{data.version || t("No version known")}</TableCell>
@@ -205,9 +216,7 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                 </TableBody>
               </Table>
             )}
-            {!_getPublication.data.catalogi.metadata[0]?.id && (
-              <span className={styles.noOrganizationCardAvailable}>{t("No metadata found")}</span>
-            )}
+            {!metaData && <span className={styles.noOrganizationCardAvailable}>{t("No metadata found")}</span>}
 
             {organisation && (
               <OrganizationCard
@@ -274,6 +283,10 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                               <></>
                             ) : (
                               <TableRow className={styles.tableRow}>
+                                {console.log("pub", _getPublication.data.published)}
+                                {console.log(attachment)}
+                                {console.log(attachment?.published)}
+                                {console.log("translate", translateDate("nl", attachment?.published))}
                                 <TableCell className={styles.title}>{attachment?.title}</TableCell>
                                 <TableCell className={styles.description}>
                                   <div
