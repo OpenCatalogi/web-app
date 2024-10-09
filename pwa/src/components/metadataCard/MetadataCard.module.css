@@ -1,0 +1,42 @@
+.container > *:not(.cardHeader):not(:last-child) {
+  margin-block-end: var(--web-app-size-md);
+}
+
+.titleLink {
+  font-size: var(--web-app-font-size-lg);
+}
+
+.titleLink > span > svg {
+  width: var(--web-app-font-size-lg);
+  height: var(--web-app-font-size-lg);
+}
+
+.titleLink > span {
+  display: flex;
+}
+
+.description {
+  color: var(--conduction-card-wrapper-color) !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tags {
+  display: flex;
+  margin-block-start: auto;
+}
+
+.tags > div {
+  margin-block-end: var(--web-app-size-xs);
+}
+
+.tags > *:not(:last-child) {
+  margin-inline-end: var(--web-app-size-xs);
+}
+
+.container:hover .description {
+  color: var(--conduction-card-wrapper-hover-color, var(--conduction-card-wrapper-color)) !important;
+}

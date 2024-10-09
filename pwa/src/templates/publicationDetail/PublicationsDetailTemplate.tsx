@@ -283,10 +283,6 @@ export const PublicationsDetailTemplate: React.FC<PublicationsDetailTemplateProp
                               <></>
                             ) : (
                               <TableRow className={styles.tableRow}>
-                                {console.log("pub", _getPublication.data.published)}
-                                {console.log(attachment)}
-                                {console.log(attachment?.published)}
-                                {console.log("translate", translateDate("nl", attachment?.published))}
                                 <TableCell className={styles.title}>{attachment?.title}</TableCell>
                                 <TableCell className={styles.description}>
                                   <div

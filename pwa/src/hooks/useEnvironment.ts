@@ -33,7 +33,7 @@ export const useEnvironment = () => {
     window.sessionStorage.setItem("BASE_URL", process.env.GATSBY_BASE_URL ?? "");
     window.sessionStorage.setItem(
       "NEXTCLOUD_API_URL",
-      process.env.GATSBY_NEXTCLOUD_API_URL ?? "http://nextcloud.local/index.php/apps/opencatalogi/api",
+      "http://localhost:8080/index.php/apps/opencatalogi/api",
     );
     window.sessionStorage.setItem("NL_DESIGN_THEME_CLASSNAME", process.env.GATSBY_NL_DESIGN_THEME_CLASSNAME ?? "");
     window.sessionStorage.setItem("GITHUB_ORGANIZATION_URL", process.env.GATSBY_GITHUB_ORGANIZATION_URL ?? "");

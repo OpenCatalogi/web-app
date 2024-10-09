@@ -13,11 +13,14 @@ import Markdown from "./resources/markdown";
 import FooterContent from "./resources/footerContent";
 import AvailableFilters from "./resources/availableFilters";
 
+import Publication from "./resources/publication";
+import Directory from "./resources/directory";
+
 import Login from "./services/login";
 import Me from "./services/me";
 import { DEFAULT_HEADER_CONTENT_URL } from "../templates/templateParts/header/HeaderTemplate";
 import HeaderContent from "./resources/headerContent";
-import Publication from "./resources/publication";
+import Metadata from "./resources/metaData";
 
 export default class APIService {
   public JWT?: string;
@@ -114,6 +117,32 @@ export default class APIService {
     });
   }
 
+  public get DirectoryClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
+    return axios.create({
+      baseURL: window.sessionStorage.getItem("NEXTCLOUD_API_URL") ?? "",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      ...authorization,
+    });
+  }
+
+  public get MetadataClient(): AxiosInstance {
+    const authorization = this.JWT ? { Authorization: "Bearer " + this.JWT } : {};
+
+    return axios.create({
+      baseURL: "",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      ...authorization,
+    });
+  }
+
   // Resources
   public get Case(): Case {
     return new Case(this.apiClient);
@@ -161,6 +190,14 @@ export default class APIService {
 
   public get Publication(): Publication {
     return new Publication(this.PublicationClient);
+  }
+
+  public get Directory(): Directory {
+    return new Directory(this.DirectoryClient);
+  }
+
+  public get Metadata(): Metadata {
+    return new Metadata(this.MetadataClient);
   }
 
   // Services

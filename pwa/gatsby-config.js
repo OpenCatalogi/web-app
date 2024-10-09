@@ -67,6 +67,10 @@ module.exports = {
             pathname: "/publications/[publicationId]",
             crumbLabel: "Publication",
           },
+          {
+            pathname: "/directories/[directoryId]",
+            crumbLabel: "Directory",
+          },
         ],
       },
     },

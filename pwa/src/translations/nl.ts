@@ -189,4 +189,7 @@ export const nl = {
   "Common Ground rating": "Common Ground beoordeling",
   "This component has a rating of": "Dit component is beoordeeld met de status",
   "Back to publications": "Terug naar publicaties",
+  "Back to directories": "Terug naar directories",
+  "Unknown Organisations": "Onbekende organisaties",
+  "Total amount of metadata": "Aantal publicatie typen",
 };

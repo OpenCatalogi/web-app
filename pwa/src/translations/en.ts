@@ -185,4 +185,7 @@ export const en = {
   "Common Ground rating": "Common Ground rating",
   "This component has a rating of": "This component has a rating of",
   "Back to publications": "Back to publications",
+  "Back to directories": "Back to directories",
+  "Unknown Organisations": "Unknown Organisations",
+  "Total amount of metadata": "Total amount of metadata",
 };
